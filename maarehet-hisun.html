@@ -812,16 +812,15 @@ ul.content-list li::before {
       <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">💉</span>חיסון פעיל</button>
       <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🩺</span>חיסון סביל</button>
       <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>פעיל מול סביל</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>פרוטוקול חיסונים</button>
     </div>
     <div class="menu-chapter-title">📚 מונחים וחזרה</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
-      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
-      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
-      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה והשלמה</button>
-      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>חזרה – קווי הגנה</button>
-      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום ותקציר</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה והשלמה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>חזרה – קווי הגנה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום ותקציר</button>
     </div>
   </div>
 </div>
@@ -836,7 +835,7 @@ ul.content-list li::before {
   <div id="progress-track">
     <div id="progress-fill" style="width:0%"></div>
   </div>
-  <span id="progress-label">מסך 1 מתוך 21</span>
+  <span id="progress-label">מסך 1 מתוך 20</span>
 </div>
 
 <div id="app">
@@ -868,7 +867,6 @@ ul.content-list li::before {
       <li data-icon="🔄">איך מחלות עוברות?</li>
       <li data-icon="🛡️">3 קווי ההגנה של הגוף</li>
       <li data-icon="💉">מערכת החיסון: חיסון פעיל וסביל</li>
-      <li data-icon="📋">פרוטוקול חיסונים בכלבים</li>
       <li data-icon="📖">מונחים חשובים לבגרות</li>
     </ul>
   </div>
@@ -1905,73 +1903,8 @@ ul.content-list li::before {
   </div>
 </div>
 
-<!-- ====================== SCREEN 14: פרוטוקול חיסונים ====================== -->
-<div class="screen" id="screen-14">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#374151,#1f2937)">
-    <span class="chapter-num">פרק 13</span>
-    <span class="emoji">📋</span>
-    <h1>פרוטוקול חיסונים בכלבים</h1>
-    <p class="subtitle">מה נאמר בחומרי המקור</p>
-  </div>
-
-  <div class="goal-box">אני אדע לתאר את עקרונות פרוטוקול החיסונים.</div>
-
-  <div class="warning-box" style="border-color:#2563eb;background:#eff6ff">
-    <strong>הערה:</strong> פרטי הפרוטוקול המלא (שמות חיסונים, גיל, תדירות) לא הופיעו בטקסט שנחלץ מחומרי המקור. ייתכן שמופיעים בגרפיקה בקובץ המקורי.
-  </div>
-
-  <div class="card">
-    <div class="section-title">🐾 מה ידוע מהחומרים</div>
-
-    <div class="highlight green">
-      🍼 <strong>גורים</strong> מקבלים <strong>חסינות סבילה טבעית</strong> בשבועות הראשונים אחרי ההמלטה.<br>
-      מקור: <strong>נוגדנים מדם האם + קולוסטרום</strong>.
-    </div>
-
-    <div class="highlight blue" style="margin-top:12px">
-      👨‍⚕️ חיסונים הם חלק ממניעה ברמה <strong>המקומית</strong> – באחריות כל מגדל כלב.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">🏛️ מניעה וביעור מחלות – 2 רמות</div>
-
-    <table class="info-table">
-      <tr><th>🏛️ רמה לאומית (ממשלה)</th><th>🏠 רמה מקומית (מגדל)</th></tr>
-      <tr>
-        <td>
-          • חוקי ייבוא/ייצוא<br>
-          • תקנות הסגר<br>
-          • מתן רישיונות<br>
-          • פיקוח על הסגרים<br>
-          • בדיקות דם לבעלי חיים מיובאים
-        </td>
-        <td>
-          • פיקוח וטרינרי קבוע<br>
-          • <strong>מתן חיסונים וטיפול הולם</strong><br>
-          • רכישת בע"ח בריאים ברשיון<br>
-          • תנאי היגיינה וסניטציה<br>
-          • בקרת אקלים וטמפרטורה
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="margin-bottom:14px;font-size:15px">מתן חיסונים לכלב הוא אחריות:</p>
-    <div class="mc-options">
-      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">א</span>הממשלה בלבד</button>
-      <button class="mc-option" onclick="answerMC(this,'correct','s14q')"><span class="opt-letter">ב</span>המגדל (ברמה המקומית) </button>
-      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ג</span>שרות הבטחון</button>
-      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ד</span>הסוס שנתן את הנוגדנים</button>
-    </div>
-    <div class="feedback" id="fb-s14q"></div>
-  </div>
-</div>
-
 <!-- ====================== SCREEN 15: מילון מונחים ====================== -->
-<div class="screen" id="screen-15">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#0369a1)">
     <span class="chapter-num">פרק 14</span>
     <span class="emoji">📚</span>
@@ -2020,7 +1953,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 16-20: חזרה מסכמת ====================== -->
-<div class="screen" id="screen-16">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">🎯</span>
@@ -2059,7 +1992,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-17">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">❓</span>
@@ -2108,7 +2041,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-18">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#7c3aed)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">🔗</span>
@@ -2152,7 +2085,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-19">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0f766e)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">📊</span>
@@ -2205,7 +2138,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 20: SUMMARY ====================== -->
-<div class="screen" id="screen-20">
+<div class="screen" id="screen-14">
   <div class="completion-card">
     <div class="stars">⭐⭐⭐</div>
     <h2>כל הכבוד! 🎉</h2>
@@ -2253,8 +2186,8 @@ ul.content-list li::before {
 </div><!-- /app -->
 
 <script>
-const TOTAL_SCREENS = 21;
-const SCREEN_NAMES = ["פתיחה", "מהי מחלה?", "מחלה מול טראומה", "אקוטית וכרונית", "מחלה זואונוטית", "עוד סוגי מחלות", "דרכי הדבקה", "קו הגנה ראשון", "קו הגנה שני", "קו הגנה שלישי", "מערכת החיסון", "חיסון פעיל", "חיסון סביל", "פעיל מול סביל", "פרוטוקול חיסונים", "מילון מונחים", "חזרה – נכון/לא נכון", "חזרה – שאלות", "חזרה – התאמה", "חזרה – קווי הגנה", "סיום 🏆"];
+const TOTAL_SCREENS = 20;
+const SCREEN_NAMES = ["פתיחה", "מהי מחלה?", "מחלה מול טראומה", "אקוטית וכרונית", "מחלה זואונוטית", "עוד סוגי מחלות", "דרכי הדבקה", "קו הגנה ראשון", "קו הגנה שני", "קו הגנה שלישי", "מערכת החיסון", "חיסון פעיל", "חיסון סביל", "פעיל מול סביל", "מילון מונחים", "חזרה – נכון/לא נכון", "חזרה – שאלות אמריקאיות", "חזרה – התאמה והשלמה", "חזרה – קווי הגנה", "סיום 🏆"];
 let currentScreen = 0;
 
 // FLASHCARD DATA
