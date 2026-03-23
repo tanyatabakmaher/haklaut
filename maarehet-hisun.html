@@ -799,28 +799,30 @@ ul.content-list li::before {
     <div class="menu-chapter-title">🔄 הדבקה</div>
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>דרכי הדבקה</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">📈</span>שלבי המחלה</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🏥</span>טיפול ומניעה</button>
     </div>
     <div class="menu-chapter-title">🛡️ קווי הגנה</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">1️⃣</span>קו הגנה ראשון</button>
-      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">2️⃣</span>קו הגנה שני</button>
-      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">3️⃣</span>קו הגנה שלישי</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">1️⃣</span>קו הגנה ראשון</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">2️⃣</span>קו הגנה שני</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">3️⃣</span>קו הגנה שלישי</button>
     </div>
     <div class="menu-chapter-title">💉 חיסונים</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">💪</span>מערכת החיסון</button>
-      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">💉</span>חיסון פעיל</button>
-      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🩺</span>חיסון סביל</button>
-      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>פעיל מול סביל</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">💪</span>מערכת החיסון</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">💉</span>חיסון פעיל</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🩺</span>חיסון סביל</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>פעיל מול סביל</button>
     </div>
     <div class="menu-chapter-title">📚 מונחים וחזרה</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה והשלמה</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>חזרה – קווי הגנה</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום ותקציר</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה והשלמה</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>חזרה – קווי הגנה</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום ותקציר</button>
     </div>
   </div>
 </div>
@@ -835,7 +837,7 @@ ul.content-list li::before {
   <div id="progress-track">
     <div id="progress-fill" style="width:0%"></div>
   </div>
-  <span id="progress-label">מסך 1 מתוך 20</span>
+  <span id="progress-label">מסך 1 מתוך 22</span>
 </div>
 
 <div id="app">
@@ -1388,8 +1390,20 @@ ul.content-list li::before {
     </div>
   </div>
 
+  <div class="card">
+    <div class="section-title">🦠 סוגי פאתוגנים (גורמי מחלה)</div>
+    <table class="info-table">
+      <tr><th>פאתוגן</th><th>מה זה?</th><th>דוגמה</th></tr>
+      <tr><td>🧬 <strong>פריון</strong></td><td>חלבון פגום שגורם למחלה — לא חיידק ולא נגיף!</td><td>מחלת הפרה המשוגעת</td></tr>
+      <tr><td>🔴 <strong>נגיף</strong></td><td>מזהם זעיר שמתרבה רק בתוך תאים חיים</td><td>כלבת, קורונה, כלבלבת</td></tr>
+      <tr><td>🔵 <strong>חיידק</strong></td><td>יצור חד-תאי מיקרוסקופי שמקיים את כל מאפייני החיים</td><td>שחפת, ליים</td></tr>
+      <tr><td>🍄 <strong>פטריה</strong></td><td>אורגניזם שמתפתח על רקמות הגוף</td><td>גזזת, קנדידה</td></tr>
+      <tr><td>🐛 <strong>טפיל</strong></td><td>חד-תא, קרציות, פרעושים, תולעים</td><td>קדחת הקרציות</td></tr>
+    </table>
+  </div>
+
   <div class="question-box">
-    <div class="q-title">נכון או לא נכון?</div>
+    <div class="q-title">✅ נכון או לא נכון?</div>
     <p style="margin-bottom:10px;font-size:15px;font-weight:600">אנטיביוטיקה יעילה נגד נגיפים.</p>
     <div class="tf-options">
       <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf5a')">✅ נכון</button>
@@ -1422,15 +1436,24 @@ ul.content-list li::before {
       <strong>מחלה מדבקת</strong> = כל מחלה שעשויה לעבור מבעל חיים אחד לשני.
     </div>
 
-    <table class="info-table">
-      <tr><th>דרך הדבקה</th><th>הסבר</th></tr>
-      <tr><td>🤝 מגע ישיר</td><td>מגע פיזי, ליקוק, מגע מיני</td></tr>
-      <tr><td>💨 טיפות באוויר</td><td>שיעול, עיטוש</td></tr>
-      <tr><td>🥤 מזון ומים</td><td>אכילה/שתייה של מזון מזוהם</td></tr>
-      <tr><td>🦟 וקטור</td><td>חרק או בע"ח נושא מחלה (קרציה, פרעוש)</td></tr>
-      <tr><td>🐾 מאם לגור</td><td>דרך הדם של האם או הקולוסטרום</td></tr>
-      <tr><td>🌱 מצע מזוהם</td><td>אדמה, פצעים</td></tr>
-    </table>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #93c5fd">
+        <div class="title" style="color:#1d4ed8">🤝 הדבקה ישירה</div>
+        מגע ישיר עם נוזלי גוף של בעל חיים נגוע:<br>
+        • רוק, דם, זרע, נזלת, צואה<br>
+        • ליקוק, נשיכה, מגע מיני
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <div class="title" style="color:#d97706">💨 הדבקה עקיפה</div>
+        • שאיפת אוויר מזוהם (שיעול, עיטוש)<br>
+        • מגע עם חפצים מזוהמים<br>
+        • מזון ומים מזוהמים<br>
+        • וקטור — חרק/בע"ח נושא מחלה
+      </div>
+    </div>
+    <div class="highlight blue" style="margin-top:4px">
+      💡 <strong>יכולת ההדבקה</strong> נקבעת לפי יכולת הפאתוגן לחדור, לשרוד ולהתרבות בגוף.
+    </div>
 
     <div class="highlight yellow">
       💡 <strong>לא כל המחלות מדבקות!</strong><br>
@@ -1463,7 +1486,204 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 7: קו הגנה ראשון ====================== -->
+
+<!-- ====================== SCREEN 7: שלבי מחלה ====================== -->
 <div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#be185d,#9d174d)">
+    <span class="chapter-num">פרק חדש</span>
+    <span class="emoji">📈</span>
+    <h1>שלבי המחלה</h1>
+    <p class="subtitle">מה קורה בגוף מרגע ההדבקה ועד ההחלמה</p>
+  </div>
+
+  <div class="goal-box">אני אוכל לתאר את 4 שלבי המחלה ולהסביר כל אחד.</div>
+
+  <div class="card">
+    <div class="highlight pink" style="background:#fce7f3;border-right:4px solid #be185d;text-align:center;font-size:16px;font-weight:700">
+      כל מחלה מדבקת עוברת <strong>4 שלבים</strong> בסדר קבוע 🔄
+    </div>
+
+    <div class="step-box" style="margin-top:14px">
+      <div class="step-num" style="background:#be185d">1</div>
+      <div class="step-content">
+        <strong>🦠 הדבקה</strong><br>
+        הפאתוגן (גורם המחלה) חודר לגוף — דרך נשיכה, מגע, אוויר, מזון וכו'. עצם כניסת הגורם לגוף.
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">2</div>
+      <div class="step-content">
+        <strong>⏱️ דגירה</strong><br>
+        הגורם התיישב בגוף והתחיל להתרבות — <strong>אין עדיין סימנים</strong>. בעל החיים נראה בריא אך כבר נגוע.<br>
+        <span style="font-size:13px;color:#6b7280">⚠️ לא כל הדבקה מתפתחת למחלה! לפעמים הגוף מדביר את הגורם בשלב זה.</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">3</div>
+      <div class="step-content">
+        <strong>🤒 מחלה</strong><br>
+        הסימנים הקליניים מופיעים במלואם — חום, חולשה, שינויי התנהגות ועוד. הגוף נלחם בגורם.
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">4</div>
+      <div class="step-content">
+        <strong>💚 החלמה</strong><br>
+        הסימנים הקליניים דועכים ובעל החיים חוזר לתפקוד תקין.<br>
+        <span style="font-size:13px;color:#6b7280">לעיתים המחלה נותרת רדומה ויכולה להתפרץ שוב בעתיד.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">⏱️ מדוע חשובה תקופת הדגירה?</div>
+    <div class="highlight yellow">
+      • <strong>קביעת נהלי ייבוא/ייצוא</strong> של בעלי חיים בין מדינות<br>
+      • עדר שעבר מחלה עם דגירה של שנים — לא ייחשב נקי מהר<br>
+      • מחלה עם דגירה של ימים — ניתן להסיר סגר מהר יותר
+    </div>
+    <div class="remember-box">הדבקה → דגירה → מחלה → החלמה. ארבעה שלבים לכל מחלה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔢 סדר נכון — מה הסדר הנכון של שלבי המחלה?</div>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q1')"><span class="opt-letter">א</span>דגירה → הדבקה → מחלה → החלמה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s7q1')"><span class="opt-letter">ב</span>הדבקה → דגירה → מחלה → החלמה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q1')"><span class="opt-letter">ג</span>מחלה → הדבקה → דגירה → החלמה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q1')"><span class="opt-letter">ד</span>הדבקה → מחלה → דגירה → החלמה</button>
+    </div>
+    <div class="feedback" id="fb-s7q1"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בשלב הדגירה בעל החיים כבר מראה סימני מחלה ברורים.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 8: טיפול ומניעה ====================== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#064e3b)">
+    <span class="chapter-num">פרק חדש</span>
+    <span class="emoji">🏥</span>
+    <h1>דרכי טיפול ומניעה</h1>
+    <p class="subtitle">מה עושה החקלאי כשמתפרצת מחלה</p>
+  </div>
+
+  <div class="goal-box">אני אוכל לתאר את דרכי הטיפול והמניעה במחלות בבעלי חיים.</div>
+
+  <div class="card">
+    <div class="section-title">🛡️ 5 דרכי טיפול ומניעה</div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#2563eb">1</div>
+      <div class="step-content">
+        <strong>💉 חיסון</strong><br>
+        מניעה מראש — חיסון פעיל (לפני המחלה) או סביל (נוגדנים מוכנים). הדרך הטובה ביותר!
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">2</div>
+      <div class="step-content">
+        <strong>🔒 בידוד והסגר</strong><br>
+        הפרדת הפרטים החולים משאר העדר כדי לעצור את ההתפשטות. חיסכון בחיים!
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0891b2">3</div>
+      <div class="step-content">
+        <strong>🩺 טיפול תומך</strong><br>
+        שיפור תנאי האחזקה: מרחב מחייה, אוורור, הזנה נאותה, שמירה על היגיינה.
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#d97706">4</div>
+      <div class="step-content">
+        <strong>💊 תרופות</strong><br>
+        אנטיביוטיקה (נגד חיידקים), תרופות אנטי-ויראליות ועוד — לפי סוג הגורם.
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">5</div>
+      <div class="step-content">
+        <strong>☠️ השמדה (ביעור)</strong><br>
+        במקרים קשים — השמדת כל העדר הנגוע כדי למנוע התפשטות למשקים אחרים ולבני אדם.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔒 מהו הסגר (קרנטינה)?</div>
+    <div class="definition-box">
+      <strong>הסגר = קרנטינה</strong> = כליאה בבידוד של בעל חיים חשוד או נגוע.<br><br>
+      📋 לפי החוק בישראל: כל בעל חיים <strong>מיובא</strong> חייב בהסגר של <strong>מינימום 8 ימים</strong> בתחנת הסגר ממשלתית.
+    </div>
+    <div class="highlight yellow">
+      💡 <strong>מאיפה המילה "קרנטינה"?</strong><br>
+      מהמילה האיטלקית "קוורנטה" = <strong>ארבעים</strong> — ארבעים ימי הסגר שהוטלו בעבר על ספינות שהגיעו לאיטליה מאזורי מגפה. הרופא עלה על הספינה בתום 40 הימים ובדק אם יש חולים.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🌍 מגפה vs פנדמיה</div>
+    <div class="two-col-compare">
+      <div class="compare-card blue">
+        <h3>🔴 מגפה</h3>
+        <ul>
+          <li>התפשטות <strong>מהירה</strong> של מחלה מדבקת באוכלוסייה</li>
+          <li>מוגבלת לאזור/מדינה מסוימים</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>🌐 פנדמיה</h3>
+        <ul>
+          <li>מגפה <strong>כלל עולמית</strong></li>
+          <li>מתפשטת בין מדינות ויבשות</li>
+          <li>דוגמה: קורונה, שפעת ספרדית</li>
+        </ul>
+      </div>
+    </div>
+    <div class="remember-box">מגפה = אזורית. פנדמיה = עולמית!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">חקלאי גילה שחלק מהכלבים בכלביית שלו חולים. מה הצעד הראשון שעליו לעשות?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q1')"><span class="opt-letter">א</span>להשמיד את כל הכלבים מיד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s8q1')"><span class="opt-letter">ב</span>לבדד את הכלבים החולים משאר העדר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q1')"><span class="opt-letter">ג</span>לתת אנטיביוטיקה לכל הכלבים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q1')"><span class="opt-letter">ד</span>לחכות ולראות אם המחלה חולפת לבד</button>
+    </div>
+    <div class="feedback" id="fb-s8q1"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">פנדמיה היא מגפה שמתפשטת בכל העולם.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'correct','tf8new')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'wrong','tf8new')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8new"></div>
+  </div>
+</div>
+
+
+<div class="screen" id="screen-9">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#047857)">
     <span class="chapter-num">פרק 6</span>
     <span class="emoji">🛡️</span>
@@ -1528,7 +1748,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 8: קו הגנה שני ====================== -->
-<div class="screen" id="screen-8">
+<div class="screen" id="screen-10">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1e40af)">
     <span class="chapter-num">פרק 7</span>
     <span class="emoji">🔬</span>
@@ -1620,7 +1840,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 9: קו הגנה שלישי ====================== -->
-<div class="screen" id="screen-9">
+<div class="screen" id="screen-11">
   <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">
     <span class="chapter-num">פרק 8</span>
     <span class="emoji">🧬</span>
@@ -1671,7 +1891,32 @@ ul.content-list li::before {
   </div>
 
   <div class="card">
-    <div class="remember-box">קו שלישי = ייחודי + יוצר זיכרון חיסוני!</div>
+    <div class="card" style="margin-top:0;border:2px solid #ede9fe">
+      <div class="section-title" style="color:#7c3aed">🔁 תגובה ראשונית מול תגובה שניונית</div>
+      <div class="two-col-compare">
+        <div class="compare-card blue">
+          <h3>1️⃣ תגובה ראשונית</h3>
+          <ul>
+            <li>חשיפה <strong>ראשונה</strong> לאנטיגן</li>
+            <li>הגוף צריך זמן לייצר נוגדנים</li>
+            <li>נוצרים <strong>תאי זיכרון</strong></li>
+          </ul>
+        </div>
+        <div class="compare-card green">
+          <h3>2️⃣ תגובה שניונית</h3>
+          <ul>
+            <li>חשיפה <strong>חוזרת</strong> לאותו אנטיגן</li>
+            <li>תאי הזיכרון "מתעוררים" מהר</li>
+            <li><strong>מהירה וחזקה</strong> הרבה יותר!</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight purple" style="margin-top:10px">
+        💡 זו הסיבה שחיסון עובד! הזרקת גורם מוחלש יוצרת תגובה ראשונית ותאי זיכרון — ואז בחשיפה אמיתית הגוף מגיב מהר וחזק.
+      </div>
+    </div>
+
+    <div class="remember-box">קו שלישי = ייחודי + יוצר זיכרון חיסוני! תגובה שניונית = מהירה וחזקה יותר!</div>
   </div>
 
   <div class="question-box">
@@ -1687,7 +1932,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 10: מערכת חיסון ====================== -->
-<div class="screen" id="screen-10">
+<div class="screen" id="screen-12">
   <div class="chapter-header" style="background:linear-gradient(135deg,#be185d,#9d174d)">
     <span class="chapter-num">פרק 9</span>
     <span class="emoji">💪</span>
@@ -1746,7 +1991,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 11: חיסון פעיל ====================== -->
-<div class="screen" id="screen-11">
+<div class="screen" id="screen-13">
   <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#047857)">
     <span class="chapter-num">פרק 10</span>
     <span class="emoji">💉</span>
@@ -1807,7 +2052,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 12: חיסון סביל ====================== -->
-<div class="screen" id="screen-12">
+<div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#92400e)">
     <span class="chapter-num">פרק 11</span>
     <span class="emoji">🩺</span>
@@ -1867,7 +2112,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 13: השוואה פעיל/סביל ====================== -->
-<div class="screen" id="screen-13">
+<div class="screen" id="screen-15">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#7c3aed)">
     <span class="chapter-num">פרק 12</span>
     <span class="emoji">⚖️</span>
@@ -1904,7 +2149,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 15: מילון מונחים ====================== -->
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-16">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#0369a1)">
     <span class="chapter-num">פרק 14</span>
     <span class="emoji">📚</span>
@@ -1937,7 +2182,10 @@ ul.content-list li::before {
     <div class="section-title">📋 כל המונחים במבט אחד</div>
     <div id="glossary-list">
       <div class="glossary-item"><div class="glossary-term">🦠 זיהום</div><div class="glossary-def">פלישה של אורגניזמים מחוללי מחלה (חיידקים, נגיפים, פטריות) אל תוך הגוף.</div></div>
-      <div class="glossary-item"><div class="glossary-term">☣️ פתוגן</div><div class="glossary-def">כל מיקרואורגניזם שחי כטפיל ו<strong>גורם למחלה</strong>.</div></div>
+      <div class="glossary-item"><div class="glossary-term">☣️ פתוגן (מחולל מחלה)</div><div class="glossary-def">כל מיקרואורגניזם שחי כטפיל ו<strong>גורם למחלה</strong>. כולל: חיידק, נגיף, פטריה, טפיל ופריון.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🧬 פריון</div><div class="glossary-def">חלבון קצר בעל מבנה שגוי שיכול לגרום למחלה. גורם למחלת הפרה המשוגעת. לא חיידק ולא נגיף — אלא חלבון פגום!</div></div>
+      <div class="glossary-item"><div class="glossary-term">🔒 הסגר (קרנטינה)</div><div class="glossary-def">בידוד של בעל חיים חשוד או נגוע. בישראל: כל בעל חיים מיובא חייב בהסגר של מינימום 8 ימים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🌍 מגפה / פנדמיה</div><div class="glossary-def">מגפה = התפשטות מהירה של מחלה באוכלוסייה. פנדמיה = מגפה <strong>כלל עולמית</strong>.</div></div>
       <div class="glossary-item"><div class="glossary-term">💀 רעלן</div><div class="glossary-def">רעל שמיוצר על ידי אורגניזם חי (בעיקר חיידק). הגוף מייצר נגדו נוגדנים.</div></div>
       <div class="glossary-item"><div class="glossary-term">🌱 נבג</div><div class="glossary-def">גוף קטן שמיוצר ע"י מיקרואורגניזמים. משמש לשרידה בתנאים קשים.</div></div>
       <div class="glossary-item"><div class="glossary-term">🐛 טפיל</div><div class="glossary-def">אורגניזם שחי בתוך/על אורגניזם אחר (פונדקאי), מקבל ממנו מזון ולא נותן דבר בתמורה.</div></div>
@@ -1953,7 +2201,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 16-20: חזרה מסכמת ====================== -->
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-17">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">🎯</span>
@@ -1992,7 +2240,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-18">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">❓</span>
@@ -2041,7 +2289,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-19">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#7c3aed)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">🔗</span>
@@ -2085,7 +2333,7 @@ ul.content-list li::before {
   </div>
 </div>
 
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-20">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0f766e)">
     <span class="chapter-num">חזרה מסכמת</span>
     <span class="emoji">📊</span>
@@ -2138,7 +2386,7 @@ ul.content-list li::before {
 </div>
 
 <!-- ====================== SCREEN 20: SUMMARY ====================== -->
-<div class="screen" id="screen-14">
+<div class="screen" id="screen-21">
   <div class="completion-card">
     <div class="stars">⭐⭐⭐</div>
     <h2>כל הכבוד! 🎉</h2>
@@ -2156,6 +2404,9 @@ ul.content-list li::before {
       <li data-icon="🐾">לגורים: חסינות סבילה מהאם (דם + קולוסטרום)</li>
       <li data-icon="🦠">אנטיביוטיקה: רק נגד <strong>חיידקים</strong>, לא נגד נגיפים!</li>
       <li data-icon="🔄">מחלה זואונוטית = עוברת בין בע"ח לאדם ולהיפך</li>
+      <li data-icon="📈">4 שלבי מחלה: הדבקה → דגירה → מחלה → החלמה</li>
+      <li data-icon="🔒">הסגר (קרנטינה) = בידוד לפחות 8 ימים לבעלי חיים מיובאים</li>
+      <li data-icon="🌍">מגפה = אזורית | פנדמיה = עולמית</li>
     </ul>
   </div>
 
@@ -2166,11 +2417,11 @@ ul.content-list li::before {
       <div class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>מהי מחלה?</div>
       <div class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>סוגי מחלות</div>
       <div class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>דרכי הדבקה</div>
-      <div class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>קו הגנה 1</div>
-      <div class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>קו הגנה 2</div>
-      <div class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>קו הגנה 3</div>
-      <div class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>חיסון פעיל</div>
-      <div class="toc-item" onclick="goToScreen(12)"><span class="num">12</span>חיסון סביל</div>
+      <div class="toc-item" onclick="goToScreen(9)"><span class="num">7</span>קו הגנה 1</div>
+      <div class="toc-item" onclick="goToScreen(10)"><span class="num">8</span>קו הגנה 2</div>
+      <div class="toc-item" onclick="goToScreen(11)"><span class="num">9</span>קו הגנה 3</div>
+      <div class="toc-item" onclick="goToScreen(13)"><span class="num">11</span>חיסון פעיל</div>
+      <div class="toc-item" onclick="goToScreen(14)"><span class="num">12</span>חיסון סביל</div>
     </div>
     <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
   </div>
@@ -2186,8 +2437,8 @@ ul.content-list li::before {
 </div><!-- /app -->
 
 <script>
-const TOTAL_SCREENS = 20;
-const SCREEN_NAMES = ["פתיחה", "מהי מחלה?", "מחלה מול טראומה", "אקוטית וכרונית", "מחלה זואונוטית", "עוד סוגי מחלות", "דרכי הדבקה", "קו הגנה ראשון", "קו הגנה שני", "קו הגנה שלישי", "מערכת החיסון", "חיסון פעיל", "חיסון סביל", "פעיל מול סביל", "מילון מונחים", "חזרה – נכון/לא נכון", "חזרה – שאלות אמריקאיות", "חזרה – התאמה והשלמה", "חזרה – קווי הגנה", "סיום 🏆"];
+const TOTAL_SCREENS = 22;
+const SCREEN_NAMES = ["פתיחה", "מהי מחלה?", "מחלה מול טראומה", "אקוטית וכרונית", "מחלה זואונוטית", "עוד סוגי מחלות", "דרכי הדבקה", "שלבי המחלה", "טיפול ומניעה", "קו הגנה ראשון", "קו הגנה שני", "קו הגנה שלישי", "מערכת החיסון", "חיסון פעיל", "חיסון סביל", "פעיל מול סביל", "מילון מונחים", "חזרה – נכון/לא נכון", "חזרה – שאלות אמריקאיות", "חזרה – התאמה והשלמה", "חזרה – קווי הגנה", "סיום 🏆"];
 let currentScreen = 0;
 
 // FLASHCARD DATA
