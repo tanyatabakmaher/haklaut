@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מה מגן על הכלב שלנו? | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+:root {
+  --bg: #f0f4ff;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --secondary: #059669;
+  --secondary-light: #d1fae5;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --font: 'Heebo', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+/* MENU SIDEBAR */
+#menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+#menu-overlay.open { display: block; }
+
+#menu-sidebar {
+  position: fixed;
+  top: 0; right: -320px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  z-index: 300;
+  box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#menu-sidebar.open { right: 0; }
+
+#menu-header {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+  padding: 20px 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+#menu-header h2 { font-size: 17px; font-weight: 900; }
+#menu-close {
+  background: rgba(255,255,255,0.2);
+  border: none; border-radius: 50%;
+  width: 32px; height: 32px;
+  color: white; font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font);
+  transition: background 0.2s;
+}
+#menu-close:hover { background: rgba(255,255,255,0.35); }
+
+#menu-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.menu-chapter {
+  padding: 0 8px 4px;
+}
+.menu-chapter-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 12px 4px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: right;
+  font-family: var(--font);
+}
+.menu-item:hover { background: var(--primary-light); color: var(--primary); }
+.menu-item.active { background: var(--primary-light); color: var(--primary); }
+.menu-item.active .menu-dot { background: var(--primary); }
+.menu-dot {
+  min-width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: background 0.2s;
+}
+.menu-item-icon { font-size: 18px; min-width: 24px; text-align: center; }
+
+/* PROGRESS BAR */
+#progress-bar-container {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  background: white;
+  z-index: 100;
+  padding: 10px 14px 10px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#menu-btn {
+  background: var(--primary);
+  border: none;
+  border-radius: 10px;
+  width: auto;
+  height: 36px;
+  padding: 0 12px 0 10px;
+  display: flex; flex-direction: row;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+#menu-btn:hover { background: #1d4ed8; }
+#menu-btn-label {
+  color: white;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.menu-btn-lines {
+  display: flex; flex-direction: column;
+  gap: 4px; align-items: center;
+}
+#menu-btn-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+#progress-track {
+  flex: 1;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #059669);
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+#progress-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+#dog-icon { font-size: 22px; }
+
+/* MAIN LAYOUT */
+#app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 75px 16px 100px;
+}
+
+/* SCREENS */
+.screen { display: none; animation: fadeIn 0.4s ease; }
+.screen.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+/* CHAPTER HEADER */
+.chapter-header {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  top: -30px; left: -30px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+.chapter-header .emoji { font-size: 48px; display: block; margin-bottom: 8px; }
+.chapter-header h1 { font-size: 26px; font-weight: 900; margin-bottom: 4px; }
+.chapter-header .subtitle { font-size: 15px; opacity: 0.85; }
+.chapter-header .chapter-num {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border-radius: 99px;
+  padding: 3px 14px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* GOAL BOX */
+.goal-box {
+  background: var(--primary-light);
+  border-right: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e40af;
+}
+.goal-box::before { content: "🎯 "; }
+
+/* CONTENT SECTIONS */
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.definition-box {
+  background: linear-gradient(135deg, #f8faff, #e8f0fe);
+  border: 2px solid #c7d7fe;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* TABLES */
+.info-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.info-table th {
+  background: #2563eb;
+  color: white;
+  padding: 10px 14px;
+  text-align: right;
+  font-weight: 700;
+}
+.info-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.info-table tr:last-child td { border-bottom: none; }
+.info-table tr:nth-child(even) td { background: #f8faff; }
+
+/* HIGHLIGHT BOXES */
+.highlight {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.highlight.blue { background: var(--primary-light); border-right: 4px solid var(--primary); }
+.highlight.green { background: var(--secondary-light); border-right: 4px solid var(--secondary); }
+.highlight.yellow { background: var(--accent-light); border-right: 4px solid var(--accent); }
+.highlight.red { background: var(--danger-light); border-right: 4px solid var(--danger); }
+.highlight.purple { background: var(--purple-light); border-right: 4px solid var(--purple); }
+
+/* REMEMBER BOX */
+.remember-box {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+  border: 2px solid #facc15;
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+}
+.remember-box::before { content: "📌 חשוב לזכור: "; color: #a16207; }
+
+/* TAGS / PILLS */
+.pill {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 99px;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 3px;
+}
+.pill.green { background: var(--secondary-light); color: #065f46; }
+.pill.yellow { background: var(--accent-light); color: #92400e; }
+.pill.red { background: var(--danger-light); color: #991b1b; }
+
+/* GRID */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.mini-card {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.mini-card .title { font-weight: 800; font-size: 15px; margin-bottom: 6px; }
+
+/* ================================
+   INTERACTIVE COMPONENTS
+   ================================ */
+
+/* QUESTION WRAPPER */
+.question-box {
+  background: #f8faff;
+  border: 2px solid #c7d7fe;
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.question-box .q-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* MULTIPLE CHOICE */
+.mc-options { display: flex; flex-direction: column; gap: 10px; }
+.mc-option {
+  background: white;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s;
+  text-align: right;
+  font-family: var(--font);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mc-option:hover { border-color: var(--primary); background: var(--primary-light); }
+.mc-option .opt-letter {
+  min-width: 28px; height: 28px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px;
+}
+.mc-option.correct { border-color: var(--secondary) !important; background: var(--secondary-light) !important; }
+.mc-option.wrong { border-color: var(--danger) !important; background: var(--danger-light) !important; }
+.mc-option.correct .opt-letter { background: var(--secondary); color: white; }
+.mc-option.wrong .opt-letter { background: var(--danger); color: white; }
+/* buttons remain fully interactive */
+
+/* TRUE/FALSE */
+.tf-options { display: flex; gap: 12px; }
+.tf-btn {
+  flex: 1;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+.tf-btn:hover { transform: scale(1.02); }
+.tf-btn.true-btn:hover { border-color: var(--secondary); background: var(--secondary-light); }
+.tf-btn.false-btn:hover { border-color: var(--danger); background: var(--danger-light); }
+.tf-btn.correct { border-color: var(--secondary); background: var(--secondary-light); color: #065f46; }
+.tf-btn.wrong { border-color: var(--danger); background: var(--danger-light); color: #991b1b; }
+
+/* FILL IN THE BLANK */
+.fill-blank {
+  background: #dbeafe;
+  border: 2px dashed #2563eb;
+  border-radius: 8px;
+  padding: 3px 12px;
+  display: inline-block;
+  min-width: 120px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #1e40af;
+  transition: all 0.2s;
+  font-family: var(--font);
+  font-size: 15px;
+}
+.fill-blank.revealed {
+  background: #d1fae5;
+  border: 2px solid #059669;
+  color: #065f46;
+}
+.fill-sentence {
+  font-size: 17px;
+  line-height: 2;
+  margin-bottom: 12px;
+  padding: 14px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+}
+
+/* MATCHING */
+.match-container { display: flex; gap: 12px; align-items: flex-start; }
+.match-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.match-item {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px;
+  display: flex; align-items: center;
+  text-align: right;
+}
+.match-item.left-item { background: #eff6ff; border-color: #93c5fd; }
+.match-item.left-item:hover, .match-item.left-item.selected { background: #dbeafe; border-color: var(--primary); }
+.match-item.right-item { background: #f0fdf4; border-color: #86efac; }
+.match-item.right-item:hover, .match-item.right-item.selected { background: #dcfce7; border-color: var(--secondary); }
+.match-item.matched { background: #d1fae5; border-color: var(--secondary); cursor: default; }
+.match-item.wrong-match { animation: shake 0.4s; }
+@keyframes shake {
+  0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
+}
+
+/* FEEDBACK */
+.feedback {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.feedback.show { display: block; }
+.feedback.correct { background: var(--secondary-light); color: #065f46; border: 2px solid var(--secondary); }
+.feedback.wrong { background: var(--danger-light); color: #991b1b; border: 2px solid var(--danger); }
+
+/* FLASHCARDS */
+.flashcard-container { perspective: 1000px; margin-bottom: 12px; }
+.flashcard {
+  width: 100%;
+  min-height: 120px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  min-height: 120px;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+.flashcard-front {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+}
+.flashcard-front .term { font-size: 22px; font-weight: 900; }
+.flashcard-front .hint { font-size: 12px; opacity: 0.75; margin-top: 8px; }
+.flashcard-back {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  transform: rotateY(180deg);
+}
+.flashcard-back .def { font-size: 15px; line-height: 1.6; }
+
+.flashcard-nav {
+  display: flex; gap: 10px; justify-content: center; align-items: center;
+  margin-bottom: 16px;
+}
+.flashcard-nav button {
+  padding: 8px 18px;
+  border: none; border-radius: 99px;
+  background: var(--primary); color: white;
+  font-family: var(--font); font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: all 0.2s;
+}
+.flashcard-nav button:hover { transform: scale(1.05); }
+.flashcard-counter { font-weight: 700; color: var(--text-muted); font-size: 15px; }
+
+/* NAVIGATION BUTTONS */
+.nav-buttons {
+  position: fixed;
+  bottom: 0; right: 0; left: 0;
+  background: white;
+  padding: 12px 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+}
+.btn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-secondary { background: #f1f5f9; color: var(--text); }
+.btn-success { background: var(--secondary); color: white; }
+.btn-disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
+.btn-disabled:hover { transform: none; box-shadow: none; }
+.btn-small {
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+/* CHAPTER NAV / TOC */
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+@media(max-width: 480px) { .toc-grid { grid-template-columns: 1fr; } }
+
+.toc-item {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600;
+  font-family: var(--font);
+  text-align: right;
+}
+.toc-item:hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+.toc-item .num {
+  min-width: 32px; height: 32px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 14px; color: var(--primary);
+}
+.toc-item.done .num { background: var(--secondary); color: white; }
+.toc-item.done { border-color: var(--secondary); }
+
+/* COMPLETION STARS */
+.stars { display: flex; gap: 6px; justify-content: center; font-size: 32px; margin: 12px 0; }
+.completion-card {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white; border-radius: 20px; padding: 32px 24px;
+  text-align: center; margin-bottom: 16px;
+}
+.completion-card h2 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+.completion-card p { font-size: 16px; opacity: 0.9; }
+
+/* GLOSSARY */
+.glossary-item {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.glossary-item:last-child { border-bottom: none; }
+.glossary-term { font-weight: 800; font-size: 17px; color: var(--primary); }
+.glossary-def { font-size: 15px; line-height: 1.6; color: var(--text); margin-top: 4px; }
+
+/* SUMMARY EXAM */
+.exam-score {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 16px 0;
+}
+.score-bar {
+  background: #e2e8f0;
+  border-radius: 99px;
+  height: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #059669, #2563eb);
+  border-radius: 99px;
+  transition: width 1s ease;
+}
+
+/* MISC */
+ul.content-list {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+ul.content-list li {
+  padding: 8px 0 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  line-height: 1.5;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+ul.content-list li:last-child { border-bottom: none; }
+ul.content-list li::before {
+  content: attr(data-icon);
+  font-size: 18px;
+  min-width: 24px;
+}
+
+.two-col-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 16px;
+}
+@media(max-width: 480px) { .two-col-compare { grid-template-columns: 1fr; } }
+
+.compare-card {
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 14px;
+}
+.compare-card.blue { background: #dbeafe; border: 2px solid #93c5fd; }
+.compare-card.green { background: #dcfce7; border: 2px solid #86efac; }
+.compare-card h3 { font-weight: 900; font-size: 16px; margin-bottom: 10px; }
+.compare-card ul { list-style: none; padding: 0; }
+.compare-card ul li { padding: 4px 0; display: flex; align-items: flex-start; gap: 6px; }
+.compare-card ul li::before { content: "•"; font-weight: 900; }
+
+.step-box {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: white; border: 2px solid var(--border);
+  border-radius: 12px; padding: 14px; margin-bottom: 10px;
+}
+.step-num {
+  min-width: 36px; height: 36px;
+  background: var(--primary);
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 16px;
+}
+.step-content { font-size: 15px; line-height: 1.5; }
+.step-content strong { font-size: 16px; display: block; margin-bottom: 4px; }
+
+.warning-box {
+  background: #fffbeb;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.warning-box::before { content: "⚠️ "; }
+
+/* INTRO SCREEN */
+.intro-hero {
+  background: linear-gradient(160deg, #1e40af 0%, #2563eb 40%, #4f46e5 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 40px 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.intro-hero::after {
+  content: '🐕';
+  position: absolute;
+  font-size: 120px;
+  bottom: -20px; left: -10px;
+  opacity: 0.12;
+}
+.intro-hero h1 { font-size: 30px; font-weight: 900; margin-bottom: 8px; line-height: 1.3; }
+.intro-hero .tagline { font-size: 16px; opacity: 0.85; margin-bottom: 20px; }
+.intro-hero .badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.intro-badge {
+  background: rgba(255,255,255,0.2);
+  border-radius: 99px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* EMOJI ICON DISPLAY */
+.big-icon { font-size: 56px; text-align: center; margin: 12px 0; }
+
+</style>
+</head>
+<body>
+
+<!-- MENU OVERLAY -->
+<div id="menu-overlay" onclick="closeMenu()"></div>
+
+<!-- MENU SIDEBAR -->
+<div id="menu-sidebar">
+  <div id="menu-header">
+    <h2>🐾 תפריט פרקים</h2>
+    <button id="menu-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🦠 מחלות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🦠</span>מהי מחלה?</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">⚡</span>מחלה מול טראומה</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>אקוטית וכרונית</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>מחלה זואונוטית</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>עוד סוגי מחלות</button>
+    </div>
+    <div class="menu-chapter-title">🔄 הדבקה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>דרכי הדבקה</button>
+    </div>
+    <div class="menu-chapter-title">🛡️ קווי הגנה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">1️⃣</span>קו הגנה ראשון</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">2️⃣</span>קו הגנה שני</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">3️⃣</span>קו הגנה שלישי</button>
+    </div>
+    <div class="menu-chapter-title">💉 חיסונים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">💪</span>מערכת החיסון</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">💉</span>חיסון פעיל</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🩺</span>חיסון סביל</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>פעיל מול סביל</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>פרוטוקול חיסונים</button>
+    </div>
+    <div class="menu-chapter-title">📚 מונחים וחזרה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה והשלמה</button>
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>חזרה – קווי הגנה</button>
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום ותקציר</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()" title="מעבר בין פרקים">
+    <span id="menu-btn-icon">☰</span>
+    <span id="menu-btn-label">פתיחה</span>
+  </button>
+  <span id="dog-icon">🐾</span>
+  <div id="progress-track">
+    <div id="progress-fill" style="width:0%"></div>
+  </div>
+  <span id="progress-label">מסך 1 מתוך 21</span>
+</div>
+
+<div id="app">
+
+<!-- ====================== SCREEN 0: INTRO ====================== -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕🛡️</div>
+    <h1>מה מגן על הכלב שלנו?</h1>
+    <p class="tagline">מערכת החיסון והגנה על הגוף<br>לומדה דיגיטלית | הכנה לבגרות 5 יחידות</p>
+    <div class="badges">
+      <span class="intro-badge">📚 ענף כלבים</span>
+      <span class="intro-badge">🎯 כיתה י"ב</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">💡 האם ידעת?</div>
+    <div class="definition-box" style="font-size:17px;font-weight:600;text-align:center">
+      גוף הכלב יכול לעצור <span style="color:#2563eb;font-size:22px">99%</span> מהחיידקים שמנסים לחדור אליו –<br>לפני שבכלל שמת לב!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🦠">מהי מחלה וסוגיה השונים</li>
+      <li data-icon="🔄">איך מחלות עוברות?</li>
+      <li data-icon="🛡️">3 קווי ההגנה של הגוף</li>
+      <li data-icon="💉">מערכת החיסון: חיסון פעיל וסביל</li>
+      <li data-icon="📋">פרוטוקול חיסונים בכלבים</li>
+      <li data-icon="📖">מונחים חשובים לבגרות</li>
+    </ul>
+  </div>
+
+  <!-- Opening question -->
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת – לפי דעתך:</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מגן יותר על הכלב מחיידקים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerIntro(this,'א')"><span class="opt-letter">א</span> העור שלו</button>
+      <button class="mc-option" onclick="answerIntro(this,'ב')"><span class="opt-letter">ב</span> החיסונים שהוא מקבל</button>
+      <button class="mc-option" onclick="answerIntro(this,'ג')"><span class="opt-letter">ג</span> תאי הדם שלו</button>
+      <button class="mc-option" onclick="answerIntro(this,'ד')"><span class="opt-letter">ד</span> כל אלה יחד! </button>
+    </div>
+    <div class="feedback" id="fb-intro"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 1: מהי מחלה ====================== -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header">
+    <span class="chapter-num">פרק 1</span>
+    <span class="emoji">🦠</span>
+    <h1>מהי מחלה?</h1>
+    <p class="subtitle">הגדרה, גורמים, ומי מטפל</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להגדיר מחלה ולהסביר מה גורם לה.</div>
+
+  <div class="card">
+    <div class="section-title">📖 ההגדרה</div>
+    <div class="definition-box">
+      <strong>מחלה</strong> = פגיעה בגופו של יצור חי, הגורמת לתפקוד לקוי של הגוף <strong>או</strong> הנפש.
+    </div>
+    <div class="highlight yellow">
+      למחלה יש לרוב <strong>שני סוגי ביטוי:</strong><br>
+      🔴 ביטוי <strong>פיזי-גופני</strong> (כאב, חום, חולשה)<br>
+      💙 ביטוי <strong>נפשי</strong> (עצבנות, מצב רוח ירוד)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔍 מה גורם למחלה?</div>
+    <div class="grid-2">
+      <div class="mini-card">
+        <div class="title" style="color:#2563eb">🔵 גורמים פנימיים</div>
+        • פגם גנטי<br>
+        • שינוי כרוני בגוף
+      </div>
+      <div class="mini-card">
+        <div class="title" style="color:#ef4444">🔴 גורמים חיצוניים</div>
+        • חיידקים<br>
+        • נגיפים<br>
+        • טפילים
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">👩‍⚕️ מי מטפל?</div>
+    <ul class="content-list">
+      <li data-icon="👨‍⚕️">בני אדם → רופא / בעל מקצוע מתחומי הרפואה</li>
+      <li data-icon="🐾">בעלי חיים → <strong>וטרינר</strong></li>
+      <li data-icon="🌿">צמחים → חוקרים בתחום <strong>הבוטניקה</strong></li>
+    </ul>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם את המשפט – לחץ על הריק</div>
+    <div class="fill-sentence">
+      מחלה היא פגיעה ב<span class="fill-blank" onclick="revealBlank(this,'גוף')" data-answer="גוף">_______</span> של יצור חי, שגורמת לתפקוד <span class="fill-blank" onclick="revealBlank(this,'לקוי')" data-answer="לקוי">_______</span> של הגוף.
+    </div>
+    <p style="font-size:13px;color:var(--text-muted)">👆 לחץ על הריקים כדי לגלות את התשובה</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה אמריקאית</div>
+    <p style="margin-bottom:14px;font-size:15px">מחלה בכלב מטופלת על ידי:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q1')"><span class="opt-letter">א</span>רופא ילדים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s1q1')"><span class="opt-letter">ב</span>וטרינר </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q1')"><span class="opt-letter">ג</span>בוטנאי</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q1')"><span class="opt-letter">ד</span>פסיכולוג</button>
+    </div>
+    <div class="feedback" id="fb-s1q1"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 2: מחלה לעומת טראומה ====================== -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 1 – המשך</span>
+    <span class="emoji">⚡</span>
+    <h1>מחלה לעומת טראומה</h1>
+    <p class="subtitle">מה ההבדל?</p>
+  </div>
+
+  <div class="goal-box">אני אדע להבדיל בין מחלה לטראומה.</div>
+
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card blue">
+        <h3>🦠 מחלה</h3>
+        <ul>
+          <li>פגיעה מגורמים <strong>פנימיים</strong></li>
+          <li>מתפתחת עם הזמן</li>
+          <li>חיידקים, גנטיקה, נגיפים</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <h3>💥 טראומה</h3>
+        <ul>
+          <li>פגיעה פיזית <strong>מבחוץ</strong></li>
+          <li>מהירה ורגעית</li>
+          <li>פציעה, כוויה, חנק</li>
+        </ul>
+      </div>
+    </div>
+    <div class="remember-box">טראומה = מבחוץ, מהירה. מחלה = מתפתחת מבפנים.</div>
+  </div>
+
+  <!-- TRUE/FALSE x3 -->
+  <div class="question-box">
+    <div class="q-title">נכון או לא נכון?</div>
+    
+    <p style="margin-bottom:10px;font-size:15px;font-weight:600">1. כוויה היא סוג של מחלה.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf1')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf1')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf1"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">2. מחלה יכולה לנבוע מפגם גנטי.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'correct','tf2')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'wrong','tf2')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf2"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">3. טראומה תמיד נגרמת מחיידקים.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf3')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf3')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf3"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 3: מחלה אקוטית וכרונית ====================== -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#047857)">
+    <span class="chapter-num">פרק 2</span>
+    <span class="emoji">📊</span>
+    <h1>מחלה אקוטית וכרונית</h1>
+    <p class="subtitle">מהלך ומשך המחלה</p>
+  </div>
+
+  <div class="goal-box">אני אדע להסביר את ההבדל בין מחלה אקוטית לכרונית.</div>
+
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card blue">
+        <h3>⚡ אקוטית (חריפה)</h3>
+        <ul>
+          <li>מתפרצת <strong>לפתע</strong></li>
+          <li>סימפטומים <strong>בולטים</strong></li>
+          <li>בדרך כלל <strong>חולפת מהר</strong></li>
+          <li>לאחריה: <strong>החלמה</strong></li>
+          <li>אם חוזרת: <strong>מחלה חוזרת</strong></li>
+        </ul>
+      </div>
+      <div class="compare-card green">
+        <h3>📅 כרונית (ממושכת)</h3>
+        <ul>
+          <li>נמשכת <strong>זמן רב</strong>, לפעמים כל החיים</li>
+          <li>המצב <strong>קבוע</strong> ברוב הזמן</li>
+          <li>לפעמים: <strong>התפרצות אקוטית</strong></li>
+          <li>תקופות רגיעה: <strong>הפוגות</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📖 3 מושגים חשובים לדעת</div>
+    <div class="highlight blue">
+      <strong>💚 החלמה</strong><br>
+      המצב שלאחר מחלה אקוטית – הגוף חזר לתפקוד תקין לאחר שהמחלה חלפה.
+    </div>
+    <div class="highlight green" style="margin-top:10px">
+      <strong>😌 הפוגה</strong><br>
+      תקופת רגיעה במחלה כרונית – המחלה עדיין קיימת, אבל הסימפטומים שקטים לתקופה מסוימת.
+    </div>
+    <div class="highlight yellow" style="margin-top:10px">
+      <strong>🔁 מחלה חוזרת</strong><br>
+      מחלה אקוטית שחלפה ולאחר מכן חזרה והתפרצה בשנית.
+    </div>
+  </div>
+
+  <!-- MATCHING GAME -->
+  <div class="question-box">
+    <div class="q-title">🔗 בדוק את עצמך – חבר מושג להסבר</div>
+    <div id="match-s3" class="match-container">
+      <div class="match-col" id="s3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s3')">החלמה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s3')">הפוגה</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s3')">מחלה חוזרת</div>
+      </div>
+      <div class="match-col" id="s3-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s3')">תקופת רגיעה במחלה כרונית</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s3')">מחלה אקוטית שחזרה בשנית</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s3')">המצב לאחר מחלה אקוטית</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s3match"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 4: מחלה זואונוטית ====================== -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">פרק 3</span>
+    <span class="emoji">🔄</span>
+    <h1>מחלה זואונוטית</h1>
+    <p class="subtitle">בין בעלי חיים לבני אדם</p>
+  </div>
+
+  <div class="goal-box">אני אדע להסביר מהי מחלה זואונוטית ולתת דוגמאות.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>מחלה זואונוטית</strong> = מחלה שעוברת מבעלי חיים (חיות בר או חיות מחמד) <strong>לבני אדם</strong> – ולהיפך.
+    </div>
+
+    <div class="section-title">🐛 מה גורם לה?</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+      <span class="pill">פרעושים</span>
+      <span class="pill">קרציות</span>
+      <span class="pill">תולעים</span>
+      <span class="pill">טפילי מעיים</span>
+      <span class="pill green">חיידקים</span>
+      <span class="pill green">נגיפים</span>
+    </div>
+
+    <div class="section-title">🚿 דרכי הדבקה</div>
+    <ul class="content-list">
+      <li data-icon="🤝">מגע עם <strong>הפרשות ונוזלי גוף</strong> של בעלי חיים</li>
+      <li data-icon="💨">חלקיקי <strong>אוויר</strong></li>
+      <li data-icon="🥤">מזון ומים</li>
+      <li data-icon="🌱">מגע עם <strong>מצע</strong> של בעלי חיים נגועים</li>
+    </ul>
+  </div>
+
+<div class="card">
+    <div class="section-title">💡 לחץ על מחלה לקבל פירוט והסבר</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border-color:#fbbf24;cursor:pointer" onclick="toggleCard('bird-flu-panel', this)">
+        <div class="title">🐦 שפעת העופות ▼</div>
+      </div>
+      <div class="mini-card" style="background:#fee2e2;border-color:#fca5a5;cursor:pointer" onclick="toggleCard('mad-cow-panel', this)">
+        <div class="title">🐄 מחלת הפרה המשוגעת ▼</div>
+      </div>
+      <div class="mini-card" style="background:#ede9fe;border-color:#c4b5fd;cursor:pointer" onclick="toggleCard('rabies-panel', this)">
+        <div class="title">🐕 כלבת ▼</div>
+      </div>
+      <div class="mini-card" style="background:#dcfce7;border-color:#86efac;cursor:pointer" onclick="toggleCard('ticks-panel', this)">
+        <div class="title">🦟 קדחת הקרציות ▼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIRD FLU -->
+  <div id="bird-flu-panel" style="display:none">
+    <div class="card" style="border:2px solid #fbbf24">
+      <div class="section-title" style="color:#d97706">🐦 שפעת העופות</div>
+      <div class="highlight yellow">
+        <strong>🦠 מה גורם למחלה?</strong><br>
+        נגיף שפעת שפוגע בעיקר בעופות — תרנגולות, ברווזים ועופות בר. הנגיף יכול לעבור גם לבני אדם ולגרום למחלה קשה מאוד.
+      </div>
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🔄 איך עוברת?</strong><br>
+        • מגע עם עוף חולה — חי או מת<br>
+        • מגע עם הפרשות של עוף חולה (צואה, ריר)<br>
+        • אכילת ביצים או בשר עוף שלא בושלו מספיק<br>
+        • העברה בין בני אדם — נדירה מאוד
+      </div>
+      <div class="highlight red" style="margin-top:10px">
+        <strong>⚠️ למה זה מסוכן?</strong><br>
+        בני אדם שנדבקים עלולים לחלות קשה מאוד — עם דלקת ריאות חמורה. ארגון הבריאות העולמי עוקב מקרוב אחרי כל התפרצות כי יש חשש שהמחלה תתפשט בין בני אדם.
+      </div>
+      <div class="highlight green" style="margin-top:10px">
+        <strong>🛡️ מניעה</strong><br>
+        • חיסון תרנגולות ועופות בלולים<br>
+        • השמדת כל העוף הנגוע כדי לעצור את ההתפשטות<br>
+        • איסור ייבוא עופות מאזורים שיש בהם מחלה<br>
+        • לבשל עוף וביצים עד הסוף
+      </div>
+      <div class="remember-box">שפעת העופות יכולה לעבור מעוף לאדם — לכן מחסלים עדרים שלמים כשמתגלה מחלה!</div>
+    </div>
+  </div>
+
+  <!-- MAD COW -->
+  <div id="mad-cow-panel" style="display:none">
+    <div class="card" style="border:2px solid #fca5a5">
+      <div class="section-title" style="color:#dc2626">🐄 מחלת הפרה המשוגעת</div>
+      <div class="highlight red">
+        <strong>🦠 מה גורם למחלה?</strong><br>
+        לא חיידק ולא נגיף — אלא <strong>חלבון פגום</strong> שמתפשט בגוף וגורם לחלבונים בריאים אחרים להפוך גם הם לפגומים. הפגיעה היא במוח — שמתנוון לאט לאט עד שהפרה כבר לא יכולה לתפקד.
+      </div>
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🔄 איך עוברת?</strong><br>
+        • פרות נדבקו כי האכילו אותן בקמח עצמות שהוכן מפרות חולות אחרות<br>
+        • לבני אדם: אכילת בשר בקר נגוע יכולה לגרום למחלה קשה במוח
+      </div>
+      <div class="highlight yellow" style="margin-top:10px">
+        <strong>⏱️ שים לב — המחלה מתפתחת לאט מאוד!</strong><br>
+        הפרה יכולה להיות חולה שנים רבות לפני שהסימנים מופיעים. לכן המחלה התפשטה כבר בלי שידעו — עד שהיה מאוחר מדי.
+      </div>
+      <div class="highlight green" style="margin-top:10px">
+        <strong>🛡️ מניעה</strong><br>
+        • אסור להאכיל פרות בקמח עצמות מבעלי חיים<br>
+        • בדיקה של כל פרה לפני שחיטה<br>
+        • פיקוח קפדני על מה שנכנס למזון<br>
+        • איסור ייבוא בשר ממקומות שיש בהם מחלה
+      </div>
+      <div class="remember-box">מחלת הפרה המשוגעת גרמה למשבר עולמי בשנות ה-90 — ושינתה לנצח את הדרך שבה מגדלים בקר!</div>
+    </div>
+  </div>
+
+  <!-- RABIES -->
+  <div id="rabies-panel" style="display:none">
+    <div class="card" style="border:2px solid #c4b5fd">
+      <div class="section-title" style="color:#7c3aed">🐕 כלבת</div>
+
+      <div class="highlight purple">
+        <strong>🦠 מה גורם למחלה?</strong><br>
+        נגיף שתוקף את המוח ומערכת העצבים. זוהי אחת המחלות המסוכנות ביותר בעולם — <strong>כשמופיעים הסימנים, אין דרך להציל את החולה.</strong>
+      </div>
+
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🔄 איך עוברת?</strong><br>
+        • <strong>הדרך הכי נפוצה: נשיכה</strong> של בעל חיים חולה — הנגיף נמצא ברוק שלו<br>
+        • שריטה עמוקה מבעל חיים חולה<br>
+        • לאחר הנשיכה: הנגיף נע לאט לאט לאורך העצבים לכיוון המוח. ככל שהנשיכה קרובה יותר לראש — זה קורה מהר יותר.
+      </div>
+
+      <div class="highlight yellow" style="margin-top:10px">
+        <strong>🐾 חיות בית לעומת חיות בר — מה ההבדל?</strong>
+        <table class="info-table" style="margin-top:10px;font-size:13px">
+          <tr><th>🏠 חיות בית (כלבים, חתולים)</th><th>🌿 חיות בר (תנים, שועלים)</th></tr>
+          <tr>
+            <td>• בדרך כלל <strong>מחוסנות</strong><br>• סיכון נמוך<br>• בישראל: חיסון כלב הוא <strong>חובה חוקית</strong> מגיל 3 חודשים</td>
+            <td>• <strong>המקור העיקרי של המחלה בישראל</strong><br>• לא מחוסנות<br>• חיית בר שמתקרבת לאדם בלי פחד — <strong>זה סימן אזהרה!</strong><br>• ההתפרצויות בישראל מגיעות בעיקר מחיות שחצו את הגבול מלבנון וירדן</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="highlight red" style="margin-top:10px">
+        <strong>🌡️ סימנים בכלב חולה</strong><br>
+        שינוי פתאומי בהתנהגות, תוקפנות, ריור מוגזם, קושי לבלוע, פרכוסים, שיתוק.<br>
+        <strong>כלב שמראה סימנים אלה ימות תוך 10 ימים.</strong>
+      </div>
+
+      <div class="highlight green" style="margin-top:10px">
+        <strong>🏥 מה עושים אחרי נשיכה?</strong><br>
+        1. <strong>לשטוף את הפצע מיד</strong> — סבון ומים זורמים למשך 15 דקות לפחות<br>
+        2. <strong>לפנות לרופא מיידית</strong> — אין לחכות!<br>
+        3. הרופא יחליט על טיפול מונע — סדרת חיסונים שנותנת לגוף זמן להתכונן<br>
+        ⚠️ לאחר שמופיעים הסימנים — <strong>אין כבר טיפול</strong>. לכן המהירות קריטית.
+      </div>
+
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🛡️ מניעה ומיגור בישראל</strong><br>
+        • <strong>חיסון חובה לכלבים</strong> — לפי חוק, כל כלב חייב להיות מחוסן<br>
+        • <strong>חיסון חיות בר:</strong> המדינה מפזרת פיתיונות עם חיסון מהאוויר ומהקרקע כדי לחסן תנים ושועלים<br>
+        • כלבים משוטטים נתפסים ומוסגרים<br>
+        • פיקוח קפדני על הכנסת בעלי חיים לישראל<br>
+        • <strong>מיגור:</strong> כשיותר מ-70% מהכלבים מחוסנים — שרשרת ההדבקה נשברת ואפשר לחסל את המחלה לחלוטין באזור
+      </div>
+
+      <div class="highlight yellow" style="margin-top:10px">
+        <strong>📊 כלבת בישראל — מספרים</strong><br>
+        • מאז 1958 נפטרו בישראל 4 אנשים מכלבת<br>
+        • 2024: 55 מקרי כלבת בבעלי חיים — עלייה בגלל המלחמה ופריצת גדרות בצפון<br>
+        • המחלה מרוכזת בעיקר בגליל, גולן והעמקים
+      </div>
+
+      <div class="remember-box">נשכת מחיית בר? שטוף מיד ופנה לרופא! כלבת ניתנת למניעה — אבל אחרי שמופיעים סימנים אין מרפא!</div>
+    </div>
+  </div>
+
+  <!-- TICK FEVER -->
+  <div id="ticks-panel" style="display:none">
+    <div class="card" style="border:2px solid #86efac">
+      <div class="section-title" style="color:#059669">🦟 קדחת הקרציות (ארליכיוזיס)</div>
+      
+
+      <div class="highlight green">
+        <strong>🦠 מה גורם למחלה?</strong><br>
+        חיידק בשם <strong>ארליכיה קניס</strong> שמועבר בעקיצת קרציה. כשהקרציה מוצצת דם, היא מזריקה לגוף חומרים — ובמהלך זה עובר גם החיידק.
+      </div>
+
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🔄 איך עוברת?</strong><br>
+        • קרציה נגועה שנדבקת לכלב — חייבת להיות צמודה <strong>לפחות 24 שעות</strong> כדי להעביר את החיידק<br>        • לכן: הסרה מהירה של קרציה מורידה מאוד את הסיכון!<br>
+        • דרך נדירה: קבלת מנת דם נגועה<br>
+        • המחלה עצמה <strong>לא עוברת ישירות לבני אדם</strong> מהכלב — אבל הקרציות יכולות להדביק אנשים במחלות אחרות
+      </div>
+
+      <div class="highlight yellow" style="margin-top:10px">
+        <strong>📊 3 שלבי המחלה</strong>
+        <table class="info-table" style="margin-top:10px;font-size:13px">
+          <tr><th>שלב</th><th>משך</th><th>סימנים</th></tr>
+          <tr><td><strong>1. אקוטי</strong></td><td>שבוע–חודש</td><td>חום, חולשה, חוסר תיאבון, דימום מהאף, עיניים אדומות, הגדלת קשרי לימפה</td></tr>
+          <tr><td><strong>2. תת-קליני</strong></td><td>חודשים–שנים</td><td>הכלב נשא אך <strong>נראה בריא</strong>. ממצאים חריגים בבדיקות דם בלבד</td></tr>
+          <tr><td><strong>3. כרוני</strong></td><td>ממושך</td><td>פגיעה במח העצם, אנמיה, דימומים, רזון, דלקות. עלול להוביל למוות</td></tr>
+        </table>
+      </div>
+
+      <div class="highlight blue" style="margin-top:10px">
+        <strong>🔬 איך מאבחנים?</strong><br>
+        • בדיקת דם — מראה ירידה בכמות כדוריות הדם<br>
+        • בדיקה לנוגדנים — בודקת אם הגוף כבר נחשף לחיידק<br>
+        • בדיקה גנטית — הכי אמינה, מוצאת את החיידק עצמו בדם
+      </div>
+
+      <div class="highlight green" style="margin-top:10px">
+        <strong>🏥 טיפול</strong><br>
+        • <strong>אנטיביוטיקה</strong> — לרוב למשך שלושה שבועות<br>
+        • במקרים קשים: תרופות נוספות להרגעת מערכת החיסון<br>
+        • כשיש אנמיה חמורה: עירוי דם<br>
+        • לפעמים צריך אשפוז ומתן נוזלים
+      </div>
+
+      <div class="highlight red" style="margin-top:10px">
+        <strong>🛡️ מניעה</strong><br>
+        • <strong>אין חיסון</strong> נגד המחלה כיום<br>
+        • <strong>קולרים</strong> כנגד קרציות או <strong>טיפוניות</strong> הדוחות/הורגות קרציות<br>
+        • ריסוס הבית והחצר<br>
+        • <strong>⚠️ כלב שחלה — אינו מחוסן ויכול לחלות שוב!</strong>
+      </div>
+
+      <div class="highlight yellow" style="margin-top:10px">
+        <strong>🐕 גזעים רגישים יותר</strong><br>
+        רועה גרמני, האסקי, מאלמוט, שפיץ — נחשבים רגישים יותר. ברועה גרמני — סיכויי ההחלמה נמוכים יותר.
+      </div>
+
+      <div class="remember-box">אבחון מוקדם + אנטיביוטיקה = תחזית טובה. אבחון בשלב כרוני = סיכויי החלמה נמוכים!</div>
+    </div>
+  </div>
+
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב חולה בכלבת והדביק את בעליו. לאיזה סוג מחלה שייכת כלבת?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">א</span>מחלה אקוטית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ב</span>מחלה כרונית</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s4q')"><span class="opt-letter">ג</span>מחלה זואונוטית </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ד</span>מחלה גנטית</button>
+    </div>
+    <div class="feedback" id="fb-s4q"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 5: עוד סוגי מחלות ====================== -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">
+    <span class="chapter-num">פרק 4</span>
+    <span class="emoji">📋</span>
+    <h1>עוד סוגי מחלות</h1>
+    <p class="subtitle">גנטית, סרטן, מטבולית, אוטואימונית, הרעלה, טפילים</p>
+  </div>
+
+  <div class="goal-box">אני אדע לזהות סוגי מחלות נוספים.</div>
+
+  <div class="card">
+    <div class="section-title">🧬 מחלות תורשתיות (גנטיות)</div>
+    <div class="highlight blue">
+      בכל תאי הגוף קיים <strong>גן פגום</strong> שגורם לחלבון פגום → פגיעה ברקמות.<br>
+      כ-4,000 מחלות גנטיות ידועות.<br>
+      <strong>טיפול:</strong> בדרך כלל חשוכות מרפא – רק טיפול סימפטומלי (הקלת תסמינים).
+    </div>
+
+    <div class="section-title">🔴 סרטן</div>
+    <div class="highlight red">
+      חלוקה <strong>מהירה ובלתי נשלטת</strong> של תאים.<br>
+      גורמים: מוטציות, חומרים מזיקים (ניקוטין, אזבסט), נגיפים מסוימים.<br>
+      <strong>טיפול:</strong> הרס/הסרת הרקמה הסרטנית (קרינה, תרופות, ניתוח).
+    </div>
+
+    <div class="section-title">🍖 תזונה לקויה</div>
+    <div class="highlight yellow">
+      חוסר איזון בין תזונה רצויה לאכילה בפועל.<br>
+      <strong>30-40% מהכלבים</strong> בארה"ב סובלים מחוסר איזון במשקל!<br>
+      משפיעה על: מחזור דם, נשימה, עצמות, שרירים.<br>
+      <strong>טיפול:</strong> דיאטה מותאמת + פעילות גופנית.
+    </div>
+
+    <div class="section-title">⚗️ מחלות מטבוליות</div>
+    <div class="highlight purple">
+      הפרעה בחילוף החומרים (<strong>מטבוליזם</strong>).<br>
+      דוגמה: <strong>סוכרת</strong> – מחסור בהורמון אינסולין.<br>
+      <strong>טיפול:</strong> החדרת אינסולין מלאכותית.
+    </div>
+
+    <div class="section-title">🛡️ מחלות אוטואימוניות</div>
+    <div class="highlight green">
+      מערכת החיסון <strong>תוקפת בטעות</strong> תאי גוף בריאים.<br>
+      <strong>טיפול:</strong> האטת ההתקדמות, הפחתת התלקחויות.
+    </div>
+
+    <div class="section-title">🦠 מחלות זיהומיות</div>
+    <div class="highlight blue">
+      טפילים מתרבים ומפרישים <strong>רעלנים</strong> שמשבשים פעולת תאים.<br>
+      תגובת הגוף: <strong>עייפות + עליית חום</strong>.<br>
+      האופן בו הטפיל מזיק = <strong>פתוגניות</strong>.<br>
+      <strong>טיפול: אנטיביוטיקה</strong>.
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-size:15px;font-weight:600">אנטיביוטיקה יעילה נגד נגיפים.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf5a')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf5a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf5a"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">מחלת סוכרת נגרמת ממחסור באינסולין.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'correct','tf5b')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'wrong','tf5b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf5b"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 6: דרכי הדבקה ====================== -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0891b2,#0369a1)">
+    <span class="chapter-num">פרק 5</span>
+    <span class="emoji">🔄</span>
+    <h1>איך מחלות עוברות?</h1>
+    <p class="subtitle">דרכי הדבקה</p>
+  </div>
+
+  <div class="goal-box">אני אדע להסביר את דרכי ההדבקה השונות.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>מחלה מדבקת</strong> = כל מחלה שעשויה לעבור מבעל חיים אחד לשני.
+    </div>
+
+    <table class="info-table">
+      <tr><th>דרך הדבקה</th><th>הסבר</th></tr>
+      <tr><td>🤝 מגע ישיר</td><td>מגע פיזי, ליקוק, מגע מיני</td></tr>
+      <tr><td>💨 טיפות באוויר</td><td>שיעול, עיטוש</td></tr>
+      <tr><td>🥤 מזון ומים</td><td>אכילה/שתייה של מזון מזוהם</td></tr>
+      <tr><td>🦟 וקטור</td><td>חרק או בע"ח נושא מחלה (קרציה, פרעוש)</td></tr>
+      <tr><td>🐾 מאם לגור</td><td>דרך הדם של האם או הקולוסטרום</td></tr>
+      <tr><td>🌱 מצע מזוהם</td><td>אדמה, פצעים</td></tr>
+    </table>
+
+    <div class="highlight yellow">
+      💡 <strong>לא כל המחלות מדבקות!</strong><br>
+      מחלות <strong>גנטיות</strong> – כמעט לעולם <strong>לא</strong> מדבקות.<br>
+      מחלות מ<strong>אורגניזם זר/נגיף</strong> – <strong>בדרך כלל כן</strong> מדבקות.
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">זיהום נגיפי בדרכי הנשימה מדבק מאוד. למה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">א</span>כי הנגיף חזק מאוד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s6q')"><span class="opt-letter">ב</span>כי בנשימה פולט החולה אוויר מזוהם שחודר לגוף אחרים </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ג</span>כי הנגיף שורד זמן רב</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ד</span>כי דרכי הנשימה פגיעות</button>
+    </div>
+    <div class="feedback" id="fb-s6q"></div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      קרציה שמעבירה מחלה לכלב נקראת <span class="fill-blank" onclick="revealBlank(this,'וקטור')" data-answer="וקטור">_______</span>.
+    </div>
+    <div class="fill-sentence">
+      גורים יכולים לקבל מחלה מאמם דרך <span class="fill-blank" onclick="revealBlank(this,'הקולוסטרום')" data-answer="הקולוסטרום">_______</span>.
+    </div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 7: קו הגנה ראשון ====================== -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#047857)">
+    <span class="chapter-num">פרק 6</span>
+    <span class="emoji">🛡️</span>
+    <h1>קו הגנה ראשון</h1>
+    <p class="subtitle">חומת ההגנה הראשונה של הגוף</p>
+  </div>
+
+  <div class="goal-box">אני אוכל לזהות ולהסביר את מרכיבי קו ההגנה הראשון.</div>
+
+  <div class="card">
+    <div class="highlight green" style="text-align:center;font-size:18px">
+      ⭐ קו הגנה ראשון יכול לעצור <strong>עד 99%</strong> מהרעלים שעלולים לסכן את הגוף!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔍 המרכיבים</div>
+    <table class="info-table">
+      <tr><th>מרכיב</th><th>תפקיד</th></tr>
+      <tr><td>🔲 <strong>עור</strong></td><td>מורכב מ-<strong>3 שכבות</strong>. מונע כניסת רוב גורמי המחלה.</td></tr>
+      <tr><td>💧 <strong>ריר בפתחי גוף</strong></td><td>מונע כניסה דרך פה, אף ואברי המין</td></tr>
+      <tr><td>💧 <strong>דמעות ורוק</strong></td><td>מכילים חומר <strong>הממית חיידקים</strong></td></tr>
+      <tr><td>🧂 <strong>זיעה וחלב</strong></td><td>יוצרים מליחות וחומציות – מונעים חיידקים ופטריות</td></tr>
+      <tr><td>⚡ <strong>חומציות מיצי קיבה</strong></td><td>משמידים גורמי מחלה שנכנסים עם המזון</td></tr>
+      <tr><td>🌀 <strong>ריסים (באף ובקנה)</strong></td><td>לוכדים ומרחיקים גופים זרים</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔑 מאפיינים חשובים לבגרות</div>
+    <div class="grid-2">
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:32px">💤</div>
+        <div class="title">סביל ברובו</div>
+        פועל כל הזמן, לא "מתעורר" רק כשנחלים
+      </div>
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:32px">🎯</div>
+        <div class="title">בלתי ייחודי</div>
+        מתמודד עם כל גוף זר, לא רק סוג מסוים
+      </div>
+    </div>
+    <div class="remember-box">קו ראשון = סביל + בלתי ייחודי + עוצר 99%!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה – מה תפקיד כל מרכיב?</div>
+    <div id="match-s7" class="match-container">
+      <div class="match-col" id="s7-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s7')">זיעה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s7')">ריסים באף</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s7')">רוק</div>
+      </div>
+      <div class="match-col" id="s7-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s7')">לוכדים גופים זרים</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s7')">מכיל חומר הממית חיידקים</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s7')">יוצר מליחות וחומציות</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s7match"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 8: קו הגנה שני ====================== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1e40af)">
+    <span class="chapter-num">פרק 7</span>
+    <span class="emoji">🔬</span>
+    <h1>קו הגנה שני</h1>
+    <p class="subtitle">תאי הדם הלבנים הבולעניים</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להסביר כיצד פועל קו ההגנה השני.</div>
+
+  <div class="card">
+    <div class="section-title">🩸 המרכיב המרכזי</div>
+    <div class="definition-box">
+      <strong>תאי דם לבנים בולעניים</strong> – <strong>בולעים ומשמידים</strong> כל גוף זר שהם נתקלים בו.
+    </div>
+
+    <ul class="content-list">
+      <li data-icon="🎯">פועלים בעיקר ב<strong>פגיעות שטחיות</strong></li>
+      <li data-icon="💀">בסיום פעולתם – <strong>מתים</strong> (מחומרים רעילים של החיידקים)</li>
+      <li data-icon="🟡">הם בולעים: חלקיקי אבק, תאי גוף מתים, חיידקים</li>
+    </ul>
+
+    <div class="highlight yellow">
+      💡 <strong>מוגלה</strong> בפצע = הפסולת של תאי הדם הלבנים שנלחמו!<br>
+      זה בעצם <strong>סימן שהגוף נלחם!</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔴 דלקת – תגובת הגוף</div>
+    <div class="highlight red">
+      תאים שנפגעים ע"י חיידקים מפרישים חומרים שגורמים:
+    </div>
+    <div class="grid-2">
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:28px">💢</div>
+        <strong>נפיחות</strong>
+      </div>
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:28px">🔴</div>
+        <strong>אדמומיות</strong>
+      </div>
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:28px">🌡️</div>
+        <strong>עליית חום</strong><br>
+        <span style="font-size:12px">(מסייעת להשמיד חיידקים!)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔑 מאפיינים לבגרות</div>
+    <div class="grid-2">
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:28px">⚡</div>
+        <strong>פעיל מקומי</strong><br>
+        <span style="font-size:13px">מופעל רק במקום הפגיעה</span>
+      </div>
+      <div class="mini-card" style="text-align:center">
+        <div style="font-size:28px">🎯</div>
+        <strong>בלתי ייחודי</strong><br>
+        <span style="font-size:13px">בולע כל גוף זר</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-size:15px;font-weight:600">מוגלה היא סימן לכך שהגוף נכשל להילחם.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf8a')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf8a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8a"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">עליית חום עוזרת להשמיד חיידקים.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'correct','tf8b')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'wrong','tf8b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8b"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">קו ההגנה השני פועל בכל הגוף בו-זמנית.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf8c')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf8c')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8c"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 9: קו הגנה שלישי ====================== -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">
+    <span class="chapter-num">פרק 8</span>
+    <span class="emoji">🧬</span>
+    <h1>קו הגנה שלישי</h1>
+    <p class="subtitle">3 שלבים ותאי זיכרון</p>
+  </div>
+
+  <div class="goal-box">אני אוכל לתאר את שלושת השלבים של קו ההגנה השלישי.</div>
+
+  <div class="card">
+    <div class="highlight purple" style="text-align:center;font-size:16px;font-weight:700">
+      זהו תהליך <strong>מורכב ויחודי</strong> – הגוף מייצר הגנה ספציפית לכל אנטיגן ומכין <strong>זיכרון</strong> לעתיד!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📍 מושג חשוב: אנטיגן</div>
+    <div class="definition-box">
+      <strong>אנטיגן</strong> = גוף זר שחדר לגוף ו<strong>מעורר תגובה</strong> של מערכת החיסון.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🚀 3 שלבי הפעולה</div>
+    <div class="step-box">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>שלב ההכרות 🔍</strong>
+        התאים <strong>מזהים</strong> את האנטיגן ו<strong>בולעים</strong> אותו.
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>שלב ההתארגנות ⚔️</strong>
+        הגוף מייצר תאים <strong>ייחודיים לכל אנטיגן</strong> ומתארגן להתקפה.
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>שלב הפעולה 🏹</strong>
+        הגוף מייצר:<br>
+        🎯 <strong>נוגדנים</strong> – נצמדים לאנטיגן ומתקיפים אותו.<br>
+        💾 <strong>תאי זיכרון</strong> – מאפשרים הגנה מהירה יותר בפעם הבאה!
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="remember-box">קו שלישי = ייחודי + יוצר זיכרון חיסוני!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔢 סדר את השלבים הנכון</div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px">לחץ לפי הסדר הנכון (1, 2, 3):</p>
+    <div id="order-steps" style="display:flex;flex-direction:column;gap:8px">
+      <div class="match-item left-item" style="cursor:pointer" id="step-X" onclick="orderClick(this,'s9')">הגוף מייצר נוגדנים</div>
+      <div class="match-item left-item" style="cursor:pointer" id="step-A" onclick="orderClick(this,'s9')">התאים מזהים את האנטיגן</div>
+      <div class="match-item left-item" style="cursor:pointer" id="step-B" onclick="orderClick(this,'s9')">התאים מתארגנים להתקפה</div>
+    </div>
+    <div class="feedback" id="fb-s9order"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 10: מערכת חיסון ====================== -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#be185d,#9d174d)">
+    <span class="chapter-num">פרק 9</span>
+    <span class="emoji">💪</span>
+    <h1>מערכת החיסון וחסינות</h1>
+    <p class="subtitle">ההגנה הגדולה של הגוף</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להגדיר מערכת חיסון וחסינות.</div>
+
+  <div class="card">
+    <div class="section-title">🛡️ מהי מערכת החיסון?</div>
+    <div class="definition-box">
+      <strong>מערכת חיסון</strong> = מצבור של מבנים, תאים וחומרים שפועלים יחד כדי להגן על הגוף מפני:
+      <ul style="margin-top:8px;padding-right:20px">
+        <li>אורגניזמים גורמי מחלה</li>
+        <li>התפתחות <strong>סרטן</strong></li>
+      </ul>
+    </div>
+
+    <div class="section-title" style="margin-top:16px">🔒 מהי חסינות?</div>
+    <div class="definition-box">
+      <strong>חסינות</strong> = יכולת של הגוף <strong>להתנגד לזיהומים</strong>, בגלל נוכחות <strong>נוגדנים ותאי דם לבנים</strong> בדם.
+    </div>
+
+    <div class="highlight blue">
+      ✅ הנוגדנים נוצרים כדי להתמודד עם <strong>אנטיגנים</strong> הקשורים למחלות שונות.
+    </div>
+
+    <div class="highlight green" style="margin-top:12px">
+      💉 <strong>חיסון</strong> = יצירת חסינות <strong>באמצעים מלאכותיים</strong> למניעת מחלות זיהומיות.<br>
+      ישנם שני סוגים: <strong>חיסון פעיל</strong> ו<strong>חיסון סביל</strong>.
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      חסינות = יכולת הגוף <span class="fill-blank" onclick="revealBlank(this,'להתנגד')" data-answer="להתנגד">_______</span> לזיהומים.
+    </div>
+    <div class="fill-sentence">
+      <span class="fill-blank" onclick="revealBlank(this,'נוגדנים')" data-answer="נוגדנים">_______</span> נוצרים כדי להתמודד עם אנטיגנים.
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מערכת החיסון מגנה על הגוף מפני:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">א</span>חיידקים בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ב</span>סרטן בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s10q')"><span class="opt-letter">ג</span>אורגניזמים גורמי מחלה וסרטן </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ד</span>טראומות פיזיות</button>
+    </div>
+    <div class="feedback" id="fb-s10q"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 11: חיסון פעיל ====================== -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#047857)">
+    <span class="chapter-num">פרק 10</span>
+    <span class="emoji">💉</span>
+    <h1>חיסון פעיל</h1>
+    <p class="subtitle">הגנה ארוכת טווח</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להסביר כיצד פועל חיסון פעיל, יתרונותיו וחסרונותיו.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>חיסון פעיל</strong> = החדרת <strong>גורם מחלה מוחלש</strong> לגוף, שמפעיל את מערכת החיסון.
+    </div>
+
+    <div class="section-title">💊 מה מזריקים?</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <span class="pill">גורם מחלה מוחלש</span>
+      <span class="pill">גורם מחלה מומת</span>
+      <span class="pill">מעטפת של גורם המחלה</span>
+    </div>
+
+    <div class="section-title">⚙️ מה קורה בגוף?</div>
+    <div class="step-box"><div class="step-num">1</div><div class="step-content">מערכת החיסון <strong>מופעלת</strong></div></div>
+    <div class="step-box"><div class="step-num">2</div><div class="step-content">מיוצרים <strong>תאים יוצרי נוגדנים</strong></div></div>
+    <div class="step-box"><div class="step-num">3</div><div class="step-content">מיוצרים <strong>תאי זיכרון</strong> – הגנה לעתיד!</div></div>
+  </div>
+
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card green">
+        <h3>יתרונות</h3>
+        <ul>
+          <li>הגנה לפני שחולים</li>
+          <li>לא גורם למחלה חריפה</li>
+          <li>יוצר <strong>זיכרון חיסוני</strong></li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>❌ חסרונות</h3>
+        <ul>
+          <li>לא יעיל מיידית</li>
+          <li>אפשרות לתופעות לוואי</li>
+          <li>סיכון במחלות קטלניות</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-size:15px;font-weight:600">חיסון פעיל מגן מיידית ברגע שמקבלים אותו.</p>
+    <div class="tf-options">
+      <button class="tf-btn true-btn" onclick="answerTF(this,'wrong','tf11')">✅ נכון</button>
+      <button class="tf-btn false-btn" onclick="answerTF(this,'correct','tf11')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf11"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 12: חיסון סביל ====================== -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#92400e)">
+    <span class="chapter-num">פרק 11</span>
+    <span class="emoji">🩺</span>
+    <h1>חיסון סביל</h1>
+    <p class="subtitle">הגנה מהירה ומיידית</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להסביר כיצד פועל חיסון סביל, יתרונותיו וחסרונותיו.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>חיסון סביל</strong> = הזרקת <strong>נוגדנים מוכנים</strong> שנוצרו בגופו של יצור אחר (בד"כ <strong>סוס</strong>).
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>דוגמה מהחומר:</strong> <strong>הכשת נחש!</strong><br>
+      כשנחש מכיש – חשוב לזכור איך הוא נראה, כדי להכין את הנוגדנים המתאימים.
+    </div>
+
+    <div class="highlight green" style="margin-top:12px">
+      🐶 <strong>לגורים יש חסינות סבילה טבעית</strong> בשבועות הראשונים אחרי ההמלטה!<br>
+      מקור: <strong>נוגדנים מדם האם + קולוסטרום</strong> (חלב ראשוני).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card green">
+        <h3>✅ יתרונות</h3>
+        <ul>
+          <li>פועל <strong>מיידית</strong></li>
+          <li>הדרך היחידה לעזור לחולה שלא חוסן</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>❌ חסרונות</h3>
+        <ul>
+          <li>יעיל <strong>זמנית בלבד</strong></li>
+          <li>הנוגדנים לא נשארים</li>
+          <li>לא מופעל זיכרון חיסוני</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">ילד הוכש על ידי נחש רעיל. איזה חיסון מתאים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">א</span>חיסון פעיל – מוחלש</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s12q')"><span class="opt-letter">ב</span>חיסון סביל – נוגדנים מוכנים </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">ג</span>שניהם יחד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">ד</span>לא צריך חיסון</button>
+    </div>
+    <div class="feedback" id="fb-s12q"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 13: השוואה פעיל/סביל ====================== -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#7c3aed)">
+    <span class="chapter-num">פרק 12</span>
+    <span class="emoji">⚖️</span>
+    <h1>חיסון פעיל מול סביל</h1>
+    <p class="subtitle">טבלת השוואה מלאה</p>
+  </div>
+
+  <div class="goal-box">אני אוכל להשוות בין חיסון פעיל לסביל.</div>
+
+  <div class="card">
+    <table class="info-table">
+      <tr><th></th><th>💉 פעיל</th><th>🩺 סביל</th></tr>
+      <tr><td><strong>מה מוזרק?</strong></td><td>גורם מחלה מוחלש/מומת</td><td>נוגדנים מיצור אחר</td></tr>
+      <tr><td><strong>מה הגוף עושה?</strong></td><td>מייצר נוגדנים ותאי זיכרון</td><td>משתמש בנוגדנים מוכנים</td></tr>
+      <tr><td><strong>מתי יעיל?</strong></td><td>לפני החולי</td><td>בדחיפות (הכשת נחש)</td></tr>
+      <tr><td><strong>משך</strong></td><td>ארוך טווח</td><td><strong>זמני בלבד</strong></td></tr>
+      <tr><td><strong>זיכרון?</strong></td><td>כן</td><td>❌ לא</td></tr>
+      <tr><td><strong>תופעות לוואי?</strong></td><td>אפשרי</td><td>פחות</td></tr>
+    </table>
+  </div>
+
+  <!-- MATCHING: פעיל/סביל -->
+  <div class="question-box">
+    <div class="q-title">🔗 מיין את המאפיינים – חיסון פעיל או סביל?</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">לחץ על כל מאפיין כדי לסווג אותו:</p>
+    <div id="classify-area" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div class="match-item left-item" style="cursor:pointer" onclick="classify(this)" data-answer="פעיל">יוצר תאי זיכרון</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classify(this)" data-answer="סביל">יעיל זמנית בלבד</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classify(this)" data-answer="פעיל">הגנה לפני שחולים</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classify(this)" data-answer="סביל">פועל מיידית</div>
+    </div>
+    <div class="feedback" id="fb-s13classify"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 14: פרוטוקול חיסונים ====================== -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#374151,#1f2937)">
+    <span class="chapter-num">פרק 13</span>
+    <span class="emoji">📋</span>
+    <h1>פרוטוקול חיסונים בכלבים</h1>
+    <p class="subtitle">מה נאמר בחומרי המקור</p>
+  </div>
+
+  <div class="goal-box">אני אדע לתאר את עקרונות פרוטוקול החיסונים.</div>
+
+  <div class="warning-box" style="border-color:#2563eb;background:#eff6ff">
+    <strong>הערה:</strong> פרטי הפרוטוקול המלא (שמות חיסונים, גיל, תדירות) לא הופיעו בטקסט שנחלץ מחומרי המקור. ייתכן שמופיעים בגרפיקה בקובץ המקורי.
+  </div>
+
+  <div class="card">
+    <div class="section-title">🐾 מה ידוע מהחומרים</div>
+
+    <div class="highlight green">
+      🍼 <strong>גורים</strong> מקבלים <strong>חסינות סבילה טבעית</strong> בשבועות הראשונים אחרי ההמלטה.<br>
+      מקור: <strong>נוגדנים מדם האם + קולוסטרום</strong>.
+    </div>
+
+    <div class="highlight blue" style="margin-top:12px">
+      👨‍⚕️ חיסונים הם חלק ממניעה ברמה <strong>המקומית</strong> – באחריות כל מגדל כלב.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🏛️ מניעה וביעור מחלות – 2 רמות</div>
+
+    <table class="info-table">
+      <tr><th>🏛️ רמה לאומית (ממשלה)</th><th>🏠 רמה מקומית (מגדל)</th></tr>
+      <tr>
+        <td>
+          • חוקי ייבוא/ייצוא<br>
+          • תקנות הסגר<br>
+          • מתן רישיונות<br>
+          • פיקוח על הסגרים<br>
+          • בדיקות דם לבעלי חיים מיובאים
+        </td>
+        <td>
+          • פיקוח וטרינרי קבוע<br>
+          • <strong>מתן חיסונים וטיפול הולם</strong><br>
+          • רכישת בע"ח בריאים ברשיון<br>
+          • תנאי היגיינה וסניטציה<br>
+          • בקרת אקלים וטמפרטורה
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מתן חיסונים לכלב הוא אחריות:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">א</span>הממשלה בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s14q')"><span class="opt-letter">ב</span>המגדל (ברמה המקומית) </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ג</span>שרות הבטחון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ד</span>הסוס שנתן את הנוגדנים</button>
+    </div>
+    <div class="feedback" id="fb-s14q"></div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 15: מילון מונחים ====================== -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#0369a1)">
+    <span class="chapter-num">פרק 14</span>
+    <span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ על כל כרטיסייה לגלות את ההסבר</p>
+  </div>
+
+  <div class="goal-box">אני מכיר את כל המונחים החשובים לבגרות.</div>
+
+  <div id="flashcard-area">
+    <div class="flashcard-container">
+      <div class="flashcard" id="fc" onclick="flipCard()">
+        <div class="flashcard-front">
+          <div class="term" id="fc-term"></div>
+          <div class="hint">לחץ לגלות הסבר</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="def" id="fc-def"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button onclick="prevCard()">◀ קודם</button>
+      <span class="flashcard-counter" id="fc-counter">1 / 12</span>
+      <button onclick="nextCard()">הבא ▶</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים במבט אחד</div>
+    <div id="glossary-list">
+      <div class="glossary-item"><div class="glossary-term">🦠 זיהום</div><div class="glossary-def">פלישה של אורגניזמים מחוללי מחלה (חיידקים, נגיפים, פטריות) אל תוך הגוף.</div></div>
+      <div class="glossary-item"><div class="glossary-term">☣️ פתוגן</div><div class="glossary-def">כל מיקרואורגניזם שחי כטפיל ו<strong>גורם למחלה</strong>.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💀 רעלן</div><div class="glossary-def">רעל שמיוצר על ידי אורגניזם חי (בעיקר חיידק). הגוף מייצר נגדו נוגדנים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🌱 נבג</div><div class="glossary-def">גוף קטן שמיוצר ע"י מיקרואורגניזמים. משמש לשרידה בתנאים קשים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🐛 טפיל</div><div class="glossary-def">אורגניזם שחי בתוך/על אורגניזם אחר (פונדקאי), מקבל ממנו מזון ולא נותן דבר בתמורה.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🔵 חיידק</div><div class="glossary-def">מיקרואורגניזם חד-תאי ללא גרעין. מתרבה בחלוקה פשוטה. יש מזיקים ולא מזיקים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💊 אנטיביוטיקה</div><div class="glossary-def">תרופות שמסוגלות לקטול או לעכב חיידקים. לא פועלת על נגיפים!</div></div>
+      <div class="glossary-item"><div class="glossary-term">⚡ פתוגניות</div><div class="glossary-def">האופן שבו הטפיל מזיק לגוף וגורם לתסמיני המחלה.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🎯 אנטיגן</div><div class="glossary-def">גוף זר שחדר לגוף ומעורר תגובה של מערכת החיסון.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🏹 נוגדן</div><div class="glossary-def">חלבון שמיוצר ע"י מערכת החיסון, נצמד לאנטיגן ומתקיף אותו.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💾 תאי זיכרון</div><div class="glossary-def">תאים שנוצרים לאחר חשיפה לאנטיגן. מאפשרים תגובה מהירה בחשיפה עתידית.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🥛 קולוסטרום</div><div class="glossary-def">חלב ראשוני עשיר בנוגדנים. מעניק לגורים חסינות סבילה בשבועות הראשונים.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 16-20: חזרה מסכמת ====================== -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה מסכמת</span>
+    <span class="emoji">🎯</span>
+    <h1>בואו נחזור!</h1>
+    <p class="subtitle">שאלות נכון/לא נכון</p>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px">🏆</div>
+    <p style="font-size:16px;font-weight:600;margin:8px 0">הגעת לחלק החזרה!</p>
+    <p style="color:var(--text-muted);font-size:14px">4 חלקי חזרה עם שאלות לבדיקת הידע שלך</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">נכון או לא נכון? (חלק א')</div>
+
+    <p style="margin-bottom:10px;font-size:15px;font-weight:600">1. מחלה כרונית מתפרצת לפתע וחולפת מהר.</p>
+    <div class="tf-options"><button class="tf-btn true-btn" onclick="answerTF(this,'wrong','r1a')">✅ נכון</button><button class="tf-btn false-btn" onclick="answerTF(this,'correct','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">2. תאי דם לבנים בולעניים שייכים לקו הגנה שני.</p>
+    <div class="tf-options"><button class="tf-btn true-btn" onclick="answerTF(this,'correct','r1b')">✅ נכון</button><button class="tf-btn false-btn" onclick="answerTF(this,'wrong','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">3. חיסון סביל יוצר תאי זיכרון.</p>
+    <div class="tf-options"><button class="tf-btn true-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn false-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">4. ריסים באף שייכים לקו ההגנה הראשון.</p>
+    <div class="tf-options"><button class="tf-btn true-btn" onclick="answerTF(this,'correct','r1d')">✅ נכון</button><button class="tf-btn false-btn" onclick="answerTF(this,'wrong','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-size:15px;font-weight:600">5. מחלה זואונוטית יכולה לעבור רק מכלב לאדם (ולא בכיוון ההפוך).</p>
+    <div class="tf-options"><button class="tf-btn true-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn false-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה מסכמת</span>
+    <span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+    <p class="subtitle">חלק ב' – בחר תשובה אחת נכונה</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title" style="margin-bottom:20px">❓ שאלות אמריקאיות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה מאפיין קו הגנה ראשון?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>ייחודי לסוג ספציפי של חיידק</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>סביל ובלתי ייחודי </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>יוצר נוגדנים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ד</span>פעיל רק בזמן מחלה</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה הם תאי זיכרון?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>תאים שממיתים חיידקים ישירות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>תאים שמאפשרים תגובה מהירה בחשיפה עתידית </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>תאים שיוצרים רעלנים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ד</span>תאים שבולעים גופים זרים</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. לגורים יש חסינות בשבועות הראשונים. מאיפה?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>מחיסונים שהתקבלו בינקות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>מהאוויר שסביבם</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ג</span>מנוגדנים בדם האם ומהקולוסטרום </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ד</span>ממערכת החיסון שלהם עצמם</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מה פתוגניות?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>הדרך שחיסון מייצר נוגדנים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ב</span>האופן שבו הטפיל מזיק ומחולל מחלה </button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>תהליך הפרשת הזיעה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ד</span>כמות החיידקים שחיה בגוף</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#7c3aed)">
+    <span class="chapter-num">חזרה מסכמת</span>
+    <span class="emoji">🔗</span>
+    <h1>התאמה: מושג-הסבר</h1>
+    <p class="subtitle">חלק ג'</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 חבר כל מושג להסבר הנכון</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">נוגדן</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">רעלן</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">טפיל</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">אנטיגן</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">אורגניזם שחי על חשבון אחר</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">חלבון שנצמד לאנטיגן</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">גוף זר המעורר תגובת חיסון</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">רעל שמיוצר ע"י חיידק</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם – חזרה כללית</div>
+    <div class="fill-sentence">
+      תגובת הגוף לחדירת חיידקים נקראת <span class="fill-blank" onclick="revealBlank(this,'דלקת')" data-answer="דלקת">_______</span>.
+    </div>
+    <div class="fill-sentence">
+      גוף זר המעורר תגובה של מערכת החיסון נקרא <span class="fill-blank" onclick="revealBlank(this,'אנטיגן')" data-answer="אנטיגן">_______</span>.
+    </div>
+    <div class="fill-sentence">
+      תרופות שלוחמות בחיידקים נקראות <span class="fill-blank" onclick="revealBlank(this,'אנטיביוטיקה')" data-answer="אנטיביוטיקה">_______</span>.
+    </div>
+    <div class="fill-sentence">
+      חסינות שמגיעה לגור מאמו נקראת חסינות <span class="fill-blank" onclick="revealBlank(this,'סבילה')" data-answer="סבילה">_______</span>.
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0f766e)">
+    <span class="chapter-num">חזרה מסכמת</span>
+    <span class="emoji">📊</span>
+    <h1>השוואת קווי הגנה</h1>
+    <p class="subtitle">חלק ד' – זיהוי ומיון</p>
+  </div>
+
+  <div class="card">
+    <table class="info-table">
+      <tr><th></th><th>קו 1</th><th>קו 2</th><th>קו 3</th></tr>
+      <tr><td><strong>דוגמה</strong></td><td>עור, ריסים, ריר</td><td>תאי דם לבנים, דלקת</td><td>נוגדנים, תאי זיכרון</td></tr>
+      <tr><td><strong>סוג</strong></td><td>סביל</td><td>פעיל מקומי</td><td>פעיל ייחודי</td></tr>
+      <tr><td><strong>ייחודי?</strong></td><td>לא</td><td>לא</td><td>כן!</td></tr>
+      <tr><td><strong>זיכרון?</strong></td><td>לא</td><td>לא</td><td>כן!</td></tr>
+    </table>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ לאיזה קו שייך כל מרכיב?</div>
+    <div style="display:flex;flex-direction:column;gap:10px" id="defense-quiz">
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:8px">🦴 עור</p>
+        <div class="mc-options">
+          <button class="mc-option" onclick="answerMC(this,'correct','dq1')"><span class="opt-letter">א</span>קו ראשון </button>
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq1')"><span class="opt-letter">ב</span>קו שני</button>
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq1')"><span class="opt-letter">ג</span>קו שלישי</button>
+        </div>
+        <div class="feedback" id="fb-dq1"></div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="font-weight:700;font-size:15px;margin-bottom:8px">💾 תאי זיכרון</p>
+        <div class="mc-options">
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq2')"><span class="opt-letter">א</span>קו ראשון</button>
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq2')"><span class="opt-letter">ב</span>קו שני</button>
+          <button class="mc-option" onclick="answerMC(this,'correct','dq2')"><span class="opt-letter">ג</span>קו שלישי </button>
+        </div>
+        <div class="feedback" id="fb-dq2"></div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="font-weight:700;font-size:15px;margin-bottom:8px">🔴 דלקת</p>
+        <div class="mc-options">
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq3')"><span class="opt-letter">א</span>קו ראשון</button>
+          <button class="mc-option" onclick="answerMC(this,'correct','dq3')"><span class="opt-letter">ב</span>קו שני </button>
+          <button class="mc-option" onclick="answerMC(this,'wrong','dq3')"><span class="opt-letter">ג</span>קו שלישי</button>
+        </div>
+        <div class="feedback" id="fb-dq3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== SCREEN 20: SUMMARY ====================== -->
+<div class="screen" id="screen-20">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את הלומדה בהצלחה!</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="1️⃣">קו הגנה <strong>ראשון</strong>: סביל, בלתי ייחודי, עוצר 99%</li>
+      <li data-icon="2️⃣">קו הגנה <strong>שני</strong>: תאי דם לבנים, דלקת, פעיל מקומי</li>
+      <li data-icon="3️⃣">קו הגנה <strong>שלישי</strong>: אנטיגן → נוגדנים + תאי זיכרון</li>
+      <li data-icon="💉">חיסון <strong>פעיל</strong>: גורם מוחלש, יוצר זיכרון, ארוך טווח</li>
+      <li data-icon="🩺">חיסון <strong>סביל</strong>: נוגדנים מוכנים, מיידי, זמני</li>
+      <li data-icon="🐾">לגורים: חסינות סבילה מהאם (דם + קולוסטרום)</li>
+      <li data-icon="🦠">אנטיביוטיקה: רק נגד <strong>חיידקים</strong>, לא נגד נגיפים!</li>
+      <li data-icon="🔄">מחלה זואונוטית = עוברת בין בע"ח לאדם ולהיפך</li>
+    </ul>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🏆</div>
+    <p style="font-size:16px;font-weight:700;margin-bottom:8px">רוצה לחזור על פרק ספציפי?</p>
+    <div class="toc-grid" style="margin-top:12px">
+      <div class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>מהי מחלה?</div>
+      <div class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>סוגי מחלות</div>
+      <div class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>דרכי הדבקה</div>
+      <div class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>קו הגנה 1</div>
+      <div class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>קו הגנה 2</div>
+      <div class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>קו הגנה 3</div>
+      <div class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>חיסון פעיל</div>
+      <div class="toc-item" onclick="goToScreen(12)"><span class="num">12</span>חיסון סביל</div>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<!-- NAV BUTTONS -->
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">◀ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 21</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ▶</button>
+</div>
+
+</div><!-- /app -->
+
+<script>
+const TOTAL_SCREENS = 21;
+const SCREEN_NAMES = ["פתיחה", "מהי מחלה?", "מחלה מול טראומה", "אקוטית וכרונית", "מחלה זואונוטית", "עוד סוגי מחלות", "דרכי הדבקה", "קו הגנה ראשון", "קו הגנה שני", "קו הגנה שלישי", "מערכת החיסון", "חיסון פעיל", "חיסון סביל", "פעיל מול סביל", "פרוטוקול חיסונים", "מילון מונחים", "חזרה – נכון/לא נכון", "חזרה – שאלות", "חזרה – התאמה", "חזרה – קווי הגנה", "סיום 🏆"];
+let currentScreen = 0;
+
+// FLASHCARD DATA
+const cards = [
+  {term:"🦠 זיהום", def:"פלישה של אורגניזמים מחוללי מחלה (חיידקים, נגיפים, פטריות) אל תוך הגוף."},
+  {term:"☣️ פתוגן", def:"כל מיקרואורגניזם שחי כטפיל ו-גורם למחלה."},
+  {term:"💀 רעלן", def:"רעל שמיוצר על ידי אורגניזם חי (בעיקר חיידק). הגוף מייצר נגדו נוגדנים מיוחדים."},
+  {term:"🌱 נבג", def:"גוף קטן שמיוצר ע\"י מיקרואורגניזמים. משמש כשלב רדום לשרידה בתנאים קשים."},
+  {term:"🐛 טפיל", def:"אורגניזם שחי בתוך/על פונדקאי. מקבל ממנו מזון ולא נותן דבר בתמורה."},
+  {term:"🔵 חיידק", def:"מיקרואורגניזם חד-תאי ללא גרעין. מתרבה בחלוקה פשוטה. יש מזיקים ולא מזיקים."},
+  {term:"💊 אנטיביוטיקה", def:"תרופות שמסוגלות לקטול או לעכב חיידקים. לא פועלת על נגיפים!"},
+  {term:"⚡ פתוגניות", def:"האופן שבו הטפיל מזיק לגוף וגורם לתסמיני המחלה."},
+  {term:"🎯 אנטיגן", def:"גוף זר שחדר לגוף ומעורר תגובה של מערכת החיסון."},
+  {term:"🏹 נוגדן", def:"חלבון שמיוצר ע\"י מערכת החיסון. נצמד לאנטיגן ומתקיף אותו."},
+  {term:"💾 תאי זיכרון", def:"תאים שנוצרים לאחר חשיפה לאנטיגן. מאפשרים תגובה מהירה בחשיפה עתידית."},
+  {term:"🥛 קולוסטרום", def:"חלב ראשוני עשיר בנוגדנים. מעניק לגורים חסינות סבילה בשבועות הראשונים."}
+];
+let fcIndex = 0;
+let fcFlipped = false;
+
+function updateFlashcard() {
+  const fc = document.getElementById('fc');
+  fc.classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fc-term').textContent = cards[fcIndex].term;
+  document.getElementById('fc-def').textContent = cards[fcIndex].def;
+  document.getElementById('fc-counter').textContent = (fcIndex+1) + ' / ' + cards.length;
+}
+function flipCard() {
+  const fc = document.getElementById('fc');
+  fcFlipped = !fcFlipped;
+  fc.classList.toggle('flipped', fcFlipped);
+}
+function nextCard() { fcIndex = (fcIndex+1) % cards.length; updateFlashcard(); }
+function prevCard() { fcIndex = (fcIndex-1+cards.length) % cards.length; updateFlashcard(); }
+
+// SCREEN NAVIGATION
+function goToScreen(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-'+n).classList.add('active');
+  currentScreen = n;
+  updateProgress();
+  if(typeof updateMenuActive === 'function') updateMenuActive();
+  window.scrollTo(0,0);
+  if(n === 15) updateFlashcard();
+}
+
+function nextScreen() {
+  if(currentScreen < TOTAL_SCREENS - 1) goToScreen(currentScreen + 1);
+}
+function prevScreen() {
+  if(currentScreen > 0) goToScreen(currentScreen - 1);
+}
+
+function updateProgress() {
+  const pct = Math.round((currentScreen / (TOTAL_SCREENS-1)) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;
+  const lbl = document.getElementById('menu-btn-label');
+  if(lbl) lbl.textContent = SCREEN_NAMES[currentScreen] || '';
+  document.getElementById('screen-counter').textContent = (currentScreen+1)+' / '+TOTAL_SCREENS;
+  document.getElementById('btn-prev').className = currentScreen === 0 ? 'btn btn-disabled' : 'btn btn-secondary';
+  document.getElementById('btn-next').style.display = currentScreen === TOTAL_SCREENS-1 ? 'none' : '';
+}
+
+// MC ANSWER
+function answerMC(btn, result, qid) {
+  const opts = btn.closest('.mc-options').querySelectorAll('.mc-option');
+  // Clear previous state
+  opts.forEach(o => { o.classList.remove('correct','wrong'); });
+  const fb = document.getElementById('fb-'+qid);
+  if(result === 'correct') {
+    btn.classList.add('correct');
+    fb.className = 'feedback show correct';
+    fb.innerHTML = 'מצוין! תשובה נכונה! 🎉';
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'feedback show wrong';
+    fb.innerHTML = '❌ לא בדיוק. נסה שוב!';
+  }
+}
+
+// INTRO SPECIAL
+function answerIntro(btn, letter) {
+  const opts = btn.closest('.mc-options').querySelectorAll('.mc-option');
+  opts.forEach(o => o.classList.remove('correct','wrong'));
+  const fb = document.getElementById('fb-intro');
+  if(letter === 'ד') {
+    btn.classList.add('correct');
+    fb.className = 'feedback show correct';
+    fb.innerHTML = '✅ מעולה! כל אלה יחד מגנים על הכלב! בלומדה הזו נלמד על כולם! 🐾';
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'feedback show wrong';
+    fb.innerHTML = '💡 לא בדיוק... נסה אופציה אחרת!';
+  }
+}
+
+// TRUE/FALSE
+const TF_ANSWERS = {
+  'tf1':'כוויה היא טראומה (פגיעה מבחוץ), לא מחלה.',
+  'tf2':'נכון! מחלות גנטיות נגרמות מפגם בגן.',
+  'tf3':'טראומה נגרמת מפגיעה פיזית חיצונית, לא מחיידקים.',
+  'tf5a':'אנטיביוטיקה פועלת רק על חיידקים, לא על נגיפים!',
+  'tf5b':'נכון! סוכרת = מחסור באינסולין.',
+  'tf8a':'מוגלה היא ראיה שהגוף נלחם בהצלחה!',
+  'tf8b':'נכון! עליית חום עוזרת להשמיד חיידקים.',
+  'tf8c':'קו ב׳ הוא פעיל מקומי – רק במקום הפגיעה.',
+  'tf11':'חיסון פעיל לוקח זמן להפעיל – לא מיידי!',
+  'r1a':'מחלה כרונית היא ממושכת. מחלה אקוטית חולפת מהר.',
+  'r1b':'נכון! תאי דם לבנים בולעניים = קו שני.',
+  'r1c':'חיסון פעיל יוצר תאי זיכרון, לא סביל.',
+  'r1d':'נכון! ריסים שייכים לקו הגנה ראשון.',
+  'r1e':'מחלה זואונוטית עוברת בשני הכיוונים!'
+};
+function answerTF(btn, result, qid) {
+  const parent = btn.closest('.tf-options');
+  const btns = parent.querySelectorAll('.tf-btn');
+  // Clear previous state so user can re-click
+  btns.forEach(b => b.classList.remove('correct','wrong'));
+  const fb = document.getElementById('fb-'+qid);
+  if(result === 'correct') {
+    btn.classList.add('correct');
+    fb.className = 'feedback show correct';
+    fb.innerHTML = '✅ נכון! כל הכבוד! 🎉';
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'feedback show wrong';
+    fb.innerHTML = '❌ לא בדיוק. נסה שוב!';
+  }
+}
+
+// FILL IN THE BLANK
+function revealBlank(el, answer) {
+  el.textContent = answer;
+  el.classList.add('revealed');
+  el.onclick = null;
+}
+
+// MATCHING GAME
+const matchState = {};
+
+function selectMatch(el, gameId) {
+  if(el.classList.contains('matched')) return;
+  const isLeft = el.classList.contains('left-item');
+
+  if(!matchState[gameId]) matchState[gameId] = {leftSel:null, rightSel:null, correct:0, busy:false};
+  const state = matchState[gameId];
+
+  // Block clicks while animating a wrong-match shake
+  if(state.busy) return;
+
+  if(isLeft) {
+    if(state.leftSel) state.leftSel.classList.remove('selected');
+    state.leftSel = el;
+    el.classList.add('selected');
+  } else {
+    if(state.rightSel) state.rightSel.classList.remove('selected');
+    state.rightSel = el;
+    el.classList.add('selected');
+  }
+
+  if(state.leftSel && state.rightSel) {
+    const leftId    = state.leftSel.getAttribute('data-id');
+    const rightMatch = state.rightSel.getAttribute('data-match');
+
+    if(leftId === rightMatch) {
+      // ✅ Correct match
+      state.leftSel.classList.add('matched');
+      state.rightSel.classList.add('matched');
+      state.leftSel.classList.remove('selected');
+      state.rightSel.classList.remove('selected');
+      state.correct++;
+      state.leftSel = null;
+      state.rightSel = null;
+
+      const leftItems = document.getElementById(gameId+'-left');
+      const total = leftItems ? leftItems.querySelectorAll('.match-item').length : 3;
+      if(state.correct >= total) {
+        const fb = document.getElementById('fb-'+gameId+'match');
+        if(fb) { fb.className = 'feedback show correct'; fb.innerHTML = '✅ מצוין! התאמת הכל נכון! 🎉🎉'; }
+      }
+    } else {
+      // ❌ Wrong match — capture refs in closure, lock until animation done
+      const wrongLeft  = state.leftSel;
+      const wrongRight = state.rightSel;
+      state.leftSel  = null;
+      state.rightSel = null;
+      state.busy = true;
+      wrongLeft.classList.add('wrong-match');
+      wrongRight.classList.add('wrong-match');
+      setTimeout(() => {
+        wrongLeft.classList.remove('wrong-match', 'selected');
+        wrongRight.classList.remove('wrong-match', 'selected');
+        state.busy = false;
+      }, 500);
+    }
+  }
+}
+
+// CLASSIFY (screen 13)
+let classifyCount = 0;
+function classify(el) {
+  if(el.classList.contains('matched')) return;
+  const ans = el.getAttribute('data-answer');
+  el.textContent = el.textContent + ' → ' + ans;
+  el.classList.add('matched');
+  el.style.background = ans === 'פעיל' ? '#dbeafe' : '#dcfce7';
+  el.style.borderColor = ans === 'פעיל' ? '#2563eb' : '#059669';
+  classifyCount++;
+  if(classifyCount >= 4) {
+    const fb = document.getElementById('fb-s13classify');
+    fb.className = 'feedback show correct';
+    fb.innerHTML = '✅ מעולה! סיווגת הכל נכון! 🎉';
+  }
+}
+
+// ORDER STEPS (screen 9)
+let orderClicks = [];
+const correctOrder = ['step-A', 'step-B', 'step-X'];
+function orderClick(el, game) {
+  if(el.classList.contains('matched')) return;
+  orderClicks.push(el.id);
+  const step = orderClicks.length;
+  el.textContent = step + '. ' + el.textContent;
+  el.classList.add('matched');
+  
+  if(orderClicks.length === 3) {
+    const fb = document.getElementById('fb-'+game+'order');
+    const isCorrect = JSON.stringify(orderClicks) === JSON.stringify(correctOrder);
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = isCorrect 
+      ? '✅ מצוין! הסדר נכון! 🎉' 
+      : '❌ הסדר הנכון: 1) מזהים אנטיגן → 2) מתארגנים → 3) מייצרים נוגדנים';
+  }
+}
+
+// MENU
+function openMenu() {
+  document.getElementById('menu-sidebar').classList.add('open');
+  document.getElementById('menu-overlay').classList.add('open');
+  updateMenuActive();
+}
+function closeMenu() {
+  document.getElementById('menu-sidebar').classList.remove('open');
+  document.getElementById('menu-overlay').classList.remove('open');
+}
+function menuGo(n) {
+  closeMenu();
+  goToScreen(n);
+}
+function updateMenuActive() {
+  document.querySelectorAll('.menu-item').forEach(btn => {
+    const m = btn.getAttribute('onclick').match(/\d+/);
+    if(m) btn.classList.toggle('active', parseInt(m[0]) === currentScreen);
+  });
+}
+
+// TOGGLE EXPAND CARDS
+function toggleCard(id, btn) {
+  const panel = document.getElementById(id);
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  // Update arrow on button title
+  const title = btn.querySelector('.title');
+  if(title) {
+    title.textContent = title.textContent.replace('▼','▲').replace('▲', isOpen ? '▼' : '▲');
+    if(isOpen) title.textContent = title.textContent.replace('▲','▼');
+  }
+  if(!isOpen) panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// INIT
+updateProgress();
+updateFlashcard();
+updateMenuActive();
+</script>
+</body>
+</html>
