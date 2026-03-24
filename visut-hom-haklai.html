@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ויסות חום במשק על ידי החקלאי | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root {
+  --bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--secondary:#b45309;--secondary-light:#fef3c7;
+  --hot:#dc2626;--hot-light:#fee2e2;--cold:#2563eb;--cold-light:#dbeafe;--green:#059669;--green-light:#d1fae5;
+  --purple:#7c3aed;--purple-light:#ede9fe;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;padding:10px 12px 4px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;transition:background .2s;}
+#menu-btn:hover{background:#075985;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#menu-btn-icon{font-size:16px;color:white;}
+#farm-icon{font-size:22px;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.highlight.cold{background:#eff6ff;border-right:4px solid #3b82f6;}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{font-size:16px;display:block;margin-bottom:4px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.hot-card{background:linear-gradient(135deg,#fff7ed,#fed7aa);border:2px solid #f97316;border-radius:14px;padding:16px;}
+.cold-card{background:linear-gradient(135deg,#eff6ff,#bfdbfe);border:2px solid #3b82f6;border-radius:14px;padding:16px;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn:hover{transform:scale(1.02);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:100px;cursor:pointer;font-weight:700;color:#1e40af;transition:all .2s;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:17px;line-height:2;margin-bottom:12px;padding:14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.right-item:hover,.match-item.right-item.selected{background:#dcfce7;border-color:var(--green);}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;}
+.flashcard-nav button:hover{transform:scale(1.05);}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;box-shadow:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🌾';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;line-height:1.3;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;border:none;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.pill{display:inline-block;background:var(--primary-light);color:var(--primary);border-radius:99px;padding:4px 14px;font-size:13px;font-weight:700;margin:3px;}
+.pill.hot{background:var(--hot-light);color:#991b1b;}
+.pill.cold{background:var(--cold-light);color:#1e40af;}
+.pill.green{background:var(--green-light);color:#065f46;}
+.pill.yellow{background:#fef3c7;color:#92400e;}
+.warning-box{background:#fffbeb;border:2px solid #f59e0b;border-radius:12px;padding:14px 16px;margin:12px 0;font-size:14px;line-height:1.5;}
+.warning-box::before{content:"⚠️ ";}
+.source-note{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text-muted);margin-bottom:12px;font-style:italic;}
+.source-note::before{content:"📋 הערה: ";}
+</style>
+</head>
+<body>
+
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header">
+    <h2>🌾 תפריט פרקים</h2>
+    <button id="menu-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🐔 תנאי ממשק</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">⚙️</span>מהו טיפוח ממשקי?</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">💡</span>תאורה</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🐔</span>צפיפות</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>אוורור</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🌡️</span>טמפרטורה</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🌾</span>תזונה</button>
+    </div>
+    <div class="menu-chapter-title">🐦 ויסות חום בעוף</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🔥</span>ויסות חום בעוף</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">☀️</span>תגובות לחום</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">❄️</span>תגובות לקור</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>סיכום ביניים</button>
+    </div>
+    <div class="menu-chapter-title">🏗️ ויסות חום בלול</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🧱</span>תכנון המבנה</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">☀️</span>הקטנת קרינה</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">💧</span>מטרה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🌀</span>מאווררים וטיפול בשרב</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🔥</span>חימום בחורף</button>
+    </div>
+    <div class="menu-chapter-title">🏭 מבנה מבוקר אקלים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">🏭</span>מבנה מבוקר אקלים</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>סוגי אוורור</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🧊</span>מזרון לח</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה וסיכום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות</button>
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()">
+    <span id="menu-btn-icon">☰</span>
+    <span id="menu-btn-label">פתיחה</span>
+  </button>
+  <span id="farm-icon">🌾</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 24</span>
+</div>
+
+<div id="app">
+
+<!-- ===== SCREEN 0: פתיחה ===== -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🌾🏗️🌡️</div>
+    <h1>ויסות חום במשק<br>על ידי החקלאי</h1>
+    <p class="tagline">כיצד שומר החקלאי על עופות בריאים ויצרניים?<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐔 חקלאות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">💡 האם ידעת?</div>
+    <div class="definition-box" style="text-align:center;font-size:17px;font-weight:600">
+      ביום חם מאוד — עוף שלא מקבל טיפול מתאים יכול למות תוך שעות.<br>
+      החקלאי הוא זה שאחראי לשמור עליו! 🐔
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="⚙️">תנאי ממשק לגידול בעלי חיים — תאורה, צפיפות, אוורור, טמפרטורה, תזונה</li>
+      <li data-icon="🐦">ויסות החום בעוף — תגובות לחום ולקור</li>
+      <li data-icon="🏗️">ויסות החום בלול — תכנון, ציוד, שיטות קירור וחימום</li>
+      <li data-icon="🏭">מבנה מבוקר אקלים — סוגי אוורור ומזרון לח</li>
+    </ul>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">לעוף אין בלוטות זעה. איזה מנגנון הוא משתמש בו כדי להתקרר?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">א</span>הזעה דרך העור</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">ב</span>הלחתה — דרך מערכת הנשימה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ג</span>רטט שרירים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ד</span>שינה</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 1: טיפוח ממשקי ===== -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span>
+    <span class="emoji">⚙️</span>
+    <h1>טיפוח ממשקי</h1>
+    <p class="subtitle">מה זה ולמה זה חשוב?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו טיפוח ממשקי ואילו תנאים הוא כולל.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>טיפוח ממשקי</strong> = הבאת בעלי חיים ל<strong>תוצרת מקסימלית</strong> על ידי <strong>אמצעי ממשקיים</strong>.
+    </div>
+    <div class="highlight blue">
+      💡 כלומר — החקלאי מנהל את תנאי הסביבה של בעל החיים כך שיוכל לייצר כמה שיותר ביצים, חלב, בשר וכו'.
+    </div>
+
+    <div class="section-title">🗂️ תנאי הממשק העיקריים</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b;text-align:center">
+        <div style="font-size:32px">💡</div><div class="title">תאורה</div>
+      </div>
+      <div class="mini-card" style="background:#fee2e2;border:2px solid #fca5a5;text-align:center">
+        <div style="font-size:32px">🐔</div><div class="title">צפיפות</div>
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399;text-align:center">
+        <div style="font-size:32px">💨</div><div class="title">אוורור</div>
+      </div>
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #60a5fa;text-align:center">
+        <div style="font-size:32px">🌡️</div><div class="title">טמפרטורה</div>
+      </div>
+      <div class="mini-card" style="background:#ede9fe;border:2px solid #c4b5fd;text-align:center;grid-column:1/-1">
+        <div style="font-size:32px">🌾</div><div class="title">תזונה</div>
+      </div>
+    </div>
+    <div class="remember-box">טיפוח ממשקי = תאורה + צפיפות + אוורור + טמפרטורה + תזונה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      טיפוח ממשקי הוא הבאת בעלי חיים ל<span class="fill-blank" onclick="revealBlank(this,'תוצרת מקסימלית')">_______</span> באמצעות <span class="fill-blank" onclick="revealBlank(this,'אמצעי ממשקיים')">_______</span>.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 2: תאורה ===== -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">פרק 2</span>
+    <span class="emoji">💡</span>
+    <h1>תאורה</h1>
+    <p class="subtitle">כיצד החקלאי שולט בתאורה להעלאת התוצרת?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את 3 פרמטרי התאורה ואיך החקלאי מנצל אותם לשיפור הייצור.</div>
+
+  <div class="card">
+    <div class="highlight yellow" style="text-align:center;font-size:16px;font-weight:700">
+      ⭐ תאורה היא אחד הכלים החזקים ביותר שיש לחקלאי — ניתן לשלוט בה לחלוטין!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#d97706">📅 פרמטר 1: תקופתיות (Periodicity) — משך ההארה</div>
+    <div class="definition-box">
+      <strong>תקופתיות</strong> = <strong>כמה שעות אור</strong> מקבלים העופות ביממה.
+    </div>
+
+    <div class="highlight blue">
+      <strong>🐔 איך זה משפיע על התוצרת?</strong><br>
+      • יותר שעות אור = עופות ערים יותר זמן = <strong>אוכלים יותר = גדלים מהר יותר</strong><br>
+      • בתרנגולות מטילות: אור מדמה "יום ארוך" → הגוף חושב שזה אביב/קיץ → <strong>מגביר הטלת ביצים</strong><br>
+      • ניתן לשלוט במחזורי הייצור לגמרי על ידי תכנות שעת תאורה
+    </div>
+    <div class="highlight green">
+      <strong>🔧 איך החקלאי שולט?</strong><br>
+      • שימוש ב<strong>טיימרים אוטומטיים</strong> — הדלקה וכיבוי בשעות קבועות<br>
+      • תכנות "יום מלאכותי" של 16–17 שעות אור בלול<br>
+      • הדרגתיות: הגדלת שעות האור בהדרגה כדי לא להלחיץ את העוף
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#0369a1">🔆 פרמטר 2: עוצמת ההארה (Intensity)</div>
+    <div class="definition-box">
+      <strong>עוצמת ההארה</strong> = <strong>כמה חזק האור</strong> — נמדד ב<strong>לוקס</strong>.
+    </div>
+
+    <div class="highlight blue">
+      <strong>🐔 איך זה משפיע על התוצרת?</strong><br>
+      • עוצמה גבוהה = עופות פעילים יותר = אוכלים יותר = גדלים מהר יותר<br>
+      • עוצמה נמוכה = עופות רגועים יותר = <strong>פחות עקה, פחות תחרות ופחות נקירות</strong><br>
+      • לכל שלב גידול יש עוצמה אופטימלית
+    </div>
+    <div class="highlight green">
+      <strong>🔧 איך החקלאי שולט?</strong><br>
+      • בחירת <strong>סוג הנורה ועוצמתה</strong> (ואט / לומן)<br>
+      • שימוש ב<strong>דימרים</strong> לכיוון עוצמה מדויק<br>
+      • מיקום הנורות בגובה ובמרחקים מחושבים לפיזור אחיד<br>
+      • הורדת עוצמה בתקופות עקה לשמירה על שקט בלהקה
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#059669">🌈 פרמטר 3: התפלגות ספקטרלית (Light Spectra)</div>
+    <div class="definition-box">
+      <strong>התפלגות ספקטרלית</strong> = <strong>אילו צבעי אור</strong> (אורכי גל) יש במקור האור.
+    </div>
+
+    <div class="highlight blue">
+      <strong>🐔 איך זה משפיע על התוצרת?</strong><br>
+      • עופות רואים אור שונה מבני אדם — <strong>רגישים לאדום וכחול</strong><br>
+      • אור <strong>אדום</strong>: מרגיע, מפחית נקירות, מסייע לגדילה<br>
+      • אור <strong>כחול/ירוק</strong>: מגרה פעילות ואכילה<br>
+      • הבחנה בספקטרום משפיעה על מחזור ההטלה
+    </div>
+    <div class="highlight green">
+      <strong>🔧 איך החקלאי שולט?</strong><br>
+      • בחירת <strong>סוג הנורה</strong>: LED, פלורסנט, גוון חם/קר<br>
+      • שימוש ב<strong>נורות LED צבעוניות</strong> ממוקדות לתוצאה הרצויה<br>
+      • בלולים מודרניים: תכנות ספקטרום שונה לשלבים שונים
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📊 סיכום: 3 פרמטרי התאורה</div>
+    <table class="info-table">
+      <tr><th>פרמטר</th><th>מה זה?</th><th>כיצד החקלאי שולט?</th></tr>
+      <tr>
+        <td>📅 <strong>תקופתיות</strong></td>
+        <td>כמה שעות אור ביממה</td>
+        <td>טיימר אוטומטי — 16–17 שעות אור</td>
+      </tr>
+      <tr>
+        <td>🔆 <strong>עוצמה</strong></td>
+        <td>כמה חזק האור (לוקס)</td>
+        <td>בחירת נורה + דימר + מיקום</td>
+      </tr>
+      <tr>
+        <td>🌈 <strong>ספקטרום</strong></td>
+        <td>אילו צבעי אור</td>
+        <td>בחירת LED ממוקד לתוצאה</td>
+      </tr>
+    </table>
+    <div class="remember-box">תאורה = תקופתיות + עוצמה + ספקטרום — החקלאי שולט בכולם!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">חקלאי רוצה להגביר הטלת ביצים בתרנגולות. על איזה פרמטר תאורה הוא ישלוט בעיקר?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">א</span>עוצמת האור בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s2q')"><span class="opt-letter">ב</span>תקופתיות — הארכת שעות האור לדמות יום ארוך</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">ג</span>ספקטרום האור בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s2q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">אור אדום בלול מגביר נקירות בין עופות.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf2b')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf2b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf2b"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 3: צפיפות ===== -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">
+    <span class="chapter-num">פרק 3</span>
+    <span class="emoji">🐔</span>
+    <h1>צפיפות</h1>
+    <p class="subtitle">כמה עופות ניתן לגדל במ"ר?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי צפיפות ולמה היא גורם מגביל לייצור.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>צפיפות</strong> = מספר העופות ליחידת שטח (למשל: כמה עופות למ"ר).
+    </div>
+
+    <div class="section-title">⚠️ צפיפות יתר — מה הנזקים?</div>
+    <div class="highlight red">
+      <strong>צפיפות גבוהה מדי גורמת לכל אלה ביחד:</strong><br>
+      • 🌡️ יותר עופות → <strong>יותר חום</strong> משתחרר → טמפרטורה עולה<br>
+      • 💧 יותר לחות באוויר מנשימה ומצואה<br>
+      • ☠️ <strong>פליטת גזים רעילים</strong> — אמוניה מצואה, CO₂ מנשימה — פוגעים בדרכי הנשימה<br>
+      • 🦠 <strong>מחלות</strong> — קרבה בין עופות מקלה על העברת מחלות מדבקות<br>
+      • 😤 <strong>עקה</strong> — תחרות על מזון, מים ומקום → נקירות ופציעות<br>
+      • 📉 <strong>ירידה ביצרנות</strong> — פחות ביצים, ירידה בגדילה
+    </div>
+    <div class="highlight green">
+      <strong>✅ צפיפות נכונה:</strong><br>
+      • כל עוף מקבל מספיק מקום, מזון ואוויר<br>
+      • טמפרטורה ואיכות אוויר נשלטות טוב יותר<br>
+      • פחות עקה ומחלות → יצרנות גבוהה יותר
+    </div>
+    <div class="highlight yellow">
+      💡 <strong>בתנאי קור</strong> — ניתן לגדל עופות בצפיפות גבוהה יותר כדי שיחממו אחד את השני!
+    </div>
+    <div class="remember-box">צפיפות גבוהה מדי = יותר חום + עקה + ירידה ביצרנות!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">צפיפות גבוהה של עופות בקיץ עוזרת להוריד את טמפרטורת הלול.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf3a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf3a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf3a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 4: אוורור ===== -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#047857)">
+    <span class="chapter-num">פרק 4</span>
+    <span class="emoji">💨</span>
+    <h1>אוורור</h1>
+    <p class="subtitle">למה אוורור הוא תנאי ממשק קריטי?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שתי מטרות האוורור בלול.</div>
+
+  <div class="card">
+    <div class="section-title">🎯 2 מטרות האוורור</div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">1</div>
+      <div class="step-content">
+        <strong>💨 הכנסת אוויר נקי ופינוי גזים</strong><br>
+        אוורור מכניס אוויר נקי ומוציא גזים רעילים (פחמן דו-חמצני, אמוניה, לחות) שנוצרים מנשימת העופות.
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">2</div>
+      <div class="step-content">
+        <strong>🌡️ הורדת טמפרטורה</strong><br>
+        אוורור מסיע את האוויר החם מחוץ ללול ומכניס אוויר קריר — כלי עיקרי לקירור.<br>
+        <span style="font-size:13px;color:var(--text-muted)">⚠️ לעופות אין בלוטות זעה! לכן ההלחתה (דרך הנשימה) היא המנגנון העיקרי שלהם לוויסות חום. אוורור מסייע לה!</span>
+      </div>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>חשוב:</strong> אוורור נחוץ <strong>גם בחורף</strong> — כדי לפנות גזים רעילים ולחות, גם כשלא צריך קירור!
+    </div>
+    <div class="remember-box">אוורור = אוויר נקי + הורדת טמפרטורה — חייב גם בחורף!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדוע נדרש אוורור גם בחורף הקר?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">א</span>כדי לקרר את הלול</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s4q')"><span class="opt-letter">ב</span>כדי לפנות גזים רעילים ולחות שנוצרים מהעופות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ג</span>כדי לייצר חום</button>
+    </div>
+    <div class="feedback" id="fb-s4q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 5: טמפרטורה ===== -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1d4ed8)">
+    <span class="chapter-num">פרק 5</span>
+    <span class="emoji">🌡️</span>
+    <h1>טמפרטורה</h1>
+    <p class="subtitle">הטמפרטורה התרמונטרלית וחימום אפרוחים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי טמפרטורה תרמונטרלית ולמה חשוב לחמם אפרוחים.</div>
+
+  <div class="card">
+    <div class="section-title">🌡️ טמפרטורה תרמונטרלית</div>
+    <div class="definition-box">
+      <strong>טמפרטורה תרמונטרלית</strong> = טווח הטמפרטורות שבו בעל החיים <strong>לא צריך להפעיל מנגנוני ויסות חום</strong> — לא לקרר ולא לחמם.<br>
+      לרוב נע בין <strong>20 ל-28 מעלות צלזיוס</strong>.
+    </div>
+
+    <!-- SVG GRAPH -->
+    <svg width="100%" viewBox="0 0 660 260" style="margin:12px 0;display:block">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Background zones -->
+      <!-- Cold zone -->
+      <rect x="40" y="40" width="170" height="140" rx="8" fill="#dbeafe" opacity="0.7"/>
+      <!-- Thermoneutral zone -->
+      <rect x="210" y="40" width="200" height="140" rx="8" fill="#d1fae5" opacity="0.8"/>
+      <!-- Hot zone -->
+      <rect x="410" y="40" width="210" height="140" rx="8" fill="#fee2e2" opacity="0.7"/>
+
+      <!-- Zone labels -->
+      <text x="125" y="72" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="700" fill="#1e40af">❄️ קר מדי</text>
+      <text x="310" y="72" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="700" fill="#065f46">✅ אזור תרמונטרלי</text>
+      <text x="514" y="72" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="700" fill="#991b1b">🔥 חם מדי</text>
+
+      <!-- Production curve -->
+      <!-- Low in cold zone, peak in thermoneutral, low in hot zone -->
+      <path d="M55 175 C80 175 120 155 180 130 C200 122 210 115 230 110 C260 106 280 104 310 104 C340 104 360 106 390 110 C410 115 430 122 460 140 C510 162 560 178 615 180" fill="none" stroke="#0369a1" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Peak label -->
+      <text x="310" y="96" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#059669">🏆 ייצור מרבי</text>
+
+      <!-- Arrows down in side zones -->
+      <text x="110" y="150" text-anchor="middle" font-family="Heebo,sans-serif" font-size="22">📉</text>
+      <text x="514" y="150" text-anchor="middle" font-family="Heebo,sans-serif" font-size="22">📉</text>
+
+      <!-- X axis -->
+      <line x1="40" y1="200" x2="625" y2="200" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <text x="633" y="204" font-family="Heebo,sans-serif" font-size="12" fill="#64748b">°C</text>
+
+      <!-- X axis labels -->
+      <text x="210" y="218" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" fill="#374151">20°C</text>
+      <line x1="210" y1="196" x2="210" y2="204" stroke="#94a3b8" stroke-width="1"/>
+      <text x="410" y="218" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" fill="#374151">28°C</text>
+      <line x1="410" y1="196" x2="410" y2="204" stroke="#94a3b8" stroke-width="1"/>
+
+      <!-- Y axis -->
+      <line x1="40" y1="200" x2="40" y2="36" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <text x="37" y="30" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" fill="#64748b">ייצור</text>
+
+      <!-- Bottom caption -->
+      <text x="330" y="248" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" fill="#64748b">טמפרטורת הסביבה (°C)</text>
+    </svg>
+
+    <div class="highlight blue">
+      בטמפרטורה תרמונטרלית — הגוף חוסך אנרגיה ומשקיע אותה ב<strong>ייצור</strong> (ביצים, גדילה, חלב).
+    </div>
+
+    <table class="info-table">
+      <tr><th>מצב</th><th>מה קורה?</th><th>תוצאה</th></tr>
+      <tr><td>🌡️ 20–28°C (תרמונטרלי)</td><td>אין צורך בוויסות</td><td style="color:#059669;font-weight:700">✅ ייצור מרבי</td></tr>
+      <tr><td>☀️ מעל 28°C</td><td>הגוף מפזר חום, פחות אוכל</td><td style="color:#dc2626;font-weight:700">📉 ירידה ביצרנות</td></tr>
+      <tr><td>❄️ מתחת ל-20°C</td><td>הגוף מחמם עצמו, אוכל יותר לחימום</td><td style="color:#dc2626;font-weight:700">📉 ירידה ביצרנות</td></tr>
+    </table>
+    <div class="remember-box">תרמונטרלי = 20–28°C = אין וויסות = כל האנרגיה לייצור!</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🐣 חימום בגיל צעיר</div>
+
+    <div class="highlight red">
+      <strong>🐥 הבעיה:</strong> אפרוחים צעירים (בימים הראשונים לחיים) <strong>לא מסוגלים לווסת חום בעצמם</strong>.<br>
+      הם מגיעים לעולם עם נוצות דקות ומערכת עצבים שעדיין לא בשלה — לכן הם תלויים לחלוטין בחום מבחוץ.
+    </div>
+
+    <div class="highlight blue">
+      <strong>📐 ייצור חום עצמי:</strong><br>
+      ייצור החום הפנימי של העופות נמדד ב<strong>BTU (British Thermal Units)</strong>.<br>
+      אפרוחים צעירים מייצרים BTU נמוך מאוד — לכן חייבים חימום מלאכותי.
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content">
+        <strong>🌡️ טמפרטורה נדרשת לאפרוחים</strong><br>
+        בגיל יום — דרושות כ-33–35°C. עם הגיל הטמפרטורה מורידים בהדרגה עד לתרמונטרלי.
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#f97316">2</div>
+      <div class="step-content">
+        <strong>🔆 חימום מוקדי</strong><br>
+        מחמם אזור קטן בלול — האפרוחים מתכנסים מתחתיו. חוסך אנרגיה — לא צריך לחמם את כל הלול.
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">3</div>
+      <div class="step-content">
+        <strong>👀 כיצד יודעים אם הטמפרטורה נכונה?</strong><br>
+        • אפרוחים מפוזרים ופעילים = <strong>טמפרטורה מתאימה</strong> ✅<br>
+        • מתכנסים מתחת לחימום = <strong>קר מדי</strong> ❄️<br>
+        • מתרחקים מהחימום = <strong>חם מדי</strong> 🔥
+      </div>
+    </div>
+
+    <div class="remember-box">אפרוח צעיר = חסר ויסות → חייב חימום מלאכותי מוקדי!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      הטמפרטורה התרמונטרלית היא בין <span class="fill-blank" onclick="revealBlank(this,'20')">__</span> ל-<span class="fill-blank" onclick="revealBlank(this,'28')">__</span>°C, בה בעל החיים <span class="fill-blank" onclick="revealBlank(this,'אינו צריך לווסת חום')">_______</span>.
+    </div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">אפרוחים נצפו מתכנסים כולם מתחת למחמם. מה זה אומר?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s5q')"><span class="opt-letter">א</span>חם להם מדי</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s5q')"><span class="opt-letter">ב</span>קר להם — הטמפרטורה נמוכה מדי</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s5q')"><span class="opt-letter">ג</span>הטמפרטורה מושלמת</button>
+    </div>
+    <div class="feedback" id="fb-s5q"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 6: תזונה ===== -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">
+    <span class="chapter-num">פרק 6</span>
+    <span class="emoji">🌾</span>
+    <h1>תזונה</h1>
+    <p class="subtitle">מזון לפי מבנה, הרכב וצרכים לפי גיל</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את סוגי המזון ולהסביר מה צריך כל בעל חיים לפי גילו.</div>
+
+  <div class="card">
+    <div class="section-title">🍽️ מזון לפי מבנה (גודל וצורת החלקיק)</div>
+    <div class="highlight blue">
+      צורת המזון משפיעה על כמות האכילה ועל ספיגתו:<br>
+      <span class="pill">אבקה</span><span class="pill">פירורים</span><span class="pill">כופתיות</span><span class="pill">עשב/קש</span><span class="pill">נוזל</span>
+    </div>
+    <div class="highlight yellow">
+      💡 לאפרוחים צעירים מתאימה אבקה ופירורים — קל לבלוע.<br>
+      לעופות מבוגרים מתאימות כופתיות — גדולות ועשירות יותר בחומרים.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🧪 מזון לפי הרכב — 4 מרכיבים עיקריים</div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content">
+        <strong>🥩 חלבון</strong><br>
+        חומר הבנייה — בונה שרירים, נוצות, ביצים, חלב.<br>
+        <span style="font-size:13px;color:var(--text-muted)">חשוב במיוחד: בגיל צעיר (גדילה) ולעופות מטילות (לבניית הביצה)</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#f97316">2</div>
+      <div class="step-content">
+        <strong>⚡ אנרגיה</strong><br>
+        "הדלק" של הגוף — נדרשת לכל פעילות חיים, תחזוקה, חום גוף.<br>
+        <span style="font-size:13px;color:var(--text-muted)">חשוב במיוחד: בבעלי חיים מבוגרים ובתקופות קור</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">3</div>
+      <div class="step-content">
+        <strong>🦴 מינרלים</strong><br>
+        חיוניים לבניית עצמות, קליפות ביצים, פעילות שרירים ועצבים.<br>
+        <span style="font-size:13px;color:var(--text-muted)">דוגמה: סידן לקליפת ביצה, זרחן לעצמות</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">4</div>
+      <div class="step-content">
+        <strong>💊 ויטמינים</strong><br>
+        חיוניים לתפקוד תקין של כל מערכות הגוף — מניעת מחלות ותמיכה בצמיחה.<br>
+        <span style="font-size:13px;color:var(--text-muted)">מחסור בוויטמינים עלול לגרום לירידה ביצרנות ולמחלות</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📏 הכלל: מה צריך כל בעל חיים לפי גיל?</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#dbeafe;border:2px solid #93c5fd">
+        <h3>🐣 בעל חיים צעיר</h3>
+        <ul>
+          <li>↑ <strong>יותר חלבון</strong> — לבניית רקמות ושרירים</li>
+          <li>↑ <strong>יותר ויטמינים ומינרלים</strong> — לגדילה מהירה ופיתוח מערכות</li>
+          <li>↓ פחות אנרגיה יחסית — עדיין גדל, אינו זקוק לתחזוקת גוף גדול</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <h3>🐔 בעל חיים מבוגר</h3>
+        <ul>
+          <li>↑ <strong>יותר אנרגיה</strong> — לתחזוקת הגוף ולייצור (חלב, ביצים)</li>
+          <li>↑ <strong>סידן ומינרלים</strong> — לקליפות ביצה ולייצור חלב</li>
+          <li>↓ פחות חלבון — הגוף כבר בנוי, לא גדל</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="info-table">
+      <tr><th>מרכיב</th><th>🐣 צעיר</th><th>🐔 מבוגר</th><th>למה?</th></tr>
+      <tr><td>🥩 חלבון</td><td style="color:#059669;font-weight:700">↑ הרבה</td><td style="color:var(--text-muted)">↓ פחות</td><td>גדילה ובניית רקמות</td></tr>
+      <tr><td>⚡ אנרגיה</td><td style="color:var(--text-muted)">↓ פחות</td><td style="color:#d97706;font-weight:700">↑ הרבה</td><td>תחזוקה + ייצור</td></tr>
+      <tr><td>🦴 מינרלים</td><td style="color:#059669;font-weight:700">↑ גדילה</td><td style="color:#059669;font-weight:700">↑ ייצור</td><td>עצמות / קליפות</td></tr>
+      <tr><td>💊 ויטמינים</td><td style="color:#059669;font-weight:700">↑ הרבה</td><td style="color:#059669;font-weight:700">↑ חיוני</td><td>מניעת מחלות</td></tr>
+    </table>
+    <div class="remember-box">צעיר = חלבון + ויטמינים | מבוגר = אנרגיה + מינרלים לייצור!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s6" class="match-container">
+      <div class="match-col" id="s6-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s6')">בעל חיים צעיר</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s6')">בעל חיים מבוגר</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s6')">מינרלים</div>
+      </div>
+      <div class="match-col" id="s6-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s6')">זקוק ליותר אנרגיה לתחזוקה וייצור</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s6')">חיוני לבניית עצמות וקליפות ביצה</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s6')">זקוק ליותר חלבון לגדילה</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s6match"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 7: ויסות חום בעוף ===== -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#f97316,#dc2626)">
+    <span class="chapter-num">פרק 7</span>
+    <span class="emoji">🔥</span>
+    <h1>ויסות החום בעוף</h1>
+    <p class="subtitle">למה לעוף קשה במיוחד?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע מערכת הנשימה של העוף חיונית לוויסות חום.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      העופות חיים בטבע בסביבה עם טמפרטורה ולחות <strong>משתנה</strong>.<br>
+      מכיוון שלעוף <strong>אין בלוטות זעה</strong> — למערכת הנשימה שלו תפקיד <strong>חשוב מאוד</strong> בהרחקת עודפי חום.
+    </div>
+
+    <div class="section-title">🫁 הקשר בין נשימה לוויסות חום</div>
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content">
+        <strong>אין בלוטות זעה</strong> → העוף לא יכול להזיע
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#f97316">2</div>
+      <div class="step-content">
+        <strong>הלחתה</strong> = אידוי מים דרך מערכת הנשימה → מנגנון הקירור העיקרי
+      </div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">3</div>
+      <div class="step-content">
+        <strong>אוורור הלול</strong> = עוזר לעוף להלחות טוב יותר — האוויר הזורם מסיע את אדי המים
+      </div>
+    </div>
+
+    <div class="highlight yellow">
+      ⭐ <strong>מסקנה:</strong> ללא אוורור מספיק — העוף לא יכול להתקרר ועלול למות ביום חם!
+    </div>
+    <div class="remember-box">עוף = ללא זיעה = הלחתה דרך נשימה = חייב אוורור!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">לעוף יש בלוטות זעה ולכן הוא יכול להתקרר כמו אדם.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 8: תגובות לחום ===== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">
+    <span class="chapter-num">פרק 8</span>
+    <span class="emoji">☀️</span>
+    <h1>תגובות העוף לחום</h1>
+    <p class="subtitle">מה עושה העוף כשחם מדי?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את תגובות העוף לעלייה בטמפרטורה.</div>
+
+  <div class="card">
+    <div class="section-title" style="color:#dc2626">☀️ תגובות לעליית טמפרטורה</div>
+
+    <div class="grid-2">
+      <div class="mini-card hot-card">
+        <div class="title">💨 הלחתה</div>
+        נשימה מהירה ופתיחת הפה — אידוי מים דרך הנשימה לקירור
+      </div>
+      <div class="mini-card hot-card">
+        <div class="title">🦅 פרישת כנפיים</div>
+        הגדלת שטח הפנים לפיזור חום לסביבה
+      </div>
+      <div class="mini-card hot-card">
+        <div class="title">💧 שתייה מרובה</div>
+        מים קרים מקררים מבפנים ומאפשרים הלחתה
+      </div>
+      <div class="mini-card hot-card">
+        <div class="title">🍽️ ירידה באכילה</div>
+        עיכול מייצר חום — אכילה פחותה = פחות חום פנימי
+      </div>
+      <div class="mini-card hot-card">
+        <div class="title">🛁 רביצה מתחת לשקתות</div>
+        חיפוש מקום קריר וצל
+      </div>
+      <div class="mini-card hot-card">
+        <div class="title">📉 ירידה ביצרנות</div>
+        פחות ביצים, ביצים קטנות יותר, קליפה דקה יותר
+      </div>
+    </div>
+    <div class="remember-box">חום → הלחתה + פרישת כנפיים + שתייה + פחות אכילה = פחות ייצור!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">עוף ביום חם מפזר את הלהקה ורובץ תחת השקתות. זה סימן ל:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">א</span>העוף בריא ורגוע</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s8q')"><span class="opt-letter">ב</span>העוף סובל מעומס חום</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">ג</span>העוף עייף מאכילה רבה</button>
+    </div>
+    <div class="feedback" id="fb-s8q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 9: תגובות לקור ===== -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#1d4ed8)">
+    <span class="chapter-num">פרק 9</span>
+    <span class="emoji">❄️</span>
+    <h1>תגובות העוף לקור</h1>
+    <p class="subtitle">מה עושה העוף כשקר מדי?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את תגובות העוף לירידה בטמפרטורה.</div>
+
+  <div class="card">
+    <div class="section-title" style="color:#1d4ed8">❄️ תגובות לירידת טמפרטורה</div>
+
+    <div class="grid-2">
+      <div class="mini-card cold-card">
+        <div class="title">🪶 סימור נוצות</div>
+        הנוצות נסמרות ולוכדות אוויר — שכבת בידוד
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🤝 הצטופפות</div>
+        העופות נצמדים זה לזה — מחממים אחד את השני
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🍽️ עלייה באכילה</div>
+        יותר אוכל = יותר אנרגיה = יותר חום
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🙀 רטט שרירים</div>
+        ייצור חום דרך תנועת שרירים
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">⚡ העלאת חילוף חומרים</div>
+        שריפת יותר אנרגיה לחימום הגוף
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">📉 ירידה ביצרנות</div>
+        האנרגיה הולכת לחימום — פחות לביצים
+      </div>
+    </div>
+    <div class="remember-box">קור → סימור + הצטופפות + אכילה רבה + רטט = פחות ייצור!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 מיון — חום או קור?</div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="classify-s9">
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyReaction(this,'חום')" data-answer="חום">💨 הלחתה ונשימה מהירה</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyReaction(this,'קור')" data-answer="קור">🪶 סימור נוצות</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyReaction(this,'חום')" data-answer="חום">🦅 פרישת כנפיים</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyReaction(this,'קור')" data-answer="קור">🤝 הצטופפות</div>
+    </div>
+    <div class="feedback" id="fb-s9classify"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 10: סיכום ביניים ===== -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#0369a1)">
+    <span class="chapter-num">פרק 10</span>
+    <span class="emoji">📊</span>
+    <h1>סיכום: ויסות החום בעוף</h1>
+    <p class="subtitle">מה המחיר האנרגטי של חום וקור?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר למה חשוב שהלולן ישמור על טמפרטורה נוחה.</div>
+
+  <div class="card">
+    <table class="info-table">
+      <tr><th>מצב</th><th>תגובת העוף</th><th>השפעה על ייצור</th></tr>
+      <tr>
+        <td>🌡️ טמפרטורה תרמונטרלית (20–28°C)</td>
+        <td>אין צורך בוויסות</td>
+        <td style="color:#059669;font-weight:700">✅ ייצור מרבי</td>
+      </tr>
+      <tr>
+        <td>☀️ חם מדי</td>
+        <td>הלחתה, פרישת כנפיים, ירידה באכילה</td>
+        <td style="color:#dc2626;font-weight:700">📉 ירידה ביצרנות</td>
+      </tr>
+      <tr>
+        <td>❄️ קר מדי</td>
+        <td>סימור, הצטופפות, עלייה באכילה</td>
+        <td style="color:#dc2626;font-weight:700">📉 ירידה ביצרנות</td>
+      </tr>
+    </table>
+
+    <div class="highlight yellow">
+      💡 <strong>המסקנה:</strong> גם חום וגם קור פוגעים בייצור!<br>
+      לכן — <strong>החקלאי אחראי</strong> לשמור על הטמפרטורה בתחום הנוח. זה הבסיס לכל הפרקים הבאים.
+    </div>
+    <div class="remember-box">גם חום וגם קור = ירידה ביצרנות = החקלאי חייב לווסת!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">רק חום גורם לירידה ביצרנות העוף — קור לא משפיע.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf10a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf10a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf10a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 11: תכנון המבנה ===== -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0369a1)">
+    <span class="chapter-num">פרק 11</span>
+    <span class="emoji">🧱</span>
+    <h1>תכנון המבנה</h1>
+    <p class="subtitle">כיצד תכנון נכון מסייע לוויסות חום?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את עקרונות תכנון מבנה הלול ולהסביר כיצד כל עיקרון עוזר לוויסות חום.</div>
+
+  <div class="card">
+    <div class="highlight yellow" style="text-align:center;font-weight:700;font-size:16px">
+      ⭐ תכנון נכון של הלול חוסך אנרגיה, מונע מחלות ומשפר ייצור — עוד לפני שמפעילים ציוד!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🧭 עיקרון 1: כיוון ציר האורך</div>
+    <div class="definition-box">
+      כיוון הלול ביחס לרוח ולשמש — השפעה ישירה על כמות קרינת השמש שנכנסת ועל יעילות האוורור.
+    </div>
+    <div class="highlight blue">
+      • בארץ — מקובל לכוון את ציר האורך <strong>ממזרח למערב</strong><br>
+      • כך הקירות הארוכים פונים לצפון ולדרום — מקבלים פחות קרינה ישירה בשעות השיא<br>
+      • פתחי האוורור מנצלים את <strong>הרוח הדומיננטית</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🏠 עיקרון 2: גג משופע ומוגבה</div>
+    <div class="highlight blue">
+      • גג גבוה יוצר נפח אוויר גדול יותר → <strong>אוויר חם עולה ומצטבר למעלה</strong><br>
+      • מרחיק את האוויר החם מהעופות שגרים ברמת הרצפה<br>
+      • שיפוע הגג מאפשר <strong>זרימת אוויר טבעית</strong> ויציאת חום מהפסגה<br>
+      • גם מקל על ניקוז מי גשמים — מונע לחות ברפד
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🪟 עיקרון 3: פתחי אוורור במיקום נכון</div>
+    <div class="highlight green">
+      • פתחים בגובה נמוך — <strong>מכניסים אוויר קריר</strong> ברמת הגוף<br>
+      • פתחים בגובה גבוה — <strong>מוציאים אוויר חם</strong> שעלה למעלה<br>
+      • מיקום מול הרוח הדומיננטית → אוורור טבעי ללא צריכת חשמל<br>
+      • גודל הפתחים מחושב לפי מספר העופות וצרכי האוורור
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🏔️ עיקרון 4: בידוד</div>
+    <div class="highlight yellow">
+      • חומרי בידוד בקירות ובגג <strong>מאטים העברת חום</strong> בין פנים הלול לחוץ<br>
+      • בקיץ: מונע חדירת חום מבחוץ פנימה<br>
+      • בחורף: מונע בריחת חום מפנים החוצה<br>
+      • ניתן לחמם ולקרר בצורה <strong>יעילה ובחסכון חשמל</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">⬜ עיקרון 5: צביעת הגג</div>
+    <div class="highlight red">
+      • <strong>גג לבן</strong> — מחזיר כ-80% מקרינת השמש לפני שהיא הופכת לחום<br>
+      • גג כהה — סופג קרינה ומחמם את הלול מבפנים<br>
+      • הפרש טמפרטורה של עד <strong>5–8°C</strong> בין גג לבן לגג כהה<br>
+      • אמצעי פשוט וזול מאוד ביחס לתועלתו
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📊 סיכום: עקרונות התכנון</div>
+    <table class="info-table">
+      <tr><th>עיקרון</th><th>כיצד עוזר?</th></tr>
+      <tr><td>🧭 כיוון ציר האורך</td><td>פחות קרינה ישירה + ניצול רוח</td></tr>
+      <tr><td>🏠 גג מוגבה ומשופע</td><td>אוויר חם עולה ויוצא + אוורור טבעי</td></tr>
+      <tr><td>🪟 פתחי אוורור נכונים</td><td>כניסת אוויר קריר + יציאת חם</td></tr>
+      <tr><td>🏔️ בידוד</td><td>חסימת חום קיץ + שמירת חום חורף</td></tr>
+      <tr><td>⬜ גג לבן</td><td>החזרת עד 80% קרינת שמש</td></tr>
+    </table>
+    <div class="remember-box">תכנון טוב = כיוון + גג מוגבה + פתחים נכונים + בידוד + גג לבן!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">למה גג גבוה ומוגבה עוזר לקרר את הלול?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">א</span>כי יש בו יותר מקום לעופות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s11q')"><span class="opt-letter">ב</span>כי אוויר חם עולה למעלה ומתרחק מהעופות — ויוצא מהפסגה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">ג</span>כי אין צורך בבידוד</button>
+    </div>
+    <div class="feedback" id="fb-s11q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">גג כהה עדיף על גג לבן כי הוא מחמם את הלול בחורף.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf11b')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf11b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf11b"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 12: הקטנת קרינה ===== -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#78350f)">
+    <span class="chapter-num">פרק 12</span>
+    <span class="emoji">☀️</span>
+    <h1>אמצעים להקטנת קרינה</h1>
+    <p class="subtitle">כיצד מגינים מפני קרינת שמש ישירה?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר אמצעים שמפחיתים קרינת חום בלול.</div>
+
+  <div class="card">
+
+    <div class="section-title">🛡️ אמצעים להקטנת קרינה</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">⬜ הלבנת הגגות</div>
+        צביעה לבנה מחזירה את קרינת השמש לפני שהיא חודרת פנימה
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">🏔️ בידוד גג</div>
+        שכבת בידוד מונעת העברת חום מהגג לתוך הלול
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399">
+        <div class="title">🏚️ גגונים</div>
+        גגון מוצל מונע קרינה ישירה לקירות ולפתחים
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399">
+        <div class="title">🕸️ רשת צל</div>
+        רשת מעל הלול מפחיתה קרינת שמש ישירה
+      </div>
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #93c5fd;grid-column:1/-1">
+        <div class="title">🌳 עצי צל</div>
+        עצים סביב הלול מצילים ומקררים את הסביבה הקרובה
+      </div>
+    </div>
+    <div class="remember-box">הקטנת קרינה: הלבנה + בידוד + גגונים + רשת צל + עצים!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">נטיעת עצים סביב הלול היא אמצעי לגינון בלבד ולא לוויסות חום.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf12a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf12a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf12a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 13: מטרה ===== -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#0284c7)">
+    <span class="chapter-num">פרק 13</span>
+    <span class="emoji">💧</span>
+    <h1>המטרה</h1>
+    <p class="subtitle">קירור בהשקיית מים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי מטרה ואיזה יתרונות יש לה.</div>
+
+  <div class="card">
+
+    <div class="definition-box">
+      <strong>מטרה</strong> = מערכת השקיית מים על גג הלול או על העופות — קירור דרך <strong>אידוי</strong>.
+    </div>
+
+    <div class="section-title">✅ יתרונות המטרה</div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">1</div>
+      <div class="step-content"><strong>💧 קירור הגג</strong><br>מים על הגג מתאדים ומורידים את טמפרטורת הגג.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">2</div>
+      <div class="step-content"><strong>🌡️ הורדת טמפרטורה פנימית</strong><br>גג קריר = פחות קרינה לתוך הלול.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">3</div>
+      <div class="step-content"><strong>🐔 קירור ישיר</strong><br>השקיה ישירה על העופות בימי שרב קיצוניים.</div>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>עיקרון הפעולה:</strong> אידוי המים לוקח חום מהסביבה → גג מתקרר → פנים הלול מתקרר.
+    </div>
+    <div class="remember-box">מטרה = מים על הגג = אידוי = קירור!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מטרה על גג הלול מקררת בעיקר על ידי:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">א</span>הזרמת אוויר קר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">ב</span>אידוי המים שלוקח חום מהגג</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ג</span>הוספת לחות לאוויר</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 14: מאווררים וטיפול בשרב ===== -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 14</span>
+    <span class="emoji">🌀</span>
+    <h1>מאווררים וטיפול ביום שרב</h1>
+    <p class="subtitle">מה עושים ביום חם קיצוני?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הפעולות לטיפול בעופות ביום שרב.</div>
+
+  <div class="card">
+
+    <div class="section-title" style="color:#dc2626">🚨 פעולות ביום שרב — לפי סדר עדיפות</div>
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content"><strong>👀 תצפית על העופות</strong><br>בדיקה — האם יש סימני עומס חום (פרישת כנפיים, אוכלוסיה ביחד)?</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#f97316">2</div>
+      <div class="step-content"><strong>🪟 פתיחת חלונות ווילונות</strong><br>הגדלת האוורור הטבעי — הכנסת אוויר קריר.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">3</div>
+      <div class="step-content"><strong>💧 מים קרים ללא הגבלה</strong><br>העופות שותים הרבה כדי להתקרר ולהלחות.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">4</div>
+      <div class="step-content"><strong>📉 הקטנת צפיפות</strong><br>פחות עופות = פחות חום = אוורור יעיל יותר.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">5</div>
+      <div class="step-content"><strong>🌀 הפעלת מאווררים ומטרה</strong><br>האצת פיזור החום מהלול.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#b45309">6</div>
+      <div class="step-content"><strong>🗑️ סילוק רפד רטוב</strong><br>רפד רטוב מגביר לחות ומפחית יעילות הקירור.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#1d4ed8">7</div>
+      <div class="step-content"><strong>🌙 מניעת מזון ביום + אור בלילה</strong><br>עיכול מייצר חום. האכלה בלילה (קר) — חוסכת חום ביום.</div>
+    </div>
+    <div class="remember-box">שרב: תצפית → חלונות → מים → צפיפות → מאווררים → רפד → לילה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">ביום שרב מומלץ להאכיל את העופות בשעות הצהריים החמות.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf14a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf14a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf14a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 15: חימום בחורף ===== -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#1d4ed8)">
+    <span class="chapter-num">פרק 15</span>
+    <span class="emoji">🔥</span>
+    <h1>חימום הלול בחורף</h1>
+    <p class="subtitle">חימום מוקדי מול חימום חלל</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין חימום מוקדי לחימום חלל.</div>
+
+  <div class="card">
+
+    <div class="two-col-compare">
+      <div class="compare-card hot-card">
+        <h3>🔆 חימום מוקדי</h3>
+        <ul>
+          <li>מקור חום <strong>ממוקד</strong> — מחמם אזור קטן</li>
+          <li>האפרוחים מתכנסים תחתיו</li>
+          <li>מתאים ל<strong>לול קונבנציונאלי</strong></li>
+          <li>יעיל לאפרוחים צעירים</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fff7ed;border:2px solid #fb923c">
+        <h3>🏠 חימום חלל</h3>
+        <ul>
+          <li>מחמם את <strong>כל הלול</strong> באחידות</li>
+          <li>מתאפשר בגלל <strong>בידוד</strong> טוב</li>
+          <li>אופייני ל<strong>מבנה מבוקר אקלים</strong></li>
+          <li>יעיל יותר כלכלית כשיש בידוד</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>חשוב במיוחד:</strong> חימום חיוני בעיקר לאפרוחים צעירים שעדיין לא מסוגלים לווסת חום בעצמם!
+    </div>
+    <div class="remember-box">חימום מוקדי = אזור קטן | חימום חלל = כל הלול (עם בידוד)</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s15" class="match-container">
+      <div class="match-col" id="s15-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s15')">חימום מוקדי</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s15')">חימום חלל</div>
+      </div>
+      <div class="match-col" id="s15-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s15')">מחמם את כל הלול — מתאים למבנה מבוקר</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s15')">מחמם אזור קטן — מתאים לאפרוחים</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s15match"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 16: מבנה מבוקר אקלים ===== -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">פרק 16</span>
+    <span class="emoji">🏭</span>
+    <h1>מבנה מבוקר אקלים</h1>
+    <p class="subtitle">הלול המתקדם ביותר</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני המבנה המבוקר ואיך הוא שונה מהקונבנציונאלי.</div>
+
+  <div class="card">
+
+    <div class="section-title">🏭 מאפייני מבנה מבוקר אקלים</div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0f766e">1</div>
+      <div class="step-content"><strong>🏔️ בידוד מלא</strong><br>קירות, גג ורצפה מבודדים — אין בריחת חום לסביבה ואין חדירה מבחוץ.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">2</div>
+      <div class="step-content"><strong>🔒 אטימות המבנה</strong><br>כניסת האוויר מבוקרת לחלוטין — רק דרך פתחי האוורור המתוכננים.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">3</div>
+      <div class="step-content"><strong>🌀 מערכת אוורור ממוכנת</strong><br>מאווררים שולטים בחילוף האוויר — אוורור יניקה ואוורור דחיסה.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">4</div>
+      <div class="step-content"><strong>🧊 מזרונים לחים</strong><br>לקירור האוויר הנכנס בקיץ (ראה פרק הבא).</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#b45309">5</div>
+      <div class="step-content"><strong>🔥 חימום חלל</strong><br>בגלל הבידוד — ניתן לחמם את כל הלול ביעילות.</div>
+    </div>
+
+    <div class="two-col-compare" style="margin-top:12px">
+      <div class="compare-card" style="background:#f0f9ff;border:2px solid #93c5fd">
+        <h3>🏠 לול קונבנציונאלי</h3>
+        <ul>
+          <li>חלונות ווילונות</li>
+          <li>אוורור טבעי בעיקר</li>
+          <li>חימום מוקדי</li>
+          <li>פחות יקר לבנייה</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#f0fdf4;border:2px solid #86efac">
+        <h3>🏭 לול מבוקר אקלים</h3>
+        <ul>
+          <li>אטום + מבודד לחלוטין</li>
+          <li>אוורור ממוכן + מזרון לח</li>
+          <li>חימום חלל</li>
+          <li>יקר יותר אך יצרנות גבוהה</li>
+        </ul>
+      </div>
+    </div>
+    <div class="remember-box">מבוקר אקלים = בידוד + אטימות + מאווררים + מזרון + חימום חלל!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדוע במבנה מבוקר אקלים ניתן להשתמש בחימום חלל (ולא מוקדי)?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s16q')"><span class="opt-letter">א</span>כי המבנה גדול יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s16q')"><span class="opt-letter">ב</span>כי הבידוד מונע בריחת חום — חימום כל החלל יעיל</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s16q')"><span class="opt-letter">ג</span>כי יש יותר עופות</button>
+    </div>
+    <div class="feedback" id="fb-s16q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 17: סוגי אוורור ===== -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1e40af)">
+    <span class="chapter-num">פרק 17</span>
+    <span class="emoji">🔄</span>
+    <h1>סוגי אוורור</h1>
+    <p class="subtitle">רוחב, גג ואורך — מה ההבדל?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את שלושת סוגי האוורור ולאיזה אקלים כל אחד מתאים.</div>
+
+  <div class="card">
+    <div class="section-title">💨 אוורור רוחב</div>
+    <div class="highlight blue">
+      <strong>איך עובד:</strong> כניסת אוויר מקיר אורך אחד → יוצא מקיר האורך השני.<br>
+      <strong>דרך קצרה</strong> → האוויר כמעט לא מספיק להתחמם.<br>
+      ✅ <strong>מתאים ל:</strong> אקלים <strong>חם</strong> — האוויר מתחלף מהר.
+    </div>
+
+    <div class="section-title" style="margin-top:8px">💨 אוורור גג</div>
+    <div class="highlight green">
+      <strong>איך עובד:</strong> כניסת אוויר מקירות האורך → יוצא מהגג המוגבה.<br>
+      <strong>דרך בינונית</strong> → האוויר מתחמם קצת.<br>
+      ✅ <strong>מתאים ל:</strong> אקלים <strong>ממוצע</strong> — לא קיצוני.
+    </div>
+
+    <div class="section-title" style="margin-top:8px">💨 אוורור אורך</div>
+    <div class="highlight yellow">
+      <strong>איך עובד:</strong> כניסת אוויר מקירות האורך → נמשך לאורך המבנה → יוצא מקירות הרוחב.<br>
+      <strong>דרך ארוכה</strong> → האוויר מתחמם הרבה וסופג לחות.<br>
+      ✅ <strong>מתאים ל:</strong> אקלים <strong>קר</strong> — האוויר מתחמם בדרך.
+    </div>
+
+    <table class="info-table" style="margin-top:12px">
+      <tr><th>סוג אוורור</th><th>מסלול האוויר</th><th>האוויר מתחמם?</th><th>מתאים ל:</th></tr>
+      <tr><td>🔄 <strong>רוחב</strong></td><td>קצר</td><td>כמעט לא</td><td>אקלים חם</td></tr>
+      <tr><td>🔄 <strong>גג</strong></td><td>בינוני</td><td>קצת</td><td>אקלים ממוצע</td></tr>
+      <tr><td>🔄 <strong>אורך</strong></td><td>ארוך</td><td>הרבה</td><td>אקלים קר</td></tr>
+    </table>
+    <div class="remember-box">רוחב = חם | גג = ממוצע | אורך = קר!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">באיזה סוג אוורור האוויר עושה את הדרך הארוכה ביותר בתוך המבנה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s17q')"><span class="opt-letter">א</span>אוורור רוחב</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s17q')"><span class="opt-letter">ב</span>אוורור גג</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s17q')"><span class="opt-letter">ג</span>אוורור אורך</button>
+    </div>
+    <div class="feedback" id="fb-s17q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      אוורור <span class="fill-blank" onclick="revealBlank(this,'רוחב')">______</span> מתאים לאקלים חם, כי האוויר עושה דרך <span class="fill-blank" onclick="revealBlank(this,'קצרה')">_____</span> ולא מספיק <span class="fill-blank" onclick="revealBlank(this,'להתחמם')">_______</span>.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 18: מזרון לח ===== -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0284c7,#0369a1)">
+    <span class="chapter-num">פרק 18</span>
+    <span class="emoji">🧊</span>
+    <h1>מזרון לח</h1>
+    <p class="subtitle">קירור האוויר לפני כניסתו ללול</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו מזרון לח וכיצד הוא מקרר.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>מזרון לח</strong> = שיטה לקירור האוויר הנכנס ללול באמצעות <strong>אידוי</strong>.
+    </div>
+
+    <div class="section-title">⚙️ כיצד עובד מזרון לח?</div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">1</div>
+      <div class="step-content">מרכיבים מזרון <strong>לפני פתחי כניסת האוויר</strong> — מחוץ ללול.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#0284c7">2</div>
+      <div class="step-content"><strong>מים מוזרמים</strong> על המזרון כל הזמן.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">3</div>
+      <div class="step-content">המים <strong>מתאדים</strong> מהמזרון לאוויר → האידוי צורך חום → <strong>המזרון מתקרר</strong>.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">4</div>
+      <div class="step-content">האוויר שנכנס ללול <strong>חייב לעבור דרך המזרון</strong> → נכנס <strong>אוויר קר יותר</strong>.</div>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>העיקרון:</strong> אידוי מים = קירור. כמו שאדם שרטוב מרגיש קר כשיש רוח.
+    </div>
+    <div class="highlight blue">
+      ⚠️ <strong>חיסרון:</strong> מזרון לח <strong>מגביר לחות</strong> — לא מתאים כשהלחות החיצונית גבוהה מאוד.
+    </div>
+    <div class="remember-box">מזרון לח: מים על מזרון → אידוי → מזרון מתקרר → אוויר קר נכנס ללול!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כיצד מזרון לח מקרר את האוויר הנכנס ללול?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s18q')"><span class="opt-letter">א</span>על ידי מאוורר שמזרים אוויר קר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s18q')"><span class="opt-letter">ב</span>אידוי המים מהמזרון מקרר אותו — והאוויר שעובר דרכו נכנס קר יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s18q')"><span class="opt-letter">ג</span>על ידי קירח המוכנס לתוכו</button>
+    </div>
+    <div class="feedback" id="fb-s18q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 19: מילון מונחים ===== -->
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 19</span>
+    <span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ על כרטיסייה לגלות הסבר</p>
+  </div>
+
+  <div id="flashcard-area">
+    <div class="flashcard-container">
+      <div class="flashcard" id="fc" onclick="flipCard()">
+        <div class="flashcard-front">
+          <div class="term" id="fc-term"></div>
+          <div class="hint">לחץ לגלות הסבר</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="def" id="fc-def"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button onclick="prevCard()">◀ קודם</button>
+      <span class="flashcard-counter" id="fc-counter">1 / 14</span>
+      <button onclick="nextCard()">הבא ▶</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">⚙️ טיפוח ממשקי</div><div class="glossary-def">הבאת בעלי חיים לתוצרת מקסימלית על ידי אמצעי ממשקיים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌡️ טמפרטורה תרמונטרלית</div><div class="glossary-def">טווח 20–28°C שבו בעל החיים לא צריך לווסת חום — חוסך אנרגיה לייצור.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💨 הלחתה</div><div class="glossary-def">מנגנון הקירור העיקרי בעוף — אידוי מים דרך מערכת הנשימה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔥 BTU</div><div class="glossary-def">British Thermal Units — יחידה למדידת ייצור חום עצמי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💧 מטרה</div><div class="glossary-def">מערכת השקיית מים לקירור גג הלול — עובדת על עיקרון האידוי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧊 מזרון לח</div><div class="glossary-def">מזרון שמוזרמים עליו מים לפני פתחי האוורור — האוויר עובר דרכו ומתקרר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔄 אוורור רוחב</div><div class="glossary-def">כניסה וויציאה בקירות האורך — מסלול קצר — מתאים לאקלים חם.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔄 אוורור גג</div><div class="glossary-def">כניסה מקירות האורך, יציאה מהגג — מסלול בינוני — מתאים לאקלים ממוצע.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔄 אוורור אורך</div><div class="glossary-def">כניסה מקירות האורך, יציאה מקירות הרוחב — מסלול ארוך — מתאים לאקלים קר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔆 חימום מוקדי</div><div class="glossary-def">מקור חום ממוקד לאזור קטן — מתאים לאפרוחים צעירים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🏠 חימום חלל</div><div class="glossary-def">חימום כל הלול באחידות — מתאפשר בגלל בידוד מלא.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🏭 מבנה מבוקר אקלים</div><div class="glossary-def">לול אטום ומבודד עם מאווררים ממוכנים — שליטה מלאה בסביבה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐔 לול קונבנציונאלי</div><div class="glossary-def">לול עם חלונות ווילונות — אוורור טבעי בעיקר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌈 התפלגות ספקטרלית</div><div class="glossary-def">חלוקת האנרגיה לאורכי גל שונים (צבעים) — תנאי תאורה בלול.</div></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 20: חזרה נכון/לא נכון ===== -->
+<div class="screen" id="screen-20">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה – חלק א'</span>
+    <span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+    <p class="subtitle">בדוק את עצמך</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. הטמפרטורה התרמונטרלית היא בין 20 ל-28 מעלות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. לעוף יש בלוטות זעה הדומות לאדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. אוורור רוחב מתאים לאקלים קר כי האוויר מתחמם בדרך.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. מזרון לח מקרר על ידי עיקרון האידוי.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. אוורור נדרש רק בקיץ כדי לקרר.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. עוף שפורש כנפיים ביום חם — זו תגובה לעומס חום.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">7. גג לבן בלול מגביר קרינת שמש לתוך המבנה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1g')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1g')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1g"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 21: חזרה שאלות ===== -->
+<div class="screen" id="screen-21">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה – חלק ב'</span>
+    <span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+    <p class="subtitle">בחר תשובה אחת נכונה</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. אוורור אורך מתאים ל:</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>אקלים חם — האוויר מתחלף מהר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>אקלים קר — האוויר מתחמם בדרך הארוכה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>אקלים ים תיכוני ממוצע</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה מייחד מבנה מבוקר אקלים לעומת קונבנציונאלי?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>גדול יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>בידוד ואטימות מלאים עם אוורור ממוכן</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>חלונות גדולים יותר</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. אפרוח צעיר זקוק לתוספת:</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">א</span>חלבון — לבניית רקמות וגדילה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>שומן — לתחזוקת הגוף</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ג</span>אנרגיה בלבד</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. סימור נוצות הוא תגובה ל:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>חום גבוה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ב</span>קור — לכידת אוויר לבידוד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>מחלה</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 22: חזרה התאמה ===== -->
+<div class="screen" id="screen-22">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה – חלק ג'</span>
+    <span class="emoji">🔗</span>
+    <h1>התאמה מסכמת</h1>
+    <p class="subtitle">חבר מושג לתיאור</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 חבר כל מושג לתיאור הנכון</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">אוורור רוחב</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">מזרון לח</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">חימום חלל</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">הלחתה בעוף</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">קירור דרך מערכת הנשימה</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">מתאים לאקלים חם — מסלול קצר</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">מחמם את כל הלול בגלל בידוד</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">מקרר אוויר כניסה בעזרת אידוי</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">בתנאי <span class="fill-blank" onclick="revealBlank(this,'תרמונטרליים')">_______</span> — בעל החיים לא צריך לווסת חום ומשקיע אנרגיה ב<span class="fill-blank" onclick="revealBlank(this,'ייצור')">_______</span>.</div>
+    <div class="fill-sentence">לעוף אין <span class="fill-blank" onclick="revealBlank(this,'בלוטות זעה')">_______</span> לכן הוא מתקרר דרך <span class="fill-blank" onclick="revealBlank(this,'מערכת הנשימה')">_______</span>.</div>
+    <div class="fill-sentence">אוורור <span class="fill-blank" onclick="revealBlank(this,'אורך')">_____</span> מתאים לאקלים <span class="fill-blank" onclick="revealBlank(this,'קר')">____</span> — האוויר עושה דרך ארוכה ו<span class="fill-blank" onclick="revealBlank(this,'מתחמם')">_______</span>.</div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 23: סיום ===== -->
+<div class="screen" id="screen-23">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת ויסות חום במשק בהצלחה!</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="⚙️">טיפוח ממשקי = תאורה + צפיפות + אוורור + טמפרטורה + תזונה</li>
+      <li data-icon="🌡️">טמפרטורה תרמונטרלית = 20–28°C = ייצור מרבי</li>
+      <li data-icon="🐦">לעוף אין בלוטות זעה → הלחתה = מנגנון קירור עיקרי</li>
+      <li data-icon="☀️">חום → הלחתה + כנפיים + פחות אכילה | קור → סימור + הצטופפות + יותר אכילה</li>
+      <li data-icon="💨">אוורור רוחב = חם | גג = ממוצע | אורך = קר</li>
+      <li data-icon="🧊">מזרון לח = אידוי = קירור אוויר כניסה</li>
+      <li data-icon="🔥">חימום מוקדי = אפרוחים | חימום חלל = מבנה מבוקר</li>
+      <li data-icon="🏭">מבנה מבוקר אקלים = בידוד + אטימות + מאווררים + מזרון</li>
+      <li data-icon="🚨">שרב: תצפית → חלונות → מים → צפיפות → מאווררים → אור בלילה</li>
+    </ul>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🏆</div>
+    <p style="font-size:16px;font-weight:700;margin-bottom:12px">חזור על פרק ספציפי:</p>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>טיפוח ממשקי</button>
+      <button class="toc-item" onclick="goToScreen(5)"><span class="num">5</span>טמפרטורה</button>
+      <button class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>ויסות בעוף</button>
+      <button class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>תגובות לחום</button>
+      <button class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>תגובות לקור</button>
+      <button class="toc-item" onclick="goToScreen(16)"><span class="num">16</span>מבנה מבוקר</button>
+      <button class="toc-item" onclick="goToScreen(17)"><span class="num">17</span>סוגי אוורור</button>
+      <button class="toc-item" onclick="goToScreen(18)"><span class="num">18</span>מזרון לח</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">◀ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 24</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ▶</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=24;
+let currentScreen=0;
+const SCREEN_NAMES=["פתיחה","טיפוח ממשקי","תאורה","צפיפות","אוורור","טמפרטורה","תזונה","ויסות חום בעוף","תגובות לחום","תגובות לקור","סיכום ביניים","תכנון המבנה","הקטנת קרינה","מטרה","מאווררים ושרב","חימום בחורף","מבנה מבוקר אקלים","סוגי אוורור","מזרון לח","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+
+const cards=[
+  {term:"⚙️ טיפוח ממשקי",def:"הבאת בעלי חיים לתוצרת מקסימלית על ידי תנאים: תאורה, צפיפות, אוורור, טמפרטורה, תזונה."},
+  {term:"🌡️ תרמונטרלי",def:"טווח 20–28°C שבו בעל החיים לא מפעיל מנגנוני ויסות חום — חוסך אנרגיה לייצור."},
+  {term:"💨 הלחתה",def:"מנגנון הקירור של העוף — אידוי מים דרך מערכת הנשימה (אין לו בלוטות זעה!)."},
+  {term:"🔥 BTU",def:"British Thermal Units — יחידה למדידת ייצור חום עצמי בלול."},
+  {term:"💧 מטרה",def:"מערכת השקיית מים על הגג — קירור דרך אידוי."},
+  {term:"🧊 מזרון לח",def:"מזרון לפני פתחי הכניסה — מים מתאדים, מזרון מתקרר, אוויר נכנס קר יותר."},
+  {term:"🔄 אוורור רוחב",def:"מסלול קצר בין קירות האורך — מתאים לאקלים חם."},
+  {term:"🔄 אוורור גג",def:"מסלול בינוני — כניסה מקירות האורך, יציאה מהגג — מתאים לאקלים ממוצע."},
+  {term:"🔄 אוורור אורך",def:"מסלול ארוך — כניסה מקירות האורך, יציאה מקירות הרוחב — מתאים לאקלים קר."},
+  {term:"🔆 חימום מוקדי",def:"מקור חום ממוקד לאזור קטן — מתאים לאפרוחים צעירים."},
+  {term:"🏠 חימום חלל",def:"חימום כל הלול — מתאפשר בגלל בידוד מלא במבנה מבוקר."},
+  {term:"🏭 מבנה מבוקר",def:"לול אטום ומבודד עם מאווררים ממוכנים ומזרון לח — שליטה מלאה."},
+  {term:"🌈 ספקטרום נראה",def:"אורכי גל 380–780nm — אור שהעין הרואה."},
+  {term:"📊 תקופתיות",def:"משך שעות ההארה ביום — פרמטר תאורה חשוב בלול."}
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){const fc=document.getElementById('fc');fcFlipped=!fcFlipped;fc.classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===19)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';document.getElementById('btn-next').style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const m=btn.getAttribute('onclick').match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+
+function answerMC(btn,result,qid){const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+
+let classifyReactionCount=0;
+function classifyReaction(el,ans){if(el.classList.contains('matched'))return;el.textContent=el.textContent+' → '+ans;el.classList.add('matched');el.style.background=ans==='חום'?'#fee2e2':'#dbeafe';el.style.borderColor=ans==='חום'?'#dc2626':'#2563eb';classifyReactionCount++;if(classifyReactionCount>=4){const fb=document.getElementById('fb-s9classify');fb.className='feedback show correct';fb.innerHTML='✅ מצוין! סיווגת הכל נכון! 🎉';}}
+
+updateProgress();
+updateFlashcard();
+updateMenuActive();
+</script>
+</body>
+</html>
