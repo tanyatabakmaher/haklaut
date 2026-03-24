@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ויסות חום בבעלי חיים | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+:root {
+  --bg: #f0f7ff;
+  --card: #ffffff;
+  --primary: #0369a1;
+  --primary-light: #e0f2fe;
+  --secondary: #b45309;
+  --secondary-light: #fef3c7;
+  --hot: #dc2626;
+  --hot-light: #fee2e2;
+  --cold: #2563eb;
+  --cold-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --font: 'Heebo', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; direction: rtl; }
+
+/* MENU SIDEBAR */
+#menu-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:200; backdrop-filter:blur(2px); }
+#menu-overlay.open { display:block; }
+#menu-sidebar { position:fixed; top:0; right:-320px; width:300px; height:100%; background:white; z-index:300; box-shadow:-4px 0 30px rgba(0,0,0,0.15); transition:right 0.3s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; overflow:hidden; }
+#menu-sidebar.open { right:0; }
+#menu-header { background:linear-gradient(135deg,#0369a1,#0c4a6e); color:white; padding:20px 18px 16px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+#menu-header h2 { font-size:17px; font-weight:900; }
+#menu-close { background:rgba(255,255,255,0.2); border:none; border-radius:50%; width:32px; height:32px; color:white; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:var(--font); }
+#menu-body { overflow-y:auto; flex:1; padding:8px 0; }
+.menu-chapter-title { font-size:11px; font-weight:800; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; padding:10px 12px 4px; }
+.menu-chapter { padding:0 8px 4px; }
+.menu-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; cursor:pointer; transition:background .15s; font-size:14px; font-weight:600; color:var(--text); border:none; background:none; width:100%; text-align:right; font-family:var(--font); }
+.menu-item:hover { background:var(--primary-light); color:var(--primary); }
+.menu-item.active { background:var(--primary-light); color:var(--primary); }
+.menu-dot { min-width:8px; height:8px; border-radius:50%; background:#cbd5e1; }
+.menu-item.active .menu-dot { background:var(--primary); }
+.menu-item-icon { font-size:18px; min-width:24px; text-align:center; }
+
+/* PROGRESS BAR */
+#progress-bar-container { position:fixed; top:0; right:0; left:0; background:white; z-index:100; padding:10px 14px 10px 20px; box-shadow:0 2px 10px rgba(0,0,0,0.08); display:flex; align-items:center; gap:12px; }
+#menu-btn { background:var(--primary); border:none; border-radius:10px; height:36px; padding:0 12px 0 10px; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; cursor:pointer; flex-shrink:0; transition:background .2s; }
+#menu-btn:hover { background:#075985; }
+#menu-btn-label { color:white; font-family:var(--font); font-size:14px; font-weight:700; white-space:nowrap; }
+#menu-btn-icon { font-size:16px; color:white; }
+#dog-icon { font-size:22px; }
+#progress-track { flex:1; height:10px; background:#e2e8f0; border-radius:99px; overflow:hidden; }
+#progress-fill { height:100%; background:linear-gradient(90deg,#0369a1,#059669); border-radius:99px; transition:width .5s ease; }
+#progress-label { font-size:13px; font-weight:700; color:var(--primary); white-space:nowrap; }
+
+/* MAIN */
+#app { max-width:760px; margin:0 auto; padding:75px 16px 100px; }
+.screen { display:none; animation:fadeIn .4s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+/* CARDS */
+.card { background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:16px; }
+
+/* CHAPTER HEADER */
+.chapter-header { color:white; border-radius:var(--radius); padding:28px 24px; margin-bottom:20px; text-align:center; position:relative; overflow:hidden; }
+.chapter-header::before { content:''; position:absolute; top:-30px; left:-30px; width:120px; height:120px; background:rgba(255,255,255,0.08); border-radius:50%; }
+.chapter-header .emoji { font-size:48px; display:block; margin-bottom:8px; }
+.chapter-header h1 { font-size:26px; font-weight:900; margin-bottom:4px; }
+.chapter-header .subtitle { font-size:15px; opacity:.85; }
+.chapter-header .chapter-num { display:inline-block; background:rgba(255,255,255,0.2); border-radius:99px; padding:3px 14px; font-size:13px; margin-bottom:10px; font-weight:700; }
+
+.goal-box { background:var(--primary-light); border-right:4px solid var(--primary); border-radius:12px; padding:14px 16px; margin-bottom:16px; font-size:15px; font-weight:600; color:#0c4a6e; }
+.goal-box::before { content:"🎯 "; }
+
+.section-title { font-size:18px; font-weight:800; color:var(--text); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.definition-box { background:linear-gradient(135deg,#f0f9ff,#e0f2fe); border:2px solid #7dd3fc; border-radius:12px; padding:16px 18px; margin-bottom:16px; font-size:16px; line-height:1.6; }
+
+/* HIGHLIGHTS */
+.highlight { border-radius:12px; padding:14px 16px; margin-bottom:12px; font-size:15px; line-height:1.6; }
+.highlight.blue { background:var(--primary-light); border-right:4px solid var(--primary); }
+.highlight.green { background:var(--green-light); border-right:4px solid var(--green); }
+.highlight.yellow { background:var(--secondary-light); border-right:4px solid var(--secondary); }
+.highlight.red { background:var(--hot-light); border-right:4px solid var(--hot); }
+.highlight.purple { background:var(--purple-light); border-right:4px solid var(--purple); }
+.highlight.cold { background:#eff6ff; border-right:4px solid #3b82f6; }
+
+.remember-box { background:linear-gradient(135deg,#fefce8,#fef08a); border:2px solid #facc15; border-radius:14px; padding:16px 18px; margin:16px 0; font-weight:700; font-size:15px; text-align:center; }
+.remember-box::before { content:"📌 חשוב לזכור: "; color:#a16207; }
+
+/* GRID */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card { background:white; border:2px solid var(--border); border-radius:12px; padding:14px; font-size:14px; line-height:1.5; }
+.mini-card .title { font-weight:800; font-size:15px; margin-bottom:6px; }
+
+/* TWO COL */
+.two-col-compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card { border-radius:14px; padding:16px; font-size:14px; }
+.compare-card h3 { font-weight:900; font-size:16px; margin-bottom:10px; }
+.compare-card ul { list-style:none; padding:0; }
+.compare-card ul li { padding:4px 0; display:flex; align-items:flex-start; gap:6px; }
+.compare-card ul li::before { content:"•"; font-weight:900; }
+
+/* STEPS */
+.step-box { display:flex; gap:12px; align-items:flex-start; background:white; border:2px solid var(--border); border-radius:12px; padding:14px; margin-bottom:10px; }
+.step-num { min-width:36px; height:36px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:16px; }
+.step-content { font-size:15px; line-height:1.5; }
+.step-content strong { font-size:16px; display:block; margin-bottom:4px; }
+
+/* TABLES */
+.info-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:12px; overflow:hidden; margin-bottom:16px; font-size:14px; }
+.info-table th { background:#0369a1; color:white; padding:10px 14px; text-align:right; font-weight:700; }
+.info-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.info-table tr:last-child td { border-bottom:none; }
+.info-table tr:nth-child(even) td { background:#f0f9ff; }
+
+/* HOT/COLD CARDS */
+.hot-card { background:linear-gradient(135deg,#fff7ed,#fed7aa); border:2px solid #f97316; border-radius:14px; padding:16px; }
+.cold-card { background:linear-gradient(135deg,#eff6ff,#bfdbfe); border:2px solid #3b82f6; border-radius:14px; padding:16px; }
+
+/* INTERACTIVE */
+.question-box { background:#f8faff; border:2px solid #c7d7fe; border-radius:14px; padding:20px; margin-top:20px; }
+.question-box .q-title { font-size:16px; font-weight:800; color:#1e40af; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+
+.mc-options { display:flex; flex-direction:column; gap:10px; }
+.mc-option { background:white; border:2px solid #d1d5db; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:15px; transition:all .2s; text-align:right; font-family:var(--font); width:100%; display:flex; align-items:center; gap:10px; }
+.mc-option:hover { border-color:var(--primary); background:var(--primary-light); }
+.mc-option .opt-letter { min-width:28px; height:28px; background:#e2e8f0; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; }
+.mc-option.correct { border-color:var(--green)!important; background:var(--green-light)!important; }
+.mc-option.wrong { border-color:var(--hot)!important; background:var(--hot-light)!important; }
+.mc-option.correct .opt-letter { background:var(--green); color:white; }
+.mc-option.wrong .opt-letter { background:var(--hot); color:white; }
+
+.tf-options { display:flex; gap:12px; }
+.tf-btn { flex:1; padding:14px; border:2px solid var(--border); border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; background:white; transition:all .2s; font-family:var(--font); }
+.tf-btn:hover { transform:scale(1.02); }
+.tf-btn.correct { border-color:var(--green); background:var(--green-light); color:#065f46; }
+.tf-btn.wrong { border-color:var(--hot); background:var(--hot-light); color:#991b1b; }
+
+.fill-blank { background:#dbeafe; border:2px dashed #2563eb; border-radius:8px; padding:3px 12px; display:inline-block; min-width:100px; cursor:pointer; font-weight:700; color:#1e40af; transition:all .2s; font-family:var(--font); font-size:15px; }
+.fill-blank.revealed { background:#d1fae5; border:2px solid #059669; color:#065f46; }
+.fill-sentence { font-size:17px; line-height:2; margin-bottom:12px; padding:14px; background:white; border-radius:12px; border:2px solid var(--border); }
+
+/* MATCH */
+.match-container { display:flex; gap:12px; align-items:flex-start; }
+.match-col { flex:1; display:flex; flex-direction:column; gap:8px; }
+.match-item { padding:10px 14px; border-radius:10px; border:2px solid var(--border); background:white; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; min-height:44px; display:flex; align-items:center; text-align:right; }
+.match-item.left-item { background:#eff6ff; border-color:#93c5fd; }
+.match-item.left-item:hover,.match-item.left-item.selected { background:#dbeafe; border-color:var(--primary); }
+.match-item.right-item { background:#f0fdf4; border-color:#86efac; }
+.match-item.right-item:hover,.match-item.right-item.selected { background:#dcfce7; border-color:var(--green); }
+.match-item.matched { background:#d1fae5; border-color:var(--green); cursor:default; }
+.match-item.wrong-match { animation:shake .4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+.feedback { border-radius:12px; padding:14px 16px; margin-top:12px; font-size:15px; font-weight:600; display:none; }
+.feedback.show { display:block; }
+.feedback.correct { background:var(--green-light); color:#065f46; border:2px solid var(--green); }
+.feedback.wrong { background:var(--hot-light); color:#991b1b; border:2px solid var(--hot); }
+
+/* FLASHCARDS */
+.flashcard-container { perspective:1000px; margin-bottom:12px; }
+.flashcard { width:100%; min-height:120px; position:relative; transform-style:preserve-3d; transition:transform .5s; cursor:pointer; }
+.flashcard.flipped { transform:rotateY(180deg); }
+.flashcard-front,.flashcard-back { position:absolute; width:100%; min-height:120px; backface-visibility:hidden; border-radius:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center; }
+.flashcard-front { background:linear-gradient(135deg,#0369a1,#0c4a6e); color:white; }
+.flashcard-front .term { font-size:22px; font-weight:900; }
+.flashcard-front .hint { font-size:12px; opacity:.75; margin-top:8px; }
+.flashcard-back { background:linear-gradient(135deg,#059669,#047857); color:white; transform:rotateY(180deg); }
+.flashcard-back .def { font-size:15px; line-height:1.6; }
+.flashcard-nav { display:flex; gap:10px; justify-content:center; align-items:center; margin-bottom:16px; }
+.flashcard-nav button { padding:8px 18px; border:none; border-radius:99px; background:var(--primary); color:white; font-family:var(--font); font-weight:700; font-size:14px; cursor:pointer; transition:all .2s; }
+.flashcard-nav button:hover { transform:scale(1.05); }
+.flashcard-counter { font-weight:700; color:var(--text-muted); font-size:15px; }
+
+/* NAV */
+.nav-buttons { position:fixed; bottom:0; right:0; left:0; background:white; padding:12px 20px; box-shadow:0 -4px 20px rgba(0,0,0,0.08); display:flex; gap:12px; justify-content:space-between; align-items:center; z-index:99; }
+.btn { padding:12px 24px; border-radius:12px; border:none; font-family:var(--font); font-weight:700; font-size:15px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:6px; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+.btn-primary { background:var(--primary); color:white; }
+.btn-secondary { background:#f1f5f9; color:var(--text); }
+.btn-disabled { background:#e2e8f0; color:#94a3b8; cursor:not-allowed; }
+.btn-disabled:hover { transform:none; box-shadow:none; }
+
+/* INTRO */
+.intro-hero { background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#0284c7 100%); color:white; border-radius:24px; padding:40px 28px; text-align:center; margin-bottom:20px; position:relative; overflow:hidden; }
+.intro-hero::after { content:'🌡️'; position:absolute; font-size:120px; bottom:-20px; left:-10px; opacity:.12; }
+.intro-hero h1 { font-size:30px; font-weight:900; margin-bottom:8px; line-height:1.3; }
+.intro-hero .tagline { font-size:16px; opacity:.85; margin-bottom:20px; }
+.intro-hero .badges { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.intro-badge { background:rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:13px; font-weight:700; }
+
+ul.content-list { list-style:none; padding:0; margin:0; }
+ul.content-list li { padding:8px 0; border-bottom:1px solid var(--border); font-size:15px; line-height:1.5; display:flex; align-items:flex-start; gap:10px; }
+ul.content-list li:last-child { border-bottom:none; }
+ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:24px; }
+
+.completion-card { background:linear-gradient(135deg,#0369a1,#7c3aed); color:white; border-radius:20px; padding:32px 24px; text-align:center; margin-bottom:16px; }
+.completion-card h2 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.stars { display:flex; gap:6px; justify-content:center; font-size:32px; margin:12px 0; }
+.toc-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+.toc-item { background:white; border:2px solid var(--border); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; font-family:var(--font); text-align:right; border:none; width:100%; }
+.toc-item:hover { border:2px solid var(--primary); background:var(--primary-light); transform:translateY(-2px); }
+.toc-item .num { min-width:32px; height:32px; background:var(--primary-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; color:var(--primary); }
+
+.glossary-item { border-bottom:1px solid var(--border); padding:14px 0; }
+.glossary-item:last-child { border-bottom:none; }
+.glossary-term { font-weight:800; font-size:17px; color:var(--primary); }
+.glossary-def { font-size:15px; line-height:1.6; color:var(--text); margin-top:4px; }
+
+.pill { display:inline-block; background:var(--primary-light); color:var(--primary); border-radius:99px; padding:4px 14px; font-size:13px; font-weight:700; margin:3px; }
+.pill.hot { background:var(--hot-light); color:#991b1b; }
+.pill.cold { background:var(--cold-light); color:#1e40af; }
+.pill.green { background:var(--green-light); color:#065f46; }
+
+/* FORMULA BOX */
+.formula-box { background:linear-gradient(135deg,#1e3a5f,#0c4a6e); color:white; border-radius:14px; padding:20px; text-align:center; margin:12px 0; }
+.formula-box .formula { font-size:18px; font-weight:700; letter-spacing:1px; margin:8px 0; }
+.formula-arrow { font-size:22px; margin:0 8px; }
+
+/* WARNING */
+.warning-box { background:#fffbeb; border:2px solid #f59e0b; border-radius:12px; padding:14px 16px; margin:12px 0; font-size:14px; line-height:1.5; }
+.warning-box::before { content:"⚠️ "; }
+</style>
+</head>
+<body>
+
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header">
+    <h2>🌡️ תפריט פרקים</h2>
+    <button id="menu-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🌡️ יסודות ויסות חום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🔥</span>משק חום ואנרגיה</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🌊</span>מושגי מעבר חום</button>
+    </div>
+    <div class="menu-chapter-title">🐾 סוגי בעלי חיים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🦅</span>הומאותרמיים</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🦎</span>פויקילותרמיים</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>השוואה</button>
+    </div>
+    <div class="menu-chapter-title">🛡️ מנגנוני ויסות חום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">⚙️</span>מנגנונים כלליים</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🩸</span>כלי דם ושטח פנים</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🔆</span>התמודדות עם חום</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">❄️</span>התמודדות עם קור</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>פיזיולוגי מול התנהגותי</button>
+    </div>
+    <div class="menu-chapter-title">⚗️ חילוף חומרים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>נשימה תאית</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🧪</span>חומר אורגני ואנרגיה</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📐</span>מקדם הנשימה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🐭</span>גודל גוף וחילוף חומרים</button>
+    </div>
+    <div class="menu-chapter-title">🌍 אקלים וסביבה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🌤️</span>גורמי אקלים</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">😓</span>עומס חום ורוח</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>אקלום ועקה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🐄</span>בעלי חיים יצרניים</button>
+    </div>
+    <div class="menu-chapter-title">📚 מונחים וחזרה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות אמריקאיות</button>
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()">
+    <span id="menu-btn-icon">☰</span>
+    <span id="menu-btn-label">פתיחה</span>
+  </button>
+  <span id="dog-icon">🌡️</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 24</span>
+</div>
+
+<div id="app">
+
+<!-- ===== SCREEN 0: INTRO ===== -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🌡️🔥❄️</div>
+    <h1>ויסות חום בבעלי חיים</h1>
+    <p class="tagline">איך הגוף שומר על טמפרטורה קבועה?<br>לומדה דיגיטלית | הכנה לבגרות 5 יחידות</p>
+    <div class="badges">
+      <span class="intro-badge">📚 חקלאות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">💡 האם ידעת?</div>
+    <div class="definition-box" style="text-align:center;font-size:17px;font-weight:600">
+      גוף הכלב שלך שומר על טמפרטורה קבועה — בין אם בחוץ <strong>40°C</strong> ובין אם <strong>-10°C</strong>.<br>איך הוא עושה את זה? זה בדיוק מה שנלמד! 🐾
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🐾">הומאותרמיים מול פויקילותרמיים — מה ההבדל?</li>
+      <li data-icon="🔥">מנגנוני ויסות חום — חימום וקירור</li>
+      <li data-icon="🌡️">מושגי מעבר חום: קרינה, הסעה, הובלה</li>
+      <li data-icon="⚗️">חילוף חומרים ונשימה תאית</li>
+      <li data-icon="🌍">אקלים, עומס חום, אקלום ועקה</li>
+      <li data-icon="📐">מקדם הנשימה ועקומת עכבר-פיל</li>
+    </ul>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">לאיזה קבוצה שייכת הצפרדע?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">א</span>הומאותרמים — חום גוף קבוע</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">ב</span>פויקילותרמים — חום גוף משתנה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ג</span>היא שייכת לשתי הקבוצות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ד</span>לא ידוע</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 1: משק חום ואנרגיה ===== -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span>
+    <span class="emoji">🔥</span>
+    <h1>משק חום ואנרגיה</h1>
+    <p class="subtitle">למה בעלי חיים צריכים לווסת חום?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר למה ויסות חום חשוב לבעלי חיים.</div>
+
+  <div class="card">
+    <div class="section-title">🤔 הבעיה שהגוף צריך לפתור</div>
+    <div class="highlight yellow">
+      הגוף מתמודד עם שתי מטרות מנוגדות:<br>
+      ✅ <strong>לשמור על חום גוף קבוע</strong> — באמצעות מנגנונים שמבזבזים אנרגיה<br>
+      ✅ <strong>לחסוך באנרגיה</strong> — ולא לבזבז יותר ממה שצריך
+    </div>
+    <div class="highlight blue">
+      כדי לפתור זאת, בעלי חיים פיתחו <strong>מנגנוני ויסות חום</strong> — כלים שמאפשרים לגוף לשמור על טמפרטורה יציבה בצורה יעילה.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🌡️ הגוף מול הסביבה</div>
+    <div class="grid-2">
+      <div class="mini-card hot-card">
+        <div class="title">☀️ כשחם בחוץ</div>
+        הגוף מקבל חום מהסביבה.<br>
+        צריך <strong>לפזר חום</strong> החוצה.
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">❄️ כשקר בחוץ</div>
+        הגוף מאבד חום לסביבה.<br>
+        צריך <strong>לייצר חום</strong> ולבלום אובדן.
+      </div>
+    </div>
+    <div class="remember-box">ויסות חום = האיזון בין ייצור חום, שמירת חום ופיזור חום!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      הגוף רוצה לשמור על חום גוף <span class="fill-blank" onclick="revealBlank(this,'קבוע')" data-answer="קבוע">_______</span>, אבל גם לחסוך ב<span class="fill-blank" onclick="revealBlank(this,'אנרגיה')" data-answer="אנרגיה">_______</span>.
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כשקר בחוץ, מה הגוף צריך לעשות?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">א</span>לפזר חום מהר יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s1q')"><span class="opt-letter">ב</span>לייצר חום ולבלום אובדן חום</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">ג</span>להפסיק לאכול</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">ד</span>להוריד את חום הגוף</button>
+    </div>
+    <div class="feedback" id="fb-s1q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 2: מושגי מעבר חום ===== -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 2</span>
+    <span class="emoji">🌊</span>
+    <h1>מושגים במעבר חום</h1>
+    <p class="subtitle">קרינה, הסעה, הובלה — ועוד</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את דרכי מעבר החום בין הגוף לסביבה.</div>
+
+  <div class="card">
+    <div class="section-title">📖 3 דרכי מעבר חום מהמצגת</div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content">
+        <strong>☀️ קרינה (Radiation)</strong>
+        מעבר חום באמצעות הקרנת חום <strong>בין שני גופים שאינם באים במגע ישיר</strong>.<br>
+        <span style="color:var(--text-muted);font-size:13px">דוגמה: השמש מחממת את הכלב מבלי לגעת בו.</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">2</div>
+      <div class="step-content">
+        <strong>💨 הסעה (Convection)</strong>
+        סילוק חום באמצעות <strong>זרימת אוויר ישירה על הגוף</strong>.<br>
+        <span style="color:var(--text-muted);font-size:13px">דוגמה: רוח מקררת את הכלב — האוויר לוקח את החום.</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">3</div>
+      <div class="step-content">
+        <strong>🤝 הובלה (Conduction)</strong>
+        מעבר חום בין <strong>מולקולות שבאות במגע ישיר</strong>.<br>
+        <span style="color:var(--text-muted);font-size:13px">דוגמה: כלב שוכב על אדמה קרה — האדמה שואבת ממנו חום.</span>
+      </div>
+    </div>
+
+    <div class="remember-box">קרינה = ללא מגע | הסעה = אוויר זורם | הובלה = מגע ישיר</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה — חבר מושג לדוגמה</div>
+    <div id="match-s2" class="match-container">
+      <div class="match-col" id="s2-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s2')">קרינה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s2')">הסעה</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s2')">הובלה</div>
+      </div>
+      <div class="match-col" id="s2-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s2')">זרימת אוויר על הגוף</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s2')">מגע ישיר בין מולקולות</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s2')">חום עובר ללא מגע</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s2match"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 3: הומאותרמיים ===== -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#92400e)">
+    <span class="chapter-num">פרק 3</span>
+    <span class="emoji">🦅</span>
+    <h1>הומאותרמיים</h1>
+    <p class="subtitle">בעלי חיים בעלי חום גוף קבוע</p>
+  </div>
+  <div class="goal-box">אני אוכל להגדיר הומאותרמיים ולתת דוגמאות.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>הומאותרמיים</strong> = בעלי חיים ש<strong>שומרים על חום גוף קבוע</strong> — ללא קשר לטמפרטורת הסביבה.
+    </div>
+
+    <div class="section-title">🐾 מי הם?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b;text-align:center">
+        <div style="font-size:48px">🐦</div>
+        <div class="title">עופות</div>
+        ציפורים מכל הסוגים
+      </div>
+      <div class="mini-card" style="background:#dcfce7;border:2px solid #22c55e;text-align:center">
+        <div style="font-size:48px">🐕</div>
+        <div class="title">יונקים</div>
+        כלבים, חתולים, פרות, בני אדם
+      </div>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>הומאותרמיים</strong> = "חום דם חם" — הם <strong>אקטיביים בכל עונות השנה</strong> כי חום גופם קבוע ולא תלוי בחוץ.
+    </div>
+    <div class="remember-box">הומאותרמיים = עופות + יונקים = חום גוף קבוע!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הומאותרמיים שומרים על חום גוף קבוע גם כשקר מאוד בחוץ.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf3a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf3a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf3a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">דגים הם הומאותרמיים.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf3b')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf3b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf3b"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 4: פויקילותרמיים ===== -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#047857)">
+    <span class="chapter-num">פרק 4</span>
+    <span class="emoji">🦎</span>
+    <h1>פויקילותרמיים</h1>
+    <p class="subtitle">בעלי חיים בעלי חום גוף משתנה</p>
+  </div>
+  <div class="goal-box">אני אוכל להגדיר פויקילותרמיים ולתת דוגמאות.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>פויקילותרמיים</strong> = בעלי חיים שחום גופם <strong>משתנה בהתאם לטמפרטורת הסביבה</strong>.
+    </div>
+
+    <div class="section-title">🐾 מי הם? (לפי המצגת)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+      <div class="mini-card" style="flex:1;min-width:140px;background:#fef3c7;border:2px solid #f59e0b;text-align:center">
+        <div style="font-size:36px">🦎</div>
+        <div class="title">זוחלים</div>
+      </div>
+      <div class="mini-card" style="flex:1;min-width:140px;background:#dbeafe;border:2px solid #60a5fa;text-align:center">
+        <div style="font-size:36px">🐟</div>
+        <div class="title">דגים</div>
+      </div>
+      <div class="mini-card" style="flex:1;min-width:140px;background:#d1fae5;border:2px solid #34d399;text-align:center">
+        <div style="font-size:36px">🐸</div>
+        <div class="title">דו-חיים</div>
+      </div>
+    </div>
+
+    <div class="highlight green">
+      💡 <strong>פויקילותרמיים</strong> = "חום דם קר" — פעילים כשחם, עצלנים כשקר. הם <strong>תלויים בסביבה</strong> לחימום גופם.
+    </div>
+    <div class="remember-box">פויקילותרמיים = זוחלים, דגים, דו-חיים = חום גוף כמו הסביבה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">לאיזה מהם אין חשיבות גדולה לטמפרטורת הסביבה לצורך פעילותו?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">א</span>לצפרדע</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ב</span>לתנין</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s4q')"><span class="opt-letter">ג</span>לכלב</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ד</span>לדג</button>
+    </div>
+    <div class="feedback" id="fb-s4q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 5: השוואה ===== -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4f46e5,#0369a1)">
+    <span class="chapter-num">פרק 5</span>
+    <span class="emoji">⚖️</span>
+    <h1>השוואה: הומאותרמים vs פויקילותרמים</h1>
+    <p class="subtitle">מה ההבדל בין שתי הקבוצות?</p>
+  </div>
+  <div class="goal-box">אני אוכל להשוות בין הומאותרמיים לפויקילותרמיים.</div>
+
+  <div class="card">
+    <table class="info-table">
+      <tr><th></th><th>🦅 הומאותרמיים</th><th>🦎 פויקילותרמיים</th></tr>
+      <tr><td><strong>חום הגוף</strong></td><td>קבוע ויציב</td><td>משתנה עם הסביבה</td></tr>
+      <tr><td><strong>תלות בסביבה</strong></td><td>לא תלויים</td><td>תלויים מאוד</td></tr>
+      <tr><td><strong>פעילות בחורף</strong></td><td>פעילים כרגיל</td><td>איטיים/רדומים</td></tr>
+      <tr><td><strong>צריכת אנרגיה</strong></td><td>גבוהה — לשמור על חום</td><td>נמוכה — אין ויסות</td></tr>
+      <tr><td><strong>דוגמאות</strong></td><td>עופות, יונקים</td><td>זוחלים, דגים, דו-חיים</td></tr>
+    </table>
+    <div class="remember-box">הומאותרמי = קבוע + עופות/יונקים | פויקילותרמי = משתנה + זוחלים/דגים/דו-חיים</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 מיון — גרור כל בעל חיים לקבוצה הנכונה</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">לחץ על כל כרטיסייה כדי לסווג:</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px" id="classify-s5">
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyAnimal(this,'הומאותרמי')" data-answer="הומאותרמי">🐦 ציפור</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyAnimal(this,'פויקילותרמי')" data-answer="פויקילותרמי">🐍 נחש</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyAnimal(this,'הומאותרמי')" data-answer="הומאותרמי">🐄 פרה</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyAnimal(this,'פויקילותרמי')" data-answer="פויקילותרמי">🐠 דג</div>
+    </div>
+    <div class="feedback" id="fb-s5classify"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 6: מנגנונים כלליים ===== -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#1e3a5f)">
+    <span class="chapter-num">פרק 6</span>
+    <span class="emoji">⚙️</span>
+    <h1>מנגנונים כלליים לוויסות חום</h1>
+    <p class="subtitle">איך העופות והיונקים שומרים על חום קבוע?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלושת סוגי המנגנונים לוויסות חום.</div>
+
+  <div class="card">
+    <div class="section-title">🛠️ שלושה סוגי מנגנונים</div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">1</div>
+      <div class="step-content">
+        <strong>🧥 בידוד</strong><br>
+        מנגנונים שמונעים מעבר חום בין הגוף לסביבה — שומרים על החום בפנים.<br>
+        <span style="font-size:13px;color:var(--text-muted)">דוגמה: שיער עבה, נוצות, שכבת שומן</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">2</div>
+      <div class="step-content">
+        <strong>🔥 מנגנונים שמייצרים חום</strong><br>
+        מנגנונים שמגבירים ייצור חום בתוך הגוף.<br>
+        <span style="font-size:13px;color:var(--text-muted)">דוגמה: רטט שרירים, הגברת חילוף חומרים</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">3</div>
+      <div class="step-content">
+        <strong>💧 מנגנונים שמעבירים חום לסביבה</strong><br>
+        מנגנונים שמסלקים עודף חום מהגוף לסביבה.<br>
+        <span style="font-size:13px;color:var(--text-muted)">דוגמה: הזעה, נשימה מהירה</span>
+      </div>
+    </div>
+
+    <div class="highlight blue" style="margin-top:8px">
+      ⭐ <strong>חשוב:</strong> בעל החיים משתמש ב<strong>שילוב של כל המנגנונים</strong>, בהתאם לטמפרטורת הסביבה, כדי לשמור על טמפרטורה קבועה.
+    </div>
+    <div class="remember-box">3 מנגנונים: בידוד + ייצור חום + סילוק חום!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כדי לשמור על טמפרטורה קבועה, בעל חיים משתמש:</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">א</span>רק בבידוד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ב</span>רק בייצור חום</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s6q')"><span class="opt-letter">ג</span>בשילוב של כל המנגנונים לפי הסביבה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ד</span>רק בסילוק חום</button>
+    </div>
+    <div class="feedback" id="fb-s6q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 7: כלי דם ושטח פנים ===== -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#991b1b)">
+    <span class="chapter-num">פרק 7</span>
+    <span class="emoji">🩸</span>
+    <h1>כלי דם היקפיים ושטח פנים</h1>
+    <p class="subtitle">מנגנון חכם של כלי הדם</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר כיצד כלי הדם עוזרים לווסת חום.</div>
+
+  <div class="card">
+    <div class="section-title">🩸 איך כלי הדם עוזרים?</div>
+    <div class="two-col-compare">
+      <div class="compare-card hot-card">
+        <h3>🔆 כשחם</h3>
+        <ul>
+          <li>כלי הדם ה<strong>היקפיים</strong> (קרוב לעור) <strong>מתרחבים</strong></li>
+          <li>יותר דם זורם לעור</li>
+          <li><strong>יותר חום</strong> מועבר מהגוף לסביבה</li>
+        </ul>
+      </div>
+      <div class="compare-card cold-card">
+        <h3>❄️ כשקר</h3>
+        <ul>
+          <li>כלי הדם ה<strong>היקפיים מתכווצים</strong></li>
+          <li>פחות דם זורם לעור</li>
+          <li><strong>פחות חום</strong> אובד לסביבה</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:8px">📐 שטח פנים — למה זה חשוב?</div>
+    <div class="highlight green">
+      ככל ש<strong>שטח הפנים גדול יותר</strong> ביחס לנפח הגוף — כך <strong>יותר חום יכול לעבור</strong> מהגוף לסביבה.
+    </div>
+
+    <div class="section-title" style="margin-top:12px">🐭🐄 גוף קטן מול גוף גדול</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>🐭 חיה קטנה (כמו עכבר)</h3>
+        <ul>
+          <li>שטח פנים <strong>גדול</strong> יחסית למשקלה</li>
+          <li>מאבדת <strong>הרבה חום</strong> לסביבה</li>
+          <li>כשקר — <strong>קשה לה לשמור על חום</strong></li>
+          <li>חייבת לאכול <strong>הרבה</strong> כדי לפצות</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#d1fae5;border:2px solid #34d399">
+        <h3>🐄 חיה גדולה (כמו פרה)</h3>
+        <ul>
+          <li>שטח פנים <strong>קטן</strong> יחסית למשקלה</li>
+          <li>מאבדת <strong>פחות חום</strong> יחסית</li>
+          <li>כשחם — <strong>קשה לה להתקרר</strong></li>
+          <li>סובלת יותר מ<strong>עומס חום</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:14px;padding:16px;margin-bottom:12px">
+      <div style="font-weight:800;font-size:15px;margin-bottom:10px;color:#0c4a6e">🔍 דוגמה להבנה</div>
+      <p style="font-size:15px;line-height:1.7">
+        דמיין קובייה קטנה ➕ קובייה גדולה — לשתיהן עור. הקטנה מחוממת כולה הרבה יותר מהר כי לכל ק"ג שלה יש <strong>יותר שטח עור</strong> שדרכו החום בורח.<br><br>
+        ⬛ קובייה <strong>קטנה</strong> (2×2): שטח פנים = 24, נפח = 8 → <strong>יחס: 3</strong><br>
+        ⬛ קובייה <strong>גדולה</strong> (4×4): שטח פנים = 96, נפח = 64 → <strong>יחס: 1.5</strong><br><br>
+        ✅ הקטנה מאבדת פי 2 יותר חום יחסית לגודלה!
+      </p>
+    </div>
+
+    <table class="info-table">
+      <tr><th>גודל החיה</th><th>שטח פנים יחסי</th><th>בחום</th><th>בקור</th></tr>
+      <tr>
+        <td>🐭 קטנה (עכבר)</td>
+        <td style="color:#dc2626;font-weight:700">גדול ← מאבדת הרבה חום</td>
+        <td>מתקררת מהר — <span style="color:#059669">טוב</span></td>
+        <td>מאבדת חום מהר — <span style="color:#dc2626">קשה</span></td>
+      </tr>
+      <tr>
+        <td>🐄 גדולה (פרה)</td>
+        <td style="color:#059669;font-weight:700">קטן ← מאבדת פחות חום</td>
+        <td>מתחממת מהר — <span style="color:#dc2626">קשה</span></td>
+        <td>שומרת חום טוב — <span style="color:#059669">טוב</span></td>
+      </tr>
+    </table>
+
+    <div class="remember-box">גוף קטן = שטח פנים יחסי גדול = מאבד יותר חום | גוף גדול = שטח פנים יחסי קטן = שומר חום טוב יותר</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">כשקר, כלי הדם ההיקפיים מתרחבים כדי לחמם את הגוף.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 8: התמודדות עם חום ===== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#f97316,#dc2626)">
+    <span class="chapter-num">פרק 8</span>
+    <span class="emoji">🔆</span>
+    <h1>התמודדות עם טמפרטורה גבוהה</h1>
+    <p class="subtitle">מנגנוני קירור — פיזיולוגיים והתנהגותיים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר ולהסביר את מנגנוני הקירור אצל בעלי חיים.</div>
+
+  <div class="card">
+    <div class="highlight red" style="text-align:center;font-size:16px;font-weight:700">
+      ⭐ הדרך העיקרית לקירור הגוף היא <strong>התאדות</strong> — מים שמתאדים לוקחים איתם חום מהגוף!
+    </div>
+    <div class="highlight blue" style="margin-top:10px">
+      💡 <strong>הסבר כיצד התאדות מקררת:</strong><br>
+      מים מתאדים ממשטח לח (עור או דרכי נשימה) → התאדות צורכת חום מהאזור הסמוך → הדם שזורם שם מתקרר → הדם הקר חוזר לגוף ומצנן אותו.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#dc2626">🔬 מנגנונים פיזיולוגיים (אוטומטיים)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">אלה מנגנונים שמתרחשים בגוף מאליהם, ללא בחירה:</p>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">1</div>
+      <div class="step-content">
+        <strong>💧 הזעה — דרך עור</strong><br>
+        בלוטות זיעה בעור מפרישות מים → מתאדים ומקררים.<br>
+        <span class="pill cold">בני אדם</span><span class="pill cold">סוסים</span><br>
+        <span style="font-size:13px;color:var(--text-muted)">⚠️ אצל כלבים, כבשים ועופות — <strong>אין בלוטות זעה</strong>, לכן הם מתקררים אחרת!</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">2</div>
+      <div class="step-content">
+        <strong>💨 הלחתה — דרך מערכת הנשימה</strong><br>
+        קצב הנשימה עולה → אוויר הנפלט מכיל הרבה אדי מים → מצנן את הגוף.<br>
+        <span class="pill green">כלבים</span><span class="pill green">כבשים</span><span class="pill green">עופות</span><br>
+        <span style="font-size:13px;color:var(--text-muted)">🐕 כלבים גם <strong>משרבבים לשון</strong> — כך מגדילים את שטח ההתאדות ומתקררים מהר יותר!</span>
+      </div>
+    </div>
+
+    <div class="highlight yellow" style="margin:8px 0 12px;padding:12px 16px">
+      <strong>🔍 מה ההבדל בין הזעה להלחתה?</strong><br>
+      <table style="width:100%;font-size:14px;margin-top:8px;border-collapse:collapse">
+        <tr style="background:rgba(0,0,0,0.04)">
+          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">מנגנון</th>
+          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">מאיפה המים יוצאים?</th>
+          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">אצל מי?</th>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">💧 <strong>הזעה</strong></td>
+          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">דרך <strong>עור</strong> (בלוטות זעה)</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">בני אדם, סוסים</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px">💨 <strong>הלחתה</strong></td>
+          <td style="padding:6px 10px">דרך <strong>מערכת הנשימה</strong></td>
+          <td style="padding:6px 10px">כלבים, כבשים, עופות</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">3</div>
+      <div class="step-content">
+        <strong>🩸 הרחבת כלי דם היקפיים</strong><br>
+        יותר דם זורם לעור → יותר חום עובר מהגוף לסביבה.<br>
+        <span class="pill hot">כל ההומאותרמיים</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">4</div>
+      <div class="step-content">
+        <strong>📐 הגדלת שטח פנים</strong><br>
+        פרישת כנפיים, הוצאת לשון — מגדילים שטח מגע עם האוויר לפיזור חום.<br>
+        <span class="pill" style="background:#ede9fe;color:#5b21b6">עופות (פרישת כנפיים)</span>
+        <span class="pill" style="background:#ede9fe;color:#5b21b6">כלבים (לשון)</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#b45309">5</div>
+      <div class="step-content">
+        <strong>🚫 הימנעות מאכילה</strong><br>
+        תהליכי עיכול מייצרים חום — הפחתת אכילה מורידה את החום המטבולי.<br>
+        <span class="pill hot">עופות בחום</span><span class="pill hot">פרות בקיץ</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0f766e">6</div>
+      <div class="step-content">
+        <strong>💦 שתיית מים קרים / הרטבת פרווה</strong><br>
+        מים קרים מקררים מבפנים; הרטבת הפרווה מגדילה את ההתאדות מהעור.<br>
+        <span class="pill green">פרות</span><span class="pill green">כלבים</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#b45309">🧠 מנגנונים התנהגותיים (בחירה)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">אלה פעולות שבעל החיים <strong>בוחר לעשות</strong>. מתקיימים גם אצל פויקילותרמיים!</p>
+
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">🌳 חיפוש צל</div>
+        הימנעות מקרינת שמש ישירה — מפחיתה חום חיצוני שנקלט.
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">🌙 שינוי שעות פעילות</div>
+        פעילות בבוקר ובלילה — הימנעות משעות השיא החמות.
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">🐌 הימנעות מתנועה</div>
+        פחות פעילות = פחות ייצור חום פנימי.
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
+        <div class="title">🥛 אכילה בשעות קרות</div>
+        פרות אוכלות בלילה — כשקצב ייצור החום פוגע פחות.
+      </div>
+    </div>
+
+    <div class="remember-box">פיזיולוגי = אוטומטי בגוף | התנהגותי = בוחר לעשות (גם פויקילותרמים!)</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב ביום חם משרבב לשון ונושם מהר — באיזה מנגנון קירור הוא משתמש?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">א</span>הזעה דרך בלוטות עור</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s8q')"><span class="opt-letter">ב</span>הלחתה — אידוי דרך מערכת הנשימה ולשון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">ג</span>רטט שרירים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">ד</span>כיווץ כלי דם</button>
+    </div>
+    <div class="feedback" id="fb-s8q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הלחתה והזעה הן אותו מנגנון בדיוק.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf8cool')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf8cool')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8cool"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">חיפוש צל הוא מנגנון התנהגותי שמתקיים גם אצל פויקילותרמיים.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf8cool2')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf8cool2')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf8cool2"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 9: התמודדות עם קור ===== -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#1d4ed8)">
+    <span class="chapter-num">פרק 9</span>
+    <span class="emoji">❄️</span>
+    <h1>התמודדות עם טמפרטורה נמוכה</h1>
+    <p class="subtitle">מנגנוני חימום — פיזיולוגיים, מבניים והתנהגותיים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר ולהסביר את מנגנוני החימום אצל בעלי חיים.</div>
+
+  <div class="card">
+    <div class="section-title" style="color:#1d4ed8">🔬 מנגנונים מבניים (בנייה של הגוף)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">מנגנונים הקיימים במבנה הגוף עצמו — רק אצל הומאותרמיים:</p>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#1d4ed8">1</div>
+      <div class="step-content">
+        <strong>🧥 שכבת בידוד — פרווה ונוצות</strong><br>
+        פרווה ונוצות לוכדות אוויר בין השערות/נוצות → האוויר משמש כמבודד מהקור.<br>
+        כשקר — החיה <strong>סומרת</strong> את הפרווה → יותר אוויר נלכד → בידוד טוב יותר.<br>
+        בחורף — הגוף <strong>מגדל פרווה עבה יותר</strong> מאשר בקיץ.<br>
+        <span class="pill cold">עופות — נוצות</span><span class="pill cold">יונקים — פרווה</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">2</div>
+      <div class="step-content">
+        <strong>🧈 שכבת שומן תת-עורית</strong><br>
+        שומן מוביל חום פחות טוב מרקמות אחרות → פועל כבידוד טבעי.<br>
+        ככל שהשכבה עבה יותר — הגוף שומר חום טוב יותר.<br>
+        <span class="pill cold">לוויתנים</span><span class="pill cold">כלבי ים</span><span class="pill cold">חזירים</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#7c3aed">3</div>
+      <div class="step-content">
+        <strong>📐 שינוי בגודל הגוף</strong><br>
+        פרטים מאותו מין החיים באזורים <strong>קרים הם גדולים יותר</strong> מפרטים באזורים חמים.<br>
+        גוף גדול = שטח פנים קטן יחסית למשקל = פחות אובדן חום.<br>
+        <span style="font-size:13px;color:var(--text-muted)">דוגמה: דב קוטב גדול בהרבה מדב שחור טרופי.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#dc2626">🔬 מנגנונים פיזיולוגיים (אוטומטיים)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">מתרחשים בגוף מאליהם — רק אצל הומאותרמיים:</p>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#dc2626">1</div>
+      <div class="step-content">
+        <strong>🙀 רעידת שרירים (צמרמורת)</strong><br>
+        תנועה לא רצונית של השרירים בתגובה לקור → מגבירה ייצור חום.<br>
+        ככל שהרעידה חזקה יותר — יותר חום מיוצר.<br>
+        <span class="pill hot">כל היונקים</span><span class="pill hot">בני אדם</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0369a1">2</div>
+      <div class="step-content">
+        <strong>💉 בקרה הורמונלית</strong><br>
+        מערכת העצבים קולטת את הקור ומשפיעה על הפרשת הורמונים:<br>
+        • <strong>נוראדרנלין ואדרנלין</strong> — מכווצים כלי דם היקפיים → פחות אובדן חום לסביבה.<br>
+        • <strong>תירוקסין</strong> (הורמון בלוטת התריס) — מגביר את קצב חילוף החומרים → יותר חום מיוצר.<br>
+        <span class="pill hot">כל ההומאותרמיים</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#059669">3</div>
+      <div class="step-content">
+        <strong>🩸 כיווץ כלי דם היקפיים</strong><br>
+        כלי הדם בחלק החיצוני של הגוף מתכווצים → פחות דם מגיע לעור → פחות חום אובד לחוץ.<br>
+        הדם זורם בכלי הדם הפנימיים יותר — שם החום נשמר.<br>
+        <span class="pill cold">כל ההומאותרמיים</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#b45309">4</div>
+      <div class="step-content">
+        <strong>⚡ הגברת קצב חילוף חומרים</strong><br>
+        הגוף "שורף" יותר אנרגיה → מייצר יותר חום פנימי.<br>
+        בקור — קצב חילוף החומרים עולה כדי לפצות על אובדן החום.<br>
+        <span class="pill hot">יונקים ועופות</span>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num" style="background:#0f766e">5</div>
+      <div class="step-content">
+        <strong>💤 תרדמה עונתית</strong><br>
+        יש חיות שבמצבי קור קיצוני — קצב חילוף החומרים <strong>יורד</strong> והן נכנסות לתרדמה.<br>
+        בתרדמה: חום הגוף נשמר קבוע, הגוף חי על מאגרי שומן, פעילות מינימלית.<br>
+        מאפיין חיות באזורי קור קיצוני.<br>
+        <span class="pill cold">דובים</span><span class="pill cold">נחשים</span><span class="pill cold">צפרדעים</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#b45309">🧠 מנגנונים התנהגותיים (בחירה)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">פעולות שבעל החיים בוחר לעשות — מתקיימים <strong>גם אצל פויקילותרמיים!</strong></p>
+
+    <div class="grid-2">
+      <div class="mini-card cold-card">
+        <div class="title">🤝 הצטופפות</div>
+        בעלי חיים מצטופפים יחד → טמפרטורת הסביבה ביניהם עולה → מחממים אחד את השני.<br>
+        <span style="font-size:12px;color:var(--text-muted)">דוגמה: דבורים מצטופפות לכדור בחורף!</span>
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🌞 חשיפה לשמש</div>
+        חיפוש מקום חשוף לשמש כדי להתחמם — נפוץ במיוחד אצל זוחלים (פויקילותרמיים).
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🏠 חיפוש מסתור</div>
+        מציאת מחסה מפני רוח וקור — מפחית אובדן חום מהסביבה.
+      </div>
+      <div class="mini-card cold-card">
+        <div class="title">🌙 פעילות בשעות חמות</div>
+        פעילות בשעות היום החמות ומנוחה בלילה — חיסכון בחום.
+      </div>
+    </div>
+
+    <div class="remember-box">מבני = פרווה/שומן/גודל | פיזיולוגי = הורמונים/צמרמורת/כיווץ כלי דם | התנהגותי = גם בפויקילותרמים!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב בחורף סומר את הפרווה שלו. מה מטרת הפעולה הזו?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">א</span>להגדיל את שטח הפנים לסביבה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s9q')"><span class="opt-letter">ב</span>ללכוד אוויר בין השערות — לשיפור הבידוד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ג</span>להגביר את קצב הנשימה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ד</span>להוריד את לחץ הדם</button>
+    </div>
+    <div class="feedback" id="fb-s9q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הצטופפות היא מנגנון התנהגותי שמתקיים גם אצל דבורים (פויקילותרמיות).</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf9cold1')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf9cold1')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf9cold1"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">תירוקסין הוא הורמון שמוריד את קצב חילוף החומרים בקור.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf9cold2')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf9cold2')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf9cold2"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 10: פיזיולוגי מול התנהגותי ===== -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6d28d9,#4f46e5)">
+    <span class="chapter-num">פרק 10</span>
+    <span class="emoji">📊</span>
+    <h1>פיזיולוגי מול התנהגותי</h1>
+    <p class="subtitle">שני סוגי מנגנוני ויסות חום</p>
+  </div>
+  <div class="goal-box">אני אוכל להבדיל בין מנגנונים פיזיולוגיים להתנהגותיים.</div>
+
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#eff6ff;border:2px solid #93c5fd">
+        <h3>🔬 פיזיולוגיים</h3>
+        <p style="font-size:13px;margin-bottom:8px">מנגנונים שמתרחשים <strong>בתוך הגוף</strong>, ללא רצון הבעל חיים:</p>
+        <ul>
+          <li>רחיבת/כיווץ כלי דם</li>
+          <li>הזעה</li>
+          <li>רטט שרירים</li>
+          <li>הגברת חילוף חומרים</li>
+          <li>נשיפה מהירה</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <h3>🧠 התנהגותיים/סביבתיים</h3>
+        <p style="font-size:13px;margin-bottom:8px">פעולות שבעל החיים <strong>בוחר לעשות</strong>:</p>
+        <ul>
+          <li>שינוי זמן פעילות (בריחה מחום)</li>
+          <li>חיפוש צל / מקלט</li>
+          <li>כיווץ הגוף / שינוי תנוחה</li>
+          <li>ריקוד הצלה (לשכיבה על אדמה קרה)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="remember-box">פיזיולוגי = בגוף אוטומטית | התנהגותי = בוחר לעשות!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 מיון — פיזיולוגי או התנהגותי?</div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="classify-s10">
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyMechanism(this,'פיזיולוגי')" data-answer="פיזיולוגי">🩸 רחיבת כלי דם</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyMechanism(this,'התנהגותי')" data-answer="התנהגותי">🌳 חיפוש צל</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyMechanism(this,'פיזיולוגי')" data-answer="פיזיולוגי">🙀 רטט שרירים</div>
+      <div class="match-item left-item" style="cursor:pointer" onclick="classifyMechanism(this,'התנהגותי')" data-answer="התנהגותי">🌙 פעילות בלילה (ולא בחום)</div>
+    </div>
+    <div class="feedback" id="fb-s10classify"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 11: נשימה תאית ===== -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#075985)">
+    <span class="chapter-num">פרק 11</span>
+    <span class="emoji">💨</span>
+    <h1>נשימה תאית</h1>
+    <p class="subtitle">איך הגוף מפיק אנרגיה?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את נוסחת הנשימה התאית.</div>
+
+  <div class="card">
+    <div class="section-title">⚗️ נוסחת החיים</div>
+    <div class="formula-box">
+      <div style="font-size:14px;opacity:.8;margin-bottom:8px">נשימה תאית:</div>
+      <div class="formula">חומר אורגני + O₂</div>
+      <div class="formula-arrow">⬇️</div>
+      <div class="formula">אנרגיה + H₂O + CO₂</div>
+    </div>
+
+    <div class="section-title" style="margin-top:16px">⚡ מה קורה עם האנרגיה?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fee2e2;border:2px solid #fca5a5;text-align:center">
+        <div style="font-size:36px">🔥</div>
+        <div class="title" style="color:#dc2626">⅔ אנרגיית חום</div>
+        רוב האנרגיה משתחררת כחום שמחמם את הגוף
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399;text-align:center">
+        <div style="font-size:36px">⚡</div>
+        <div class="title" style="color:#065f46">⅓ אנרגיה ביוכימית</div>
+        אנרגיה שמשמשת לפעילות הגוף
+      </div>
+    </div>
+
+    <div class="highlight blue">
+      💡 הקשר לוויסות חום: הנשימה התאית מייצרת חום! לכן בעל חיים שעובד קשה — חם לו יותר.
+    </div>
+    <div class="remember-box">נשימה תאית: חומר + חמצן → אנרגיה + מים + CO₂ | ⅔ חום, ⅓ ביוכימי</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      בנשימה התאית, <span class="fill-blank" onclick="revealBlank(this,'שני שלישים')" data-answer="שני שלישים">_______</span> מהאנרגיה משתחרר כ<span class="fill-blank" onclick="revealBlank(this,'חום')" data-answer="חום">_______</span>, ורק שליש אחד הוא אנרגיה <span class="fill-blank" onclick="revealBlank(this,'ביוכימית')" data-answer="ביוכימית">_______</span>.
+    </div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מייצרת הנשימה התאית?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">א</span>רק חמצן</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s11q')"><span class="opt-letter">ב</span>אנרגיה + מים + CO₂</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">ג</span>רק מים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">ד</span>חומר אורגני</button>
+    </div>
+    <div class="feedback" id="fb-s11q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 12: חומר אורגני ===== -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#0f766e)">
+    <span class="chapter-num">פרק 12</span>
+    <span class="emoji">🧪</span>
+    <h1>חומרים אורגניים ואנרגיה</h1>
+    <p class="subtitle">פחמימות, חלבונים ושומנים — מה הם ומתי הגוף צריך כל אחד?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה הם שלושת החומרים האורגניים ומתי הגוף משתמש בכל אחד.</div>
+
+  <div class="card">
+    <div class="section-title">🧬 מהו חומר אורגני?</div>
+    <div class="definition-box">
+      <strong>חומר אורגני</strong> = כל חומר המכיל את האטומים:<br>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+        <div class="mini-card" style="text-align:center;min-width:80px;background:#fef3c7">
+          <div style="font-size:28px;font-weight:900;color:#d97706">C</div><div>פחמן</div>
+        </div>
+        <div class="mini-card" style="text-align:center;min-width:80px;background:#dbeafe">
+          <div style="font-size:28px;font-weight:900;color:#2563eb">O</div><div>חמצן</div>
+        </div>
+        <div class="mini-card" style="text-align:center;min-width:80px;background:#d1fae5">
+          <div style="font-size:28px;font-weight:900;color:#059669">H</div><div>מימן</div>
+        </div>
+        <div class="mini-card" style="text-align:center;min-width:80px;background:#ede9fe">
+          <div style="font-size:22px;font-weight:900;color:#7c3aed">+…</div><div>ועוד</div>
+        </div>
+      </div>
+    </div>
+    <div class="highlight blue">
+      שלושת החומרים האורגניים שמפיקים אנרגיה:<br>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <span class="pill">🍞 פחמימות</span>
+        <span class="pill green">🥩 חלבונים</span>
+        <span class="pill hot">🧈 שומנים</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#d97706">🍞 פחמימות — מקור האנרגיה העיקרי</div>
+    <div class="highlight yellow">
+      <strong>מה הן?</strong><br>
+      הפחמימות הן <strong>מקור האנרגיה העיקרי</strong> לגוף. הגוף מפרק אותן לגלוקוז, שמשמש "דלק" מיידי לכל התאים.
+    </div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fefce8;border:2px solid #fde047">
+        <div class="title">📦 מקורות</div>
+        תבואה, לחם, עמילן, פירות, ירקות, קטניות
+      </div>
+      <div class="mini-card" style="background:#fefce8;border:2px solid #fde047">
+        <div class="title">⚡ מתי הגוף משתמש?</div>
+        בכל פעילות יומיומית — ראשון בתור לייצור אנרגיה
+      </div>
+    </div>
+    <div class="highlight green" style="margin-top:4px">
+      💡 <strong>קשר לחקלאות:</strong> כאשר בע"ח אוכל מספיק פחמימות — הגוף לא צריך לפרק חלבון לאנרגיה, ולכן אפשר להשקיע את החלבון בגדילה וייצור.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#059669">🥩 חלבונים — חומר הבנייה</div>
+    <div class="highlight green">
+      <strong>מה הם?</strong><br>
+      חלבונים הם <strong>חומר הבנייה</strong> של הגוף — בונים שרירים, רקמות, אנזימים, הורמונים ונוגדנים.
+    </div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#f0fdf4;border:2px solid #86efac">
+        <div class="title">📦 מקורות</div>
+        בשר, ביצים, חלב, דגים — ומן הצומח: קטניות, סויה
+      </div>
+      <div class="mini-card" style="background:#f0fdf4;border:2px solid #86efac">
+        <div class="title">⚡ מתי הגוף משתמש?</div>
+        בנייה ותיקון רקמות, גדילה, ייצור חלבה וביצים. לאנרגיה — רק בחירום!
+      </div>
+    </div>
+    <div class="highlight red" style="margin-top:4px">
+      ⚠️ <strong>שימו לב:</strong> אם אין מספיק פחמימות ושומנים — הגוף יפרק חלבון לאנרגיה. זה כמו לשרוף את קורות הגג לחמם את הבית! לכן תזונה מאוזנת חשובה מאוד.
+    </div>
+    <div class="highlight blue" style="margin-top:4px">
+      💡 <strong>קשר לחקלאות:</strong> פרה חולבת וביצי תרנגולת עשויות מחלבון — תזונה עשירה בחלבון היא מפתח לייצור גבוה.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#dc2626">🧈 שומנים — אנרגיה לטווח ארוך ובידוד</div>
+    <div class="highlight red">
+      <strong>מה הם?</strong><br>
+      שומנים הם <strong>מאגר האנרגיה לטווח ארוך</strong> — מכילים יותר מפי 2 אנרגיה לגרם לעומת פחמימות וחלבונים.
+    </div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fff7ed;border:2px solid #fdba74">
+        <div class="title">📦 מקורות</div>
+        שמן, חמאה, אגוזים, בשר שמן, דגים שמנים
+      </div>
+      <div class="mini-card" style="background:#fff7ed;border:2px solid #fdba74">
+        <div class="title">⚡ מתי הגוף משתמש?</div>
+        פעילות ממושכת, תנאי קור, כשאין מספיק פחמימות
+      </div>
+    </div>
+    <div class="highlight blue" style="margin-top:4px">
+      💡 <strong>קשר לוויסות חום:</strong> שכבת השומן תחת העור משמשת <strong>כבידוד תרמי</strong> — מפחיתה אובדן חום בקור. בעלי חיים בסביבות קרות (כלבי ים, לוויתנים) מפתחים שכבת שומן עבה במיוחד.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📊 השוואה — מתי הגוף משתמש בכל אחד?</div>
+    <table class="info-table">
+      <tr><th>חומר</th><th>תפקיד ראשי</th><th>מתי הגוף שורף אותו?</th><th>מקדם נשימה</th></tr>
+      <tr>
+        <td>🍞 <strong>פחמימות</strong></td>
+        <td>אנרגיה מיידית</td>
+        <td>ראשון — כל פעילות יומיומית</td>
+        <td style="font-weight:900;color:#0369a1;font-size:16px">1.0</td>
+      </tr>
+      <tr>
+        <td>🧈 <strong>שומנים</strong></td>
+        <td>אנרגיה ממושכת + בידוד</td>
+        <td>שני — פעילות ארוכה, קור, מחסור בפחמימות</td>
+        <td style="font-weight:900;color:#dc2626;font-size:16px">0.7</td>
+      </tr>
+      <tr>
+        <td>🥩 <strong>חלבונים</strong></td>
+        <td>בנייה ותיקון רקמות</td>
+        <td>אחרון — רק בחירום, כשאין פחמימות ושומנים</td>
+        <td style="font-weight:900;color:#059669;font-size:16px">0.82</td>
+      </tr>
+    </table>
+    <div class="remember-box">סדר שריפה: פחמימות ← שומנים ← חלבונים (רק בחירום!)</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">פרה בחורף קר מגדילה את שכבת השומן שלה. מדוע?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">א</span>כדי לאגור אנרגיה לגדילה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s12q')"><span class="opt-letter">ב</span>כדי לשמש כבידוד תרמי ולמנוע אובדן חום</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">ג</span>כדי לייצר יותר חלב</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s12q')"><span class="opt-letter">ד</span>כי היא אוכלת פחות</button>
+    </div>
+    <div class="feedback" id="fb-s12q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הגוף ישתמש בחלבון לאנרגיה לפני שישתמש בשומן.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf12b')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf12b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf12b"></div>
+  </div>
+</div>
+<!-- ===== SCREEN 13: מקדם הנשימה ===== -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#92400e)">
+    <span class="chapter-num">פרק 13</span>
+    <span class="emoji">📐</span>
+    <h1>מקדם הנשימה</h1>
+    <p class="subtitle">היחס בין חמצן לפחמן דו-חמצני</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה הוא מקדם הנשימה ולפרש ערכיו לפי סוג המזון.</div>
+
+  <div class="card">
+    <div class="section-title">📐 מה זה מקדם הנשימה?</div>
+    <div class="definition-box">
+      <strong>מקדם הנשימה</strong> = היחס בין:<br>
+      <div style="text-align:center;margin:14px 0;font-size:20px;font-weight:900;color:#0369a1">
+        CO₂ שנפלט<br>
+        <span style="font-size:28px">──────────</span><br>
+        O₂ שנקלט
+      </div>
+      <strong>בפשטות:</strong> כמה פחמן דו-חמצני יוצא מהגוף, לעומת כמה חמצן נכנס אליו בנשימה.<br><br>
+      הערך תלוי ב<strong>סוג המזון</strong> שהגוף שורף — כי כל מזון מורכב אחרת כימית.
+    </div>
+
+    <div class="highlight blue">
+      <strong>🔍 למה שונה לכל מזון?</strong><br>
+      כשהגוף שורף פחמימות — הוא זקוק בדיוק לאותה כמות חמצן כמו CO₂ שיוצא (יחס 1:1).<br>
+      כשהגוף שורף שומנים — הוא זקוק ליותר חמצן ומוציא פחות CO₂, לכן הערך נמוך יותר.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📊 ערכי מקדם הנשימה לפי מרכיב מזון</div>
+    <table class="info-table">
+      <tr><th>מרכיב מזון</th><th style="text-align:center">ערך</th><th>פירוש</th></tr>
+      <tr>
+        <td>🍞 <strong>פחמימות</strong></td>
+        <td style="text-align:center;font-size:20px;font-weight:900;color:#0369a1">1.0</td>
+        <td>CO₂ שיוצא = O₂ שנכנס (יחס מושלם)</td>
+      </tr>
+      <tr>
+        <td>🥩 <strong>חלבונים</strong></td>
+        <td style="text-align:center;font-size:20px;font-weight:900;color:#059669">0.82</td>
+        <td>פחות CO₂ יוצא ביחס ל-O₂ שנכנס</td>
+      </tr>
+      <tr>
+        <td>🧈 <strong>שומנים</strong></td>
+        <td style="text-align:center;font-size:20px;font-weight:900;color:#dc2626">0.7</td>
+        <td>הכי פחות CO₂ — שומן דורש הרבה O₂ לשריפה</td>
+      </tr>
+      <tr style="background:#ede9fe">
+        <td>🐾 <strong>תזונה מעורבת (ממוצע)</strong></td>
+        <td style="text-align:center;font-size:20px;font-weight:900;color:#7c3aed">0.84</td>
+        <td>ערך טיפוסי לבע"ח שאוכל הכל</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-title">💡 איך קוראים את המקדם?</div>
+    <div class="highlight yellow">
+      <strong>דוגמה 1:</strong> מדדנו כלב — מקדם הנשימה שלו הוא <strong>0.97</strong>.<br>
+      ➡️ קרוב מאוד ל-1 (= פחמימות) → <strong>הדיאטה שלו מורכבת בעיקר מפחמימות!</strong>
+    </div>
+    <div class="highlight red" style="margin-top:8px">
+      <strong>דוגמה 2:</strong> מדדנו פרה — מקדם הנשימה שלה הוא <strong>0.72</strong>.<br>
+      ➡️ קרוב ל-0.7 (= שומנים) → <strong>הגוף שורף בעיקר שומן</strong> — אולי הפרה בצום או בחורף.
+    </div>
+    <div class="highlight green" style="margin-top:8px">
+      <strong>דוגמה 3:</strong> מקדם הנשימה הוא <strong>0.84</strong>.<br>
+      ➡️ ערך ממוצע → <strong>תזונה מעורבת</strong> — פחמימות, חלבונים ושומנים יחד.
+    </div>
+    <div class="remember-box">פחמימה = 1 | חלבון = 0.82 | שומן = 0.7 | ממוצע = 0.84</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדדנו כלב ומצאנו שמקדם הנשימה שלו הוא 0.72. מה ניתן להסיק?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">א</span>הכלב אוכל בעיקר פחמימות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ב</span>הכלב אוכל בעיקר חלבונים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">ג</span>הכלב אוכל בעיקר שומנים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ד</span>לא ניתן לדעת</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      מקדם הנשימה הוא היחס בין <span class="fill-blank" onclick="revealBlank(this,'CO₂')" data-answer="CO₂">_____</span> הנפלט לבין <span class="fill-blank" onclick="revealBlank(this,'O₂')" data-answer="O₂">_____</span> הנקלט.
+    </div>
+    <div class="fill-sentence">
+      אם מקדם הנשימה הוא <span class="fill-blank" onclick="revealBlank(this,'1')" data-answer="1">___</span>, הדיאטה מורכבת בעיקר מ<span class="fill-blank" onclick="revealBlank(this,'פחמימות')" data-answer="פחמימות">_______</span>.
+    </div>
+    <div class="fill-sentence">
+      אם מקדם הנשימה הוא <span class="fill-blank" onclick="revealBlank(this,'0.7')" data-answer="0.7">____</span>, הדיאטה מורכבת בעיקר מ<span class="fill-blank" onclick="revealBlank(this,'שומנים')" data-answer="שומנים">_______</span>.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 14: גודל גוף וחילוף חומרים ===== -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">פרק 14</span>
+    <span class="emoji">🐭🐘</span>
+    <h1>גודל גוף וחילוף חומרים</h1>
+    <p class="subtitle">עקומת "עכבר-פיל"</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את הקשר בין גודל גוף לחילוף חומרים.</div>
+
+  <div class="card">
+    <div class="section-title">📏 כיצד מודדים חילוף חומרים?</div>
+    <div class="highlight blue">
+      חילוף חומרים נמדד לפי <strong>צריכת חמצן</strong>:<br>
+      צריכה גבוהה = חילוף חומרים גבוה<br>
+      צריכה נמוכה = חילוף חומרים נמוך
+    </div>
+
+    <div class="section-title">🐘 גוף גדול — מה קורה?</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#e0f2fe;border:2px solid #7dd3fc">
+        <h3>📊 חילוף חומרים כללי</h3>
+        <ul>
+          <li>גוף גדול → חילוף חומרים <strong>גבוה</strong> יותר</li>
+          <li>גוף גדול דורש יותר חמצן</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <h3>⚖️ לק"ג משקל גוף</h3>
+        <ul>
+          <li>גוף <strong>קטן</strong> יותר → חילוף חומרים לק"ג <strong>גבוה</strong> יותר!</li>
+          <li>תוצאה הפוכה מהמצופה!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">🤔 למה?</div>
+    <div class="highlight green">
+      ככל שהגוף <strong>קטן יותר</strong>, שטח המגע שלו עם הסביבה <strong>ביחס למשקלו גדול יותר</strong>.<br>
+      לכן הוא <strong>מאבד יותר חום יחסית</strong> — וחייב להגביר חילוף חומרים כדי לפצות.
+    </div>
+
+    <div class="definition-box" style="text-align:center">
+      🐭 עכבר קטן מאבד הרבה חום יחסית למשקלו<br>
+      ← חייב לשרוף הרבה אנרגיה לק"ג<br>
+      🐘 פיל גדול שומר חום ביעילות<br>
+      ← שורף פחות אנרגיה לק"ג
+    </div>
+    <div class="remember-box">גוף קטן = יותר חילוף חומרים לק"ג | גוף גדול = פחות חילוף חומרים לק"ג</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">לאיזה בעל חיים יש חילוף חומרים גבוה יותר לק"ג משקל גוף?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s14q')"><span class="opt-letter">א</span>עכבר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ב</span>פיל</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ג</span>שניהם שווים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ד</span>תלוי בסביבה</button>
+    </div>
+    <div class="feedback" id="fb-s14q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 15: גורמי אקלים ===== -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#0284c7)">
+    <span class="chapter-num">פרק 15</span>
+    <span class="emoji">🌤️</span>
+    <h1>האקלים</h1>
+    <p class="subtitle">הגורמים הסביבתיים שמשפיעים על בעלי חיים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו אקלים ואיזה גורמים משפיעים עליו.</div>
+
+  <div class="card">
+    <div class="definition-box">
+      <strong>אקלים</strong> = תוצאה של <strong>כל הגורמים הפיזיקאליים</strong> הסובבים אותנו.
+    </div>
+
+    <div class="section-title">🌍 גורמי האקלים העיקריים</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b;text-align:center">
+        <div style="font-size:36px">🌡️</div>
+        <div class="title">טמפרטורה</div>
+        גורם ישיר לעומס חום
+      </div>
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #60a5fa;text-align:center">
+        <div style="font-size:36px">💧</div>
+        <div class="title">לחות</div>
+        כמות אדי מים באוויר
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399;text-align:center">
+        <div style="font-size:36px">💨</div>
+        <div class="title">רוח</div>
+        קצב זרימת האוויר
+      </div>
+      <div class="mini-card" style="background:#fee2e2;border:2px solid #fca5a5;text-align:center">
+        <div style="font-size:36px">☀️</div>
+        <div class="title">קרינה</div>
+        הקרנת חום מהשמש
+      </div>
+    </div>
+
+    <div class="remember-box">אקלים = טמפרטורה + לחות + רוח + קרינה ועוד!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">
+      אקלים הוא תוצאה של כל <span class="fill-blank" onclick="revealBlank(this,'הגורמים הפיזיקאליים')" data-answer="הגורמים הפיזיקאליים">_______</span> הסובבים אותנו.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 16: עומס חום ורוח ===== -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#b45309)">
+    <span class="chapter-num">פרק 16</span>
+    <span class="emoji">😓</span>
+    <h1>לחות, רוח ועומס חום</h1>
+    <p class="subtitle">השפעת גורמים אקלימיים על ויסות חום</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר כיצד לחות ורוח משפיעות על ויסות חום.</div>
+
+  <div class="card">
+    <div class="section-title">💧 לחות — השפעה על קירור</div>
+    <div class="definition-box">
+      <strong>לחות</strong> = כמות אדי המים שבאוויר.<br>
+      אוויר חם יכול לקלוט <strong>יותר</strong> מים.<br>
+      אוויר קר קולט <strong>פחות</strong> מים.
+    </div>
+    <div class="highlight red">
+      ⚠️ כשהלחות <strong>גבוהה</strong> — המים מהגוף <strong>מתאדים לאט</strong> (יש כבר הרבה מים באוויר), מה שמפריע לקירור יעיל.
+    </div>
+
+    <div class="section-title" style="margin-top:12px">💨 רוח — עוזרת לקרר</div>
+    <div class="highlight blue">
+      ✅ כשקצב זרימת האוויר <strong>גבוה</strong>:<br>
+      • החום נפלט מהגוף <strong>מהר יותר</strong><br>
+      • המים מתאדים <strong>מהר יותר</strong><br>
+      • הקירור <strong>טוב יותר</strong>
+    </div>
+
+    <div class="section-title" style="margin-top:12px">🌡️💧 עומס חום</div>
+    <div class="definition-box">
+      <strong>עומס חום</strong> = שילוב של <strong>לחות</strong> + <strong>טמפרטורה</strong>.<br>
+      גבוה מאוד = מסוכן לבעלי חיים יצרניים!
+    </div>
+    <div class="remember-box">לחות גבוהה = קירור פחות יעיל | רוח = מסייעת לקירור | עומס חום = טמפ' + לחות</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כשהלחות גבוהה מאוד, מה קורה לקירור הגוף?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s16q')"><span class="opt-letter">א</span>הקירור יעיל יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s16q')"><span class="opt-letter">ב</span>הקירור פחות יעיל — המים מתאדים לאט</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s16q')"><span class="opt-letter">ג</span>הלחות לא משפיעה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s16q')"><span class="opt-letter">ד</span>הגוף מתחמם</button>
+    </div>
+    <div class="feedback" id="fb-s16q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 17: אקלום ועקה ===== -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 17</span>
+    <span class="emoji">🔄</span>
+    <h1>אקלום ועקה</h1>
+    <p class="subtitle">הסתגלות והשפעת הסביבה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהם אקלום ועקה.</div>
+
+  <div class="card">
+    <div class="section-title">🔄 אקלום</div>
+    <div class="definition-box">
+      <strong>אקלום</strong> = לאחר תקופה ארוכה שבה בעל חיים נמצא בתנאי אקלים מסוימים — <strong>תגובות הגוף מותאמות לסביבה</strong>.<br><br>
+      <strong>דוגמה:</strong> באקלום לסביבה חמה — <strong>איבוד החום לסביבה נעשה יעיל יותר</strong>.
+    </div>
+
+    <div class="section-title" style="margin-top:12px">😰 עקה (Stress)</div>
+    <div class="definition-box">
+      <strong>עקה</strong> = מצב הנגרם כתוצאה מגורם סביבתי כלשהו, שמשנה את <strong>הסביבה הקבועה של בעל החיים</strong>.<br><br>
+      כתוצאה: שינויים גופניים, ובמצבים חמורים — אף <strong>מוות</strong>.
+    </div>
+
+    <div class="highlight yellow">
+      💡 ההבדל: <strong>אקלום</strong> = הסתגלות מוצלחת לסביבה חדשה. <strong>עקה</strong> = הגוף לא מצליח להתאים עצמו — ויש פגיעה.
+    </div>
+    <div class="remember-box">אקלום = הסתגלות טובה | עקה = פגיעה גופנית מהסביבה</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s17" class="match-container">
+      <div class="match-col" id="s17-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s17')">אקלום</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s17')">עקה</div>
+      </div>
+      <div class="match-col" id="s17-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s17')">מצב שעלול לגרום לשינויים גופניים ואף מוות</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s17')">הסתגלות הגוף לתנאי אקלים לאורך זמן</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s17match"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 18: בע"ח יצרניים ===== -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#78350f)">
+    <span class="chapter-num">פרק 18</span>
+    <span class="emoji">🐄</span>
+    <h1>בעלי חיים יצרניים</h1>
+    <p class="subtitle">למה הם סובלים יותר מעומס חום?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע בעלי חיים יצרניים פגיעים יותר לעומס חום.</div>
+
+  <div class="card">
+    <div class="section-title">🐄 מי הם בעלי חיים יצרניים?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b;text-align:center">
+        <div style="font-size:36px">🐄</div>
+        <div class="title">פרות חולבות</div>
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399;text-align:center">
+        <div style="font-size:36px">🐓</div>
+        <div class="title">עופות מטילות</div>
+      </div>
+    </div>
+
+    <div class="section-title">❓ למה הם סובלים יותר?</div>
+    <div class="highlight red">
+      לבעלי חיים יצרניים יש <strong>חילוף חומרים גבוה יותר</strong> — לכן גופם מייצר <strong>הרבה יותר חום</strong> מבעלי חיים שאינם יצרניים.<br><br>
+      לכן הם <strong>סובלים יותר מעומס חום</strong> בהשוואה לבעלי חיים שאינם יצרניים.
+    </div>
+    <div class="remember-box">בע"ח יצרני = חילוף חומרים גבוה = יותר חום = יותר פגיע לעומס חום!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">למה פרה חולבת סובלת יותר מחום מפרה שאינה חולבת?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s18q')"><span class="opt-letter">א</span>כי היא גדולה יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s18q')"><span class="opt-letter">ב</span>כי חילוף החומרים שלה גבוה יותר וגופה מייצר יותר חום</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s18q')"><span class="opt-letter">ג</span>כי שיערה עבה יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s18q')"><span class="opt-letter">ד</span>כי היא שותה פחות מים</button>
+    </div>
+    <div class="feedback" id="fb-s18q"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 19: מילון מונחים ===== -->
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 19</span>
+    <span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ על כל כרטיסייה לגלות הסבר</p>
+  </div>
+
+  <div id="flashcard-area">
+    <div class="flashcard-container">
+      <div class="flashcard" id="fc" onclick="flipCard()">
+        <div class="flashcard-front">
+          <div class="term" id="fc-term"></div>
+          <div class="hint">לחץ לגלות הסבר</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="def" id="fc-def"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button onclick="prevCard()">◀ קודם</button>
+      <span class="flashcard-counter" id="fc-counter">1 / 14</span>
+      <button onclick="nextCard()">הבא ▶</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים במבט אחד</div>
+    <div id="glossary-list">
+      <div class="glossary-item"><div class="glossary-term">🦅 הומאותרמים</div><div class="glossary-def">בעלי חיים ששומרים על חום גוף קבוע ללא קשר לסביבה. עופות ויונקים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🦎 פויקילותרמים</div><div class="glossary-def">בעלי חיים שחום גופם משתנה עם הסביבה. זוחלים, דגים, דו-חיים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">☀️ קרינה</div><div class="glossary-def">מעבר חום בין שני גופים שאינם באים במגע ישיר.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💨 הסעה</div><div class="glossary-def">סילוק חום באמצעות זרימת אוויר ישירה על הגוף.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🤝 הובלה</div><div class="glossary-def">מעבר חום בין מולקולות שבאות במגע ישיר.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💧 לחות</div><div class="glossary-def">כמות אדי המים שבאוויר. לחות גבוהה פוגעת ביעילות הקירור.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🌡️ עומס חום</div><div class="glossary-def">שילוב של לחות + טמפרטורה. גבוה = מסוכן לבעלי חיים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🔄 אקלום</div><div class="glossary-def">הסתגלות הגוף לתנאי אקלים לאחר חשיפה ממושכת. למשל — קירור יעיל יותר בחום.</div></div>
+      <div class="glossary-item"><div class="glossary-term">😰 עקה (Stress)</div><div class="glossary-def">מצב הנגרם מגורם סביבתי שמשנה את הסביבה הקבועה של בעל החיים. עלול לגרום לשינויים גופניים ואף מוות.</div></div>
+      <div class="glossary-item"><div class="glossary-term">📐 מקדם הנשימה</div><div class="glossary-def">יחס בין CO₂ הנפלט לO₂ הנקלט. תלוי בסוג המזון: פחמימה=1, חלבון=0.82, שומן=0.7.</div></div>
+      <div class="glossary-item"><div class="glossary-term">💨 נשימה תאית</div><div class="glossary-def">חומר אורגני + O₂ → אנרגיה + H₂O + CO₂. ⅔ חום, ⅓ ביוכימי.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🧬 חומר אורגני</div><div class="glossary-def">חומר המכיל C, O, H ואטומים נוספים. כולל פחמימות, חלבונים ושומנים.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🐭 עקומת עכבר-פיל</div><div class="glossary-def">ככל שגוף קטן יותר — חילוף חומרים לק"ג גבוה יותר. גוף קטן מאבד יותר חום יחסית.</div></div>
+      <div class="glossary-item"><div class="glossary-term">🐄 בע"ח יצרניים</div><div class="glossary-def">פרות חולבות ועופות מטילות — חילוף חומרים גבוה יותר ולכן פגיעים יותר לעומס חום.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 20: חזרה נכון/לא נכון ===== -->
+<div class="screen" id="screen-20">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה – חלק א'</span>
+    <span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+    <p class="subtitle">בדוק את הידע שלך</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. הומאותרמיים שומרים על חום גוף קבוע.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. פויקילותרמיים כוללים עופות ויונקים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. מקדם הנשימה של שומנים הוא 1.0.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. לחות גבוהה מפריעה לקירור יעיל של הגוף.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. בנשימה תאית, שליש מהאנרגיה משתחרר כחום.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. עכבר קטן מפתח חילוף חומרים גבוה יותר לק"ג ממשקל פיל.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">7. כשחם, כלי הדם ההיקפיים מתכווצים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1g')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1g')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1g"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 21: חזרה שאלות אמריקאיות ===== -->
+<div class="screen" id="screen-21">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה – חלק ב'</span>
+    <span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+    <p class="subtitle">בחר תשובה אחת נכונה</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מהו עומס חום?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>טמפרטורה גבוהה בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>שילוב של לחות + טמפרטורה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>קרינת שמש בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ד</span>עוצמת הרוח</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה קורה כשגוף בעל חיים גדל?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>חילוף החומרים לק"ג עולה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>חילוף החומרים הכללי עולה, אך לק"ג יורד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>חילוף החומרים לא משתנה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ד</span>צריכת חמצן יורדת</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. מהי הסעה?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>מעבר חום ללא מגע</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>מגע ישיר בין מולקולות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ג</span>סילוק חום ע"י זרימת אוויר ישירה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ד</span>אידוי מים מהגוף</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מהו אקלום?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>מחלה ממחסור בחמצן</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ב</span>עקה חמורה הגורמת למוות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ג</span>הסתגלות הגוף לתנאי האקלים לאורך זמן</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ד</span>מדידת טמפרטורת הסביבה</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 22: חזרה התאמה ===== -->
+<div class="screen" id="screen-22">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#7c3aed)">
+    <span class="chapter-num">חזרה – חלק ג'</span>
+    <span class="emoji">🔗</span>
+    <h1>התאמה מסכמת</h1>
+    <p class="subtitle">חבר מושג להסבר</p>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 חבר כל מושג לערך/הסבר הנכון</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">מקדם נשימה פחמימה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">מקדם נשימה שומן</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">עקה</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">הסעה</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">קירור ע"י זרימת אוויר</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">1.0</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">נזק גופני מגורם סביבתי</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">0.7</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">בנשימה תאית: חומר אורגני + <span class="fill-blank" onclick="revealBlank(this,'O₂')" data-answer="O₂">___</span> ← אנרגיה + <span class="fill-blank" onclick="revealBlank(this,'H₂O')" data-answer="H₂O">___</span> + <span class="fill-blank" onclick="revealBlank(this,'CO₂')" data-answer="CO₂">___</span>.</div>
+    <div class="fill-sentence">מהאנרגיה: <span class="fill-blank" onclick="revealBlank(this,'שני שלישים')" data-answer="שני שלישים">_______</span> הוא חום, ו<span class="fill-blank" onclick="revealBlank(this,'שליש')" data-answer="שליש">_______</span> הוא אנרגיה ביוכימית.</div>
+    <div class="fill-sentence">בעל חיים <span class="fill-blank" onclick="revealBlank(this,'יצרני')" data-answer="יצרני">_______</span> סובל יותר מעומס חום כי חילוף החומרים שלו <span class="fill-blank" onclick="revealBlank(this,'גבוה')" data-answer="גבוה">_______</span> יותר.</div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 23: סיום ===== -->
+<div class="screen" id="screen-23">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את הלומדה בהצלחה!</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="🦅">הומאותרמיים = עופות + יונקים = חום גוף קבוע</li>
+      <li data-icon="🦎">פויקילותרמיים = זוחלים + דגים + דו-חיים = חום גוף משתנה</li>
+      <li data-icon="☀️">קרינה = ללא מגע | הסעה = אוויר זורם | הובלה = מגע ישיר</li>
+      <li data-icon="⚙️">3 מנגנונים: בידוד + ייצור חום + סילוק חום</li>
+      <li data-icon="🩸">חם → כלי דם נרחבים | קר → כלי דם מתכווצים</li>
+      <li data-icon="💨">נשימה תאית: חומר + O₂ → אנרגיה + H₂O + CO₂</li>
+      <li data-icon="📐">מקדם נשימה: פחמימה=1, חלבון=0.82, שומן=0.7</li>
+      <li data-icon="🐭">עכבר-פיל: גוף קטן = חילוף חומרים גבוה יותר לק"ג</li>
+      <li data-icon="😓">עומס חום = לחות + טמפ' | לחות גבוהה = קירור פחות יעיל</li>
+      <li data-icon="🔄">אקלום = הסתגלות | עקה = נזק גופני</li>
+      <li data-icon="🐄">בע"ח יצרני = חילוף חומרים גבוה = פגיע יותר לחום</li>
+    </ul>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🏆</div>
+    <p style="font-size:16px;font-weight:700;margin-bottom:12px">חזור על פרק ספציפי:</p>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>הומאותרמיים</button>
+      <button class="toc-item" onclick="goToScreen(4)"><span class="num">4</span>פויקילותרמיים</button>
+      <button class="toc-item" onclick="goToScreen(2)"><span class="num">2</span>מעבר חום</button>
+      <button class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>מנגנוני ויסות</button>
+      <button class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>נשימה תאית</button>
+      <button class="toc-item" onclick="goToScreen(13)"><span class="num">13</span>מקדם נשימה</button>
+      <button class="toc-item" onclick="goToScreen(15)"><span class="num">15</span>אקלים</button>
+      <button class="toc-item" onclick="goToScreen(17)"><span class="num">17</span>אקלום ועקה</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<!-- NAV BUTTONS -->
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">◀ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 24</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ▶</button>
+</div>
+
+</div>
+
+<script>
+const TOTAL_SCREENS = 24;
+let currentScreen = 0;
+const SCREEN_NAMES = ["פתיחה","משק חום","מעבר חום","הומאותרמיים","פויקילותרמיים","השוואה","מנגנונים כלליים","כלי דם","התמודדות עם חום","התמודדות עם קור","פיזיולוגי vs התנהגותי","נשימה תאית","חומר אורגני","מקדם הנשימה","גודל גוף","גורמי אקלים","עומס חום ורוח","אקלום ועקה","בע\"ח יצרניים","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+
+const cards = [
+  {term:"🦅 הומאותרמיים",def:"בעלי חיים ששומרים על חום גוף קבוע. עופות + יונקים."},
+  {term:"🦎 פויקילותרמיים",def:"בעלי חיים שחום גופם משתנה עם הסביבה. זוחלים, דגים, דו-חיים."},
+  {term:"☀️ קרינה",def:"מעבר חום בין שני גופים שאינם באים במגע ישיר."},
+  {term:"💨 הסעה",def:"סילוק חום באמצעות זרימת אוויר ישירה על הגוף."},
+  {term:"🤝 הובלה",def:"מעבר חום בין מולקולות שבאות במגע ישיר."},
+  {term:"💧 לחות",def:"כמות אדי המים שבאוויר. לחות גבוהה = קירור פחות יעיל."},
+  {term:"🌡️ עומס חום",def:"שילוב של לחות וטמפרטורה. גבוה = מסוכן."},
+  {term:"🔄 אקלום",def:"הסתגלות הגוף לתנאי אקלים לאורך זמן."},
+  {term:"😰 עקה",def:"נזק גופני הנגרם מגורם סביבתי. עלול לגרום למוות."},
+  {term:"📐 מקדם נשימה",def:"CO₂ / O₂. פחמימה=1, חלבון=0.82, שומן=0.7, ממוצע=0.84."},
+  {term:"💨 נשימה תאית",def:"חומר אורגני + O₂ → אנרגיה + H₂O + CO₂. ⅔ חום, ⅓ ביוכימי."},
+  {term:"🐭 עכבר-פיל",def:"גוף קטן = שטח גדול ביחס למשקל = יותר אובדן חום = חילוף חומרים גבוה לק\"ג."},
+  {term:"🐄 בע\"ח יצרניים",def:"פרות חולבות ועופות מטילות — חילוף חומרים גבוה → פגיעים יותר לעומס חום."},
+  {term:"🧬 חומר אורגני",def:"כל חומר המכיל C (פחמן), O (חמצן), H (מימן) ועוד. כולל פחמימות, חלבונים, שומנים."}
+];
+let fcIndex=0, fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){const fc=document.getElementById('fc');fcFlipped=!fcFlipped;fc.classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');currentScreen=n;updateProgress();if(typeof updateMenuActive==='function')updateMenuActive();window.scrollTo(0,0);if(n===19)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';document.getElementById('btn-next').style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const m=btn.getAttribute('onclick').match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+
+function answerMC(btn,result,qid){const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+
+let classifyAnimalCount=0;
+function classifyAnimal(el,ans){if(el.classList.contains('matched'))return;el.textContent=el.textContent+' → '+ans;el.classList.add('matched');el.style.background=ans==='הומאותרמי'?'#dbeafe':'#dcfce7';el.style.borderColor=ans==='הומאותרמי'?'#2563eb':'#059669';classifyAnimalCount++;if(classifyAnimalCount>=4){const fb=document.getElementById('fb-s5classify');fb.className='feedback show correct';fb.innerHTML='✅ מצוין! סיווגת הכל נכון! 🎉';}}
+
+let classifyMechCount=0;
+function classifyMechanism(el,ans){if(el.classList.contains('matched'))return;el.textContent=el.textContent+' → '+ans;el.classList.add('matched');el.style.background=ans==='פיזיולוגי'?'#eff6ff':'#fef3c7';el.style.borderColor=ans==='פיזיולוגי'?'#3b82f6':'#f59e0b';classifyMechCount++;if(classifyMechCount>=4){const fb=document.getElementById('fb-s10classify');fb.className='feedback show correct';fb.innerHTML='✅ מצוין! סיווגת הכל נכון! 🎉';}}
+
+function toggleCard(id,btn){const panel=document.getElementById(id);const isOpen=panel.style.display!=='none';panel.style.display=isOpen?'none':'block';const title=btn.querySelector('.title');if(title){if(isOpen)title.textContent=title.textContent.replace('▲','▼');else title.textContent=title.textContent.replace('▼','▲');}if(!isOpen)panel.scrollIntoView({behavior:'smooth',block:'nearest'});}
+
+updateProgress();
+updateFlashcard();
+updateMenuActive();
+</script>
+</body>
+</html>
