@@ -13,8 +13,6 @@
       --text:#18311f;
       --muted:#5c7363;
       --accent:#4a8c5f;
-      --accent-2:#f2c94c;
-      --accent-3:#86c5a3;
       --accent-dark:#2c6a45;
       --border:#d8e7da;
       --shadow:0 14px 36px rgba(24,49,31,0.10);
@@ -86,40 +84,6 @@
       font-size:18px;
       line-height:1.8;
       max-width:860px;
-    }
-
-    .toolbar{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:22px;
-    }
-
-    .search{
-      flex:1 1 280px;
-      min-width:220px;
-      border:2px solid #dce9de;
-      background:#fff;
-      border-radius:18px;
-      padding:14px 16px;
-      font-size:16px;
-      outline:none;
-    }
-
-    .search:focus{
-      border-color:#9fc7ab;
-      box-shadow:0 0 0 5px rgba(74,140,95,0.12);
-    }
-
-    .count{
-      color:var(--muted);
-      font-size:15px;
-      font-weight:700;
-      background:#fff;
-      border:1px solid var(--border);
-      padding:12px 16px;
-      border-radius:16px;
     }
 
     .grid-view{display:block}
@@ -226,10 +190,10 @@
 
     .lesson-view{
       display:none;
-      background:rgba(255,255,255,0.92);
-      border:1px solid var(--border);
-      border-radius:28px;
-      box-shadow:var(--shadow);
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      background:#fff;
       overflow:hidden;
     }
 
@@ -240,29 +204,16 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      flex-wrap:wrap;
-      padding:18px;
+      padding:16px 20px;
       background:linear-gradient(135deg,#eef8f0,#f8fbf8);
       border-bottom:1px solid var(--border);
-    }
-
-    .lesson-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
+      min-height:76px;
     }
 
     .lesson-title{
       margin:0;
       font-size:24px;
       line-height:1.3;
-    }
-
-    .lesson-subtitle{
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:14px;
     }
 
     .btn{
@@ -273,25 +224,44 @@
       font-weight:700;
       cursor:pointer;
       transition:transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .btn:hover{transform:translateY(-1px)}
-
-    .btn-primary{
       background:var(--accent);
       color:#fff;
     }
 
-    .btn-secondary{
-      background:#fff;
-      color:var(--accent-dark);
-      border:1px solid var(--border);
-    }
+    .btn:hover{transform:translateY(-1px)}
 
     .iframe-wrap{
-      height:calc(100vh - 180px);
-      min-height:620px;
+      height:calc(100vh - 76px);
+      min-height:0;
       background:#fff;
+      position:relative;
+    }
+
+    .floating-home{
+      position:fixed;
+      left:20px;
+      bottom:20px;
+      z-index:1100;
+      border:none;
+      border-radius:999px;
+      padding:14px 18px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 12px 26px rgba(24,49,31,0.20);
+      display:none;
+      align-items:center;
+      gap:10px;
+    }
+
+    .floating-home.show{
+      display:inline-flex;
+    }
+
+    .floating-home:hover{
+      transform:translateY(-1px);
     }
 
     iframe{
@@ -302,30 +272,20 @@
       background:#fff;
     }
 
-    .footer-note{
-      margin-top:20px;
-      color:var(--muted);
-      font-size:14px;
-      text-align:center;
-    }
-
-    .empty-state{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:20px;
-      padding:24px;
-      text-align:center;
-      color:var(--muted);
-      box-shadow:var(--shadow);
-    }
-
     @media (max-width: 740px){
       .hero{padding:22px 16px}
       .subtitle{font-size:16px}
       .card{min-height:270px}
       .card-title{font-size:22px}
-      .iframe-wrap{height:70vh; min-height:520px}
       .lesson-title{font-size:21px}
+      .lesson-topbar{padding:14px 16px; min-height:72px}
+      .iframe-wrap{height:calc(100vh - 72px)}
+      .floating-home{
+        left:14px;
+        right:14px;
+        bottom:14px;
+        justify-content:center;
+      }
     }
   </style>
 </head>
@@ -335,11 +295,6 @@
       <span class="badge">לימוד עצמאי והכנה לבגרות</span>
       <h1>לומדת הכנה ל־5 יחידות בגרות בחקלאות</h1>
       <p class="subtitle">כאן תמצאו את כל הלומדות במקום אחד: נושאי יסוד, סיכומים, המחשות ותרגול אינטראקטיבי בדרך ברורה, קצרה ונוחה ללמידה.</p>
-
-      <div class="toolbar">
-        <input id="searchInput" class="search" type="search" placeholder="חיפוש לומדה לפי שם..." aria-label="חיפוש לומדה לפי שם" />
-        <div id="countLabel" class="count">5 לומדות</div>
-      </div>
     </section>
 
     <section id="gridView" class="grid-view">
@@ -389,49 +344,36 @@
           </div>
         </button>
       </main>
-
-      <p class="footer-note">אפשר לבחור לומדה, לפתוח אותה בתוך המסך הראשי, ולחזור בכל רגע לתפריט.</p>
     </section>
 
     <section id="lessonView" class="lesson-view" aria-live="polite">
       <div class="lesson-topbar">
-        <div>
-          <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
-          <p class="lesson-subtitle">הלומדה נפתחת בתוך המסך הראשי כדי לשמור על רצף למידה פשוט ונוח.</p>
-        </div>
-        <div class="lesson-actions">
-          <button id="backBtn" class="btn btn-primary" type="button">חזרה למסך הראשי</button>
-          <a id="openNewTab" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">פתחי בחלון נפרד</a>
-        </div>
+        <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
+        <button id="backBtn" class="btn" type="button">חזרה למסך הראשי</button>
       </div>
       <div class="iframe-wrap">
         <iframe id="lessonFrame" title="לומדה"></iframe>
       </div>
     </section>
+
+    <button id="floatingHomeBtn" class="floating-home" type="button">⌂ חזרה לתפריט הראשי</button>
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
     const cards = Array.from(document.querySelectorAll('.card'));
-    const countLabel = document.getElementById('countLabel');
     const gridView = document.getElementById('gridView');
     const lessonView = document.getElementById('lessonView');
     const lessonFrame = document.getElementById('lessonFrame');
     const lessonTitle = document.getElementById('lessonTitle');
-    const openNewTab = document.getElementById('openNewTab');
     const backBtn = document.getElementById('backBtn');
-
-    function updateCount() {
-      const visible = cards.filter(card => card.style.display !== 'none').length;
-      countLabel.textContent = `${visible} לומדות`;
-    }
+    const floatingHomeBtn = document.getElementById('floatingHomeBtn');
 
     function openLesson(title, url) {
       lessonTitle.textContent = title;
       lessonFrame.src = url;
-      openNewTab.href = url;
       gridView.classList.add('hidden');
       lessonView.classList.add('show');
+      floatingHomeBtn.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -439,6 +381,7 @@
       lessonFrame.src = '';
       lessonView.classList.remove('show');
       gridView.classList.remove('hidden');
+      floatingHomeBtn.classList.remove('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -449,18 +392,7 @@
     });
 
     backBtn.addEventListener('click', goHome);
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      cards.forEach(card => {
-        const title = card.dataset.title.toLowerCase();
-        const show = title.includes(query);
-        card.style.display = show ? '' : 'none';
-      });
-      updateCount();
-    });
-
-    updateCount();
+    floatingHomeBtn.addEventListener('click', goHome);
   </script>
 </body>
 </html>
