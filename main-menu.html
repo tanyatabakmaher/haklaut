@@ -58,20 +58,6 @@
       pointer-events:none;
     }
 
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:#edf8ef;
-      color:var(--accent-dark);
-      border:1px solid #d4ead8;
-      border-radius:999px;
-      padding:8px 14px;
-      font-size:14px;
-      font-weight:700;
-      margin-bottom:14px;
-    }
-
     h1{
       margin:0 0 12px;
       font-size:clamp(30px,4vw,48px);
@@ -166,26 +152,26 @@
     }
 
     .card-footer{
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      justify-content:center;
+      gap:8px;
       margin-top:auto;
-      font-size:14px;
+      font-size:15px;
       font-weight:700;
-      color:var(--accent-dark);
-      padding-top:6px;
+      color:#fff;
+      padding:12px 18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+      box-shadow:0 10px 20px rgba(74,140,95,0.20);
+      align-self:center;
+      transition:transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
     }
 
-    .arrow{
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:#edf8ef;
-      border:1px solid #d4ead8;
-      flex-shrink:0;
+    .card:hover .card-footer,
+    .card:focus-visible .card-footer{
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 14px 24px rgba(74,140,95,0.28);
     }
 
     .lesson-view{
@@ -237,33 +223,6 @@
       position:relative;
     }
 
-    .floating-home{
-      position:fixed;
-      left:20px;
-      bottom:20px;
-      z-index:1100;
-      border:none;
-      border-radius:999px;
-      padding:14px 18px;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 12px 26px rgba(24,49,31,0.20);
-      display:none;
-      align-items:center;
-      gap:10px;
-    }
-
-    .floating-home.show{
-      display:inline-flex;
-    }
-
-    .floating-home:hover{
-      transform:translateY(-1px);
-    }
-
     iframe{
       width:100%;
       height:100%;
@@ -280,20 +239,12 @@
       .lesson-title{font-size:21px}
       .lesson-topbar{padding:14px 16px; min-height:72px}
       .iframe-wrap{height:calc(100vh - 72px)}
-      .floating-home{
-        left:14px;
-        right:14px;
-        bottom:14px;
-        justify-content:center;
-      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <span class="badge">לימוד עצמאי והכנה לבגרות</span>
-      <h1>לומדת הכנה ל־5 יחידות בגרות בחקלאות</h1>
+    <section class="hero">      <h1>לומדת הכנה ל־5 יחידות בגרות בחקלאות</h1>
       <p class="subtitle">כאן תמצאו את כל הלומדות במקום אחד: נושאי יסוד, סיכומים, המחשות ותרגול אינטראקטיבי בדרך ברורה, קצרה ונוחה ללמידה.</p>
     </section>
 
@@ -304,7 +255,7 @@
           <div class="card-body">
             <h2 class="card-title">מבוא לחקלאות</h2>
             <p class="card-text">מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.</p>
-            <div class="card-footer"><span>כניסה ללומדה</span><span class="arrow">←</span></div>
+            <div class="card-footer">כניסה ללומדה</div>
           </div>
         </button>
 
@@ -313,7 +264,7 @@
           <div class="card-body">
             <h2 class="card-title">ויסות חום בעלי חיים</h2>
             <p class="card-text">הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.</p>
-            <div class="card-footer"><span>כניסה ללומדה</span><span class="arrow">←</span></div>
+            <div class="card-footer">כניסה ללומדה</div>
           </div>
         </button>
 
@@ -322,7 +273,7 @@
           <div class="card-body">
             <h2 class="card-title">ויסות חום על ידי החקלאי</h2>
             <p class="card-text">תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.</p>
-            <div class="card-footer"><span>כניסה ללומדה</span><span class="arrow">←</span></div>
+            <div class="card-footer">כניסה ללומדה</div>
           </div>
         </button>
 
@@ -331,7 +282,7 @@
           <div class="card-body">
             <h2 class="card-title">מערכת החיסון</h2>
             <p class="card-text">מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.</p>
-            <div class="card-footer"><span>כניסה ללומדה</span><span class="arrow">←</span></div>
+            <div class="card-footer">כניסה ללומדה</div>
           </div>
         </button>
 
@@ -340,7 +291,7 @@
           <div class="card-body">
             <h2 class="card-title">מערכת הנשימה</h2>
             <p class="card-text">מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.</p>
-            <div class="card-footer"><span>כניסה ללומדה</span><span class="arrow">←</span></div>
+            <div class="card-footer">כניסה ללומדה</div>
           </div>
         </button>
       </main>
@@ -355,8 +306,6 @@
         <iframe id="lessonFrame" title="לומדה"></iframe>
       </div>
     </section>
-
-    <button id="floatingHomeBtn" class="floating-home" type="button">⌂ חזרה לתפריט הראשי</button>
   </div>
 
   <script>
@@ -366,14 +315,12 @@
     const lessonFrame = document.getElementById('lessonFrame');
     const lessonTitle = document.getElementById('lessonTitle');
     const backBtn = document.getElementById('backBtn');
-    const floatingHomeBtn = document.getElementById('floatingHomeBtn');
 
     function openLesson(title, url) {
       lessonTitle.textContent = title;
       lessonFrame.src = url;
       gridView.classList.add('hidden');
       lessonView.classList.add('show');
-      floatingHomeBtn.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -381,7 +328,6 @@
       lessonFrame.src = '';
       lessonView.classList.remove('show');
       gridView.classList.remove('hidden');
-      floatingHomeBtn.classList.remove('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -392,7 +338,6 @@
     });
 
     backBtn.addEventListener('click', goHome);
-    floatingHomeBtn.addEventListener('click', goHome);
   </script>
 </body>
 </html>
