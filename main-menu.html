@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>לומדת הכנה ל־5 יחידות בגרות בחקלאות</title>
+  <meta name="description" content="מסך ראשי ללומדות הכנה ל־5 יחידות בגרות בחקלאות" />
+  <style>
+    :root{
+      --bg1:#f7fbf7;
+      --bg2:#eef6ee;
+      --card:#ffffff;
+      --text:#18311f;
+      --muted:#547060;
+      --accent:#4a8c5f;
+      --accent-dark:#2f6f49;
+      --border:#dce8dd;
+      --shadow:0 10px 30px rgba(24,49,31,0.08);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:32px 20px 48px;
+    }
+
+    .hero{
+      background:rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:28px 24px;
+      margin-bottom:28px;
+    }
+
+    .hero-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#edf8ef;
+      color:var(--accent-dark);
+      border:1px solid #d4ead8;
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(28px, 4vw, 46px);
+      line-height:1.15;
+    }
+
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.7;
+      max-width:900px;
+    }
+
+    .toolbar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .search{
+      flex:1 1 280px;
+      min-width:220px;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:16px;
+      outline:none;
+    }
+
+    .search:focus{
+      border-color:#9fc7ab;
+      box-shadow:0 0 0 4px rgba(74,140,95,0.12);
+    }
+
+    .count{
+      color:var(--muted);
+      font-size:15px;
+      font-weight:700;
+    }
+
+    .state{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+      display:none;
+    }
+
+    .state.show{display:block}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:180px;
+      text-decoration:none;
+      color:inherit;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px;
+      transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height:6px;
+      background:linear-gradient(90deg,var(--accent),#91c6a3);
+    }
+
+    .card:hover,
+    .card:focus-visible{
+      transform:translateY(-4px);
+      box-shadow:0 14px 34px rgba(24,49,31,0.14);
+      border-color:#b9d6bf;
+      outline:none;
+    }
+
+    .card-title{
+      margin:0 0 10px;
+      font-size:22px;
+      line-height:1.35;
+    }
+
+    .card-text{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .card-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:20px;
+      font-size:14px;
+      font-weight:700;
+      color:var(--accent-dark);
+    }
+
+    .arrow{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#edf8ef;
+      border:1px solid #d4ead8;
+      flex-shrink:0;
+    }
+
+    .footer-note{
+      margin-top:26px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center;
+    }
+
+    @media (max-width: 640px){
+      .hero{padding:22px 18px}
+      .card{min-height:160px}
+      .card-title{font-size:20px}
+      .subtitle{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-top">
+        <span class="badge">תוכן עניינים ראשי</span>
+      </div>
+      <h1>לומדת הכנה ל־5 יחידות בגרות בחקלאות</h1>
+      <p class="subtitle">
+        ברוכים הבאים למסך הראשי של הלומדות. כל כרטיס מוביל ישירות ללומדה המתאימה, על בסיס הנתונים שבקובץ <strong>menu.xlsx</strong>.
+      </p>
+
+      <div class="toolbar">
+        <input id="searchInput" class="search" type="search" placeholder="חיפוש לומדה לפי שם..." aria-label="חיפוש לומדה לפי שם" />
+        <div id="countLabel" class="count">טוען לומדות...</div>
+      </div>
+    </section>
+
+    <section id="loadingState" class="state show">טוען את הלומדות מהקובץ <strong>menu.xlsx</strong>...</section>
+    <section id="errorState" class="state"></section>
+
+    <main id="cardsGrid" class="grid" aria-live="polite"></main>
+
+    <p class="footer-note">המערכת טוענת את שמות הלומדות והקישורים ישירות מתוך קובץ האקסל.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const MENU_SOURCES = [
+      'menu.xlsx',
+      './menu.xlsx',
+      'https://tanyatabakmaher.github.io/haklaut/menu.xlsx'
+    ];
+
+    const cardsGrid = document.getElementById('cardsGrid');
+    const loadingState = document.getElementById('loadingState');
+    const errorState = document.getElementById('errorState');
+    const countLabel = document.getElementById('countLabel');
+    const searchInput = document.getElementById('searchInput');
+
+    let allRows = [];
+
+    function normalizeUrl(url) {
+      if (!url) return '#';
+      const trimmed = String(url).trim();
+      if (/^https?:\/\//i.test(trimmed)) return trimmed;
+      return trimmed;
+    }
+
+    function createCard(row) {
+      const link = document.createElement('a');
+      link.className = 'card';
+      link.href = normalizeUrl(row.page_url);
+      link.setAttribute('aria-label', `מעבר ללומדה ${row.page_name}`);
+      if (/^https?:\/\//i.test(String(row.page_url).trim())) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+
+      link.innerHTML = `
+        <div>
+          <h2 class="card-title">${escapeHtml(row.page_name || 'ללא שם')}</h2>
+          <p class="card-text">לחצו כדי לפתוח את הלומדה.</p>
+        </div>
+        <div class="card-footer">
+          <span>כניסה ללומדה</span>
+          <span class="arrow" aria-hidden="true">←</span>
+        </div>
+      `;
+
+      return link;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function renderCards(rows) {
+      cardsGrid.innerHTML = '';
+
+      if (!rows.length) {
+        const empty = document.createElement('section');
+        empty.className = 'state show';
+        empty.textContent = 'לא נמצאו לומדות שמתאימות לחיפוש.';
+        cardsGrid.appendChild(empty);
+        countLabel.textContent = '0 לומדות';
+        return;
+      }
+
+      rows.forEach(row => cardsGrid.appendChild(createCard(row)));
+      countLabel.textContent = `${rows.length} לומדות`;
+    }
+
+    function parseWorkbook(workbook) {
+      const firstSheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[firstSheetName];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+
+      const cleaned = rows
+        .map(row => ({
+          page_name: String(row.page_name || '').trim(),
+          page_url: String(row.page_url || '').trim()
+        }))
+        .filter(row => row.page_name && row.page_url);
+
+      return cleaned;
+    }
+
+    async function loadWorkbook() {
+      let lastError = null;
+
+      for (const source of MENU_SOURCES) {
+        try {
+          const response = await fetch(source, { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const arrayBuffer = await response.arrayBuffer();
+          const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+          return parseWorkbook(workbook);
+        } catch (error) {
+          lastError = error;
+        }
+      }
+
+      throw lastError || new Error('לא ניתן היה לקרוא את קובץ האקסל.');
+    }
+
+    async function init() {
+      try {
+        const rows = await loadWorkbook();
+        allRows = rows;
+        loadingState.classList.remove('show');
+        renderCards(allRows);
+      } catch (error) {
+        loadingState.classList.remove('show');
+        errorState.classList.add('show');
+        errorState.innerHTML = `
+          <strong>לא הצלחתי לטעון את הקובץ menu.xlsx</strong><br>
+          ודאו שהקובץ נמצא באותה תיקייה כמו דף ה־HTML וששם העמודות הוא בדיוק:
+          <code>page_name</code> ו־<code>page_url</code>.
+        `;
+        countLabel.textContent = 'שגיאה בטעינה';
+        console.error(error);
+      }
+    }
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      const filtered = allRows.filter(row => row.page_name.toLowerCase().includes(query));
+      renderCards(filtered);
+    });
+
+    init();
+  </script>
+</body>
+</html>
