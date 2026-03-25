@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תקופות קריטיות בחיי הגור | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--secondary:#b45309;--secondary-light:#fef3c7;--hot:#dc2626;--hot-light:#fee2e2;--cold:#2563eb;--cold-light:#dbeafe;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;padding:10px 12px 4px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;transition:background .2s;}
+#menu-btn:hover{background:#075985;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#menu-btn-icon{font-size:16px;color:white;}
+#dog-icon{font-size:22px;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{display:block;margin-bottom:4px;font-size:16px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn:hover{transform:scale(1.02);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:80px;cursor:pointer;font-weight:700;color:#1e40af;transition:all .2s;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:16px;line-height:2.2;margin-bottom:12px;padding:14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.right-item:hover,.match-item.right-item.selected{background:#dcfce7;border-color:var(--green);}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;}
+.flashcard-nav button:hover{transform:scale(1.05);}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;box-shadow:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐕';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;line-height:1.3;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.period-badge{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 14px;font-size:13px;font-weight:800;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐕 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🔑 יסודות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">💡</span>מהי תקופה קריטית?</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🐶</span>איך נבחר גור?</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מושגי יסוד</button>
+    </div>
+    <div class="menu-chapter-title">📅 7 תקופות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">1️⃣</span>תקופה 1 — 0 עד 3 שבועות</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">2️⃣</span>תקופה 2 — 3 עד 7 שבועות</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>החתמה וסוציאליזציה</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">3️⃣</span>תקופה 3 — 7 עד 12 שבועות</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🐾</span>חושים, יצרים והשפעה</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">4️⃣</span>תקופה 4 — 3 עד 4 חודשים</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">5️⃣</span>תקופה 5 — 4 עד 7 חודשים</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">6️⃣</span>תקופה 6 — 7 חודשים לבגרות</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">7️⃣</span>תקופה 7 — בגרות</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלת סיכום</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">✏️</span>מטלה מסכמת</button>
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span id="menu-btn-icon">☰</span><span id="menu-btn-label">פתיחה</span></button>
+  <span id="dog-icon">🐕</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 20</span>
+</div>
+
+<div id="app">
+
+<!-- S0 -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕🐾🧠</div>
+    <h1>תקופות קריטיות<br>בחיי הגור</h1>
+    <p class="tagline">מה קורה בשבועות הראשונים קובע את כל חיי הכלב!<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐕 כלבנות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="💡">מהי תקופה קריטית ולמה היא חשובה כל כך</li>
+      <li data-icon="📖">מושגי יסוד: החתמה, חשיפה, חובשי קן</li>
+      <li data-icon="📅">7 תקופות ההתפתחות של הגור — מגיל 0 ועד בגרות</li>
+      <li data-icon="🐾">מה חשוב לעשות בכל תקופה</li>
+      <li data-icon="⚠️">מה קורה אם לא מחתימים נכון</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">מאיזה גיל מומלץ להפריד גור מהשגר ולהעביר לבית חדש?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">א</span>3 שבועות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ב</span>5 שבועות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">ג</span>7–12 שבועות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ד</span>4 חודשים</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- S1: תקופה קריטית -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">💡</span>
+    <h1>מהי תקופה קריטית?</h1>
+    <p class="subtitle">החלונות שקובעים את כל חיי הכלב</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי תקופה קריטית ולמה היא חשובה לעתיד הכלב.</div>
+  <div class="card">
+    <div class="definition-box"><strong>תקופה קריטית</strong> = פרק זמן בילדות שבו בעל החיים <strong>בשל לקלוט מידע בקלות</strong> שישאר בזיכרון לטווח הארוך ויקבע את התנהגותו העתידית.</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#d1fae5;border:2px solid #34d399">
+        <h3>✅ חשיפה נכונה</h3>
+        <ul>
+          <li>הכלב יתנהג <strong>נורמלית בלהקה</strong></li>
+          <li>יתקשר טוב עם כלבים ואנשים</li>
+          <li>ביטחון ויציבות נפשית</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>❌ חשיפה לא נכונה</h3>
+        <ul>
+          <li><strong>בעיית זהות ותקשורת</strong></li>
+          <li>בעיות התנהגות</li>
+          <li>אגרסיביות / פחדנות</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight yellow">💡 בדומה לילד — מה שקורה בשנות הילדות קובע את האדם שיהיה. כך גם בגור!</div>
+    <div class="remember-box">תקופה קריטית = חלון הזדמנויות שלא חוזר!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">חשיפה לא נכונה בתקופה קריטית עלולה לגרום לבעיות התנהגות לכל חיי הכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf1a"></div>
+  </div>
+</div>
+
+<!-- S2: איך נבחר גור -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#047857)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🐶</span>
+    <h1>איך נבחר גור?</h1>
+    <p class="subtitle">4 צעדים לבחירה נכונה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הצעדים לבחירת גור מתאים.</div>
+  <div class="card">
+    <div class="step-box"><div class="step-num" style="background:#059669">1</div><div class="step-content"><strong>להחליט מהי הדרישה העיקרית שלנו מהכלב</strong><br>כלב שמירה? כלב עבודה? כלב משפחה? — הדרישה מכתיבה את הבחירה.</div></div>
+    <div class="step-box"><div class="step-num" style="background:#0369a1">2</div><div class="step-content"><strong>ללמוד דרכים לשילוב הכלב בחיי הלהקה המשפחתית</strong><br>כיצד הכלב ישתלב ביחד עם ילדים, חיות אחרות וסביבת המשפחה.</div></div>
+    <div class="step-box"><div class="step-num" style="background:#7c3aed">3</div><div class="step-content"><strong>בחירת הורים נכונים מבחינה גנטית (אופי)</strong><br>האופי עובר בתורשה — הורים רגועים ומאוזנים יביאו גורים עם אופי טוב.</div></div>
+    <div class="step-box"><div class="step-num" style="background:#d97706">4</div><div class="step-content"><strong>גידול גורים בצורה נכונה לפי התקופה הקריטית</strong><br>חשיפה נכונה בכל שלב תבנה כלב מאוזן ומתפקד.</div></div>
+    <div class="remember-box">דרישה → שילוב → גנטיקה → תקופות קריטיות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">למה חשוב לבחור הורים עם אופי טוב?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">א</span>כי הם יהיו יפים יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s2q')"><span class="opt-letter">ב</span>כי האופי עובר בתורשה ומשפיע על הגורים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">ג</span>כי הם יעלו יותר כסף</button>
+    </div>
+    <div class="feedback" id="fb-s2q"></div>
+  </div>
+</div>
+
+<!-- S3: מושגי יסוד -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">📖</span>
+    <h1>מושגי יסוד</h1>
+    <p class="subtitle">החתמה, חשיפה וחובשי קן</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את 3 מושגי היסוד ואת הקשר ביניהם.</div>
+
+  <div class="card">
+    <!-- IMPRINTING -->
+    <div style="background:#faf5ff;border:2px solid #a78bfa;border-radius:14px;padding:18px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔒</div>
+        <div style="font-size:19px;font-weight:900;color:#5b21b6">החתמה</div>
+      </div>
+      <div style="font-size:15px;line-height:1.7;margin-bottom:10px">
+        פרק זמן <strong>מוגבל</strong> שבו בעל החיים רגיש לקליטת מידע מהסביבה.
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <div style="background:white;border:2px solid #c4b5fd;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          🧠 <strong>איך?</strong><br>נתיבים עצביים נוצרים במוח ונחקקים לכל החיים
+        </div>
+        <div style="background:white;border:2px solid #dc2626;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          ⚡ <strong>תוצאה?</strong><br>בלתי הפיכה — לא ניתן למחוק את מה שנקלט!
+        </div>
+      </div>
+      <div style="background:#ede9fe;border-radius:10px;padding:10px 14px;font-size:13px;line-height:1.7">
+        🐥 <strong>דוגמה קלאסית — גוזלים:</strong><br>
+        גוזלים רואים ברגע הבקיעה את הדבר הנע הראשון מולם — ומחתימים עליו כ"אמא".<br>
+        אם הדבר הראשון שרואים הוא <strong>אדם ולא ברווז</strong> — הגוזל יעקוב אחרי האדם ולא אחרי אמו!<br><br>
+        🐕 <strong>מה קורה בהחתמה לא נכונה בכלב?</strong><br>
+        גור שנחשף רק לכלבים ולא לאנשים — יחשב לאדם כ<strong>איום ולא כחלק מהלהקה</strong>.<br>
+        גור שנחשף לחוויות קשות (פחד, כאב) — הן ייחקקו ויגרמו לחרדה ואגרסיביות לאורך חייו.
+      </div>
+    </div>
+
+    <!-- EXPOSURE -->
+    <div style="background:#f0f9ff;border:2px solid #7dd3fc;border-radius:14px;padding:18px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👀</div>
+        <div style="font-size:19px;font-weight:900;color:#0c4a6e">חשיפה</div>
+      </div>
+      <div style="font-size:15px;line-height:1.7;margin-bottom:10px">
+        יש לחשוף את הגור לגירויים סביבתיים מגוונים בתקופות הקריטיות.
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="background:white;border:2px solid #7dd3fc;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          ✅ <strong>לחשוף ל:</strong><br>אנשים, כלבים, רעשים, מקומות שונים
+        </div>
+        <div style="background:white;border:2px solid #dc2626;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          ❌ <strong>ללא חשיפה?</strong><br>הגור יפחד מדברים בסביבה בבגרותו
+        </div>
+      </div>
+    </div>
+
+    <!-- ALTRICIAL -->
+    <div style="background:#f0fdf4;border:2px solid #6ee7b7;border-radius:14px;padding:18px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🐣</div>
+        <div style="font-size:19px;font-weight:900;color:#065f46">חובשי קן</div>
+      </div>
+      <div style="font-size:15px;line-height:1.7;margin-bottom:10px">
+        בעלי חיים בעלי <strong>תקופת ילדות ארוכה יחסית</strong> — עם תלות גדולה באמם.
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="background:white;border:2px solid #6ee7b7;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          ⏳ <strong>יתרון?</strong><br>פרק זמן ארוך יותר לעבור החתמה
+        </div>
+        <div style="background:white;border:2px solid #6ee7b7;border-radius:10px;padding:8px 12px;font-size:13px;flex:1;min-width:120px">
+          🐕 <strong>דוגמה?</strong><br>הכלב הוא חובש קן!
+        </div>
+      </div>
+    </div>
+
+    <div class="remember-box">החתמה = בלתי הפיך | חשיפה = חובה | חובשי קן = ילדות ארוכה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s3" class="match-container">
+      <div class="match-col" id="s3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s3')">החתמה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s3')">חשיפה</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s3')">חובשי קן</div>
+      </div>
+      <div class="match-col" id="s3-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s3')">ילדות ארוכה ותלות באם</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s3')">קליטת מידע בלתי הפיכה</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s3')">הכרת גירויים סביבתיים</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s3match"></div>
+  </div>
+</div>
+
+<!-- S4: תקופה 1 -->
+
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#64748b,#475569)">
+    <span class="chapter-num">תקופה 1</span><span class="emoji">🐕</span>
+    <h1>גיל 0 עד 3 שבועות</h1>
+    <p class="subtitle">תלות מוחלטת באם</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני התקופה הראשונה בחיי הגור.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#e2e8f0;color:#475569">⏱️ גיל 0–3 שבועות</div>
+
+    <div class="section-title" style="margin-bottom:10px">🔍 מצב החושים — ומה זה אומר לגור?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px 14px">
+        <div style="font-size:24px;min-width:32px">👁️</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#dc2626">ראייה — לא פעילה</strong><br>
+          עיני הגור עדיין סגורות לחלוטין. הגור חי בחשיכה מוחלטת — לא רואה לא את אמו ולא את אחיו. הוא מוצא אותם רק בעזרת חוש המגע.
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px 14px">
+        <div style="font-size:24px;min-width:32px">👂</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#dc2626">שמיעה — לא פעילה</strong><br>
+          תעלות האוזן סגורות — הגור חרש לחלוטין. רעשים בסביבה אינם מגיעים אליו. העולם שקט לחלוטין בשבילו.
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px">
+        <div style="font-size:24px;min-width:32px">✋</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#059669">מגע — פעיל ומפותח! ⭐</strong><br>
+          החוש היחיד שעובד. הגור מרגיש חום גוף האם, מוצא את הפטמות ומזהה את אחיו דרך מגע. <strong>לכן — מגע אדם בשלב זה הוא חשוב מאוד!</strong> מגע עדין מרגיל את הגור לנוכחות האדם עוד לפני שיכול לראות או לשמוע אותו.
+        </div>
+      </div>
+
+    </div>
+
+    <table class="info-table" style="margin-bottom:14px">
+      <tr>
+        <th>חוש</th>
+        <th style="text-align:center">מצב</th>
+        <th>הסבר</th>
+      </tr>
+      <tr>
+        <td>👁️ <strong>ראייה</strong></td>
+        <td style="text-align:center;font-size:18px">❌</td>
+        <td>עיוור — העיניים עדיין סגורות</td>
+      </tr>
+      <tr>
+        <td>👂 <strong>שמיעה</strong></td>
+        <td style="text-align:center;font-size:18px">❌</td>
+        <td>חרש — תעלות האוזן עדיין סגורות</td>
+      </tr>
+      <tr style="background:#d1fae5">
+        <td>✋ <strong>מגע</strong></td>
+        <td style="text-align:center;font-size:18px">✅</td>
+        <td><strong>מפותח! — החוש היחיד הפעיל</strong><br><span style="font-size:12px;color:#065f46">הגור מוצא את האם ואת החלב בעזרת המגע</span></td>
+      </tr>
+
+    </table>
+
+    <div class="highlight yellow" style="margin-bottom:12px">
+      👩 <strong>תלות מוחלטת באם:</strong> הגור תלוי לחלוטין באמו — היא מספקת חום, מזון והגנה. ללא האם — הגור לא שורד.
+    </div>
+    <div class="highlight blue">📌 <strong>מה לעשות?</strong><br>אין צורך בטיפול מיוחד — אך <strong>חשוב להרגיל את הגור למגע אדם</strong> כבר בשלב זה! מגע עדין ביד ייצור הכרה ראשונית עם ריח ומגע האדם.</div>
+    <div class="remember-box">תקופה 1: עיוור + חרש | רק מגע | מגע אדם — כבר עכשיו!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בגיל 0–3 שבועות לגור יש ראייה ושמיעה מפותחות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf4a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf4a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf4a"></div>
+  </div>
+</div>
+
+<!-- S5: תקופה 2 -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1d4ed8)">
+    <span class="chapter-num">תקופה 2</span><span class="emoji">🐕</span>
+    <h1>גיל 3 עד 7 שבועות</h1>
+    <p class="subtitle">תחילת ההחתמה — להיות כלב!</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני התקופה השנייה ולהסביר מדוע היא קריטית.</div>
+
+  <div class="card">
+    <div class="period-badge" style="background:#dbeafe;color:#1e40af">⏱️ גיל 3–7 שבועות</div>
+
+    <!-- Senses row -->
+    <div class="section-title" style="margin-bottom:10px">👁️👂👃 החושים נפתחים</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px">
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px">
+        <div style="font-weight:800;font-size:13px;color:#065f46;margin-bottom:4px">👁️ ראייה ✅</div>
+        <div style="font-size:12px;color:#374151;line-height:1.5">עיני הגור נפתחות — מתחיל לראות את אמו, אחיו וסביבתו לראשונה</div>
+      </div>
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px">
+        <div style="font-weight:800;font-size:13px;color:#065f46;margin-bottom:4px">👂 שמיעה ✅</div>
+        <div style="font-size:12px;color:#374151;line-height:1.5">תעלות האוזן נפתחות — שומע לראשונה רעשים, קולות ומסרים מהלהקה</div>
+      </div>
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px">
+        <div style="font-weight:800;font-size:13px;color:#065f46;margin-bottom:4px">👃 ריח ✅</div>
+        <div style="font-size:12px;color:#374151;line-height:1.5">מתפתח לרמת כלב בוגר — מזהה אם, אחים וסביבה בריח</div>
+      </div>
+    </div>
+
+    <!-- What the pup learns -->
+    <div class="section-title" style="margin-bottom:10px">🎓 מה לומד הגור?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:12px;background:white;border:2px solid #e2e8f0;border-radius:12px;padding:10px 14px">
+        <div style="min-width:32px;height:32px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0">1</div>
+        <div style="font-size:14px;line-height:1.5"><strong>🎮 להיות כלב דרך משחק</strong> — שפת גוף, גבולות נשיכה ותקשורת עם האחים</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:white;border:2px solid #e2e8f0;border-radius:12px;padding:10px 14px">
+        <div style="min-width:32px;height:32px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0">2</div>
+        <div style="font-size:14px;line-height:1.5"><strong>👑 גבולות</strong> — בגיל 5 שבועות מתחילים להיווצר גבולות ביחסים בין הגורים</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:white;border:2px solid #e2e8f0;border-radius:12px;padding:10px 14px">
+        <div style="min-width:32px;height:32px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0">3</div>
+        <div style="font-size:14px;line-height:1.5"><strong>👤 הכרת האדם</strong> — חשיפה לאדם עכשיו תגרום לו לראות באדם חלק מהלהקה</div>
+      </div>
+    </div>
+
+    <!-- Warning -->
+    <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center">
+      <div style="font-size:28px;flex-shrink:0">⚠️</div>
+      <div style="font-size:14px;line-height:1.6">
+        <strong style="color:#dc2626">אל תפריד בגיל זה!</strong><br>
+        גור שיופרד — עלול להיות אגרסיבי או ללא גבולות.
+      </div>
+    </div>
+
+    <div class="remember-box">חושים נפתחים | לומד להיות כלב | חשוף לאדם | אל תפריד לפני גיל 7 שבועות!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">גור שיופרד מהשגר בגיל 3–7 שבועות עלול להתפתח לכלב <span class="fill-blank" onclick="revealBlank(this,'אגרסיבי')">_______</span> או <span class="fill-blank" onclick="revealBlank(this,'ללא גבולות')">_______</span>.</div>
+  </div>
+</div>
+
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🔗</span>
+    <h1>החתמה וסוציאליזציה</h1>
+    <p class="subtitle">התהליכים שמעצבים את הכלב לעולם</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את תהליך ההחתמה ואת חשיבות הסוציאליזציה.</div>
+  <div class="card">
+    <div class="section-title">🔒 החתמה — איך ולמה?</div>
+    <div class="highlight yellow" style="margin-bottom:10px;font-size:14px">
+      💡 <strong>למה זה חשוב?</strong> מה שהגור חווה בתקופה זו — ייחקק לכל חייו. חוויה חיובית תיצור כלב בטוח ומאוזן. חוויה שלילית (פחד, כאב) תגרום לחרדה ואגרסיביות לאורך כל חייו.
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px">
+      <div style="background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px">
+        <div style="font-weight:800;font-size:13px;color:#9d174d;margin-bottom:4px">🧠 איך מתאפשרת?</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5">נתיבים עצביים נוצרים במוח הגור ונחקקים לכל חייו</div>
+      </div>
+      <div style="background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px">
+        <div style="font-weight:800;font-size:13px;color:#9d174d;margin-bottom:4px">⚡ למה בלתי הפיכה?</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5">הנתיבים חקוקים — אי אפשר למחוק חוויות שהגור עבר</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">🐕🐕🐕 סוציאליזציה — הסתגלות חברתית</div>
+    <div class="highlight blue" style="margin-bottom:10px;font-size:14px">
+      💡 <strong>למה זה חשוב?</strong> כלב שלא עבר סוציאליזציה נכונה לא ידע לתקשר עם כלבים אחרים ועם בני אדם. הוא עלול להפוך לאגרסיבי, פחדן, או חסר גבולות — בעיות שקשה מאוד לתקן בבגרות.
+    </div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399"><div class="title">🎮 משחק ושפת גוף</div>לומדים לתקשר ולהעביר מסרים</div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399"><div class="title">🦷 גבולות נשיכה</div>האם מרסנת גור אגרסיבי מדי</div>
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #93c5fd"><div class="title">👑 גבולות</div>בגיל 5 שבועות — מתחילים להיווצר גבולות!</div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">👤 חשיפה לאדם</div>הכרחית — כדי שיראה באדם חלק מהלהקה</div>
+    </div>
+    <div class="remember-box">החתמה = בלתי הפיכה | סוציאליזציה = לומד לתקשר ולתקשר | בגיל 5 שבועות נוצרים גבולות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">למה ההחתמה היא בלתי הפיכה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">א</span>כי הגור שוכח מהר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s6q')"><span class="opt-letter">ב</span>כי נתיבים עצביים נחקקים במוח ולא ניתן למחוק אותם</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ג</span>כי הגור אינו לומד</button>
+    </div>
+    <div class="feedback" id="fb-s6q"></div>
+  </div>
+</div>
+
+<!-- S7: תקופה 3 -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">תקופה 3</span><span class="emoji">👨‍👩‍👧‍👦</span>
+    <h1>גיל 7 עד 12 שבועות</h1>
+    <p class="subtitle">הזמן האידיאלי לעבור לבית חדש!</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר למה תקופה זו היא הזמן האידיאלי להפרדה.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#d1fae5;color:#065f46">⏱️ גיל 7–12 שבועות</div>
+    <div class="highlight green" style="text-align:center;font-size:16px;font-weight:700">⭐ זהו הגיל האידיאלי להעברת הגור לבית חדש!</div>
+
+    <div class="section-title" style="margin-top:12px">🗺️ היכרות עם הסביבה המורחבת</div>
+    <div class="highlight blue" style="margin-bottom:8px;font-size:14px">
+      💡 <strong>למה חשוב?</strong> עד עכשיו הגור הכיר רק את הסביבה הקרובה שלו — החדר שבו נולד, האחים והאם. עכשיו הוא מוכן לספוג עולם גדול יותר.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">1</div>
+        <span><strong>מקומות חדשים</strong> — רחובות, גינות, חנויות, מכוניות. כל מקום שנחשף אליו עכשיו יהיה מוכר ובטוח בבגרות.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">2</div>
+        <span><strong>אנשים שונים</strong> — גברים, נשים, ילדים, קשישים, אנשים עם כובע או משקפיים. מגוון = כלב בטוח.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">3</div>
+        <span><strong>רעשים וגירויים</strong> — מכוניות, אופניים, מוזיקה. ככל שייחשף ליותר רעשים עכשיו — כך יפחד פחות בבגרות.</span>
+      </div>
+    </div>
+
+    <div class="section-title">🤝 שיתוף פעולה עם הלהקה</div>
+    <div class="highlight yellow" style="margin-bottom:8px;font-size:14px">
+      💡 <strong>למה חשוב?</strong> בגיל זה הגור מתחיל לשתף פעולה עם הלהקה — ועכשיו ניתן לכוון את שיתוף הפעולה הזה לכיוון <strong>האדם</strong> במקום כלבים אחרים!
+    </div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#d1fae5;border:2px solid #34d399">
+        <h3>✅ גור שמועבר בגיל זה</h3>
+        <ul>
+          <li>ישתף פעולה עם <strong>האדם</strong></li>
+          <li>יחפש חברת האדם</li>
+          <li>יישמע לבעלים בעתיד</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>❌ גור שנשאר בשגר</h3>
+        <ul>
+          <li>ישתף פעולה עם <strong>כלבים</strong></li>
+          <li>יעדיף חברת כלבים</li>
+          <li>פחות מחובר לאדם</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="remember-box">תקופה 3: חשוף לעולם | העבר לבית | עם אדם = מחובר לאדם לכל החיים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">גור שנשאר בשגר אחרי גיל 12 שבועות יעדיף חברת אנשים על פני כלבים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">🐾</span>
+    <h1>חושים, יצרים ודרכי השפעה</h1>
+    <p class="subtitle">מה מתפתח ואיך משפיעים נכון</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר אילו יצרים מתפתחים בגור ואיך לנתב אותם נכון.</div>
+
+  <div class="card">
+    <div class="section-title">⚡ מה מתפתח בתקופה זו?</div>
+    <div class="highlight yellow" style="font-size:14px">בגיל זה מתפתחים <strong>היצרים והחושים</strong> — אם נעודד אותם עכשיו, יוטמע הדבר ויהפוך לחזק מאוד אצל הכלב הבוגר.</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔥 יצרי הכלב — ולמה לנתב כל אחד?</div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px">
+        <div style="font-weight:900;font-size:15px;color:#059669;margin-bottom:6px">🏃 יצר הציד</div>
+        <div style="font-size:14px;line-height:1.6;margin-bottom:6px">רדיפה ועניין בעצמים הנעים — מתחיל להתפתח בתקופה זו.</div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;font-size:13px;color:#374151">
+          💡 <strong>למה לנתב?</strong> כלב עם יצר ציד חזק שלא נוּתּב — ירוץ אחרי מכוניות, חתולים, ילדים. ניתוב נכון דרך משחקי קומבל, גרירה ואחזור יהפוך אותו לנכס אדיר באילוף ובעבודה.
+        </div>
+      </div>
+
+      <div style="background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px">
+        <div style="font-weight:900;font-size:15px;color:#1e40af;margin-bottom:6px">🛡️ יצר ההגנה</div>
+        <div style="font-size:14px;line-height:1.6;margin-bottom:6px">נטייה טבעית להגן על עצמו, על הלהקה ועל הטריטוריה שלו.</div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;font-size:13px;color:#374151">
+          💡 <strong>למה לנתב?</strong> יצר הגנה שלא נוּתּב יוצר כלב אגרסיבי ומסוכן. ניתוב נכון — כלב ששומר כשצריך אך שקט ומאוזן ביתר הזמן.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">✅ דרכי השפעה על הגור</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">1</div>
+        <span><strong>בניית קשר וגבולות</strong> — לבסס מיד קשר ברור ועקבי עם הגור</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">2</div>
+        <span><strong>חשיפה רחבה</strong> — אנשים, בעלי חיים, סביבות שונות</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">3</div>
+        <span><strong>משחקי חפצים</strong> — צעצועים, חבלים — לעודד יצר הציד</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">4</div>
+        <span><strong>מעבר מכשולים</strong> — לחזק ביטחון ואומץ</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">5</div>
+        <span><strong>להתעלם מגורמי פחד</strong> — לא להפריז במגננה ולא לתגמל פחדנות</span>
+      </div>
+    </div>
+    <div class="remember-box">יצר ציד + יצר הגנה — ניתוב נכון של כל יצר = כלב מאוזן!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מהו יצר הציד?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">א</span>יצר ההגנה על הטריטוריה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s8q')"><span class="opt-letter">ב</span>רדיפה ועניין בעצמים נעים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">ג</span>הצורך להשתייך ללהקה</button>
+    </div>
+    <div class="feedback" id="fb-s8q"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">
+    <span class="chapter-num">תקופה 4</span><span class="emoji">🏋️</span>
+    <h1>גיל 3 עד 4 חודשים</h1>
+    <p class="subtitle">התקופה האחרונה להחתמה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני תקופה 4 ואת דרכי ההשפעה בה.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#ede9fe;color:#5b21b6">⏱️ גיל 3–4 חודשים</div>
+    <div class="highlight green">🔴 <strong>זוהי התקופה האחרונה שניתן להחתים את הגורים!</strong><br>גור שלא קיבל בסיס נכון עד עכשיו — השלמת הפער תהיה ארוכה וקשה יותר.</div>
+
+    <div class="section-title" style="margin-top:8px">👑 בחינת גבולות ראשונית</div>
+    <div style="background:#ede9fe;border:2px solid #c4b5fd;border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px;line-height:1.7">
+      בגיל זה הגור מתחיל <strong>לבחון גבולות</strong> — מה מותר ומה אסור, מה מקבל תגובה ומה לא.<br>
+      זוהי הזדמנות מצוינת להתחיל לבנות <strong>שגרה ברורה וגבולות עקביים</strong>.<br><br>
+      <strong>🔑 העיקרון החשוב ביותר — קונסיסטנטיות!</strong><br>
+      מה שמותר — מותר תמיד. מה שאסור — אסור תמיד.<br>
+      גור שמקבל מסרים סותרים (פעם כן, פעם לא) — יתבלבל ויתקשה ללמוד את הגבולות.<br>
+      <span style="color:#7c3aed;font-weight:700">← כל בני המשפחה צריכים לנהוג אותו דבר — אחרת הגור לא ילמד!</span>
+    </div>
+
+    <div class="section-title">🎓 תרגילי אילוף ומשמעת בסיסית</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>תרגיל "אלי"</strong> — הכלב לומד לרוץ אל המפעיל לפי קריאה.<br>
+          <span style="font-size:13px;color:var(--text-muted)">זה אחד התרגילים הבסיסיים ביותר — יצור קשר וציות. גיל 3–4 חודשים הוא הזמן האידיאלי להתחיל, כי הגור עדיין בשלב של הצמדות ורצון לקרבה.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>תרגיל "שב"</strong> — הכלב לומד לשבת לפי פקודה.<br>
+          <span style="font-size:13px;color:var(--text-muted)">אחת הפקודות הבסיסיות ביותר — בסיס לכל אילוף עתידי. לומדים שיש פקודה ויש ציות.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>תרגיל "רגלי"</strong> — הכלב לומד ללכת צמוד ליד הבעלים.<br>
+          <span style="font-size:13px;color:var(--text-muted)">יוצר קשר וקרבה בין הכלב למפעיל, ומלמד שיש ציפייה לתנועה מבוקרת.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">4</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>תרגיל "ארצה"</strong> — הכלב לומד לשכב לפי פקודה.<br>
+          <span style="font-size:13px;color:var(--text-muted)">מלמד הרגעה ושליטה עצמית — כלב שיודע "ארצה" קל יותר לניהול במצבים שונים.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">5</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>חיזוק חיובי — הכלי המרכזי!</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">בכל לימוד בגיל זה — <strong>החיזוק החיובי חייב להיות משמעותי מאוד</strong>. פרס, שבח, משחק — מה שהכלב הספציפי הזה אוהב. כל כלב לגופו.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="remember-box">תקופה 4: אחרון לחתימה | "אלי", "שב", "רגלי", "ארצה" | גבולות ברורים | חיזוק חיובי!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בגיל 3–4 חודשים ניתן להתחיל ללמד תרגילי אילוף בסיסיים כמו "אלי", "שב", "רגלי" ו"ארצה".</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf9a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf9a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf9a"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1e40af)">
+    <span class="chapter-num">תקופה 5</span><span class="emoji">📈</span>
+    <h1>גיל 4 עד 7 חודשים</h1>
+    <p class="subtitle">צמיחה מהירה ואילוף מתקדם</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את המאפיינים הפיזיים של תקופה 5.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#dbeafe;color:#1e40af">⏱️ גיל 4–7 חודשים</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">📈 צמיחה מהירה</div>הכלב גדל בקצב מהיר מאוד</div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">🦴 גדילת עצמות</div>העצמות גדלות ומתחזקות</div>
+      <div class="mini-card" style="background:#fee2e2;border:2px solid #fca5a5"><div class="title">🦷 החלפת שיניים</div>שיני חלב מתחלפות בשיני קבע</div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399"><div class="title">🎓 אילוף מתקדם</div>גיל מצוין להתחלת עבודה אינטנסיבית</div>
+    </div>
+    <div class="remember-box">תקופה 5: צמיחה + שיניים + עצמות + אילוף מתקדם!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מייחד את גיל 4–7 חודשים מבחינה פיזית?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">א</span>סיום הצמיחה ויציבות מוחלטת</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s10q')"><span class="opt-letter">ב</span>צמיחה מהירה, גדילת עצמות והחלפת שיניים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ג</span>תחילת ההחתמה</button>
+    </div>
+    <div class="feedback" id="fb-s10q"></div>
+  </div>
+</div>
+
+<!-- S11: תקופה 6 -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">
+    <span class="chapter-num">תקופה 6</span><span class="emoji">🔥</span>
+    <h1>גיל 7 חודשים עד בגרות</h1>
+    <p class="subtitle">סימנים הורמונליים ובחינת גבולות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני תקופה 6 ואיך להתמודד עם בחינת הגבולות.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#fee2e2;color:#991b1b">⏱️ גיל 7 חודשים עד בגרות</div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>כמעט סיים לגדול</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">הכלב גדל בצורה מתונה מאוד — עיקר הצמיחה הפיזית כבר מאחוריו. הגוף מתייצב.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>סימנים הורמונליים</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">מתחילים להופיע שינויים הורמונליים — בנקבות: ייחום ראשון, בזכרים: עלייה ברמות טסטוסטרון. שינויים אלה עשויים להשפיע על ההתנהגות.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>בחינת גבולות מחדש</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">בדומה לתקופה 4 — הכלב מתחיל שוב לבחון מה מותר ומה אסור. זהו הזמן לשמור על <strong>קונסיסטנטיות</strong> ולא לאפשר "פרצות" בגבולות שכבר נקבעו. מה שהיה אסור — נשאר אסור!</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">4</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>ניתוב משמעותי לצרכינו</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">עכשיו נעצב את הכלב ונתחיל לנתב אותו לצרכים שלנו בצורה ממוקדת — אילוף מתקדם, עבודה, ספורט או כל מה שהכלב מיועד לו.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">5</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>פיתוח יכולות פיזיות גבוהות</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">הכלב מפתח כוח, מהירות וסיבולת. כעת ניתן להגביר את עצימות האימון הפיזי ולהוציא יותר אנרגיה בצורה ממוקדת.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">תקופה 6: הורמונים + בחינת גבולות = קונסיסטנטיות! | ניתוב + יכולות פיזיות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בגיל 7 חודשים ואילך הכלב עלול לבחון מחדש את גבולות ההתנהגות שנקבעו.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf11a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf11a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf11a"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0369a1)">
+    <span class="chapter-num">תקופה 7</span><span class="emoji">🏆</span>
+    <h1>בגרות</h1>
+    <p class="subtitle">עיצוב סופי — גוף ואופי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני שלב הבגרות ומה ניתן לעשות בו.</div>
+  <div class="card">
+    <div class="period-badge" style="background:#d1fae5;color:#065f46">⏱️ בגרות — תקופה יציבה יחסית</div>
+
+    <div class="highlight green" style="font-size:15px;text-align:center;margin-bottom:14px">
+      בגיל זה הכלב כבר <strong>מעוצב באופיו ומעוצב פיזית</strong>.<br>
+      עכשיו — נחזק, נלטש ונעצב אותו <strong>סופית</strong>.
+    </div>
+
+    <div class="section-title">✅ מה ניתן לעשות בתקופת הבגרות?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>חיזוק מה שנלמד</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">כל הפקודות והתרגילים שנלמדו בתקופות הקודמות — מחזקים, מייצבים ומשכללים. הכלב כבר מכיר — עכשיו נהפוך את זה לאוטומטי ואמין.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>לימוד דברים חדשים</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">ניתן ללמד את הכלב מיומנויות ותרגילים חדשים — כלב שקיבל חשיפה מוקדמת נכונה בשלבים הקודמים ילמד גם עכשיו בקלות יחסית.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>עיצוב סופי של האופי</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">ליטוש ועיצוב האופי — להפוך את הכלב למה שרצינו מהתחלה. זהו השלב שבו "מוצרים הסופי" של כל ההשקעה שהושקעה מגיל הגור.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">4</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong>שמירה על קונסיסטנטיות</strong><br>
+          <span style="font-size:13px;color:var(--text-muted)">הגבולות שנקבעו נשמרים גם בבגרות. כלב בוגר עדיין צריך מסגרת ברורה ועקבית — זה מה שמייצר ביטחון אצלו.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="remember-box">בגרות = חיזוק + לימוד חדש + עיצוב סופי | קונסיסטנטיות עד הסוף!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">בגיל הבגרות ניתן <strong>לחזק ולשכלל</strong> מה שנלמד, וגם ללמד <span class="fill-blank" onclick="revealBlank(this,'דברים חדשים')">__________</span> — בתנאי שהכלב קיבל <span class="fill-blank" onclick="revealBlank(this,'חשיפה מוקדמת נכונה')">______________</span> בתקופות הקריטיות.</div>
+  </div>
+</div>
+
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">סיכום</span><span class="emoji">📊</span>
+    <h1>כל 7 התקופות — טבלת סיכום</h1>
+    <p class="subtitle">בת אחת עיני</p>
+  </div>
+  <div class="card">
+    <table class="info-table">
+      <tr><th>תקופה</th><th>גיל</th><th>עיקרי התקופה</th><th>חשוב לזכור</th></tr>
+      <tr><td style="white-space:nowrap">1️⃣ <strong>ראשונה</strong></td><td>0–3 שבועות</td><td>עיוור + חרש, תלוי באם</td><td>מגע אדם בלבד</td></tr>
+      <tr><td style="white-space:nowrap">2️⃣ <strong>שנייה</strong></td><td>3–7 שבועות</td><td>לומד להיות כלב, חושים מתפתחים</td><td>אל תפריד! סוציאליזציה</td></tr>
+      <tr><td style="white-space:nowrap">3️⃣ <strong>שלישית</strong></td><td>7–12 שבועות</td><td>סביבה מורחבת, שיתוף פעולה</td><td>⭐ הגיל האידיאלי לבית חדש</td></tr>
+      <tr><td style="white-space:nowrap">4️⃣ <strong>רביעית</strong></td><td>3–4 חודשים</td><td>בוחן גבולות, קונסיסטנטיות</td><td>אחרון להחתמה! "אלי", "שב", "רגלי", "ארצה"</td></tr>
+      <tr><td style="white-space:nowrap">5️⃣ <strong>חמישית</strong></td><td>4–7 חודשים</td><td>צמיחה מהירה, החלפת שיניים</td><td>אילוף מתקדם</td></tr>
+      <tr><td style="white-space:nowrap">6️⃣ <strong>שישית</strong></td><td>7 חודשים–בגרות</td><td>סימנים הורמונליים, בוחן גבולות מחדש</td><td>קונסיסטנטיות!</td></tr>
+      <tr><td style="white-space:nowrap">7️⃣ <strong>שביעית</strong></td><td>בגרות</td><td>מעוצב, יציב יחסית</td><td>חיזוק + עיצוב סופי</td></tr>
+    </table>
+    <div class="remember-box">תקופות 1–4 = תקופות ההחתמה | 7–12 שבועות = הגיל הטוב ביותר לבית חדש!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">באיזו תקופה מסתיימת ההחתמה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">א</span>תקופה שנייה (3–7 שבועות)</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ב</span>תקופה שלישית (7–12 שבועות)</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">ג</span>תקופה רביעית (3–4 חודשים)</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+</div>
+
+<!-- S14: מילון -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 14</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ לגלות הסבר</p>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">◀ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 9</span><button onclick="nextCard()">הבא ▶</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🔒 החתמה</div><div class="glossary-def">פרק זמן מוגבל שבו בעל החיים רגיש לקליטת מידע מהסביבה. הנתיבים העצביים נחקקים ואי אפשר למחוק אותם.</div></div>
+    <div class="glossary-item"><div class="glossary-term">👀 חשיפה</div><div class="glossary-def">חשיפת הגור לגירויים מגוונים — אנשים, כלבים, רעשים, מקומות — לפיתוח ביטחון ויכולת תקשורת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐣 חובשי קן</div><div class="glossary-def">בעלי חיים עם תקופת ילדות ארוכה ותלות באם. לכלב — זמן ארוך יותר לעבור החתמה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🤝 סוציאליזציה</div><div class="glossary-def">הסתגלות חברתית — לימוד תקשורת, גבולות נשיכה ועבודה בתוך הלהקה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎯 יצר ציד</div><div class="glossary-def">יצר הציד — רדיפה ועניין בעצמים הנעים. מתחיל להתפתח בתקופה שנייה וחשוב לעודד אותו.</div></div>
+    <!-- removed --><div style="display:none"><div class="glossary-term">oldרת כבר בגיל 5 שבועות ונבחנת מחדש בגיל 3–4 חודשים ובתקופה השישית.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐾 להקה</div><div class="glossary-def">קבוצת הכלבים (ובני האדם) שהכלב שייך אליה — המשפחה הביתית היא הלהקה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📅 תקופה קריטית</div><div class="glossary-def">פרק זמן בילדות שבו בעל החיים בשל לקלוט מידע שישאר לטווח ארוך. קביעת ההתנהגות העתידית.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎓 חיזוק חיובי</div><div class="glossary-def">תגמול על התנהגות רצויה — הכרחי כשמלמדים תרגילים ומשמעת בגיל 3–4 חודשים.</div></div>
+  </div>
+</div>
+
+<!-- S15: נכון/לא נכון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. בגיל 0–3 שבועות לגור יש ראייה מפותחת.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. גיל 7–12 שבועות הוא הזמן האידיאלי להעברת הגור לבית חדש.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. החתמה היא תהליך הפיך — ניתן למחוק חוויות שהגור עבר.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. תקופת ההחתמה מסתיימת בגיל 3–4 חודשים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. גור שנשאר בשגר אחרי גיל 12 שבועות יעדיף חברת אנשים על פני כלבים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. Prey Drive מתחיל להתפתח בתקופה השנייה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+  </div>
+</div>
+
+<!-- S16: שאלות -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה קורה לגור שמופרד מהשגר בגיל 3–7 שבועות?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>יהפוך לכלב עצמאי ומאוזן</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>עלול להפוך לאגרסיבי או ללא גבולות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>ילמד מהר יותר</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה הם חובשי קן?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>כלבים שאוהבים לישון</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>בעלי חיים עם תקופת ילדות ארוכה ותלות גדולה באם</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>כלבים בני גזע מסוים</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. מאיזה גיל מומלץ להתחיל ללמד תרגילי אילוף בסיסיים?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>גיל 3–7 שבועות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>גיל 7–12 שבועות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ג</span>גיל 3–4 חודשים</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מה כדאי לעשות כשגור מראה פחד מגורם מסוים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>לפנק ולהרגיע אותו מאוד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ב</span>להתעלם מהגורם המפחיד ולא להפריז במגננה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>להרחיקו מיד לצמיתות</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S17: התאמה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה — תקופה למאפיין</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר תקופה למאפיינה</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">0–3 שבועות</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">3–7 שבועות</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">7–12 שבועות</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">3–4 חודשים</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">הגיל האידיאלי לבית חדש</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">עיוור, חרש, רק מגע</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">התקופה האחרונה להחתמה</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">לומד להיות כלב — אל תפריד!</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">בתקופה <span class="fill-blank" onclick="revealBlank(this,'שנייה')">______</span> הגור לומד להיות כלב ו<span class="fill-blank" onclick="revealBlank(this,'אסור להפריד')">_______</span> אותו מהשגר.</div>
+    <div class="fill-sentence">ההחתמה היא <span class="fill-blank" onclick="revealBlank(this,'בלתי הפיכה')">__________</span> כי נתיבים עצביים <span class="fill-blank" onclick="revealBlank(this,'חקוקים במוח')">__________</span>.</div>
+    <div class="fill-sentence">בגיל 3–4 חודשים ניתן ללמד תרגילי ריצה כמו <span class="fill-blank" onclick="revealBlank(this,'אלי וקדימה')">_________</span>.</div>
+  </div>
+</div>
+
+<!-- S18: מטלה -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">מטלה</span><span class="emoji">✏️</span>
+    <h1>מטלה מסכמת</h1>
+    <p class="subtitle">כמו בבגרות!</p>
+  </div>
+  <div class="card">
+    <div class="highlight yellow" style="font-size:15px;font-weight:700;text-align:center">📝 ענה על שתי השאלות הבאות</div>
+
+    <div class="section-title" style="margin-top:12px">שאלה א'</div>
+    <div class="definition-box" style="font-size:16px;font-weight:600">מהי תקופה קריטית?</div>
+    <div class="question-box">
+      <div class="q-title">❓ בדוק את עצמך</div>
+      <p style="margin-bottom:14px;font-size:15px">מה כוללת הגדרה נכונה של תקופה קריטית?</p>
+      <div class="mc-options">
+        <button class="mc-option" onclick="answerMC(this,'wrong','m1q')"><span class="opt-letter">א</span>תקופה שבה הכלב ישן הרבה</button>
+        <button class="mc-option" onclick="answerMC(this,'correct','m1q')"><span class="opt-letter">ב</span>פרק זמן בילדות שבו בעל החיים בשל לקלוט מידע לזיכרון ארוך טווח שיקבע את התנהגותו</button>
+        <button class="mc-option" onclick="answerMC(this,'wrong','m1q')"><span class="opt-letter">ג</span>התקופה שבה הכלב לומד פקודות</button>
+      </div>
+      <div class="feedback" id="fb-m1q"></div>
+    </div>
+
+    <div class="section-title" style="margin-top:16px">שאלה ב'</div>
+    <div class="definition-box" style="font-size:16px;font-weight:600">בחר תקופה קריטית אחת וכתוב <strong>לפחות 2 מאפיינים</strong> שלה.</div>
+    <div class="question-box">
+      <div class="q-title">✍️ תרגל — בחר תקופה</div>
+      <p style="margin-bottom:12px;font-size:14px;color:var(--text-muted)">לחץ על התקופה שבחרת וגלה את המאפיינים שלה:</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="mc-option" id="pbtn1" onclick="selectPeriodBtn('pbtn1','תקופה ראשונה (0–3 שבועות): 1. הגור עיוור וחרש — חוש המגע היחיד הפעיל. 2. תלוי באם לחלוטין. 3. חשוב להרגיל למגע אדם כבר בשלב זה. 4. אין צורך בטיפול מיוחד.')"><span class="opt-letter">1</span>תקופה ראשונה — 0–3 שבועות</button>
+        <button class="mc-option" id="pbtn2" onclick="selectPeriodBtn('pbtn2','תקופה שנייה (3–7 שבועות): 1. הגור לומד להיות כלב דרך משחק עם האחים. 2. חושים מתפתחים — שמיעה, ראייה, ריח. 3. תחילת ההחתמה — חשוב לחשוף לאדם. 4. אסור להפריד מהשגר!')"><span class="opt-letter">2</span>תקופה שנייה — 3–7 שבועות</button>
+        <button class="mc-option" id="pbtn3" onclick="selectPeriodBtn('pbtn3','תקופה שלישית (7–12 שבועות): 1. הגיל האידיאלי לעבור לבית חדש. 2. הגור מתחיל לחקור את הסביבה המורחבת. 3. גור שמועבר עכשיו יחפש חברת אדם. 4. יצר הציד ממשיך להתפתח.')"><span class="opt-letter">3</span>תקופה שלישית — 7–12 שבועות</button>
+        <button class="mc-option" id="pbtn4" onclick="selectPeriodBtn('pbtn4','תקופה רביעית (3–4 חודשים): 1. התקופה האחרונה להחתמה. 2. הגור בוחן גבולות — חשוב על קונסיסטנטיות. 3. גיל מתאים ללמד אלי, שב, רגלי, ארצה. 4. חיזוק חיובי תמיד!')"><span class="opt-letter">4</span>תקופה רביעית — 3–4 חודשים</button>
+      </div>
+      <div class="feedback" id="fb-period-info" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- S19: סיום -->
+<div class="screen" id="screen-19">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת תקופות קריטיות בחיי הגור!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="💡">תקופה קריטית = חלון הזדמנויות לקליטת מידע לטווח ארוך</li>
+      <li data-icon="🔒">החתמה = בלתי הפיכה | נתיבים עצביים חקוקים במוח</li>
+      <li data-icon="1️⃣">תקופה 1 (0–3 שב'): עיוור + חרש | רק מגע</li>
+      <li data-icon="2️⃣">תקופה 2 (3–7 שב'): לומד להיות כלב | אל תפריד!</li>
+      <li data-icon="3️⃣">תקופה 3 (7–12 שב'): ⭐ הגיל האידיאלי לבית חדש</li>
+      <li data-icon="4️⃣">תקופה 4 (3–4 חודשים): אחרון להחתמה | "אלי" + "קדימה"</li>
+      <li data-icon="5️⃣">תקופה 5 (4–7 חודשים): צמיחה + שיניים + אילוף</li>
+      <li data-icon="6️⃣">תקופה 6 (7 חודשים–בגרות): הורמונים + בחינת גבולות</li>
+      <li data-icon="7️⃣">תקופה 7 (בגרות): חיזוק + עיצוב סופי</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🐕</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>תקופה קריטית</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>מושגי יסוד</button>
+      <button class="toc-item" onclick="goToScreen(4)"><span class="num">4</span>תקופה 1</button>
+      <button class="toc-item" onclick="goToScreen(5)"><span class="num">5</span>תקופה 2</button>
+      <button class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>תקופה 3</button>
+      <button class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>תקופה 4</button>
+      <button class="toc-item" onclick="goToScreen(13)"><span class="num">13</span>טבלת סיכום</button>
+      <button class="toc-item" onclick="goToScreen(18)"><span class="num">18</span>מטלה</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">◀ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 20</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ▶</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=20,SCREEN_NAMES=["פתיחה","תקופה קריטית","בחירת גור","מושגי יסוד","תקופה 1","תקופה 2","החתמה וסוציאליזציה","תקופה 3","חושים והשפעה","תקופה 4","תקופה 5","תקופה 6","תקופה 7","טבלת סיכום","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","מטלה מסכמת","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"🔒 החתמה",def:"פרק זמן מוגבל לקליטת מידע בלתי הפיכה — נתיבים עצביים חקוקים במוח לכל החיים."},
+  {term:"👀 חשיפה",def:"חשיפת הגור לגירויים מגוונים — אנשים, כלבים, רעשים, סביבות — לבניית ביטחון."},
+  {term:"🐣 חובשי קן",def:"בעלי חיים עם ילדות ארוכה ותלות באם. לכלב — יותר זמן לעבור החתמה."},
+  {term:"🤝 סוציאליזציה",def:"הסתגלות חברתית — לימוד תקשורת, גבולות נשיכה ועבודה בתוך הלהקה."},
+  {term:"🎯 יצר ציד",def:"יצר הציד — רדיפה ועניין בעצמים נעים. מתפתח בתקופה השנייה, חשוב לעודד!"},
+  {term:"3️⃣ תקופה שלישית",def:"7–12 שבועות — הגיל האידיאלי לבית חדש. גור שמועבר עכשיו יחפש חברת אדם."},
+  {term:"4️⃣ תקופה רביעית",def:"3–4 חודשים — אחרון להחתמה. 'אלי' ו'קדימה', קבלת תיקונים, חיזוק חיובי."},
+  
+  {term:"📅 תקופה קריטית",def:"חלון הזדמנויות בילדות לקליטת מידע ארוך טווח — קובע את ההתנהגות לכל החיים."}
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===14)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';document.getElementById('btn-next').style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const m=btn.getAttribute('onclick').match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+function selectPeriod(btn,info){
+  // Deselect all
+  document.querySelectorAll('#period-selector .mc-option').forEach(b=>{
+    b.classList.remove('correct');
+    b.style.borderColor='';
+    b.style.background='';
+  });
+  // Mark selected
+  btn.classList.add('correct');
+  // Show info
+  const fb=document.getElementById('fb-period-info');
+  fb.className='feedback show correct';
+  fb.innerHTML='✅ <strong>'+info+'</strong>';
+}
+function selectPeriodBtn(id,info){
+  ['pbtn1','pbtn2','pbtn3','pbtn4'].forEach(pid=>{
+    const b=document.getElementById(pid);
+    if(b){b.classList.remove('correct');b.style.borderColor='';b.style.background='';}
+  });
+  const btn=document.getElementById(id);
+  if(btn){btn.classList.add('correct');}
+  const fb=document.getElementById('fb-period-info');
+  fb.className='feedback show correct';
+  fb.innerHTML='✅ <strong>'+info+'</strong>';
+}
+function showPeriodInfo(btn,info){const fb=document.getElementById('fb-period-info');fb.className='feedback show correct';fb.innerHTML='✅ <strong>'+info+'</strong>';}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+</script>
+</body>
+</html>
