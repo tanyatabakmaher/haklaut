@@ -85,7 +85,7 @@
       flex-shrink:0;
     }
 
-        .grid-view{display:block}
+    .grid-view{display:block}
     .grid-view.hidden{display:none}
 
     .section-shell{
@@ -159,6 +159,7 @@
       overflow:hidden;
       background:#ffffff;
       padding:18px;
+      border-bottom:1px solid #eef3ef;
     }
 
     .card-media img{
@@ -228,6 +229,16 @@
       box-shadow:0 14px 24px rgba(74,140,95,0.28);
     }
 
+    .state{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      box-shadow:var(--shadow);
+    }
+
     .lesson-view{
       display:none;
       position:fixed;
@@ -295,8 +306,6 @@
       .section-shell{padding:16px}
       .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
       .section-kicker-icon{font-size:24px}
-      .hero{padding:18px 16px}
-      .subtitle{font-size:16px}
       .card{min-height:280px}
       .card-title{font-size:22px}
       .lesson-title{font-size:21px}
@@ -317,52 +326,7 @@
     <section id="gridView" class="grid-view">
       <div class="section-shell">
         <p class="section-kicker"><span class="section-kicker-icon" aria-hidden="true">🐾</span><span>תחום בעלי החיים - נושאים משותפים</span></p>
-        <main id="cardsGrid" class="grid" aria-live="polite">
-        <button class="card" type="button" data-title="מבוא לחקלאות" data-url="mavo.html">
-          <div class="card-media fallback">🌱</div>
-          <div class="card-body">
-            <h2 class="card-title">מבוא לחקלאות</h2>
-            <p class="card-text">מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.</p>
-            <div class="card-footer">כניסה ללומדה</div>
-          </div>
-        </button>
-
-        <button class="card" type="button" data-title="ויסות חום בעלי חיים" data-url="visut-hom-klali.html">
-          <div class="card-media fallback">🌡️</div>
-          <div class="card-body">
-            <h2 class="card-title">ויסות חום בעלי חיים</h2>
-            <p class="card-text">הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.</p>
-            <div class="card-footer">כניסה ללומדה</div>
-          </div>
-        </button>
-
-        <button class="card" type="button" data-title="ויסות חום על ידי החקלאי" data-url="visut-hom-haklai.html">
-          <div class="card-media fallback">🐔</div>
-          <div class="card-body">
-            <h2 class="card-title">ויסות חום על ידי החקלאי</h2>
-            <p class="card-text">תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.</p>
-            <div class="card-footer">כניסה ללומדה</div>
-          </div>
-        </button>
-
-        <button class="card" type="button" data-title="מערכת החיסון" data-url="maarehet-hisun.html">
-          <div class="card-media fallback">🛡️</div>
-          <div class="card-body">
-            <h2 class="card-title">מערכת החיסון</h2>
-            <p class="card-text">מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.</p>
-            <div class="card-footer">כניסה ללומדה</div>
-          </div>
-        </button>
-
-        <button class="card" type="button" data-title="מערכת הנשימה" data-url="maarehet-neshima.html">
-          <div class="card-media fallback">🫁</div>
-          <div class="card-body">
-            <h2 class="card-title">מערכת הנשימה</h2>
-            <p class="card-text">מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.</p>
-            <div class="card-footer">כניסה ללומדה</div>
-          </div>
-        </button>
-      </main>
+        <main id="cardsGrid" class="grid" aria-live="polite"></main>
       </div>
     </section>
 
@@ -377,17 +341,132 @@
     </section>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
-    const cards = Array.from(document.querySelectorAll('.card'));
+    const cardsGrid = document.getElementById('cardsGrid');
     const gridView = document.getElementById('gridView');
     const lessonView = document.getElementById('lessonView');
     const lessonFrame = document.getElementById('lessonFrame');
     const lessonTitle = document.getElementById('lessonTitle');
     const backBtn = document.getElementById('backBtn');
 
+    const MENU_FILE = 'menu.xlsx';
+
+    function getFallbackIcon(title) {
+      const t = String(title || '').trim();
+      if (t.includes('מבוא')) return '🌱';
+      if (t.includes('ויסות חום על ידי החקלאי')) return '🐔';
+      if (t.includes('ויסות חום')) return '🌡️';
+      if (t.includes('חיסון') || t.includes('החיסון')) return '🛡️';
+      if (t.includes('נשימה')) return '🫁';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return '🐣';
+      if (t.includes('כלבים') || t.includes('גור')) return '🐶';
+      return '📘';
+    }
+
+    function getDescription(title) {
+      const t = String(title || '').trim();
+      if (t.includes('מבוא')) return 'מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.';
+      if (t.includes('ויסות חום על ידי החקלאי')) return 'תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.';
+      if (t.includes('ויסות חום')) return 'הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.';
+      if (t.includes('חיסון') || t.includes('החיסון')) return 'מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.';
+      if (t.includes('נשימה')) return 'מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return 'מבנה מערכת הרבייה, הורמונים, מחזוריות, הפריה ויישומים חקלאיים.';
+      if (t.includes('כלבים') || t.includes('גור')) return 'התפתחות הגור, חושים, תקופות קריטיות ויישום מעשי בגידול כלבים.';
+      return 'לומדה אינטראקטיבית להכנה לבגרות בחקלאות.';
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function normalizeUrl(url) {
+      const trimmed = String(url || '').trim();
+      return trimmed || '#';
+    }
+
+    function buildMediaHtml(row) {
+      const iconUrl = normalizeUrl(row.menu_icon);
+      const fallbackIcon = getFallbackIcon(row.page_name);
+
+      if (iconUrl && iconUrl !== '#') {
+        return `
+          <div class="card-media">
+            <img src="${escapeHtml(iconUrl)}" alt="${escapeHtml(row.page_name)}" loading="lazy"
+                 onerror="this.parentElement.classList.add('fallback'); this.remove(); this.parentElement.innerHTML='${fallbackIcon}';">
+          </div>
+        `;
+      }
+
+      return `<div class="card-media fallback">${fallbackIcon}</div>`;
+    }
+
+    function buildCard(row) {
+      const button = document.createElement('button');
+      button.className = 'card';
+      button.type = 'button';
+      button.dataset.title = row.page_name;
+      button.dataset.url = normalizeUrl(row.page_url);
+      button.setAttribute('aria-label', `פתיחת הלומדה ${row.page_name}`);
+
+      button.innerHTML = `
+        ${buildMediaHtml(row)}
+        <div class="card-body">
+          <h2 class="card-title">${escapeHtml(row.page_name)}</h2>
+          <p class="card-text">${escapeHtml(getDescription(row.page_name))}</p>
+          <div class="card-footer">כניסה ללומדה</div>
+        </div>
+      `;
+
+      button.addEventListener('click', () => {
+        openLesson(row.page_name, row.page_url);
+      });
+
+      return button;
+    }
+
+    function renderCards(rows) {
+      cardsGrid.innerHTML = '';
+
+      if (!rows.length) {
+        cardsGrid.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
+        return;
+      }
+
+      rows.forEach(row => {
+        cardsGrid.appendChild(buildCard(row));
+      });
+    }
+
+    async function loadMenu() {
+      const response = await fetch(`${MENU_FILE}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.arrayBuffer();
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheet = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[firstSheet];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+
+      return rows
+        .map(row => ({
+          page_name: String(row.page_name || '').trim(),
+          page_url: String(row.page_url || '').trim(),
+          menu_icon: String(row.menu_icon || '').trim()
+        }))
+        .filter(row => row.page_name && row.page_url);
+    }
+
     function openLesson(title, url) {
       lessonTitle.textContent = title;
-      lessonFrame.src = url;
+      lessonFrame.src = normalizeUrl(url);
       gridView.classList.add('hidden');
       lessonView.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -400,13 +479,25 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        openLesson(card.dataset.title, card.dataset.url);
-      });
-    });
-
     backBtn.addEventListener('click', goHome);
+
+    async function init() {
+      try {
+        const rows = await loadMenu();
+        renderCards(rows);
+      } catch (error) {
+        console.error(error);
+        cardsGrid.innerHTML = `
+          <div class="state">
+            לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
+            ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
+            <strong>page_name</strong>, <strong>page_url</strong> ו־<strong>menu_icon</strong>.
+          </div>
+        `;
+      }
+    }
+
+    init();
   </script>
 </body>
 </html>
