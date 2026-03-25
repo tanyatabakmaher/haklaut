@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>לומדת הכנה ל־5 יחידות בגרות בחקלאות</title>
+  <title>לומדת הכנה לבגרות בחקלאות</title>
   <meta name="description" content="מסך ראשי ללומדות הכנה ל־5 יחידות בגרות בחקלאות" />
   <style>
     :root{
@@ -67,22 +67,31 @@
       display:flex;
       align-items:center;
       gap:14px;
-      flex-wrap:wrap;
+      flex-wrap:nowrap;
+      white-space:nowrap;
+      min-width:0;
+    }
+
+    .hero-title-text{
+      min-width:0;
+      flex:1 1 auto;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .hero-title-icon{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:56px;
-      height:56px;
-      border-radius:18px;
+      width:52px;
+      height:52px;
+      border-radius:16px;
       background:rgba(255,255,255,0.18);
       border:1px solid rgba(255,255,255,0.28);
       box-shadow:0 8px 18px rgba(0,0,0,0.10);
-      font-size:30px;
+      font-size:28px;
       line-height:1;
-      flex-shrink:0;
+      flex:0 0 auto;
     }
 
     .grid-view{display:block}
@@ -301,8 +310,9 @@
 
     @media (max-width: 740px){
       .hero{padding:4px 2px 14px}
-      h1{font-size:clamp(28px,9vw,40px); gap:10px}
-      .hero-title-icon{width:46px; height:46px; font-size:24px; border-radius:14px}
+      h1{font-size:clamp(22px,6vw,32px); gap:8px; line-height:1.1}
+      .hero-title-icon{width:40px; height:40px; font-size:22px; border-radius:12px}
+      .hero-title-text{overflow:visible; text-overflow:clip}
       .section-shell{padding:16px}
       .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
       .section-kicker-icon{font-size:24px}
@@ -320,7 +330,7 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1><span class="hero-title-icon" aria-hidden="true">🎓</span><span>לומדת הכנה ל־5 יחידות בגרות בחקלאות</span></h1>
+      <h1><span class="hero-title-icon" aria-hidden="true">🎓</span><span class="hero-title-text">לומדת הכנה לבגרות בחקלאות</span></h1>
     </section>
 
     <section id="gridView" class="grid-view">
