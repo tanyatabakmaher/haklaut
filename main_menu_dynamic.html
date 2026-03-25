@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>לומדת הכנה לבגרות בחקלאות</title>
-  <meta name="description" content="מסך ראשי ללומדות הכנה ל־5 יחידות בגרות בחקלאות" />
+  <meta name="description" content="מסך ראשי ללומדות הכנה לבגרות בחקלאות" />
   <style>
     :root{
       --bg1:#5aa4c3;
@@ -96,6 +96,11 @@
 
     .grid-view{display:block}
     .grid-view.hidden{display:none}
+
+    .sections-stack{
+      display:grid;
+      gap:24px;
+    }
 
     .section-shell{
       background:rgba(255,255,255,0.18);
@@ -313,6 +318,7 @@
       h1{font-size:clamp(22px,6vw,32px); gap:8px; line-height:1.1}
       .hero-title-icon{width:40px; height:40px; font-size:22px; border-radius:12px}
       .hero-title-text{overflow:visible; text-overflow:clip}
+      .sections-stack{gap:18px}
       .section-shell{padding:16px}
       .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
       .section-kicker-icon{font-size:24px}
@@ -334,10 +340,7 @@
     </section>
 
     <section id="gridView" class="grid-view">
-      <div class="section-shell">
-        <p class="section-kicker"><span class="section-kicker-icon" aria-hidden="true">🐾</span><span>תחום בעלי החיים - נושאים משותפים</span></p>
-        <main id="cardsGrid" class="grid" aria-live="polite"></main>
-      </div>
+      <div id="sectionsContainer" class="sections-stack"></div>
     </section>
 
     <section id="lessonView" class="lesson-view" aria-live="polite">
@@ -353,7 +356,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
-    const cardsGrid = document.getElementById('cardsGrid');
+    const sectionsContainer = document.getElementById('sectionsContainer');
     const gridView = document.getElementById('gridView');
     const lessonView = document.getElementById('lessonView');
     const lessonFrame = document.getElementById('lessonFrame');
@@ -361,6 +364,17 @@
     const backBtn = document.getElementById('backBtn');
 
     const MENU_FILE = 'menu.xlsx';
+
+    const SECTION_CONFIG = {
+      general: {
+        title: 'תחום בעלי החיים - נושאים משותפים',
+        icon: '🐾'
+      },
+      dogs: {
+        title: 'כלבים',
+        icon: '🐶'
+      }
+    };
 
     function getFallbackIcon(title) {
       const t = String(title || '').trim();
@@ -398,6 +412,13 @@
     function normalizeUrl(url) {
       const trimmed = String(url || '').trim();
       return trimmed || '#';
+    }
+
+    function normalizeTopic(value) {
+      const topic = String(value || '').trim().toLowerCase();
+      if (!topic) return 'general';
+      if (topic === 'general' || topic === 'dogs') return topic;
+      return '';
     }
 
     function buildMediaHtml(row) {
@@ -440,17 +461,51 @@
       return button;
     }
 
-    function renderCards(rows) {
-      cardsGrid.innerHTML = '';
+    function buildSection(key, rows) {
+      const config = SECTION_CONFIG[key];
+      if (!config || !rows.length) return null;
 
-      if (!rows.length) {
-        cardsGrid.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
-        return;
-      }
+      const wrapper = document.createElement('div');
+      wrapper.className = 'section-shell';
+
+      const heading = document.createElement('p');
+      heading.className = 'section-kicker';
+      heading.innerHTML = `<span class="section-kicker-icon" aria-hidden="true">${config.icon}</span><span>${escapeHtml(config.title)}</span>`;
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      rows.forEach(row => grid.appendChild(buildCard(row)));
+
+      wrapper.appendChild(heading);
+      wrapper.appendChild(grid);
+      return wrapper;
+    }
+
+    function renderSections(rows) {
+      sectionsContainer.innerHTML = '';
+
+      const groups = {
+        general: [],
+        dogs: []
+      };
 
       rows.forEach(row => {
-        cardsGrid.appendChild(buildCard(row));
+        const topic = normalizeTopic(row.topic);
+        if (topic && groups[topic]) {
+          groups[topic].push(row);
+        }
       });
+
+      const generalSection = buildSection('general', groups.general);
+      const dogsSection = buildSection('dogs', groups.dogs);
+
+      if (generalSection) sectionsContainer.appendChild(generalSection);
+      if (dogsSection) sectionsContainer.appendChild(dogsSection);
+
+      if (!generalSection && !dogsSection) {
+        sectionsContainer.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
+      }
     }
 
     async function loadMenu() {
@@ -469,7 +524,8 @@
         .map(row => ({
           page_name: String(row.page_name || '').trim(),
           page_url: String(row.page_url || '').trim(),
-          menu_icon: String(row.menu_icon || '').trim()
+          menu_icon: String(row.menu_icon || '').trim(),
+          topic: String(row.topic || row.Topic || row['נושא'] || '').trim()
         }))
         .filter(row => row.page_name && row.page_url);
     }
@@ -494,14 +550,14 @@
     async function init() {
       try {
         const rows = await loadMenu();
-        renderCards(rows);
+        renderSections(rows);
       } catch (error) {
         console.error(error);
-        cardsGrid.innerHTML = `
+        sectionsContainer.innerHTML = `
           <div class="state">
             לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
             ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
-            <strong>page_name</strong>, <strong>page_url</strong> ו־<strong>menu_icon</strong>.
+            <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong> ו־<strong>topic</strong>.
           </div>
         `;
       }
