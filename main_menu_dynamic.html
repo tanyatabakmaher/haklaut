@@ -90,7 +90,7 @@
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-      min-height:290px;
+      min-height:310px;
       text-decoration:none;
       color:inherit;
       background:var(--panel);
@@ -113,29 +113,34 @@
     }
 
     .card-media{
-      height:150px;
+      height:170px;
       position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:60px;
       overflow:hidden;
+      background:linear-gradient(135deg,#d4fc79,#96e6a1);
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     .card-media::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+      pointer-events:none;
     }
 
-    .theme-intro{background:linear-gradient(135deg,#f6d365,#fda085)}
-    .theme-heat{background:linear-gradient(135deg,#f093fb,#f5576c)}
-    .theme-farmer{background:linear-gradient(135deg,#84fab0,#8fd3f4)}
-    .theme-immune{background:linear-gradient(135deg,#a18cd1,#fbc2eb)}
-    .theme-breath{background:linear-gradient(135deg,#c2e9fb,#81a4fd)}
-    .theme-repro{background:linear-gradient(135deg,#fddb92,#d1fdff)}
-    .theme-default{background:linear-gradient(135deg,#d4fc79,#96e6a1)}
+    .card-media.fallback{
+      font-size:60px;
+      color:#ffffff;
+    }
 
     .card-body{
       padding:18px 18px 16px;
@@ -257,13 +262,14 @@
     @media (max-width: 740px){
       .hero{padding:22px 16px}
       .subtitle{font-size:16px}
-      .card{min-height:270px}
+      .card{min-height:280px}
       .card-title{font-size:22px}
       .lesson-title{font-size:21px}
       .lesson-topbar{padding:14px 16px; min-height:72px}
       .iframe-wrap{height:calc(100vh - 72px)}
       .card-footer{font-size:16px; padding:13px 22px}
       .btn{font-size:15px}
+      .card-media{height:160px}
     }
   </style>
 </head>
@@ -300,57 +306,26 @@
 
     const MENU_FILE = 'menu.xlsx';
 
-    function getCardMeta(title) {
+    function getFallbackIcon(title) {
       const t = String(title || '').trim();
+      if (t.includes('מבוא')) return '🌱';
+      if (t.includes('ויסות חום על ידי החקלאי')) return '🐔';
+      if (t.includes('ויסות חום')) return '🌡️';
+      if (t.includes('חיסון') || t.includes('החיסון')) return '🛡️';
+      if (t.includes('נשימה')) return '🫁';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return '🐣';
+      return '📘';
+    }
 
-      if (t.includes('מבוא')) {
-        return {
-          icon: '🌱',
-          theme: 'theme-intro',
-          desc: 'מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.'
-        };
-      }
-      if (t.includes('ויסות חום על ידי החקלאי')) {
-        return {
-          icon: '🐔',
-          theme: 'theme-farmer',
-          desc: 'תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.'
-        };
-      }
-      if (t.includes('ויסות חום')) {
-        return {
-          icon: '🌡️',
-          theme: 'theme-heat',
-          desc: 'הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.'
-        };
-      }
-      if (t.includes('חיסון') || t.includes('החיסון')) {
-        return {
-          icon: '🛡️',
-          theme: 'theme-immune',
-          desc: 'מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.'
-        };
-      }
-      if (t.includes('נשימה')) {
-        return {
-          icon: '🫁',
-          theme: 'theme-breath',
-          desc: 'מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.'
-        };
-      }
-      if (t.includes('רבייה') || t.includes('הרבייה')) {
-        return {
-          icon: '🐣',
-          theme: 'theme-repro',
-          desc: 'מבנה מערכת הרבייה, הורמונים, מחזוריות, הפריה ויישומים חקלאיים.'
-        };
-      }
-
-      return {
-        icon: '📘',
-        theme: 'theme-default',
-        desc: 'לומדה אינטראקטיבית להכנה לבגרות בחקלאות.'
-      };
+    function getDescription(title) {
+      const t = String(title || '').trim();
+      if (t.includes('מבוא')) return 'מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.';
+      if (t.includes('ויסות חום על ידי החקלאי')) return 'תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.';
+      if (t.includes('ויסות חום')) return 'הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.';
+      if (t.includes('חיסון') || t.includes('החיסון')) return 'מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.';
+      if (t.includes('נשימה')) return 'מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return 'מבנה מערכת הרבייה, הורמונים, מחזוריות, הפריה ויישומים חקלאיים.';
+      return 'לומדה אינטראקטיבית להכנה לבגרות בחקלאות.';
     }
 
     function escapeHtml(value) {
@@ -367,8 +342,23 @@
       return trimmed || '#';
     }
 
+    function buildMediaHtml(row) {
+      const iconUrl = normalizeUrl(row.menu_icon);
+      const fallbackIcon = getFallbackIcon(row.page_name);
+
+      if (iconUrl && iconUrl !== '#') {
+        return `
+          <div class="card-media">
+            <img src="${escapeHtml(iconUrl)}" alt="${escapeHtml(row.page_name)}" loading="lazy"
+                 onerror="this.parentElement.classList.add('fallback'); this.remove(); this.parentElement.innerHTML='${fallbackIcon}';">
+          </div>
+        `;
+      }
+
+      return `<div class="card-media fallback">${fallbackIcon}</div>`;
+    }
+
     function buildCard(row) {
-      const meta = getCardMeta(row.page_name);
       const button = document.createElement('button');
       button.className = 'card';
       button.type = 'button';
@@ -377,10 +367,10 @@
       button.setAttribute('aria-label', `פתיחת הלומדה ${row.page_name}`);
 
       button.innerHTML = `
-        <div class="card-media ${meta.theme}" aria-hidden="true">${meta.icon}</div>
+        ${buildMediaHtml(row)}
         <div class="card-body">
           <h2 class="card-title">${escapeHtml(row.page_name)}</h2>
-          <p class="card-text">${escapeHtml(meta.desc)}</p>
+          <p class="card-text">${escapeHtml(getDescription(row.page_name))}</p>
           <div class="card-footer">כניסה ללומדה</div>
         </div>
       `;
@@ -420,7 +410,8 @@
       return rows
         .map(row => ({
           page_name: String(row.page_name || '').trim(),
-          page_url: String(row.page_url || '').trim()
+          page_url: String(row.page_url || '').trim(),
+          menu_icon: String(row.menu_icon || '').trim()
         }))
         .filter(row => row.page_name && row.page_url);
     }
@@ -452,7 +443,7 @@
           <div class="state">
             לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
             ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
-            <strong>page_name</strong> ו־<strong>page_url</strong>.
+            <strong>page_name</strong>, <strong>page_url</strong> ו־<strong>menu_icon</strong>.
           </div>
         `;
       }
