@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>רבייה בכלבים | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--hot:#dc2626;--hot-light:#fee2e2;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--yellow:#d97706;--yellow-light:#fef3c7;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--yellow-light);border-right:4px solid var(--yellow);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:70px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:15px;line-height:2.2;margin-bottom:10px;padding:12px 14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:130px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:130px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;box-shadow:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐕';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:16px;color:var(--primary);}
+.glossary-def{font-size:14px;line-height:1.6;color:var(--text);margin-top:4px;}
+.phase-badge{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 14px;font-size:13px;font-weight:800;margin-bottom:10px;}
+.numbered-row{display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:8px;}
+.num-circle{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;flex-shrink:0;margin-top:1px;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐕 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🔄 מחזור הרבייה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🐕</span>ייחום בכלבות</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>מבט כללי — 4 שלבים</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">1️⃣</span>שלב 1 — פרואסטרוס</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">2️⃣</span>שלב 2 — אסטרוס</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">3️⃣</span>שלב 3 — דיאסטרוס</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">4️⃣</span>שלב 4 — אנאסטרוס</button>
+    </div>
+    <div class="menu-chapter-title">🤰 היריון</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>הכנה להריון</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🤰</span>ההיריון</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">📅</span>לקראת ההמלטה</button>
+    </div>
+    <div class="menu-chapter-title">🐾 המלטה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🐾</span>שלבי ההמלטה</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🆘</span>עזרה וסימני אזהרה</button>
+    </div>
+    <div class="menu-chapter-title">🐶 לאחר הלידה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🚫</span>מניעת היריון ועיקור</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלת סיכום</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה — נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה — שאלות</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה — התאמה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span>&nbsp;<span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700">פתיחה</span></button>
+  <span style="font-size:22px">🐕</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 21</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕🤰🐾</div>
+    <h1>רבייה בכלבים</h1>
+    <p class="tagline">מחזור הרבייה, היריון, המלטה וטיפול בגורים<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐕 כלבנות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🔄">מחזור הרבייה בכלבות — 4 שלבים</li>
+      <li data-icon="🤰">היריון — סימנים, משך ומה לצפות</li>
+      <li data-icon="🐾">המלטה — שלבים, עזרה וסימני אזהרה</li>
+      <li data-icon="🐶">גורים — תקופות קריטיות ומועד ניתוק</li>
+      <li data-icon="🚫">מניעת היריון ויתרונות העיקור</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">מאיזה גיל כלבה יכולה להתייחם לראשונה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">א</span>3–4 חודשים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">ב</span>6–12 חודשים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ג</span>שנה וחצי עד שנתיים</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- S1: ייחום -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🐕</span>
+    <h1>ייחום בכלבות</h1>
+    <p class="subtitle">מתי ובאיזו תדירות?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר מתי מופיע הייחום הראשון ובאיזו תדירות הוא מתרחש.</div>
+  <div class="card">
+    <div class="definition-box"><strong>ייחום</strong> = תקופה שבה הכלבה יכולה להתעבר. זהו מחזור הרבייה הטבעי של הכלבה.</div>
+
+    <div class="section-title">📅 ייחום ראשון</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #60a5fa">
+        <div class="title">⏱️ גיל הייחום הראשון</div>
+        בגיל <strong>6–12 חודשים</strong>
+      </div>
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399">
+        <div class="title">⚖️ גזעים קטנים מול גדולים</div>
+        גזעים קטנים — מוקדם יותר<br>גזעים גדולים — מאוחר יותר
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:4px">🔁 תדירות הייחום</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <div class="title">📊 פעמים בשנה</div>
+        בין <strong>1–4 פעמים</strong> בשנה
+      </div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <div class="title">📈 ממוצע</div>
+        הממוצע הוא <strong>2 פעמים</strong> בשנה
+      </div>
+    </div>
+    <div class="remember-box">ייחום ראשון: 6–12 חודשים | תדירות: 1–4 פעמים | ממוצע: 2 בשנה!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">הייחום הראשון בכלבות מופיע בגיל <span class="fill-blank" onclick="revealBlank(this,'6–12 חודשים')">________</span>. הממוצע הוא <span class="fill-blank" onclick="revealBlank(this,'2')">_</span> פעמים בשנה.</div>
+  </div>
+</div>
+
+<!-- S2: מבט כללי -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6d28d9,#7c3aed)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🔄</span>
+    <h1>מחזור הרבייה — 4 שלבים</h1>
+    <p class="subtitle">מבט כללי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 4 שלבי מחזור הרבייה בסדר הנכון.</div>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:16px">
+
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:44px">
+          <div style="width:40px;height:40px;border-radius:50%;background:#dc2626;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">1</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:900;font-size:15px;color:#dc2626;margin-bottom:4px">פרואסטרוס — שלב ההכנה</div>
+          <div style="font-size:13px;color:#374151;line-height:1.6">⏱️ 9–11 ימים<br>הכלבה מושכת זכרים אך <strong>לא מענה</strong> להם. בושת נפוחה, טפטוף דמי, ליקוק. אסטרוגן עולה ולאחר מכן יורד — ופרוגסטרון מתחיל לעלות.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:44px">
+          <div style="width:40px;height:40px;border-radius:50%;background:#d97706;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">2</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:900;font-size:15px;color:#d97706;margin-bottom:4px">⭐ אסטרוס — שלב הביוץ</div>
+          <div style="font-size:13px;color:#374151;line-height:1.6">⏱️ 9–11 ימים<br>הביוץ מתרחש! הכלבה <strong>מענה לזכרים</strong>, מרימה זנב ומפנה אחוריים. זהו הזמן המתאים להרבעה — מומלץ להפגיש כל יומיים.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:44px">
+          <div style="width:40px;height:40px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">3</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#ede9fe;border:2px solid #c4b5fd;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:900;font-size:15px;color:#7c3aed;margin-bottom:4px">דיאסטרוס — שלב הפרוגסטרון</div>
+          <div style="font-size:13px;color:#374151;line-height:1.6">⏱️ 60–90 ימים<br>פרוגסטרון נשאר גבוה — גם ללא הריון. אין הפרשה, אין התנהגות מינית. ⚠️ סיכון ל<strong>פיומטרה</strong> — דלקת רחם קשה.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:44px">
+          <div style="width:40px;height:40px;border-radius:50%;background:#475569;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">4</div>
+        </div>
+        <div style="background:#f1f5f9;border:2px solid #cbd5e1;border-radius:12px;padding:12px 14px;flex:1">
+          <div style="font-weight:900;font-size:15px;color:#475569;margin-bottom:4px">אנאסטרוס — שלב המנוחה</div>
+          <div style="font-size:13px;color:#374151;line-height:1.6">⏱️ 4–5 חודשים<br>הורמוני המין ברמה נמוכה ביותר. אין התנהגות מינית. הזכרים לא מראים עניין. המחזור מסתיים — ולאחר מכן <strong>מתחיל מחדש!</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <table class="info-table">
+      <tr><th style="white-space:nowrap">שלב</th><th>שם</th><th>משך</th><th>מאפיין עיקרי</th></tr>
+      <tr><td style="white-space:nowrap">1️⃣ ראשון</td><td><strong>פרואסטרוס</strong></td><td>9–11 יום</td><td>הכנה — אין הענות לזכרים</td></tr>
+      <tr><td style="white-space:nowrap">2️⃣ שני</td><td><strong>אסטרוס</strong></td><td>9–11 יום</td><td>ביוץ — הענות לזכרים</td></tr>
+      <tr><td style="white-space:nowrap">3️⃣ שלישי</td><td><strong>דיאסטרוס</strong></td><td>60–90 יום</td><td>פרוגסטרון גבוה</td></tr>
+      <tr><td style="white-space:nowrap">4️⃣ רביעי</td><td><strong>אנאסטרוס</strong></td><td>4–5 חודשים</td><td>מנוחה — הורמונים נמוכים</td></tr>
+    </table>
+    <div class="remember-box">פרואסטרוס → אסטרוס → דיאסטרוס → אנאסטרוס → חוזר מחדש!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 סדר השלבים</div>
+    <div id="match-s2" class="match-container">
+      <div class="match-col" id="s2-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s2')">שלב 1</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s2')">שלב 2</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s2')">שלב 3</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'s2')">שלב 4</div>
+      </div>
+      <div class="match-col" id="s2-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s2')">דיאסטרוס</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s2')">פרואסטרוס</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'s2')">אנאסטרוס</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s2')">אסטרוס</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s2match"></div>
+  </div>
+</div>
+
+<!-- S3: פרואסטרוס -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b91c1c,#dc2626)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">1️⃣</span>
+    <h1>שלב 1 — פרואסטרוס</h1>
+    <p class="subtitle">שלב ההכנה | 9–11 ימים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הסימנים וההורמונים של שלב הפרואסטרוס.</div>
+  <div class="card">
+    <div class="phase-badge" style="background:#fee2e2;color:#991b1b">⏱️ 9–11 ימים | בפועל עד 21 יום</div>
+
+    <div class="section-title">👁️ סימנים חיצוניים</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">🔴</div>
+        <div style="font-weight:800;font-size:13px;color:#991b1b;margin-bottom:3px">בושת נפוחה</div>
+        <div style="font-size:12px;color:var(--text)">נפיחות באיבר המין</div>
+      </div>
+      <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">💧</div>
+        <div style="font-weight:800;font-size:13px;color:#991b1b;margin-bottom:3px">טפטוף דמי</div>
+        <div style="font-size:12px;color:var(--text)">הפרשה דמית קלה</div>
+      </div>
+      <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">👅</div>
+        <div style="font-weight:800;font-size:13px;color:#991b1b;margin-bottom:3px">ליקוק</div>
+        <div style="font-size:12px;color:var(--text)">ליקוק איבר המין</div>
+      </div>
+    </div>
+
+    <div class="section-title">⚗️ שינויים הורמונליים</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+      <div class="numbered-row"><div class="num-circle" style="background:#0369a1">1</div><span><strong>אסטרוגן עולה</strong> — גורם לנפיחות ומשיכת זכרים</span></div>
+      <div class="numbered-row"><div class="num-circle" style="background:#dc2626">2</div><span><strong>אסטרוגן נופל</strong> בסוף השלב — סימן לקראת ביוץ</span></div>
+      <div class="numbered-row"><div class="num-circle" style="background:#059669">3</div><span><strong>פרוגסטרון עולה</strong> — מסמן שהביוץ מתקרב</span></div>
+    </div>
+    <div class="highlight blue">🔬 <strong>בדיקת דם אצל הווטרינר</strong> — ניתן לחזות את מועד הביוץ ולקבוע את הזמן המתאים ביותר להרבעה.</div>
+    <div class="highlight red">⚠️ <strong>שים לב:</strong> הכלבה <strong>לא תענה</strong> לחיזורי הזכרים בשלב זה, אך <strong>תמשוך</strong> אותם אליה!</div>
+    <div class="remember-box">פרואסטרוס: בושת נפוחה + טפטוף + ליקוק | אסטרוגן עולה → יורד | פרוגסטרון עולה!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בשלב הפרואסטרוס הכלבה תענה לחיזורי הזכרים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf3a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf3a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf3a"></div>
+  </div>
+</div>
+
+<!-- S4: אסטרוס -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">2️⃣</span>
+    <h1>שלב 2 — אסטרוס</h1>
+    <p class="subtitle">שלב הביוץ | 9–11 ימים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני שלב האסטרוס ומתי מומלץ להרביע.</div>
+  <div class="card">
+    <div class="phase-badge" style="background:#fef3c7;color:#92400e">⏱️ 9–11 ימים</div>
+    <div class="highlight green" style="text-align:center;font-size:15px;font-weight:700">⭐ זהו שלב הביוץ — הזמן המתאים ביותר להרבעה!</div>
+
+    <div class="section-title" style="margin-top:8px">🐕 התנהגות הכלבה</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+      <div class="numbered-row"><div class="num-circle" style="background:#0369a1">1</div><span><strong>הענות לזכרים</strong> — הכלבה מסכימה לחיזורים</span></div>
+      <div class="numbered-row"><div class="num-circle" style="background:#dc2626">2</div><span><strong>חיזור פעיל</strong> — לעיתים הנקבה רודפת אחרי זכר אטרקטיבי</span></div>
+      <div class="numbered-row"><div class="num-circle" style="background:#7c3aed">3</div><span><strong>הרמת הזנב + הפניית האחוריים</strong> — סימן ברור להענות</span></div>
+      <div class="numbered-row"><div class="num-circle" style="background:#059669">4</div><span><strong>בסיום השלב:</strong> הכלבה חוזרת להתעלם מהזכר</span></div>
+    </div>
+
+    <div class="section-title">📋 המלצות להרבעה</div>
+    <div class="highlight yellow">💡 <strong>מומלץ להפגיש את הזוג כל יומיים</strong> כדי לא לפספס את הביוץ. ניתן לבצע בדיקת דם לחיזוי מדויק של הביוץ.</div>
+    <div class="remember-box">אסטרוס = ביוץ = מתאים להרבעה | הרמת זנב = סימן הענות | כל יומיים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">באיזה שלב כדאי להפגיש את הזוג להרבעה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">א</span>פרואסטרוס</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s4q')"><span class="opt-letter">ב</span>אסטרוס — שלב הביוץ</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ג</span>דיאסטרוס</button>
+    </div>
+    <div class="feedback" id="fb-s4q"></div>
+  </div>
+</div>
+
+<!-- S5: דיאסטרוס -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">3️⃣</span>
+    <h1>שלב 3 — דיאסטרוס</h1>
+    <p class="subtitle">60–90 יום | פרוגסטרון גבוה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הסיכון לפיומטרה ולמה זה סיבה לעיקור.</div>
+  <div class="card">
+    <div class="phase-badge" style="background:#ede9fe;color:#5b21b6">⏱️ 60–90 ימים</div>
+    <div class="definition-box">
+      <strong>המאפיין הבולט:</strong> פרוגסטרון נשמר ברמה גבוהה <strong>60–90 ימים</strong> — גם אם הכלבה לא בהריון!<br>
+      בסיום השלב: אין הפרשה מהבושת, ההתנהגות המינית נפסקת.
+    </div>
+
+    <div class="section-title">⚠️ פיומטרה — סכנה!</div>
+    <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:14px;margin-bottom:12px">
+      <div style="font-weight:800;font-size:15px;color:#dc2626;margin-bottom:6px">🦠 מהי פיומטרה?</div>
+      <div style="font-size:14px;line-height:1.7">
+        דלקת רחם קשה הנגרמת מחשיפה ממושכת לפרוגסטרון — <strong>ללא טיפול עלולה לגרום למוות!</strong><br>
+        לכן — זוהי אחת הסיבות להמלצה לעקר כל נקבה שאינה מיועדת להרבעה.
+      </div>
+    </div>
+    <div class="remember-box">דיאסטרוס: פרוגסטרון גבוה | פיומטרה = סכנת חיים | סיבה לעיקור!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">פיומטרה היא מחלה קלה שאינה מסכנת חיים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf5a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf5a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf5a"></div>
+  </div>
+</div>
+
+<!-- S6: אנאסטרוס -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#475569,#334155)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">4️⃣</span>
+    <h1>שלב 4 — אנאסטרוס</h1>
+    <p class="subtitle">4–5 חודשים | השלב הסופי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מאפייני שלב האנאסטרוס.</div>
+  <div class="card">
+    <div class="phase-badge" style="background:#f1f5f9;color:#475569">⏱️ 4–5 חודשים בממוצע</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#1e40af">📉 הורמוני המין — ברמה הנמוכה ביותר</strong><br>
+          רמות האסטרוגן והפרוגסטרון יורדות לרמתן הנמוכה ביותר במחזור. הגוף נמצא ב"מצב מנוחה" מלא.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#065f46">🐕 אין התנהגות מינית כלל</strong><br>
+          הכלבה לא מראה שום סימן של ייחום — אין בושת נפוחה, אין טפטוף ואין עניין בזכרים.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#92400e">👁️ הזכרים לא מראים עניין</strong><br>
+          מכיוון שהכלבה לא משדרת ריחות של ייחום — הזכרים פשוט מתעלמים ממנה לחלוטין.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#ede9fe;border:2px solid #c4b5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">4</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#5b21b6">🔄 המחזור מתחיל מחדש!</strong><br>
+          בסיום האנאסטרוס — הגוף חוזר לשלב הפרואסטרוס ומחזור חדש מתחיל. חוזר כך 1–4 פעמים בשנה.
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">אנאסטרוס = מנוחה | 4–5 חודשים | הורמונים נמוכים | ואז חוזר!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">שלב האנאסטרוס נמשך בממוצע <span class="fill-blank" onclick="revealBlank(this,'4–5 חודשים')">__________</span>. בשלב זה הורמוני המין ברמתם <span class="fill-blank" onclick="revealBlank(this,'הנמוכה ביותר')">__________</span>.</div>
+  </div>
+</div>
+
+<!-- S7: הכנה להריון -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#0891b2)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">📋</span>
+    <h1>הכנה להריון</h1>
+    <p class="subtitle">לפני שמחליטים להרביע</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את השיקולים לפני הרבעה ובחירת בן הזוג.</div>
+  <div class="card">
+    <div class="section-title">🩺 התייעצות עם וטרינר</div>
+    <div class="highlight blue">ראשית — <strong>מומלץ להתייעץ עם וטרינר</strong> לגבי ההיריון.<br>ישנם גזעים שזקוקים להתערבות בהמלטה — לדוגמה: <strong>בולדוג אנגלי</strong> כמעט תמיד צריך <strong>ניתוח קיסרי!</strong></div>
+
+    <div class="section-title" style="margin-top:8px">🐕 בחירת בן זוג מתאים</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#1e40af">🤝 התנהגות</strong><br>
+          חשוב לבחור זכר שאופיו ורוגעו מתאימים לנקבה ולמטרה שלנו. כלב תוקפני, פחדן או בעל בעיות התנהגות — עשוי להעביר תכונות אלה לגורים.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#be185d;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#9d174d">🧬 מחלות תורשתיות</strong><br>
+          יש לבדוק שלבן הזוג אין מחלות גנטיות שעלולות לעבור לגורים. מומלץ לבצע בדיקות וטרינריות מתאימות לפני ההרבעה.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#065f46">⚡ יצרים ותכונות</strong><br>
+          יש לבחור בן זוג שיצריו ותכונותיו תואמים את המטרה העתידית של הגורים — כלב שמירה, כלב עבודה, כלב משפחה וכן הלאה.
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">לפני הרבעה: וטרינר + בחירת בן זוג (התנהגות + גנטיקה + יצרים)!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">איזה גזע ידוע בצורך תדיר בניתוח קיסרי?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q')"><span class="opt-letter">א</span>פודל</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s7q')"><span class="opt-letter">ב</span>בולדוג אנגלי</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q')"><span class="opt-letter">ג</span>גרמן שפרד</button>
+    </div>
+    <div class="feedback" id="fb-s7q"></div>
+  </div>
+</div>
+
+<!-- S8: ההיריון -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">🤰</span>
+    <h1>ההיריון</h1>
+    <p class="subtitle">61–65 ימים | ממוצע 63</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את משך ההיריון ואת הסימנים שמלווים אותו.</div>
+  <div class="card">
+    <div class="definition-box">
+      הריון בכלבים נמשך <strong>61–65 ימים</strong>.<br>
+      בממוצע <strong>63 ימים</strong> מהיום הראשון שבו הזדווגו בהצלחה.
+    </div>
+
+    <div class="section-title">📅 שבועות ראשונים</div>
+    <div class="highlight yellow" style="font-size:14px">
+      בשבועות הראשונים — <strong>לרוב לא נראים סימנים חיצוניים</strong> או שינויי התנהגות.
+    </div>
+
+    <div class="section-title" style="margin-top:4px">📈 ככל שההיריון מתקדם</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#1e40af">🏠 קינון</strong><br>
+          הכלבה מתחילה לחפש מקום שקט, חשוך ומוגן — ומנסה "לבנות קן". היא עשויה לגרור בגדים, שמיכות או חפצים רכים למקום שבחרה. זה סימן טבעי להתקרבות הלידה.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#be185d;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#9d174d">😟 חוסר שקט</strong><br>
+          הכלבה נעשית עצבנית ומתקשה לנוח. היא עשויה לקום ולשכב שוב ושוב, להסתובב במעגלים ולהיראות חסרת נחת — גם זה סימן שגרתי לקראת הלידה.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#92400e">🔄 שינויי התנהגות</strong><br>
+          כל כלבה מגיבה אחרת — חלקן נוטות <strong>להתבודד</strong> ומחפשות מקום שקט הרחק מהמשפחה, ואחרות דווקא <strong>דורשות יותר תשומת לב</strong> ומחפשות קרבה. שני הסימנים נורמליים לחלוטין.
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">63 ימים ממוצע | שבועות ראשונים = אין סימנים | מאוחר = קינון + חוסר שקט!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">הריון בכלבים נמשך בממוצע <span class="fill-blank" onclick="revealBlank(this,'63 ימים')">_______</span> מיום ה<span class="fill-blank" onclick="revealBlank(this,'הזדווגות')">_________</span>.</div>
+  </div>
+</div>
+
+<!-- S9: לקראת המלטה -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#92400e)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">📅</span>
+    <h1>לקראת ההמלטה</h1>
+    <p class="subtitle">הכנות ואיך לדעת מתי?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר איך מחשבים את מועד ההמלטה ואיך מתכוננים.</div>
+  <div class="card">
+    <div class="section-title">🏥 אולטרה-סאונד / רנטגן</div>
+    <div class="highlight blue">לקראת סוף ההיריון — <strong>מומלץ לבצע אולטרה-סאונד או צילום רנטגן</strong>:<br>✅ לספור את מספר הגורים<br>✅ להעריך קשיים אפשריים בהמלטה</div>
+
+    <div class="section-title" style="margin-top:8px">📅 כיצד לחשב מועד המלטה?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399">
+        <div class="title">🗓️ חישוב ימים</div>
+        <strong>63 ימים</strong> מיום ההרבעה
+      </div>
+      <div class="mini-card" style="background:#fce7f3;border:2px solid #f9a8d4">
+        <div class="title">🌡️ ירידת חום</div>
+        כמעלה אחת — <strong>24 שעות לפני</strong> ההמלטה
+      </div>
+    </div>
+    <div class="remember-box">63 ימים מהרבעה | ירידת חום 24 שעות לפני | ספור גורים ברנטגן!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">ירידה בחום הגוף של כמעלה אחת מתרחשת בדרך כלל 24 שעות לפני ההמלטה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf9a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf9a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf9a"></div>
+  </div>
+</div>
+
+<!-- S10: שלבי ההמלטה -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">🐾</span>
+    <h1>שלבי ההמלטה</h1>
+    <p class="subtitle">3 שלבים — חוזרים עם כל גור</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 3 שלבי ההמלטה ומה קורה בכל אחד.</div>
+  <div class="card">
+    <div class="highlight yellow" style="text-align:center;font-weight:700">שלבים 2 ו-3 חוזרים על עצמם עם המלטת <strong>כל גור</strong>!</div>
+
+    <!-- שלב 1 -->
+    <div style="background:#f1f5f9;border:2px solid #cbd5e1;border-radius:14px;padding:16px 18px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:#475569;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">1</div>
+        <div style="font-weight:900;font-size:15px;color:#334155">😟 שלב ראשון — 6 עד 24 שעות</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>😰</span><span><strong>חוסר מנוחה</strong> ועצבנות</span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🙈</span><span><strong>רצון להתבודד</strong></span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🚫</span><span><strong>סירוב למזון</strong></span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🚶</span><span><strong>טיול לצרכים</strong> — זמן מתאים!</span></div>
+      </div>
+    </div>
+
+    <!-- חץ -->
+    <div style="text-align:center;font-size:20px;color:#94a3b8;margin:-4px 0">↓</div>
+
+    <!-- שלב 2 -->
+    <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:14px;padding:16px 18px;margin:6px 0 10px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:#dc2626;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">2</div>
+        <div style="font-weight:900;font-size:15px;color:#dc2626">🐾 שלב שני — צירים ויציאת הגור</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>💪</span><span><strong>צירים</strong> — התכווצויות חזקות של הבטן לדחיפת הגור</span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🟢</span><span><strong>שק ירקרק</strong> קטן יוצא לפני הגור — תופעה נורמלית!</span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🐶</span><span><strong>הגור יוצא</strong> + שלייה מחוברת אליו</span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>✅</span><span><strong>תנוחה רגילה:</strong> ראש קדימה | גם ישבן קדימה — נורמלי (⅓ מהגורים)</span></div>
+        <div style="background:#fee2e2;border:1.5px solid #fca5a5;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>⚠️</span><span><strong>צירים מעל שעה ללא גור</strong> — קרא לווטרינר מיד!</span></div>
+      </div>
+    </div>
+
+    <!-- חץ -->
+    <div style="text-align:center;font-size:20px;color:#94a3b8;margin:-4px 0">↓</div>
+
+    <!-- שלב 3 -->
+    <div style="background:#d1fae5;border:2px solid #34d399;border-radius:14px;padding:16px 18px;margin-top:6px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0">3</div>
+        <div style="font-weight:900;font-size:15px;color:#059669">😌 שלב שלישי — מנוחה (10–30 דקות)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🔁</span><span><strong>התכווצויות קטנות</strong> של הרחם</span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start"><span>🧹</span><span><strong>יציאת שיירי שלייה</strong></span></div>
+        <div style="background:white;border-radius:8px;padding:8px 10px;display:flex;gap:6px;align-items:flex-start;grid-column:span 2"><span>🔄</span><span>לאחר מכן — <strong>שלב 2 חוזר עם הגור הבא!</strong></span></div>
+      </div>
+    </div>
+    <div class="remember-box">שלב 1: מנוחה | שלב 2: צירים + גור | שלב 3: שלייה | 2+3 חוזרים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה תנוחת היציאה הרגילה של גור במהלך ההמלטה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s10q')"><span class="opt-letter">א</span>ראש קדימה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ב</span>ישבן קדימה תמיד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ג</span>צד קדימה</button>
+    </div>
+    <div class="feedback" id="fb-s10q"></div>
+  </div>
+</div>
+
+<!-- S11: עזרה וסימני אזהרה -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#9f1239,#dc2626)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">🆘</span>
+    <h1>עזרה בהמלטה וסימני אזהרה</h1>
+    <p class="subtitle">מתי מתערבים — ומתי קוראים לעזרה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את דרכי העזרה ואת סימני האזהרה במהלך ההמלטה.</div>
+  <div class="card">
+    <div class="section-title">✅ עזרה בהמלטה — אם האם לא עושה לבד</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">1</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#1e40af">🧤 הרחקת הקרומים</strong><br>
+          מיד לאחר יציאת הגור — יש להסיר את כל הקרומים המכסים אותו. אם הכלבה לא פותחת את השק — יש לעשות זאת מיד, הגור לא יכול לנשום בתוכו!
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">2</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#065f46">👃 ניקוי אף ופה</strong><br>
+          יש לנקות בעדינות את האף ואת הפה מהריר המכסה אותם. חשוב לוודא שדרכי האוויר פתוחות כדי שהגור יוכל לנשום.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">3</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#92400e">🧻 ניגוב במגבת</strong><br>
+          מנגבים את הגור במגבת נקייה בתנועות מרץ. הניגוב לא רק מייבש — אלא <strong>ממריץ את הנשימה ואת מחזור הדם</strong> של הגור! זה קריטי.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#be185d;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">4</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#9d174d">✂️ חבל הטבור</strong><br>
+          אם הכלבה לא מטפלת — קושרים את החבל ב-<strong>0.5 ס"מ מגוף הגור</strong> עם חוט דק, חותכים בצד הרחוק מהגור, ולאחר החיתוך — <strong>טיפת יוד</strong> על החבל למניעת זיהום.
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#ede9fe;border:2px solid #c4b5fd;border-radius:12px;padding:12px 14px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:1px">5</div>
+        <div style="font-size:14px;line-height:1.6">
+          <strong style="color:#5b21b6">🐶 בדיקת הגור</strong><br>
+          לאחר כמה דקות של ניגוב — הגור <strong>אמור להתחיל לזוז ולבכות</strong>. אם לא מגיב — יש להמשיך לנגב ולגרות אותו בעדינות ולהתייעץ עם וטרינר.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title">🚨 סימני אזהרה — פנה לווטרינר מיד!</div>
+    <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:14px;margin-bottom:8px">
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>צירים חזקות <strong>מעל 30 דקות ללא יציאת גור</strong></span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>פער של <strong>יותר מ-2–4 שעות</strong> בין גור לגור</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>סימני <strong>כאב חזק</strong> ועיסוק בלתי פוסק באיבר המין</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>הריון <strong>מעל 65 ימים</strong></span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>הפרשות <strong>שחורות מרובות</strong> ללא צירים</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>גור <strong>תקוע בנרתיק</strong> — <strong>אל תמשוך!</strong> הגורים עדינים מאוד</span></div>
+      </div>
+    </div>
+    <div class="remember-box">עזרה: קרומים → ניקוי → ניגוב → יוד | אזהרה: 30 דקות צירים ללא גור = וטרינר!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">אם גור תקוע בנרתיק ניתן למשוך אותו בזהירות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf11a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf11a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf11a"></div>
+  </div>
+</div>
+
+<!-- S12: גורים -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 12</span><span class="emoji">🚫</span>
+    <h1>מניעת היריון ועיקור</h1>
+    <p class="subtitle">3 שיטות — מה עדיף?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שיטות מניעת ההיריון ויתרונות העיקור.</div>
+  <div class="card">
+    <div class="section-title">🛡️ שלוש שיטות מניעה</div>
+
+    <!-- כרטיס 1 -->
+    <div style="background:white;border-radius:14px;border:2px solid #93c5fd;margin-bottom:12px;overflow:hidden">
+      <div style="background:#0369a1;color:white;padding:10px 16px;display:flex;align-items:center;gap:8px">
+        <span style="background:rgba(255,255,255,0.25);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</span>
+        <span style="font-weight:800;font-size:15px">🚧 הפרדה פיזית</span>
+      </div>
+      <div style="padding:12px 16px;font-size:14px;line-height:1.6;color:#374151">
+        שמירת הכלבה בסביבה סגורה לאורך כל עונת הייחום ומניעת כניסת זכרים. דורשת <strong>ערנות מתמדת</strong> — כל רגע של רשלנות עלול לגרום להיריון.
+      </div>
+    </div>
+
+    <!-- כרטיס 2 -->
+    <div style="background:white;border-radius:14px;border:2px solid #fca5a5;margin-bottom:12px;overflow:hidden">
+      <div style="background:#dc2626;color:white;padding:10px 16px;display:flex;align-items:center;gap:8px">
+        <span style="background:rgba(255,255,255,0.25);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</span>
+        <span style="font-weight:800;font-size:15px">💉 זריקה הורמונלית</span>
+      </div>
+      <div style="padding:12px 16px;font-size:14px;line-height:1.6;color:#374151">
+        זריקות הניתנות 2–3 פעמים בשנה. פספוס מועד הזריקה גורם לייחום לא מבוקר.<br>
+        <span style="color:#dc2626;font-weight:700">⚠️ מעלה סיכון לסרטן שד ודלקת רחם!</span>
+      </div>
+    </div>
+
+    <!-- כרטיס 3 -->
+    <div style="background:white;border-radius:14px;border:2px solid #34d399;margin-bottom:14px;overflow:hidden">
+      <div style="background:#059669;color:white;padding:10px 16px;display:flex;align-items:center;gap:8px">
+        <span style="background:rgba(255,255,255,0.25);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</span>
+        <span style="font-weight:800;font-size:15px">✂️ עיקור ✅</span>
+      </div>
+      <div style="padding:12px 16px;font-size:14px;line-height:1.6;color:#374151">
+        ניתוח חד-פעמי להוצאת הרחם והשחלות. לאחר הניתוח — אין ייחום ואין סיכון להיריון לעולם.<br>
+        <span style="color:#059669;font-weight:700">✅ השיטה הבטוחה והמומלצת ביותר!</span>
+      </div>
+    </div>
+
+    <div class="section-title">⭐ יתרונות העיקור</div>
+    <div style="background:white;border-radius:14px;border:2px solid #34d399;overflow:hidden">
+      <div style="background:#059669;color:white;padding:10px 16px;font-weight:800;font-size:14px">✂️ למה עיקור עדיף?</div>
+      <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <span style="font-size:18px;flex-shrink:0">💪</span>
+          <span><strong>מצמצם פי 7</strong> את הסיכון לגידולי עטין — בעוד שזריקות <em>מעלות</em> את הסיכון!</span>
+        </div>
+        <div style="height:1px;background:#e2e8f0"></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <span style="font-size:18px;flex-shrink:0">1️⃣</span>
+          <span><strong>חד פעמי</strong> — ניתוח אחד לכל החיים, ללא צורך לזכור זריקות תקופתיות</span>
+        </div>
+        <div style="height:1px;background:#e2e8f0"></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <span style="font-size:18px;flex-shrink:0">📅</span>
+          <span><strong>אין מה לפספס</strong> — פספוס מועד זריקה גורם לייחום לא מבוקר. עם עיקור הבעיה לא קיימת</span>
+        </div>
+      </div>
+    </div>
+    <div class="remember-box">עיקור = ×7 פחות סרטן שד | חד פעמי | זריקות = מסוכנות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">זריקות הורמונליות לכלבות מצמצמות את הסיכון לגידולי עטין.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf13a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf13a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf13a"></div>
+  </div>
+</div>
+
+<!-- S14: טבלת סיכום -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">סיכום</span><span class="emoji">📊</span>
+    <h1>טבלת סיכום — 4 שלבי המחזור</h1>
+  </div>
+  <div class="card">
+    <table class="info-table">
+      <tr><th>שלב</th><th>משך</th><th>הורמון</th><th>התנהגות</th><th>חשוב</th></tr>
+      <tr><td>1️⃣ <strong>פרואסטרוס</strong></td><td>9–11 יום</td><td>אסטרוגן עולה/יורד</td><td>לא מענה | מושכת זכרים</td><td>בושת + טפטוף</td></tr>
+      <tr><td>2️⃣ <strong>אסטרוס</strong></td><td>9–11 יום</td><td>פרוגסטרון עולה</td><td>מענה + חיזור | הרמת זנב</td><td>⭐ זמן הרבעה</td></tr>
+      <tr><td>3️⃣ <strong>דיאסטרוס</strong></td><td>60–90 יום</td><td>פרוגסטרון גבוה</td><td>אין התנהגות מינית</td><td>⚠️ פיומטרה</td></tr>
+      <tr><td>4️⃣ <strong>אנאסטרוס</strong></td><td>4–5 חודשים</td><td>נמוכים</td><td>אין כלל</td><td>מנוחה</td></tr>
+    </table>
+    <div class="remember-box">היריון: 63 ימים | גורים: 6 שב' יניקה | ניתוק: 7 שבועות | עיקור = ×7 בטיחות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כמה ימים נמשך שלב הדיאסטרוס אם הכלבה אינה בהריון?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">א</span>9–11 ימים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s14q')"><span class="opt-letter">ב</span>60–90 ימים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s14q')"><span class="opt-letter">ג</span>4–5 חודשים</button>
+    </div>
+    <div class="feedback" id="fb-s14q"></div>
+  </div>
+</div>
+
+<!-- S15: מילון -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 15</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ לגלות הסבר</p>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">◀ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 12</span><button onclick="nextCard()">הבא ▶</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🔴 פרואסטרוס</div><div class="glossary-def">שלב 1 — 9–11 יום. הכנה: בושת נפוחה, טפטוף, ליקוק. אסטרוגן עולה. הכלבה לא מענה לזכרים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⭐ אסטרוס</div><div class="glossary-def">שלב 2 — 9–11 יום. ביוץ! הכלבה מענה לזכרים, מרימה זנב. הזמן המתאים להרבעה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟣 דיאסטרוס</div><div class="glossary-def">שלב 3 — 60–90 יום. פרוגסטרון גבוה. סיכון לפיומטרה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⬜ אנאסטרוס</div><div class="glossary-def">שלב 4 — 4–5 חודשים. מנוחה. הורמונים נמוכים, אין התנהגות מינית.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🦠 פיומטרה</div><div class="glossary-def">דלקת רחם קשה — נגרמת מחשיפה ממושכת לפרוגסטרון. ללא טיפול עלולה לגרום למוות!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🏠 קינון</div><div class="glossary-def">התנהגות הכלבה ההרה — מחפשת מקום שקט לשכב ו"לבנות קן" לפני הלידה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐾 שלייה</div><div class="glossary-def">קרום המחבר את הגור לרחם. יוצא לאחר כל גור בשלב השלישי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">✂️ עיקור</div><div class="glossary-def">ניתוח להוצאת הרחם והשחלות. מצמצם פי 7 סיכון לגידולי עטין. חד פעמי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚗️ פרוגסטרון</div><div class="glossary-def">הורמון המין הנשי — עולה לקראת הביוץ, נשאר גבוה בדיאסטרוס.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚗️ אסטרוגן</div><div class="glossary-def">הורמון — עולה בפרואסטרוס, גורם לסימנים החיצוניים, ויורד לפני הביוץ.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌡️ ירידת חום</div><div class="glossary-def">ירידה של כמעלה אחת בחום הגוף — מסמנת שההמלטה צפויה תוך 24 שעות.</div></div>
+  </div>
+</div>
+
+<!-- S16: נכון/לא נכון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. הייחום הראשון בכלבות מופיע בגיל 6–12 חודשים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. שלב האסטרוס הוא הזמן המתאים להרבעה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. הריון בכלבים נמשך בממוצע 90 ימים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. פיומטרה יכולה לגרום למוות ללא טיפול.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. עיקור מצמצם פי 7 את הסיכון לגידולי עטין.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. גור שנולד עם ישבן קדימה הוא מצב חירום.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+  </div>
+</div>
+
+<!-- S17: שאלות -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. כמה פעמים בשנה כלבה יכולה להתייחם?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>1–2 פעמים בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>1–4 פעמים, ממוצע 2</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>6–8 פעמים</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה עושה הכלבה בשלב הפרואסטרוס?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>מענה ומחזרת אחרי זכרים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>מושכת זכרים אך לא מענה להם</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>נמנעת לגמרי ממגע עם זכרים</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. מה קורה אם הכלבה לא מקבלת זריקה הורמונלית בזמן?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>הכלבה תעבור עיקור אוטומטי</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ב</span>תתחיל תקופת ייחום וקשה למנוע היריון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ג</span>כלום — הזריקה לא חשובה לתזמון</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מה צריך לעשות אם יש צירים חזקים מעל 30 דקות ללא יציאת גור?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>למשוך את הגור בזהירות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ב</span>להמתין עוד שעה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ג</span>לפנות לווטרינר מיידית</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S18: התאמה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה — שלב למאפיין</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר שלב למאפיינו</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">פרואסטרוס</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">אסטרוס</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">דיאסטרוס</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">אנאסטרוס</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">פרוגסטרון גבוה + פיומטרה</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">בושת נפוחה + טפטוף</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">מנוחה, 4–5 חודשים</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">ביוץ + הרמת זנב</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">הייחום הראשון מופיע בגיל <span class="fill-blank" onclick="revealBlank(this,'6–12 חודשים')">_________</span>. הריון נמשך בממוצע <span class="fill-blank" onclick="revealBlank(this,'63 ימים')">_______</span>.</div>
+    <div class="fill-sentence">כלבה יכולה להתייחם בין <span class="fill-blank" onclick="revealBlank(this,'1–4 פעמים')">_________</span> בשנה, והממוצע הוא <span class="fill-blank" onclick="revealBlank(this,'2 פעמים')">________</span> בשנה.</div>
+    <div class="fill-sentence">עיקור מצמצם פי <span class="fill-blank" onclick="revealBlank(this,'7')">_</span> את הסיכון לגידולי <span class="fill-blank" onclick="revealBlank(this,'עטין')">_____</span>.</div>
+  </div>
+</div>
+
+<div class="screen" id="screen-18">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת הרבייה בכלבים!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="🐕">ייחום: 6–12 חודשים | 1–4 פעמים/שנה | ממוצע 2</li>
+      <li data-icon="1️⃣">פרואסטרוס: 9–11 יום | בושת + טפטוף | לא מענה!</li>
+      <li data-icon="2️⃣">אסטרוס: 9–11 יום | ביוץ | הזמן להרבעה | כל יומיים</li>
+      <li data-icon="3️⃣">דיאסטרוס: 60–90 יום | פרוגסטרון | פיומטרה!</li>
+      <li data-icon="4️⃣">אנאסטרוס: 4–5 חודשים | מנוחה | הורמונים נמוכים</li>
+      <li data-icon="🤰">היריון: 63 ימים | ירידת חום = 24 שעות לפני</li>
+      <li data-icon="🐾">המלטה: 3 שלבים | שלב 2+3 חוזרים | 30 דקות ללא גור = וטרינר!</li>
+      <li data-icon="🐶">גורים: 7 שבועות = ניתוק | לא לפני + לא אחרי!</li>
+      <li data-icon="✂️">עיקור: ×7 פחות סרטן | חד פעמי | עדיף על זריקות!</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🐕</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>ייחום</button>
+      <button class="toc-item" onclick="goToScreen(2)"><span class="num">2</span>4 שלבים</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>פרואסטרוס</button>
+      <button class="toc-item" onclick="goToScreen(4)"><span class="num">4</span>אסטרוס</button>
+      <button class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>היריון</button>
+      <button class="toc-item" onclick="goToScreen(10)"><span class="num">10</span>המלטה</button>
+      <button class="toc-item" onclick="goToScreen(12)"><span class="num">13</span>עיקור</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">◀ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 21</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ▶</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=19,SCREEN_NAMES=["פתיחה","ייחום בכלבות","4 שלבי המחזור","פרואסטרוס","אסטרוס","דיאסטרוס","אנאסטרוס","הכנה להריון","ההיריון","לקראת ההמלטה","שלבי ההמלטה","עזרה וסימני אזהרה","מניעת היריון","טבלת סיכום","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"🔴 פרואסטרוס",def:"שלב 1 — 9–11 יום. בושת נפוחה, טפטוף, ליקוק. לא מענה לזכרים!"},
+  {term:"⭐ אסטרוס",def:"שלב 2 — 9–11 יום. ביוץ! הכלבה מענה ומרימה זנב. הרבעה כל יומיים."},
+  {term:"🟣 דיאסטרוס",def:"שלב 3 — 60–90 יום. פרוגסטרון גבוה. סיכון לפיומטרה."},
+  {term:"⬜ אנאסטרוס",def:"שלב 4 — 4–5 חודשים. מנוחה. הורמונים נמוכים."},
+  {term:"🦠 פיומטרה",def:"דלקת רחם קשה מפרוגסטרון ממושך. ללא טיפול — מסכנת חיים!"},
+  {term:"🌡️ ירידת חום",def:"ירידה של כמעלה — סימן להמלטה תוך 24 שעות."},
+  {term:"🐾 שלייה",def:"קרום המחבר את הגור. יוצא בשלב 3 אחרי כל גור."},
+  {term:"✂️ עיקור",def:"ניתוח חד-פעמי. מצמצם פי 7 סיכון לגידולי עטין. עדיף על זריקות."},
+  {term:"⚗️ פרוגסטרון",def:"הורמון הנקבה — עולה לפני הביוץ, גבוה בדיאסטרוס."},
+  {term:"🏠 קינון",def:"הכלבה ההרה מחפשת מקום שקט לקראת הלידה."},
+  {term:"📅 63 ימים",def:"משך הריון ממוצע בכלבים מיום ההזדווגות."}
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===15)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';document.getElementById('btn-next').style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const m=btn.getAttribute('onclick').match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+</script>
+</body>
+</html>
