@@ -788,6 +788,7 @@
     const USERS_FILE = 'users.json';
     const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
     const AUTH_COOKIE_KEY = 'haklautLoggedInUser';
+    const LESSON_STORAGE_KEY = 'haklautCurrentLesson';
 
     let currentUsername = '';
     let usersList = [];
@@ -1049,6 +1050,45 @@
       return String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
     }
 
+    function saveCurrentLesson(title, url) {
+      const lessonState = {
+        title: String(title || '').trim(),
+        url: normalizeUrl(url)
+      };
+
+      try {
+        localStorage.setItem(LESSON_STORAGE_KEY, JSON.stringify(lessonState));
+      } catch (error) {
+        console.warn('Could not save lesson state', error);
+      }
+    }
+
+    function clearCurrentLesson() {
+      try {
+        localStorage.removeItem(LESSON_STORAGE_KEY);
+      } catch (error) {
+        console.warn('Could not clear lesson state', error);
+      }
+    }
+
+    function getSavedLesson() {
+      try {
+        const raw = localStorage.getItem(LESSON_STORAGE_KEY);
+        if (!raw) return null;
+
+        const parsed = JSON.parse(raw);
+        const title = String(parsed?.title || '').trim();
+        const url = normalizeUrl(parsed?.url || '');
+
+        if (!url || url === '#') return null;
+
+        return { title, url };
+      } catch (error) {
+        console.warn('Could not read lesson state', error);
+        return null;
+      }
+    }
+
     function updateUserGreeting() {
       const safeName = currentUsername || 'משתמש';
       const greeting = `שלום: ${safeName}`;
@@ -1074,24 +1114,40 @@
       }
     }
 
-    function openLesson(title, url) {
-      lessonTitle.textContent = title;
-      lessonFrame.src = normalizeUrl(url);
+    function openLesson(title, url, options = {}) {
+      const { saveState = true, smoothScroll = true } = options;
+      const normalizedTitle = String(title || '').trim() || 'לומדה';
+      const normalizedUrl = normalizeUrl(url);
+
+      lessonTitle.textContent = normalizedTitle;
+      lessonFrame.src = normalizedUrl;
       gridView.classList.add('hidden');
       appTopbar.classList.add('hidden');
       lessonView.classList.add('show');
       updateUserGreeting();
+
+      if (saveState) {
+        saveCurrentLesson(normalizedTitle, normalizedUrl);
+      }
+
       closeMobileMenus();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
     }
 
-    function goHome() {
+    function goHome(options = {}) {
+      const { clearSavedLesson = true, smoothScroll = true } = options;
+
       lessonFrame.src = '';
       lessonView.classList.remove('show');
       appTopbar.classList.remove('hidden');
       gridView.classList.remove('hidden');
+
+      if (clearSavedLesson) {
+        clearCurrentLesson();
+      }
+
       closeMobileMenus();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
     }
 
     function showLoginError(message) {
@@ -1128,6 +1184,7 @@
 
     function logout() {
       clearLoginSession();
+      clearCurrentLesson();
       currentUsername = '';
       lessonFrame.src = '';
       lessonView.classList.remove('show');
@@ -1157,7 +1214,14 @@
       if (matchedUser) {
         currentUsername = matchedUser.username;
         saveLoginSession(matchedUser.username);
+        const savedLesson = getSavedLesson();
+
         showMainMenu();
+
+        if (savedLesson) {
+          openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+        }
+
         passwordInput.value = '';
         setPasswordVisibility(false);
         return;
@@ -1211,9 +1275,16 @@
         const savedUsername = getSavedLoginSession();
         if (savedUsername && userExists(savedUsername)) {
           currentUsername = savedUsername;
+          const savedLesson = getSavedLesson();
+
           showMainMenu();
+
+          if (savedLesson) {
+            openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+          }
         } else if (savedUsername) {
           clearLoginSession();
+          clearCurrentLesson();
         }
       } catch (error) {
         console.error(error);
