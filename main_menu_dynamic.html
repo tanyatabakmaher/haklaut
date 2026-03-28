@@ -835,6 +835,15 @@
     </section>
   </div>
 
+
+  <div id="loadingOverlay" class="loading-overlay show" aria-live="polite" aria-busy="true">
+    <div class="loading-card">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <p id="loadingTitle" class="loading-title">טוען...</p>
+      <p id="loadingText" class="loading-text">אנא המתיני רגע</p>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const sectionsContainer = document.getElementById('sectionsContainer');
@@ -909,6 +918,7 @@
         loadingFallbackId = null;
       }
 
+      if (!loadingOverlay || !loadingTitle || !loadingText) return;
       loadingTitle.textContent = title;
       loadingText.textContent = message;
       loadingOverlay.classList.add('show');
@@ -920,6 +930,7 @@
       }
 
       loadingTimeoutId = setTimeout(() => {
+        if (!loadingOverlay) return;
         loadingOverlay.classList.remove('show');
       }, delay);
     }
@@ -1465,15 +1476,6 @@
 
     init();
   </script>
-
-
-  <div id="loadingOverlay" class="loading-overlay show" aria-live="polite" aria-busy="true">
-    <div class="loading-card">
-      <div class="loading-spinner" aria-hidden="true"></div>
-      <p id="loadingTitle" class="loading-title">טוען...</p>
-      <p id="loadingText" class="loading-text">אנא המתיני רגע</p>
-    </div>
-  </div>
 
 </body>
 </html>
