@@ -15,6 +15,8 @@
       --accent:#4a8c5f;
       --accent-dark:#2c6a45;
       --border:#d8e7da;
+      --danger:#c44b4b;
+      --danger-bg:#fff2f2;
       --shadow:0 14px 36px rgba(24,49,31,0.10);
       --shadow-strong:0 18px 40px rgba(24,49,31,0.16);
       --radius:24px;
@@ -92,6 +94,10 @@
       font-size:28px;
       line-height:1;
       flex:0 0 auto;
+    }
+
+    .hidden{
+      display:none !important;
     }
 
     .grid-view{display:block}
@@ -253,6 +259,131 @@
       box-shadow:var(--shadow);
     }
 
+    .login-view{
+      min-height:calc(100vh - 64px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 0 8px;
+    }
+
+    .login-shell{
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;
+      padding:20px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(6px);
+    }
+
+    .login-card{
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px 24px;
+    }
+
+    .login-badge{
+      width:64px;
+      height:64px;
+      margin:0 auto 16px;
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, rgba(74,140,95,0.18), rgba(90,164,195,0.20));
+      border:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(0,0,0,0.08);
+      font-size:32px;
+    }
+
+    .login-title{
+      margin:0;
+      text-align:center;
+      font-size:clamp(28px, 4vw, 36px);
+      line-height:1.2;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .login-subtitle{
+      margin:10px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+    }
+
+    .login-form{
+      margin-top:26px;
+      display:grid;
+      gap:16px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field-label{
+      font-size:15px;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .field-input{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:15px 16px;
+      font-size:16px;
+      color:var(--text);
+      background:#ffffff;
+      box-shadow:inset 0 1px 2px rgba(24,49,31,0.04);
+      transition:border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .field-input:focus{
+      outline:none;
+      border-color:#9ccdb0;
+      box-shadow:0 0 0 4px rgba(74,140,95,0.12);
+    }
+
+    .login-error{
+      display:none;
+      border:1px solid #f1c8c8;
+      background:var(--danger-bg);
+      color:var(--danger);
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:15px;
+      line-height:1.6;
+      font-weight:700;
+    }
+
+    .login-error.show{
+      display:block;
+    }
+
+    .login-btn{
+      width:100%;
+      justify-content:center;
+      font-size:18px;
+      padding:15px 22px;
+      margin-top:4px;
+    }
+
+    .login-note{
+      margin:16px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+
     .lesson-view{
       display:none;
       position:fixed;
@@ -314,6 +445,7 @@
     }
 
     @media (max-width: 740px){
+      .wrap{padding:18px 14px 28px}
       .hero{padding:4px 2px 14px}
       h1{font-size:clamp(22px,6vw,32px); gap:8px; line-height:1.1}
       .hero-title-icon{width:40px; height:40px; font-size:22px; border-radius:12px}
@@ -330,6 +462,13 @@
       .card-footer{font-size:16px; padding:13px 22px}
       .btn{font-size:15px}
       .card-media{height:160px}
+      .login-view{min-height:calc(100vh - 44px); padding-top:6px}
+      .login-shell{padding:14px}
+      .login-card{padding:22px 18px}
+      .login-title{font-size:26px}
+      .login-subtitle{font-size:16px}
+      .field-input{padding:14px 14px}
+      .login-btn{font-size:17px}
     }
   </style>
 </head>
@@ -339,7 +478,35 @@
       <h1><span class="hero-title-icon" aria-hidden="true">🎓</span><span class="hero-title-text">לומדת הכנה לבגרות בחקלאות</span></h1>
     </section>
 
-    <section id="gridView" class="grid-view">
+    <section id="loginView" class="login-view" aria-live="polite">
+      <div class="login-shell">
+        <div class="login-card">
+          <div class="login-badge" aria-hidden="true">🌿</div>
+          <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
+          <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
+
+          <form id="loginForm" class="login-form" novalidate>
+            <div id="loginError" class="login-error" role="alert">שם המשתמש או הסיסמה שגויים</div>
+
+            <div class="field">
+              <label class="field-label" for="usernameInput">שם משתמש</label>
+              <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="passwordInput">סיסמה</label>
+              <input id="passwordInput" class="field-input" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
+            </div>
+
+            <button class="btn login-btn" type="submit">התחברות</button>
+          </form>
+
+          <p class="login-note">הכניסה מיועדת לצפייה בלומדות ההכנה לבגרות בחקלאות.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gridView" class="grid-view hidden">
       <div id="sectionsContainer" class="sections-stack"></div>
     </section>
 
@@ -357,6 +524,11 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const sectionsContainer = document.getElementById('sectionsContainer');
+    const loginView = document.getElementById('loginView');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const usernameInput = document.getElementById('usernameInput');
+    const passwordInput = document.getElementById('passwordInput');
     const gridView = document.getElementById('gridView');
     const lessonView = document.getElementById('lessonView');
     const lessonFrame = document.getElementById('lessonFrame');
@@ -364,6 +536,8 @@
     const backBtn = document.getElementById('backBtn');
 
     const MENU_FILE = 'menu.xlsx';
+    const LOGIN_USERNAME = 'admin';
+    const LOGIN_PASSWORD = 'admin';
 
     const SECTION_CONFIG = {
       general: {
@@ -551,7 +725,44 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function showLoginError(message) {
+      loginError.textContent = message;
+      loginError.classList.add('show');
+    }
+
+    function clearLoginError() {
+      loginError.textContent = '';
+      loginError.classList.remove('show');
+    }
+
+    function showMainMenu() {
+      loginView.classList.add('hidden');
+      gridView.classList.remove('hidden');
+      clearLoginError();
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if (username === LOGIN_USERNAME && password === LOGIN_PASSWORD) {
+        showMainMenu();
+        passwordInput.value = '';
+        return;
+      }
+
+      showLoginError('שם המשתמש או הסיסמה שגויים');
+      passwordInput.value = '';
+      passwordInput.focus();
+    }
+
     backBtn.addEventListener('click', goHome);
+    loginForm.addEventListener('submit', handleLogin);
+
+    usernameInput.addEventListener('input', clearLoginError);
+    passwordInput.addEventListener('input', clearLoginError);
 
     async function init() {
       try {
