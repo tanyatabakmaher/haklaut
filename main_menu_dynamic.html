@@ -452,12 +452,25 @@
       width:100%;
     }
 
+    .lesson-mobile-back-btn{
+      display:none;
+      flex:0 0 auto;
+      white-space:nowrap;
+      padding:11px 14px;
+      border-radius:14px;
+      font-size:14px;
+      line-height:1;
+    }
+
     .lesson-title{
       margin:0;
       font-size:24px;
       line-height:1.3;
       font-weight:800;
       min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
 
     .lesson-user{
@@ -638,7 +651,8 @@
         display:flex;
         align-items:center;
         justify-content:flex-start;
-        gap:10px;
+        flex-wrap:nowrap;
+        gap:8px;
       }
 
       .lesson-user,
@@ -650,8 +664,13 @@
         display:block;
       }
 
+      .lesson-mobile-back-btn{
+        display:inline-flex;
+      }
+
       .lesson-title{
-        font-size:21px;
+        flex:1 1 auto;
+        font-size:19px;
       }
 
       .iframe-wrap{
@@ -731,12 +750,12 @@
               <div id="lessonMenuDropdown" class="mobile-dropdown" role="menu" aria-label="תפריט משתמש">
                 <p id="lessonMenuUserText" class="mobile-dropdown-user">שלום: admin</p>
                 <div class="mobile-dropdown-actions">
-                  <button id="mobileLessonBackBtn" class="btn" type="button">חזרה למסך הראשי</button>
                   <button id="mobileLessonLogoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
                 </div>
               </div>
             </div>
             <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
+            <button id="mobileHeaderBackBtn" class="btn lesson-mobile-back-btn" type="button">חזרה</button>
           </div>
           <p id="lessonUser" class="lesson-user">שלום: admin</p>
         </div>
@@ -781,7 +800,7 @@
     const lessonMenuTrigger = document.getElementById('lessonMenuTrigger');
     const lessonMenuDropdown = document.getElementById('lessonMenuDropdown');
     const lessonMenuUserText = document.getElementById('lessonMenuUserText');
-    const mobileLessonBackBtn = document.getElementById('mobileLessonBackBtn');
+    const mobileHeaderBackBtn = document.getElementById('mobileHeaderBackBtn');
     const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
 
     const MENU_FILE = 'menu.xlsx';
@@ -1244,7 +1263,7 @@
     lessonLogoutBtn.addEventListener('click', logout);
     mobileLogoutBtn.addEventListener('click', logout);
     mobileLessonLogoutBtn.addEventListener('click', logout);
-    mobileLessonBackBtn.addEventListener('click', goHome);
+    mobileHeaderBackBtn.addEventListener('click', goHome);
     loginForm.addEventListener('submit', handleLogin);
     togglePasswordBtn.addEventListener('click', handleTogglePassword);
     mainMenuTrigger.addEventListener('click', () => toggleMobileMenu(mainMenuTrigger, mainMenuDropdown));
