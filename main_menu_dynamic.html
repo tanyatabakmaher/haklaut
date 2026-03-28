@@ -785,12 +785,13 @@
     const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
 
     const MENU_FILE = 'menu.xlsx';
-    const LOGIN_USERNAME = 'admin';
-    const LOGIN_PASSWORD = 'admin';
+    const USERS_FILE = 'users.json';
     const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
     const AUTH_COOKIE_KEY = 'haklautLoggedInUser';
 
     let currentUsername = '';
+    let usersList = [];
+    let usersLoaded = false;
 
     const SECTION_CONFIG = {
       general: {
@@ -963,6 +964,39 @@
         .filter(row => row.page_name && row.page_url);
     }
 
+
+    async function loadUsers() {
+      const response = await fetch(`${USERS_FILE}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const users = await response.json();
+
+      if (!Array.isArray(users)) {
+        throw new Error('Invalid users.json format');
+      }
+
+      return users
+        .map(user => ({
+          username: String(user.username || '').trim(),
+          password: String(user.password || '').trim()
+        }))
+        .filter(user => user.username && user.password);
+    }
+
+    function findMatchingUser(username, password) {
+      const safeUsername = String(username || '').trim();
+      const safePassword = String(password || '').trim();
+
+      return usersList.find(user => user.username === safeUsername && user.password === safePassword) || null;
+    }
+
+    function userExists(username) {
+      const safeUsername = String(username || '').trim();
+      return usersList.some(user => user.username === safeUsername);
+    }
+
     function saveLoginSession(username) {
       try {
         localStorage.setItem(AUTH_STORAGE_KEY, username);
@@ -1016,7 +1050,7 @@
     }
 
     function updateUserGreeting() {
-      const safeName = currentUsername || 'admin';
+      const safeName = currentUsername || 'משתמש';
       const greeting = `שלום: ${safeName}`;
       greetingText.textContent = greeting;
       lessonUser.textContent = greeting;
@@ -1109,12 +1143,20 @@
     function handleLogin(event) {
       event.preventDefault();
 
+      if (!usersLoaded) {
+        showLoginError('לא ניתן לטעון את רשימת המשתמשים כרגע');
+        passwordInput.value = '';
+        setPasswordVisibility(false);
+        return;
+      }
+
       const username = usernameInput.value.trim();
       const password = passwordInput.value.trim();
+      const matchedUser = findMatchingUser(username, password);
 
-      if (username === LOGIN_USERNAME && password === LOGIN_PASSWORD) {
-        currentUsername = username;
-        saveLoginSession(username);
+      if (matchedUser) {
+        currentUsername = matchedUser.username;
+        saveLoginSession(matchedUser.username);
         showMainMenu();
         passwordInput.value = '';
         setPasswordVisibility(false);
@@ -1162,10 +1204,21 @@
     async function init() {
       setPasswordVisibility(false);
 
-      const savedUsername = getSavedLoginSession();
-      if (savedUsername && savedUsername === LOGIN_USERNAME) {
-        currentUsername = savedUsername;
-        showMainMenu();
+      try {
+        usersList = await loadUsers();
+        usersLoaded = true;
+
+        const savedUsername = getSavedLoginSession();
+        if (savedUsername && userExists(savedUsername)) {
+          currentUsername = savedUsername;
+          showMainMenu();
+        } else if (savedUsername) {
+          clearLoginSession();
+        }
+      } catch (error) {
+        console.error(error);
+        usersLoaded = false;
+        showLoginError('לא ניתן לטעון את רשימת המשתמשים כרגע');
       }
 
       try {
