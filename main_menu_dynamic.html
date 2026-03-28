@@ -388,7 +388,7 @@
       return '📘';
     }
 
-    function getDescription(title) {
+    function getDefaultDescription(title) {
       const t = String(title || '').trim();
       if (t.includes('מבוא')) return 'מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.';
       if (t.includes('ויסות חום על ידי החקלאי')) return 'תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.';
@@ -398,6 +398,11 @@
       if (t.includes('רבייה') || t.includes('הרבייה')) return 'מבנה מערכת הרבייה, הורמונים, מחזוריות, הפריה ויישומים חקלאיים.';
       if (t.includes('כלבים') || t.includes('גור')) return 'התפתחות הגור, חושים, תקופות קריטיות ויישום מעשי בגידול כלבים.';
       return 'לומדה אינטראקטיבית להכנה לבגרות בחקלאות.';
+    }
+
+    function getDescription(row) {
+      const subTitle = String(row.sub_title || '').trim();
+      return subTitle || getDefaultDescription(row.page_name);
     }
 
     function escapeHtml(value) {
@@ -449,7 +454,7 @@
         ${buildMediaHtml(row)}
         <div class="card-body">
           <h2 class="card-title">${escapeHtml(row.page_name)}</h2>
-          <p class="card-text">${escapeHtml(getDescription(row.page_name))}</p>
+          <p class="card-text">${escapeHtml(getDescription(row))}</p>
           <div class="card-footer">כניסה ללומדה</div>
         </div>
       `;
@@ -525,7 +530,8 @@
           page_name: String(row.page_name || '').trim(),
           page_url: String(row.page_url || '').trim(),
           menu_icon: String(row.menu_icon || '').trim(),
-          topic: String(row.topic || row.Topic || row['נושא'] || '').trim()
+          topic: String(row.topic || row.Topic || row['נושא'] || '').trim(),
+          sub_title: String(row.sub_title || row.subTitle || row['sub title'] || row['subtitle'] || row['תת כותרת'] || '').trim()
         }))
         .filter(row => row.page_name && row.page_url);
     }
@@ -557,7 +563,7 @@
           <div class="state">
             לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
             ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
-            <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong> ו־<strong>topic</strong>.
+            <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong>, <strong>topic</strong> ו־<strong>sub_title</strong>.
           </div>
         `;
       }
