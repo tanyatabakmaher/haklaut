@@ -41,63 +41,63 @@
       padding:24px 18px 40px;
     }
 
-    .hero{
-      padding:6px 4px 18px;
-      margin-bottom:24px;
-      position:relative;
+    .hidden{
+      display:none !important;
     }
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      left:-30px;
-      top:-30px;
-      width:160px;
-      height:160px;
-      background:radial-gradient(circle, rgba(255,255,255,0.16), transparent 70%);
-      pointer-events:none;
-      z-index:-1;
-    }
-
-    h1{
-      margin:0;
-      font-size:clamp(34px,4.8vw,54px);
-      line-height:1.08;
-      font-weight:900;
-      color:#ffffff;
-      text-shadow:0 3px 14px rgba(0,0,0,0.16);
+    .app-topbar{
       display:flex;
       align-items:center;
-      gap:14px;
-      flex-wrap:nowrap;
-      white-space:nowrap;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+      padding:14px 16px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(6px);
+    }
+
+    .app-topbar-info{
+      display:flex;
+      align-items:center;
+      gap:10px;
       min-width:0;
     }
 
-    .hero-title-text{
-      min-width:0;
-      flex:1 1 auto;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .hero-title-icon{
+    .app-topbar-badge{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:52px;
-      height:52px;
+      width:46px;
+      height:46px;
       border-radius:16px;
       background:rgba(255,255,255,0.18);
       border:1px solid rgba(255,255,255,0.28);
       box-shadow:0 8px 18px rgba(0,0,0,0.10);
-      font-size:28px;
+      font-size:24px;
       line-height:1;
       flex:0 0 auto;
     }
 
-    .hidden{
-      display:none !important;
+    .app-topbar-greeting{
+      margin:0;
+      font-size:clamp(22px,3.6vw,30px);
+      line-height:1.2;
+      font-weight:900;
+      color:#ffffff;
+      text-shadow:0 2px 10px rgba(0,0,0,0.12);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .app-topbar-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
     }
 
     .grid-view{display:block}
@@ -260,7 +260,7 @@
     }
 
     .login-view{
-      min-height:calc(100vh - 64px);
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -334,6 +334,10 @@
       color:var(--text);
     }
 
+    .field-input-wrap{
+      position:relative;
+    }
+
     .field-input{
       width:100%;
       border:1px solid var(--border);
@@ -346,10 +350,35 @@
       transition:border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
 
+    .field-input.with-toggle{
+      padding-left:94px;
+    }
+
     .field-input:focus{
       outline:none;
       border-color:#9ccdb0;
       box-shadow:0 0 0 4px rgba(74,140,95,0.12);
+    }
+
+    .password-toggle{
+      position:absolute;
+      left:10px;
+      top:50%;
+      transform:translateY(-50%);
+      border:none;
+      border-radius:12px;
+      padding:9px 12px;
+      font-size:14px;
+      font-weight:800;
+      background:#eef8f0;
+      color:var(--accent-dark);
+      cursor:pointer;
+      transition:transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+      box-shadow:0 6px 12px rgba(74,140,95,0.12);
+    }
+
+    .password-toggle:hover{
+      transform:translateY(-50%) scale(1.02);
     }
 
     .login-error{
@@ -406,11 +435,33 @@
       min-height:76px;
     }
 
+    .lesson-topbar-info{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+
     .lesson-title{
       margin:0;
       font-size:24px;
       line-height:1.3;
       font-weight:800;
+    }
+
+    .lesson-user{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .lesson-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
     }
 
     .btn{
@@ -429,6 +480,11 @@
 
     .btn:hover{transform:translateY(-1px)}
 
+    .btn-secondary{
+      background:linear-gradient(135deg,#4a7390,#325e7b);
+      box-shadow:0 10px 20px rgba(50,94,123,0.20);
+    }
+
     .iframe-wrap{
       height:calc(100vh - 76px);
       min-height:0;
@@ -446,10 +502,6 @@
 
     @media (max-width: 740px){
       .wrap{padding:18px 14px 28px}
-      .hero{padding:4px 2px 14px}
-      h1{font-size:clamp(22px,6vw,32px); gap:8px; line-height:1.1}
-      .hero-title-icon{width:40px; height:40px; font-size:22px; border-radius:12px}
-      .hero-title-text{overflow:visible; text-overflow:clip}
       .sections-stack{gap:18px}
       .section-shell{padding:16px}
       .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
@@ -457,27 +509,30 @@
       .card{min-height:280px}
       .card-title{font-size:22px}
       .lesson-title{font-size:21px}
-      .lesson-topbar{padding:14px 16px; min-height:72px}
-      .iframe-wrap{height:calc(100vh - 72px)}
+      .lesson-topbar{padding:14px 16px; min-height:72px; align-items:flex-start; flex-direction:column}
+      .iframe-wrap{height:calc(100vh - 112px)}
       .card-footer{font-size:16px; padding:13px 22px}
       .btn{font-size:15px}
       .card-media{height:160px}
-      .login-view{min-height:calc(100vh - 44px); padding-top:6px}
+      .login-view{padding-top:6px}
       .login-shell{padding:14px}
       .login-card{padding:22px 18px}
       .login-title{font-size:26px}
       .login-subtitle{font-size:16px}
       .field-input{padding:14px 14px}
+      .field-input.with-toggle{padding-left:88px}
       .login-btn{font-size:17px}
+      .app-topbar{padding:12px 14px; align-items:flex-start; flex-direction:column}
+      .app-topbar-greeting{font-size:24px; white-space:normal}
+      .app-topbar-actions{width:100%}
+      .lesson-actions{width:100%; justify-content:stretch; flex-wrap:wrap}
+      .lesson-actions .btn{flex:1 1 160px}
+      .password-toggle{left:8px; padding:8px 10px; font-size:13px}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <h1><span class="hero-title-icon" aria-hidden="true">🎓</span><span class="hero-title-text">לומדת הכנה לבגרות בחקלאות</span></h1>
-    </section>
-
     <section id="loginView" class="login-view" aria-live="polite">
       <div class="login-shell">
         <div class="login-card">
@@ -490,12 +545,17 @@
 
             <div class="field">
               <label class="field-label" for="usernameInput">שם משתמש</label>
-              <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+              <div class="field-input-wrap">
+                <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+              </div>
             </div>
 
             <div class="field">
               <label class="field-label" for="passwordInput">סיסמה</label>
-              <input id="passwordInput" class="field-input" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
+              <div class="field-input-wrap">
+                <input id="passwordInput" class="field-input with-toggle" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
+                <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="הצגת סיסמה">הצג</button>
+              </div>
             </div>
 
             <button class="btn login-btn" type="submit">התחברות</button>
@@ -506,14 +566,30 @@
       </div>
     </section>
 
+    <section id="appTopbar" class="app-topbar hidden" aria-live="polite">
+      <div class="app-topbar-info">
+        <span class="app-topbar-badge" aria-hidden="true">🌿</span>
+        <p id="greetingText" class="app-topbar-greeting">שלום: admin</p>
+      </div>
+      <div class="app-topbar-actions">
+        <button id="logoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+      </div>
+    </section>
+
     <section id="gridView" class="grid-view hidden">
       <div id="sectionsContainer" class="sections-stack"></div>
     </section>
 
     <section id="lessonView" class="lesson-view" aria-live="polite">
       <div class="lesson-topbar">
-        <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
-        <button id="backBtn" class="btn" type="button">חזרה למסך הראשי</button>
+        <div class="lesson-topbar-info">
+          <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
+          <p id="lessonUser" class="lesson-user">שלום: admin</p>
+        </div>
+        <div class="lesson-actions">
+          <button id="backBtn" class="btn" type="button">חזרה למסך הראשי</button>
+          <button id="lessonLogoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+        </div>
       </div>
       <div class="iframe-wrap">
         <iframe id="lessonFrame" title="לומדה"></iframe>
@@ -529,15 +605,23 @@
     const loginError = document.getElementById('loginError');
     const usernameInput = document.getElementById('usernameInput');
     const passwordInput = document.getElementById('passwordInput');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const appTopbar = document.getElementById('appTopbar');
+    const greetingText = document.getElementById('greetingText');
+    const logoutBtn = document.getElementById('logoutBtn');
     const gridView = document.getElementById('gridView');
     const lessonView = document.getElementById('lessonView');
     const lessonFrame = document.getElementById('lessonFrame');
     const lessonTitle = document.getElementById('lessonTitle');
+    const lessonUser = document.getElementById('lessonUser');
     const backBtn = document.getElementById('backBtn');
+    const lessonLogoutBtn = document.getElementById('lessonLogoutBtn');
 
     const MENU_FILE = 'menu.xlsx';
     const LOGIN_USERNAME = 'admin';
     const LOGIN_PASSWORD = 'admin';
+
+    let currentUsername = '';
 
     const SECTION_CONFIG = {
       general: {
@@ -710,17 +794,26 @@
         .filter(row => row.page_name && row.page_url);
     }
 
+    function updateUserGreeting() {
+      const safeName = currentUsername || 'admin';
+      greetingText.textContent = `שלום: ${safeName}`;
+      lessonUser.textContent = `שלום: ${safeName}`;
+    }
+
     function openLesson(title, url) {
       lessonTitle.textContent = title;
       lessonFrame.src = normalizeUrl(url);
       gridView.classList.add('hidden');
+      appTopbar.classList.add('hidden');
       lessonView.classList.add('show');
+      updateUserGreeting();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function goHome() {
       lessonFrame.src = '';
       lessonView.classList.remove('show');
+      appTopbar.classList.remove('hidden');
       gridView.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -735,10 +828,37 @@
       loginError.classList.remove('show');
     }
 
+    function setPasswordVisibility(isVisible) {
+      passwordInput.type = isVisible ? 'text' : 'password';
+      togglePasswordBtn.textContent = isVisible ? 'הסתר' : 'הצג';
+      togglePasswordBtn.setAttribute('aria-label', isVisible ? 'הסתרת סיסמה' : 'הצגת סיסמה');
+    }
+
     function showMainMenu() {
       loginView.classList.add('hidden');
+      lessonView.classList.remove('show');
+      appTopbar.classList.remove('hidden');
       gridView.classList.remove('hidden');
       clearLoginError();
+      updateUserGreeting();
+    }
+
+    function resetLoginForm() {
+      loginForm.reset();
+      setPasswordVisibility(false);
+      clearLoginError();
+    }
+
+    function logout() {
+      currentUsername = '';
+      lessonFrame.src = '';
+      lessonView.classList.remove('show');
+      gridView.classList.add('hidden');
+      appTopbar.classList.add('hidden');
+      loginView.classList.remove('hidden');
+      resetLoginForm();
+      usernameInput.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function handleLogin(event) {
@@ -748,23 +868,37 @@
       const password = passwordInput.value.trim();
 
       if (username === LOGIN_USERNAME && password === LOGIN_PASSWORD) {
+        currentUsername = username;
         showMainMenu();
         passwordInput.value = '';
+        setPasswordVisibility(false);
         return;
       }
 
       showLoginError('שם המשתמש או הסיסמה שגויים');
       passwordInput.value = '';
+      setPasswordVisibility(false);
+      passwordInput.focus();
+    }
+
+    function handleTogglePassword() {
+      const isVisible = passwordInput.type === 'text';
+      setPasswordVisibility(!isVisible);
       passwordInput.focus();
     }
 
     backBtn.addEventListener('click', goHome);
+    logoutBtn.addEventListener('click', logout);
+    lessonLogoutBtn.addEventListener('click', logout);
     loginForm.addEventListener('submit', handleLogin);
+    togglePasswordBtn.addEventListener('click', handleTogglePassword);
 
     usernameInput.addEventListener('input', clearLoginError);
     passwordInput.addEventListener('input', clearLoginError);
 
     async function init() {
+      setPasswordVisibility(false);
+
       try {
         const rows = await loadMenu();
         renderSections(rows);
