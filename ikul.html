@@ -158,18 +158,18 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
     <div class="menu-chapter-title">🏥 מבנה מערכת העיכול</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🗺️</span>מבנה כללי</button>
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🗺️</span>מבנה מערכת העיכול</button>
       <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">👄</span>פה, לוע וושט</button>
-      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🫙</span>קיבה</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🫙</span>הקיבה</button>
       <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>תריסריון, כבד ולבלב</button>
-      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🌿</span>מעי דק</button>
-      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🌀</span>מעי גס</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🌿</span>המעי הדק</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🌀</span>המעי הגס</button>
     </div>
     <div class="menu-chapter-title">🔬 יסודות</div>
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🍎</span>מה קורה למזון בגוף?</button>
-      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">⚙️</span>פירוק מכני וכימי</button>
-      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🧪</span>חומרים אורגניים</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">⚙️</span>פירוק מכני ופירוק כימי</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🧪</span>חומרים אורגניים ואי-אורגניים</button>
     </div>
     <div class="menu-chapter-title">💧 מים ומינרלים</div>
     <div class="menu-chapter">
@@ -185,7 +185,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
     <div class="menu-chapter-title">📋 סיכום וחזרה</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלת סיכום</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלת סיכום אבות המזון</button>
       <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
       <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
       <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות</button>
@@ -460,6 +460,73 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
 
     <div class="highlight red" style="font-size:14px">⚠️ <strong>מחלת האולקוס (כיב פפטי):</strong><br>כיבים בקיבה או בתריסריון — נגרמים כשהחידק <strong>הליקובקטר פילורי</strong> מדלל את הריר המגן על הדופן → הפפסין פוגע בדופן הקיבה.</div>
+    <div class="section-title" style="margin-top:4px">🐄 קיבות הפרה — 4 קיבות!</div>
+    <div class="highlight blue" style="font-size:15px;margin-bottom:12px">
+      פרות הן <strong>מעלות גירה</strong> — בולעות מזון, מחזירות אותו לפה ולועסות שוב. כדי לעכל צמחים עשירים בסיבים, לפרות יש <strong>4 מדורים</strong> בקיבה.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">כרס</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">פירוק ותסיסה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fca5a5">המדור הגדול ביותר. מכיל <strong>כמות עצומה של מיקרואורגניזמים</strong> שמפרקים את סיבי התאית. כאן מתבצעים ערבוב ותסיסה. מהכרס המזון יכול לעלות חזרה לפה — <strong>העלאת גירה</strong>.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">קיבת הכוסות</span>
+            <span style="background:#fef3c7;color:#92400e;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">מיון והחזרה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fbbf24">מנקזת <strong>גופים זרים</strong> שחדרו עם המזון. אוספת חלקיקים גדולים ו<strong>מחזירה אותם לפה</strong> ללעיסה חוזרת. מקבלת מזון עיסתי לאחר העלאת הגירה.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">קיבת העלעלים</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">ספיגת מים</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #93c5fd">אחראית על <strong>ספיגת מים וחומרים מסיסים</strong> מהמזון. לאחר מעברו — המזון <strong>נעשה יבש ומרוכז</strong> יותר לקראת המשך העיכול.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">קיבה אמיתית</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">עיכול כימי</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">הקיבה ה"אמיתית" (נקראת גם קיבת הבלוטות). כאן מתרחש <strong>עיכול כימי בעזרת חומצה ומיצי עיכול</strong>, בדומה לקיבה של יונקים רגילים. מכאן המזון ממשיך <strong>למעי הדק</strong>.</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:14px 18px;margin-bottom:14px;font-size:14px;line-height:1.8">
+      📌 <strong>משפט לזכירה:</strong><br>
+      🔴 <strong>כרס</strong> = פירוק ותסיסה | 🟡 <strong>כוסות</strong> = מיון והחזרה ללעיסה | 🔵 <strong>עלעלים</strong> = ספיגת מים | 🟢 <strong>קיבה אמיתית</strong> = עיכול כימי
+    </div>
     <div class="remember-box">קיבה: פפסין → חלבונים | HCl → חומצי + הורג חיידקים | ריר → מגן!</div>
   </div>
   <div class="question-box">
@@ -1497,7 +1564,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <script>
-const TOTAL_SCREENS=22,SCREEN_NAMES=["פתיחה","מה קורה למזון?","פירוק מכני וכימי","חומרים אורגניים","מים","מינרלים","חלבונים","פחמימות","שומנים","ויטמינים","מבנה מערכת העיכול","פה ולוע","קיבה","תריסריון וכבד","מעי דק","מעי גס","טבלת סיכום","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+const TOTAL_SCREENS=22,SCREEN_NAMES=["פתיחה","מבנה מערכת העיכול","פה, לוע וושט","הקיבה","תריסריון, כבד ולבלב","המעי הדק","המעי הגס","מה קורה למזון בגוף?","פירוק מכני ופירוק כימי","חומרים אורגניים ואי-אורגניים","מים","מינרלים ומלחים","חלבונים","פחמימות","שומנים וליפידים","ויטמינים","טבלת סיכום אבות המזון","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
 let currentScreen=0;
 const cards=[{term:"🗺️ מערכת העיכול",def:"מערכת חיצונית עם שני פתחים. מפרקת מולקולות גדולות למסיסות לספיגה בדם."},
   {term:"💧 עמילאז",def:"אנזים ברוק — מפרק עמילן לגלוקוז. תחילת פירוק הפחמימות בפה."},
@@ -1543,6 +1610,8 @@ function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed
 const matchState={};
 function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
 updateProgress();updateFlashcard();updateMenuActive();
+
+function toggleGoal(card){const body=card.querySelector('.goal-body');const arrow=card.querySelector('.toggle-arrow');const isOpen=body.style.maxHeight&&body.style.maxHeight!=='0px';document.querySelectorAll('.goal-body').forEach(b=>b.style.maxHeight='0px');document.querySelectorAll('.toggle-arrow').forEach(a=>{a.style.transform='rotate(0deg)';});if(!isOpen){body.style.maxHeight='300px';arrow.style.transform='rotate(180deg)';}}
 </script>
 </body>
 </html>
