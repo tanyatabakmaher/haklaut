@@ -104,6 +104,16 @@
       flex:0 0 auto;
     }
 
+    .main-self-test-mobile{
+      display:none;
+      flex:0 0 auto;
+      border-radius:14px;
+      padding:11px 14px;
+      font-size:14px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
     .grid-view{display:block}
     .grid-view.hidden{display:none}
 
@@ -598,71 +608,6 @@
       background:#fff;
     }
 
-
-
-    .loading-overlay{
-      position:fixed;
-      inset:0;
-      z-index:3000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      background:rgba(255,255,255,0.72);
-      backdrop-filter:blur(8px);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transition:opacity 0.2s ease, visibility 0.2s ease;
-    }
-
-    .loading-overlay.show{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-    }
-
-    .loading-card{
-      min-width:min(320px, 100%);
-      max-width:420px;
-      background:#ffffff;
-      border:1px solid var(--border);
-      border-radius:24px;
-      box-shadow:var(--shadow-strong);
-      padding:28px 24px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap:12px;
-    }
-
-    .loading-spinner{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      border:5px solid rgba(74,140,95,0.16);
-      border-top-color:var(--accent-dark);
-      animation:spin 0.9s linear infinite;
-    }
-
-    .loading-title{
-      margin:0;
-      font-size:22px;
-      line-height:1.2;
-      font-weight:900;
-      color:var(--text);
-    }
-
-    .loading-text{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.7;
-      font-weight:700;
-    }
-
     @media (max-width: 740px){
       .wrap{padding:18px 14px 28px}
       .sections-stack{gap:18px}
@@ -691,7 +636,7 @@
         border:none;
         box-shadow:none;
         backdrop-filter:none;
-        justify-content:flex-start;
+        justify-content:space-between;
       }
 
       .app-topbar-info,
@@ -701,6 +646,10 @@
 
       .mobile-menu{
         display:block;
+      }
+
+      .main-self-test-mobile{
+        display:inline-flex;
       }
 
       .lesson-topbar{
@@ -789,6 +738,7 @@
         <p id="greetingText" class="app-topbar-greeting">שלום: admin</p>
       </div>
       <div class="app-topbar-actions">
+        <a id="mainSelfTestBtn" class="btn" href="https://bagruyot.org/haklaut/bagruyot.html">בחן את עצמך</a>
         <button id="logoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
       </div>
       <div id="mainMobileMenu" class="mobile-menu">
@@ -800,6 +750,7 @@
           </div>
         </div>
       </div>
+      <a id="mainSelfTestMobileBtn" class="btn main-self-test-mobile" href="https://bagruyot.org/haklaut/bagruyot.html">בחן את עצמך</a>
     </section>
 
     <section id="gridView" class="grid-view hidden">
@@ -835,15 +786,6 @@
     </section>
   </div>
 
-
-  <div id="loadingOverlay" class="loading-overlay show" aria-live="polite" aria-busy="true">
-    <div class="loading-card">
-      <div class="loading-spinner" aria-hidden="true"></div>
-      <p id="loadingTitle" class="loading-title">טוען...</p>
-      <p id="loadingText" class="loading-text">אנא המתיני רגע</p>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const sectionsContainer = document.getElementById('sectionsContainer');
@@ -877,13 +819,6 @@
     const mobileHeaderBackBtn = document.getElementById('mobileHeaderBackBtn');
     const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
 
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingTitle = document.getElementById('loadingTitle');
-    const loadingText = document.getElementById('loadingText');
-
-    let loadingTimeoutId = null;
-    let loadingFallbackId = null;
-
     const MENU_FILE = 'menu.xlsx';
     const USERS_FILE = 'users.json';
     const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
@@ -904,46 +839,6 @@
         icon: '🐶'
       }
     };
-
-
-
-    function showLoading(title = 'טוען...', message = 'אנא המתיני רגע') {
-      if (loadingTimeoutId) {
-        clearTimeout(loadingTimeoutId);
-        loadingTimeoutId = null;
-      }
-
-      if (loadingFallbackId) {
-        clearTimeout(loadingFallbackId);
-        loadingFallbackId = null;
-      }
-
-      if (!loadingOverlay || !loadingTitle || !loadingText) return;
-      loadingTitle.textContent = title;
-      loadingText.textContent = message;
-      loadingOverlay.classList.add('show');
-    }
-
-    function hideLoading(delay = 180) {
-      if (loadingTimeoutId) {
-        clearTimeout(loadingTimeoutId);
-      }
-
-      loadingTimeoutId = setTimeout(() => {
-        if (!loadingOverlay) return;
-        loadingOverlay.classList.remove('show');
-      }, delay);
-    }
-
-    function scheduleLoadingFallback(delay = 10000) {
-      if (loadingFallbackId) {
-        clearTimeout(loadingFallbackId);
-      }
-
-      loadingFallbackId = setTimeout(() => {
-        hideLoading(0);
-      }, delay);
-    }
 
     function getFallbackIcon(title) {
       const t = String(title || '').trim();
@@ -1259,9 +1154,6 @@
       const normalizedTitle = String(title || '').trim() || 'לומדה';
       const normalizedUrl = normalizeUrl(url);
 
-      showLoading('טוען לומדה...', normalizedTitle);
-      scheduleLoadingFallback();
-
       lessonTitle.textContent = normalizedTitle;
       lessonFrame.src = normalizedUrl;
       gridView.classList.add('hidden');
@@ -1280,8 +1172,6 @@
     function goHome(options = {}) {
       const { clearSavedLesson = true, smoothScroll = true } = options;
 
-      showLoading('חוזר למסך הראשי...', 'טוען את רשימת הלומדות');
-
       lessonFrame.src = '';
       lessonView.classList.remove('show');
       appTopbar.classList.remove('hidden');
@@ -1293,9 +1183,6 @@
 
       closeMobileMenus();
       window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
-      if (!lessonView.classList.contains('show')) {
-        hideLoading(180);
-      }
     }
 
     function showLoginError(message) {
@@ -1331,7 +1218,6 @@
     }
 
     function logout() {
-      showLoading('מתנתק...', 'מחזיר למסך הכניסה');
       clearLoginSession();
       clearCurrentLesson();
       currentUsername = '';
@@ -1344,9 +1230,6 @@
       closeMobileMenus();
       usernameInput.focus();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (!lessonView.classList.contains('show')) {
-        hideLoading(180);
-      }
     }
 
     function handleLogin(event) {
@@ -1364,7 +1247,6 @@
       const matchedUser = findMatchingUser(username, password);
 
       if (matchedUser) {
-        showLoading('מתחבר...', 'טוען את הלומדות שלך');
         currentUsername = matchedUser.username;
         saveLoginSession(matchedUser.username);
         const savedLesson = getSavedLesson();
@@ -1373,8 +1255,6 @@
 
         if (savedLesson) {
           openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
-        } else {
-          hideLoading(180);
         }
 
         passwordInput.value = '';
@@ -1404,13 +1284,6 @@
     togglePasswordBtn.addEventListener('click', handleTogglePassword);
     mainMenuTrigger.addEventListener('click', () => toggleMobileMenu(mainMenuTrigger, mainMenuDropdown));
     lessonMenuTrigger.addEventListener('click', () => toggleMobileMenu(lessonMenuTrigger, lessonMenuDropdown));
-    lessonFrame.addEventListener('load', () => {
-      if (loadingFallbackId) {
-        clearTimeout(loadingFallbackId);
-        loadingFallbackId = null;
-      }
-      hideLoading(180);
-    });
 
     usernameInput.addEventListener('input', clearLoginError);
     passwordInput.addEventListener('input', clearLoginError);
@@ -1428,7 +1301,6 @@
     });
 
     async function init() {
-      showLoading('טוען...', 'מכין את סביבת הלמידה');
       setPasswordVisibility(false);
 
       try {
@@ -1468,14 +1340,9 @@
           </div>
         `;
       }
-
-      if (!lessonView.classList.contains('show')) {
-        hideLoading(180);
-      }
     }
 
     init();
   </script>
-
 </body>
 </html>
