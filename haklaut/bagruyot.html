@@ -112,6 +112,16 @@
     transition: all 0.2s;
   }
   .tab-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .tab-btn .tab-count {
+    background: rgba(0,0,0,0.10);
+    border-radius: 12px;
+    padding: 1px 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-right: 5px;
+    display: inline-block;
+  }
+  .tab-btn.active .tab-count { background: rgba(255,255,255,0.3); }
   .tab-btn.active {
     background: var(--teal);
     border-color: var(--teal);
@@ -409,6 +419,77 @@
   }
 
   /* ===== STATS BAR ===== */
+  .reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    border-radius: 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+  }
+  .reset-btn:hover {
+    border-color: var(--wrong);
+    color: var(--wrong);
+    background: var(--wrong-bg);
+  }
+  .track-panel {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .track-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .track-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-light);
+    white-space: nowrap;
+    width: 80px;
+    text-align: right;
+  }
+  .track-bar-wrap {
+    flex: 1;
+    background: #eef4f1;
+    border-radius: 8px;
+    height: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .track-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .track-bar-fill.fill-progress { background: linear-gradient(90deg, var(--teal), var(--correct)); }
+  .track-bar-fill.fill-correct  { background: var(--correct); }
+  .track-bar-fill.fill-wrong    { background: var(--wrong); }
+  .track-val {
+    font-size: 0.82rem;
+    font-weight: 800;
+    white-space: nowrap;
+    width: 54px;
+    text-align: left;
+  }
+  .track-val.v-progress { color: var(--teal); }
+  .track-val.v-correct  { color: var(--correct); }
+  .track-val.v-wrong    { color: var(--wrong); }
   .stats-bar {
     background: var(--card);
     border: 1.5px solid var(--border);
@@ -599,7 +680,57 @@
     .header-inner { flex-direction: column; gap: 8px; text-align: center; }
     .q-text { font-size: 0.95rem; }
     .option-btn { font-size: 0.87rem; }
-    .stats-bar { gap: 16px; }
+    .track-panel {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .track-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .track-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-light);
+    white-space: nowrap;
+    width: 80px;
+    text-align: right;
+  }
+  .track-bar-wrap {
+    flex: 1;
+    background: #eef4f1;
+    border-radius: 8px;
+    height: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .track-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .track-bar-fill.fill-progress { background: linear-gradient(90deg, var(--teal), var(--correct)); }
+  .track-bar-fill.fill-correct  { background: var(--correct); }
+  .track-bar-fill.fill-wrong    { background: var(--wrong); }
+  .track-val {
+    font-size: 0.82rem;
+    font-weight: 800;
+    white-space: nowrap;
+    width: 54px;
+    text-align: left;
+  }
+  .track-val.v-progress { color: var(--teal); }
+  .track-val.v-correct  { color: var(--correct); }
+  .track-val.v-wrong    { color: var(--wrong); }
+  .stats-bar { gap: 16px; }
   }
 </style>
 </head>
@@ -624,18 +755,13 @@
       כאן תמצא שאלות <strong>אמיתיות מבגרויות</strong>, וגם שאלות פתוחות עם תשובות מלאות מהמאגר.<br>
       תרגל, קרא את התשובות, ותרגיש מוכן לבגרות!
     </div>
-    <div class="welcome-chips">
-      <span class="welcome-chip">📝 46 שאלות אמריקאיות</span>
-      <span class="welcome-chip">📖 44 שאלות פתוחות עם מחוון</span>
-      <span class="welcome-chip">🔍 7 נושאים מרכזיים</span>
-      <span class="welcome-chip">✅ משוב מיידי לכל שאלה</span>
-    </div>
+
   </div>
 
   <!-- TABS -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('mc')">📝 שאלות אמריקאיות</button>
-    <button class="tab-btn" onclick="showTab('open')">📖 שאלות פתוחות</button>
+    <button class="tab-btn active" onclick="showTab('mc')">📝 שאלות אמריקאיות <span class="tab-count">46</span></button>
+    <button class="tab-btn" onclick="showTab('open')">📖 שאלות פתוחות <span class="tab-count">57</span></button>
     <button class="tab-btn" onclick="showTab('summary')">⭐ סיכום לבגרות</button>
   </div>
 
@@ -644,25 +770,29 @@
     <div class="section-title">שאלות אמריקאיות מבגרויות</div>
     <div class="section-desc">כל השאלות לקוחות ישירות מבחינות הבגרות הרשמיות. בחר תשובה וקבל משוב מיידי.</div>
 
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-num" id="mcAnswered">0</div>
-        <div class="stat-label">נענו</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" id="mcCorrect" style="color:var(--correct)">0</div>
-        <div class="stat-label">נכון ✓</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" id="mcWrong" style="color:var(--wrong)">0</div>
-        <div class="stat-label">לא נכון ✗</div>
-      </div>
-      <div class="stat-item">
-        <div class="progress-ring">
-          <span>דיוק:</span>
-          <div class="progress-bar"><div class="progress-fill" id="accuracyBar" style="width:0%"></div></div>
-          <span id="accuracyPct">0%</span>
+    <button class="reset-btn" onclick="resetMC()">🔄 איפוס תשובות</button>
+
+    <div class="track-panel">
+      <div class="track-row">
+        <span class="track-label">התקדמות</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-progress" id="progressBar"></div>
         </div>
+        <span class="track-val v-progress" id="progressPct">0 / 46</span>
+      </div>
+      <div class="track-row">
+        <span class="track-label">✅ נכון</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-correct" id="correctBar"></div>
+        </div>
+        <span class="track-val v-correct" id="mcCorrect">0</span>
+      </div>
+      <div class="track-row">
+        <span class="track-label">❌ לא נכון</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-wrong" id="wrongBar"></div>
+        </div>
+        <span class="track-val v-wrong" id="mcWrong">0</span>
       </div>
     </div>
 
@@ -685,16 +815,43 @@
     <div class="section-title">שאלות פתוחות עם תשובות</div>
     <div class="section-desc">כתוב את תשובתך בתיבה, ואז לחץ להצגת המחוון לבדיקה.</div>
 
+    <button class="reset-btn" onclick="resetOpen()">🔄 איפוס תשובות</button>
+
+    <div class="track-panel">
+      <div class="track-row">
+        <span class="track-label">התקדמות</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-progress" id="openProgressBar"></div>
+        </div>
+        <span class="track-val v-progress" id="openProgressPct">0 / 57</span>
+      </div>
+      <div class="track-row">
+        <span class="track-label">✅ ידעתי</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-correct" id="openCorrectBar"></div>
+        </div>
+        <span class="track-val v-correct" id="openCorrect">0</span>
+      </div>
+      <div class="track-row">
+        <span class="track-label">📌 לחזור</span>
+        <div class="track-bar-wrap">
+          <div class="track-bar-fill fill-wrong" id="openWrongBar"></div>
+        </div>
+        <span class="track-val v-wrong" id="openWrong">0</span>
+      </div>
+    </div>
+
     <div class="topic-bar">
       <span class="topic-label">לפי נושא:</span>
-      <span class="topic-chip chip-all active" onclick="filterOpen('all', this)">הכל <span class="chip-count">24</span></span>
-      <span class="topic-chip chip-מחלות" onclick="filterOpen('מחלות', this)">🦠 מחלות וחיסון <span class="chip-count">7</span></span>
+      <span class="topic-chip chip-all active" onclick="filterOpen('all', this)">הכל <span class="chip-count">57</span></span>
+      <span class="topic-chip chip-מחלות" onclick="filterOpen('מחלות', this)">🦠 מחלות וחיסון <span class="chip-count">9</span></span>
       <span class="topic-chip chip-תזונה" onclick="filterOpen('תזונה', this)">🍎 תזונה <span class="chip-count">8</span></span>
-      <span class="topic-chip chip-ניסוי" onclick="filterOpen('ניסוי', this)">🔬 תהליך מחקר <span class="chip-count">5</span></span>
-      <span class="topic-chip chip-כלבים" onclick="filterOpen('כלבים', this)">🐕 כלבים <span class="chip-count">14</span></span>
-      <span class="topic-chip chip-חקלאות" onclick="filterOpen('חקלאות', this)">🌾 חקלאות <span class="chip-count">6</span></span>
-      <span class="topic-chip chip-רבייה" onclick="filterOpen('רבייה', this)">🧬 רבייה <span class="chip-count">1</span></span>
+      <span class="topic-chip chip-ניסוי" onclick="filterOpen('ניסוי', this)">🔬 תהליך מחקר <span class="chip-count">4</span></span>
+      <span class="topic-chip chip-כלבים" onclick="filterOpen('כלבים', this)">🐕 כלבים <span class="chip-count">16</span></span>
+      <span class="topic-chip chip-חקלאות" onclick="filterOpen('חקלאות', this)">🌾 חקלאות <span class="chip-count">11</span></span>
+      <span class="topic-chip chip-רבייה" onclick="filterOpen('רבייה', this)">🧬 רבייה <span class="chip-count">2</span></span>
       <span class="topic-chip chip-כלכלה" onclick="filterOpen('כלכלה', this)">💰 כלכלה <span class="chip-count">3</span></span>
+      <span class="topic-chip chip-ויסות-חום" onclick="filterOpen('ויסות חום', this)">🌡️ ויסות חום <span class="chip-count">4</span></span>
     </div>
 
     <div id="open-questions"></div>
@@ -1334,16 +1491,6 @@ const openQuestions = [
     keypoints:'דגנים | בשר | רמת חיים | ביקוש | היצע | 1950–2019'
   },
   {
-    id:'op22', topic:'תזונה', source:'בגרות 2022 – שאלה 15ב (מחוון רשמי)',
-    text:'מדוע חשוב שבני האדם יצרכו גם מזון מן החי וגם מן הצומח? כתבו שני נימוקים.',
-    answer:`<ul>
-      <li>במזונות מן החי ומן הצומח יש <strong>רכיבים משלימים</strong> הדרושים לגוף לקיום תקין.</li>
-      <li>מזון מן החי: <strong>חלבון מלא</strong> + <strong>ויטמין B12</strong> (מערכת עצבים, תאי דם אדומים).</li>
-      <li>מזון מן הצומח: <strong>סיבים תזונתיים</strong> (סיוע לעיכול) + פחמימות + ויטמינים.</li>
-    </ul>`,
-    keypoints:'חלבון מלא | ויטמין B12 | סיבים | משלים | תזונה מאוזנת'
-  },
-  {
     id:'op23', topic:'חקלאות', source:'בגרות 2022 – שאלה 16א (מחוון רשמי)',
     text:'(1) ציינו שימוש אפשרי בהפרשות בעלי חיים. (2) הסבירו יתרון אחד וחיסרון אחד של שימוש זה.',
     answer:`<strong>(1) שימוש (לבחירה):</strong><ul>
@@ -1604,7 +1751,7 @@ const openQuestions = [
     keypoints:'אבני לקיקה | מינרלים | גמילה | ספיגה | תוסף מזון'
   },
   {
-    id:'op44', topic:'ניסוי', source:'בגרות 2023 – שאלה 16ב(3) (מחוון רשמי)',
+    id:'op44', topic:'תזונה', source:'בגרות 2023 – שאלה 16ב(3) (מחוון רשמי)',
     text:'הסבירו את ההבדל בתוספת המשקל היומית בין עגלים שצרכו אבני לקיקה לבין עגלים שלא צרכו, והתייחסו לניצולת המזון בכל קבוצה.',
     answer:`<ul>
       <li>עגלים <strong>שצרכו אבני לקיקה</strong>: ניצולת מזון <strong>גבוהה</strong> → על אף שצרכו <strong>פחות מזון</strong> – תוספת המשקל הייתה <strong>גדולה יותר</strong>.</li>
@@ -1663,6 +1810,328 @@ const openQuestions = [
     keypoints:'חקלאות אורגנית | עלויות | תוצרת נמוכה | מזיקים | שטח'
   }
 
+
+  ,
+  {
+    id:'op49', topic:'כלבים', source:'בגרות 2023 – שאלה 31ב (מחוון רשמי)',
+    text:'תאר את התהליך המתרחש במערכת הנשימה בעת שאיפת האוויר.',
+    answer:`<ul>
+      <li><strong>הסרעפת מתכווצת</strong> ומתיישרת כלפי מטה.</li>
+      <li><strong>השרירים שבין הצלעות מתכווצים</strong> וגורמים להרמת הצלעות.</li>
+      <li>כתוצאה: <strong>נפח בית החזה גדל</strong>.</li>
+      <li><strong>הלחץ בתוך בית החזה והריאות יורד</strong>.</li>
+      <li>נוצר <strong>מפל לחצים</strong> בין האוויר שבריאות לאוויר החיצוני.</li>
+      <li>בעקבות מפל הלחצים – <strong>אוויר מן החוץ נכנס לריאות</strong>.</li>
+    </ul>`,
+    keypoints:'סרעפת | צלעות | נפח בית חזה | לחץ | מפל לחצים | שאיפה | נשימה'
+  }
+
+  ,
+  {
+    id:'op50', topic:'כלבים', source:'בגרות 2023 – שאלה 32א (מחוון רשמי)',
+    text:'מדוע בחרו החוקרים להשוות עלויות מזון לכלבים על פי חישוב עלות האנרגייה המטבולית לכלב, ולא על פי עלות של 1 ק"ג מזון?',
+    answer:`<ul>
+      <li>יש הבדלים בין כלבים ב<strong>גזע, משקל גוף ורמת פעילות</strong> – ובהתאם לכך משתנה <strong>כמות המזון שהכלב צורך</strong>.</li>
+      <li>חישוב <strong>אנרגייה מטבולית</strong> משקלל את כמות המזון הנצרכת בפועל, ולכן מאפשר <strong>השוואה על פי מדד אחיד</strong> לכל הכלבים.</li>
+      <li>חישוב לפי 1 ק"ג מזון אינו מדויק כי כלבים שונים צורכים <strong>כמויות שונות</strong> מאותו מזון.</li>
+    </ul>`,
+    keypoints:'אנרגייה מטבולית | מדד אחיד | גזע | משקל | כמות מזון | השוואת עלויות'
+  }
+
+  ,
+  {
+    id:'op51', topic:'רבייה', source:'מאגר שאלות – הורמוני רבייה',
+    text:'בחר הורמון אחד מהרשימה: פרוגסטרון / טסטוסטרון / אסטרוגן / LH / FSH. (1) ציין את איבר ההפרשה ואיבר המטרה. (2) הסבר מהי השפעת ההורמון על איבר המטרה.',
+    answer:`<div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.88rem;line-height:1.6;">
+      <thead>
+        <tr style="background:var(--teal);color:white;">
+          <th style="padding:8px 10px;text-align:right;border-radius:6px 0 0 0;">הורמון</th>
+          <th style="padding:8px 10px;text-align:right;">איבר ההפרשה</th>
+          <th style="padding:8px 10px;text-align:right;">איבר המטרה</th>
+          <th style="padding:8px 10px;text-align:right;border-radius:0 6px 0 0;">השפעה על איבר המטרה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#f8fffe;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--teal);border-bottom:1px solid var(--border);">פרוגסטרון</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">גופיף צהוב בשחלה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">רחם</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">התעבות רירית הרחם; תמיכה בקליטת העובר; המשך ההיריון</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--teal);border-bottom:1px solid var(--border);">טסטוסטרון</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">אשכים</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">רקמות בגוף</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">התפתחות אברי מין זכריים; יצירת תאי זרע; סימני מין משניים בזכר</td>
+        </tr>
+        <tr style="background:#f8fffe;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--teal);border-bottom:1px solid var(--border);">אסטרוגן</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">זקיק בשחלה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">רחם ורקמות נוספות</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">יצירת רירית הרחם; סימני מין משניים בנקבה; התפתחות צינורות חלב בעטין</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--teal);border-bottom:1px solid var(--border);">LH</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">היפופיזה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">שחלה (נקבה) / אשכים (זכר)</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">נקבה: ביוץ + הפרשת פרוגסטרון. זכר: הפרשת טסטוסטרון</td>
+        </tr>
+        <tr style="background:#f8fffe;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--teal);">FSH</td>
+          <td style="padding:8px 10px;">היפופיזה</td>
+          <td style="padding:8px 10px;">שחלה (נקבה) / אשכים (זכר)</td>
+          <td style="padding:8px 10px;">נקבה: התפתחות הזקיק + הפרשת אסטרוגן. זכר: יצירת תאי זרע</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>`,
+    keypoints:'פרוגסטרון | טסטוסטרון | אסטרוגן | LH | FSH | היפופיזה | שחלה | אשכים | איבר הפרשה | איבר מטרה'
+  }
+
+  ,
+  {
+    id:'op52', topic:'מחלות', source:'מאגר שאלות – שלבי מחלה מידבקת',
+    text:'(1) ציין את ארבעת השלבים של מחלה מידבקת בסדר הנכון. (2) תאר אחד מן השלבים שציינת.',
+    answer:`<strong>(1) ארבעת השלבים בסדר:</strong>
+    <ol style="padding-right:18px;line-height:2;margin-top:6px;">
+      <li><strong>הדבקה</strong></li>
+      <li><strong>דגירה</strong></li>
+      <li><strong>מחלה</strong></li>
+      <li><strong>החלמה</strong></li>
+    </ol>
+    <strong>(2) תיאור כל שלב:</strong>
+    <div style="overflow-x:auto;margin-top:8px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.88rem;line-height:1.6;">
+      <thead>
+        <tr style="background:var(--wrong);color:white;">
+          <th style="padding:8px 10px;text-align:right;">שלב</th>
+          <th style="padding:8px 10px;text-align:right;">תיאור</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff8f8;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">הדבקה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">מיקרואורגניזם (גורם מחלה) <strong>חודר לגוף</strong> של בעל החיים.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">דגירה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">גורם המחלה <strong>מתרבה בגוף</strong> – בדרך כלל <strong>ללא תסמינים</strong> קליניים.</td>
+        </tr>
+        <tr style="background:#fff8f8;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">מחלה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);"><strong>תסמינים קליניים מופיעים</strong>; גורם המחלה ממשיך להיות פעיל ולהתרבות.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--wrong);">החלמה</td>
+          <td style="padding:8px 10px;">ירידה בגורם המחלה עד <strong>היעלמותו</strong>; תסמינים נעלמים; בעל החיים חש הטבה. לפעמים — <strong>תמותה</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>`,
+    keypoints:'הדבקה | דגירה | מחלה | החלמה | סדר שלבים | תסמינים | מיקרואורגניזם'
+  }
+
+  ,
+  {
+    id:'op53', topic:'מחלות', source:'מאגר שאלות – הדבקה ישירה ועקיפה',
+    text:'קבע לגבי כל אחד מן המצבים הבאים אם דרך ההדבקה האפשרית היא ישירה או עקיפה: (1) כבשים אוכלות מכלים משותפים. (2) וטרינר מטפל באותו יום בכבשים מכמה חוות. (3) כבשים מתעטשות באוויר. (4) כבשים מהלכות ברפש שבחצר. (5) כבשים מניקות טלאים.',
+    answer:`<div style="overflow-x:auto;margin-top:4px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;line-height:1.7;">
+      <thead>
+        <tr style="background:var(--wrong);color:white;">
+          <th style="padding:8px 12px;text-align:right;">המצב</th>
+          <th style="padding:8px 12px;text-align:center;width:120px;">דרך ההדבקה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff8f8;">
+          <td style="padding:8px 12px;border-bottom:1px solid var(--border);">הכבשים אוכלות מזון מ<strong>כלים משותפים</strong></td>
+          <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--correct);border-bottom:1px solid var(--border);">ישירה</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;border-bottom:1px solid var(--border);">הווטרינר מטפל באותו יום בכבשים מ<strong>כמה חוות</strong></td>
+          <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">עקיפה</td>
+        </tr>
+        <tr style="background:#fff8f8;">
+          <td style="padding:8px 12px;border-bottom:1px solid var(--border);">הכבשים <strong>מתעטשות</strong> באוויר</td>
+          <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">עקיפה</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;border-bottom:1px solid var(--border);">הכבשים מהלכות ב<strong>רפש שבחצר</strong></td>
+          <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--wrong);border-bottom:1px solid var(--border);">עקיפה</td>
+        </tr>
+        <tr style="background:#fff8f8;">
+          <td style="padding:8px 12px;">כבשים <strong>מניקות טלאים</strong> צעירים</td>
+          <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--correct);">ישירה</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:10px;font-size:0.83rem;color:var(--text-light);background:var(--teal-pale);padding:8px 12px;border-radius:8px;">
+      💡 <strong>כלל:</strong> הדבקה <strong>ישירה</strong> = מגע ישיר בין בעל חיים חולה לבריא (אכילה משותפת, הנקה). הדבקה <strong>עקיפה</strong> = גורם מחלה עובר דרך מתווך (וטרינר, אוויר, רפש, מים).
+    </div>`,
+    keypoints:'הדבקה ישירה | הדבקה עקיפה | מתווך | וטרינר | אוויר | כלים משותפים | הנקה'
+  }
+
+  ,
+  {
+    id:'op54', topic:'חקלאות', source:'מאגר שאלות – חומרי הדברה במזון מן החי',
+    text:'ציין שני מקורות אפשריים לחומרי הדברה המצויים במזון מן החי.',
+    answer:`<strong>שניים מבין המקורות הבאים:</strong>
+    <ul>
+      <li><strong>המזון של בעלי החיים</strong> שמקורו מן הצומח (מספוא) – שאריות חומרי הדברה עוברות לגוף בעל החיים.</li>
+      <li><strong>המים</strong> ששותים בעלי החיים – מים מזוהמים בחומרי הדברה.</li>
+      <li><strong>שימוש בחומרי הדברה</strong> נגד מזיקים ישירות על גוף בעל החיים.</li>
+      <li><strong>תהליך השיווק</strong> – אמצעי הובלה וכלים.</li>
+      <li><strong>חומרי ניקוי</strong> של סביבת הגידול / מכונות ייצור (מכונות חליבה וכד').</li>
+    </ul>`,
+    keypoints:'חומרי הדברה | מספוא | מים | שיווק | ניקוי | מזון מן החי | זיהום תוצרת'
+  }
+
+  ,
+  {
+    id:'op55', topic:'חקלאות', source:'מאגר שאלות – יתרונות חקלאות אורגנית לסביבה',
+    text:'ציין שני יתרונות של חקלאות אורגנית לסביבה.',
+    answer:`<strong>שניים מבין היתרונות הבאים:</strong>
+    <ul>
+      <li><strong>צמצום זיהום קרקע ומי תהום</strong> – בגלל דישון בחומרים אורגניים (במקום דשנים כימיים).</li>
+      <li><strong>צמצום זיהום בכימיקלים</strong> – בגלל שימוש בהדברה ביולוגית במקום חומרי הדברה כימיים.</li>
+      <li><strong>הפחתת פליטת גזי חממה</strong> – הימנעות מדשנים וחומרי הדברה סינתטיים מפחיתה את תשומות האנרגייה הדרושות לייצורם.</li>
+      <li><strong>מניעת סחף קרקע</strong> – העשרת הקרקע בחומרים אורגניים משפרת את מבנה הקרקע ומונעת סחיפה.</li>
+    </ul>`,
+    keypoints:'חקלאות אורגנית | קרקע | מי תהום | גזי חממה | הדברה ביולוגית | סחף | סביבה'
+  }
+
+  ,
+  {
+    id:'op56', topic:'ויסות חום', source:'מאגר שאלות – ויסות חום, סעיף א(1)',
+    text:'בחר בעל חיים אחד ממשק חקלאי. קבע: האם הוא פויקילותרמי או הומאותרמי? הסבר מה המשמעות של כל אחד מהמונחים.',
+    answer:`<ul>
+      <li><strong>הומאותרמי</strong> (חם דם) – טמפרטורת הגוף <strong>קבועה ועצמאית</strong> מטמפרטורת הסביבה. דוגמאות: פרה, כלב, סוס, עוף, כבשה.</li>
+      <li><strong>פויקילותרמי</strong> (קר דם) – טמפרטורת הגוף <strong>משתנה עם הסביבה</strong>. דוגמאות: דבורים (ברמת הפרט), דגים, זוחלים.</li>
+    </ul>
+    <div style="margin-top:8px;background:var(--teal-pale);padding:8px 12px;border-radius:8px;font-size:0.85rem;">
+      💡 רוב בעלי החיים במשק החקלאי (פרות, כבשות, עופות, סוסים, כלבים) הם <strong>הומאותרמיים</strong>.
+    </div>`,
+    keypoints:'הומאותרמי | פויקילותרמי | טמפרטורת גוף קבועה | תלות בסביבה | חם דם | קר דם'
+  },
+  {
+    id:'op57', topic:'ויסות חום', source:'מאגר שאלות – ויסות חום, סעיף א(2)',
+    text:'תאר דרך פיזיולוגית אחת שבאמצעותה בעל חיים הומאותרמי מתמודד עם שינויי טמפרטורה — אחת בימים חמים ואחת בימים קרים.',
+    answer:`<strong>בימים חמים (דרכים פיזיולוגיות):</strong>
+    <ul>
+      <li><strong>הרחבת כלי דם פריפריאליים</strong> – דם מגיע לעור ומאפשר פיזור חום לסביבה.</li>
+      <li><strong>עמידה בפיסוק רגליים</strong> – הגדלת שטח הפנים של הגוף לפיזור חום.</li>
+      <li><strong>הלחתה</strong> (בכלבים) – אידוי רוק מקרר את הגוף.</li>
+    </ul>
+    <strong>בימים קרים (דרכים פיזיולוגיות):</strong>
+    <ul>
+      <li><strong>כיווץ כלי הדם הפריפריאליים</strong> – שמירת חום בפנים הגוף.</li>
+      <li><strong>רעידות שרירים</strong> – יצירת חום מכני.</li>
+      <li><strong>סימור הפרווה</strong> (בכלבים) – לכידת אוויר חם ליד העור.</li>
+    </ul>`,
+    keypoints:'כלי דם פריפריאליים | הלחתה | רעידות | סימור פרווה | חום | קור | פיזיולוגיה'
+  },
+  {
+    id:'op58', topic:'ויסות חום', source:'מאגר שאלות – ויסות חום, סעיף א(3)',
+    text:'תאר דרך התנהגותית אחת שבאמצעותה בעל חיים הומאותרמי מתמודד עם שינויי טמפרטורה — אחת בימים חמים ואחת בימים קרים.',
+    answer:`<strong>בימים חמים (דרכים התנהגותיות):</strong>
+    <ul>
+      <li><strong>שתייה מרובה</strong> – קירור גוף מבפנים.</li>
+      <li><strong>שהייה במקומות מוצלים</strong> – הימנעות מחשיפה לשמש.</li>
+    </ul>
+    <strong>בימים קרים (דרכים התנהגותיות):</strong>
+    <ul>
+      <li><strong>אכילה רבה</strong> – ייצור חום מחמצון מזון.</li>
+      <li><strong>הצטופפות</strong> עם בעלי חיים אחרים – שמירה משותפת על חום.</li>
+      <li><strong>התכרבלות</strong> – צמצום שטח הפנים החשוף לקור.</li>
+      <li><strong>שהייה במקומות חמים</strong>.</li>
+    </ul>`,
+    keypoints:'שתייה | צל | אכילה | הצטופפות | התכרבלות | התנהגות | חום | קור'
+  }
+
+  ,
+  {
+    id:'op59', topic:'ויסות חום', source:'מאגר שאלות – עקת חום בבעלי חיים',
+    text:'בחר בעל חיים ממשק חקלאי. (1) ציין מצב שבו הוא עלול לסבול מעקת חום. (2) הסבר מדוע עקת חום עלולה להיות מסוכנת לאותו בעל חיים.',
+    answer:`<div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.87rem;line-height:1.6;">
+      <thead>
+        <tr style="background:var(--accent-dark);color:white;">
+          <th style="padding:8px 10px;text-align:right;">בעל חיים</th>
+          <th style="padding:8px 10px;text-align:right;">מצבים של עקת חום</th>
+          <th style="padding:8px 10px;text-align:right;">הסבר הסכנה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff9f5;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--accent-dark);border-bottom:1px solid var(--border);">בקר וצאן</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">ייצור חלב גדול; היעדר אוורור ברפת; עומס חום גבוה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">ירידה בתנובת חלב; פגיעה בפוריות ובריאות הפרה</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--accent-dark);border-bottom:1px solid var(--border);">עופות</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">הטלה בכמות גדולה; היעדר אוורור בלול; טמפרטורה גבוהה</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">הפחתה בהטלה; פגיעה באיכות הביצים; תמותה</td>
+        </tr>
+        <tr style="background:#fff9f5;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--accent-dark);border-bottom:1px solid var(--border);">דבורים</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">ייצור דבש גדול; טמפרטורה גבוהה; פתחי כוורת סגורים</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">פגיעה בפעילות הכוורת; הפחתה בייצור דבש; תמותה</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;font-weight:700;color:var(--accent-dark);border-bottom:1px solid var(--border);">סוסים</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">מאמצים רבים בדהירה; מרוץ; פעילות מאומצת</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);">עלייה בקצב לב; נשימה מהירה; עלול להוביל לתמותה</td>
+        </tr>
+        <tr style="background:#fff9f5;">
+          <td style="padding:8px 10px;font-weight:700;color:var(--accent-dark);">כלבים</td>
+          <td style="padding:8px 10px;">ממשק לקוי בכלביה; פעילות מאומצת בחום; כלב במכונית סגורה</td>
+          <td style="padding:8px 10px;"><strong>כלבים אינם יכולים להזיע</strong> → קירור לא יעיל בחום → האטת פעילות לב → פגיעה במוח (בצקת), כליות, מערכת קרישת דם → מוות</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>`,
+    keypoints:'עקת חום | ממשק | אוורור | תנובה | פוריות | כלב במכונית | הזעה | בצקת מוח | תמותה'
+  }
+
+  ,
+  {
+    id:'op60', topic:'חקלאות', source:'מאגר שאלות – עיקרון מלתוס',
+    text:'הסבר מהו עיקרון מלתוס ומדוע לפי עיקרון זה צפוי משבר מזון.',
+    answer:`<ul>
+      <li>מלתוס טען שהאוכלוסייה גדלה בקצב <strong>גיאומטרי</strong> (1,2,4,8...) בעוד ייצור המזון גדל בקצב <strong>אריתמטי</strong> (1,2,3,4...).</li>
+      <li>לכן, בשלב מסוים <strong>כמות המזון המיוצרת לא תוכל לספק את צרכי האוכלוסייה הגדלה</strong>.</li>
+      <li>החל מ"נקודת המשבר" – עלול להתפתח <strong>מחסור חמור במזון</strong>.</li>
+    </ul>
+    <div style="background:var(--warn-bg);border:1.5px solid var(--warn);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:0.85rem;">
+      ⚠️ המהפכה הירוקה הצליחה לדחות את נקודת המשבר שחזה מלתוס.
+    </div>`,
+    keypoints:'מלתוס | גיאומטרי | אריתמטי | נקודת משבר | מחסור מזון | אוכלוסייה'
+  },
+  {
+    id:'op61', topic:'חקלאות', source:'מאגר שאלות – המהפכה הירוקה',
+    text:'הסבר מהי "המהפכה הירוקה".',
+    answer:`<ul>
+      <li>הגדלת כמויות המזון העומדות לרשות האנושות בעקבות <strong>התפתחויות בתחום החקלאות, המדע והטכנולוגיה</strong>.</li>
+      <li>כללה: פיתוח <strong>זנים משופרים</strong> בעלי תנובה גבוהה, שימוש בדשנים כימיים, השקיה מבוקרת, מכנון חקלאי.</li>
+      <li>תוצאה: עלייה דרמטית בכמות התוצרת החקלאית לדונם ולפרה/עוף/בעל חיים.</li>
+    </ul>`,
+    keypoints:'מהפכה ירוקה | טכנולוגיה | זנים משופרים | תנובה | דשנים | מכנון'
+  },
+  {
+    id:'op62', topic:'חקלאות', source:'מאגר שאלות – פעולות למניעת משבר מזון',
+    text:'בחר שתיים מהפעולות הבאות והסבר כיצד כל אחת סייעה למנוע את משבר המזון שחזה מלתוס: (א) טיפול נאות בבעלי חיים, (ב) מתן חיסונים לבעלי חיים, (ג) טיפוח גנטי, (ד) בניית מבנים מודרניים.',
+    answer:`<strong>שתיים מבין הפעולות:</strong>
+    <ul>
+      <li><strong>טיפול נאות בבעלי חיים ומניעת צער בעלי חיים</strong> – תנאים מיטביים מגדילים את התפוקה החקלאית.</li>
+      <li><strong>מתן חיסונים לבעלי חיים</strong> – מאריכים את חיי בעל החיים ומגדילים את התוצרת.</li>
+      <li><strong>טיפוח גנטי</strong> – השבחת בעלי חיים מאפשרת פיתוח זנים עמידים למחלות, שיעור פריון גבוה וכמות תוצרת גדולה יותר.</li>
+      <li><strong>בניית מבנים מודרניים</strong> – שיפור תנאי החיים של בעל החיים → גידול בתוצרת החקלאית.</li>
+    </ul>`,
+    keypoints:'רווחת בעלי חיים | חיסונים | טיפוח גנטי | מבנים | תפוקה | מניעת משבר מזון'
+  }
 ];
 
 // ============================
@@ -1742,6 +2211,17 @@ const summaryTopics = [
 // STATE
 // ============================
 let score = 0;
+let openAnswered = 0, openKnew = 0, openDidnt = 0;
+
+function updateOpenStats() {
+  const total = 57;
+  document.getElementById('openProgressPct').textContent = openAnswered + ' / ' + total;
+  document.getElementById('openProgressBar').style.width = Math.round((openAnswered/total)*100) + '%';
+  document.getElementById('openCorrect').textContent = openKnew;
+  document.getElementById('openCorrectBar').style.width = Math.round((openKnew/total)*100) + '%';
+  document.getElementById('openWrong').textContent = openDidnt;
+  document.getElementById('openWrongBar').style.width = Math.round((openDidnt/total)*100) + '%';
+}
 let mcAnswered = 0, mcCorrect = 0, mcWrong = 0;
 const mcAnsweredMap = {}; // qId -> { selected, correct }
 
@@ -1762,6 +2242,37 @@ const mcAnsweredMap = {}; // qId -> { selected, correct }
     const t = TOPIC_CHIP[topic] || { cls: 'chip-all', emoji: '' };
     return `<span class="topic-chip ${t.cls} active" style="cursor:default;pointer-events:none;">${t.emoji} ${topic}</span>`;
   }
+
+function resetMC() {
+  // Clear all answered state
+  for (const key in mcAnsweredMap) delete mcAnsweredMap[key];
+  for (const key in mcPendingMap) delete mcPendingMap[key];
+  mcAnswered = 0; mcCorrect = 0; mcWrong = 0; score = 0;
+  document.getElementById('scoreDisplay').textContent = 'נקודות: 0';
+  updateStats();
+  renderMC();
+  // Flash the button
+  const btn = document.querySelector('#tab-mc .reset-btn');
+  if (btn) { btn.textContent = '✅ אופס!'; setTimeout(() => { btn.innerHTML = '🔄 איפוס תשובות'; }, 1200); }
+}
+
+function resetOpen() {
+  // Clear all open question state
+  for (const key in openCheckedMap) delete openCheckedMap[key];
+  openAnswered = 0; openKnew = 0; openDidnt = 0;
+  updateOpenStats();
+  // Re-render with current active filter
+  const activeChip = document.querySelector('#tab-open .topic-chip.active');
+  let activeTopic = 'all';
+  if (activeChip) {
+    const m = activeChip.getAttribute('onclick').match(/filterOpen\('([^']+)'/);
+    if (m) activeTopic = m[1];
+  }
+  renderOpen(activeTopic);
+  // Flash the button
+  const btn = document.querySelector('#tab-open .reset-btn');
+  if (btn) { btn.textContent = '✅ אופס!'; setTimeout(() => { btn.innerHTML = '🔄 איפוס תשובות'; }, 1200); }
+}
 
 let mcFilter = { topic: 'all', year: 'all' };
 
@@ -1875,13 +2386,16 @@ function selectMC(qId, selectedIdx) {
 }
 
 function updateStats() {
-  document.getElementById('mcAnswered').textContent = mcAnswered;
-  document.getElementById('mcCorrect').textContent = mcCorrect;
-  document.getElementById('mcWrong').textContent = mcWrong;
+  const total = 46;
+  // Score
   document.getElementById('scoreDisplay').textContent = 'נקודות: ' + score;
-  const pct = mcAnswered > 0 ? Math.round((mcCorrect/mcAnswered)*100) : 0;
-  document.getElementById('accuracyPct').textContent = pct + '%';
-  document.getElementById('accuracyBar').style.width = pct + '%';
+  // Track panel bars
+  document.getElementById('progressPct').textContent = mcAnswered + ' / ' + total;
+  document.getElementById('progressBar').style.width = Math.round((mcAnswered / total) * 100) + '%';
+  document.getElementById('mcCorrect').textContent = mcCorrect;
+  document.getElementById('correctBar').style.width = Math.round((mcCorrect / total) * 100) + '%';
+  document.getElementById('mcWrong').textContent = mcWrong;
+  document.getElementById('wrongBar').style.width = Math.round((mcWrong / total) * 100) + '%';
 }
 
 function filterMC(value, type, el) {
@@ -1954,12 +2468,23 @@ function toggleAnswer(qId, btn) {
   }
 }
 
+const openCheckedMap = {};
 function selfCheck(qId, knew) {
   const sc = document.getElementById('sc-' + qId);
-  if (knew) { score += 1; document.getElementById('scoreDisplay').textContent = 'נקודות: ' + score; }
+  const prev = openCheckedMap[qId];
+  // Undo previous if changing
+  if (prev !== undefined) {
+    if (prev) { openKnew--; } else { openDidnt--; }
+  } else {
+    openAnswered++;
+    if (knew) { score += 1; document.getElementById('scoreDisplay').textContent = 'נקודות: ' + score; }
+  }
+  openCheckedMap[qId] = knew;
+  if (knew) { openKnew++; } else { openDidnt++; }
   sc.innerHTML = knew
     ? '<span style="color:var(--correct);font-weight:700;font-size:0.88rem">✅ מצוין! המשיכו כך!</span>'
     : '<span style="color:var(--accent-dark);font-weight:700;font-size:0.88rem">📌 כדאי לחזור על הנושא הזה.</span>';
+  updateOpenStats();
 }
 
 function filterOpen(topic, el) {
