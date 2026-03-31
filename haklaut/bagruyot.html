@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐄 בחן את עצמך</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #d6edf5;
+    --card: #ffffff;
+    --primary: #2a6b40;
+    --primary-light: #3d8a56;
+    --primary-pale: #e3f5ea;
+    --teal: #3aaec2;
+    --teal-light: #5cc8d8;
+    --teal-pale: #e0f5f9;
+    --accent: #f4a261;
+    --accent-dark: #e76f51;
+    --text: #1a2e24;
+    --text-light: #3d6b55;
+    --border: #b0d9e8;
+    --correct: #2a9d5c;
+    --correct-bg: #e3f5ea;
+    --wrong: #e63946;
+    --wrong-bg: #ffe0e0;
+    --info: #3aaec2;
+    --info-bg: #e0f5f9;
+    --warn: #e9c46a;
+    --warn-bg: #fff8e1;
+    --tag-open: #3d8a56;
+    --tag-mc: #3aaec2;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(42,107,64,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(160deg, #c8e6f2 0%, #ddf0f7 50%, #d0edf0 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .header-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+  .score-badge {
+    background: rgba(255,255,255,0.25);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ===== SECTION TABS ===== */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .tab-btn.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+    box-shadow: 0 3px 10px rgba(58,174,194,0.3);
+  }
+
+  /* ===== SECTION PANEL ===== */
+  .section-panel { display: none; }
+  .section-panel.active { display: block; }
+
+  /* ===== TOPIC FILTER ===== */
+  .topic-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .topic-label { font-size: 0.85rem; font-weight: 600; color: var(--text-light); }
+  .topic-chip {
+    padding: 5px 14px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-light);
+  }
+  .topic-chip:hover { opacity: 0.85; transform: translateY(-1px); }
+  .topic-chip.active { color: white !important; }
+
+  .chip-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.13);
+    border-radius: 10px;
+    min-width: 20px;
+    height: 18px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0 5px;
+    margin-right: 3px;
+  }
+  .topic-chip.active .chip-count { background: rgba(255,255,255,0.25); }
+  /* per-topic colors */
+  .chip-all   { --tc:#6b7280; } .chip-all.active   { background:#6b7280; border-color:#6b7280; }
+  .chip-תזונה { --tc:#2563eb; } .chip-תזונה.active { background:#2563eb; border-color:#2563eb; }
+  .chip-מחלות { --tc:#dc2626; } .chip-מחלות.active { background:#dc2626; border-color:#dc2626; }
+  .chip-רבייה { --tc:#7c3aed; } .chip-רבייה.active { background:#7c3aed; border-color:#7c3aed; }
+  .chip-ויסות-חום { --tc:#d97706; } .chip-ויסות-חום.active { background:#d97706; border-color:#d97706; }
+  .chip-חקלאות { --tc:#059669; } .chip-חקלאות.active { background:#059669; border-color:#059669; }
+  .chip-כלבים { --tc:#b45309; } .chip-כלבים.active { background:#b45309; border-color:#b45309; }
+  .chip-ניסוי  { --tc:#0891b2; } .chip-ניסוי.active  { background:#0891b2; border-color:#0891b2; }
+  .chip-כלכלה { --tc:#be185d; } .chip-כלכלה.active { background:#be185d; border-color:#be185d; }
+
+  .topic-chip:not(.active) { border-color: var(--tc, var(--border)); color: var(--tc, var(--text-light)); }
+
+  /* ===== QUESTION CARD ===== */
+  .q-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--border);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 6px 28px rgba(45,106,79,0.14); }
+
+  .q-header {
+    padding: 14px 20px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #eaf5ee;
+  }
+  .q-num {
+    width: 32px; height: 32px;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .q-type-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .tag-mc { background: #e8f4f8; color: var(--tag-mc); }
+  .tag-open { background: var(--primary-pale); color: var(--tag-open); }
+
+  .q-body { padding: 16px 20px; }
+  .q-text {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.65;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  /* ===== MC OPTIONS ===== */
+  .options-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .option-btn {
+    padding: 11px 16px;
+    border: 2px solid var(--border);
+    background: #fafffe;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-align: right;
+    color: var(--text);
+    transition: all 0.15s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    width: 100%;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--teal);
+    background: var(--teal-pale);
+    transform: translateX(-2px);
+  }
+  .option-btn .opt-letter {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: #1a5c38;
+  }
+  .option-btn.correct .opt-letter { background: var(--correct); color: white; }
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: #8b0000;
+  }
+  .option-btn.wrong .opt-letter { background: var(--wrong); color: white; }
+  .option-btn:disabled { cursor: default; }
+  .option-btn.selected {
+    border-color: var(--teal);
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .option-btn.selected .opt-letter {
+    background: var(--teal);
+    color: white;
+  }
+
+
+  /* ===== FEEDBACK ===== */
+  .feedback-box {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.6;
+    display: none;
+    border-right: 4px solid;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.correct-fb {
+    background: var(--correct-bg);
+    border-color: var(--correct);
+    color: #1a5c38;
+  }
+  .feedback-box.wrong-fb {
+    background: var(--wrong-bg);
+    border-color: var(--wrong);
+    color: #8b0000;
+  }
+  .feedback-box strong { display: block; margin-bottom: 4px; font-size: 0.92rem; }
+
+  /* ===== OPEN QUESTION ===== */
+  .open-q-area {
+    margin-bottom: 12px;
+  }
+  .open-hint {
+    background: var(--warn-bg);
+    border: 1.5px solid var(--warn);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    color: #7a5a00;
+    margin-bottom: 10px;
+  }
+  .think-btn {
+    background: var(--teal-pale);
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .think-btn:hover { background: var(--teal); color: white; }
+  .think-btn .icon { font-size: 1.1rem; }
+
+  .answer-reveal {
+    margin-top: 12px;
+    background: linear-gradient(135deg, #f0fbfe 0%, #e3f5ea 100%);
+    border: 2px solid var(--teal);
+    border-radius: 10px;
+    padding: 16px;
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  .answer-reveal.show { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-reveal .answer-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .answer-reveal .answer-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .answer-reveal .answer-text ul { padding-right: 20px; margin-top: 6px; }
+  .answer-reveal .answer-text li { margin-bottom: 4px; }
+  .answer-reveal .answer-text strong { color: var(--primary); }
+
+  .key-points {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(58,174,194,0.08);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+  .key-points strong { color: var(--teal); font-size: 0.8rem; }
+
+  /* ===== SECTION HEADER ===== */
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .section-desc {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+  .stat-label { font-size: 0.72rem; color: #888; font-weight: 500; }
+
+  /* ===== PROGRESS ===== */
+  .progress-ring {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    width: 120px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  /* ===== YEAR BADGE ===== */
+  .year-badge {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 6px;
+  }
+
+  /* ===== WARN LABEL ===== */
+  .needs-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: #b45309;
+    background: #fef3c7;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+
+  /* ===== WELCOME ===== */
+  .welcome-card {
+    background: linear-gradient(135deg, var(--teal) 0%, #2a8fa3 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .welcome-card::before {
+    content: '🐄🐕🐝🐴';
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-size: 2rem;
+    opacity: 0.15;
+    letter-spacing: 4px;
+  }
+  .welcome-title {
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .welcome-sub {
+    font-size: 0.92rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    position: relative;
+  }
+  .welcome-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    position: relative;
+  }
+  .welcome-chip {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* ===== DIVIDER ===== */
+  .year-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 16px;
+  }
+  .year-divider-text {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--primary);
+    white-space: nowrap;
+  }
+  .year-divider-line {
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ===== ANSWER SELECTOR ===== */
+  .self-check {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .check-btn {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 2px solid;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all 0.15s;
+  }
+  .check-btn.knew {
+    border-color: var(--correct);
+    color: var(--correct);
+    background: transparent;
+  }
+  .check-btn.knew:hover { background: var(--correct); color: white; }
+  .check-btn.didnt {
+    border-color: var(--accent-dark);
+    color: var(--accent-dark);
+    background: transparent;
+  }
+  .check-btn.didnt:hover { background: var(--accent-dark); color: white; }
+
+  .answer-textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafffe;
+    direction: rtl;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  .answer-textarea:focus {
+    border-color: var(--teal);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(58,174,194,0.12);
+  }
+  .answer-textarea::placeholder { color: #aab8b0; }
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; gap: 8px; text-align: center; }
+    .q-text { font-size: 0.95rem; }
+    .option-btn { font-size: 0.87rem; }
+    .stats-bar { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">🐄 בחן את עצמך</div>
+      <div class="header-subtitle">חקלאות 5 יח"ל | שאלות אמריקאיות + שאלות פתוחות</div>
+    </div>
+    <div class="score-badge" id="scoreDisplay">נקודות: 0</div>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+  <!-- WELCOME -->
+  <div class="welcome-card">
+    <div class="welcome-title">ברוך הבא ללומדה! 🎯</div>
+    <div class="welcome-sub">
+      כאן תמצא שאלות <strong>אמיתיות מבגרויות</strong>, וגם שאלות פתוחות עם תשובות מלאות מהמאגר.<br>
+      תרגל, קרא את התשובות, ותרגיש מוכן לבגרות!
+    </div>
+    <div class="welcome-chips">
+      <span class="welcome-chip">📝 46 שאלות אמריקאיות</span>
+      <span class="welcome-chip">📖 44 שאלות פתוחות עם מחוון</span>
+      <span class="welcome-chip">🔍 7 נושאים מרכזיים</span>
+      <span class="welcome-chip">✅ משוב מיידי לכל שאלה</span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('mc')">📝 שאלות אמריקאיות</button>
+    <button class="tab-btn" onclick="showTab('open')">📖 שאלות פתוחות</button>
+    <button class="tab-btn" onclick="showTab('summary')">⭐ סיכום לבגרות</button>
+  </div>
+
+  <!-- ===================== TAB: MULTIPLE CHOICE ===================== -->
+  <div id="tab-mc" class="section-panel active">
+    <div class="section-title">שאלות אמריקאיות מבגרויות</div>
+    <div class="section-desc">כל השאלות לקוחות ישירות מבחינות הבגרות הרשמיות. בחר תשובה וקבל משוב מיידי.</div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num" id="mcAnswered">0</div>
+        <div class="stat-label">נענו</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="mcCorrect" style="color:var(--correct)">0</div>
+        <div class="stat-label">נכון ✓</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="mcWrong" style="color:var(--wrong)">0</div>
+        <div class="stat-label">לא נכון ✗</div>
+      </div>
+      <div class="stat-item">
+        <div class="progress-ring">
+          <span>דיוק:</span>
+          <div class="progress-bar"><div class="progress-fill" id="accuracyBar" style="width:0%"></div></div>
+          <span id="accuracyPct">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-bar">
+      <span class="topic-label">לפי נושא:</span>
+      <span class="topic-chip chip-all active" onclick="filterMC('all','topic',this)">הכל <span class="chip-count">46</span></span>
+      <span class="topic-chip chip-תזונה" onclick="filterMC('תזונה','topic',this)">🍎 תזונה <span class="chip-count">17</span></span>
+      <span class="topic-chip chip-מחלות" onclick="filterMC('מחלות','topic',this)">🦠 מחלות וחיסון <span class="chip-count">9</span></span>
+      <span class="topic-chip chip-רבייה" onclick="filterMC('רבייה','topic',this)">🧬 רבייה <span class="chip-count">9</span></span>
+      <span class="topic-chip chip-ויסות-חום" onclick="filterMC('ויסות חום','topic',this)">🌡️ ויסות חום <span class="chip-count">4</span></span>
+      <span class="topic-chip chip-חקלאות" onclick="filterMC('חקלאות','topic',this)">🌾 חקלאות כללי <span class="chip-count">7</span></span>
+    </div>
+
+
+    <div id="mc-questions"></div>
+  </div>
+
+  <!-- ===================== TAB: OPEN QUESTIONS ===================== -->
+  <div id="tab-open" class="section-panel">
+    <div class="section-title">שאלות פתוחות עם תשובות</div>
+    <div class="section-desc">כתוב את תשובתך בתיבה, ואז לחץ להצגת המחוון לבדיקה.</div>
+
+    <div class="topic-bar">
+      <span class="topic-label">לפי נושא:</span>
+      <span class="topic-chip chip-all active" onclick="filterOpen('all', this)">הכל <span class="chip-count">24</span></span>
+      <span class="topic-chip chip-מחלות" onclick="filterOpen('מחלות', this)">🦠 מחלות וחיסון <span class="chip-count">7</span></span>
+      <span class="topic-chip chip-תזונה" onclick="filterOpen('תזונה', this)">🍎 תזונה <span class="chip-count">8</span></span>
+      <span class="topic-chip chip-ניסוי" onclick="filterOpen('ניסוי', this)">🔬 תהליך מחקר <span class="chip-count">5</span></span>
+      <span class="topic-chip chip-כלבים" onclick="filterOpen('כלבים', this)">🐕 כלבים <span class="chip-count">14</span></span>
+      <span class="topic-chip chip-חקלאות" onclick="filterOpen('חקלאות', this)">🌾 חקלאות <span class="chip-count">6</span></span>
+      <span class="topic-chip chip-רבייה" onclick="filterOpen('רבייה', this)">🧬 רבייה <span class="chip-count">1</span></span>
+      <span class="topic-chip chip-כלכלה" onclick="filterOpen('כלכלה', this)">💰 כלכלה <span class="chip-count">3</span></span>
+    </div>
+
+    <div id="open-questions"></div>
+  </div>
+
+  <!-- ===================== TAB: SUMMARY ===================== -->
+  <div id="tab-summary" class="section-panel">
+    <div class="section-title">⭐ מה חשוב לזכור לבגרות</div>
+    <div class="section-desc">סיכום של המושגים והנושאים שחוזרים הכי הרבה בבחינות.</div>
+    <div id="summary-content"></div>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<script>
+// ============================
+// DATA: MULTIPLE CHOICE
+// ============================
+const mcQuestions = [
+  // ===== 2022 =====
+  {
+    id:'mc1', year:'2022', topic:'רבייה',
+    text:'מהו המשפט הנכון בנוגע למקום היווצרותם של הורמוני המין?',
+    options:['פרוגסטרון נוצר בגופיף הצהוב.','FSH נוצר בביצית.','אסטרוגן נוצר ברחם.','LH נוצר בתאי הזרע.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'פרוגסטרון מופרש מהגופיף הצהוב (corpus luteum) שנוצר לאחר הביוץ. FSH ו-LH מופרשים מהיפופיזה, ואסטרוגן מהשחלות.'
+  },
+  {
+    id:'mc2', year:'2022', topic:'תזונה',
+    text:'מהי התרומה העיקרית של פירות וירקות לתזונת האדם?',
+    options:['סיבים תזונתיים, מינרלים וויטמינים','חלבונים וויטמינים','חומצות שומן לא רוויות','פחמימות'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'פירות וירקות עשירים בסיבים תזונתיים, ויטמינים ומינרלים. הם אינם מקור עיקרי לחלבון או שומן.'
+  },
+  {
+    id:'mc3', year:'2022', topic:'חקלאות',
+    text:'מהי שיטת הגידול החקלאית שהביאה למהפכה הירוקה?',
+    options:['גידול ללא השקיה','גידול ללא דישון והדברה','גידול בשיטה אורגנית','גידול בשיטה מתועשת'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'המהפכה הירוקה (שנות 60-70) התבססה על שיטות חקלאיות מתועשות: זני גידול משופרים, שימוש נרחב בדשנים ובחומרי הדברה, והשקיה מבוקרת.'
+  },
+  {
+    id:'mc4', year:'2022', topic:'תזונה',
+    text:'כיצד מחשבים ניצולת של מזון שמשמש בעל חיים יצרני לייצור תוצרת חקלאית?',
+    options:['אנרגייה כללית ביחס לאנרגייה נאכלת','אנרגייה נאכלת ביחס לאנרגייה לייצור','אנרגייה נאכלת ביחס לאנרגייה נעכלת','אנרגייה נעכלת ביחס לאנרגייה בהפרשות'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'ניצולת מזון = אנרגייה שהושקעה בייצור ÷ אנרגייה נאכלת. מדד זה בודק כמה מהמזון שבעל החיים אכל הפך לתוצרת חקלאית (חלב, בשר, ביצים).'
+  },
+  {
+    id:'mc5', year:'2022', topic:'מחלות',
+    text:'מהו היתרון של חיידק שנהפך לנבג?',
+    options:['יש לו יכולת להתרבות במהירות.','יש לו יכולת השמדה עצמית.','יש לו יכולת גבוהה לשרוד.','יש לו יכולת גבוהה ליצור מוטציות.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'נבגים הם מבנים עמידים ביותר – הם שורדים בתנאים קשים: חום, קור, ייבוש, חומצות וחומרי חיטוי. זו אסטרטגיית הישרדות של חיידקים מסוימים.'
+  },
+  {
+    id:'mc6', year:'2022', topic:'תזונה',
+    text:'מה מאפיין את ויטמין A?',
+    options:['הוא מסיס בשומן.','הוא מסיס במים.','הוא מסיס בשומן ובמים.','הוא לא מסיס בשומן ולא מסיס במים.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'ויטמין A שייך לקבוצת הויטמינים המסיסים בשומן (יחד עם D, E, K). ויטמינים אלה נאגרים בגוף, לכן עודף עלול להיות רעיל.'
+  },
+  {
+    id:'mc7', year:'2022', topic:'ויסות חום',
+    text:'מה יכולה להיות ההשפעה של עקה (סטרס) על בעל חיים במשק החקלאי?',
+    options:['עלייה בתיאבון','פגיעה ביצרנות','עלייה בפוריות','האצה בגדילה'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'עקה (סטרס) גורמת לשחרור קורטיזול וגורמים אחרים הפוגעים ביצרנות: ירידה בתנובת חלב, ירידה בהטלת ביצים, ירידה בגדילה ובפוריות.'
+  },
+  {
+    id:'mc8', year:'2022', topic:'מחלות',
+    text:'איזה מן המקרים שלפניכם מתאר הידבקות ישירה של בעל חיים במחלה מידבקת?',
+    options:['וטרינר טיפל בפרות חולות ברפת ולאחר מכן טיפל בפרות בריאות.','יתוש עקץ בעל חיים חולה ולאחר מכן עקץ בעל חיים בריא.','כלב חולה נשך כלב בריא.','סוס הפריש בשוקת צואה נגועה ולאחר מכן סוס בריא שתה מאותה השוקת.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'הידבקות ישירה = מגע ישיר בין חיה חולה לחיה בריאה. נשיכה היא דוגמה קלאסית. האפשרויות האחרות הן הידבקות עקיפה (דרך מתווך: וטרינר, יתוש, מים מזוהמים).'
+  },
+  {
+    id:'mc9', year:'2022', topic:'תזונה',
+    text:'היכן במערכת העיכול של בעל חיים מתרחש פירוק חלבונים?',
+    options:['בפה ובוושט','במעי העיוור ובמעי הגס','בוושט ובקיבה','בקיבה ובתריסריון'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'פירוק החלבונים מתחיל בקיבה (באמצעות פפסין וחומצה הידרוכלורית) וממשיך בתריסריון (דואודנום) בעזרת אנזימים מהלבלב כמו טריפסין.'
+  },
+  {
+    id:'mc10', year:'2022', topic:'מחלות',
+    text:'מי קובע במדינת ישראל את משטר חיסוני החובה של בעלי החיים במשק החקלאי?',
+    options:['השירותים הווטרינריים','החקלאי במשק החקלאי','הווטרינר המטפל','המדריך החקלאי'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'בישראל, משטר חיסוני החובה של בעלי חיים נקבע על ידי השירותים הווטרינריים של משרד החקלאות – גוף ממשלתי שאחראי על בריאות בעלי חיים.'
+  },
+  {
+    id:'mc11', year:'2022', topic:'מחלות',
+    text:'מהו המשפט הנכון בנוגע למחלה זואונוטית?',
+    options:['מחלה זואונוטית מועברת מבעלי חיים לבעלי חיים.','מחלה זואונוטית מועברת מצמחים לבעלי חיים.','מחלה זואונוטית מועברת מן הקרקע לבעלי חיים.','מחלה זואונוטית מועברת מבעלי חיים לבני אדם.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'מחלה זואונוטית (Zoonosis) היא מחלה שמועברת מבעלי חיים לבני אדם. דוגמאות: כלבת, שפעת העופות, Q-Fever, ברוצלוזיס.'
+  },
+  {
+    id:'mc12', year:'2022', topic:'תזונה',
+    text:'מהו המשפט הנכון בנוגע לניצול המזון של בעלי חיים צעירים ובוגרים?',
+    options:['השומנים משמשים לוויסות חום הגוף אצל צעירים ולזירוז פירוק חלבונים אצל בוגרים.','הפחמימות משמשות מקור לאנרגייה זמינה לצורך גדילה אצל צעירים, ולצורך ייצור תוצרת חקלאית אצל בוגרים.','החלבונים משמשים מקור לאנרגייה לצורך ייצור תוצרת חקלאית אצל צעירים, ולגדילה ולייצור תוצרת אצל בוגרים.','הפחמימות משמשות לייצור תוצרת חקלאית אצל צעירים, ולגדילה ולייצור תוצרת אצל בוגרים.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'הפחמימות הן מקור האנרגייה הזמינה העיקרי. אצל בעלי חיים צעירים האנרגייה הולכת לגדילה, ואצל בוגרים – לייצור תוצרת חקלאית (חלב, ביצים, בשר).'
+  },
+
+  // ===== 2023 =====
+  {
+    id:'mc13', year:'2023', topic:'תזונה',
+    text:'מהו הרכיב העיקרי בדבש?',
+    options:['חלבונים','שומנים','פחמימות','מינרלים'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'דבש מורכב בעיקר מסוכרים (פחמימות): גלוקוז ופרוקטוז מהווים כ-75-80% מהרכבו. שאר הרכיבים (ויטמינים, מינרלים, חלבון) קיימים בכמויות קטנות.'
+  },
+  {
+    id:'mc14', year:'2023', topic:'חקלאות',
+    text:'מהי המטרה של הנדסה גנטית בבעלי חיים?',
+    options:['העברה של תכונות מבעל החיים לצאצאיו.','שינוי המאפיינים הגנטיים של הצאצאים בהשוואה להורים.','שינוי תפקידם של האיברים בגופו של בעל החיים.','ברירה מלאכותית של המאפיינים הגנטיים בצאצאים.'],
+    correct:1,
+    source:'ידע כללי מקצועי',
+    explain:'הנדסה גנטית מאפשרת להכניס, להסיר או לשנות גנים ספציפיים – ובכך לייצר שינוי מכוון במאפיינים גנטיים של הצאצאים, מעבר למה שאפשרי בברירה מלאכותית רגילה.'
+  },
+  {
+    id:'mc15', year:'2023', topic:'תזונה',
+    text:'מהי ההשפעה של ויטמין K על בעל החיים?',
+    options:['הוא מסייע בשיפור הראייה בלילה.','הוא מסייע בבניית השלד.','הוא מסייע בקרישת הדם.','הוא מסייע בחיזוק השרירים.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'ויטמין K חיוני לתהליך קרישת הדם – הוא נדרש לייצור גורמי קרישה בכבד. מחסור בו גורם לבעיות דימום. (ויטמין A משפיע על ראייה; D – על שלד; E – על שרירים).'
+  },
+  {
+    id:'mc16', year:'2023', topic:'מחלות',
+    text:'מה עלולה להיות ההשפעה של שימוש לא מושכל באנטיביוטיקה במשק החקלאי על התוצרת?',
+    options:['עלייה באיכות של התוצרת החקלאית.','הימצאות שאריות של אנטיביוטיקה בתוצרת החקלאית.','ירידה ניכרת בכמות של התוצרת החקלאית.','ירידה במחירי התוצרת החקלאית.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'שימוש לא נכון באנטיביוטיקה גורם לשאריות בתוצרת (חלב, ביצים, בשר) – דבר המהווה סכנה בריאותית לצרכן. חלב עם שאריות אנטיביוטיקה נפסל לשיווק.'
+  },
+  {
+    id:'mc17', year:'2023', topic:'תזונה',
+    text:'מדוע החקלאי משתמש במנה כולית בהזנת בעלי חיים?',
+    options:['כיוון שהיא קלה להזנה וזמינה לחקלאי.','כיוון שהיא עתירת אנרגייה.','כיוון שהיא מכילה רק את רכיבי המזון העיקריים הדרושים.','כיוון שהיא מכילה את כל רכיבי המזון בריכוזים המתאימים לבעלי החיים.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'מנה כולית (TMR - Total Mixed Ration) מכילה את כל רכיבי המזון הדרושים (מזון גס, מרוכז, ויטמינים, מינרלים) בתנאים ובריכוזים המתאימים לאותה קבוצת בעלי חיים.'
+  },
+  {
+    id:'mc18', year:'2023', topic:'רבייה',
+    text:'איזה משפט אינו נכון בנוגע לסימני מין משניים?',
+    options:['סימנים אלה מבדילים בין זכר לנקבה מייד עם לידתם.','סימנים אלה מבדילים בין זכר לנקבה בבגרותם.','סימני המין המשניים של הזכר שונים מסימני המין המשניים של הנקבה.','הופעת סימני המין המשניים תלויה בשינויים הורמונליים.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'סימני מין משניים מתפתחים בשלב ההתבגרות (puberty), לא בלידה! בלידה קיימים סימני מין ראשוניים (איברי המין). הפסקה א׳ שגויה – ולכן היא התשובה לשאלה "מה אינו נכון".'
+  },
+  {
+    id:'mc19', year:'2023', topic:'רבייה',
+    text:'מהי הפריה אצל יונקים?',
+    options:['חדירה של תאי זרע לאיבר המין הנקבי.','איחוד בין תא הזרע לביצית.','מעבר של תאי זרע מן החצוצרה אל הרחם.','מעבר של הביצית מן השחלה אל החצוצרה.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'הפריה (fertilization) היא האיחוד בין תא הזרע לביצית, ומתרחשת בחצוצרה. התא המופרה (זיגוטה) נודד לרחם ומתקבע שם.'
+  },
+  {
+    id:'mc20', year:'2023', topic:'ויסות חום',
+    text:'מהו המשפט הנכון בנוגע לפעולת ההלחתה אצל כלבים?',
+    options:['כלבים הם הומאותרמיים ובפעולה זו משווים את טמפרטורת הגוף לסביבה.','כלבים הם הומאותרמיים ובפעולה זו מווסתים את טמפרטורת הגוף לפי הסביבה.','כלבים הם פויקילותרמיים ובפעולה זו משווים את טמפרטורת הגוף לסביבה.','כלבים הם פויקילותרמיים ובפעולה זו מווסתים את טמפרטורת הגוף לפי הסביבה.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'כלבים הם הומאותרמיים (חיות חמות דם – טמפרטורת גוף קבועה). הלחתה היא מנגנון קירור: אידוי הרוק מהלשון מוריד את טמפרטורת הגוף כשחם. זהו ויסות, לא השוואה לסביבה.'
+  },
+  {
+    id:'mc21', year:'2023', topic:'תזונה',
+    text:'מהו התפקיד העיקרי של השומן בגופו של בעל החיים?',
+    options:['מקור לאנרגייה זמינה.','חומר עיקרי לבניית עצמות.','חומר חיוני לוויסות לחץ דם.','מקור לאנרגייה נאגרת.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'השומן הוא מקור לאנרגייה נאגרת (reserves). הוא נאגר ברקמת השומן ומשמש מקור לאנרגייה בזמנים של מחסור. בנוסף: מבודד חום, מגן על איברים, מסייע לספיגת ויטמינים מסיסי שומן.'
+  },
+  {
+    id:'mc22', year:'2023', topic:'מחלות',
+    text:'איזו מחלה היא מידבקת?',
+    options:['מחלה תורשתית','מחלה תזונתית','מחלה זיהומית','מחלה ניוונית'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'מחלה מידבקת היא מחלה זיהומית – הנגרמת ע"י גורם מחלה (וירוס, חיידק, פטרייה, טפיל) ויכולה לעבור מפרט לפרט. מחלות תורשתיות, תזונתיות וניווניות אינן מידבקות.'
+  },
+  {
+    id:'mc23', year:'2023', topic:'רבייה',
+    text:'מהי החשיבות של הרבייה הזוויגית (מינית)?',
+    options:['יצירת צאצאים זהים גנטית להוריהם.','יצירת צאצאים שונים גנטית מהוריהם.','יצירת מספר רב של צאצאים.','יצירת צאצאים שתכונותיהם הגנטיות זהות.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'הרבייה המינית מייצרת גיוון גנטי – כל צאצא מקבל שילוב ייחודי של גנים מהאב ומהאם. הגיוון הגנטי חשוב להישרדות האוכלוסייה ולהסתגלות לשינויים סביבתיים.'
+  },
+  {
+    id:'mc24', year:'2023', topic:'מחלות',
+    text:'מה הם השלבים של מחלה מידבקת?',
+    options:['הדבקה, דגירה, החלמה, מחלה.','דגירה, הדבקה, מחלה, החלמה.','הדבקה, דגירה, מחלה, החלמה.','הדבקה, החלמה, דגירה, מחלה.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'סדר שלבי המחלה המידבקת: הדבקה → דגירה (תקופה ללא תסמינים) → מחלה (הופעת תסמינים) → החלמה (אם החיה שרדה). חשוב לזכור שהדגירה קודמת לביטוי המחלה!'
+  },
+
+  // ===== 2021 (נבצרים) =====
+  {
+    id:'mc2101', year:'2021', topic:'תזונה',
+    text:'מדוע ביצים הן מזון חשוב לאדם?',
+    options:['מכיוון ששיעור המלחים בהן נמוך.','מכיוון ששיעור השומנים בהן נמוך.','מכיוון שהן מקור לפחמימות מורכבות.','מכיוון שהן מקור לחלבון מלא.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'ביצים הן מקור מצוין לחלבון מלא – המכיל את כל 9 חומצות האמיניות החיוניות. הן גם עשירות בויטמינים ומינרלים, אך הסיבה העיקרית לחשיבותן היא הרכב החלבון האיכותי שלהן.'
+  },
+  {
+    id:'mc2102', year:'2021', topic:'תזונה',
+    text:'בעיות בראיית לילה בחיות משק יכולות להעיד על מחסור ב:',
+    options:['פחמימות','ויטמין D','ויטמין C','ויטמין A'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'ויטמין A חיוני לייצור רודופסין – הפיגמנט בקולטני האור של הרשתית (בעיקר הקנים, שפעילים בתאורה חלשה). מחסור בויטמין A גורם לעיוורון לילה (עיוורון עלטה).'
+  },
+  {
+    id:'mc2103', year:'2021', topic:'תזונה',
+    text:'איזה תהליך מתקיים במעי הגס של חיות משק?',
+    options:['מתקיים בו רוב העיכול הכימי של המזון.','מתקיים בו רוב הספיגה החוזרת של המים.','מתקיים בו רוב הספיגה של השומנים במזון.','מתקיים בו רוב הפירוק המכני של המזון.'],
+    correct:1,
+    source:'ידע כללי מקצועי',
+    explain:'המעי הגס אחראי בעיקר לספיגה חוזרת של מים ומלחים, ולהיווצרות הצואה. העיכול הכימי מתקיים בקיבה ובמעי הדק; ספיגת שומנים – במעי הדק; פירוק מכני – בפה.'
+  },
+  {
+    id:'mc2104', year:'2021', topic:'רבייה',
+    text:'כדי לבדוק אם התרחש הריון, רצוי לבדוק בדם חיית המשק את רמת ההורמון:',
+    options:['פרוגסטרון','טסטוסטרון','LH','אסטרוגן'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'פרוגסטרון מופרש בכמות גבוהה לאורך ההיריון כדי לשמור על ריריית הרחם ולמנוע התכווצויות. רמה גבוהה ומתמשכת שלו מעידה על קיום הריון. LH ואסטרוגן עולים בסמוך לביוץ.'
+  },
+  {
+    id:'mc2105', year:'2021', topic:'חקלאות',
+    text:'תחזיתו של מלתוס מוצגת בתרשים. מה נכון לגבי התרשים?',
+    options:['ציר X – זמן, עקום א – ייצור מזון, עקום ב – אוכלוסייה.','ציר X – קצב ייצור מזון ליחידת שטח, עקום א – זמן, עקום ב – אוכלוסייה.','ציר X – זמן, עקום א – אוכלוסייה, עקום ב – ייצור מזון.','ציר X – אוכלוסייה, עקום א – ייצור מזון, עקום ב – זמן.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'תחזית מלתוס: ציר X = זמן. עקום א (גבוה יותר, גיאומטרי) = גידול האוכלוסייה. עקום ב (נמוך יותר, אריתמטי) = ייצור המזון. הפער ביניהם מסביר את תחזית המחסור.'
+  },
+  {
+    id:'mc2106', year:'2021', topic:'ויסות חום',
+    text:'מדוע ירידה בלחות היחסית בעונת הקיץ מקלה על ויסות חום הגוף של בעלי חיים?',
+    options:['מכיוון שטמפרטורת גופם יורדת.','מכיוון שבעלי החיים פחות פעילים.','מכיוון שבעלי החיים מזיעים יותר.','מכיוון שסילוק החום מגופם מהיר יותר.'],
+    correct:3,
+    source:'ידע כללי מקצועי',
+    explain:'בלחות יחסית נמוכה, אידוי זיעה/לחות מהגוף מהיר יותר (אוויר יבש "בולע" לחות בקלות). אידוי זה מוציא חום מהגוף ביעילות גבוהה יותר – ולכן סילוק החום מהיר יותר.'
+  },
+  {
+    id:'mc2107', year:'2021', topic:'תזונה',
+    text:'מהו רכיב המזון העיקרי שמספק אנרגיה למעלי גירה?',
+    options:['סידן','ויטמין A','חלבון מלא','פחמימות'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'פחמימות (במיוחד תאית/צלולוזה שמתפרקת בכרס על ידי חיידקים לחומצות שומן נדיפות) הן מקור האנרגייה העיקרי של מעלי הגירה (פרות, כבשים, עיזים). המזון הגס העשיר בתאית מספק את רוב האנרגייה.'
+  },
+  {
+    id:'mc2108', year:'2021', topic:'חקלאות',
+    text:'קשיים בייצור של מזון אורגני לא כוללים:',
+    options:['תוצרת נמוכה ליחידת שטח יחסית לגידול לא אורגני.','עלויות ייצור גבוהות גם בגלל צורך ביותר כוח אדם.','עלויות גבוהות של מעבדה לביצוע תהליכי הנדסה גנטית.','סכנה אפשרית של ריבוי חיידקים בגלל צמצום בריסוס.'],
+    correct:2,
+    source:'ידע כללי מקצועי',
+    explain:'חקלאות אורגנית, מעצם הגדרתה, אינה משתמשת בהנדסה גנטית – ולכן עלויות מעבדה לביצוע הנדסה גנטית אינן רלוונטיות לגידול אורגני. זוהי הקושי שאינו שייך לתחום האורגני.'
+  },
+  {
+    id:'mc2109', year:'2021', topic:'חקלאות',
+    text:'ערמות של קומפוסט ושל זבל מניחים על יריעות פלסטיק. השימוש ביריעות מאפשר:',
+    options:['לשפר את האוורור של הערמות.','להעלות את הטמפרטורה של הערמות.','להפחית את הלחות בערמות.','למנוע חלחול של תשטיפים לשכבת מי התהום.'],
+    correct:3,
+    source:'ידע כללי מקצועי',
+    explain:'יריעות הפלסטיק מתפקדות כחסם פיזי בין הערמה לקרקע, ומונעות נוזלים וחומרים מזהמים (תשטיפי זבל ועשיר בנוטריינטים ופתוגנים) מלחלחל לשכבת מי התהום ולזהם אותה.'
+  },
+  {
+    id:'mc2110', year:'2021', topic:'רבייה',
+    text:'מה נכון לומר על השחלה בנקבות של יונקים?',
+    options:['היא מייצרת תאי רבייה נקביים והורמוני מין.','היא מפרישה את ההורמונים LH ו-FSH.','היא איבר בגוף הנקבה שהעובר מתפתח בו.','היא נמצאת מחוץ לחלל הגוף.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'השחלה היא הגונד הנקבי: מייצרת ביציות (תאי רבייה) ומפרישה הורמוני מין (אסטרוגן ופרוגסטרון). LH ו-FSH מופרשים מהיפופיזה. העובר מתפתח ברחם, לא בשחלה.'
+  },
+
+  // ===== 2024 =====
+  {
+    id:'mc25', year:'2024', topic:'מחלות',
+    text:'היכן סביר ששיעור בעלי החיים החולים בכלבת יהיה גבוה יותר?',
+    options:['בבריכות של דגי קרפיון בצפון הארץ.','בלול חופש במרכז הארץ.','ברפת לייצור חלב בצפון הארץ.','במערת עטלפים בצפון הארץ.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'כלבת מועברת בעיקר על ידי נשיכה של יונקים נגועים. עטלפים הם מאגר ידוע של נגיף הכלבת. בתוך מערת עטלפים הצפיפות גבוהה ומגע בין חיות תכוף – לכן שיעור הנגועים גבוה.'
+  },
+  {
+    id:'mc26', year:'2024', topic:'רבייה',
+    text:'במה שונה המערכת ההורמונלית של זכר מן המערכת ההורמונלית של נקבה ביונקים?',
+    options:['בסוג ההורמונים המופרשים מן המוח.','בגיל שבו ההורמונים מופרשים.','בעונת השנה שבה ההורמונים מופרשים.','בסוג ההורמונים המופרשים מאיברי הרבייה (איברי המין).'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'הורמוני המוח (FSH, LH) זהים בזכרים ובנקבות. ההבדל הוא בהורמוני איברי המין: זכרים מפרישים טסטוסטרון מהאשכים, ונקבות מפרישות אסטרוגן ופרוגסטרון מהשחלות.'
+  },
+  {
+    id:'mc27', year:'2024', topic:'רבייה',
+    text:'מהו המשפט הנכון בנוגע לשלב הגופיף הצהוב ביונקים?',
+    options:['רמת הפרוגסטרון עולה, ורמת האסטרוגן יורדת.','רמת הפרוגסטרון יורדת, ורמת האסטרוגן יורדת.','רמת הפרוגסטרון יורדת, ורמת האסטרוגן עולה.','רמת הפרוגסטרון עולה, ורמת האסטרוגן עולה.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'לאחר הביוץ נוצר הגופיף הצהוב (corpus luteum) ומפריש פרוגסטרון בכמות גדולה. רמת הפרוגסטרון עולה ומכינה את הרחם להתקבעות. רמת האסטרוגן (שעלתה לפני הביוץ) יורדת.'
+  },
+  {
+    id:'mc28', year:'2024', topic:'מחלות',
+    text:'מהי מחלה שצורת ההידבקות בה עקיפה?',
+    options:['מחלה זיהומית העוברת מבעל חיים שאינו מראה סימני מחלה קליניים אל בעל חיים בריא.','מחלה זיהומית העוברת מבעל חיים אל האדם.','מחלה זיהומית העוברת מבעל חיים אחד אל בעל חיים אחר באמצעות נשאים.','מחלה תורשתית העוברת מן ההורים אל הצאצאים.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'הידבקות עקיפה = גורם המחלה עובר דרך מתווך (נשא): יתוש, קרצית, מים מזוהמים, מזון, חרקים, בעל חיים אחר שאינו חולה. הידבקות ישירה = מגע ישיר בין חיה חולה לחיה בריאה.'
+  },
+  {
+    id:'mc29', year:'2024', topic:'תזונה',
+    text:'מהו המשפט הנכון בנוגע לחלבון מלא?',
+    options:['בחלבון מלא יש כל החומצות האמיניות החיוניות לאדם.','בחלבון מלא יש כל החומצות האמיניות הקיימות בטבע.','רק במזון מן החי יש חלבון מלא.','חלבון מלא אינו מצוי במזון שיש בו שומן.'],
+    correct:0,
+    source:'ידע מתוך הקבצים',
+    explain:'חלבון מלא מכיל את כל 9 החומצות האמיניות החיוניות לאדם (שהגוף לא מייצר בעצמו). חלבון מן החי בדרך כלל מלא; חלבון מן הצומח לרוב חסר חלק מהחומצות, אך לא תמיד.'
+  },
+  {
+    id:'mc30', year:'2024', topic:'תזונה',
+    text:'מהי הקביעה הנכונה בנוגע לויטמינים מסיסים בשומן ומסיסים במים?',
+    options:['A, C, D, E מסיסים בשומן; B, K מסיסים במים.','A, B, E, K מסיסים בשומן; C, D מסיסים במים.','A, D, E, K מסיסים בשומן; B, C מסיסים במים.','A, B, C, D מסיסים בשומן; E, K מסיסים במים.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'הקבוצות הן: מסיסים בשומן (ADEK) – ויטמינים A, D, E, K. מסיסים במים – כל ויטמיני B וויטמין C. עזר זיכרון: ADEK = שומן.'
+  },
+  {
+    id:'mc31', year:'2024', topic:'חקלאות',
+    text:'מה הייתה התוצאה של המהפכה הירוקה?',
+    options:['עלייה בהיקף שטחי החקלאות.','הפחתת השימוש בדשנים.','עלייה בכמות התוצרת החקלאית.','הפחתת השימוש בחומרי הדברה.'],
+    correct:2,
+    source:'ידע מתוך הקבצים',
+    explain:'המהפכה הירוקה הביאה לעלייה דרמטית בכמות התוצרת החקלאית, בעיקר דגנים, בלי הגדלה משמעותית של השטח החקלאי. היא נבעה משימוש בזנים משופרים, דשנים כימיים, השקיה ומכנון.'
+  },
+  {
+    id:'mc32', year:'2024', topic:'תזונה',
+    text:'מה הם כל רכיבי המזון (אבות המזון) החיוניים לאדם?',
+    options:['פחמימות, שומנים, מים, חלבונים, מינרלים.','שומנים, פחמימות, מים, ויטמינים, חלבונים.','חלבונים, שומנים, פחמימות, ויטמינים, מינרלים.','מינרלים, ויטמינים, סוכרים, חלבונים.'],
+    correct:2,
+    source:'ידע כללי מקצועי',
+    explain:'חמשת אבות המזון העיקריים: חלבונים, שומנים, פחמימות, ויטמינים, מינרלים. מים הם חיוניים לחיים אך לרוב אינם נמנים כ"אב מזון" בהגדרה הביולוגית.'
+  },
+  {
+    id:'mc33', year:'2024', topic:'תזונה',
+    text:'אילו מתוספי המזון הם החיוניים ביותר לתפקודו של בעל חיים?',
+    options:['מינרלים וזרזי גידול','ויטמינים ומינרלים','מינרלים ופרוביוטיקה','אנטיביוטיקה ופרוביוטיקה'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'ויטמינים ומינרלים הם תוספי המזון החיוניים ביותר לתפקוד תקין של בעלי חיים. הם נדרשים לתהליכים פיזיולוגיים רבים: קרישת דם, בניית שלד, תפקוד מערכת חיסון, ועוד.'
+  },
+  {
+    id:'mc34', year:'2024', topic:'ויסות חום',
+    text:'מהו המשפט הנכון בנוגע לטמפרטורת הגוף של יונקים צעירים במשק החקלאי?',
+    options:['היא תלויה באורך היום.','היא אינה מושפעת מטמפרטורת הסביבה.','היא קבועה במשך היממה.','היא מושפעת במידה מסוימת מטמפרטורת הסביבה.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'יונקים צעירים הם הומאותרמיים חלקית – מנגנון ויסות החום שלהם עדיין לא מפותח לגמרי, ולכן טמפרטורת גופם מושפעת במידה מסוימת מהסביבה. לכן חשוב לשמור על חומם.'
+  },
+  {
+    id:'mc35', year:'2024', topic:'חקלאות',
+    text:'מה הייתה התחזית של תומס מלתוס בנוגע לכמות המזון בעולם?',
+    options:['צפוי עודף מזון כיוון שקצב הגידול בכמות המזון עולה על קצב גידול האוכלוסייה.','צפוי מחסור במזון כיוון שקצב גידול האוכלוסייה עולה על קצב הגידול בכמות המזון.','צפוי מחסור במזון בגלל צמצום המאביקים.','צפוי מחסור במזון בגלל שינויי אקלים.'],
+    correct:1,
+    source:'ידע מתוך הקבצים',
+    explain:'תומס מלתוס (1798) טען שהאוכלוסייה גדלה בקצב גיאומטרי (2,4,8,16...) בעוד ייצור המזון גדל בקצב אריתמטי (1,2,3,4...) – ולכן בעתיד יהיה מחסור חמור במזון.'
+  },
+  {
+    id:'mc36', year:'2024', topic:'רבייה',
+    text:'מה מאפיין סימני מין משניים ביונקים?',
+    options:['הם מופיעים בעת הלידה ומסייעים להבחנה בין זכר ובין נקבה.','הם מתפתחים בשלב ההתבגרות אבל אינם מסייעים להבחנה בין זכר ובין נקבה.','הם מאפיינים התנהגות מינית אבל אינם מסייעים להבחנה בין זכר ובין נקבה.','הם מתפתחים בשלב ההתבגרות ומסייעים להבחנה בין זכר ובין נקבה.'],
+    correct:3,
+    source:'ידע מתוך הקבצים',
+    explain:'סימני מין משניים: מתפתחים בהתבגרות (puberty) בהשפעת הורמוני מין, ומסייעים להבחנה בין זכרים לנקבות. דוגמאות: רעמה בארי, בלוטות חלב בנקבות, שיפוי שונה.'
+  }
+];
+
+// ============================
+// DATA: OPEN QUESTIONS
+// ============================
+const openQuestions = [
+  {
+    id:'op1', topic:'מחלות', source:'מאגר שאלות 2012',
+    text:'מה הן שתי הבעיות העיקריות שקרציות עלולות לגרום לכלבים?',
+    answer:`<ul>
+      <li><strong>מציצת דם</strong> – הקרצית מוצצת דם מהכלב, מה שעלול לגרום לאנמיה (חסר בדם) אם מדובר בנגיעות חמורה.</li>
+      <li><strong>העברת גורמי מחלה</strong> – קרציות הן נשאים של מחלות זיהומיות כגון <strong>קדחת הקרציות</strong>, שהיא מחלה חיידקית הגורמת לחום גבוה, ירידה בתיאבון, ועצלות.</li>
+    </ul>
+    <div style="margin-top:6px; font-size:0.88rem; color:#555">בנוסף: גרימת זיהום מקומי באזור העקיצה.</div>`,
+    keypoints:'קדחת קרציות | אנמיה | נשאים (וקטורים) | נגיעות'
+  },
+  {
+    id:'op2', topic:'מחלות', source:'מאגר שאלות 2012',
+    text:'מה החשיבות של קבוצת ביקורת בניסוי שבו נבדק חומר הדברה נגד קרציות?',
+    answer:`<ul>
+      <li>קבוצת הביקורת (כלבים שלא קיבלו טיפול) משמשת <strong>נקודת השוואה</strong>.</li>
+      <li>היא מאפשרת לדעת מהו מספר הקרציות <strong>ללא טיפול</strong>.</li>
+      <li>בלי קבוצת ביקורת, לא ניתן לדעת אם ירידה במספר הקרציות נובעת מהחומר – או מגורם אחר (עונה, תנאי סביבה וכו').</li>
+    </ul>`,
+    keypoints:'קבוצת ביקורת | השוואה | ניסוי מבוקר | תוקף הניסוי'
+  },
+  {
+    id:'op3', topic:'תזונה', source:'מאגר שאלות 2012',
+    text:'רשום שתי סכנות של מחסור בחלבון במזון של גורי כלבים.',
+    answer:`<ul>
+      <li><strong>האטת גדילה</strong> – חלבון חיוני לבניית רקמות ושרירים. מחסור יגרום לגדילה לקויה.</li>
+      <li><strong>חולשה ופגיעה במערכת החיסון</strong> – גורים עם מחסור בחלבון רגישים יותר למחלות זיהומיות.</li>
+    </ul>`,
+    keypoints:'גדילה | מערכת חיסון | בניית רקמות | חלבון מלא'
+  },
+  {
+    text:'הסבר על סמך הגרף את חשיבות מתן קולוסטרום לגורים מיד לאחר ההמלטה.',
+    answer:`<ul>
+      <li>גורים נולדים <strong>כמעט ללא נוגדנים</strong> (הנוגדנים אינם עוברים דרך השליה).</li>
+      <li>הקולוסטרום (חלב ראשונים) מכיל <strong>נוגדנים מהאם</strong> שמועברים לגור.</li>
+      <li>קריטי לתת קולוסטרום <strong>מיד לאחר הלידה</strong> – המעיים סופגים נוגדנים רק בשעות הראשונות לחיים.</li>
+      <li>הנוגדנים מגנים על הגור מפני מחלות <strong>עד שמערכת החיסון שלו תתפתח</strong>.</li>
+    </ul>`,
+    keypoints:'קולוסטרום | נוגדנים | חיסון סביל | שעות הראשונות | מערכת חיסון'
+  },
+  {
+    id:'op5', topic:'מחלות', source:'מאגר שאלות 2012',
+    text:'מה ההבדל בין חיסון פעיל לחיסון סביל? ציין יתרון וחיסרון לכל אחד.',
+    answer:`<strong>חיסון סביל:</strong>
+    <ul>
+      <li>הגוף מקבל <strong>נוגדנים מוכנים</strong> מבחוץ (מאם דרך קולוסטרום / מזריקה).</li>
+      <li><strong>יתרון:</strong> הגנה מיידית.</li>
+      <li><strong>חיסרון:</strong> הגנה זמנית – הנוגדנים מתפרקים ואין זיכרון חיסוני לאורך זמן.</li>
+    </ul>
+    <strong>חיסון פעיל:</strong>
+    <ul>
+      <li>הגוף <strong>מייצר נוגדנים בעצמו</strong> (בעקבות מחלה / חיסון מלאכותי).</li>
+      <li><strong>יתרון:</strong> הגנה ארוכת טווח + זיכרון חיסוני.</li>
+      <li><strong>חיסרון:</strong> לוקח זמן לייצור נוגדנים – עד אז הגוף חשוף.</li>
+    </ul>`,
+    keypoints:'חיסון סביל | חיסון פעיל | נוגדנים | קולוסטרום | זיכרון חיסוני'
+  },
+  {
+    id:'op6', topic:'כלבים', source:'מאגר שאלות 2013, ענף כלבים',
+    text:'מהם שלושה סימנים למחלת הפרוו-וירוס בכלבים?',
+    answer:`<ul>
+      <li><strong>שלשול</strong> – לעיתים עם דם.</li>
+      <li><strong>הקאות</strong> חוזרות ונשנות.</li>
+      <li><strong>חוסר תיאבון ועצלות</strong> (דכאון).</li>
+      <li>חום גבוה וייבוש (דהידרציה) כתוצאה מהפסדי נוזלים.</li>
+    </ul>
+    <div style="margin-top:4px; font-size:0.85rem; color:#666">⚠️ הפרוו-וירוס מסכן חיים, בעיקר בגורי כלבים שלא חוסנו.</div>`,
+    keypoints:'שלשול | הקאות | ייבוש | חיסון | גורים'
+  },
+  {
+    id:'op7', topic:'כלבים', source:'מאגר שאלות 2013',
+    text:'מה החשיבות של קבוצת הכלבים שלא חוסנה בניסוי בדיקת יעילות חיסון נגד פרוו?',
+    answer:`<ul>
+      <li>הקבוצה שלא חוסנה היא <strong>קבוצת ביקורת (קבוצת שלילה)</strong>.</li>
+      <li>תפקידה: להראות מה קורה לכלבים <strong>ללא חיסון</strong> כשנחשפים לנגיף.</li>
+      <li>בלי קבוצה זו, לא ניתן לדעת אם חוסר מחלה בקבוצה המחוסנת נובע מהחיסון – או שאולי <strong>הכלבים בכלל אינם רגישים לנגיף</strong>.</li>
+    </ul>`,
+    keypoints:'קבוצת ביקורת | ניסוי מבוקר | יעילות חיסון | השוואה'
+  },
+  {
+    id:'op8', topic:'רבייה', source:'מאגר שאלות 2013',
+    text:'מהם שני יתרונות לעיקור כירורגי של כלבה?',
+    answer:`<ul>
+      <li><strong>מניעת הריון לצמיתות</strong> – מונע לגמרי התרבות לא רצויה.</li>
+      <li><strong>מניעת מחלות ברחם ובשחלות</strong> (כגון pyometra – מוגלה ברחם) שנפוצות בכלבות לא מעוקרות.</li>
+      <li>מניעת גידולים בבלוטות חלב.</li>
+      <li>הפחתת אגרסיה הורמונלית וסימפטומי ייחום.</li>
+    </ul>`,
+    keypoints:'עיקור | מניעת הריון | pyometra | בריאות | ייחום'
+  },
+  {
+    id:'op9', topic:'ניסוי', source:'בגרות 2022',
+    text:'(שאלה 17 בגרות 2022) בניסוי הושוו שני גזעי פרות ברפת א ורפת ב. האם הייתה ביקורת בניסוי זה? נמקו.',
+    answer:`<ul>
+      <li><strong>כן</strong> – קיימת ביקורת בניסוי.</li>
+      <li>ניתן להשתמש בנתוני הפרות <strong>בארצות המוצא</strong> (הולנד וגרמניה) כקבוצת ביקורת/השוואה.</li>
+      <li>השוואת תנובת החלב בישראל לתנובה בארצות המוצא מאפשרת להעריך את <strong>השפעת הסביבה הישראלית</strong> על תנובת החלב.</li>
+    </ul>`,
+    keypoints:'קבוצת ביקורת | ביקורת חיצונית | ארצות מוצא | השוואה'
+  },
+  {
+    id:'op10', topic:'ניסוי', source:'בגרות 2023',
+    text:'מדוע חזרו החוקרים על ניסוי אבני הלקיקה בעגלים לאחר שנה?',
+    answer:`<ul>
+      <li>כדי <strong>לאמת את תוצאות הניסוי הראשון</strong> – לוודא שהתוצאות ניתנות לשחזור.</li>
+      <li>ניסוי אחד לא מספיק להסקת מסקנה מוצקה – ייתכן שגורמים מקריים השפיעו.</li>
+      <li>חזרה מגבירה את <strong>אמינות ותוקף הממצאים</strong>.</li>
+    </ul>`,
+    keypoints:'שחזור ניסוי | אמינות | תוקף | ניסוי נוסף | אימות'
+  },
+  {
+    id:'op11', topic:'כלכלה', source:'בגרות 2023',
+    text:'הסבר מהי מכסת ייצור, ומה היתרון לחקלאי בקביעת מכסות ייצור.',
+    answer:`<ul>
+      <li><strong>מכסת ייצור</strong> – כמות מרבית של תוצרת חקלאית שחקלאי מסוים רשאי לייצר ולשווק לפי הקצאה ממשלתית.</li>
+      <li><strong>יתרון לחקלאי:</strong>
+        <ul>
+          <li>מובטחת לו שוק מוגן – ידוע מראש שיש ביקוש לתוצרת שלו.</li>
+          <li>מניעת ייצור יתר שמוביל לירידת מחירים וסיכון כלכלי.</li>
+          <li>יציבות הכנסה ויכולת תכנון ארוך טווח.</li>
+        </ul>
+      </li>
+    </ul>`,
+    keypoints:'מכסת ייצור | יציבות מחירים | הגנה על חקלאי | ממשלה'
+  },
+  {
+    id:'op12', topic:'תזונה', source:'בגרות 2024',
+    text:'הסבירו מדוע חשוב שבני האדם יצרכו גם מזון מן החי וגם מזון מן הצומח.',
+    answer:`<ul>
+      <li><strong>מזון מן החי</strong> מספק: חלבון מלא (עם כל חומצות האמיניות החיוניות), ויטמין B12, ברזל, אבץ, סידן (מוצרי חלב).</li>
+      <li><strong>מזון מן הצומח</strong> מספק: סיבים תזונתיים, ויטמינים (C, E, folate), פחמימות מורכבות, נוגדי חמצון.</li>
+      <li>שילוב שניהם מבטיח <strong>תזונה מלאה ומאוזנת</strong> שאי אפשר להשיג ממקור אחד בלבד.</li>
+    </ul>`,
+    keypoints:'חלבון מלא | סיבים תזונתיים | ויטמינים | תזונה מאוזנת'
+  },
+  {
+    id:'op13', topic:'מחלות', source:'בגרות 2022',
+    text:'מחלת הפה והטלפיים היא מחלה נגיפית מידבקת מאוד. מהן שתי סכנות בהידבקות של חיות בית במחלות שמועברות מחיות בר?',
+    answer:`<ul>
+      <li><strong>הדבקת חיות המשק</strong> – חיות בר שחיות בקרבת המשק יכולות לגרום לפרצי מחלה בקרב בעלי חיים במשק, ולגרום לנזק כלכלי עצום.</li>
+      <li><strong>הפצת המחלה לבני אדם</strong> – חלק מהמחלות המועברות מחיות בר הן זואונוטיות (כלבת, שפעת וכו'), ועלולות לסכן את חיי האדם.</li>
+    </ul>`,
+    keypoints:'זואונוזות | מחלות בר | כלבת | בריאות הציבור | נזק כלכלי'
+  },
+  {
+    id:'op14', topic:'ניסוי', source:'בגרות 2024',
+    text:'(שאלה 18 בגרות 2024) הצעת מחקר 1: לבדוק השפעת שני תוספי מזון על תנובת חלב. שתי קבוצות פרות קיבלו כל אחת תוסף שונה בעונות שונות. האם יש לקבל הצעה זו? נמקו.',
+    answer:`<ul>
+      <li><strong>לדחות את ההצעה</strong> – הניסוי בעייתי.</li>
+      <li><strong>הבעיה:</strong> קבוצה אחת קיבלה תוסף X בחורף ובאביב, והשנייה תוסף Y בקיץ ובסתיו. השוואה בין הקבוצות אינה אמינה כי <strong>ההבדלים עשויים לנבוע מהעונה</strong> ולא מהתוסף.</li>
+      <li>לניסוי תקין: שתי הקבוצות חייבות לקבל את הטיפול <strong>באותן העונות ובאותם התנאים</strong>.</li>
+    </ul>`,
+    keypoints:'ניסוי מבוקר | משתנה מבלבל | עונות שנה | תנאים זהים | תוקף ניסוי'
+  },
+  {
+    id:'op15', topic:'כלבים', source:'בגרות 2022',
+    text:'שאלה 33 היגד ו׳: "תקופת השקט המיני אצל כלבה חשובה להמשך תהליך הרבייה שלה." נכון או לא נכון? הסבירו.',
+    answer:`<ul>
+      <li><strong>נכון</strong> – תקופת השקט המיני (אנאסטרוס) חשובה מאוד.</li>
+      <li>תקופה זו מאפשרת לגוף הכלבה <strong>להתאושש ולהתכונן</strong> לייחום הבא.</li>
+      <li>ברחם מתחדשת רירית הרחם (endometrium) ומתכוננת לקליטת עובר בייחום הבא.</li>
+      <li>ללא תקופת מנוחה מספקת, עלולות להיות <strong>בעיות פריון ובריאות הרחם</strong>.</li>
+    </ul>`,
+    keypoints:'אנאסטרוס | מחזור ייחום | התאוששות | בריאות הרחם | רבייה'
+  },
+
+  // ===== בגרות 2022 – שאלות פתוחות מחוון רשמי =====
+  {
+    id:'op16', topic:'מחלות', source:'בגרות 2022 – שאלה 13א (מחוון רשמי)',
+    text:'תארו שתי סכנות בהידבקות של חיות בית במחלות שמועברות מחיות בר.',
+    answer:`<ul>
+      <li><strong>התפשטות נרחבת של המחלה</strong> – חיות בית נעות במרחב רחב ומפיצות את המחלה לאוכלוסיות גדולות.</li>
+      <li><strong>סכנת הידבקות בני אדם</strong> – מחלות שמועברות מחיות בר לחיות בית עשויות להיות זואונוטיות ולהגיע לאדם.</li>
+    </ul>`,
+    keypoints:'זואונוזות | חיות בר | התפשטות | סכנה לאדם'
+  },
+  {
+    text:'על פי גרף כלבת ישראל 2011–2020: (1) באיזו שנה הייתה ההתפרצות הגדולה ואצל מי? (2) האם הצליחו לבלום אותה? בססו על הגרף.',
+    answer:`<strong>(1) זיהוי ההתפרצות:</strong><ul>
+      <li>השנה: <strong>2017</strong> | מספר הנדבקים הגבוה: <strong>תנים</strong></li>
+    </ul>
+    <strong>(2) בלימת ההתפרצות:</strong><ul>
+      <li>כן – הצליחו לבלום.</li>
+      <li>ביסוס: ב-2017 יותר מ-70 מקרים; ב-2018 ירד לפחות מ-60; ב-2019–2020 ירד עוד.</li>
+    </ul>`,
+    keypoints:'2017 | תנים | כלבת | גרף | ביסוס על נתונים | ירידה'
+  },
+  {
+    id:'op18', topic:'מחלות', source:'בגרות 2022 – שאלה 13ג (מחוון רשמי)',
+    text:'(1) פעולה אחת שעל החקלאי לעשות למניעת מחלות מידבקות. (2) פעולה אחת שעל רשויות המדינה לעשות למניעת חדירת גורמי מחלות לארץ.',
+    answer:`<strong>(1) פעולת החקלאי (אחת מהבאות):</strong><ul>
+      <li>שמירה על <strong>תברואה נאותה</strong> במשק.</li>
+      <li>מתן <strong>חיסון</strong> לבעלי החיים.</li>
+      <li><strong>בידוד פרטים חולים</strong> במשק.</li>
+      <li><strong>גידור</strong> שטחי חקלאות למניעת מגע עם חיות בר.</li>
+    </ul>
+    <strong>(2) פעולת הרשויות (אחת מהבאות):</strong><ul>
+      <li>חיסון <strong>חיות הבר</strong>.</li>
+      <li>בדיקת בעלי חיים <strong>במעברי גבול</strong>.</li>
+      <li><strong>הסגר</strong> לבעלי חיים המגיעים ממדינות זרות.</li>
+    </ul>`,
+    keypoints:'תברואה | חיסון | בידוד | גידור | מעברי גבול | הסגר'
+  },
+  {
+    id:'op19', topic:'תזונה', source:'בגרות 2022 – שאלה 14א (מחוון רשמי)',
+    text:'(1) הסבירו את הגורם לפליטת מתאן מפרות. (2) מהו הקשר בין ייצור חלב לפליטת מתאן? הציעו הסבר.',
+    answer:`<strong>(1) גורם לפליטת מתאן:</strong><ul>
+      <li>מיקרואורגניזמים בכרס מפרקים פחמימות מורכבות ותאית.</li>
+      <li>תוצר לוואי: גז מתאן.</li>
+      <li>הגז מצטבר → הפרה <strong>מגהקת</strong> → פולטת לאוויר.</li>
+    </ul>
+    <strong>(2) קשר ייצור חלב–מתאן:</strong><ul>
+      <li>ייצור חלב גבוה → פליטת מתאן גבוהה.</li>
+      <li>הסבר: פרה שמייצרת הרבה חלב צורכת מזון רב → פירוק רב → יותר מתאן.</li>
+    </ul>`,
+    keypoints:'כרס | מיקרואורגניזמים | מתאן | גיהוק | ייצור חלב | קשר ישיר'
+  },
+  {
+    id:'op20', topic:'חקלאות', source:'בגרות 2022 – שאלה 14ב (מחוון רשמי)',
+    text:'הסבירו מדוע חוקרים מחפשים דרכים להפחית את כמות גז המתאן שפולטים בעלי חיים במשק החקלאי.',
+    answer:`<ul>
+      <li>מתאן הוא <strong>גז חממה</strong> חזק.</li>
+      <li>עלייה בפרות → עלייה בפליטת מתאן → <strong>התחזקות אפקט החממה → התחממות כדור הארץ</strong>.</li>
+      <li>הפחתת מתאן ממשקים חקלאיים תסייע להאטת שינויי האקלים.</li>
+    </ul>`,
+    keypoints:'גז חממה | מתאן | אפקט חממה | התחממות גלובלית | משקים חקלאיים'
+  },
+  {
+    text:'על פי גרף צריכת מזון בישראל 1950–2019: (1) ציינו שני שינויים עיקריים. (2) הסבירו כיצד עלייה ברמת החיים מסבירה שינויים אלה.',
+    answer:`<strong>(1) שני השינויים:</strong><ul>
+      <li>ירידה ניכרת בשיעור <strong>הדגנים ומוצריהם</strong>.</li>
+      <li>עלייה בשיעור <strong>הבשר</strong> (ועלייה בשמנים ושומנים).</li>
+    </ul>
+    <strong>(2) הסבר לפי רמת חיים:</strong><ul>
+      <li>עלייה ברמת חיים → יכולת לרכוש <strong>בשר</strong> (מזון יקר) → ביקוש עולה → היצע גדל.</li>
+      <li>עלייה בשיעור הבשר → <strong>ירידה יחסית בשיעור הדגנים</strong> מתוך כלל מקורות האנרגייה.</li>
+    </ul>`,
+    keypoints:'דגנים | בשר | רמת חיים | ביקוש | היצע | 1950–2019'
+  },
+  {
+    id:'op22', topic:'תזונה', source:'בגרות 2022 – שאלה 15ב (מחוון רשמי)',
+    text:'מדוע חשוב שבני האדם יצרכו גם מזון מן החי וגם מן הצומח? כתבו שני נימוקים.',
+    answer:`<ul>
+      <li>במזונות מן החי ומן הצומח יש <strong>רכיבים משלימים</strong> הדרושים לגוף לקיום תקין.</li>
+      <li>מזון מן החי: <strong>חלבון מלא</strong> + <strong>ויטמין B12</strong> (מערכת עצבים, תאי דם אדומים).</li>
+      <li>מזון מן הצומח: <strong>סיבים תזונתיים</strong> (סיוע לעיכול) + פחמימות + ויטמינים.</li>
+    </ul>`,
+    keypoints:'חלבון מלא | ויטמין B12 | סיבים | משלים | תזונה מאוזנת'
+  },
+  {
+    id:'op23', topic:'חקלאות', source:'בגרות 2022 – שאלה 16א (מחוון רשמי)',
+    text:'(1) ציינו שימוש אפשרי בהפרשות בעלי חיים. (2) הסבירו יתרון אחד וחיסרון אחד של שימוש זה.',
+    answer:`<strong>(1) שימוש (לבחירה):</strong><ul>
+      <li><strong>דשן/קומפוסט</strong> לשיפור גידולים חקלאיים.</li>
+      <li>הפקת <strong>אנרגייה (ביומסה)</strong> לייצור חשמל.</li>
+    </ul>
+    <strong>(2) דשן/קומפוסט – יתרון וחיסרון:</strong><ul>
+      <li>יתרון: שיפור מבנה הקרקע / אספקת יסודות הזנה / הפחתת שימוש בדשנים כימיים.</li>
+      <li>חיסרון: חשש לאילוח בפתוגנים / זיהום מקורות מים / מטרד זבובים.</li>
+    </ul>`,
+    keypoints:'הפרשות | קומפוסט | דשן | ביומסה | יתרון | חיסרון | פסולת חקלאית'
+  },
+  {
+    id:'op24', topic:'חקלאות', source:'בגרות 2022 – שאלה 16ב (מחוון רשמי)',
+    text:'(1) תארו מפגע סביבתי אחד מפגרי בעלי חיים. (2) כתבו דרך אחת לטיפול במפגע.',
+    answer:`<strong>(1) מפגע סביבתי (לבחירה):</strong><ul>
+      <li>מפגעי <strong>ריח וזבובים</strong>.</li>
+      <li>משיכת <strong>חיות משוטטות</strong> (תנים, כלבים) → הפצת מחלות (כלבת).</li>
+      <li>זיהום <strong>קרקע ומים</strong>.</li>
+    </ul>
+    <strong>(2) דרך טיפול (לבחירה):</strong><ul>
+      <li>סילוק מוסדר / שריפה מבוקרת.</li>
+      <li>קומפוסטציה של פגרים.</li>
+      <li>הפקת אנרגייה (ביודיזל).</li>
+    </ul>`,
+    keypoints:'פגרים | ריח | זיהום | כלבת | קומפוסטציה | שריפה'
+  },
+  {
+    text:'בניסוי נבדקו פרות הולנדי וג\'רסי ברפת א ורפת ב. (1) איזה גזע מניב יותר? (2) גנטיקה או סביבה? בססו. (3) גורם להבדל בין הרפתות?',
+    answer:`<strong>(1) הגזע:</strong><ul><li><strong>הולנדי</strong> – מניב יותר בכל הרפתות.</li></ul>
+    <strong>(2) גנטיקה:</strong><ul>
+      <li>הולנדי מניב יותר <strong>בכל הרפתות ובמדינת המוצא</strong> → ההבדל תורשתי, לא סביבתי.</li>
+    </ul>
+    <strong>(3) גורם להבדל בין הרפתות:</strong><ul>
+      <li>הבדל ב<strong>ממשק / תנאי סביבה</strong> (הזנה, קירור, ניהול) בין רפת א לרפת ב.</li>
+    </ul>`,
+    keypoints:'גזע הולנדי | גנטיקה | ממשק | ביסוס נתונים | תנובת חלב'
+  },
+  {
+    id:'op26', topic:'ניסוי', source:'בגרות 2022 – שאלה 17ב(2)+ג (מחוון רשמי)',
+    text:'(1) מדוע נבדקו שני הגזעים בשני אזורים שונים? (2) האם הייתה קבוצת ביקורת? נמקו.',
+    answer:`<strong>(1) מדוע שני אזורים:</strong><ul>
+      <li>כדי לבדוק אם ההבדל בתנובה נובע מ<strong>תורשה (גנטיקה)</strong> או מ<strong>השפעת הסביבה</strong>.</li>
+      <li>אם הגזע מניב יותר בשני האזורים – ההבדל גנטי; אם רק באחד – הסביבה קובעת.</li>
+    </ul>
+    <strong>(2) קבוצת ביקורת:</strong><ul>
+      <li>כן – כל רפת משמשת <strong>ביקורת השוואתית (פנימית)</strong> לרפתות האחרות.</li>
+    </ul>`,
+    keypoints:'שני אזורים | גנטיקה vs סביבה | ביקורת השוואתית | ניסוי מבוקר'
+  },
+  {
+    id:'op27', topic:'תזונה', source:'בגרות 2022 – שאלה 18ב (מחוון רשמי)',
+    text:'(1) ציינו בעל חיים שיכול לעכל תאית. (2) הסבירו כיצד מערכת העיכול שלו מותאמת לכך.',
+    answer:`<strong>(1) בעלי חיים:</strong><ul>
+      <li><strong>פרה / כבשה</strong> (מעלי גירה)</li>
+      <li><strong>סוס</strong></li>
+    </ul>
+    <strong>(2) התאמה:</strong><ul>
+      <li>פרה/כבשה: בכרס יש <strong>מיקרואורגניזמים</strong> המפרישים <strong>צלולאז</strong> המפרק תאית.</li>
+      <li>סוס: במעי העיוור הגדול יש מיקרואורגניזמים מפרקי תאית.</li>
+    </ul>`,
+    keypoints:'תאית | צלולוזה | כרס | מעי עיוור | צלולאז | מיקרואורגניזמים'
+  },
+  {
+    id:'op28', topic:'תזונה', source:'בגרות 2022 – שאלה 18א (מחוון רשמי)',
+    text:'שני איורים מציגים מערכות שיניים: אחת של ניזון מבשר ואחת של ניזון מצמחים. כיצד מבחינים? תנו שני נימוקים לכל קביעה.',
+    answer:`<strong>ניזון מבשר:</strong><ul>
+      <li>ניבים <strong>חדים וגדולים</strong> – לקריעת הטרף.</li>
+      <li>שיניים חותכות <strong>מפותחות</strong> – לחיתוך בשר.</li>
+      <li>שיניים טוחנות פחות מפותחות וחדות יותר (לחיתוך, לא לטחינה).</li>
+    </ul>
+    <strong>ניזון מצמחים:</strong><ul>
+      <li><strong>היעדר ניבים</strong> (אין צורך לקרוע).</li>
+      <li>שיניים חותכות <strong>קטנות</strong> – חיתוך מועט.</li>
+      <li>שיניים טוחנות <strong>גדולות ומפותחות מאוד</strong> – לטחינת חומר צמחי.</li>
+    </ul>`,
+    keypoints:'ניבים | שיניים חותכות | שיניים טוחנות | אוכל בשר | אוכל צמחים | מבנה שיניים'
+  },
+
+
+  // ===== ענף כלבים – מחוון בגרות 2022 =====
+  {
+    id:'op29', topic:'כלבים', source:'בגרות 2022 – שאלה 31א (מחוון רשמי)',
+    text:'האם כל נשיכה של קרצית תגרום לכלב לחלות בקדחת הקרציות? נמקו.',
+    answer:`<ul>
+      <li><strong>לא</strong> – לא כל נשיכה תגרום למחלה.</li>
+      <li>רק אם הקרצית <strong>נגועה בטפיל</strong> היא עשויה להעביר אותו לנעקץ.</li>
+      <li>אם הקרצית אינה נגועה – תגרום לסבל ובעיה מקומית, אך <strong>לא להעברת הטפיל</strong>.</li>
+    </ul>`,
+    keypoints:'קרצית נגועה | טפיל | העברת מחלה | לא כל נשיכה'
+  },
+  {
+    id:'op30', topic:'כלבים', source:'בגרות 2022 – שאלה 31ב (מחוון רשמי)',
+    text:'ציינו שני תסמינים של קדחת הקרציות בכלבים.',
+    answer:`<strong>שניים מבין:</strong><ul>
+      <li>אפתיה ועייפות</li>
+      <li><strong>חום גבוה</strong></li>
+      <li>חוסר תיאבון</li>
+      <li><strong>אנמיה</strong> (מיעוט דם)</li>
+      <li>בלוטות לימפה מוגדלות</li>
+      <li>שטפי דם זעירים על העור (פטכיות) או שטפי דם נרחבים (אכימוזות)</li>
+      <li>דימום מן האף</li>
+      <li>אדמומיות בעיניים</li>
+    </ul>`,
+    keypoints:'חום גבוה | אנמיה | עייפות | שטפי דם | תסמינים קליניים'
+  },
+  {
+    id:'op31', topic:'כלבים', source:'בגרות 2022 – שאלה 31ג (מחוון רשמי)',
+    text:'הסבירו את החשיבות של אבחון מוקדם של קדחת הקרציות. תארו שתי דרכים למניעת המחלה אצל כלבים.',
+    answer:`<strong>חשיבות אבחון מוקדם:</strong><ul>
+      <li>כלבים שלא טופלו בשלב ראשון עלולים להגיע לשלב <strong>כרוני</strong>.</li>
+      <li>בשלב הכרוני רוב הכלבים <strong>אינם מגיבים לטיפול</strong> והמחלה עלולה להסתיים במוות.</li>
+    </ul>
+    <strong>שתי דרכי מניעה:</strong><ul>
+      <li>שימוש סדיר ב<strong>תכשירים נגד קרציות</strong> – קולר, ריסוס, או טיפות.</li>
+      <li><strong>ריסוס תקופתי</strong> של אזור מגוריו של הכלב (חצר, מדשאה).</li>
+    </ul>`,
+    keypoints:'אבחון מוקדם | שלב כרוני | תכשירים נגד קרציות | ריסוס | מניעה'
+  },
+  {
+    id:'op32', topic:'כלבים', source:'בגרות 2022 – שאלה 31ד (מחוון רשמי)',
+    text:'הסבירו מדוע כלב שעל גופו יש קרציות עלול לסבול מאנמיה.',
+    answer:`<ul>
+      <li><strong>דם הוא המזון</strong> שהקרצית צורכת מגוף המאכסן.</li>
+      <li>כלב עם הרבה קרציות מאבד כמויות גדולות של דם → <strong>מחסור בהמוגלובין / כדוריות אדומות → אנמיה</strong>.</li>
+    </ul>`,
+    keypoints:'קרצית | מציצת דם | אנמיה | המוגלובין | כדוריות אדומות'
+  },
+  {
+    id:'op33', topic:'כלבים', source:'בגרות 2022 – שאלה 32ב (מחוון רשמי)',
+    text:'לבעלי כלבים חשוב לדעת את תוחלת החיים הממוצעת של כלבים. הסבירו מדוע (ציינו שני נימוקים).',
+    answer:`<ul>
+      <li>עם הגיל חלים <strong>שינויים במנת המזון</strong> – לכלב זקן יש להגיש מנה דלה בחלבונים.</li>
+      <li>ככל שהכלב מאריך ימים כך הוא <strong>חשוף יותר למחלות גיל</strong> ונזקק לטיפולים וטרינריים יקרים – חשוב להתכונן כלכלית.</li>
+      <li>האדם <strong>נקשר רגשית</strong> לכלב, ולכן רבים יעדיפו כלב שמאריך ימים.</li>
+    </ul>`,
+    keypoints:'תוחלת חיים | גיל | מנת מזון | עלות טיפול | קשר רגשי'
+  },
+  {
+    id:'op34', topic:'כלבים', source:'בגרות 2022 – שאלה 32ג(2) (מחוון רשמי)',
+    text:'מה גורם להבדל בתוחלת החיים בין כלב גזעי לכלב מעורב באותו גודל? הסבירו כיצד גורם זה משפיע על תוחלת החיים של הכלב המעורב.',
+    answer:`<strong>הגורם:</strong><ul>
+      <li>לכלב גזעי יש <strong>מחלות גנטיות ורגישויות</strong> אופייניות לגזע שלו.</li>
+      <li>לכלב מעורב יש תכונות גנטיות של <strong>כמה גזעים</strong>.</li>
+    </ul>
+    <strong>השפעה על הכלב המעורב:</strong><ul>
+      <li>בזכות <strong>המגוון הגנטי</strong> – פחות מחלות גנטיות → <strong>תוחלת חיים ארוכה יותר</strong> מכלב גזעי באותו גודל.</li>
+    </ul>`,
+    keypoints:'גנטיקה | מחלות גזע | מגוון גנטי | כלב מעורב | תוחלת חיים'
+  },
+  {
+    id:'op35', topic:'כלבים', source:'בגרות 2022 – שאלה 33 היגדים (מחוון רשמי)',
+    text:'"כלבים בכל הגזעים מגיעים לבגרות מינית באותו הגיל." — נכון או לא נכון? הסבירו.',
+    answer:`<ul>
+      <li><strong>לא נכון.</strong></li>
+      <li>גזעי כלבים קטנים מגיעים לבגרות מינית <strong>בשלב מוקדם</strong>.</li>
+      <li>גזעי כלבים גדולים מגיעים לבגרות מינית <strong>בשלב מאוחר</strong> יותר.</li>
+    </ul>`,
+    keypoints:'בגרות מינית | גזע קטן vs גדול | גיל | הורמונים'
+  },
+  {
+    id:'op36', topic:'כלבים', source:'בגרות 2022 – שאלה 33ג (מחוון רשמי)',
+    text:'"הרעבה או מצב גופני ירוד של כלבה יעכבו את הגעתה לבגרות מינית." — נכון או לא נכון? הסבירו.',
+    answer:`<ul>
+      <li><strong>נכון.</strong></li>
+      <li>הרעבה / מצב גופני ירוד גורמים לכלבה <strong>להשקיע אנרגייה בהישרדות</strong> ולא בפוריות.</li>
+      <li>הגוף "מעדיף" לשמור על קיומו ומדכא תהליכים הורמונליים של רבייה.</li>
+    </ul>`,
+    keypoints:'הרעבה | מצב גופני | בגרות מינית | אנרגייה | הישרדות vs רבייה'
+  },
+  {
+    id:'op37', topic:'כלבים', source:'בגרות 2022 – שאלה 33ה (מחוון רשמי)',
+    text:'"טיפול הורמונלי ופעולות של עיקור וסירוס מונעים מכלבים רבייה לתקופה מסוימת." — נכון או לא נכון? הסבירו.',
+    answer:`<ul>
+      <li><strong>לא נכון.</strong></li>
+      <li>טיפול הורמונלי מונע רבייה <strong>לתקופה מסוימת בלבד</strong>.</li>
+      <li>אך עיקור (כלבה) וסירוס (כלב) מונעים רבייה <strong>באופן קבוע ולצמיתות</strong>.</li>
+    </ul>`,
+    keypoints:'טיפול הורמונלי | עיקור | סירוס | זמני vs קבוע | מניעת רבייה'
+  },
+  {
+    id:'op38', topic:'כלבים', source:'בגרות 2022 – שאלה 33ז (מחוון רשמי)',
+    text:'"בשלב טרום הייחום של כלבה, היא תמשוך אליה זכרים ותהיה מוכנה להזדווג." — נכון או לא נכון? הסבירו.',
+    answer:`<ul>
+      <li><strong>לא נכון.</strong></li>
+      <li>בשלב טרום הייחום (פרואסטרוס) הכלבה אכן <strong>מושכת אליה כלבים זכרים</strong> (הפרשת ריחות).</li>
+      <li>אך היא <strong>עדיין אינה מוכנה להזדווג</strong> ותדחה זכרים שינסו להתקרב.</li>
+      <li>הנכונות להזדווג מתרחשת רק בשלב <strong>הייחום (אסטרוס)</strong>.</li>
+    </ul>`,
+    keypoints:'טרום ייחום | פרואסטרוס | אסטרוס | משיכת זכרים | מוכנות הזדווגות'
+  },
+
+
+  // ===== בגרות 2023 – שאלות פתוחות מחוון רשמי =====
+  {
+    id:'op39', topic:'מחלות', source:'בגרות 2023 – שאלה 13ב (מחוון רשמי)',
+    text:'קבעו מהו סוג החיסון בכל אחד מהמקרים ונמקו: (1) חיסון של כלב שהכישו נחש ארסי. (2) חיסון של סוס למחלת השפעת. (3) הגמעה של עגל בקולוסטרום ביום הראשון לחייו.',
+    answer:`<strong>(1) כלב שהכישו נחש ארסי:</strong><ul>
+      <li>סוג: <strong>סביל מלאכותי</strong></li>
+      <li>אין לגוף זמן לייצר נוגדנים → יש לתת נוגדנים מוכנים (סביל).</li>
+      <li>אין דרך טבעית להעביר נוגדנים ייחודיים נגד ארס → מלאכותי.</li>
+    </ul>
+    <strong>(2) סוס למניעת שפעת:</strong><ul>
+      <li>סוג: <strong>פעיל מלאכותי</strong></li>
+      <li>הסוס בריא → מטרה: לגרום למערכת החיסון לייצר נוגדנים וזיכרון חיסוני (פעיל).</li>
+      <li>החיסון ניתן לפני חשיפה לנגיף → מלאכותי.</li>
+    </ul>
+    <strong>(3) עגל בקולוסטרום:</strong><ul>
+      <li>סוג: <strong>סביל טבעי</strong></li>
+      <li>העגל מקבל נוגדנים מוכנים מהאם דרך החלב (סביל).</li>
+      <li>הנוגדנים מגיעים מהחלב הראשוני של האם → טבעי.</li>
+    </ul>`,
+    keypoints:'סביל מלאכותי | פעיל מלאכותי | סביל טבעי | קולוסטרום | זיכרון חיסוני | נחש | שפעת'
+  },
+  {
+    id:'op40', topic:'כלבים', source:'בגרות 2023 – שאלה 14א (מחוון רשמי)',
+    text:'תארו שתי השפעות של גידול כלבים בצפיפות גבוהה על רווחתם.',
+    answer:`<strong>שתיים מבין:</strong><ul>
+      <li><strong>העברת מחלות וטפילים</strong> בין הכלבים בגלל מגע תכוף.</li>
+      <li><strong>שכיחות גבוהה של ריב ובעיות התנהגות</strong> בקרב הכלבים.</li>
+      <li>עלייה בתחושת <strong>עקה (סטרס)</strong> ופגיעה בבריאות.</li>
+      <li>קושי בהגעה של כלבים חלשים למזון ופגיעה בבריאותם.</li>
+    </ul>`,
+    keypoints:'צפיפות | מחלות | טפילים | סטרס | ריב | רווחת בעלי חיים'
+  },
+  {
+    id:'op41', topic:'חקלאות', source:'בגרות 2023 – שאלה 14ב (מחוון רשמי)',
+    text:'הסבירו מדוע הטענה שגידול בעלי חיים בצפיפות גבוהה מגדיל את הרווח הכלכלי של החקלאי אינה נכונה. הציגו שני נימוקים.',
+    answer:`<strong>שני נימוקים מבין:</strong><ul>
+      <li>צפיפות → תברואה נמוכה → <strong>הוצאות על טיפול רפואי</strong> ותמותת בעלי חיים.</li>
+      <li>צפיפות → עקה (סטרס) → <strong>ירידה בכמות התוצרת</strong> (חלב, ביצים, בשר).</li>
+      <li>בעלי חיים בתנאי רווחה טובה <strong>מייצרים יותר תוצרת חקלאית</strong>.</li>
+    </ul>`,
+    keypoints:'צפיפות | תברואה | טיפול רפואי | סטרס | תוצרת | רווח כלכלי | רווחה'
+  },
+  {
+    id:'op42', topic:'תזונה', source:'בגרות 2023 – שאלה 15א (מחוון רשמי)',
+    text:'הסבירו מהי החשיבות של הביצה לתזונת האדם.',
+    answer:`<ul>
+      <li><strong>חלבון</strong> בשיעור גבוה (~13 גרם לביצה) – חלבון מלא עם כל חומצות האמיניות.</li>
+      <li><strong>שומן</strong> בשיעור גבוה (~11 גרם) – כולל ויטמינים מסיסי שומן.</li>
+      <li><strong>מינרלים וויטמינים</strong> חיוניים בשיעור גבוה.</li>
+      <li>מעט מאוד <strong>פחמימות</strong> (~1.1 גרם) – מזון מתאים לדיאטות שונות.</li>
+    </ul>`,
+    keypoints:'חלבון מלא | שומן | ויטמינים | מינרלים | ביצה | תזונה'
+  },
+  {
+    id:'op43', topic:'תזונה', source:'בגרות 2023 – שאלה 16א (מחוון רשמי)',
+    text:'מהן אבני לקיקה? מדוע חשוב שבעלי חיים צעירים יצרכו תוסף מזון בצורה של אבני לקיקה?',
+    answer:`<strong>מהן אבני לקיקה:</strong><ul>
+      <li>אבנים המכילות <strong>מינרלים</strong>, המוצבות במקום נגיש כדי שבעלי החיים ילקו אותן.</li>
+    </ul>
+    <strong>חשיבות לבעלי חיים צעירים:</strong><ul>
+      <li>מינרלים חיוניים ל<strong>פעילות פיזיולוגית תקינה</strong> בשלב הגמילה.</li>
+      <li>מוסיפים <strong>חומרי טעם</strong> כדי להגדיל צריכת מינרלים <strong>באופן רציף</strong> כל שעות היום.</li>
+      <li>ספיגת המינרלים בדרך זו <strong>יעילה ומהירה יותר</strong> מהוספה במנת המזון.</li>
+    </ul>`,
+    keypoints:'אבני לקיקה | מינרלים | גמילה | ספיגה | תוסף מזון'
+  },
+  {
+    id:'op44', topic:'ניסוי', source:'בגרות 2023 – שאלה 16ב(3) (מחוון רשמי)',
+    text:'הסבירו את ההבדל בתוספת המשקל היומית בין עגלים שצרכו אבני לקיקה לבין עגלים שלא צרכו, והתייחסו לניצולת המזון בכל קבוצה.',
+    answer:`<ul>
+      <li>עגלים <strong>שצרכו אבני לקיקה</strong>: ניצולת מזון <strong>גבוהה</strong> → על אף שצרכו <strong>פחות מזון</strong> – תוספת המשקל הייתה <strong>גדולה יותר</strong>.</li>
+      <li>עגלים <strong>שלא צרכו אבני לקיקה</strong>: ניצולת מזון <strong>נמוכה</strong> → על אף שצרכו <strong>יותר מזון</strong> – תוספת המשקל הייתה <strong>קטנה יותר</strong>.</li>
+    </ul>`,
+    keypoints:'ניצולת מזון | אבני לקיקה | תוספת משקל | מינרלים | יעילות עיכול'
+  },
+  {
+    id:'op45', topic:'כלכלה', source:'בגרות 2023 – שאלה 17א(2) (מחוון רשמי)',
+    text:'הסבירו מהי סובסידיה ומהו היתרון לצרכן בסובסידיה של תוצרת חקלאית.',
+    answer:`<ul>
+      <li><strong>סובסידיה</strong> – תשלום קבוע הניתן לחקלאי מהממשלה בעבור הגידול שהוא מגדל.</li>
+      <li><strong>יתרון לצרכן</strong>: מחירי התוצרת החקלאית <strong>נשארים נמוכים יחסית</strong> ומשתנים לעיתים רחוקות.</li>
+    </ul>`,
+    keypoints:'סובסידיה | ממשלה | מחיר נמוך | צרכן | תוצרת חקלאית'
+  },
+  {
+    id:'op46', topic:'כלכלה', source:'בגרות 2023 – שאלה 17ב (מחוון רשמי)',
+    text:'האם הממשלה צריכה להיות מעורבת בענף החקלאות? הסבירו את עמדתכם והביאו נימוק אחד.',
+    answer:`<strong>בעד מעורבות ממשלתית (נימוקים אפשריים):</strong><ul>
+      <li>לחקלאים יש הוצאות גבוהות על טכנולוגיה ← צריכים תמיכה כדי להמשיך לפעול.</li>
+      <li>תמיכה מאפשרת לחקלאים <strong>להתחרות עם ייבוא</strong> של תוצרת חקלאית.</li>
+      <li>הממשלה צריכה להבטיח <strong>ביטחון תזונתי בעת חירום</strong>.</li>
+    </ul>
+    <strong>נגד מעורבות ממשלתית (נימוקים אפשריים):</strong><ul>
+      <li><strong>תחרות חופשית</strong> תעודד התייעלות וירידת מחירים.</li>
+      <li>הגדלת <strong>ייבוא תוצרת חקלאית</strong> → עלייה בהיצע → ירידת מחיר לצרכן.</li>
+    </ul>`,
+    keypoints:'מעורבות ממשלה | סובסידיה | ביטחון תזונתי | תחרות חופשית | ייבוא'
+  },
+  {
+    id:'op47', topic:'חקלאות', source:'בגרות 2023 – שאלה 18א (מחוון רשמי)',
+    text:'בחרו בשתיים מהפעולות הבאות והסבירו כיצד כל אחת תורמת לשמירה על הסביבה: (א) דישון בקומפוסט, (ב) ביעור פגרים ופסדים, (ג) שימוש מבוקר בתרופות והורמונים.',
+    answer:`<strong>דישון בקומפוסט:</strong><ul>
+      <li>צמצום שימוש ב<strong>דשנים כימיים</strong> הפוגעים בסביבה ובבריאות האדם.</li>
+      <li>ניצול פסולת אורגנית → צמצום <strong>כמות הפסולת המוטמנת</strong>.</li>
+    </ul>
+    <strong>ביעור פגרים:</strong><ul>
+      <li>מניעת <strong>זיהום סביבה והעברת מחלות</strong>.</li>
+      <li>מניעת <strong>התרבות אוכלי פגרים</strong> בקרבת האדם.</li>
+    </ul>
+    <strong>שימוש מבוקר בתרופות:</strong><ul>
+      <li>מניעת <strong>זיהום התוצרת החקלאית</strong> ושל הסביבה שבה חיים בעלי החיים.</li>
+    </ul>`,
+    keypoints:'קומפוסט | ביעור פגרים | תרופות | זיהום | סביבה | שמירת הטבע'
+  },
+  {
+    id:'op48', topic:'חקלאות', source:'בגרות 2023 – שאלה 18ב(2) (מחוון רשמי)',
+    text:'הסבירו קושי אחד בפיתוח חקלאות אורגנית.',
+    answer:`<strong>אחד מבין:</strong><ul>
+      <li><strong>עלויות ייצור גבוהות</strong> – דורשת יותר כוח אדם ועלויות שונות.</li>
+      <li><strong>תוצרת נמוכה ליחידת שטח</strong> – יעילות ייצור נמוכה יותר לעומת גידול קונבנציונלי.</li>
+      <li>הימנעות מריסוס → <strong>ריבוי חיידקים ומזיקים</strong> בגידולי מזון.</li>
+      <li>לגידולים אורגניים נדרש <strong>שטח גדול</strong> שמספק כמות קטנה יחסית של מזון.</li>
+    </ul>`,
+    keypoints:'חקלאות אורגנית | עלויות | תוצרת נמוכה | מזיקים | שטח'
+  }
+
+];
+
+// ============================
+// DATA: SUMMARY
+// ============================
+const summaryTopics = [
+  {
+    emoji:'🍎', title:'תזונה',
+    points:[
+      'אבות המזון: חלבונים, שומנים, פחמימות, ויטמינים, מינרלים.',
+      'ויטמינים מסיסי שומן: A, D, E, K — נאגרים בגוף!',
+      'ויטמינים מסיסי מים: B, C — מופרשים בשתן.',
+      'חלבון מלא = מכיל את כל 9 חומצות האמיניות החיוניות.',
+      'שומן = מקור לאנרגייה נאגרת (לא זמינה!).',
+      'פחמימות = מקור לאנרגייה זמינה.',
+      'ניצולת מזון = אנרגייה ייצור ÷ אנרגייה נאכלת.',
+    ]
+  },
+  {
+    emoji:'🔬', title:'מחלות וחיסון',
+    points:[
+      'מחלה מידבקת = מחלה זיהומית (גורם ביולוגי).',
+      'שלבי מחלה מידבקת: הדבקה → דגירה → מחלה → החלמה.',
+      'הידבקות ישירה: מגע ישיר. עקיפה: דרך נשא (יתוש, מים, ידיים).',
+      'מחלה זואונוטית = עוברת מבעלי חיים לאדם (כלבת, שפעת עופות).',
+      'חיסון פעיל: גוף מייצר נוגדנים בעצמו → הגנה ארוכת טווח.',
+      'חיסון סביל: מקבל נוגדנים מוכנים (קולוסטרום, זריקה) → הגנה זמנית.',
+      'משטר חיסוני חובה נקבע ע"י השירותים הווטרינריים.',
+    ]
+  },
+  {
+    emoji:'🧬', title:'רבייה',
+    points:[
+      'הפריה = איחוד תא זרע + ביצית (בחצוצרה).',
+      'פרוגסטרון = נוצר בגופיף הצהוב, שומר על ההיריון.',
+      'אסטרוגן = נוצר בשחלות, גורם לסימני ייחום.',
+      'FSH, LH = מופרשים מהיפופיזה (גם בזכרים וגם בנקבות).',
+      'בגופיף הצהוב: פרוגסטרון עולה, אסטרוגן יורד.',
+      'סימני מין משניים = מתפתחים בהתבגרות, עוזרים להבחין זכר/נקבה.',
+      'רבייה מינית = גיוון גנטי בצאצאים.',
+    ]
+  },
+  {
+    emoji:'🌡️', title:'ויסות חום',
+    points:[
+      'הומאותרמי (חם דם) = טמפרטורת גוף קבועה (פרה, כלב, סוס).',
+      'פויקילותרמי (קר דם) = טמפרטורה תלוית סביבה (דגים, זוחלים).',
+      'הלחתה אצל כלבים = מנגנון קירור באמצעות אידוי רוק.',
+      'עקה (סטרס) → שחרור קורטיזול → פגיעה ביצרנות ובפוריות.',
+      'יונקים צעירים: ויסות חום לא בשל → מושפעים במידה מסביבה.',
+    ]
+  },
+  {
+    emoji:'🌾', title:'חקלאות כללי',
+    points:[
+      'המהפכה הירוקה = עלייה בתוצרת, שיטות מתועשות, זנים משופרים.',
+      'מלתוס: האוכלוסייה גדלה גיאומטרית, מזון גדל אריתמטית → מחסור.',
+      'מנה כולית (TMR) = כל רכיבי המזון בכמויות המתאימות.',
+      'מכסת ייצור = כמות מרבית שחקלאי רשאי לייצר → יציבות כלכלית.',
+      'ניבג של חיידק = עמידות גבוהה לתנאי סביבה קיצוניים.',
+    ]
+  },
+  {
+    emoji:'🔬', title:'תהליך מחקר',
+    points:[
+      'קבוצת ביקורת = קבוצה ללא טיפול, לצורך השוואה.',
+      'משתנה בלתי תלוי = הגורם המשתנה (מה בודקים).',
+      'משתנה תלוי = התוצאה שנמדדת.',
+      'חזרה על ניסוי = מגבירה אמינות ותוקף.',
+      'לניסוי תקין: כל התנאים זהים פרט למשתנה הנבדק!',
+      'גודל מדגם גדול → תוצאות אמינות יותר.',
+    ]
+  }
+];
+
+// ============================
+// STATE
+// ============================
+let score = 0;
+let mcAnswered = 0, mcCorrect = 0, mcWrong = 0;
+const mcAnsweredMap = {}; // qId -> { selected, correct }
+
+// ============================
+// RENDER MC
+// ============================
+  const TOPIC_CHIP = {
+    'תזונה':     { cls: 'chip-תזונה',     emoji: '🍎' },
+    'מחלות':     { cls: 'chip-מחלות',     emoji: '🦠' },
+    'רבייה':     { cls: 'chip-רבייה',     emoji: '🧬' },
+    'ויסות חום': { cls: 'chip-ויסות-חום', emoji: '🌡️' },
+    'חקלאות':    { cls: 'chip-חקלאות',    emoji: '🌾' },
+    'כלבים':     { cls: 'chip-כלבים',     emoji: '🐕' },
+    'ניסוי':     { cls: 'chip-ניסוי',     emoji: '🔬' },
+    'כלכלה':     { cls: 'chip-כלכלה',     emoji: '💰' },
+  };
+  function topicChip(topic) {
+    const t = TOPIC_CHIP[topic] || { cls: 'chip-all', emoji: '' };
+    return `<span class="topic-chip ${t.cls} active" style="cursor:default;pointer-events:none;">${t.emoji} ${topic}</span>`;
+  }
+
+let mcFilter = { topic: 'all', year: 'all' };
+
+function renderMC() {
+  const container = document.getElementById('mc-questions');
+  container.innerHTML = '';
+
+  const years = ['2021','2022','2023','2024'];
+  years.forEach(year => {
+    if (mcFilter.year !== 'all' && mcFilter.year !== year) return;
+    const qs = mcQuestions.filter(q => q.year === year && (mcFilter.topic === 'all' || q.topic === mcFilter.topic));
+    if (qs.length === 0) return;
+
+    qs.forEach((q, i) => {
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.id = 'card-' + q.id;
+      card.setAttribute('data-topic', q.topic);
+
+      card.innerHTML = `
+        <div class="q-header">
+          <div class="q-num">${i+1}</div>
+          <div class="q-meta">
+            ${topicChip(q.topic)}
+          </div>
+          <span class="q-type-tag tag-mc">📝 אמריקאית</span>
+        </div>
+        <div class="q-body">
+          <div class="q-text">${q.text}</div>
+          <ul class="options-list" id="opts-${q.id}">
+            ${q.options.map((opt, oi) => `
+              <li><button class="option-btn" onclick="selectMC('${q.id}', ${oi})" data-idx="${oi}">
+                <span class="opt-letter">${['א','ב','ג','ד'][oi]}</span>
+                <span>${opt}</span>
+              </button></li>
+            `).join('')}
+          </ul>
+          <div class="feedback-box" id="fb-${q.id}"></div>
+        </div>
+      `;
+      container.appendChild(card);
+
+      // Restore answered state if this question was already answered
+      const saved = mcAnsweredMap[q.id];
+      if (saved !== undefined) {
+        const opts = document.getElementById('opts-' + q.id);
+        const btns = opts.querySelectorAll('.option-btn');
+        btns.forEach(b => { b.disabled = true; });
+        btns[saved.selected].classList.add(saved.isCorrect ? 'correct' : 'wrong');
+        if (!saved.isCorrect) btns[q.correct].classList.add('correct');
+        const fb = document.getElementById('fb-' + q.id);
+        fb.className = 'feedback-box show ' + (saved.isCorrect ? 'correct-fb' : 'wrong-fb');
+        fb.innerHTML = saved.isCorrect
+          ? `<strong>✅ נכון! מעולה!</strong>${q.explain}`
+          : `<strong>❌ לא נכון. התשובה הנכונה: ${['א','ב','ג','ד'][q.correct]}</strong>${q.explain}`;
+      }
+    });
+  });
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<div class="q-card" style="padding:24px;text-align:center;color:#888">לא נמצאו שאלות בסינון זה.</div>';
+  }
+}
+
+// Track per-question score contribution: 0 = unanswered, 2 = correct, -1 = wrong
+const mcPendingMap = {}; // kept for restore compatibility
+
+function selectMC(qId, selectedIdx) {
+  const q = mcQuestions.find(x => x.id === qId);
+  if (!q) return;
+
+  const optsList = document.getElementById('opts-' + qId);
+  const buttons = optsList.querySelectorAll('.option-btn');
+  const prev = mcAnsweredMap[qId]; // previous answer for this question
+
+  const isCorrect = selectedIdx === q.correct;
+
+  // Clear all option states
+  buttons.forEach(btn => {
+    btn.classList.remove('correct', 'wrong', 'selected');
+  });
+
+  // Apply new state
+  buttons[selectedIdx].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) buttons[q.correct].classList.add('correct');
+
+  // Update feedback
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = isCorrect
+    ? `<strong>✅ נכון! מעולה!</strong>${q.explain}`
+    : `<strong>❌ לא נכון. התשובה הנכונה: ${['א','ב','ג','ד'][q.correct]}</strong>${q.explain}`;
+
+  // Update counters
+  if (prev === undefined) {
+    // First time answering this question
+    mcAnswered++;
+    if (isCorrect) { mcCorrect++; score += 2; }
+    else { mcWrong++; }
+  } else {
+    // Changing answer — undo previous, apply new
+    if (prev.isCorrect) { mcCorrect--; score -= 2; }
+    else { mcWrong--; }
+    if (isCorrect) { mcCorrect++; score += 2; }
+    else { mcWrong++; }
+  }
+
+  mcAnsweredMap[qId] = { selected: selectedIdx, isCorrect };
+  mcPendingMap[qId] = selectedIdx;
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('mcAnswered').textContent = mcAnswered;
+  document.getElementById('mcCorrect').textContent = mcCorrect;
+  document.getElementById('mcWrong').textContent = mcWrong;
+  document.getElementById('scoreDisplay').textContent = 'נקודות: ' + score;
+  const pct = mcAnswered > 0 ? Math.round((mcCorrect/mcAnswered)*100) : 0;
+  document.getElementById('accuracyPct').textContent = pct + '%';
+  document.getElementById('accuracyBar').style.width = pct + '%';
+}
+
+function filterMC(value, type, el) {
+  mcFilter[type] = value;
+  document.querySelectorAll('#tab-mc .topic-bar .topic-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderMC();
+}
+
+// ============================
+// RENDER OPEN
+// ============================
+function renderOpen(filterTopic = 'all') {
+  const container = document.getElementById('open-questions');
+  container.innerHTML = '';
+
+  const qs = openQuestions.filter(q => filterTopic === 'all' || q.topic === filterTopic);
+
+  qs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num">${i+1}</div>
+        <div class="q-meta">
+          ${topicChip(q.topic)}
+        </div>
+        <span class="q-type-tag tag-open">📖 פתוחה</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        <textarea class="answer-textarea" id="ta-${q.id}" placeholder="כתוב את תשובתך כאן..."></textarea>
+        <div class="open-q-area">
+          <button class="think-btn" onclick="toggleAnswer('${q.id}', this)">
+            <span class="icon">🔍</span> הצג תשובה
+          </button>
+          <div class="answer-reveal" id="ans-${q.id}">
+            <div class="answer-title">✅ תשובה / מחוון</div>
+            <div class="answer-text">${q.answer}</div>
+            ${q.keypoints ? `<div class="key-points"><strong>🔑 מילות מפתח לתשובה:</strong> ${q.keypoints}</div>` : ''}
+          </div>
+        </div>
+        <div class="self-check" id="sc-${q.id}" style="display:none;">
+          <span style="font-size:0.8rem;color:#666;align-self:center;">הערכה עצמית:</span>
+          <button class="check-btn knew" onclick="selfCheck('${q.id}', true)">✓ ידעתי</button>
+          <button class="check-btn didnt" onclick="selfCheck('${q.id}', false)">✗ לא ידעתי</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<div class="q-card" style="padding:24px;text-align:center;color:#888">לא נמצאו שאלות בסינון זה.</div>';
+  }
+}
+
+function toggleAnswer(qId, btn) {
+  const ans = document.getElementById('ans-' + qId);
+  const sc = document.getElementById('sc-' + qId);
+  if (ans.classList.contains('show')) {
+    ans.classList.remove('show');
+    btn.innerHTML = '<span class="icon">🔍</span> הצג תשובה';
+    sc.style.display = 'none';
+  } else {
+    ans.classList.add('show');
+    btn.innerHTML = '<span class="icon">🙈</span> הסתר תשובה';
+    sc.style.display = 'flex';
+  }
+}
+
+function selfCheck(qId, knew) {
+  const sc = document.getElementById('sc-' + qId);
+  if (knew) { score += 1; document.getElementById('scoreDisplay').textContent = 'נקודות: ' + score; }
+  sc.innerHTML = knew
+    ? '<span style="color:var(--correct);font-weight:700;font-size:0.88rem">✅ מצוין! המשיכו כך!</span>'
+    : '<span style="color:var(--accent-dark);font-weight:700;font-size:0.88rem">📌 כדאי לחזור על הנושא הזה.</span>';
+}
+
+function filterOpen(topic, el) {
+  document.querySelectorAll('#tab-open .topic-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderOpen(topic);
+}
+
+// ============================
+// RENDER SUMMARY
+// ============================
+function renderSummary() {
+  const container = document.getElementById('summary-content');
+  container.innerHTML = summaryTopics.map(t => `
+    <div class="q-card" style="margin-bottom:16px;">
+      <div class="q-header">
+        <div class="q-meta">
+          ${topicChip(t.title)}
+        </div>
+      </div>
+      <div class="q-body">
+        <ul style="padding-right:16px; line-height:2; font-size:0.9rem; color:var(--text);">
+          ${t.points.map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('') + `
+    <div class="q-card" style="background:linear-gradient(135deg,var(--teal),#2a8fa3);color:white;border:none;">
+      <div class="q-body" style="padding:24px;">
+        <div style="font-size:1.1rem;font-weight:800;margin-bottom:12px;">🎯 השאלות הכי שימושיות לחזרה לפני הבגרות</div>
+        <ol style="padding-right:20px;line-height:2;font-size:0.9rem;opacity:0.95;">
+          <li>מהו הסדר הנכון של שלבי מחלה מידבקת?</li>
+          <li>מה ההבדל בין הידבקות ישירה ועקיפה?</li>
+          <li>מהי מחלה זואונוטית? תן דוגמה.</li>
+          <li>מה ההבדל בין חיסון פעיל לחיסון סביל?</li>
+          <li>אילו ויטמינים מסיסים בשומן ואילו במים?</li>
+          <li>מהו תפקיד הפרוגסטרון ואיפה הוא מיוצר?</li>
+          <li>מהי ניצולת מזון וכיצד מחשבים אותה?</li>
+          <li>מהי המהפכה הירוקה ומה היו תוצאותיה?</li>
+          <li>מה חשיבות קבוצת ביקורת בניסוי?</li>
+          <li>מהו הרכב הדבש? מהו הרכיב העיקרי שלו?</li>
+        </ol>
+      </div>
+    </div>
+  `;
+}
+
+// ============================
+// TABS
+// ============================
+function showTab(name) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ============================
+// INIT
+// ============================
+renderMC();
+renderOpen();
+renderSummary();
+</script>
+</body>
+</html>
