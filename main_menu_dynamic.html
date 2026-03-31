@@ -105,7 +105,7 @@
     }
 
     .main-self-test-mobile{
-      display:none;
+      display:none !important;
       flex:0 0 auto;
       border-radius:14px;
       padding:11px 14px;
@@ -649,7 +649,7 @@
       }
 
       .main-self-test-mobile{
-        display:inline-flex;
+        display:inline-flex !important;
       }
 
       .lesson-topbar{
@@ -738,7 +738,7 @@
         <p id="greetingText" class="app-topbar-greeting">שלום: admin</p>
       </div>
       <div class="app-topbar-actions">
-        <a id="mainSelfTestBtn" class="btn" href="https://bagruyot.org/haklaut/bagruyot.html">בחן את עצמך</a>
+        <button id="mainSelfTestBtn" class="btn" type="button">בחן את עצמך</button>
         <button id="logoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
       </div>
       <div id="mainMobileMenu" class="mobile-menu">
@@ -750,7 +750,7 @@
           </div>
         </div>
       </div>
-      <a id="mainSelfTestMobileBtn" class="btn main-self-test-mobile" href="https://bagruyot.org/haklaut/bagruyot.html">בחן את עצמך</a>
+      <button id="mainSelfTestMobileBtn" class="btn main-self-test-mobile" type="button">בחן את עצמך</button>
     </section>
 
     <section id="gridView" class="grid-view hidden">
@@ -799,6 +799,8 @@
     const appTopbar = document.getElementById('appTopbar');
     const greetingText = document.getElementById('greetingText');
     const logoutBtn = document.getElementById('logoutBtn');
+    const mainSelfTestBtn = document.getElementById('mainSelfTestBtn');
+    const mainSelfTestMobileBtn = document.getElementById('mainSelfTestMobileBtn');
 
     const mainMenuTrigger = document.getElementById('mainMenuTrigger');
     const mainMenuDropdown = document.getElementById('mainMenuDropdown');
@@ -824,6 +826,8 @@
     const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
     const AUTH_COOKIE_KEY = 'haklautLoggedInUser';
     const LESSON_STORAGE_KEY = 'haklautCurrentLesson';
+    const SELF_TEST_TITLE = 'בחן את עצמך';
+    const SELF_TEST_URL = 'https://bagruyot.org/haklaut/bagruyot.html';
 
     let currentUsername = '';
     let usersList = [];
@@ -1149,6 +1153,11 @@
       }
     }
 
+    function openSelfTest() {
+      closeMobileMenus();
+      openLesson(SELF_TEST_TITLE, SELF_TEST_URL, { saveState: true, smoothScroll: false });
+    }
+
     function openLesson(title, url, options = {}) {
       const { saveState = true, smoothScroll = true } = options;
       const normalizedTitle = String(title || '').trim() || 'לומדה';
@@ -1280,6 +1289,8 @@
     mobileLogoutBtn.addEventListener('click', logout);
     mobileLessonLogoutBtn.addEventListener('click', logout);
     mobileHeaderBackBtn.addEventListener('click', goHome);
+    mainSelfTestBtn.addEventListener('click', openSelfTest);
+    mainSelfTestMobileBtn.addEventListener('click', openSelfTest);
     loginForm.addEventListener('submit', handleLogin);
     togglePasswordBtn.addEventListener('click', handleTogglePassword);
     mainMenuTrigger.addEventListener('click', () => toggleMobileMenu(mainMenuTrigger, mainMenuDropdown));
