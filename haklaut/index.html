@@ -23,7 +23,7 @@
       --radius:24px;
     }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; font-family:Arial,Helvetica,sans-serif !important;}
 
     html, body, button, input, select, textarea {
       font-family: Arial, Helvetica, sans-serif;
@@ -610,6 +610,82 @@
       background:#fff;
     }
 
+
+    /* ── GUEST TOPBAR ── */
+    .guest-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+      padding:14px 16px;
+      background:rgba(255,255,255,0.22);
+      border:1px solid rgba(255,255,255,0.30);
+      border-radius:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(8px);
+    }
+    .guest-topbar.hidden{display:none;}
+    .guest-topbar-left{display:flex;align-items:center;gap:10px;}
+    .guest-topbar-badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:46px;height:46px;border-radius:16px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      font-size:24px;color:#fff;
+      flex:0 0 auto;
+    }
+    .guest-topbar-title{
+      margin:0;
+      font-size:clamp(16px,3vw,24px);
+      font-weight:900;
+      color:#fff;
+      text-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    /* ── LOGIN MODAL ── */
+    .modal-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      background:rgba(42,90,110,0.55);
+      backdrop-filter:blur(4px);
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .modal-overlay.show{display:flex;}
+    .modal-box{
+      width:100%;
+      max-width:480px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;
+      padding:20px;
+      box-shadow:0 24px 60px rgba(0,0,0,0.18);
+      backdrop-filter:blur(10px);
+      animation:modalIn 0.22s ease;
+    }
+    @keyframes modalIn{
+      from{opacity:0;transform:translateY(20px) scale(0.97);}
+      to{opacity:1;transform:translateY(0) scale(1);}
+    }
+    .modal-close-row{
+      display:flex;justify-content:flex-start;margin-bottom:8px;
+    }
+    .modal-close-btn{
+      border:none;
+      background:rgba(255,255,255,0.22);
+      color:#fff;font-size:22px;
+      width:38px;height:38px;border-radius:12px;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background 0.15s;
+    }
+    .modal-close-btn:hover{background:rgba(255,255,255,0.35);}
+    .login-card .modal-close-btn:hover{background:#dceee2;}
+
     @media (max-width: 740px){
       .wrap{padding:18px 14px 28px}
       .sections-stack{gap:18px}
@@ -621,6 +697,20 @@
       .card-media{height:160px}
       .card-footer{font-size:16px; padding:13px 22px}
 
+
+      /* Guest topbar sticky on mobile */
+      .guest-topbar{
+        position:sticky;
+        top:0;
+        z-index:120;
+        margin:0 -14px 18px;
+        padding:10px 14px 12px;
+        background:linear-gradient(180deg,var(--bg1) 0%, rgba(90,164,195,0.97) 70%, rgba(90,164,195,0.82) 100%);
+        border:none;
+        border-radius:0 0 22px 22px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.12);
+        backdrop-filter:blur(8px);
+      }
       .login-view{padding-top:6px}
       .login-shell{padding:14px}
       .login-card{padding:22px 18px}
@@ -705,38 +795,46 @@
 </head>
 <body>
   <div class="wrap">
-    <section id="loginView" class="login-view" aria-live="polite">
-      <div class="login-shell">
-        <div class="login-card">
-          <div class="login-badge" aria-hidden="true">🌿</div>
-          <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
-          <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
+    <!-- Guest topbar (not logged in) -->
+    <div id="guestTopbar" class="guest-topbar">
+      <div class="guest-topbar-left">
+        <span class="guest-topbar-badge" aria-hidden="true">🌿</span>
+        <p class="guest-topbar-title">לומדת הכנה לבגרות בחקלאות</p>
+      </div>
+      <button id="guestLoginBtn" class="btn" type="button">כניסה</button>
+    </div>
 
-          <form id="loginForm" class="login-form" novalidate>
-            <div id="loginError" class="login-error" role="alert">שם המשתמש או הסיסמה שגויים</div>
-
-            <div class="field">
-              <label class="field-label" for="usernameInput">שם משתמש</label>
-              <div class="field-input-wrap">
-                <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="כניסה למערכת">
+      <div class="modal-box">
+        <div class="login-shell" style="padding:0;background:none;border:none;box-shadow:none;backdrop-filter:none;">
+          <div class="login-card" style="position:relative;">
+            <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה" style="position:absolute;top:12px;right:12px;background:#f0f4f1;color:#2c6a45;">✕</button>
+            <div class="login-badge" aria-hidden="true">🌿</div>
+            <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
+            <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
+            <form id="loginForm" class="login-form" novalidate>
+              <div id="loginError" class="login-error" role="alert">שם המשתמש או הסיסמה שגויים</div>
+              <div class="field">
+                <label class="field-label" for="usernameInput">שם משתמש</label>
+                <div class="field-input-wrap">
+                  <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+                </div>
               </div>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="passwordInput">סיסמה</label>
-              <div class="field-input-wrap">
-                <input id="passwordInput" class="field-input with-toggle" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
-                <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="הצגת סיסמה">הצג</button>
+              <div class="field">
+                <label class="field-label" for="passwordInput">סיסמה</label>
+                <div class="field-input-wrap">
+                  <input id="passwordInput" class="field-input with-toggle" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
+                  <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="הצגת סיסמה">הצג</button>
+                </div>
               </div>
-            </div>
-
-            <button class="btn login-btn" type="submit">התחברות</button>
-          </form>
-
-          <p class="login-note">הכניסה מיועדת לצפייה בלומדות ההכנה לבגרות בחקלאות.</p>
+              <button class="btn login-btn" type="submit">התחברות</button>
+            </form>
+            <p class="login-note">הכניסה מיועדת לצפייה בלומדות ההכנה לבגרות בחקלאות.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <section id="appTopbar" class="app-topbar hidden" aria-live="polite">
       <div class="app-topbar-info">
@@ -759,7 +857,7 @@
       <button id="mainSelfTestMobileBtn" class="btn main-self-test-mobile" type="button">בחן את עצמך</button>
     </section>
 
-    <section id="gridView" class="grid-view hidden">
+    <section id="gridView" class="grid-view">
       <div id="sectionsContainer" class="sections-stack"></div>
     </section>
 
@@ -795,7 +893,10 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const sectionsContainer = document.getElementById('sectionsContainer');
-    const loginView = document.getElementById('loginView');
+    const loginModal = document.getElementById('loginModal');
+    const guestTopbar = document.getElementById('guestTopbar');
+    const guestLoginBtn = document.getElementById('guestLoginBtn');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
     const loginForm = document.getElementById('loginForm');
     const loginError = document.getElementById('loginError');
     const usernameInput = document.getElementById('usernameInput');
@@ -838,6 +939,7 @@
     let currentUsername = '';
     let usersList = [];
     let usersLoaded = false;
+    let pendingLesson = null;
 
     const SECTION_CONFIG = {
       general: {
@@ -934,6 +1036,10 @@
       `;
 
       button.addEventListener('click', () => {
+        if (!currentUsername) {
+          showLoginModal(row.page_name, normalizeUrl(row.page_url));
+          return;
+        }
         openLesson(row.page_name, row.page_url);
       });
 
@@ -1161,6 +1267,10 @@
 
     function openSelfTest() {
       closeMobileMenus();
+      if (!currentUsername) {
+        showLoginModal(SELF_TEST_TITLE, SELF_TEST_URL);
+        return;
+      }
       openLesson(SELF_TEST_TITLE, SELF_TEST_URL, { saveState: true, smoothScroll: false });
     }
 
@@ -1216,8 +1326,29 @@
       togglePasswordBtn.setAttribute('aria-label', isVisible ? 'הסתרת סיסמה' : 'הצגת סיסמה');
     }
 
+    function showLoginModal(title, url) {
+      pendingLesson = (title && url) ? { title, url } : null;
+      loginModal.classList.add('show');
+      clearLoginError();
+      setTimeout(() => usernameInput.focus(), 50);
+    }
+
+    function hideLoginModal() {
+      loginModal.classList.remove('show');
+      pendingLesson = null;
+      clearLoginError();
+    }
+
+    function showGuestGrid() {
+      guestTopbar.classList.remove('hidden');
+      appTopbar.classList.add('hidden');
+      gridView.classList.remove('hidden');
+      lessonView.classList.remove('show');
+    }
+
     function showMainMenu() {
-      loginView.classList.add('hidden');
+      loginModal.classList.remove('show');
+      guestTopbar.classList.add('hidden');
       lessonView.classList.remove('show');
       appTopbar.classList.remove('hidden');
       gridView.classList.remove('hidden');
@@ -1237,13 +1368,9 @@
       clearCurrentLesson();
       currentUsername = '';
       lessonFrame.src = '';
-      lessonView.classList.remove('show');
-      gridView.classList.add('hidden');
-      appTopbar.classList.add('hidden');
-      loginView.classList.remove('hidden');
       resetLoginForm();
       closeMobileMenus();
-      usernameInput.focus();
+      showGuestGrid();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1264,16 +1391,14 @@
       if (matchedUser) {
         currentUsername = matchedUser.username;
         saveLoginSession(matchedUser.username);
-        const savedLesson = getSavedLesson();
-
         showMainMenu();
-
-        if (savedLesson) {
-          openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
-        }
-
+        const lessonToOpen = pendingLesson;
+        pendingLesson = null;
         passwordInput.value = '';
         setPasswordVisibility(false);
+        if (lessonToOpen) {
+          openLesson(lessonToOpen.title, lessonToOpen.url, { saveState: true, smoothScroll: false });
+        }
         return;
       }
 
@@ -1289,6 +1414,9 @@
       passwordInput.focus();
     }
 
+    modalCloseBtn.addEventListener('click', hideLoginModal);
+    guestLoginBtn.addEventListener('click', () => showLoginModal(null, null));
+    loginModal.addEventListener('click', (e) => { if (e.target === loginModal) hideLoginModal(); });
     backBtn.addEventListener('click', goHome);
     logoutBtn.addEventListener('click', logout);
     lessonLogoutBtn.addEventListener('click', logout);
@@ -1320,30 +1448,7 @@
     async function init() {
       setPasswordVisibility(false);
 
-      try {
-        usersList = await loadUsers();
-        usersLoaded = true;
-
-        const savedUsername = getSavedLoginSession();
-        if (savedUsername && userExists(savedUsername)) {
-          currentUsername = savedUsername;
-          const savedLesson = getSavedLesson();
-
-          showMainMenu();
-
-          if (savedLesson) {
-            openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
-          }
-        } else if (savedUsername) {
-          clearLoginSession();
-          clearCurrentLesson();
-        }
-      } catch (error) {
-        console.error(error);
-        usersLoaded = false;
-        showLoginError('לא ניתן לטעון את רשימת המשתמשים כרגע');
-      }
-
+      // Load menu first so grid is visible immediately
       try {
         const rows = await loadMenu();
         renderSections(rows);
@@ -1356,6 +1461,28 @@
             <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong>, <strong>topic</strong> ו־<strong>sub_title</strong>.
           </div>
         `;
+      }
+
+      try {
+        usersList = await loadUsers();
+        usersLoaded = true;
+
+        const savedUsername = getSavedLoginSession();
+        if (savedUsername && userExists(savedUsername)) {
+          currentUsername = savedUsername;
+          showMainMenu();
+          const savedLesson = getSavedLesson();
+          if (savedLesson) {
+            openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+          }
+        } else {
+          if (savedUsername) { clearLoginSession(); clearCurrentLesson(); }
+          showGuestGrid();
+        }
+      } catch (error) {
+        console.error(error);
+        usersLoaded = false;
+        showGuestGrid();
       }
     }
 
