@@ -271,83 +271,6 @@
       box-shadow:var(--shadow);
     }
 
-
-    /* ── LOGIN MODAL ── */
-    .modal-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      background:rgba(42,90,110,0.55);
-      backdrop-filter:blur(4px);
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-    }
-    .modal-overlay.show{display:flex;}
-
-    .modal-box{
-      width:100%;
-      max-width:480px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.28);
-      border-radius:28px;
-      padding:20px;
-      box-shadow:0 24px 60px rgba(0,0,0,0.18);
-      backdrop-filter:blur(10px);
-      animation:modalIn 0.22s ease;
-    }
-    @keyframes modalIn{
-      from{opacity:0;transform:translateY(20px) scale(0.97);}
-      to{opacity:1;transform:translateY(0) scale(1);}
-    }
-    .modal-close-row{
-      display:flex;
-      justify-content:flex-start;
-      margin-bottom:8px;
-    }
-    .modal-close-btn{
-      border:none;
-      background:rgba(255,255,255,0.22);
-      color:#fff;
-      font-size:22px;
-      width:38px;height:38px;
-      border-radius:12px;
-      cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:background 0.15s;
-    }
-    .modal-close-btn:hover{background:rgba(255,255,255,0.35);}
-
-    /* Guest topbar (not logged in) */
-    .guest-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:24px;
-      padding:14px 16px;
-      background:rgba(255,255,255,0.22);
-      border:1px solid rgba(255,255,255,0.30);
-      border-radius:24px;
-      box-shadow:0 12px 28px rgba(0,0,0,0.08);
-      backdrop-filter:blur(8px);
-    }
-    .guest-topbar.hidden{display:none;}
-    .guest-topbar-title{
-      margin:0;
-      font-size:clamp(18px,3vw,26px);
-      font-weight:900;
-      color:#fff;
-      text-shadow:0 2px 8px rgba(0,0,0,0.12);
-    }
-    .guest-topbar-badge{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:46px;height:46px;border-radius:16px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.28);
-      font-size:24px;color:#fff;
-    }
     .login-view{
       min-height:100vh;
       display:flex;
@@ -687,18 +610,39 @@
       background:#fff;
     }
 
-    @media (max-width: 740px){
-      .wrap{padding:18px 14px 28px}
-      .sections-stack{gap:18px}
-      .section-shell{padding:16px}
-      .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
-      .section-kicker-icon{font-size:24px}
-      .card{min-height:280px}
-      .card-title{font-size:22px}
-      .card-media{height:160px}
-      .card-footer{font-size:16px; padding:13px 22px}
 
-  
+    /* ── GUEST TOPBAR ── */
+    .guest-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+      padding:14px 16px;
+      background:rgba(255,255,255,0.22);
+      border:1px solid rgba(255,255,255,0.30);
+      border-radius:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(8px);
+    }
+    .guest-topbar.hidden{display:none;}
+    .guest-topbar-left{display:flex;align-items:center;gap:10px;}
+    .guest-topbar-badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:46px;height:46px;border-radius:16px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      font-size:24px;color:#fff;
+      flex:0 0 auto;
+    }
+    .guest-topbar-title{
+      margin:0;
+      font-size:clamp(16px,3vw,24px);
+      font-weight:900;
+      color:#fff;
+      text-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+
     /* ── LOGIN MODAL ── */
     .modal-overlay{
       display:none;
@@ -712,7 +656,6 @@
       padding:16px;
     }
     .modal-overlay.show{display:flex;}
-
     .modal-box{
       width:100%;
       max-width:480px;
@@ -729,53 +672,46 @@
       to{opacity:1;transform:translateY(0) scale(1);}
     }
     .modal-close-row{
-      display:flex;
-      justify-content:flex-start;
-      margin-bottom:8px;
+      display:flex;justify-content:flex-start;margin-bottom:8px;
     }
     .modal-close-btn{
       border:none;
       background:rgba(255,255,255,0.22);
-      color:#fff;
-      font-size:22px;
-      width:38px;height:38px;
-      border-radius:12px;
+      color:#fff;font-size:22px;
+      width:38px;height:38px;border-radius:12px;
       cursor:pointer;
       display:flex;align-items:center;justify-content:center;
       transition:background 0.15s;
     }
     .modal-close-btn:hover{background:rgba(255,255,255,0.35);}
+    .login-card .modal-close-btn:hover{background:#dceee2;}
 
-    /* Guest topbar (not logged in) */
-    .guest-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:24px;
-      padding:14px 16px;
-      background:rgba(255,255,255,0.22);
-      border:1px solid rgba(255,255,255,0.30);
-      border-radius:24px;
-      box-shadow:0 12px 28px rgba(0,0,0,0.08);
-      backdrop-filter:blur(8px);
-    }
-    .guest-topbar.hidden{display:none;}
-    .guest-topbar-title{
-      margin:0;
-      font-size:clamp(18px,3vw,26px);
-      font-weight:900;
-      color:#fff;
-      text-shadow:0 2px 8px rgba(0,0,0,0.12);
-    }
-    .guest-topbar-badge{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:46px;height:46px;border-radius:16px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.28);
-      font-size:24px;color:#fff;
-    }
-    .login-view{padding-top:6px}
+    @media (max-width: 740px){
+      .wrap{padding:18px 14px 28px}
+      .sections-stack{gap:18px}
+      .section-shell{padding:16px}
+      .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
+      .section-kicker-icon{font-size:24px}
+      .card{min-height:280px}
+      .card-title{font-size:22px}
+      .card-media{height:160px}
+      .card-footer{font-size:16px; padding:13px 22px}
+
+
+      /* Guest topbar sticky on mobile */
+      .guest-topbar{
+        position:sticky;
+        top:0;
+        z-index:120;
+        margin:0 -14px 18px;
+        padding:10px 14px 12px;
+        background:linear-gradient(180deg,var(--bg1) 0%, rgba(90,164,195,0.97) 70%, rgba(90,164,195,0.82) 100%);
+        border:none;
+        border-radius:0 0 22px 22px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.12);
+        backdrop-filter:blur(8px);
+      }
+      .login-view{padding-top:6px}
       .login-shell{padding:14px}
       .login-card{padding:22px 18px}
       .login-title{font-size:26px}
@@ -859,9 +795,9 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- Guest topbar (visible when not logged in) -->
+    <!-- Guest topbar (not logged in) -->
     <div id="guestTopbar" class="guest-topbar">
-      <div style="display:flex;align-items:center;gap:10px;">
+      <div class="guest-topbar-left">
         <span class="guest-topbar-badge" aria-hidden="true">🌿</span>
         <p class="guest-topbar-title">לומדת הכנה לבגרות בחקלאות</p>
       </div>
@@ -871,25 +807,20 @@
     <!-- Login Modal -->
     <div id="loginModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="כניסה למערכת">
       <div class="modal-box">
-        <div class="modal-close-row">
-          <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה">✕</button>
-        </div>
         <div class="login-shell" style="padding:0;background:none;border:none;box-shadow:none;backdrop-filter:none;">
-          <div class="login-card">
+          <div class="login-card" style="position:relative;">
+            <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה" style="position:absolute;top:12px;right:12px;background:#f0f4f1;color:#2c6a45;">✕</button>
             <div class="login-badge" aria-hidden="true">🌿</div>
             <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
             <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
-
             <form id="loginForm" class="login-form" novalidate>
               <div id="loginError" class="login-error" role="alert">שם המשתמש או הסיסמה שגויים</div>
-
               <div class="field">
                 <label class="field-label" for="usernameInput">שם משתמש</label>
                 <div class="field-input-wrap">
                   <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
                 </div>
               </div>
-
               <div class="field">
                 <label class="field-label" for="passwordInput">סיסמה</label>
                 <div class="field-input-wrap">
@@ -897,10 +828,8 @@
                   <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="הצגת סיסמה">הצג</button>
                 </div>
               </div>
-
               <button class="btn login-btn" type="submit">התחברות</button>
             </form>
-
             <p class="login-note">הכניסה מיועדת לצפייה בלומדות ההכנה לבגרות בחקלאות.</p>
           </div>
         </div>
@@ -1010,7 +939,7 @@
     let currentUsername = '';
     let usersList = [];
     let usersLoaded = false;
-    let pendingLesson = null; // {title, url} waiting for login
+    let pendingLesson = null;
 
     const SECTION_CONFIG = {
       general: {
@@ -1411,7 +1340,6 @@
     }
 
     function showGuestGrid() {
-      // Not logged in: show grid + guest topbar, hide logged-in topbar
       guestTopbar.classList.remove('hidden');
       appTopbar.classList.add('hidden');
       gridView.classList.remove('hidden');
@@ -1464,12 +1392,10 @@
         currentUsername = matchedUser.username;
         saveLoginSession(matchedUser.username);
         showMainMenu();
-
         const lessonToOpen = pendingLesson;
         pendingLesson = null;
         passwordInput.value = '';
         setPasswordVisibility(false);
-
         if (lessonToOpen) {
           openLesson(lessonToOpen.title, lessonToOpen.url, { saveState: true, smoothScroll: false });
         }
@@ -1490,9 +1416,7 @@
 
     modalCloseBtn.addEventListener('click', hideLoginModal);
     guestLoginBtn.addEventListener('click', () => showLoginModal(null, null));
-    loginModal.addEventListener('click', (e) => {
-      if (e.target === loginModal) hideLoginModal();
-    });
+    loginModal.addEventListener('click', (e) => { if (e.target === loginModal) hideLoginModal(); });
     backBtn.addEventListener('click', goHome);
     logoutBtn.addEventListener('click', logout);
     lessonLogoutBtn.addEventListener('click', logout);
@@ -1545,7 +1469,6 @@
 
         const savedUsername = getSavedLoginSession();
         if (savedUsername && userExists(savedUsername)) {
-          // User is logged in — show full topbar
           currentUsername = savedUsername;
           showMainMenu();
           const savedLesson = getSavedLesson();
@@ -1553,11 +1476,7 @@
             openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
           }
         } else {
-          // Not logged in — show guest grid (no lesson restore)
-          if (savedUsername) {
-            clearLoginSession();
-            clearCurrentLesson();
-          }
+          if (savedUsername) { clearLoginSession(); clearCurrentLesson(); }
           showGuestGrid();
         }
       } catch (error) {
