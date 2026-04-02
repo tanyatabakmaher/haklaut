@@ -24,8 +24,10 @@
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
   body {
     font-family: 'Heebo', sans-serif;
     background: linear-gradient(160deg, var(--teal-bg-from) 0%, var(--teal-bg-to) 100%);
@@ -35,6 +37,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
 
   /* ── CONFETTI CANVAS ── */
@@ -53,15 +58,17 @@
     position: relative;
     z-index: 1;
     width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   .hero::before {
-    content:''; position:absolute; top:-100px; left:-100px;
-    width:400px; height:400px; border-radius:50%;
+    content:''; position:absolute; top:-80px; right:-80px;
+    width:300px; height:300px; border-radius:50%;
     background:rgba(255,255,255,0.07); pointer-events:none;
   }
   .hero::after {
-    content:''; position:absolute; bottom:-80px; right:-60px;
-    width:280px; height:280px; border-radius:50%;
+    content:''; position:absolute; bottom:-60px; left:-60px;
+    width:220px; height:220px; border-radius:50%;
     background:rgba(255,255,255,0.05); pointer-events:none;
   }
 
@@ -120,9 +127,10 @@
   .main-wrap {
     max-width: 780px;
     width: 100%;
-    padding: 0 20px 64px;
+    padding: 0 16px 64px;
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
   }
 
   /* ── STEPS CARD ── */
@@ -290,10 +298,32 @@
 
   /* ── MOBILE ── */
   @media (max-width: 600px) {
-    .hero { padding: 40px 16px 0; }
-    .steps-card-inner { padding: 28px 20px 24px; }
-    .alert-card { padding: 16px 18px; }
-    .step-num { width: 36px; height: 36px; font-size: 16px; }
+    .hero { padding: 36px 16px 0; }
+    .hero h1 { font-size: 24px; }
+    .hero-sub { font-size: 15px; max-width: 100%; }
+    .hero-tag {
+      font-size: 12px; padding: 5px 12px;
+      max-width: calc(100vw - 48px);
+      white-space: normal; word-break: break-word;
+    }
+    .main-wrap { padding: 0 12px 48px; }
+    .steps-card-inner { padding: 24px 14px 20px; }
+    .steps-card-title { font-size: 16px; }
+    .step-item { gap: 10px; padding: 12px 0; }
+    .step-num { width: 32px; height: 32px; font-size: 14px; flex-shrink: 0; }
+    .step-content h4 { font-size: 14px; }
+    .step-content p { font-size: 13px; word-break: break-word; }
+    .step-content a { word-break: break-all; }
+    .alert-card { padding: 14px 14px; gap: 10px; flex-wrap: nowrap; }
+    .alert-icon { font-size: 22px; }
+    .alert-text h4 { font-size: 13.5px; }
+    .alert-text p { font-size: 12.5px; word-break: break-word; }
+    .alert-text a { word-break: break-all; }
+    .preview-section { padding: 20px 14px; }
+    .preview-title { font-size: 15px; }
+    .preview-chips { gap: 6px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .success-ring { width: 76px; height: 76px; font-size: 36px; }
   }
 </style>
 </head>
@@ -360,7 +390,7 @@
       <h4>לא קיבלת את פרטי ההתחברות תוך 24 שעות?</h4>
       <p>
         אנחנו כאן לעזור! ניתן לפנות אלינו במייל:
-        <a href="mailto:tanyatabakmaher@gmail.com">tanyatabakmaher@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#1e6a7f70677f6a7f7c7f75737f767b6c5e79737f7772307d7173"><span class="__cf_email__" data-cfemail="cbbfaaa5b2aabfaaa9aaa0a6aaa3aeb98baca6aaa2a7e5a8a4a6">[email&#160;protected]</span></a>
         &nbsp;או בטלפון:&nbsp;
         <a href="tel:0542166396">054-216-6396</a>
       </p>
@@ -391,7 +421,7 @@
 </footer>
 
 <!-- CONFETTI -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
@@ -441,19 +471,4 @@
       ctx.fillStyle = p.color;
       ctx.globalAlpha = 0.85;
       ctx.beginPath();
-      ctx.ellipse(0, 0, p.w / 2, p.h / 2, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    });
-
-    // Stop after 5 seconds
-    if (frame < 300) requestAnimationFrame(draw);
-    else { ctx.clearRect(0,0,canvas.width,canvas.height); running = false; }
-  }
-
-  draw();
-})();
-</script>
-
-</body>
-</html>
+      ctx.ellipse(0, 0, p.w / 2, p.h / 2, 0, 0, Math.PI * 
