@@ -613,78 +613,61 @@
 
     /* ── GUEST TOPBAR ── */
     .guest-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:24px;
-      padding:14px 16px;
-      background:rgba(255,255,255,0.22);
-      border:1px solid rgba(255,255,255,0.30);
-      border-radius:24px;
-      box-shadow:0 12px 28px rgba(0,0,0,0.08);
-      backdrop-filter:blur(8px);
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      margin-bottom:24px; padding:14px 16px;
+      background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.30);
+      border-radius:24px; box-shadow:0 12px 28px rgba(0,0,0,0.08); backdrop-filter:blur(8px);
     }
     .guest-topbar.hidden{display:none;}
     .guest-topbar-left{display:flex;align-items:center;gap:10px;}
     .guest-topbar-badge{
       display:inline-flex;align-items:center;justify-content:center;
       width:46px;height:46px;border-radius:16px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.28);
-      font-size:24px;color:#fff;
-      flex:0 0 auto;
+      background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);
+      font-size:24px;color:#fff;flex:0 0 auto;
     }
     .guest-topbar-title{
-      margin:0;
-      font-size:clamp(16px,3vw,24px);
-      font-weight:900;
-      color:#fff;
-      text-shadow:0 2px 8px rgba(0,0,0,0.12);
+      margin:0;font-size:clamp(16px,3vw,24px);font-weight:900;
+      color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.12);
     }
 
     /* ── LOGIN MODAL ── */
     .modal-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      background:rgba(42,90,110,0.55);
-      backdrop-filter:blur(4px);
-      align-items:center;
-      justify-content:center;
-      padding:16px;
+      display:none;position:fixed;inset:0;z-index:2000;
+      background:rgba(42,90,110,0.55);backdrop-filter:blur(4px);
+      align-items:center;justify-content:center;padding:16px;
     }
     .modal-overlay.show{display:flex;}
     .modal-box{
-      width:100%;
-      max-width:480px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.28);
-      border-radius:28px;
-      padding:20px;
-      box-shadow:0 24px 60px rgba(0,0,0,0.18);
-      backdrop-filter:blur(10px);
-      animation:modalIn 0.22s ease;
+      width:100%;max-width:480px;
+      background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,0.18);
+      backdrop-filter:blur(10px);animation:modalIn 0.22s ease;
     }
     @keyframes modalIn{
       from{opacity:0;transform:translateY(20px) scale(0.97);}
       to{opacity:1;transform:translateY(0) scale(1);}
     }
-    .modal-close-row{
-      display:flex;justify-content:flex-start;margin-bottom:8px;
-    }
     .modal-close-btn{
-      border:none;
-      background:rgba(255,255,255,0.22);
-      color:#fff;font-size:22px;
-      width:38px;height:38px;border-radius:12px;
-      cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
+      position:absolute;top:12px;right:12px;
+      border:none;background:#f0f4f1;color:#2c6a45;
+      font-size:20px;width:36px;height:36px;border-radius:10px;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
       transition:background 0.15s;
     }
-    .modal-close-btn:hover{background:rgba(255,255,255,0.35);}
-    .login-card .modal-close-btn:hover{background:#dceee2;}
+    .modal-close-btn:hover{background:#dceee2;}
+
+    /* ── LESSON FOOTER ── */
+    .lesson-footer{
+      flex:0 0 auto;padding:6px 12px;
+      background:linear-gradient(135deg,#eef8f0,#f8fbf8);
+      border-top:1px solid var(--border);text-align:center;
+      font-size:12px;color:var(--muted);
+      display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+      line-height:1.4;
+    }
+    .lesson-footer a{color:var(--accent-dark);text-decoration:none;}
+    .lesson-footer a:hover{text-decoration:underline;}
 
     @media (max-width: 740px){
       .wrap{padding:18px 14px 28px}
@@ -697,19 +680,12 @@
       .card-media{height:160px}
       .card-footer{font-size:16px; padding:13px 22px}
 
-
-      /* Guest topbar sticky on mobile */
       .guest-topbar{
-        position:sticky;
-        top:0;
-        z-index:120;
-        margin:0 -14px 18px;
-        padding:10px 14px 12px;
+        position:sticky;top:0;z-index:120;
+        margin:0 -14px 18px;padding:10px 14px 12px;
         background:linear-gradient(180deg,var(--bg1) 0%, rgba(90,164,195,0.97) 70%, rgba(90,164,195,0.82) 100%);
-        border:none;
-        border-radius:0 0 22px 22px;
-        box-shadow:0 12px 24px rgba(0,0,0,0.12);
-        backdrop-filter:blur(8px);
+        border:none;border-radius:0 0 22px 22px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.12);backdrop-filter:blur(8px);
       }
       .login-view{padding-top:6px}
       .login-shell{padding:14px}
@@ -795,7 +771,7 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- Guest topbar (not logged in) -->
+    <!-- Guest topbar -->
     <div id="guestTopbar" class="guest-topbar">
       <div class="guest-topbar-left">
         <span class="guest-topbar-badge" aria-hidden="true">🌿</span>
@@ -805,11 +781,11 @@
     </div>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="כניסה למערכת">
+    <div id="loginModal" class="modal-overlay" role="dialog" aria-modal="true">
       <div class="modal-box">
         <div class="login-shell" style="padding:0;background:none;border:none;box-shadow:none;backdrop-filter:none;">
           <div class="login-card" style="position:relative;">
-            <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה" style="position:absolute;top:12px;right:12px;background:#f0f4f1;color:#2c6a45;">✕</button>
+            <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה">✕</button>
             <div class="login-badge" aria-hidden="true">🌿</div>
             <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
             <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
@@ -887,8 +863,30 @@
       <div class="iframe-wrap">
         <iframe id="lessonFrame" title="לומדה"></iframe>
       </div>
+      <div class="lesson-footer">
+        <span>&#x1F4DE; 054-216-6396</span>
+        <span>|</span>
+        <span style="white-space:nowrap;">&#x2709;&#xFE0F; tanyatabakmaher&#64;gmail&#46;com</span>
+        <span>|</span>
+        <a href="https://bagruyot.org/haklaut/terms.html" target="_blank">תנאי שימוש</a>
+        <span>|</span>
+        <span>&#169; כל הזכויות שמורות לטניה טבקמכר</span>
+      </div>
     </section>
   </div>
+
+  <footer style="margin-top:32px;padding:20px 18px;background:rgba(255,255,255,0.12);border-top:1px solid rgba(255,255,255,0.2);text-align:center;backdrop-filter:blur(6px);">
+    <p style="margin:0 0 8px;font-size:14px;color:rgba(255,255,255,0.9);">
+      &#x1F4DE; 054-216-6396
+      &nbsp;|&nbsp;
+      <span style="white-space:nowrap;">&#x2709;&#xFE0F; tanyatabakmaher&#64;gmail&#46;com</span>
+    </p>
+    <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.75);">
+      <a href="https://bagruyot.org/haklaut/terms.html" target="_blank" style="color:rgba(255,255,255,0.8);text-decoration:underline;">תנאי שימוש</a>
+      &nbsp;|&nbsp;
+      &#169; כל הזכויות שמורות לטניה טבקמכר
+    </p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
@@ -1036,10 +1034,7 @@
       `;
 
       button.addEventListener('click', () => {
-        if (!currentUsername) {
-          showLoginModal(row.page_name, normalizeUrl(row.page_url));
-          return;
-        }
+        if (!currentUsername) { showLoginModal(row.page_name, normalizeUrl(row.page_url)); return; }
         openLesson(row.page_name, row.page_url);
       });
 
@@ -1267,10 +1262,7 @@
 
     function openSelfTest() {
       closeMobileMenus();
-      if (!currentUsername) {
-        showLoginModal(SELF_TEST_TITLE, SELF_TEST_URL);
-        return;
-      }
+      if (!currentUsername) { showLoginModal(SELF_TEST_TITLE, SELF_TEST_URL); return; }
       openLesson(SELF_TEST_TITLE, SELF_TEST_URL, { saveState: true, smoothScroll: false });
     }
 
@@ -1448,7 +1440,6 @@
     async function init() {
       setPasswordVisibility(false);
 
-      // Load menu first so grid is visible immediately
       try {
         const rows = await loadMenu();
         renderSections(rows);
@@ -1466,7 +1457,6 @@
       try {
         usersList = await loadUsers();
         usersLoaded = true;
-
         const savedUsername = getSavedLoginSession();
         if (savedUsername && userExists(savedUsername)) {
           currentUsername = savedUsername;
@@ -1487,6 +1477,7 @@
     }
 
     init();
+
   </script>
 </body>
 </html>
