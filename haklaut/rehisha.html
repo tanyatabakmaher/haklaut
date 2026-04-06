@@ -33,7 +33,6 @@
     direction: rtl;
   }
 
-  /* ── HERO ── */
   .hero {
     padding: 56px 24px 72px;
     text-align: center;
@@ -95,7 +94,6 @@
   .stat-num { font-size:28px; font-weight:900; color:#b8f0d0; line-height:1; }
   .stat-label { font-size:12px; font-weight:500; margin-top:4px; opacity:.9; }
 
-  /* ── SECTION WRAPPER ── */
   .section-wrap { max-width:1100px; margin:0 auto; padding:0 24px 64px; }
   .section-title {
     text-align:center; font-size:clamp(22px,4vw,30px);
@@ -106,7 +104,6 @@
     font-size:15px; margin-bottom:36px;
   }
 
-  /* ── SCREENSHOTS ── */
   .screenshots-grid {
     display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:18px;
@@ -127,7 +124,6 @@
     padding:12px 16px; text-align:center;
   }
 
-  /* ── MODULE CARDS ── */
   .modules-grid {
     display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
@@ -177,7 +173,6 @@
     border-radius:100px; border:1px solid var(--green-light-border);
   }
 
-  /* ── WHY ── */
   .why-grid {
     display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:16px;
@@ -191,7 +186,6 @@
   .why-card h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
   .why-card p { font-size:13px; opacity:.85; line-height:1.5; }
 
-  /* ── PRICING ── */
   .pricing-wrap { max-width:760px; margin:0 auto; padding:0 24px 80px; text-align:center; }
   .pricing-card {
     background:white; border-radius:24px;
@@ -229,16 +223,214 @@
     font-size:12px; flex-shrink:0; margin-top:1px;
   }
 
-  
+  .manual-payment-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f6fffa 100%);
+    border-radius: 24px;
+    padding: 34px 28px;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+    margin-top: 28px;
+    border: 1px solid rgba(45,122,58,0.12);
+  }
+  .manual-payment-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .manual-payment-sub {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+  .payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-bottom: 24px;
+  }
+  .payment-method {
+    background: white;
+    border: 1px solid #e6f4ec;
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .payment-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #d8f7e3, #b9ecd0);
+    border: 3px solid rgba(74,180,120,0.25);
+    font-size: 30px;
+  }
+  .payment-method h3 {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .payment-method p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .payment-steps {
+    list-style: none;
+    text-align: right;
+    margin-bottom: 18px;
+  }
+  .payment-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    color: var(--text-dark);
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f2;
+  }
+  .payment-steps li:last-child { border-bottom: none; }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--green-cta);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .payment-highlight {
+    background: var(--green-light-bg);
+    border: 1px solid var(--green-light-border);
+    color: var(--green-primary);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .qr-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0 10px;
+  }
+  .qr-card {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 18px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    border: 1px solid #e8f2ec;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .qr-card img {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+  .qr-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .contact-alert {
+    background: linear-gradient(135deg, #fff9ea, #fff4cf);
+    border: 1px solid #f0d98a;
+    border-radius: 18px;
+    padding: 18px 18px;
+    text-align: center;
+    color: #6d5613;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+  .contact-alert strong {
+    color: #4a3a07;
+  }
+  .contact-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .contact-links a {
+    color: var(--green-primary);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(45,110,58,0.14);
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .payment-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--green-cta);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 14px 20px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-btn);
+    transition: transform .2s, box-shadow .2s, background .2s;
+    margin-top: 8px;
+  }
+  .payment-action-button:hover {
+    background: var(--green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,122,58,0.45);
+  }
+  .jump-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    background: var(--green-cta);
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 16px 36px;
+    border-radius: var(--radius-btn);
+    box-shadow: var(--shadow-btn);
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .jump-button:hover {
+    background: var(--green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,122,58,0.45);
+  }
 
-  /* ── FOOTER ── */
   footer {
     text-align:center; padding:28px 24px;
     color:rgba(255,255,255,0.6); font-size:13px;
   }
   footer a { color:rgba(255,255,255,0.7); }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(22px); }
     to   { opacity:1; transform:translateY(0); }
@@ -251,19 +443,19 @@
   .hero .hero-cta    { animation-delay:.36s; }
   .hero .hero-stats  { animation-delay:.44s; }
 
-  /* ── MOBILE ── */
   @media (max-width:600px) {
     .hero { padding:40px 16px 56px; }
     .hero-stats { gap:12px; }
     .stat { min-width:85px; padding:10px 14px; }
-    .pricing-card { padding:28px 16px; }
-    .payme-wrapper iframe { height:500px; }
+    .pricing-card, .manual-payment-card { padding:28px 16px; }
+    .payment-methods { grid-template-columns: 1fr; }
+    .qr-card img { width: 190px; }
+    .contact-links { flex-direction: column; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div class="logo-badge">🌿</div>
   <div class="hero-tag">🎓 לומדה דיגיטלית לבגרות בחקלאות</div>
@@ -271,7 +463,7 @@
   <p class="hero-sub">
     כל מה שצריך להצליח בבגרות — 13 לומדות אינטרקטיביות, שאלות חזרה, מושגים ו-100+ שאלות מבגרויות אמיתיות. הכל במקום אחד, בצורה ברורה וכיפית.
   </p>
-  <a class="hero-cta" href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK" target="_blank" rel="noopener noreferrer">🛒 לרכישה עכשיו</a>
+  <a class="hero-cta" href="#manual-payment">🛒 לרכישה עכשיו</a>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">13</div><div class="stat-label">לומדות</div></div>
     <div class="stat"><div class="stat-num">100+</div><div class="stat-label">שאלות בגרות</div></div>
@@ -279,17 +471,16 @@
   </div>
 </section>
 
-<!-- SCREENSHOTS -->
 <div class="section-wrap">
   <h2 class="section-title">ממשק פשוט ונוח לשימוש</h2>
   <p class="section-sub">עיצוב ידידותי שמקל על הלמידה — בדסקטופ ובמובייל</p>
   <div class="screenshots-grid">
     <div class="screenshot-card"> 
-      <img src="https://bagruyot.org/haklaut/bg/lp/haim.png" >
+      <img src="https://bagruyot.org/haklaut/bg/lp/haim.png">
       <div class="screenshot-label">🐾 תחום בעלי החיים — 7 לומדות</div>
     </div>
     <div class="screenshot-card">
-      <img src="https://bagruyot.org/haklaut/bg/lp/klavim.png" >
+      <img src="https://bagruyot.org/haklaut/bg/lp/klavim.png">
       <div class="screenshot-label">🐕 מודול הכלבים — 6 לומדות</div>
     </div>
     <div class="screenshot-card">
@@ -299,13 +490,10 @@
   </div>
 </div>
 
-<!-- MODULES -->
 <div class="section-wrap">
   <h2 class="section-title">מה כלול בלומדה?</h2>
   <p class="section-sub">שלושה עולמות תוכן מקיפים — 13 לומדות + בנק שאלות</p>
   <div class="modules-grid">
-
-    <!-- MODULE 1: בעלי חיים -->
     <div class="module-card">
       <div class="module-header"><div class="module-icon">🐾</div><h3>בעלי חיים — 7 לומדות</h3></div>
       <p class="intro">כיסוי מקיף של כל הנושאים המשותפים בתחום בעלי החיים, עם הסברים, תמונות, שאלות חזרה ומושגים.</p>
@@ -325,7 +513,6 @@
       </div>
     </div>
 
-    <!-- MODULE 2: כלבים -->
     <div class="module-card">
       <div class="module-header"><div class="module-icon">🐕</div><h3>ענף הכלבים — 6 לומדות</h3></div>
       <p class="intro">מודול ייעודי ומעמיק לכל נושאי ענף הכלבים, עם שאלות חזרה ומושגים מרכזיים בכל לומדה.</p>
@@ -344,7 +531,6 @@
       </div>
     </div>
 
-    <!-- MODULE 3: בחן את עצמך -->
     <div class="module-card">
       <div class="module-header"><div class="module-icon">📝</div><h3>בחן את עצמך — 100+ שאלות</h3></div>
       <p class="intro">אוסף שאלות מבגרויות אמיתיות של שנים קודמות — הדרך הכי טובה לתרגל ולדעת היכן אתה עומד לפני הבחינה.</p>
@@ -360,11 +546,9 @@
         <span class="tag">פתרונות מלאים</span>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- WHY -->
 <div class="section-wrap" style="max-width:900px;">
   <h2 class="section-title">למה כדאי לקנות?</h2>
   <p class="section-sub">הלומדה נבנתה במיוחד לתלמידים שרוצים להצליח בבגרות</p>
@@ -378,7 +562,6 @@
   </div>
 </div>
 
-<!-- PRICING -->
 <div class="pricing-wrap" id="pricing">
   <h2 class="section-title">רכישה ותשלום</h2>
   <p class="section-sub">גישה מלאה לכל 13 הלומדות — תשלום חד פעמי</p>
@@ -398,19 +581,62 @@
       <li><span class="check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
     </ul>
 
-    <a href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="cta-button"
-       style="display:block; text-align:center; background:var(--green-cta); color:white;
-              font-size:20px; font-weight:800; padding:18px 48px; border-radius:var(--radius-btn);
-              text-decoration:none; box-shadow:var(--shadow-btn);
-              transition:transform .2s, box-shadow .2s; margin:0 auto;">
-      🔒 לתשלום מאובטח — ₪49
-    </a>
+    <a href="#manual-payment" class="jump-button">🔒 לפרטי תשלום ורכישה</a>
     <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
-      🔒 תשלום מאובטח · SSL מוצפן · PayMe · נפתח בחלון חדש
+      🔒 אפשרויות תשלום מאובטחות · פרטי התשלום מופיעים בהמשך הדף
     </p>
+  </div>
+
+  <div class="manual-payment-card" id="manual-payment">
+    <h3 class="manual-payment-title">אפשרויות תשלום ורכישה</h3>
+    <p class="manual-payment-sub">
+      כדי לקבל גישה ללומדת החקלאות, יש לשלם <strong>49 ש״ח</strong> ולציין שמדובר ב<strong>גישה ללומדת החקלאות</strong>.
+    </p>
+
+    <div class="contact-alert">
+      <strong>חשוב מאוד:</strong> לאחר התשלום, אם לא מתקבל מייל עם פרטי ההתחברות תוך 24 שעות, יש ליצור קשר כדי שנוכל לוודא שהתשלום אכן התקבל ונוצר עבורך חשבון.
+      <div class="contact-links">
+        <a href="tel:0542166396">📞 0542166396</a>
+        <a href="mailto:tanyatabakmaher@gmail.com?subject=בדיקת תשלום עבור לומדת החקלאות">✉️ tanyatabakmaher@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="payment-methods">
+      <div class="payment-method">
+        <div class="payment-icon">📲</div>
+        <h3>תשלום דרך PayBox</h3>
+        <p>אפשר לשלם דרך אפליקציית PayBox בסריקת הקוד או ישירות דרך מספר הטלפון.</p>
+        <div class="payment-highlight">יש לשלם 49 ש״ח ולציין בהערה: גישה ללומדת החקלאות</div>
+        <ul class="payment-steps">
+          <li><span class="step-num">1</span><span>פותחים את אפליקציית PayBox וסורקים את ה־QR או מחפשים לפי מספר הטלפון 0542166396</span></li>
+          <li><span class="step-num">2</span><span>משלמים 49 ש״ח</span></li>
+          <li><span class="step-num">3</span><span>מציינים שמדובר בתשלום עבור גישה ללומדת החקלאות</span></li>
+          <li><span class="step-num">4</span><span>בסיום התשלום ממתינים למייל עם פרטי ההתחברות, שיישלח תוך 24 שעות</span></li>
+        </ul>
+        <div class="qr-wrap">
+          <div class="qr-card">
+            <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
+            <div class="qr-note">סרקו את הקוד לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a href="tel:0542166396">📞 0542166396</a>
+        </div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-icon">💳</div>
+        <h3>תשלום באשראי</h3>
+        <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+        <div class="payment-highlight">תשלום מאובטח דרך PayMe עבור גישה ללומדת החקלאות בעלות 49 ש״ח</div>
+        <ul class="payment-steps">
+          <li><span class="step-num">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+          <li><span class="step-num">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+          <li><span class="step-num">3</span><span>בסיום התשלום ממתינים למייל עם פרטי ההתחברות, שיישלח תוך 24 שעות</span></li>
+        </ul>
+        <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -419,7 +645,6 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -429,7 +654,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.module-card,.why-card,.screenshot-card,.pricing-card').forEach(el => {
+  document.querySelectorAll('.module-card,.why-card,.screenshot-card,.pricing-card,.manual-payment-card,.payment-method').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(22px)';
     el.style.transition = 'opacity .55s ease, transform .55s ease';
