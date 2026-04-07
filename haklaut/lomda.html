@@ -1214,15 +1214,16 @@
       return usersList.some(user => user.username === safeUsername);
     }
 
-    function saveLoginSession(username) {
+    function saveLoginSession(username, password) {
       try {
-        localStorage.setItem(AUTH_STORAGE_KEY, username);
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ username, password }));
       } catch (error) {
         console.warn('Could not save login session to localStorage', error);
       }
 
       try {
-        document.cookie = `${AUTH_COOKIE_KEY}=${encodeURIComponent(username)}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+        const val = encodeURIComponent(JSON.stringify({ username, password }));
+        document.cookie = `${AUTH_COOKIE_KEY}=${val}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
       } catch (error) {
         console.warn('Could not save login session to cookie', error);
       }
@@ -1256,14 +1257,25 @@
     }
 
     function getSavedLoginSession() {
+      function parseSession(raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.username) return parsed;
+        } catch {}
+        // fallback: old format was plain username string
+        const str = String(raw || '').trim();
+        return str ? { username: str, password: '' } : null;
+      }
+
       try {
-        const saved = String(localStorage.getItem(AUTH_STORAGE_KEY) || '').trim();
-        if (saved) return saved;
+        const saved = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (saved) return parseSession(saved);
       } catch (error) {
         console.warn('Could not read login session from localStorage', error);
       }
 
-      return String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
+      const cookieRaw = String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
+      return cookieRaw ? parseSession(cookieRaw) : null;
     }
 
     function saveCurrentLesson(title, url) {
@@ -1453,7 +1465,7 @@
 
       if (matchedUser) {
         currentUsername = matchedUser.username;
-        saveLoginSession(matchedUser.username);
+        saveLoginSession(matchedUser.username, matchedUser.password);
         showMainMenu();
         startSessionCheck();
         const lessonToOpen = pendingLesson;
@@ -1514,10 +1526,13 @@
 
       try {
         const freshUsers = await loadUsers();
-        const stillExists = freshUsers.some(u => u.username === currentUsername);
+        const savedSession = getSavedLoginSession();
+        const stillValid = savedSession
+          ? freshUsers.some(u => u.username === savedSession.username && u.password === savedSession.password)
+          : false;
 
-        if (!stillExists) {
-          console.warn(`User "${currentUsername}" no longer exists — logging out.`);
+        if (!stillValid) {
+          console.warn(`Session for "${currentUsername}" is no longer valid — logging out.`);
           logout();
         } else {
           usersList = freshUsers;
@@ -1562,17 +1577,23 @@
       try {
         usersList = await loadUsers();
         usersLoaded = true;
-        const savedUsername = getSavedLoginSession();
-        if (savedUsername && userExists(savedUsername)) {
-          currentUsername = savedUsername;
-          showMainMenu();
-          startSessionCheck();
-          const savedLesson = getSavedLesson();
-          if (savedLesson) {
-            openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+        const savedSession = getSavedLoginSession();
+        if (savedSession) {
+          const matchedUser = findMatchingUser(savedSession.username, savedSession.password);
+          if (matchedUser) {
+            currentUsername = matchedUser.username;
+            showMainMenu();
+            startSessionCheck();
+            const savedLesson = getSavedLesson();
+            if (savedLesson) {
+              openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+            }
+          } else {
+            clearLoginSession();
+            clearCurrentLesson();
+            showGuestGrid();
           }
         } else {
-          if (savedUsername) { clearLoginSession(); clearCurrentLesson(); }
           showGuestGrid();
         }
       } catch (error) {
