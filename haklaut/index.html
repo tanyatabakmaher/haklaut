@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>לומדת הכנה לבגרות בחקלאות</title>
   <meta name="description" content="מסך ראשי ללומדות הכנה לבגרות בחקלאות" />
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
   <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -1213,15 +1214,16 @@
       return usersList.some(user => user.username === safeUsername);
     }
 
-    function saveLoginSession(username) {
+    function saveLoginSession(username, password) {
       try {
-        localStorage.setItem(AUTH_STORAGE_KEY, username);
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ username, password }));
       } catch (error) {
         console.warn('Could not save login session to localStorage', error);
       }
 
       try {
-        document.cookie = `${AUTH_COOKIE_KEY}=${encodeURIComponent(username)}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+        const val = encodeURIComponent(JSON.stringify({ username, password }));
+        document.cookie = `${AUTH_COOKIE_KEY}=${val}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
       } catch (error) {
         console.warn('Could not save login session to cookie', error);
       }
@@ -1255,14 +1257,25 @@
     }
 
     function getSavedLoginSession() {
+      function parseSession(raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.username) return parsed;
+        } catch {}
+        // fallback: old format was plain username string
+        const str = String(raw || '').trim();
+        return str ? { username: str, password: '' } : null;
+      }
+
       try {
-        const saved = String(localStorage.getItem(AUTH_STORAGE_KEY) || '').trim();
-        if (saved) return saved;
+        const saved = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (saved) return parseSession(saved);
       } catch (error) {
         console.warn('Could not read login session from localStorage', error);
       }
 
-      return String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
+      const cookieRaw = String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
+      return cookieRaw ? parseSession(cookieRaw) : null;
     }
 
     function saveCurrentLesson(title, url) {
@@ -1425,6 +1438,7 @@
     }
 
     function logout() {
+      stopSessionCheck();
       clearLoginSession();
       clearCurrentLesson();
       currentUsername = '';
@@ -1451,8 +1465,9 @@
 
       if (matchedUser) {
         currentUsername = matchedUser.username;
-        saveLoginSession(matchedUser.username);
+        saveLoginSession(matchedUser.username, matchedUser.password);
         showMainMenu();
+        startSessionCheck();
         const lessonToOpen = pendingLesson;
         pendingLesson = null;
         passwordInput.value = '';
@@ -1506,6 +1521,42 @@
       }
     });
 
+    async function validateActiveSession() {
+      if (!currentUsername) return;
+
+      try {
+        const freshUsers = await loadUsers();
+        const savedSession = getSavedLoginSession();
+        const stillValid = savedSession
+          ? freshUsers.some(u => u.username === savedSession.username && u.password === savedSession.password)
+          : false;
+
+        if (!stillValid) {
+          console.warn(`Session for "${currentUsername}" is no longer valid — logging out.`);
+          logout();
+        } else {
+          usersList = freshUsers;
+        }
+      } catch (error) {
+        console.warn('Could not validate active session against users file', error);
+      }
+    }
+
+    const SESSION_CHECK_INTERVAL_MS = 5 * 60 * 1000; // every 5 minutes
+    let sessionCheckTimer = null;
+
+    function startSessionCheck() {
+      stopSessionCheck();
+      sessionCheckTimer = setInterval(validateActiveSession, SESSION_CHECK_INTERVAL_MS);
+    }
+
+    function stopSessionCheck() {
+      if (sessionCheckTimer !== null) {
+        clearInterval(sessionCheckTimer);
+        sessionCheckTimer = null;
+      }
+    }
+
     async function init() {
       setPasswordVisibility(false);
 
@@ -1526,16 +1577,23 @@
       try {
         usersList = await loadUsers();
         usersLoaded = true;
-        const savedUsername = getSavedLoginSession();
-        if (savedUsername && userExists(savedUsername)) {
-          currentUsername = savedUsername;
-          showMainMenu();
-          const savedLesson = getSavedLesson();
-          if (savedLesson) {
-            openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+        const savedSession = getSavedLoginSession();
+        if (savedSession) {
+          const matchedUser = findMatchingUser(savedSession.username, savedSession.password);
+          if (matchedUser) {
+            currentUsername = matchedUser.username;
+            showMainMenu();
+            startSessionCheck();
+            const savedLesson = getSavedLesson();
+            if (savedLesson) {
+              openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+            }
+          } else {
+            clearLoginSession();
+            clearCurrentLesson();
+            showGuestGrid();
           }
         } else {
-          if (savedUsername) { clearLoginSession(); clearCurrentLesson(); }
           showGuestGrid();
         }
       } catch (error) {
