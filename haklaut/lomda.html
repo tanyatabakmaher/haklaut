@@ -1426,6 +1426,7 @@
     }
 
     function logout() {
+      stopSessionCheck();
       clearLoginSession();
       clearCurrentLesson();
       currentUsername = '';
@@ -1454,6 +1455,7 @@
         currentUsername = matchedUser.username;
         saveLoginSession(matchedUser.username);
         showMainMenu();
+        startSessionCheck();
         const lessonToOpen = pendingLesson;
         pendingLesson = null;
         passwordInput.value = '';
@@ -1579,20 +1581,6 @@
         showGuestGrid();
       }
     }
-
-    // Also stop the timer on logout and restart on login
-    const _originalLogout = logout;
-    function logout() {
-      stopSessionCheck();
-      _originalLogout();
-    }
-
-    const _originalHandleLogin = handleLogin;
-    loginForm.addEventListener('submit', () => {
-      setTimeout(() => {
-        if (currentUsername) startSessionCheck();
-      }, 100);
-    });
 
     init();
 
