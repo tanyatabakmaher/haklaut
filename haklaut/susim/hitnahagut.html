@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>התנהגות וחושים בסוסים | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{
+  --bg:#faf6f0;
+  --card:#fff;
+  --primary:#7c4f1a;
+  --primary-light:#fdf3e8;
+  --secondary:#2d6a4f;
+  --secondary-light:#d8f0e4;
+  --hot:#c0392b;
+  --hot-light:#fde8e8;
+  --green:#27ae60;
+  --green-light:#d5f0e0;
+  --amber:#e07b3b;
+  --amber-light:#feebd8;
+  --purple:#6c3483;
+  --purple-light:#ede0f5;
+  --text:#1a1209;
+  --text-muted:#6b5c47;
+  --border:#e8ddd0;
+  --shadow:0 4px 20px rgba(124,79,26,0.10);
+  --radius:16px;
+  --font:'Heebo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#7c4f1a,#4a2e0a);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;letter-spacing:.5px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#d4c4b0;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#progress-track{flex:1;height:10px;background:#e8ddd0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#7c4f1a,#27ae60);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#4a2e0a;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#fdf6ee,#fdf0df);border:2px solid #e8c99a;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.brown{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.amber{background:var(--amber-light);border-right:4px solid var(--amber);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.exam-box{background:linear-gradient(135deg,#f0fdf4,#d1fae5);border:2px solid #6ee7b7;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
+.exam-box::before{content:"📋 חשוב לבגרות: ";color:#065f46;display:block;font-size:15px;margin-bottom:8px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;font-size:13px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{display:block;margin-bottom:4px;font-size:16px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:var(--primary);color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:var(--primary-light);}
+.question-box{background:#f8f4ee;border:2px solid #d4c4a8;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#4a2e0a;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.mc-option:disabled{cursor:not-allowed;opacity:.8;}
+.mc-option.selected{border-color:var(--primary)!important;background:var(--primary-light)!important;}
+.mc-option.selected .opt-letter{background:var(--primary);color:white;}
+.tf-btn.selected{border-color:var(--primary);background:var(--primary-light);color:var(--primary);}
+.submit-btn{background:var(--primary);color:white;border:none;border-radius:12px;padding:12px 24px;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;margin-top:12px;width:100%;transition:all .2s;display:none;}
+.submit-btn:hover{opacity:.9;}
+.submit-btn.visible{display:block;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.tf-btn:disabled{cursor:not-allowed;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:80px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:var(--green-light);border:2px solid var(--green);color:#065f46;}
+.fill-sentence{font-size:16px;line-height:2.2;margin-bottom:12px;padding:14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#fdf6ee;border-color:#e8c99a;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:var(--primary-light);border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.matched{background:var(--green-light);border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#7c4f1a,#4a2e0a);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#27ae60,#1a7a45);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#4a2e0a 0%,#7c4f1a 40%,#2d6a4f 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐴';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#7c4f1a,#2d6a4f);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:480px){.toc-grid{grid-template-columns:1fr;}}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.sense-icon{font-size:40px;display:flex;align-items:center;justify-content:center;width:70px;height:70px;background:var(--primary-light);border-radius:50%;margin:0 auto 12px;}
+.sense-card{text-align:center;background:white;border:2px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.icon-row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.icon-item{flex:1;min-width:120px;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:center;font-size:13px;}
+.icon-item .icon{font-size:28px;display:block;margin-bottom:6px;}
+.icon-item .label{font-weight:700;font-size:14px;margin-bottom:4px;}
+.score-box{display:flex;gap:10px;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--primary);padding:12px;}
+.sort-container{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.sort-item{padding:10px 16px;border:2px solid var(--border);border-radius:10px;background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+.sort-item:hover{border-color:var(--primary);}
+.sort-item.selected-normal{background:var(--green-light);border-color:var(--green);}
+.sort-item.selected-problem{background:var(--hot-light);border-color:var(--hot);}
+.sort-target{border:2px dashed var(--border);border-radius:12px;padding:14px;min-height:60px;margin-bottom:8px;}
+.sort-target.normal{border-color:var(--green);background:#f0fdf4;}
+.sort-target.problem{border-color:var(--hot);background:#fef2f2;}
+.vision-diagram{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:16px;padding:24px;margin-bottom:16px;color:white;text-align:center;}
+.vision-arc{position:relative;margin:16px auto;width:220px;height:110px;}
+.pain-response{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.pain-response .tag{padding:6px 14px;border-radius:99px;font-size:13px;font-weight:700;}
+.pain-response .tag.flight{background:#fde8e8;color:#991b1b;}
+.pain-response .tag.calm{background:var(--green-light);color:#065f46;}
+
+.accord-item{border:2px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .2s;}
+.accord-item:hover{box-shadow:0 4px 14px rgba(0,0,0,0.09);}
+.accord-header{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;background:white;user-select:none;}
+.accord-num{min-width:38px;height:38px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0;}
+.accord-title{flex:1;font-size:16px;font-weight:700;color:var(--text);}
+.accord-arrow{font-size:13px;color:var(--text-muted);transition:transform .25s;flex-shrink:0;}
+.accord-item.open .accord-arrow{transform:rotate(180deg);}
+.accord-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:#faf6f0;padding:0 16px;}
+.accord-item.open .accord-body{max-height:200px;padding:14px 16px;}
+.accord-body p{font-size:14px;line-height:1.7;color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐴 תפריט הלומדה</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🐎 למה חשוב להכיר</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>למה חשוב – חלק 1</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>דרישות מינימליות</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>השוואת תנאי מחיה</button>
+    </div>
+    <div class="menu-chapter-title">👁️ חושים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">👁️</span>ראייה – חלק 1</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🌙</span>ראייה – חלק 2</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">👂</span>שמיעה ושיווי משקל</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">👃</span>ריח ו-Flehmen</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">👅</span>טעם</button>
+    </div>
+    <div class="menu-chapter-title">🛁 טיפוח ונוחות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🧹</span>Self-Grooming</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🤝</span>גירוד הדדי + Pandiculation</button>
+    </div>
+    <div class="menu-chapter-title">😴 שינה ומנוחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">😴</span>שינה ומנוחה</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">📉</span>גורמים להפחתת רביצה</button>
+    </div>
+    <div class="menu-chapter-title">⚡ מגע, כאב ופחד</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🖐️</span>מגע וכאב</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">💥</span>תגובות לכאב</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">😨</span>סימני פחד</button>
+    </div>
+    <div class="menu-chapter-title">🏆 טריטוריה והירארכיה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📏</span>מרחב ומרחק קריטי</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">👑</span>הירארכיה ולחימה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🤝</span>הירארכיה: סוס-אדם</button>
+    </div>
+    <div class="menu-chapter-title">⚠️ תוקפנות ואנומליות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">😡</span>סוסים תוקפניים</button>
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>אנומליות תגובתיות</button>
+    </div>
+    <div class="menu-chapter-title">🌿 הזנה ואכילה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">🌿</span>אכילה בטבע</button>
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">🪣</span>אכילה באורווה</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>Wind Sucking ועצים</button>
+      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🚨</span>אנומליות סומטיות</button>
+    </div>
+    <div class="menu-chapter-title">📚 סיכום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(25)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(26)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>נכון / לא נכון</button>
+      <button class="menu-item" onclick="menuGo(27)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות הבנה</button>
+      <button class="menu-item" onclick="menuGo(28)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>התאמה</button>
+      <button class="menu-item" onclick="menuGo(29)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span><span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700;margin-right:8px">פתיחה</span></button>
+  <span style="font-size:22px">🐴</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 30</span>
+</div>
+
+<div id="app">
+
+<!-- ===== S0: פתיחה ===== -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐴👁️👃👂</div>
+    <h1>התנהגות וחושים<br>בסוסים</h1>
+    <p class="tagline">הבנת הסוס מבפנים – המפתח לעבודה בטוחה ומוצלחת<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐎 רפואת בעלי חיים</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">❓ מה נלמד בלומדה?</div>
+    <ul class="content-list">
+      <li data-icon="🏠">למה חשוב להכיר את התנהגות הסוס בטבע</li>
+      <li data-icon="👁️">חמשת החושים – ראייה, שמיעה, ריח, טעם, מגע</li>
+      <li data-icon="🛁">התנהגויות טיפוח עצמי: grooming, גירוד הדדי, Pandiculation</li>
+      <li data-icon="😴">שינה ומנוחה – כמה שעות? איך? ולמה זה חשוב</li>
+      <li data-icon="⚡">כאב, פחד ותגובות – איך לזהות ולהגיב נכון</li>
+      <li data-icon="👑">הירארכיה, טריטוריאליזם ויחסים בתוך הקבוצה</li>
+      <li data-icon="🌿">אכילה, הזנה ובעיות התנהגות הקשורות להזנה</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת – בדוק את עצמך!</div>
+    <p style="margin-bottom:14px;font-size:15px">מדוע חשוב כל כך להכיר את התנהגות הסוס בטבע?</p>
+    <div class="mc-options" id="opts-s0q1">
+      <button class="mc-option" onclick="pickOption('s0q1',0,this)"><span class="opt-letter">א</span>כדי לתת לסוס יותר מזון</button>
+      <button class="mc-option" onclick="pickOption('s0q1',1,this)"><span class="opt-letter">ב</span>כדי להתאים את תנאי ה"שבי" לצרכי הסוס ולבנות מערכת יחסים בטוחה</button>
+      <button class="mc-option" onclick="pickOption('s0q1',2,this)"><span class="opt-letter">ג</span>כדי לדעת באיזה צבע לצבוע את האורווה</button>
+      <button class="mc-option" onclick="pickOption('s0q1',3,this)"><span class="opt-letter">ד</span>כדי להכין את הסוס לתחרויות בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s0q1"></div>
+  </div>
+</div>
+
+<!-- ===== S1: למה חשוב ===== -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a2e0a,#7c4f1a)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🐎</span>
+    <h1>למה חשוב להכיר התנהגות סוסים?</h1>
+    <p class="subtitle">4 סיבות עיקריות</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט 4 סיבות מדוע חשוב להכיר את התנהגות הסוס.</div>
+  <div class="card">
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#7c4f1a,#a0641f)">1</div>
+        <div class="accord-title">התאמת תנאי ה"שבי" לצרכי הסוס</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>הכרת ההתנהגות בחופשי מאפשרת להתאים ככל האפשר את תנאי האורווה לצרכים הטבעיים של הסוס. למשל – לדעת כמה שעות רעייה צריך, מה חשיבות המגע החברתי, ועוד.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#27ae60,#1a8a4a)">2</div>
+        <div class="accord-title">הבנת המגבלות בתנאי האורווה</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>הסוס בשבי חי בסביבה מוגבלת מאוד ביחס לטבעו. הבנת המגבלות עוזרת לנו לזהות ולמנוע בעיות התנהגות ובריאות שנובעות ממגבלות אלה.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#e07b3b,#c05a15)">3</div>
+        <div class="accord-title">יצירת מערכת יחסים שמחה ובטוחה</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>התאמת ההתנהגות האנושית כלפי הסוס לפי הלוגיקה ה"סוסית" יוצרת קשר בטוח ומהנה לשני הצדדים – גם לסוס וגם למטפל.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#6c3483,#4a1a7a)">4</div>
+        <div class="accord-title">פתרון בעיות התנהגות</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>הכרת ההתנהגות הטבעית מאפשרת לזהות ולפתור בעיות בסוסים "קשים" או "מסוכנים" – בהבנה במקום בכוח.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="remember-box">ארבע הסיבות: התאמת תנאים ← הבנת מגבלות ← מערכת יחסים בטוחה ← פתרון בעיות</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="margin-bottom:14px;font-size:15px">הכרת התנהגות הסוס בטבע עוזרת <strong>גם</strong> בפתרון בעיות התנהגות בסוסים קשים.</p>
+    <div class="tf-options" id="tfopts-s1q1">
+      <button class="tf-btn" data-val="true" onclick="pickTF('s1q1',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('s1q1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s1q1"></div>
+  </div>
+</div>
+
+<!-- ===== S2: דרישות מינימליות ===== -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d6a4f)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">🌿</span>
+    <h1>דרישות מינימליות לקיום נאות</h1>
+    <p class="subtitle">6 צרכים בסיסיים של כל סוס</p>
+  </div>
+  <div class="goal-box">אני אוכל למנות את 6 הדרישות המינימליות לקיום נאות של סוס.</div>
+  <div class="card">
+    <div class="definition-box">כדי שסוס יוכל לחיות <strong>חיים נאותים</strong>, עליו לקבל מענה לשישה צרכים בסיסיים. חסר באחד מהם עלול לגרום לבעיות בריאות או התנהגות.</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">🌍 תגובה לסביבה</div>היכולת להגיב לגירויים בסביבה</div>
+      <div class="mini-card"><div class="title">🌿 הזנה</div>אכילה ושתייה בהתאם לצרכים</div>
+      <div class="mini-card"><div class="title">🌡️ שמירה על הגוף</div>טמפרטורה, הפרשות, נוחות</div>
+      <div class="mini-card"><div class="title">😴 שינה ומנוחה</div>שעות מנוחה ורביצה מספקות</div>
+      <div class="mini-card"><div class="title">🏃 תנועה</div>חופש תנועה מספק</div>
+      <div class="mini-card"><div class="title">🔍 חיפוש והתמקמות</div>התנהגות חיפוש טבעית</div>
+    </div>
+  </div>
+  <div class="remember-box">זכור: תגובה ← הזנה ← שמירת גוף ← שינה ← תנועה ← חיפוש</div>
+  <div class="question-box">
+    <div class="q-title">❓ אילו מהבאים הוא דרישה מינימלית לקיום נאות?</div>
+    <div class="mc-options" id="opts-s2q1">
+      <button class="mc-option" onclick="pickOption('s2q1',0,this)"><span class="opt-letter">א</span>צבע האורווה</button>
+      <button class="mc-option" onclick="pickOption('s2q1',1,this)"><span class="opt-letter">ב</span>שינה ומנוחה</button>
+      <button class="mc-option" onclick="pickOption('s2q1',2,this)"><span class="opt-letter">ג</span>כמות ציוד הרכיבה</button>
+      <button class="mc-option" onclick="pickOption('s2q1',3,this)"><span class="opt-letter">ד</span>גודל התא באורווה בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s2q1"></div>
+  </div>
+</div>
+
+<!-- ===== S3: השוואת אורוות ===== -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a3a0a,#8a6520)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🏠</span>
+    <h1>השוואת תנאי מחיה</h1>
+    <p class="subtitle">אורווה A מול אורווה B</p>
+  </div>
+  <div class="goal-box">אני אוכל להשוות בין תנאי מחיה שונים ולזהות מה עדיף לסוס.</div>
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px">
+
+    <div style="background:#fdf6ee;border:2px solid var(--primary);border-radius:14px;overflow:hidden">
+      <img src="https://bagruyot.org/haklaut/susim/imag/urvaa.png" alt="אורווה A" style="width:100%;max-height:200px;object-fit:cover;display:block">
+      <div style="padding:16px">
+        <h3 style="font-size:17px;font-weight:900;color:#4a2e0a;margin-bottom:10px">🟤 אורווה A</h3>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>מכלאה ברפת ישנה</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>6 סוסים בחצר משותפת</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>כל היום בחוץ</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>ניקוי חצר פעם בחודש בלבד</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:#f0f5f0;border:2px solid var(--secondary);border-radius:14px;overflow:hidden">
+      <img src="https://bagruyot.org/haklaut/susim/imag/urvaנ.png" alt="אורווה B" style="width:100%;max-height:200px;object-fit:cover;display:block">
+      <div style="padding:16px">
+        <h3 style="font-size:17px;font-weight:900;color:#1a4a2a;margin-bottom:10px">🟢 אורווה B</h3>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>מבנה חדש, תאים מטופחים</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>תאים פרטיים, קיר גבוה למניעת נשיכות</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>באורווה כל היום</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>יוצאים לאימון 1–2 שעות ביום</li>
+          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>ניקוי תאים פעמיים ביום</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="card">
+    <div class="section-title">🤔 לחשוב ביחד</div>
+    <p style="font-size:15px;line-height:1.7">בכל אחת מהאורוות ישנם יתרונות וחסרונות. <strong>אורווה A</strong> מאפשרת קשרים חברתיים וחופש תנועה, אך עלולה ללא ניקוי תכוף לפגוע בבריאות. <strong>אורווה B</strong> נקייה ומסודרת, אך מגבילה את הסוס לתא פרטי רוב היום – בניגוד לצרכיו הטבעיים.</p>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ מה הבעיה העיקרית באורווה B, מנקודת מבט הסוס?</div>
+    <div class="mc-options" id="opts-s3q1">
+      <button class="mc-option" onclick="pickOption('s3q1',0,this)"><span class="opt-letter">א</span>הקירות גבוהים מדי</button>
+      <button class="mc-option" onclick="pickOption('s3q1',1,this)"><span class="opt-letter">ב</span>הסוס מוגבל בתא רוב היום, בניגוד לצורך הטבעי שלו בתנועה חברתית</button>
+      <button class="mc-option" onclick="pickOption('s3q1',2,this)"><span class="opt-letter">ג</span>הניקוי תכוף מדי</button>
+      <button class="mc-option" onclick="pickOption('s3q1',3,this)"><span class="opt-letter">ד</span>אין אפשרות לאימון כלל</button>
+    </div>
+    <div class="feedback" id="fb-s3q1"></div>
+  </div>
+</div>
+
+<!-- ===== S4: ראייה 1 ===== -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">👁️</span>
+    <h1>חושים – ראייה (חלק 1)</h1>
+    <p class="subtitle">שדה ראייה, מונוקולרי ובינוקולרי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שדה הראייה של הסוס ולהסביר מה הכוונה ב"ראייה מונוקולרית".</div>
+  <div class="card">
+    <div class="vision-diagram">
+      <div style="font-size:40px;margin-bottom:8px">👁️🐴👁️</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:12px">שדה הראייה של הסוס</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;font-size:13px"><strong style="color:#fbbf24">פנורמי</strong><br>~300-330°</div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;font-size:13px"><strong style="color:#6ee7b7">בינוקולרי</strong><br>~60%</div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;font-size:13px"><strong style="color:#fca5a5">שטח מת</strong><br>מאחור ורצועה קטנה קדימה</div>
+      </div>
+    </div>
+    <div class="highlight brown">🐴 <strong>ראייה פנורמית:</strong> הסוס רואה כמעט את כל הסביבה מסביבו – כ-300-330 מעלות. שטח מת קטן מאחור.</div>
+    <div class="highlight amber">🎯 <strong>ראייה מונוקולרית ברובה, 60% בינוקולרית:</strong> כלומר, הסוס יכול לקלוט שתי תמונות נפרדות במקביל – "מחשבה מפוצלת"? אולי!</div>
+    <div class="highlight green">ℹ️ <strong>שטח מת:</strong> קטן מאחור. לכן – לעולם לא לגשת לסוס מישיר מאחוריו ללא אזהרה!</div>
+  </div>
+  <div class="remember-box">ראייה פנורמית ← שטח מת קטן מאחור ← ברובה מונוקולרית ← 60% בינוקולרית</div>
+  <div class="question-box">
+    <div class="q-title">❓ היכן נמצא השטח המת של הסוס?</div>
+    <div class="mc-options" id="opts-s4q1">
+      <button class="mc-option" onclick="pickOption('s4q1',0,this)"><span class="opt-letter">א</span>מלפנים, בין העיניים</button>
+      <button class="mc-option" onclick="pickOption('s4q1',1,this)"><span class="opt-letter">ב</span>מאחור, עם רצועה קטנה קדימה</button>
+      <button class="mc-option" onclick="pickOption('s4q1',2,this)"><span class="opt-letter">ג</span>מהצדדים בלבד</button>
+      <button class="mc-option" onclick="pickOption('s4q1',3,this)"><span class="opt-letter">ד</span>לסוס אין שטח מת בכלל</button>
+    </div>
+    <div class="feedback" id="fb-s4q1"></div>
+  </div>
+</div>
+
+<!-- ===== S5: ראייה 2 ===== -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">🌙</span>
+    <h1>ראייה – חלק 2</h1>
+    <p class="subtitle">מיקוד, ראיית לילה, צבעים ואור/צל</p>
+  </div>
+  <div class="goal-box">אני אוכל לסביר מדוע יכולת המיקוד של הסוס מוגבלת ולהסביר את הרגישות לאור/צל.</div>
+  <div class="card">
+    <div class="highlight brown">🎯 <strong>מיקוד מוגבל:</strong> שריר הריסיה (Ciliary muscle) לא מפותח דיו ← פוגע ביכולת שינוי רוחב העדשה ← יכולת מיקוד מוגבלת. הסוס מפצה על כך בתנועות ראש!</div>
+    <div class="highlight amber">🔭 <strong>כיצד הסוס מפצה?</strong> שינויי גובה וזווית של הראש עוזרים למיקוד. הרמת ראש = עצמים מרוחקים. האוזניים מלוות את כיוון המבט.</div>
+    <div class="highlight green">🌙 <strong>ראיית לילה:</strong> טובה! הסוס רואה היטב בחושך.</div>
+    <div class="highlight red">🎨 <strong>ראיית צבעים:</strong> מוגבלת (לא כמו בבני אדם).</div>
+    <div class="highlight purple">⚠️ <strong>רגישות קשה:</strong> מעברי אור/צל – הסוס מתקשה להסתגל מהר (כניסה לקרון, לקליניקה...). זה מסביר "התנגדות" שהיא למעשה פחד אמיתי!</div>
+  </div>
+  <div class="card">
+    <div class="section-title">💡 השלכות מעשיות</div>
+    <p style="font-size:14px;line-height:1.7">• <strong>מרטינגל</strong> (רצועות המונעות הרמת ראש) פוגע ביכולת הסוס לראות לרחוק!</p>
+    <p style="font-size:14px;line-height:1.7;margin-top:8px">• <strong>בסוסי מרוץ/עגלה</strong> משתמשים באמצעי הגבלת ראייה לצמצום תגובות לתנועות צדדיות.</p>
+    <p style="font-size:14px;line-height:1.7;margin-top:8px">• <strong>כניסה לקרון</strong> – תאורה נכונה תקל על הסוס!</p>
+  </div>
+  <div class="exam-box">ראיית לילה טובה. ראיית צבעים מוגבלת. מיקוד מוגבל – הסוס מפצה בתנועות ראש. רגישות גבוהה למעבר אור/צל.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מדוע הסוס מרים את ראשו כדי להסתכל על עצם רחוק?</div>
+    <div class="mc-options" id="opts-s5q1">
+      <button class="mc-option" onclick="pickOption('s5q1',0,this)"><span class="opt-letter">א</span>כי הוא גאה ורוצה להרשים</button>
+      <button class="mc-option" onclick="pickOption('s5q1',1,this)"><span class="opt-letter">ב</span>כי יכולת המיקוד שלו מוגבלת, ותנועת ראש עוזרת לו למקד את הראייה</button>
+      <button class="mc-option" onclick="pickOption('s5q1',2,this)"><span class="opt-letter">ג</span>כי הוא שומע קול מכיוון העצם</button>
+      <button class="mc-option" onclick="pickOption('s5q1',3,this)"><span class="opt-letter">ד</span>כי רצועת המרטינגל כופה עליו הרמת הראש</button>
+    </div>
+    <div class="feedback" id="fb-s5q1"></div>
+  </div>
+</div>
+
+<!-- ===== S6: שמיעה ושיווי משקל ===== -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a1a6e,#6c3483)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">👂</span>
+    <h1>שמיעה ושיווי משקל</h1>
+    <p class="subtitle">מערכות מדהימות ביכולתן</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את יכולות השמיעה של הסוס ואת תפקיד הראש בשיווי משקל.</div>
+  <div class="card">
+    <div class="section-title">👂 שמיעה</div>
+    <div class="highlight brown"><strong>שמיעה טובה מאוד</strong> ביחס לבעלי חיים אחרים.</div>
+    <div class="highlight amber"><strong>תנועת אוזניים עצמאית:</strong> כל אוזן יכולה לנוע בצורה עצמאית ברדיוס של 180°. הסוס יכול "לכוון" כל אוזן לכיוון אחר!</div>
+    <div class="highlight green"><strong>איתור מקור הקול:</strong> באמצעות הפרשי עוצמה וזמן בין האוזניים.</div>
+    <div class="highlight purple"><strong>תקשורת באמצעות קול:</strong> הבנת הסוס לפקודות מילוליות היא <strong>מוגבלת מאוד</strong>. הוא מזהה יותר את טון הקול ואת תנועות הגוף הנלוות לדיבור.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">⚖️ שיווי משקל</div>
+    <div class="highlight brown"><strong>מערכת וסטיבולרית מפותחת היטב!</strong> מאפשרת ביצועים מדהימים כמו קפיצת מכשול בדהרה במדרון עם רוכב על הגב.</div>
+    <div class="highlight amber"><strong>ראש וצוואר:</strong> משמשים לייצוב – בעיקר בהליכה ובקנטר (דהרה). לכן בדיקת צליעה מתבצעת בטרוט, כאשר הצעד מאוזן ואין תנודה בראש.</div>
+  </div>
+  <div class="exam-box">כל אוזן – 180° תנועה עצמאית. הסוס מבין יותר טון קול מאשר מילים. הראש משמש לשיווי משקל.</div>
+  <div class="question-box">
+    <div class="q-title">❓ כיצד הסוס מבין אותנו כשאנחנו מדברים אליו?</div>
+    <div class="mc-options" id="opts-s6q1">
+      <button class="mc-option" onclick="pickOption('s6q1',0,this)"><span class="opt-letter">א</span>הוא מבין כל מילה שאנחנו אומרים</button>
+      <button class="mc-option" onclick="pickOption('s6q1',1,this)"><span class="opt-letter">ב</span>הוא מזהה שינויי טון ובעיקר תנועות גוף הנלוות לדיבור</button>
+      <button class="mc-option" onclick="pickOption('s6q1',2,this)"><span class="opt-letter">ג</span>הוא לא מבין שום דבר מהשפה האנושית</button>
+      <button class="mc-option" onclick="pickOption('s6q1',3,this)"><span class="opt-letter">ד</span>הוא מבין רק פקודות חד-הברתיות פשוטות</button>
+    </div>
+    <div class="feedback" id="fb-s6q1"></div>
+  </div>
+</div>
+
+<!-- ===== S7: ריח ו-Flehmen ===== -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2a,#2d6a4f)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">👃</span>
+    <h1>ריח, פורומונים ו-Flehmen</h1>
+    <p class="subtitle">חוש הריח המורכב של הסוס</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מנגנון חוש הריח ולהסביר מה זה Flehmen ומתי מופיע.</div>
+  <div class="card">
+    <div class="section-title">👃 מנגנון הריח</div>
+    <div class="highlight brown"><strong>רצפטורים:</strong> ממוקמים בחלק העליון של חלל האף.</div>
+    <div class="highlight amber"><strong>הסנפה:</strong> תנועה מיוחדת שהסוס עושה כשרוצה לדגום כמות גדולה יותר של אוויר – מגביר את תחושת הריח.</div>
+    <div class="highlight green"><strong>איבר ג'ייקובסון / VNO (VomeroNasal Organ):</strong> מבנה גלילי ברצפת חלל האף. תפקידו: זיהוי פורומונים (חומרים כימיים המשמשים לתקשורת בין בעלי חיים מאותו מין). בנוכחות פורומונים – נוצר מנגנון שאיבה ב-VNO.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">😬 Flehmen – מה זה?</div>
+    <div class="definition-box"><strong>Flehmen</strong> היא התנהגות שבה הסוס מרים את השפה העליונה ומקמר את הצוואר לאחור. זו התנהגות <strong>זכרית אופיינית</strong> הנראית בעיקר בנוכחות נקבות – בעיקר בזמן ייחום. מטרתה: לסייע לאיסוף פורומונים ב-VNO.</div>
+    <div style="text-align:center;font-size:60px;padding:16px">😬🐴</div>
+  </div>
+  <div class="exam-box">איבר ג'ייקובסון = VNO = זיהוי פורומונים. Flehmen = התנהגות זכרית, בעיקר בזמן ייחום, לאיסוף פורומונים.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מה תפקיד ה-VNO (איבר ג'ייקובסון)?</div>
+    <div class="mc-options" id="opts-s7q1">
+      <button class="mc-option" onclick="pickOption('s7q1',0,this)"><span class="opt-letter">א</span>לסייע בנשימה</button>
+      <button class="mc-option" onclick="pickOption('s7q1',1,this)"><span class="opt-letter">ב</span>לזהות פורומונים</button>
+      <button class="mc-option" onclick="pickOption('s7q1',2,this)"><span class="opt-letter">ג</span>לסנן אבק מהאוויר</button>
+      <button class="mc-option" onclick="pickOption('s7q1',3,this)"><span class="opt-letter">ד</span>לאגור ריחות לשימוש עתידי</button>
+    </div>
+    <div class="feedback" id="fb-s7q1"></div>
+  </div>
+</div>
+
+<!-- ===== S8: טעם ===== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6a1a2a,#c0392b)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">👅</span>
+    <h1>חוש הטעם</h1>
+    <p class="subtitle">העדפות, זיהוי ומגבלות חשובות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את העדפות המזון של הסוס ולהסביר מדוע לא לסמוך על חוש הטעם שלו לגבי מזון מקולקל.</div>
+  <div class="card">
+    <div class="highlight brown"><strong>העדפות אישיות:</strong> ישנן העדפות ורמות התלהבות שונות ממזון, המשתנות <strong>בין סוסים שונים</strong>. חשוב להכיר!</div>
+    <div class="highlight green"><strong>חשיבות הכרת ההעדפות:</strong> שינוי פתאומי בתיאבון יכול להעיד על בעיה בריאותית. לכן חשוב להכיר את ההעדפות האישיות של כל סוס.</div>
+    <div class="highlight red"><strong>⚠️ אזהרה חשובה:</strong> <strong>לא לסמוך</strong> על יכולת ההימנעות ממזונות מקולקלים! הסוס לא תמיד מזהה מזון מקולקל.</div>
+    <div class="definition-box"><strong>סדר ההעדפות הכללי:</strong><br>ירק 🥕 > גרעינים 🌾 > קטניות > דגן</div>
+  </div>
+  <div class="remember-box">סוס לא תמיד מזהה מזון מקולקל – תפקיד המטפל לוודא איכות המזון!</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון: ניתן לסמוך על הסוס שיימנע לבד ממזון מקולקל.</div>
+    <div class="tf-options" id="tfopts-s8q1">
+      <button class="tf-btn" data-val="true" onclick="pickTF('s8q1',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('s8q1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s8q1"></div>
+  </div>
+</div>
+
+<!-- ===== S9: Self-Grooming ===== -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a5e,#2563eb)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">🧹</span>
+    <h1>Self-Grooming – טיפוח עצמי</h1>
+    <p class="subtitle">ניקוי, גירוד ורגישות יתר ליבחושים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר מה כולל self-grooming ולזהות את סימני "Summer Itch".</div>
+  <div class="card">
+    <div class="section-title">🧹 מה זה Self-Grooming?</div>
+    <p style="font-size:15px;line-height:1.7;margin-bottom:12px">תנועות המשמשות לניקוי, התגרדות והרחקת טפילים. הסוס מקדיש הרבה זמן לניקוי – וזה מעיד על <strong>הרגשה טובה</strong>. חסר בפעולות אלה קיים בסוסים חולים.</p>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">💪 שרירים תת-עוריים</div>מפותחים – מאפשרים ניעור יעיל של חול, אבק וזבובים</div>
+      <div class="mini-card"><div class="title">👅 ליקוק</div>בעיקר באגן ומותניים. ניקוי הראש – על ידי גירוד בין הרגליים</div>
+      <div class="mini-card"><div class="title">🦟 הצלפות זנב</div>מדויקות! להרחקת זבובים (ולפעמים וטרינרים טורדניים...)</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title" style="color:var(--hot)">⚠️ רגישות יתר ליבחושים – Summer Itch</div>
+    <div class="highlight red"><strong>Summer Itch:</strong> גירוד חזק ברעמה, בזנב ובגב; נשיכות בבטן; פגיעה בזנב וברעמה; קרחות, פצעים, זיהומים משניים. <strong>נפוץ מאוד בישראל!</strong></div>
+    <div class="highlight amber"><strong>יש להבחין בין:</strong> Summer Itch ← גירוד רגיל ← גרוד זנב (Oxyuris?) ← גירוד רעמה (מזון מחוץ לגדר)</div>
+    <div class="highlight green"><strong>התפלשות בחול + נעור בקימה:</strong> שיטה טבעית לגירוד וניקוי. <strong>שונה</strong> מהתגלגלויות של כאב! (בכאב – מתגלגל ולא קם)</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ אם סוס מתגלגל בחול ואז קם ומנער את עצמו, מה זה מעיד?</div>
+    <div class="mc-options" id="opts-s9q1">
+      <button class="mc-option" onclick="pickOption('s9q1',0,this)"><span class="opt-letter">א</span>כאב בטן חריף</button>
+      <button class="mc-option" onclick="pickOption('s9q1',1,this)"><span class="opt-letter">ב</span>שיטה טבעית לגירוד וניקוי – התנהגות נורמלית</button>
+      <button class="mc-option" onclick="pickOption('s9q1',2,this)"><span class="opt-letter">ג</span>Summer Itch</button>
+      <button class="mc-option" onclick="pickOption('s9q1',3,this)"><span class="opt-letter">ד</span>בעיה נוירולוגית</button>
+    </div>
+    <div class="feedback" id="fb-s9q1"></div>
+  </div>
+</div>
+
+<!-- ===== S10: גירוד הדדי + Pandiculation ===== -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a1a5e,#6c3483)">
+    <span class="chapter-num">פרק 7 – המשך</span><span class="emoji">🤝</span>
+    <h1>גירוד הדדי ו-Pandiculation</h1>
+    <p class="subtitle">שתי התנהגויות שמעידות על רווחה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר גירוד הדדי ו-Pandiculation ולהסביר מה הן מעידות.</div>
+  <div class="card">
+    <div class="section-title">🤝 גירוד הדדי (Mutual Grooming)</div>
+    <div class="highlight green"><strong>מה זה?</strong> שני סוסים שעומדים זה ליד זה ומגרדים זה את זה בחלקי גוף שלא ניתן להגיע אליהם לבד.</div>
+    <div class="highlight amber"><strong>תופעה בסייחים:</strong> אכילת זנב האם נפוצה מאוד בסייחים. (הבחנה: עלולה לשמש גם ליצירת כלי נגינה עממיים...)</div>
+  </div>
+  <div class="card">
+    <div class="section-title">🧘 Pandiculation – מתיחה וסדרת תנועות</div>
+    <div class="definition-box"><strong>Pandiculation</strong> = תבנית תנועות <strong>בסדר קבוע</strong>, בעיקר אצל סייחים (40-50 פעמים ביום). <strong>מבטאת תחושת רווחה טובה (Well-being).</strong></div>
+    <div class="highlight brown"><strong>הסדר הקבוע:</strong><br>1️⃣ כיפוף גרון וצוואר<br>2️⃣ ישור גב<br>3️⃣ הגבהה והזזת זנב<br>4️⃣ מתיחת רגליים אחוריות<br>5️⃣ מתיחת קדמיות<br>6️⃣ פיהוק (אופציה)</div>
+    <div class="highlight red"><strong>⚠️ סימן אזהרה:</strong> לא יופיע כשמחיה מצומצמת. תדירות יורדת בחולים ובכאבי שריר-שלד כרוניים.</div>
+    <div class="highlight amber"><strong>יש להבחין בין:</strong> Pandiculation (מתיחה נורמלית) ← מתיחות של כאב בטן</div>
+  </div>
+  <div class="remember-box">Pandiculation = תחושה טובה. אם נעלם – בדוק אם יש בעיה!</div>
+  <div class="question-box">
+    <div class="q-title">❓ מה ייתכן אם Pandiculation נעלם אצל סוס שבדרך כלל עשה אותו?</div>
+    <div class="mc-options" id="opts-s10q1">
+      <button class="mc-option" onclick="pickOption('s10q1',0,this)"><span class="opt-letter">א</span>הסוס עלה במשקל</button>
+      <button class="mc-option" onclick="pickOption('s10q1',1,this)"><span class="opt-letter">ב</span>ייתכן שהסוס חולה, כואב, או שמחייתו מצומצמת מדי</button>
+      <button class="mc-option" onclick="pickOption('s10q1',2,this)"><span class="opt-letter">ג</span>זה סימן חיובי – הסוס נרגע</button>
+      <button class="mc-option" onclick="pickOption('s10q1',3,this)"><span class="opt-letter">ד</span>הסוס גדל ועבר מגיל סייח לבוגר</button>
+    </div>
+    <div class="feedback" id="fb-s10q1"></div>
+  </div>
+</div>
+
+<!-- ===== S11: שינה ומנוחה ===== -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a2a4a,#1e40af)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">😴</span>
+    <h1>שינה ומנוחה</h1>
+    <p class="subtitle">ערנות, נמנום, שינה ו-REM</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלבי השינה של הסוס ולהסביר מדוע שינה עמוקה חשובה.</div>
+  <div class="card">
+    <div class="definition-box">הסוס מחלק את הזמן ל-3 מצבים: <strong>ערנות ← נמנום ← שינה</strong>.</div>
+    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>שינה בעמידה – אפשרית!</strong>הסוס יכול לישון בעמידה בזכות "Stay Apparatus" – מנגנון נעילת הרגליים. זה חוסך אנרגיה ומאפשר בריחה מהירה.</div></div>
+    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>שינה עמוקה – REM</strong>שינה עמוקה (עם חלומות) אפשרית רק בשכיבה! הסוס חייב לשכב כדי לישון שינה עמוקה.</div></div>
+    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>כמה זמן?</strong>סוס בוגר – כ-2.5 שעות רביצה ביממה, בעיקר בלילה. פונים – כ-5 שעות. סייחים קטנים – רבים מאוד!</div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">🐴 סוג הרביצה</div>
+    <div class="highlight green"><strong>בבוגרים:</strong> בעיקר רביצה סטרנלית (על הבטן, עד 30 דקות לרוחב). רביצה לטרלית (על הצד) מגבילה את זרימת הדם לריאות תוך 15 דקות!</div>
+    <div class="highlight amber"><strong>בסייחים:</strong> בעיקר לטרלית – ישנים על הצד הרבה יותר.</div>
+  </div>
+  <div class="exam-box">REM = רק בשכיבה. בוגר = 2.5 שעות. פונה = 5 שעות. סייח = הרבה. 15 דקות רביצה לטרלית = בעיה בזרימת דם לריאות בבוגר.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מדוע חשוב שסוס בוגר יוכל לשכב?</div>
+    <div class="mc-options" id="opts-s11q1">
+      <button class="mc-option" onclick="pickOption('s11q1',0,this)"><span class="opt-letter">א</span>כי הוא צריך לאכול שוכב</button>
+      <button class="mc-option" onclick="pickOption('s11q1',1,this)"><span class="opt-letter">ב</span>כי שינה עמוקה (REM) אפשרית רק בשכיבה</button>
+      <button class="mc-option" onclick="pickOption('s11q1',2,this)"><span class="opt-letter">ג</span>כי קיר האורווה נקי יותר כשהסוס שוכב</button>
+      <button class="mc-option" onclick="pickOption('s11q1',3,this)"><span class="opt-letter">ד</span>כי שכיבה מפחיתה לחץ על המפרקים בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s11q1"></div>
+  </div>
+</div>
+
+<!-- ===== S12: גורמים להפחתת רביצה ===== -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a2a4a,#1e40af)">
+    <span class="chapter-num">פרק 8 – המשך</span><span class="emoji">📉</span>
+    <h1>גורמים להפחתת זמן הרביצה</h1>
+    <p class="subtitle">מה גורם לסוס לישון פחות?</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט גורמים שמפחיתים את זמן הרביצה של הסוס.</div>
+  <div class="card">
+    <ul class="content-list">
+      <li data-icon="🌱">תקופה ראשונה במעבר מאורווה למרעה</li>
+      <li data-icon="💧">ריפוד לא נוח / רטוב בתא</li>
+      <li data-icon="🪢">קשירה קצרה בתאי קשירה / טיול</li>
+      <li data-icon="🔊">רעש ותאורה בלילה (כמו בקליניקות)</li>
+      <li data-icon="🦴">בעיות אורטופדיות כרוניות</li>
+    </ul>
+    <div class="highlight amber">⚠️ <strong>הערה:</strong> סוסים עם בעיות אורטופדיות כרוניות – בחלקן דווקא יִרְבְּצוּ יותר!</div>
+  </div>
+  <div class="remember-box">סוס שלא שוכב = ייתכן שמשהו מפריע לו! בדוק את הסביבה.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מה יכול לגרום לסוס לרבוץ פחות בלילה?</div>
+    <div class="mc-options" id="opts-s12q1">
+      <button class="mc-option" onclick="pickOption('s12q1',0,this)"><span class="opt-letter">א</span>אוכל טוב ומספיק</button>
+      <button class="mc-option" onclick="pickOption('s12q1',1,this)"><span class="opt-letter">ב</span>רעש ותאורה בלילה, כמו בקליניקות</button>
+      <button class="mc-option" onclick="pickOption('s12q1',2,this)"><span class="opt-letter">ג</span>ריפוד נוח ומוצלח</button>
+      <button class="mc-option" onclick="pickOption('s12q1',3,this)"><span class="opt-letter">ד</span>אורווה גדולה ומרווחת</button>
+    </div>
+    <div class="feedback" id="fb-s12q1"></div>
+  </div>
+</div>
+
+<!-- ===== S13: מגע וכאב ===== -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#c0392b)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">🖐️</span>
+    <h1>מגע וכאב</h1>
+    <p class="subtitle">רגישות, תגובות ומה משפיע עליהן</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה משפיע על עוצמת התגובה לכאב ולמגע, ולזהות סוסים עם רגישות גבוהה.</div>
+  <div class="card">
+    <div class="definition-box">הסוס הוא <strong>בעל חיים נטרף</strong> – בנוי לזיהוי סכנה מוקדם ולהסתלקות מהירה. זה מסביר את הרגישות הגבוהה!</div>
+    <div class="highlight brown"><strong>יעיל בלחימה מאחור:</strong> בעיטות אחוריות מצוינות. פחות מוצלח בקרב חזיתי: נשיכות, בעיטות קדמיות.</div>
+    <div class="highlight red"><strong>רגישות ותגובה עזה לכאב!</strong></div>
+    <div class="highlight amber"><strong>מה משפיע על עוצמת התגובה?</strong> טמפרמנט אישי, גזע, ומין הסוס.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">📊 טבלת רגישות לפי גזע/מין</div>
+    <table class="info-table">
+      <tr><th>גזע/מין</th><th>רגישות</th></tr>
+      <tr><td>סוסי "דם חם" (TB, ערבים)</td><td>🔴 גבוהה מאוד</td></tr>
+      <tr><td>נקבות ו-זכרים</td><td>🟠 גבוהה</td></tr>
+      <tr><td>מסורסים</td><td>🟡 נמוכה יותר</td></tr>
+      <tr><td>סוסי עבודה</td><td>🟢 נמוכה יחסית</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--text-muted)">סדר הרגישות: TB,ערבים >> סוסי עבודה. מסורסים פחות רגישים מנקבות וזכרים.</p>
+  </div>
+  <div class="exam-box">נטרף → רגיש מאוד → תגובות פתאומיות. גזע, מין, טמפרמנט משפיעים על עוצמת התגובה.</div>
+  <div class="question-box">
+    <div class="q-title">❓ איזה סוס צפוי להיות הרגיש ביותר לכאב ולמגע?</div>
+    <div class="mc-options" id="opts-s13q1">
+      <button class="mc-option" onclick="pickOption('s13q1',0,this)"><span class="opt-letter">א</span>סוס ערבי זכר</button>
+      <button class="mc-option" onclick="pickOption('s13q1',1,this)"><span class="opt-letter">ב</span>סוס עבודה מסורס</button>
+      <button class="mc-option" onclick="pickOption('s13q1',2,this)"><span class="opt-letter">ג</span>פוני נקבה</button>
+      <button class="mc-option" onclick="pickOption('s13q1',3,this)"><span class="opt-letter">ד</span>כל הסוסים שווים ברגישותם</button>
+    </div>
+    <div class="feedback" id="fb-s13q1"></div>
+  </div>
+</div>
+
+<!-- ===== S14: תגובות בכאב ===== -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#c0392b)">
+    <span class="chapter-num">פרק 9 – המשך</span><span class="emoji">💥</span>
+    <h1>תגובות בכאב</h1>
+    <p class="subtitle">תגובות פתאומיות ותגובה פיזיולוגית</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט את התגובות לכאב ולהסביר את התגובה הפיזיולוגית החשובה.</div>
+  <div class="card">
+    <div class="section-title">💥 תגובות פתאומיות לכאב</div>
+    <div class="pain-response">
+      <span class="tag flight">🏃 בריחה</span>
+      <span class="tag flight">🦵 משיכת רגל</span>
+      <span class="tag flight">⬆️ זריקת ראש מעלה</span>
+      <span class="tag flight">🥊 בעיטות</span>
+      <span class="tag flight">🛏️ רביצה</span>
+      <span class="tag flight">🔄 התגלגלות</span>
+      <span class="tag flight">⬇️ נפילה פתאומית</span>
+    </div>
+    <div class="highlight red"><strong>⚠️ מסוכן למטפל!</strong> אם לא מזהים סימנים מוקדמים או לא נמצאים במיקום נכון ביחס לסוס.</div>
+    <div class="highlight amber"><strong>⚠️ מסוכן לסוס!</strong> פציעות מנפילות, החמרת נזק כשנתקעים/נתפסים.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">⚡ תגובה פיזיולוגית לכאב</div>
+    <div class="definition-box"><strong>הגברה חזקה של המערכת הסימפתטית:</strong><br>✅ עלייה בקצב לב ולחץ דם<br>✅ הרחבת דרכי נשימה<br>✅ דיכוי מערכת עיכול<br>✅ הגברת חמצון שרירים<br>⚡ קצב לב יכול לעלות מ-30 ל-<strong>160 תוך מספר שניות</strong>!</div>
+  </div>
+  <div class="exam-box">קצב לב: מ-30 ל-160 תוך שניות בכאב. תגובות פתאומיות – מסוכנות למטפל ולסוס.</div>
+  <div class="question-box">
+    <div class="q-title">❓ לאיזה ערך יכול קצב הלב של הסוס לעלות בכאב?</div>
+    <div class="mc-options" id="opts-s14q1">
+      <button class="mc-option" onclick="pickOption('s14q1',0,this)"><span class="opt-letter">א</span>עד 70 פעימות בדקה</button>
+      <button class="mc-option" onclick="pickOption('s14q1',1,this)"><span class="opt-letter">ב</span>עד 160 פעימות בדקה, מ-30 תוך שניות</button>
+      <button class="mc-option" onclick="pickOption('s14q1',2,this)"><span class="opt-letter">ג</span>עד 100 פעימות, לאט-לאט</button>
+      <button class="mc-option" onclick="pickOption('s14q1',3,this)"><span class="opt-letter">ד</span>הקצב לא עולה בכאב, רק בפחד</button>
+    </div>
+    <div class="feedback" id="fb-s14q1"></div>
+  </div>
+</div>
+
+<!-- ===== S15: סימני פחד ===== -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a6e,#7c3aed)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">😨</span>
+    <h1>סימני פחד ותגובות מרגיעות</h1>
+    <p class="subtitle">זיהוי מוקדם = עבודה בטוחה</span>
+  </div>
+  <div class="goal-box">אני אוכל לפרט את סימני הפחד ולתאר תגובות מרגיעות נכונות של המטפל.</div>
+  <div class="card">
+    <div class="section-title">😨 סימני פחד</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">🦒 צוואר נוקשה</div></div>
+      <div class="mini-card"><div class="title">👂 אוזניים לפנים</div></div>
+      <div class="mini-card"><div class="title">👃 נחיריים מורחבים</div></div>
+      <div class="mini-card"><div class="title">⬅️ השענות לאחור</div></div>
+      <div class="mini-card"><div class="title">👁️ תנועות מהירות של גלגל העין</div>בכאב – גלגל מקובע ובולט!</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">✅ תגובות מרגיעות נכונות מצד המטפל</div>
+    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>זיהוי מוקדם</strong> – זהה סוס מאוים לפני שהוא מגיב</div></div>
+    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>יצירת "מסלול בריחה"</strong> – אל תחסום את הסוס</div></div>
+    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>עצירה + צעד לאחור</strong> – הפחת לחץ</div></div>
+    <div class="step-box"><div class="step-num">4</div><div class="step-content"><strong>הרפיית חבל / שחרור לחץ</strong></div></div>
+    <div class="step-box"><div class="step-num">5</div><div class="step-content"><strong>הגברת ריסון</strong> במידת הצורך</div></div>
+    <div class="highlight green"><strong>סוס שנרגע:</strong> תנועות לעיסה – סימן לרגיעה!</div>
+  </div>
+  <div class="remember-box">אוזניים לפנים + נחיריים מורחבים = פחד. תנועות לעיסה = הסוס נרגע.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מה ההבדל בין עיני סוס פוחד לעיני סוס כואב?</div>
+    <div class="mc-options" id="opts-s15q1">
+      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>אין הבדל – שניהם אותו דבר</button>
+      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>בפחד – תנועות מהירות של גלגל העין. בכאב – גלגל מקובע ובולט</button>
+      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>בפחד – עיניים סגורות. בכאב – עיניים פתוחות</button>
+      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>בפחד – גלגל מקובע ובולט. בכאב – תנועות מהירות</button>
+    </div>
+    <div class="feedback" id="fb-s15q1"></div>
+  </div>
+</div>
+
+<!-- ===== S16: מרחב ומרחק קריטי ===== -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a4a,#0c5e6e)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">📏</span>
+    <h1>מרחב אישי וטריטוריאליזם</h1>
+    <p class="subtitle">הבנת הגבולות הטבעיים של הסוס</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין "מרחב אינדיוידואלי" ל"מרחק קריטי".</div>
+  <div class="card">
+    <div class="definition-box"><strong>"מרחב אינדיוידואלי"</strong> – "טבעת" המקיפה את הסוס, מעניקה מרחב פרטי לפעולות קיומיות: אכילה, רביצה, התמתחות.</div>
+    <div class="definition-box"><strong>"מרחק קריטי"</strong> – המרחק הנשמר מסוסים אחרים. כשסוס מתקרב מעבר למרחק הקריטי נוצרת אינטראקציה: בריחה, התעניינות, או תקיפה.</div>
+    <div class="highlight amber"><strong>השפעת גזע:</strong> בגזעי "דם חם" (TB, ערבים) – המרחק הקריטי גדול יותר ומהירות התגובה גבוהה יותר לעומת גזעי "דם קר".</div>
+    <div class="highlight brown"><strong>השפעת ממשק:</strong> לסוג הממשק והפעילות השפעה רבה על גודל המרחק.</div>
+  </div>
+  <div class="exam-box">מרחב אינדיוידואלי = טבעת אישית סביב הסוס. מרחק קריטי = מרחק מסוסים אחרים. דם חם = מרחק גדול יותר.</div>
+  <div class="question-box">
+    <div class="q-title">❓ לאיזו תגובה ניתן לצפות כשסוס זר עובר את "המרחק הקריטי"?</div>
+    <div class="mc-options" id="opts-s16q1">
+      <button class="mc-option" onclick="pickOption('s16q1',0,this)"><span class="opt-letter">א</span>בריחה, התעניינות, או תקיפה</button>
+      <button class="mc-option" onclick="pickOption('s16q1',1,this)"><span class="opt-letter">ב</span>הסוס תמיד יברח</button>
+      <button class="mc-option" onclick="pickOption('s16q1',2,this)"><span class="opt-letter">ג</span>הסוס מתעלם לחלוטין</button>
+      <button class="mc-option" onclick="pickOption('s16q1',3,this)"><span class="opt-letter">ד</span>הסוס תמיד יתקוף</button>
+    </div>
+    <div class="feedback" id="fb-s16q1"></div>
+  </div>
+</div>
+
+<!-- ===== S17: הירארכיה ולחימה ===== -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a1a0a,#7c4f1a)">
+    <span class="chapter-num">פרק 12</span><span class="emoji">👑</span>
+    <h1>הירארכיה ולחימה</h1>
+    <p class="subtitle">מי שולט בעדר ומה קורה כשמצרפים סוס חדש?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את ההירארכיה בקבוצת סוסים ולהסביר כיצד לצרף סוס חדש בצורה נכונה.</div>
+  <div class="card">
+    <div class="section-title">👑 הירארכיה בקבוצה</div>
+    <div class="highlight brown">הירארכיה ברורה תתפתח בכל קבוצת סוסים הנמצאת באותו שטח.</div>
+    <div class="highlight amber">אין כללים נוקשים בקביעת הדומיננטיות. אבל: <strong>לא יותר מזכר אחד "שולט" בקבוצת סוסות.</strong></div>
+    <div class="highlight red"><strong>מי נפגע קודם?</strong> סוס במקום נמוך בהירארכיה, או סוס חדש בעדר, יסבלו ראשונים מ<strong>חסר תזונתי ומפגיעות פיזיות!</strong></div>
+  </div>
+  <div class="card">
+    <div class="section-title">🤝 כיצד לצרף סוס חדש נכון?</div>
+    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>בהדרגה:</strong> אורווה → רכיבה → מרעה</div></div>
+    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>שטח מספק</strong> לבריחה</div></div>
+    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>מספר נקודות האכלה</strong> – יותר ממקום אחד!</div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">⚔️ לחימה</div>
+    <div class="highlight amber"><strong>כיסוחים קטנים:</strong> נפוצים מאוד בגדרות קטנות. בעיקר בגלל אוכל או "קרבן כיתתי".</div>
+    <div class="highlight red"><strong>קרבות מלאים:</strong> לרוב לקביעת טריטוריות בין זכרים.</div>
+    <div class="highlight brown"><strong>שלבי הקרב:</strong> הרחה → בעיטות באדמה → עמידה על אחוריות → תקיפה (נשיכות, בעיטות) → קרב אווירי → הפלה. מסתיים בבריחת המפסיד.</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ למה צריך כמה נקודות האכלה כשמצרפים סוס חדש לעדר?</div>
+    <div class="mc-options" id="opts-s17q1">
+      <button class="mc-option" onclick="pickOption('s17q1',0,this)"><span class="opt-letter">א</span>כי הסוס החדש אוכל יותר</button>
+      <button class="mc-option" onclick="pickOption('s17q1',1,this)"><span class="opt-letter">ב</span>כי הסוס הנמוך בהירארכיה ייסבל מחסר תזונתי אם ידחקוהו מנקודה אחת</button>
+      <button class="mc-option" onclick="pickOption('s17q1',2,this)"><span class="opt-letter">ג</span>כי מזון מתקלקל מהר בנקודה אחת</button>
+      <button class="mc-option" onclick="pickOption('s17q1',3,this)"><span class="opt-letter">ד</span>כי כל הסוסים אוכלים בו-זמנית</button>
+    </div>
+    <div class="feedback" id="fb-s17q1"></div>
+  </div>
+</div>
+
+<!-- ===== S18: הירארכיה סוס-אדם ===== -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#2d6a4f)">
+    <span class="chapter-num">פרק 12 – המשך</span><span class="emoji">🤝</span>
+    <h1>הירארכיה: סוס-אדם</h1>
+    <p class="subtitle">שלושה סוגי קשרים – ומה כדאי?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר 3 סוגי מערכות יחסים בין סוס לאדם ולהסביר מה מצב אידיאלי.</div>
+  <div class="card">
+    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>🟢 אדם &gt; סוס (מצב הכרחי לתפקוד)</strong>אדם בן 55 ק"ג צריך לנהל סוס של 500 ק"ג – זה חייב לעבוד! <strong>אידיאלי כשנרכש בהיגיון "סוסי"</strong> (כולל כוח כשצריך). סוס שיכבד ויסמוך על המטפל.</div></div>
+    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>🟡 אדם = סוס (גובה שווה)</strong>מתאים לאנשים שרוצים "חבר" בלבד. הבעיות יצוצו כשהסוס נדרש לעשות משהו לא נוח – הכנסת צינור קיבה, מעבר דרך מים. <strong>ינצח החזק!</strong></div></div>
+    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>🔴 סוס &gt; אדם (נדיר, מסוכן!)</strong>נדיר יחסית. <strong>מסוכן מאוד לשני הצדדים.</strong> יופיע לסירוגין אצל זכרים ברגעים רוויי טסטוסטרון. לכן: <strong>סוסים זכרים – לגדל רק ע"י אנשים מנוסים!</strong></div></div>
+  </div>
+  <div class="remember-box">מצב אידיאלי: אדם > סוס, שנרכש בלוגיקה סוסית – לא בכוח מופרז!</div>
+  <div class="question-box">
+    <div class="q-title">❓ מה הסכנה במצב שבו סוס ואדם שווים בהירארכיה?</div>
+    <div class="mc-options" id="opts-s18q1">
+      <button class="mc-option" onclick="pickOption('s18q1',0,this)"><span class="opt-letter">א</span>הסוס לא יאכל טוב</button>
+      <button class="mc-option" onclick="pickOption('s18q1',1,this)"><span class="opt-letter">ב</span>בסיטואציה קשה (טיפול רפואי, מעבר מים) – הסוס יסרב ויינצח החזק – מסוכן לשניהם</button>
+      <button class="mc-option" onclick="pickOption('s18q1',2,this)"><span class="opt-letter">ג</span>הסוס לא יצייד את הרוכב</button>
+      <button class="mc-option" onclick="pickOption('s18q1',3,this)"><span class="opt-letter">ד</span>זה המצב האידיאלי – אין בו סכנה</button>
+    </div>
+    <div class="feedback" id="fb-s18q1"></div>
+  </div>
+</div>
+
+<!-- ===== S19: סוסים תוקפניים ===== -->
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#9b2335)">
+    <span class="chapter-num">פרק 13</span><span class="emoji">😡</span>
+    <h1>סוסים תוקפניים וסימני אגרסיביות</h1>
+    <p class="subtitle">זיהוי ומניעה</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט את סימני האגרסיביות ולהסביר מה גורם לסוסים תוקפניים.</div>
+  <div class="card">
+    <div class="section-title">😡 תוקפנות אמיתית – נדירה!</div>
+    <div class="highlight amber"><strong>ברובם</strong> – סוסים מבוהלים מאוד, לא תוקפניים באמת.</div>
+    <div class="highlight brown"><strong>גורמים:</strong> היסטוריה של התעללות, או האכלת יד מוגזמת.</div>
+    <div class="highlight green"><strong>טיפול:</strong> אימון מחדש – תהליך ממושך, הרבה סבלנות, היגיון סוסי, ריסון יעיל והרפיה בתזמון מדויק.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">⚠️ סימני אגרסיביות – למדו לזהות!</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">👀 מבט מתוח</div></div>
+      <div class="mini-card"><div class="title">💪 כיווץ שרירים</div></div>
+      <div class="mini-card"><div class="title">👂 אוזניים שוכבות לאחור</div>(להבדיל מסקרנות/דאגה)</div>
+      <div class="mini-card"><div class="title">👁️ גלגל עין מסובב לאחור</div></div>
+    </div>
+    <div class="highlight amber"><strong>תוקפנות בטיפולים רפואיים:</strong> יתכן גם בסוסים שקטים! בגלל הרעיונות המוזרים שלנו (שיוף שיניים, בדיקה רקטלית...). פתרון: גישה רגועה ובטוחה, פעולה הדרגתית, ריסון מתאים.</div>
+  </div>
+  <div class="remember-box">אוזניים שוכבות לאחור = סימן אזהרה! זהה לפני שתגש.</div>
+  <div class="question-box">
+    <div class="q-title">❓ אוזניים שוכבות לאחור פירושן בדרך כלל...</div>
+    <div class="mc-options" id="opts-s19q1">
+      <button class="mc-option" onclick="pickOption('s19q1',0,this)"><span class="opt-letter">א</span>הסוס ישן</button>
+      <button class="mc-option" onclick="pickOption('s19q1',1,this)"><span class="opt-letter">ב</span>אגרסיביות / תחושה של איום</button>
+      <button class="mc-option" onclick="pickOption('s19q1',2,this)"><span class="opt-letter">ג</span>הסוס שמח ורוצה לשחק</button>
+      <button class="mc-option" onclick="pickOption('s19q1',3,this)"><span class="opt-letter">ד</span>הסוס קר לו</button>
+    </div>
+    <div class="feedback" id="fb-s19q1"></div>
+  </div>
+</div>
+
+<!-- ===== S20: אנומליות תגובתיות ===== -->
+<div class="screen" id="screen-20">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a1a4a,#5a1a6e)">
+    <span class="chapter-num">פרק 14</span><span class="emoji">🔄</span>
+    <h1>אנומליות תגובתיות</h1>
+    <p class="subtitle">מתי תגובה היא "נורמלית" ומתי היא בעיה?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה מגדיר אנומליה תגובתית ולזהות התנהגויות גבוליות.</div>
+  <div class="card">
+    <div class="definition-box"><strong>אנומליות תגובתיות:</strong> התנפלויות, בעיטות, נשיכות, איומים, פחדנות, תגובות "היסטריה", היפראקטיביות.</div>
+    <div class="section-title">🤔 שתי שאלות מכריעות</div>
+    <div class="highlight brown"><strong>שאלה 1:</strong> האם ההתנהגות תורמת לקיום או לנוחות הסוס?</div>
+    <div class="highlight amber"><strong>שאלה 2:</strong> האם עוצמת התגובה סבירה ביחס למצב/אירוע?</div>
+    <p style="font-size:15px;line-height:1.7;margin-top:12px">אם התשובה ל<strong>שתיהן</strong> היא <strong>כן</strong> – ייתכן שזה נורמלי. אם עוצמת התגובה מוגזמת ביחס למצב – זו אנומליה.</p>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 דוגמאות</div>
+    <div class="highlight green">✅ <strong>נורמלי:</strong> סוס שבועט כשגישה מאחוריו – הגנה עצמית מתוך טבע</div>
+    <div class="highlight red">⚠️ <strong>אנומליה:</strong> סוס שמתנפל על מטפל שמביא לו אוכל – תגובה מוגזמת ביחס למצב</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ סוס שמתנפל על המטפל בכל פעם שמנקים את תא האורווה – זה נחשב...</div>
+    <div class="mc-options" id="opts-s20q1">
+      <button class="mc-option" onclick="pickOption('s20q1',0,this)"><span class="opt-letter">א</span>תגובה נורמלית להגנה על הטריטוריה</button>
+      <button class="mc-option" onclick="pickOption('s20q1',1,this)"><span class="opt-letter">ב</span>אנומליה תגובתית – התגובה מוגזמת מאוד ביחס למצב ולא תורמת לסוס</button>
+      <button class="mc-option" onclick="pickOption('s20q1',2,this)"><span class="opt-letter">ג</span>בדיוק כמו בטבע</button>
+      <button class="mc-option" onclick="pickOption('s20q1',3,this)"><span class="opt-letter">ד</span>סימן שהסוס חולה</button>
+    </div>
+    <div class="feedback" id="fb-s20q1"></div>
+  </div>
+</div>
+
+<!-- ===== S21: אכילה בטבע ===== -->
+<div class="screen" id="screen-21">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d6a4f)">
+    <span class="chapter-num">פרק 15</span><span class="emoji">🌿</span>
+    <h1>התנהגות אכילה בטבע</h1>
+    <p class="subtitle">כך אוכל הסוס בחופשיות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הרגלי האכילה הטבעיים של הסוס.</div>
+  <div class="card">
+    <div class="highlight green"><strong>אוכלי עשב ושיחים</strong> בטבע. אוספים ירק עם השפתיים וחותכים קרוב לשורש. <strong>מהלכים תוך כדי רעייה!</strong></div>
+    <div class="highlight brown"><strong>מרחק ברעייה חופשית:</strong> 3-10 ק"מ ביום.</div>
+    <div class="highlight amber"><strong>גידול במרעה אידיאלי לסייחים:</strong> שילוב של הזנה טבעית + תנועה. משמש ברוב אורוות הגידול בעולם!</div>
+    <div class="highlight red"><strong>⚠️ סכנות בטבע:</strong> הסוס לא תמיד מזהה צמחי רעל! דוגמאות בישראל: כלח, עשב סודני, אבוקדו.</div>
+    <div class="highlight purple"><strong>לעיסת קליפות עץ/גדרות עץ:</strong> בשעמום, חסר פעילות, חסר מינרלים.</div>
+  </div>
+  <div class="remember-box">סוס בטבע = עובר 3-10 ק"מ ביום תוך כדי אכילה! הכלא של האורווה שונה מאוד מכך.</div>
+  <div class="question-box">
+    <div class="q-title">❓ מדוע סוס לועס גדרות עץ?</div>
+    <div class="mc-options" id="opts-s21q1">
+      <button class="mc-option" onclick="pickOption('s21q1',0,this)"><span class="opt-letter">א</span>שעמום, חסר פעילות, או חסר מינרלים</button>
+      <button class="mc-option" onclick="pickOption('s21q1',1,this)"><span class="opt-letter">ב</span>כי עץ זה החלק העדיף בתפריטו</button>
+      <button class="mc-option" onclick="pickOption('s21q1',2,this)"><span class="opt-letter">ג</span>כדי לחדד את שיניו</button>
+      <button class="mc-option" onclick="pickOption('s21q1',3,this)"><span class="opt-letter">ד</span>כי עץ מכיל ויטמינים חשובים</button>
+    </div>
+    <div class="feedback" id="fb-s21q1"></div>
+  </div>
+</div>
+
+<!-- ===== S22: אכילה באורווה ===== -->
+<div class="screen" id="screen-22">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d6a4f)">
+    <span class="chapter-num">פרק 15 – המשך</span><span class="emoji">🪣</span>
+    <h1>אכילה ושתייה באורווה</h1>
+    <p class="subtitle">כמות, זמן ושיטות לשיפור</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט את זמני האכילה והשתייה של הסוס באורווה.</div>
+  <div class="card">
+    <table class="info-table">
+      <tr><th>סוג מזון</th><th>זמן אכילה ביממה</th></tr>
+      <tr><td>🌿 רעייה חופשית בטבע</td><td>15-18 שעות!</td></tr>
+      <tr><td>🌾 חציר חופשי</td><td>8-10 שעות</td></tr>
+      <tr><td>⚡ מזון מרוכז</td><td>פחות משעה</td></tr>
+      <tr><td>🏠 סוס באורווה (ממוצע)</td><td>כ-3 שעות</td></tr>
+    </table>
+    <div class="highlight amber"><strong>שתייה:</strong> מעט פעמים בלגימות גדולות. כ-30 ליטר ליממה לסוס ממוצע. באורווה – שותה כ-15 דקות ביום.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">💡 כיצד מגבירים זמן אכילה באורווה?</div>
+    <div class="highlight green">• אבוס עם גבולים (גריל/חורים קטנים) • הוספת תבן (מזון גס קצוץ) למזון המרוכז • רשת חציר</div>
+    <div class="highlight red"><strong>⚠️ אזהרה:</strong> מערכת העיכול של הסוס רגישה מאוד לשינויי הזנה ולמזון באיכות גרועה!</div>
+    <div class="highlight brown"><strong>זיהוי חסר נתרן:</strong> הסוס ישלים מהקרקע – <strong>סכנה לאכילת חול!</strong></div>
+  </div>
+  <div class="exam-box">בטבע = 15-18 שעות אכילה. באורווה = 3 שעות בלבד. הגבלה זו משפיעה על הרווחה!</div>
+  <div class="question-box">
+    <div class="q-title">❓ כמה שעות ביממה אוכל סוס בטבע (רעייה)?</div>
+    <div class="mc-options" id="opts-s22q1">
+      <button class="mc-option" onclick="pickOption('s22q1',0,this)"><span class="opt-letter">א</span>3-5 שעות</button>
+      <button class="mc-option" onclick="pickOption('s22q1',1,this)"><span class="opt-letter">ב</span>15-18 שעות</button>
+      <button class="mc-option" onclick="pickOption('s22q1',2,this)"><span class="opt-letter">ג</span>8-10 שעות</button>
+      <button class="mc-option" onclick="pickOption('s22q1',3,this)"><span class="opt-letter">ד</span>24 שעות ללא הפסקה</button>
+    </div>
+    <div class="feedback" id="fb-s22q1"></div>
+  </div>
+</div>
+
+<!-- ===== S23: Wind Sucking ===== -->
+<div class="screen" id="screen-23">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a2a1a,#8b4513)">
+    <span class="chapter-num">פרק 16</span><span class="emoji">💨</span>
+    <h1>בעיות הזנה: Wind Sucking ואכילת עץ</h1>
+    <p class="subtitle">אנומליות הקשורות לשעמום ולחוסר גירוי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר מה זה Crib-Biting/Wind Sucking ולהסביר כיצד לטפל בו.</div>
+  <div class="card">
+    <div class="section-title">💨 Crib-Biting / Wind Sucking</div>
+    <div class="definition-box"><strong>Crib-Biting:</strong> אחיזת עצם נוקשה בשיניים (גדר, אבוס), מתיחת צוואר, <strong>ובליעת אוויר.</strong></div>
+    <div class="highlight red"><strong>מתי מופיע?</strong> בעיקר באורווה, בסוסים <strong>משועממים.</strong> ניתן ללמוד מסוסים אחרים!</div>
+    <div class="highlight amber"><strong>תוצאות:</strong> שחיקת יתר בשיניים, עלייה בשכיחות קוליקים (כאבי בטן), איבוד משקל.</div>
+    <div class="section-title" style="margin-top:16px">🔧 טיפול</div>
+    <ul class="content-list">
+      <li data-icon="🌿">יציאה למרעה</li>
+      <li data-icon="🏃">הגברת פעילות</li>
+      <li data-icon="🌾">הגברת מזון גס</li>
+      <li data-icon="🎽">שימוש ברצועות לחץ (כואבות במתיחת צוואר)</li>
+      <li data-icon="🔪">טיפול כירורגי (הצלחות חלקיות בלבד)</li>
+      <li data-icon="⚡">התניה שלילית – שוק חשמלי (יעילות מוגבלת)</li>
+    </ul>
+    <div class="highlight red"><strong>⚠️ קשה מאוד להפטר מהרגל זה!</strong></div>
+  </div>
+  <div class="card">
+    <div class="section-title">🪵 אכילת עץ</div>
+    <div class="highlight brown">נפוצה מאוד! מזיק לאורווה, פחות לסוס. פונים ללא חציר לעסו 300 גרם עץ ביום – ירד ב-80% כשקיבלו חציר!</div>
+    <div class="highlight green"><strong>מניעה:</strong> מזון גס חופשי, דל חלבון.</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ מהי הסיבה העיקרית להתפתחות Crib-Biting?</div>
+    <div class="mc-options" id="opts-s23q1">
+      <button class="mc-option" onclick="pickOption('s23q1',0,this)"><span class="opt-letter">א</span>כאבי שיניים</button>
+      <button class="mc-option" onclick="pickOption('s23q1',1,this)"><span class="opt-letter">ב</span>שעמום בסוסים המוגבלים באורווה</button>
+      <button class="mc-option" onclick="pickOption('s23q1',2,this)"><span class="opt-letter">ג</span>תזונה לקויה בלבד</button>
+      <button class="mc-option" onclick="pickOption('s23q1',3,this)"><span class="opt-letter">ד</span>גנטיקה – תורשתי בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s23q1"></div>
+  </div>
+</div>
+
+<!-- ===== S24: אנומליות סומטיות ===== -->
+<div class="screen" id="screen-24">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a1a4a,#5a2e6e)">
+    <span class="chapter-num">פרק 17</span><span class="emoji">🚨</span>
+    <h1>אנומליות סומטיות – Stable Vices</h1>
+    <p class="subtitle">התנהגויות סטריאוטיפיות ואנומליות אכילה נוספות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את ה-Stable Vices העיקריים ואת הגורמים להם.</div>
+  <div class="card">
+    <div class="definition-box"><strong>Stable Vices:</strong> תופעות סטריאוטיפיות החוזרות בתבנית קבועה. נפוצות בסוסים <strong>משועממים המוגבלים</strong> בתנועה ו/או במרחב ראייה. ייתכן התמכרות לאופייטים המשוחררים.</div>
+    <table class="info-table">
+      <tr><th>שם</th><th>תיאור</th><th>תוצאה</th></tr>
+      <tr><td><strong>Weaving</strong></td><td>נדנוד ראש מצד לצד/קדימה-אחורה</td><td>תשישות, איבוד משקל</td></tr>
+      <tr><td><strong>Pawing</strong></td><td>הקשה עם רגל קדמית ברצפה</td><td>פגיעה בפרסה ובקיר התא, בורות</td></tr>
+      <tr><td><strong>צעידה מתמשכת</strong></td><td>הליכה במעגל ללא הפסקה</td><td>איבוד משקל, בעיות גב</td></tr>
+      <tr><td><strong>זריקת ראש</strong></td><td>הנפה פתאומית של הראש</td><td>בהמשך לכאב ברכיבה (מתג, גב, שיניים)</td></tr>
+    </table>
+    <div class="highlight red"><strong>⚠️ כולם:</strong> טיפול עיקרי = הגדלת תא, מרעה, פעילות. קשה מאוד להפטר!</div>
+  </div>
+  <div class="card">
+    <div class="section-title">💧 שתיית יתר</div>
+    <div class="highlight amber">עד 140 ליטר ביממה (לעומת 30-40 בנורמלי). מלווה בהשתנת יתר. סכנה לפיתול מעי ונזק כלייתי. <strong>טיפול: הגבלת שתייה ל-50 ליטר, צמצום שעמום.</strong></div>
+  </div>
+  <div class="card">
+    <div class="section-title">💩 קורופגיה</div>
+    <div class="highlight brown"><strong>אכילת צואה:</strong> נורמלי בסייחים! נחשב להפרעה בבוגרים. <strong>טיפול: הקטנת שעמום, הוספת מזון גס.</strong></div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ מהו הטיפול הכללי ברוב ה-Stable Vices?</div>
+    <div class="mc-options" id="opts-s24q1">
+      <button class="mc-option" onclick="pickOption('s24q1',0,this)"><span class="opt-letter">א</span>תרופות להרגעה קבועה</button>
+      <button class="mc-option" onclick="pickOption('s24q1',1,this)"><span class="opt-letter">ב</span>הגדלת תא, מרעה, פעילות – הפחתת שעמום</button>
+      <button class="mc-option" onclick="pickOption('s24q1',2,this)"><span class="opt-letter">ג</span>ענישה בכל פעם שחוזר על ההתנהגות</button>
+      <button class="mc-option" onclick="pickOption('s24q1',3,this)"><span class="opt-letter">ד</span>ניתוח בכל מקרה</button>
+    </div>
+    <div class="feedback" id="fb-s24q1"></div>
+  </div>
+</div>
+
+<!-- ===== S25: מילון מונחים ===== -->
+<div class="screen" id="screen-25">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a2a4a,#1e3a8a)">
+    <span class="chapter-num">פרק 18</span><span class="emoji">📖</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">מושגי מפתח מהמצגת</p>
+  </div>
+  <div class="goal-box">לחץ על כל מונח כדי לראות את ההגדרה.</div>
+  <div id="glossary-cards-container">
+    <div class="flashcard-container" style="min-height:130px">
+      <div class="flashcard" id="fc0" onclick="flipCard('fc0')">
+        <div class="flashcard-front"><div class="term">Self-Grooming</div><div class="hint">לחץ לגלות הגדרה</div></div>
+        <div class="flashcard-back"><div class="def">טיפוח עצמי: תנועות לניקוי, גירוד והרחקת טפילים. מעיד על הרגשה טובה.</div></div>
+      </div>
+    </div>
+    <div class="flashcard-nav"><button onclick="prevCard()">◀ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 12</span><button onclick="nextCard()">הבא ▶</button></div>
+  </div>
+</div>
+
+<!-- ===== S26: נכון / לא נכון ===== -->
+<div class="screen" id="screen-26">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#059669)">
+    <span class="chapter-num">פרק 19</span><span class="emoji">✅</span>
+    <h1>חזרה – נכון / לא נכון</h1>
+    <p class="subtitle">בדוק את עצמך!</p>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ שינה עמוקה (REM) אפשרית גם בעמידה.</div>
+    <div class="tf-options" id="tfopts-r1">
+      <button class="tf-btn" data-val="true" onclick="pickTF('r1',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('r1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-r1"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ Pandiculation עולה בתדירותה בסוסים עם כאבי שריר-שלד כרוניים.</div>
+    <div class="tf-options" id="tfopts-r2">
+      <button class="tf-btn" data-val="true" onclick="pickTF('r2',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('r2',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-r2"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ הסוס יכול לזהות בצורה אמינה מזון מקולקל.</div>
+    <div class="tf-options" id="tfopts-r3">
+      <button class="tf-btn" data-val="true" onclick="pickTF('r3',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('r3',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-r3"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ Flehmen היא התנהגות אופיינית לזכרים בנוכחות נקבות בייחום.</div>
+    <div class="tf-options" id="tfopts-r4">
+      <button class="tf-btn" data-val="true" onclick="pickTF('r4',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('r4',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-r4"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ קצב הלב של הסוס בכאב יכול לעלות מ-30 ל-160 פעימות תוך שניות.</div>
+    <div class="tf-options" id="tfopts-r5">
+      <button class="tf-btn" data-val="true" onclick="pickTF('r5',true,this)">✅ נכון</button>
+      <button class="tf-btn" data-val="false" onclick="pickTF('r5',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-r5"></div>
+  </div>
+</div>
+
+<!-- ===== S27: שאלות הבנה ===== -->
+<div class="screen" id="screen-27">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a3a1a,#8a6520)">
+    <span class="chapter-num">פרק 19 – המשך</span><span class="emoji">❓</span>
+    <h1>שאלות הבנה</h1>
+    <p class="subtitle">בגרות-סטייל</p>
+  </div>
+  <div class="question-box" style="margin-bottom:16px">
+    <div class="q-title">1. מה ההבדל בין "מרחב אינדיוידואלי" ל"מרחק קריטי"?</div>
+    <div class="mc-options" id="opts-q27a">
+      <button class="mc-option" onclick="pickOption('q27a',0,this)"><span class="opt-letter">א</span>אין הבדל – שניהם אותו הדבר</button>
+      <button class="mc-option" onclick="pickOption('q27a',1,this)"><span class="opt-letter">ב</span>מרחב אינדיוידואלי = טבעת לפעולות קיומיות. מרחק קריטי = מרחק מסוסים אחרים לפני אינטראקציה</button>
+      <button class="mc-option" onclick="pickOption('q27a',2,this)"><span class="opt-letter">ג</span>מרחב אינדיוידואלי = רק בטבע. מרחק קריטי = רק באורווה</button>
+      <button class="mc-option" onclick="pickOption('q27a',3,this)"><span class="opt-letter">ד</span>מרחב קריטי = לפני בריחה. מרחב אינדיוידואלי = לפני תקיפה</button>
+    </div>
+    <div class="feedback" id="fb-q27a"></div>
+  </div>
+  <div class="question-box" style="margin-bottom:16px">
+    <div class="q-title">2. מה ניתן להסיק אם סוס בוגר לא שוכב בלילה?</div>
+    <div class="mc-options" id="opts-q27b">
+      <button class="mc-option" onclick="pickOption('q27b',0,this)"><span class="opt-letter">א</span>הוא מאוד בריא ופעיל</button>
+      <button class="mc-option" onclick="pickOption('q27b',1,this)"><span class="opt-letter">ב</span>ייתכן שיש גורם מפריע: ריפוד לא נוח, רעש, בעיה אורטופדית, או שינוי מאורווה למרעה</button>
+      <button class="mc-option" onclick="pickOption('q27b',2,this)"><span class="opt-letter">ג</span>הוא שינה מספיק בעמידה ואינו זקוק ל-REM</button>
+      <button class="mc-option" onclick="pickOption('q27b',3,this)"><span class="opt-letter">ד</span>זה נורמלי לחלוטין בסוסים מעל גיל 10</button>
+    </div>
+    <div class="feedback" id="fb-q27b"></div>
+  </div>
+  <div class="question-box" style="margin-bottom:16px">
+    <div class="q-title">3. מהי המשמעות של תנועות לעיסה בסוס שהיה מפוחד?</div>
+    <div class="mc-options" id="opts-q27c">
+      <button class="mc-option" onclick="pickOption('q27c',0,this)"><span class="opt-letter">א</span>הוא רעב ורוצה לאכול</button>
+      <button class="mc-option" onclick="pickOption('q27c',1,this)"><span class="opt-letter">ב</span>סימן שהסוס נרגע</button>
+      <button class="mc-option" onclick="pickOption('q27c',2,this)"><span class="opt-letter">ג</span>הוא עומד לתקוף</button>
+      <button class="mc-option" onclick="pickOption('q27c',3,this)"><span class="opt-letter">ד</span>הוא עייף ורוצה לישון</button>
+    </div>
+    <div class="feedback" id="fb-q27c"></div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">4. איזה חוש מאפשר לסוס לזהות פורומונים?</div>
+    <div class="mc-options" id="opts-q27d">
+      <button class="mc-option" onclick="pickOption('q27d',0,this)"><span class="opt-letter">א</span>ראייה</button>
+      <button class="mc-option" onclick="pickOption('q27d',1,this)"><span class="opt-letter">ב</span>ריח – דרך איבר ג'ייקובסון (VNO)</button>
+      <button class="mc-option" onclick="pickOption('q27d',2,this)"><span class="opt-letter">ג</span>שמיעה</button>
+      <button class="mc-option" onclick="pickOption('q27d',3,this)"><span class="opt-letter">ד</span>מגע</button>
+    </div>
+    <div class="feedback" id="fb-q27d"></div>
+  </div>
+</div>
+
+<!-- ===== S28: התאמה ===== -->
+<div class="screen" id="screen-28">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#0369a1)">
+    <span class="chapter-num">פרק 19 – סיכום</span><span class="emoji">🔗</span>
+    <h1>התאמת מושגים</h1>
+    <p class="subtitle">חבר כל מונח להגדרה הנכונה</p>
+  </div>
+  <div class="card">
+    <p style="font-size:15px;font-weight:700;margin-bottom:14px">לחץ תחילה על מושג משמאל, אחר כך על ההגדרה מימין:</p>
+    <div class="match-container" id="match-game">
+      <div class="match-col" id="left-col">
+        <div class="match-item left-item" data-id="a" onclick="selectLeft('a',this)">Flehmen</div>
+        <div class="match-item left-item" data-id="b" onclick="selectLeft('b',this)">Pandiculation</div>
+        <div class="match-item left-item" data-id="c" onclick="selectLeft('c',this)">Stay Apparatus</div>
+        <div class="match-item left-item" data-id="d" onclick="selectLeft('d',this)">Crib-Biting</div>
+        <div class="match-item left-item" data-id="e" onclick="selectLeft('e',this)">VNO</div>
+      </div>
+      <div class="match-col" id="right-col">
+        <div class="match-item right-item" data-match="c" onclick="selectRight('c',this)">מנגנון נעילת רגלי הסוס המאפשר שינה בעמידה</div>
+        <div class="match-item right-item" data-match="a" onclick="selectRight('a',this)">הרמת שפה עליונה – לאיסוף פורומונים</div>
+        <div class="match-item right-item" data-match="e" onclick="selectRight('e',this)">איבר ג'ייקובסון – לזיהוי פורומונים</div>
+        <div class="match-item right-item" data-match="b" onclick="selectRight('b',this)">תבנית מתיחות בסדר קבוע – מעיד על רווחה</div>
+        <div class="match-item right-item" data-match="d" onclick="selectRight('d',this)">אחיזת עצם ובליעת אוויר – בשעמום</div>
+      </div>
+    </div>
+    <div id="match-score" class="score-box" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ===== S29: סיום ===== -->
+<div class="screen" id="screen-29">
+  <div class="completion-card">
+    <div style="font-size:64px;margin-bottom:8px">🏆</div>
+    <h2>כל הכבוד! סיימת את הלומדה!</h2>
+    <p style="opacity:.9;margin-top:8px;font-size:16px">התנהגות וחושים בסוסים – הכנה לבגרות 5 יח"ל</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה למדת בלומדה?</div>
+    <ul class="content-list">
+      <li data-icon="✅">למה חשוב להכיר התנהגות סוסים (4 סיבות)</li>
+      <li data-icon="✅">6 דרישות מינימליות לקיום נאות</li>
+      <li data-icon="✅">חמשת החושים: ראייה, שמיעה, שיווי משקל, ריח, טעם</li>
+      <li data-icon="✅">Flehmen, VNO, Pandiculation, Self-Grooming</li>
+      <li data-icon="✅">שינה ומנוחה – REM, שינה בעמידה, זמני רביצה</li>
+      <li data-icon="✅">כאב, פחד ותגובות – פיזיולוגיה וסימנים</li>
+      <li data-icon="✅">טריטוריאליזם, הירארכיה ויחסי סוס-אדם</li>
+      <li data-icon="✅">Crib-Biting, Stable Vices ובעיות הזנה</li>
+    </ul>
+  </div>
+  <div class="exam-box">זכור לחזור על הנושאים שהיו קשים יותר. בהצלחה בבגרות! 🎯</div>
+  <div class="card" style="text-align:center">
+    <button class="btn btn-primary" onclick="goTo(0)" style="font-size:16px;padding:16px 32px">🔄 חזור לתחילת הלומדה</button>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<div class="nav-buttons">
+  <button class="btn btn-primary" id="btn-prev" onclick="goBack()">→ הקודם</button>
+  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 30</span>
+  <button class="btn btn-primary" id="btn-next" onclick="goNext()">הבא ←</button>
+</div>
+
+<script>
+// ============= DATA =============
+const TOTAL = 30;
+let current = 0;
+
+const chapterLabels = [
+  'פתיחה','למה חשוב?','דרישות מינימליות','השוואת אורוות',
+  'ראייה – חלק 1','ראייה – חלק 2','שמיעה ושיווי משקל','ריח ו-Flehmen','טעם',
+  'Self-Grooming','גירוד הדדי ו-Pandiculation',
+  'שינה ומנוחה','גורמים להפחתת רביצה',
+  'מגע וכאב','תגובות לכאב','סימני פחד',
+  'מרחב וטריטוריה','הירארכיה ולחימה','הירארכיה: סוס-אדם',
+  'סוסים תוקפניים','אנומליות תגובתיות',
+  'אכילה בטבע','אכילה באורווה',
+  'Wind Sucking','Stable Vices',
+  'מילון מונחים',
+  'נכון/לא נכון','שאלות הבנה','התאמה','סיום'
+];
+
+// ============= NAVIGATION =============
+function goTo(n) {
+  const screens = document.querySelectorAll('.screen');
+  screens[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, TOTAL - 1));
+  screens[current].classList.add('active');
+  updateUI();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goNext() { if(current < TOTAL-1) goTo(current+1); }
+function goBack() { if(current > 0) goTo(current-1); }
+
+function updateUI() {
+  const pct = Math.round((current / (TOTAL-1)) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').innerText = `מסך ${current+1} מתוך ${TOTAL}`;
+  document.getElementById('screen-indicator').innerText = `${current+1} / ${TOTAL}`;
+  document.getElementById('menu-btn-label').innerText = chapterLabels[current] || '';
+  document.getElementById('btn-prev').className = current === 0 ? 'btn btn-disabled' : 'btn btn-primary';
+  document.getElementById('btn-next').className = current === TOTAL-1 ? 'btn btn-disabled' : 'btn btn-primary';
+  // update menu active
+  document.querySelectorAll('.menu-item').forEach((el,i) => {
+    el.classList.toggle('active', i === current);
+  });
+  // init glossary if screen 25
+  if(current === 25) initGlossary();
+}
+
+function openMenu() {
+  document.getElementById('menu-sidebar').classList.add('open');
+  document.getElementById('menu-overlay').classList.add('open');
+}
+function closeMenu() {
+  document.getElementById('menu-sidebar').classList.remove('open');
+  document.getElementById('menu-overlay').classList.remove('open');
+}
+function menuGo(n) { closeMenu(); goTo(n); }
+
+// ============= QUESTIONS DATA =============
+const mcData = {
+  's0q1': { correct: 1, explanation: '4 הסיבות הן: התאמת תנאי השבי, הבנת מגבלות האורווה, יצירת מערכת יחסים שמחה ובטוחה, ופתרון בעיות התנהגות.' },
+  's2q1': { correct: 1, explanation: 'שינה ומנוחה היא אחת מ-6 הדרישות המינימליות לקיום נאות. הדרישות כוללות: תגובה לסביבה, הזנה, שמירת גוף, שינה ומנוחה, תנועה, וחיפוש.' },
+  's3q1': { correct: 1, explanation: 'בטבע הסוס נע 3-10 ק"מ ביום תוך כדי רעייה ויוצר קשרים חברתיים. בתא פרטי כל היום, הסוס מוגבל קשות בתנועה ובמגע חברתי – בניגוד לצרכיו הטבעיים.' },
+  's4q1': { correct: 1, explanation: 'למרות הראייה הפנורמית המרשימה, יש לסוס שטח מת קטן מאחוריו ורצועה קטנה קדימה. לכן תמיד יש לגשת לסוס מהצד ולהודיע על נוכחותך לפני מגע.' },
+  's5q1': { correct: 1, explanation: 'שריר הריסיה (Ciliary muscle) לא מפותח אצל הסוס, מה שמגביל את שינוי רוחב העדשה ואת כושר המיקוד. הסוס מפצה על כך בשינויי גובה וזווית של הראש.' },
+  's6q1': { correct: 1, explanation: 'הסוס מזהה שינויי טון קול ובעיקר תנועות גוף – לא מילים. לכן חשוב לשמור על שפת גוף רגועה ועקבית בעבודה עם הסוס.' },
+  's7q1': { correct: 1, explanation: 'ה-VNO (Vomeronasal Organ) = איבר ג׳ייקובסון הוא מבנה גלילי ברצפת חלל האף. בנוכחות פורומונים נוצר מנגנון שאיבה ב-VNO. הוא זה שמפעיל גם את התנהגות ה-Flehmen.' },
+  's9q1': { correct: 1, explanation: 'התפלשות בחול ונעור בקימה היא שיטה טבעית לגירוד וניקוי. ההבדל הוא שבכאב בטן הסוס מתגלגל שוב ושוב ולא קם מיד – זה דורש תשומת לב.' },
+  's10q1': { correct: 1, explanation: 'Pandiculation מבטאת תחושת רווחה (well-being). תדירותה יורדת אצל חולים, בכאבי שריר-שלד כרוניים, ולא מופיעה כלל כשמחיית הסוס מצומצמת.' },
+  's11q1': { correct: 1, explanation: 'שינה עמוקה (REM) אפשרית רק בשכיבה. לסוס בוגר נדרשות כ-2.5 שעות שכיבה ביממה. ללא שינה עמוקה הסוס עלול לצבור "חוב שינה" ולהיות עייף ומסוכן.' },
+  's12q1': { correct: 1, explanation: 'רעש ותאורה בלילה (כמו בקליניקות) הוא אחד הגורמים להפחתת זמן הרביצה. שאר הגורמים: ריפוד לא נוח, קשירה קצרה, ובעיות אורטופדיות.' },
+  's13q1': { correct: 0, explanation: 'TB וערבים (דם חם) >> סוסי עבודה. זכרים ונקבות רגישים יותר ממסורסים. לכן סוס ערבי זכר הוא השילוב הרגיש ביותר.' },
+  's14q1': { correct: 1, explanation: 'קצב הלב יכול לעלות מ-30 ל-160 פעימות תוך שניות בלבד. זו תגובה פיזיולוגית לכאב – הגברת המערכת הסימפתטית.' },
+  's15q1': { correct: 1, explanation: 'בפחד: תנועות מהירות של גלגל העין. בכאב: גלגל מקובע ובולט. ההבדל הזה עוזר לזהות נכון את מצב הסוס.' },
+  's16q1': { correct: 0, explanation: 'חציית המרחק הקריטי יוצרת אינטראקציה – שיכולה להיות בריחה, התעניינות, או תקיפה. התגובה תלויה בסיטואציה ובפרט הסוס.' },
+  's17q1': { correct: 1, explanation: 'סוס חדש או סוס נמוך בהירארכיה יסבול ראשון מחסר תזונתי אם יש נקודת האכלה אחת בלבד. ריבוי נקודות מפחית קונפליקטים.' },
+  's18q1': { correct: 1, explanation: 'כשמגיעה סיטואציה לחוצה (טיפול רפואי, מעבר מים), ינצח החזק יותר. לכן אידיאלי שהאדם יהיה מעל הסוס בהירארכיה – ברכישה בדרכים סוסיות, לא בכוח.' },
+  's19q1': { correct: 1, explanation: 'אוזניים שוכבות לאחור הוא אחד מסימני האגרסיביות (יחד עם מבט מתוח, כיווץ שרירים, גלגל עין מסובב לאחור). יש להבחין בינן לבין אוזניים ישרות שמעידות על סקרנות.' },
+  's20q1': { correct: 1, explanation: 'אנומליה תגובתית מוגדרת כאשר: (1) ההתנהגות לא תורמת לקיום הסוס, (2) עוצמתה מוגזמת ביחס למצב. התנפלות על מנקה תא עונה על שני התנאים.' },
+  's21q1': { correct: 0, explanation: 'לעיסת עץ היא תגובה לשעמום, חסר פעילות, או חסר מינרלים – לא חלק מהתנהגות טבעית. הפתרון: פעילות, מרעה, ומינרלים.' },
+  's22q1': { correct: 1, explanation: 'בטבע הסוס ניזון ברעייה 15-18 שעות ביממה! לעומת זאת סוס באורווה עם מזון מרוכז אוכל פחות משעה. הפחתה דרסטית זו משפיעה מאוד על רווחתו.' },
+  's23q1': { correct: 1, explanation: 'Crib-Biting מתפתח בסוסים משועממים שמוגבלים באורווה, וניתן גם ללמוד אותו מסוסים אחרים. קשה מאוד להפטר ממנו.' },
+  's24q1': { correct: 1, explanation: 'הגורם השורשי לרוב ה-Stable Vices הוא שעמום ומגבלה. הטיפול: הגדלת תא, מרעה, פעילות. קשה מאוד להפטר – מניעה עדיפה על טיפול.' },
+  'q27a': { correct: 1, explanation: 'המרחב האינדיוידואלי הוא ה"טבעת" הצמודה לסוס לצורך פעולות קיומיות. המרחק הקריטי הוא המרחק ממנו ישמר הסוס מסוסים אחרים לפני יצירת אינטראקציה כלשהי.' },
+  'q27b': { correct: 1, explanation: 'כל הגורמים המפורטים (ריפוד לא נוח, רטוב, קשירה קצרה, רעש, תאורה, בעיות אורטופדיות) עלולים לגרום לסוס לרבוץ פחות. סוס שלא שוכב = בדוק את הסביבה!' },
+  'q27c': { correct: 1, explanation: 'תנועות לעיסה הן אחד הסימנים הברורים ביותר לרגיעה. כשהסוס מפסיק לתקשר בשפת גוף מוגברת ומתחיל ללעוס – הוא נרגע.' },
+  'q27d': { correct: 1, explanation: 'פורומונים מזוהים דרך ה-VNO (איבר ג׳ייקובסון) – חלק ממנגנון חוש הריח. זהו גם הבסיס להתנהגות ה-Flehmen שבה הסוס "אוסף" פורומונים מהסביבה.' }
+};
+
+const tfData = {
+  's1q1':  { correct: true,  explanation: 'נכון. פתרון בעיות התנהגות היא אחת מ-4 הסיבות המרכזיות. הכרת הטבע מאפשרת להבין למה הסוס מתנהג כך ואיך לטפל בזה בגישה סוסית.' },
+  's8q1':  { correct: false, explanation: 'לא נכון. "לא לסמוך על יכולת ההימנעות ממזונות מקולקלים." תפקיד המטפל לוודא איכות המזון – הסוס לא תמיד יזהה בעצמו!' },
+  'r1':    { correct: false, explanation: 'לא נכון. שינה עמוקה (REM) אפשרית רק בשכיבה. בעמידה הסוס יכול לנמנם ולישון שינה קלה, אך לא להגיע לשינה העמוקה החיונית.' },
+  'r2':    { correct: false, explanation: 'לא נכון. ההפך: תדירות Pandiculation יורדת בסוסים עם כאבי שריר-שלד כרוניים. היא מבטאת תחושת רווחה – ולכן נעלמת כשיש כאב.' },
+  'r3':    { correct: false, explanation: 'לא נכון. הסוס לא תמיד מזהה מזון מקולקל ולא יימנע ממנו באופן אוטומטי. תפקיד המטפל לוודא איכות המזון. מקרי הרעלה ידועים בארץ – כלח, עשב סודני, אבוקדו.' },
+  'r4':    { correct: true,  explanation: 'נכון. Flehmen היא התנהגות זכרית אופיינית בנוכחות נקבות – בעיקר בזמן ייחום. היא מסייעת לאיסוף פורומונים ב-VNO.' },
+  'r5':    { correct: true,  explanation: 'נכון. קצב הלב יכול לזנק מ-30 ל-160 פעימות תוך שניות – זו הסיבה שתגובות הסוס לכאב כל כך פתאומיות ומסוכנות.' }
+};
+
+const selectedAnswers = {};
+const selectedTF = {};
+
+// ============= MC FUNCTIONS =============
+function pickOption(qId, idx, btn) {
+  const data = mcData[qId];
+  const opts = document.querySelectorAll('#opts-' + qId + ' .mc-option');
+  // Reset all options
+  opts.forEach(b => {
+    b.classList.remove('correct', 'wrong', 'selected');
+  });
+  // Mark chosen
+  const isCorrect = idx === data.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  // If wrong, also reveal the correct one
+  if (!isCorrect) opts[data.correct].classList.add('correct');
+  // Show feedback
+  const fb = document.getElementById('fb-' + qId);
+  if (fb) {
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = isCorrect
+      ? '🎉 <strong>נכון!</strong> ' + data.explanation
+      : '❌ <strong>לא נכון.</strong> ' + data.explanation;
+  }
+}
+
+// ============= TF FUNCTIONS =============
+function pickTF(qId, val, btn) {
+  const data = tfData[qId];
+  const opts = document.querySelectorAll('#tfopts-' + qId + ' .tf-btn');
+  // Reset all
+  opts.forEach(b => b.classList.remove('correct', 'wrong', 'selected'));
+  // Mark chosen
+  const isCorrect = val === data.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(b => { if (b.dataset.val === String(data.correct)) b.classList.add('correct'); });
+  }
+  // Show feedback
+  const fb = document.getElementById('fb-' + qId);
+  if (fb) {
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = isCorrect
+      ? '🎉 <strong>נכון!</strong> ' + data.explanation
+      : '❌ <strong>לא נכון.</strong> ' + data.explanation;
+  }
+}
+
+// ============= GLOSSARY FLASHCARDS =============
+const glossaryData = [
+  {term:'Self-Grooming', def:'טיפוח עצמי: תנועות לניקוי, גירוד והרחקת טפילים. מעיד על הרגשה טובה.'},
+  {term:'Flehmen', def:'הרמת שפה עליונה + כיפוף צוואר. התנהגות זכרית לאיסוף פורומונים ב-VNO.'},
+  {term:'VNO / איבר ג׳ייקובסון', def:'מבנה גלילי ברצפת חלל האף. משמש לזיהוי פורומונים.'},
+  {term:'Pandiculation', def:'תבנית מתיחות בסדר קבוע. מבטאת תחושת רווחה. תדירות יורדת בחולים.'},
+  {term:'Stay Apparatus', def:'מנגנון נעילת הרגליים של הסוס המאפשר שינה בעמידה.'},
+  {term:'REM', def:'שלב השינה העמוקה. אפשרי רק בשכיבה.'},
+  {term:'Summer Itch', def:'רגישות יתר ליבחושים: גירוד חזק ברעמה, זנב וגב. נפוץ בישראל.'},
+  {term:'Crib-Biting / Wind Sucking', def:'אחיזת עצם ובליעת אוויר. בסוסים משועממים. קשה מאוד להפטר.'},
+  {term:'מרחב אינדיוידואלי', def:'"טבעת" המקיפה את הסוס, המאפשרת פעולות קיומיות כאכילה ורביצה.'},
+  {term:'מרחק קריטי', def:'המרחק הנשמר מסוסים אחרים לפני יצירת אינטראקציה.'},
+  {term:'Stable Vices', def:'תופעות סטריאוטיפיות קבועות בסוסים משועממים. Weaving, Pawing וכו\'.'},
+  {term:'ראייה בינוקולרית', def:'ראייה בשתי עיניים יחד – כ-60% משדה הראייה של הסוס.'}
+];
+let fcIndex = 0;
+
+function initGlossary() {
+  showGlossaryCard(0);
+}
+
+function showGlossaryCard(idx) {
+  const container = document.getElementById('glossary-cards-container');
+  const card = glossaryData[idx];
+  container.querySelector('.flashcard').id = 'fc' + idx;
+  container.querySelector('.flashcard').classList.remove('flipped');
+  container.querySelector('.term').textContent = card.term;
+  container.querySelector('.def').textContent = card.def;
+  container.querySelector('.flashcard').onclick = function() { flipCard('fc' + idx); };
+  document.getElementById('fc-counter').textContent = `${idx+1} / ${glossaryData.length}`;
+}
+
+function flipCard(id) {
+  const fc = document.getElementById(id);
+  if(fc) fc.classList.toggle('flipped');
+}
+
+function nextCard() {
+  fcIndex = (fcIndex + 1) % glossaryData.length;
+  showGlossaryCard(fcIndex);
+}
+function prevCard() {
+  fcIndex = (fcIndex - 1 + glossaryData.length) % glossaryData.length;
+  showGlossaryCard(fcIndex);
+}
+
+// ============= MATCHING GAME =============
+let selectedLeft = null;
+let matchedPairs = 0;
+
+function selectLeft(id, el) {
+  if(el.classList.contains('matched')) return;
+  document.querySelectorAll('.left-item').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedLeft = id;
+}
+
+function selectRight(matchId, el) {
+  if(!selectedLeft) return;
+  if(el.classList.contains('matched')) return;
+  if(selectedLeft === matchId) {
+    // correct
+    el.classList.add('matched');
+    el.style.cursor = 'default';
+    const leftEl = document.querySelector(`.left-item[data-id="${selectedLeft}"]`);
+    if(leftEl) { leftEl.classList.add('matched'); leftEl.style.cursor='default'; }
+    matchedPairs++;
+    selectedLeft = null;
+    if(matchedPairs === 5) {
+      const scoreDiv = document.getElementById('match-score');
+      scoreDiv.style.display = 'flex';
+      scoreDiv.innerHTML = '🎉 כל הכבוד! התאמת את כל המושגים נכון!';
+    }
+  } else {
+    // wrong
+    el.classList.add('wrong-match');
+    setTimeout(() => el.classList.remove('wrong-match'), 400);
+    const leftEl = document.querySelector(`.left-item[data-id="${selectedLeft}"]`);
+    if(leftEl) { leftEl.classList.add('wrong-match'); setTimeout(()=>leftEl.classList.remove('wrong-match'),400); }
+    selectedLeft = null;
+    document.querySelectorAll('.left-item').forEach(e => e.classList.remove('selected'));
+  }
+}
+
+// ============= ACCORDION (Screen 1) =============
+function toggleAccord(el) {
+  el.classList.toggle('open');
+}
+
+// init
+updateUI();
+</script>
+</body>
+</html>
