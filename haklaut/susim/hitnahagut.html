@@ -206,7 +206,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 .accord-arrow{font-size:13px;color:var(--text-muted);transition:transform .25s;flex-shrink:0;}
 .accord-item.open .accord-arrow{transform:rotate(180deg);}
 .accord-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:#faf6f0;padding:0 16px;}
-.accord-item.open .accord-body{max-height:200px;padding:14px 16px;}
+.accord-item.open .accord-body{max-height:600px;padding:14px 16px;}
 .accord-body p{font-size:14px;line-height:1.7;color:var(--text-muted);}
 </style>
 </head>
@@ -431,36 +431,61 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">אורווה A מול אורווה B</p>
   </div>
   <div class="goal-box">אני אוכל להשוות בין תנאי מחיה שונים ולזהות מה עדיף לסוס.</div>
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px">
 
-    <div style="background:#fdf6ee;border:2px solid var(--primary);border-radius:14px;overflow:hidden">
-      <img src="https://bagruyot.org/haklaut/susim/imag/urvaa.png" alt="אורווה A" style="width:100%;max-height:200px;object-fit:cover;display:block">
-      <div style="padding:16px">
-        <h3 style="font-size:17px;font-weight:900;color:#4a2e0a;margin-bottom:10px">🟤 אורווה A</h3>
-        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px">
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>מכלאה ברפת ישנה</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>6 סוסים בחצר משותפת</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>כל היום בחוץ</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>ניקוי חצר פעם בחודש בלבד</li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="background:#f0f5f0;border:2px solid var(--secondary);border-radius:14px;overflow:hidden">
-      <img src="https://bagruyot.org/haklaut/susim/imag/urvaנ.png" alt="אורווה B" style="width:100%;max-height:200px;object-fit:cover;display:block">
-      <div style="padding:16px">
-        <h3 style="font-size:17px;font-weight:900;color:#1a4a2a;margin-bottom:10px">🟢 אורווה B</h3>
-        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px">
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>מבנה חדש, תאים מטופחים</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>תאים פרטיים, קיר גבוה למניעת נשיכות</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>באורווה כל היום</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>יוצאים לאימון 1–2 שעות ביום</li>
-          <li style="font-size:14px;display:flex;gap:8px;align-items:flex-start"><span>•</span>ניקוי תאים פעמיים ביום</li>
-        </ul>
-      </div>
-    </div>
-
+  <div class="card">
+    <div class="section-title">🌟 תנאים אידיאליים לסוס</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text)">
+      תנאי מחיה אידיאליים משלבים את היתרונות של שני הסוגים:
+      <strong>שטח פתוח ותנועה חופשית</strong> כמו באורווה A, לצד
+      <strong>ניקיון, תברואה וטיפול אישי</strong> כמו באורווה B.
+      הסוס זקוק למגע חברתי עם סוסים אחרים, חופש תנועה, מזון גס בשפע ואפשרות לרביצה נוחה.
+      ככל שתנאי הכלא קרובים יותר לחיי הטבע – כך הסוס בריא יותר ומתנהג טוב יותר.
+    </p>
   </div>
+
+  <div class="section-title" style="margin-bottom:12px">🏠 השוואת שתי אורוות</div>
+
+  <!-- אורווה A accordion -->
+  <div class="accord-item" onclick="toggleAccord(this)">
+    <div class="accord-header">
+      <div class="accord-num" style="background:linear-gradient(135deg,#7c4f1a,#a0641f)">A</div>
+      <div class="accord-title">אורווה A</div>
+      <div class="accord-arrow">▼</div>
+    </div>
+    <div class="accord-body" style="padding:0">
+      <img src="https://bagruyot.org/haklaut/susim/imag/urvaa.png" alt="אורווה A" style="width:100%;max-height:210px;object-fit:cover;display:block">
+      <div style="padding:12px 16px 4px">
+        <ul class="content-list">
+          <li data-icon="🏚️">מכלאה ברפת ישנה</li>
+          <li data-icon="🐎">6 סוסים בחצר משותפת</li>
+          <li data-icon="🌞">כל היום בחוץ</li>
+          <li data-icon="🧹">ניקוי חצר פעם בחודש בלבד</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- אורווה B accordion -->
+  <div class="accord-item" onclick="toggleAccord(this)">
+    <div class="accord-header">
+      <div class="accord-num" style="background:linear-gradient(135deg,#27ae60,#1a8a4a)">B</div>
+      <div class="accord-title">אורווה B</div>
+      <div class="accord-arrow">▼</div>
+    </div>
+    <div class="accord-body" style="padding:0">
+      <img src="https://bagruyot.org/haklaut/susim/imag/urvab.png" alt="אורווה B" style="width:100%;max-height:210px;object-fit:cover;display:block">
+      <div style="padding:12px 16px 4px">
+        <ul class="content-list">
+          <li data-icon="🏗️">מבנה חדש, תאים מטופחים</li>
+          <li data-icon="🚪">תאים פרטיים, קיר גבוה למניעת נשיכות</li>
+          <li data-icon="🏠">באורווה כל היום</li>
+          <li data-icon="🏇">יוצאים לאימון 1–2 שעות ביום</li>
+          <li data-icon="✨">ניקוי תאים פעמיים ביום</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="card">
     <div class="section-title">🤔 לחשוב ביחד</div>
     <p style="font-size:15px;line-height:1.7">בכל אחת מהאורוות ישנם יתרונות וחסרונות. <strong>אורווה A</strong> מאפשרת קשרים חברתיים וחופש תנועה, אך עלולה ללא ניקוי תכוף לפגוע בבריאות. <strong>אורווה B</strong> נקייה ומסודרת, אך מגבילה את הסוס לתא פרטי רוב היום – בניגוד לצרכיו הטבעיים.</p>
