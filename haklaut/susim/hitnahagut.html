@@ -912,6 +912,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 
 </div>
 
+  </div>
   <div class="remember-box">Pandiculation = תחושה טובה. אם נעלם – בדוק אם יש בעיה!</div>
   <div class="question-box">
     <div class="q-title">❓ מה ייתכן אם Pandiculation נעלם אצל סוס שבדרך כלל עשה אותו?</div>
@@ -930,21 +931,62 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="chapter-header" style="background:linear-gradient(135deg,#1a2a4a,#1e40af)">
     <span class="chapter-num">פרק 8</span><span class="emoji">😴</span>
     <h1>שינה ומנוחה</h1>
-    <p class="subtitle">ערנות, נמנום, שינה ו-REM</p>
+    <p class="subtitle">שינה בעמידה, REM, וכמה זמן לפי גיל</p>
   </div>
-  <div class="goal-box">אני אוכל לתאר את שלבי השינה של הסוס ולהסביר מדוע שינה עמוקה חשובה.</div>
+  <div class="goal-box">אני אוכל להסביר את סוגי השינה של הסוס ולתאר כמה זמן ישן כל סוס לפי גילו.</div>
+
+  <!-- הסבר כללי -->
   <div class="card">
-    <div class="definition-box">הסוס מחלק את הזמן ל-3 מצבים: <strong>ערנות ← נמנום ← שינה</strong>.</div>
-    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>שינה בעמידה – אפשרית!</strong>הסוס יכול לישון בעמידה בזכות "Stay Apparatus" – מנגנון נעילת הרגליים. זה חוסך אנרגיה ומאפשר בריחה מהירה.</div></div>
-    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>שינה עמוקה – REM</strong>שינה עמוקה (עם חלומות) אפשרית רק בשכיבה! הסוס חייב לשכב כדי לישון שינה עמוקה.</div></div>
-    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>כמה זמן?</strong>סוס בוגר – כ-2.5 שעות רביצה ביממה, בעיקר בלילה. פונים – כ-5 שעות. סייחים קטנים – רבים מאוד!</div></div>
+    <div class="definition-box">הסוס מחלק את זמנו בין <strong>ערנות</strong>, <strong>נמנום</strong> ו<strong>שינה</strong>. לכל שלב תפקיד שונה – והסוס זקוק לכולם!</div>
   </div>
+
+  <!-- סוגי שינה -->
   <div class="card">
-    <div class="section-title">🐴 סוג הרביצה</div>
-    <div class="highlight green"><strong>בבוגרים:</strong> בעיקר רביצה סטרנלית (על הבטן, עד 30 דקות לרוחב). רביצה לטרלית (על הצד) מגבילה את זרימת הדם לריאות תוך 15 דקות!</div>
-    <div class="highlight amber"><strong>בסייחים:</strong> בעיקר לטרלית – ישנים על הצד הרבה יותר.</div>
+    <div class="section-title">💤 סוגי שינה</div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#1e40af,#1a2a4a)">🐴</div>
+        <div class="accord-title">שינה בעמידה</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>אפשרית בזכות <strong>Stay Apparatus</strong> – מנגנון נעילת הרגליים שמונע את הסוס מליפול. מאפשר לסוס לנוח תוך שמירה על יכולת בריחה מהירה.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#6c3483,#4a1a7a)">🌙</div>
+        <div class="accord-title">שינה עמוקה – REM</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>שינה עמוקה אפשרית <strong>רק בשכיבה</strong>. בלי שכיבה – הסוס לא מגיע ל-REM. לכן חשוב שהסוס יוכל לשכב בביטחון!</p>
+      </div>
+    </div>
+
   </div>
-  <div class="exam-box">REM = רק בשכיבה. בוגר = 2.5 שעות. פונה = 5 שעות. סייח = הרבה. 15 דקות רביצה לטרלית = בעיה בזרימת דם לריאות בבוגר.</div>
+
+  <!-- כמה זמן לפי גיל -->
+  <div class="card">
+    <div class="section-title">⏱️ כמה זמן ישן כל סוס?</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">🐴 סוס בוגר</div>כ-<strong>2.5 שעות</strong> רביצה ביממה – בעיקר בלילה</div>
+      <div class="mini-card"><div class="title">🐎 סוס פוני</div>כ-<strong>5 שעות</strong> רביצה ביממה</div>
+      <div class="mini-card" style="grid-column:1/-1"><div class="title">🐣 סייח קטן</div>רובץ <strong>הרבה מאוד</strong> – כנורמלי לגיל</div>
+    </div>
+  </div>
+
+  <!-- סוג הרביצה -->
+  <div class="card">
+    <div class="section-title">🛏️ איך הסוס רובץ?</div>
+    <div class="highlight green">🐴 <strong>בוגר:</strong> בעיקר <strong>סטרנלית</strong> – על הבטן. רביצה על הצד (לטרלית) מוגבלת עד 30 דקות – לאחר מכן נפגעת זרימת הדם לריאות!</div>
+    <div class="highlight amber">🐣 <strong>סייח:</strong> בעיקר לטרלית – ישן על הצד, כי גופו עדיין מתאים לכך.</div>
+    <div class="highlight red">⚠️ <strong>חשוב לדעת:</strong> רביצה לטרלית בסוס בוגר מעל 15 דקות = בעיה בזרימת הדם לריאות!</div>
+  </div>
+
+  <div class="exam-box">REM = רק בשכיבה. בוגר = 2.5 שעות. פוני = 5 שעות. סייח = הרבה. 15 דקות לטרלי בבוגר = בעיה!</div>
   <div class="question-box">
     <div class="q-title">❓ מדוע חשוב שסוס בוגר יוכל לשכב?</div>
     <div class="mc-options" id="opts-s11q1">
@@ -998,31 +1040,55 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל להסביר מה משפיע על עוצמת התגובה לכאב ולמגע, ולזהות סוסים עם רגישות גבוהה.</div>
   <div class="card">
     <div class="definition-box">הסוס הוא <strong>בעל חיים נטרף</strong> – בנוי לזיהוי סכנה מוקדם ולהסתלקות מהירה. זה מסביר את הרגישות הגבוהה!</div>
-    <div class="highlight brown"><strong>יעיל בלחימה מאחור:</strong> בעיטות אחוריות מצוינות. פחות מוצלח בקרב חזיתי: נשיכות, בעיטות קדמיות.</div>
-    <div class="highlight red"><strong>רגישות ותגובה עזה לכאב!</strong></div>
-    <div class="highlight amber"><strong>מה משפיע על עוצמת התגובה?</strong> טמפרמנט אישי, גזע, ומין הסוס.</div>
+    <div class="highlight green"><strong>יעיל בלחימה מאחור:</strong> בעיטות אחוריות מצוינות. פחות מוצלח בקרב חזיתי: נשיכות, בעיטות קדמיות.</div>
+    <div class="highlight red">⚡ <strong>רגישות ותגובה עזה לכאב!</strong></div>
+    <div class="highlight purple"><strong>מה משפיע על עוצמת התגובה?</strong> טמפרמנט אישי, גזע, ומין הסוס.</div>
   </div>
   <div class="card">
     <div class="section-title">📊 טבלת רגישות לפי גזע/מין</div>
     <table class="info-table">
       <tr><th>גזע/מין</th><th>רגישות</th></tr>
       <tr><td>סוסי "דם חם" (TB, ערבים)</td><td>🔴 גבוהה מאוד</td></tr>
-      <tr><td>נקבות ו-זכרים</td><td>🟠 גבוהה</td></tr>
+      <tr><td><strong>נקבות לא מעוקרות</strong> ו<strong>זכרים לא מסורסים</strong></td><td>🟠 גבוהה</td></tr>
       <tr><td>מסורסים</td><td>🟡 נמוכה יותר</td></tr>
       <tr><td>סוסי עבודה</td><td>🟢 נמוכה יחסית</td></tr>
     </table>
-    <p style="font-size:13px;color:var(--text-muted)">סדר הרגישות: TB,ערבים >> סוסי עבודה. מסורסים פחות רגישים מנקבות וזכרים.</p>
+    <p style="font-size:13px;color:var(--text-muted)">סדר הרגישות: TB,ערבים >> סוסי עבודה. מסורסים ומעוקרות פחות רגישים מזכרים ונקבות שלא עברו ניתוח.</p>
   </div>
   <div class="exam-box">נטרף → רגיש מאוד → תגובות פתאומיות. גזע, מין, טמפרמנט משפיעים על עוצמת התגובה.</div>
   <div class="question-box">
-    <div class="q-title">❓ איזה סוס צפוי להיות הרגיש ביותר לכאב ולמגע?</div>
-    <div class="mc-options" id="opts-s13q1">
-      <button class="mc-option" onclick="pickOption('s13q1',0,this)"><span class="opt-letter">א</span>סוס ערבי זכר</button>
-      <button class="mc-option" onclick="pickOption('s13q1',1,this)"><span class="opt-letter">ב</span>סוס עבודה מסורס</button>
-      <button class="mc-option" onclick="pickOption('s13q1',2,this)"><span class="opt-letter">ג</span>פוני נקבה</button>
-      <button class="mc-option" onclick="pickOption('s13q1',3,this)"><span class="opt-letter">ד</span>כל הסוסים שווים ברגישותם</button>
+    <div class="q-title">🔀 סדר לפי רגישות – מהרגיש ביותר לפחות רגיש</div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px">גרור כל כרטיס לתיבה הממוספרת המתאימה (1 = רגיש ביותר)</p>
+
+    <!-- כרטיסים לגרירה -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;justify-content:center" id="drag-bank">
+      <div class="drag-card" id="sitem-a" data-id="a" draggable="true" ondragstart="dragStart(event)" onclick="tapCard(this)" style="background:white;border:2px solid var(--border);border-radius:10px;padding:8px 14px;cursor:grab;font-size:13px;font-weight:700;user-select:none">נקבות לא מעוקרות וזכרים לא מסורסים</div>
+      <div class="drag-card" id="sitem-b" data-id="b" draggable="true" ondragstart="dragStart(event)" onclick="tapCard(this)" style="background:white;border:2px solid var(--border);border-radius:10px;padding:8px 14px;cursor:grab;font-size:13px;font-weight:700;user-select:none">סוסי עבודה</div>
+      <div class="drag-card" id="sitem-c" data-id="c" draggable="true" ondragstart="dragStart(event)" onclick="tapCard(this)" style="background:white;border:2px solid var(--border);border-radius:10px;padding:8px 14px;cursor:grab;font-size:13px;font-weight:700;user-select:none">סוסי דם חם (TB, ערבים)</div>
+      <div class="drag-card" id="sitem-d" data-id="d" draggable="true" ondragstart="dragStart(event)" onclick="tapCard(this)" style="background:white;border:2px solid var(--border);border-radius:10px;padding:8px 14px;cursor:grab;font-size:13px;font-weight:700;user-select:none">מסורסים ומעוקרות</div>
     </div>
-    <div class="feedback" id="fb-s13q1"></div>
+
+    <!-- תיבות יעד ממוספרות -->
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <div class="drop-zone" id="zone-0" data-pos="0" ondragover="dragOver(event)" ondrop="dropZone(event)" onclick="tapZone(this)" style="border:2px dashed var(--border);border-radius:10px;padding:10px 14px;min-height:44px;display:flex;align-items:center;gap:10px;font-size:13px;background:#faf6f0">
+        <span style="background:var(--primary);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">1</span>
+        <span style="color:var(--text-muted);font-size:12px">רגיש ביותר ←</span>
+      </div>
+      <div class="drop-zone" id="zone-1" data-pos="1" ondragover="dragOver(event)" ondrop="dropZone(event)" onclick="tapZone(this)" style="border:2px dashed var(--border);border-radius:10px;padding:10px 14px;min-height:44px;display:flex;align-items:center;gap:10px;font-size:13px;background:#faf6f0">
+        <span style="background:var(--primary);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">2</span>
+        <span class="zone-placeholder" style="color:var(--text-muted);font-size:12px">גרור לכאן</span>
+      </div>
+      <div class="drop-zone" id="zone-2" data-pos="2" ondragover="dragOver(event)" ondrop="dropZone(event)" onclick="tapZone(this)" style="border:2px dashed var(--border);border-radius:10px;padding:10px 14px;min-height:44px;display:flex;align-items:center;gap:10px;font-size:13px;background:#faf6f0">
+        <span style="background:var(--primary);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">3</span>
+        <span class="zone-placeholder" style="color:var(--text-muted);font-size:12px">גרור לכאן</span>
+      </div>
+      <div class="drop-zone" id="zone-3" data-pos="3" ondragover="dragOver(event)" ondrop="dropZone(event)" onclick="tapZone(this)" style="border:2px dashed var(--border);border-radius:10px;padding:10px 14px;min-height:44px;display:flex;align-items:center;gap:10px;font-size:13px;background:#faf6f0">
+        <span style="background:var(--primary);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">4</span>
+        <span style="color:var(--text-muted);font-size:12px">← פחות רגיש</span>
+      </div>
+    </div>
+
+    <div id="fb-s13q1" style="margin-top:10px;font-size:14px;font-weight:600;color:var(--text-muted);text-align:center"></div>
   </div>
 </div>
 
@@ -1820,6 +1886,105 @@ function selectRight(matchId, el) {
     selectedLeft = null;
     document.querySelectorAll('.left-item').forEach(e => e.classList.remove('selected'));
   }
+}
+
+// ============= SORT ACTIVITY (Screen 13) =============
+const sortCorrectMap = { 0:'c', 1:'a', 2:'d', 3:'b' };
+let sortDragId = null;
+
+function dragStart(e) {
+  sortDragId = e.currentTarget.dataset.id;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', sortDragId);
+}
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+function dropZone(e) {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain') || sortDragId;
+  if (!id) return;
+  const zone = e.currentTarget;
+  // If zone already has a card, send it back to bank
+  const existing = zone.querySelector('.drag-card');
+  if (existing) {
+    resetCardStyle(existing);
+    document.getElementById('drag-bank').appendChild(existing);
+  }
+  const card = document.getElementById('sitem-' + id);
+  if (!card) return;
+  const placeholder = zone.querySelector('.zone-placeholder');
+  if (placeholder) placeholder.remove();
+  zone.appendChild(card);
+  sortDragId = null;
+  // Immediate feedback
+  updateSortFeedback();
+}
+
+function resetCardStyle(card) {
+  card.style.borderColor = 'var(--border)';
+  card.style.background = 'white';
+}
+
+function updateSortFeedback() {
+  let correct = 0;
+  for (let pos = 0; pos < 4; pos++) {
+    const zone = document.getElementById('zone-' + pos);
+    const card = zone.querySelector('.drag-card');
+    const isCorrect = card && card.dataset.id === sortCorrectMap[pos];
+    // Color the zone + card
+    zone.style.borderColor = card ? (isCorrect ? 'var(--green)' : 'var(--hot)') : 'var(--border)';
+    zone.style.background = card ? (isCorrect ? 'var(--green-light)' : 'var(--hot-light)') : '#faf6f0';
+    if (card) {
+      card.style.borderColor = isCorrect ? 'var(--green)' : 'var(--hot)';
+      card.style.background = isCorrect ? 'var(--green-light)' : 'var(--hot-light)';
+    }
+    if (isCorrect) correct++;
+  }
+  const fb = document.getElementById('fb-s13q1');
+  if (correct === 4) {
+    fb.innerHTML = '🎉 <strong style="color:var(--green)">מצוין! הסדר נכון לגמרי!</strong>';
+  } else if (correct > 0) {
+    fb.innerHTML = correct + ' מתוך 4 במקום הנכון – המשך לגרור!';
+  } else {
+    fb.innerHTML = '';
+  }
+}
+
+function checkSort() {} // kept for compatibility
+
+// ===== TAP/TOUCH SUPPORT =====
+let tappedCard = null;
+
+function tapCard(card) {
+  // If already selected, deselect
+  if (tappedCard === card) {
+    card.style.outline = '';
+    tappedCard = null;
+    return;
+  }
+  // Deselect previous
+  if (tappedCard) tappedCard.style.outline = '';
+  tappedCard = card;
+  card.style.outline = '3px solid var(--primary)';
+}
+
+function tapZone(zone) {
+  if (!tappedCard) return;
+  // Simulate a drop
+  const existing = zone.querySelector('.drag-card');
+  if (existing) {
+    resetCardStyle(existing);
+    existing.style.outline = '';
+    document.getElementById('drag-bank').appendChild(existing);
+  }
+  const placeholder = zone.querySelector('.zone-placeholder');
+  if (placeholder) placeholder.remove();
+  tappedCard.style.outline = '';
+  zone.appendChild(tappedCard);
+  tappedCard = null;
+  updateSortFeedback();
 }
 
 // ============= ACCORDION (Screen 1) =============
