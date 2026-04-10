@@ -1102,21 +1102,36 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל לפרט את התגובות לכאב ולהסביר את התגובה הפיזיולוגית החשובה.</div>
   <div class="card">
     <div class="section-title">💥 תגובות פתאומיות לכאב</div>
-    <div class="pain-response">
-      <span class="tag flight">🏃 בריחה</span>
-      <span class="tag flight">🦵 משיכת רגל</span>
-      <span class="tag flight">⬆️ זריקת ראש מעלה</span>
-      <span class="tag flight">🥊 בעיטות</span>
-      <span class="tag flight">🛏️ רביצה</span>
-      <span class="tag flight">🔄 התגלגלות</span>
-      <span class="tag flight">⬇️ נפילה פתאומית</span>
+    <div class="pain-response" style="margin-bottom:14px">
+      <span class="tag" style="background:#fde8e8;color:#991b1b">🏃 בריחה</span>
+      <span class="tag" style="background:#feebd8;color:#7a3a0a">🦵 משיכת רגל</span>
+      <span class="tag" style="background:#fef9c3;color:#713f12">⬆️ זריקת ראש מעלה</span>
+      <span class="tag" style="background:#fde8e8;color:#991b1b">🥊 בעיטות</span>
+      <span class="tag" style="background:#ede0f5;color:#3a0a6a">🛏️ רביצה</span>
+      <span class="tag" style="background:#feebd8;color:#7a3a0a">🔄 התגלגלות</span>
+      <span class="tag" style="background:#d5f0e0;color:#065f46">⬇️ נפילה פתאומית</span>
     </div>
-    <div class="highlight red"><strong>⚠️ מסוכן למטפל!</strong> אם לא מזהים סימנים מוקדמים או לא נמצאים במיקום נכון ביחס לסוס.</div>
-    <div class="highlight amber"><strong>⚠️ מסוכן לסוס!</strong> פציעות מנפילות, החמרת נזק כשנתקעים/נתפסים.</div>
+
+    <div class="two-col-compare" style="margin-bottom:0">
+      <div style="background:var(--hot-light);border:2px solid var(--hot);border-radius:12px;padding:14px">
+        <div style="font-size:15px;font-weight:900;color:var(--hot);margin-bottom:8px">⚠️ מסוכן למטפל</div>
+        <p style="font-size:13px;line-height:1.6;color:#7a1a1a">אם לא מזהים סימנים מוקדמים, או לא נמצאים במיקום נכון ביחס לסוס.</p>
+      </div>
+      <div style="background:var(--amber-light);border:2px solid var(--amber);border-radius:12px;padding:14px">
+        <div style="font-size:15px;font-weight:900;color:#7a3a0a;margin-bottom:8px">⚠️ מסוכן לסוס</div>
+        <p style="font-size:13px;line-height:1.6;color:#7a3a0a">פציעות מנפילות, החמרת נזק כשנתקעים או נתפסים.</p>
+      </div>
+    </div>
   </div>
   <div class="card">
     <div class="section-title">⚡ תגובה פיזיולוגית לכאב</div>
-    <div class="definition-box"><strong>הגברה חזקה של המערכת הסימפתטית:</strong><br>✅ עלייה בקצב לב ולחץ דם<br>✅ הרחבת דרכי נשימה<br>✅ דיכוי מערכת עיכול<br>✅ הגברת חמצון שרירים<br>⚡ קצב לב יכול לעלות מ-30 ל-<strong>160 תוך מספר שניות</strong>!</div>
+    <div class="definition-box" style="margin-bottom:14px"><strong>הגברה חזקה של המערכת הסימפתטית</strong> – הגוף עובר למצב חירום מיידי!</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">❤️ קצב לב ולחץ דם</div>עולים במהירות – מ-30 ל-<strong>160 פעימות תוך שניות</strong>!</div>
+      <div class="mini-card"><div class="title">🫁 דרכי נשימה</div>מתרחבות – כדי להכניס יותר חמצן לגוף</div>
+      <div class="mini-card"><div class="title">🍽️ מערכת עיכול</div>מדוכאת – הגוף מפנה אנרגיה לשרירים</div>
+      <div class="mini-card"><div class="title">💪 חמצון שרירים</div>מוגבר – הסוס מוכן לפעולה מיידית</div>
+    </div>
   </div>
   <div class="exam-box">קצב לב: מ-30 ל-160 תוך שניות בכאב. תגובות פתאומיות – מסוכנות למטפל ולסוס.</div>
   <div class="question-box">
@@ -1142,21 +1157,23 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="card">
     <div class="section-title">😨 סימני פחד</div>
     <div class="grid-2">
-      <div class="mini-card"><div class="title">🦒 צוואר נוקשה</div></div>
-      <div class="mini-card"><div class="title">👂 אוזניים לפנים</div></div>
-      <div class="mini-card"><div class="title">👃 נחיריים מורחבים</div></div>
-      <div class="mini-card"><div class="title">⬅️ השענות לאחור</div></div>
-      <div class="mini-card"><div class="title">👁️ תנועות מהירות של גלגל העין</div>בכאב – גלגל מקובע ובולט!</div>
+      <div class="mini-card"><div class="title">🦒 צוואר נוקשה</div>הצוואר מתמתח ומתקשח</div>
+      <div class="mini-card"><div class="title">👂 אוזניים לפנים</div>האוזניים מופנות קדימה לעבר האיום</div>
+      <div class="mini-card"><div class="title">👃 נחיריים מורחבים</div>כדי לדגום יותר ריחות מהסביבה</div>
+      <div class="mini-card"><div class="title">⬅️ השענות לאחור</div>הכנה לנסיגה מהירה</div>
+      <div class="mini-card" style="grid-column:1/-1"><div class="title">👁️ תנועות מהירות של גלגל העין</div>להבדיל מכאב – שם הגלגל <strong>מקובע ובולט</strong></div>
     </div>
   </div>
   <div class="card">
     <div class="section-title">✅ תגובות מרגיעות נכונות מצד המטפל</div>
-    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>זיהוי מוקדם</strong> – זהה סוס מאוים לפני שהוא מגיב</div></div>
-    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>יצירת "מסלול בריחה"</strong> – אל תחסום את הסוס</div></div>
-    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>עצירה + צעד לאחור</strong> – הפחת לחץ</div></div>
-    <div class="step-box"><div class="step-num">4</div><div class="step-content"><strong>הרפיית חבל / שחרור לחץ</strong></div></div>
-    <div class="step-box"><div class="step-num">5</div><div class="step-content"><strong>הגברת ריסון</strong> במידת הצורך</div></div>
-    <div class="highlight green"><strong>סוס שנרגע:</strong> תנועות לעיסה – סימן לרגיעה!</div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="title">👀 זיהוי מוקדם</div>זהה סוס מאוים <strong>לפני</strong> שהוא מגיב</div>
+      <div class="mini-card"><div class="title">🚪 יצירת מסלול בריחה</div>אל תחסום את הסוס – תן לו מוצא</div>
+      <div class="mini-card"><div class="title">🛑 עצירה + צעד לאחור</div>הפחת לחץ ותן מרחב</div>
+      <div class="mini-card"><div class="title">🪢 הרפיית חבל</div>שחרור לחץ ידני</div>
+      <div class="mini-card" style="grid-column:1/-1"><div class="title">🔒 הגברת ריסון</div>במידת הצורך – לרמה אפקטיבית</div>
+    </div>
+    <div class="highlight green" style="margin-top:4px">🌿 <strong>סוס שנרגע:</strong> תנועות לעיסה – סימן לרגיעה!</div>
   </div>
   <div class="remember-box">אוזניים לפנים + נחיריים מורחבים = פחד. תנועות לעיסה = הסוס נרגע.</div>
   <div class="question-box">
@@ -1179,11 +1196,47 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">הבנת הגבולות הטבעיים של הסוס</p>
   </div>
   <div class="goal-box">אני אוכל להסביר את ההבדל בין "מרחב אינדיוידואלי" ל"מרחק קריטי".</div>
+  <!-- הגדרות -->
   <div class="card">
-    <div class="definition-box"><strong>"מרחב אינדיוידואלי"</strong> – "טבעת" המקיפה את הסוס, מעניקה מרחב פרטי לפעולות קיומיות: אכילה, רביצה, התמתחות.</div>
-    <div class="definition-box"><strong>"מרחק קריטי"</strong> – המרחק הנשמר מסוסים אחרים. כשסוס מתקרב מעבר למרחק הקריטי נוצרת אינטראקציה: בריחה, התעניינות, או תקיפה.</div>
-    <div class="highlight amber"><strong>השפעת גזע:</strong> בגזעי "דם חם" (TB, ערבים) – המרחק הקריטי גדול יותר ומהירות התגובה גבוהה יותר לעומת גזעי "דם קר".</div>
-    <div class="highlight brown"><strong>השפעת ממשק:</strong> לסוג הממשק והפעילות השפעה רבה על גודל המרחק.</div>
+    <div class="section-title">📐 מרחב אינדיוידואלי ומרחק קריטי</div>
+    <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:16px;">לסוסים יש שני סוגי "גבולות" בלתי נראים סביבו: האחד הוא המרחב האישי שבו הוא מבצע פעולות יומיומיות, והשני הוא המרחק שהוא שומר מסוסים אחרים. הבנת שני המושגים הללו חיונית לעבודה בטוחה עם סוסים ולמניעת תגובות לא צפויות.</p>
+    <div class="grid-2">
+      <div class="mini-card" style="border-color:#e07b3b;background:#fef4eb">
+        <div class="title" style="color:#c05a15">⚡ מרחק קריטי</div>
+        המרחק מסוסים אחרים. חצייתו יוצרת אינטראקציה: בריחה, התעניינות, או תקיפה
+      </div>
+      <div class="mini-card" style="border-color:#2d8a6e;background:#eef8f3">
+        <div class="title" style="color:#1a6b4a">📍 מרחב אינדיוידואלי</div>
+        "טבעת" המקיפה את הסוס – מרחב פרטי לפעולות קיומיות: אכילה, רביצה, התמתחות
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <img src="https://bagruyot.org/haklaut/susim/imag/merhak.png" alt="תרשים מרחב אינדיוידואלי ומרחק קריטי" style="max-width:100%;border-radius:12px;border:2px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+    </div>
+  </div>
+
+  <!-- השפעת גזע - השוואה -->
+  <div class="card">
+    <div class="section-title">🐎 השפעת הגזע על המרחק</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#fde8e8;border:2px solid #c0392b">
+        <h3 style="color:#c0392b">🔴 דם חם (TB, ערבים)</h3>
+        <ul>
+          <li>מרחק קריטי <strong>גדול יותר</strong></li>
+          <li>תגובה <strong>מהירה יותר</strong></li>
+          <li>רגישות גבוהה לכניסה למרחבם</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#e8f0fe;border:2px solid #1a3a8a">
+        <h3 style="color:#1a3a8a">🔵 דם קר</h3>
+        <ul>
+          <li>מרחק קריטי <strong>קטן יותר</strong></li>
+          <li>תגובה <strong>רגועה יותר</strong></li>
+          <li>סובלנות גבוהה יותר לקרבה</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight green" style="margin-top:4px">💡 <strong>השפעת ממשק:</strong> לסוג הממשק והפעילות השפעה רבה על גודל המרחק – לא רק הגזע קובע!</div>
   </div>
   <div class="exam-box">מרחב אינדיוידואלי = טבעת אישית סביב הסוס. מרחק קריטי = מרחק מסוסים אחרים. דם חם = מרחק גדול יותר.</div>
   <div class="question-box">
@@ -1208,21 +1261,101 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל לתאר את ההירארכיה בקבוצת סוסים ולהסביר כיצד לצרף סוס חדש בצורה נכונה.</div>
   <div class="card">
     <div class="section-title">👑 הירארכיה בקבוצה</div>
-    <div class="highlight brown">הירארכיה ברורה תתפתח בכל קבוצת סוסים הנמצאת באותו שטח.</div>
-    <div class="highlight amber">אין כללים נוקשים בקביעת הדומיננטיות. אבל: <strong>לא יותר מזכר אחד "שולט" בקבוצת סוסות.</strong></div>
-    <div class="highlight red"><strong>מי נפגע קודם?</strong> סוס במקום נמוך בהירארכיה, או סוס חדש בעדר, יסבלו ראשונים מ<strong>חסר תזונתי ומפגיעות פיזיות!</strong></div>
+    <div class="highlight green" style="margin-bottom:12px">הירארכיה ברורה תתפתח בכל קבוצת סוסים. אין כללים נוקשים – אבל <strong>לא יותר מזכר אחד שולט</strong> בקבוצת סוסות.</div>
+
+    <div class="section-title" style="font-size:15px;margin-bottom:10px">⚠️ מי נפגע קודם?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="border-color:#c0392b;background:#fff0f0">
+        <div class="title" style="color:#c0392b">📉 סוס במקום נמוך</div>
+        יסבל ראשון מ<strong>חסר תזונתי</strong> ומ<strong>פגיעות פיזיות</strong> – אחרים ידחקו אותו
+      </div>
+      <div class="mini-card" style="border-color:#e07b3b;background:#fff8f0">
+        <div class="title" style="color:#7a3a0a">🆕 סוס חדש בעדר</div>
+        עד שמוצא מקומו בהירארכיה – חשוף לאותן סכנות בדיוק
+      </div>
+    </div>
   </div>
   <div class="card">
     <div class="section-title">🤝 כיצד לצרף סוס חדש נכון?</div>
-    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>בהדרגה:</strong> אורווה → רכיבה → מרעה</div></div>
-    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>שטח מספק</strong> לבריחה</div></div>
-    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>מספר נקודות האכלה</strong> – יותר ממקום אחד!</div></div>
+
+    <div class="grid-2">
+
+      <div class="mini-card" style="grid-column:1/-1">
+        <div class="title">📅 בהדרגה</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">לא מכניסים ישירות למרעה! עוברים שלב-שלב:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+          <span style="background:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700;white-space:nowrap">🏠 אורווה</span>
+          <span style="color:var(--text-muted);font-size:14px">←</span>
+          <span style="background:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700;white-space:nowrap">🐴 רכיבה</span>
+          <span style="color:var(--text-muted);font-size:14px">←</span>
+          <span style="background:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700;white-space:nowrap">🌿 מרעה</span>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div class="title">🏃 שטח מספק לבריחה</div>
+        הסוס החדש צריך מרחב לנוס כשיידחק
+      </div>
+
+      <div class="mini-card">
+        <div class="title">🪣 מספר נקודות האכלה</div>
+        יותר ממקום אחד – כדי שגם הסוסים הנמוכים יוכלו לאכול
+      </div>
+
+    </div>
+
   </div>
   <div class="card">
     <div class="section-title">⚔️ לחימה</div>
-    <div class="highlight amber"><strong>כיסוחים קטנים:</strong> נפוצים מאוד בגדרות קטנות. בעיקר בגלל אוכל או "קרבן כיתתי".</div>
-    <div class="highlight red"><strong>קרבות מלאים:</strong> לרוב לקביעת טריטוריות בין זכרים.</div>
-    <div class="highlight brown"><strong>שלבי הקרב:</strong> הרחה → בעיטות באדמה → עמידה על אחוריות → תקיפה (נשיכות, בעיטות) → קרב אווירי → הפלה. מסתיים בבריחת המפסיד.</div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#e07b3b,#c05a15)">⚡</div>
+        <div class="accord-title">כיסוחים קטנים</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>נפוצים מאוד בגדרות קטנות מדי או בעדרים משתנים. בעיקר בגלל <strong>אוכל</strong> או <strong>"קרבן כיתתי"</strong> שחוטף מכולם.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#c0392b,#9b2335)">⚔️</div>
+        <div class="accord-title">קרבות מלאים</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>לרוב לקביעת טריטוריות ולחימה על מעמד בעדר – בעיקר בין <strong>זכרים</strong>. מסתיים בבריחת המפסיד. פגיעות קשות מתרחשות רק כשלמפסיד אין לאן לברוח.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#6c3483,#4a1a7a)">📋</div>
+        <div class="accord-title">שלבי הקרב</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px;direction:ltr">
+          <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">👃<br>הרחה</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🦶<br>בעיטות<br>באדמה</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🐴<br>עמידה על<br>אחוריות</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center">🥊<br>תקיפה<br><span style="font-size:10px;font-weight:500">(נשיכות, בעיטות)</span></div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">💨<br>קרבות<br>אוויריים</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">⬇️<br>הפלות<br>לרצפה</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="background:var(--green-light);border:2px solid var(--green);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🏃<br>בריחת<br>המפסיד</div>
+        </div>
+        <p style="font-size:12px;color:var(--hot);font-weight:600;margin-top:10px;text-align:center">⚠️ פגיעות קשות רק כשאין למפסיד לאן לברוח</p>
+      </div>
+    </div>
+
   </div>
   <div class="question-box">
     <div class="q-title">❓ למה צריך כמה נקודות האכלה כשמצרפים סוס חדש לעדר?</div>
