@@ -518,9 +518,43 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
 
   <div class="card">
-    <div class="highlight brown">👁️ <strong>ראייה מונוקולרית – רוב שדה הראייה:</strong> הסוס רואה בעין אחת בלבד בכל פעם, ויכול לקלוט <strong>שתי תמונות נפרדות במקביל</strong> – אחת לכל עין. זה מאפשר שדה ראייה רחב מאוד לזיהוי תנועה ואיומים מכל כיוון – יתרון עצום לבעל חיים נטרף.</div>
-    <div class="highlight green">🔭 <strong>ראייה בינוקולרית – אזור צר קדימה:</strong> בתחום צר ישירות לפנים הסוס רואה בשתי העיניים יחד. כדי לבחון עצם מקרוב, עליו להפנות אליו ישירות את ראשו – אם נפתיע אותו מאחור הוא <strong>קודם יבעט או יברח</strong>, ורק אז יסתובב לבדוק.</div>
-    <div class="highlight red">🚫 <strong>שטח מת:</strong> מאחור לחלוטין ורצועה צרה ישירות קדימה. לעולם לא לגשת לסוס מישיר מאחוריו ללא אזהרה!</div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#7c4f1a,#a0641f)">👁️</div>
+        <div class="accord-title">ראייה מונוקולרית</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>הסוס רואה <strong>בעין אחת בלבד</strong> בכל פעם ברוב שדה הראייה שלו.</p>
+        <p style="margin-top:8px">✅ <strong>מה זה מאפשר?</strong> יכולת קליטה של שתי תמונות נפרדות במקביל – אחת לכל עין. שדה ראייה רחב מאוד לזיהוי תנועה ואיומים מכל כיוון – יתרון עצום לבעל חיים נטרף.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#27ae60,#1a8a4a)">🔭</div>
+        <div class="accord-title">ראייה בינוקולרית</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>בתחום <strong>צר ישירות לפנים</strong> הסוס רואה בשתי העיניים יחד.</p>
+        <p style="margin-top:8px">⚠️ <strong>תוצאה מעשית:</strong> כדי לבחון עצם מקרוב, עליו להפנות אליו ישירות את ראשו. אם נפתיע סוס מאחור – הוא <strong>קודם יבעט או יברח</strong>, ורק אז יסתובב לבדוק.</p>
+      </div>
+    </div>
+
+    <div class="accord-item" onclick="toggleAccord(this)">
+      <div class="accord-header">
+        <div class="accord-num" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">🚫</div>
+        <div class="accord-title">שטח מת</div>
+        <div class="accord-arrow">▼</div>
+      </div>
+      <div class="accord-body">
+        <p>מאחור לחלוטין ורצועה צרה ישירות קדימה – זה השטח שהסוס <strong>אינו רואה בכלל</strong>.</p>
+        <p style="margin-top:8px">⚠️ לעולם לא לגשת לסוס מישיר מאחוריו ללא אזהרה!</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="remember-box">שדה פנורמי: 300–330° ← רוב הראייה מונוקולרית ← ראייה בינוקולרית רק קדימה ← שטח מת מאחור</div>
