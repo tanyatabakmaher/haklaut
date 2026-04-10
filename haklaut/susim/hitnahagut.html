@@ -260,20 +260,13 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">😡</span>סוסים תוקפניים</button>
       <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>אנומליות תגובתיות</button>
     </div>
-    <div class="menu-chapter-title">🌿 הזנה ואכילה</div>
-    <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">🌿</span>אכילה בטבע</button>
-      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">🪣</span>אכילה באורווה</button>
-      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>Wind Sucking ועצים</button>
-      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🚨</span>אנומליות סומטיות</button>
-    </div>
     <div class="menu-chapter-title">📚 סיכום</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(25)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
-      <button class="menu-item" onclick="menuGo(26)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>נכון / לא נכון</button>
-      <button class="menu-item" onclick="menuGo(27)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות הבנה</button>
-      <button class="menu-item" onclick="menuGo(28)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>התאמה</button>
-      <button class="menu-item" onclick="menuGo(29)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>נכון / לא נכון</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות הבנה</button>
+      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>התאמה</button>
+      <button class="menu-item" onclick="menuGo(25)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
     </div>
   </div>
 </div>
@@ -282,7 +275,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span><span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700;margin-right:8px">פתיחה</span></button>
   <span style="font-size:22px">🐴</span>
   <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
-  <span id="progress-label">מסך 1 מתוך 30</span>
+  <span id="progress-label">מסך 1 מתוך 26</span>
 </div>
 
 <div id="app">
@@ -308,7 +301,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <li data-icon="😴">שינה ומנוחה – כמה שעות? איך? ולמה זה חשוב</li>
       <li data-icon="⚡">כאב, פחד ותגובות – איך לזהות ולהגיב נכון</li>
       <li data-icon="👑">הירארכיה, טריטוריאליזם ויחסים בתוך הקבוצה</li>
-      <li data-icon="🌿">אכילה, הזנה ובעיות התנהגות הקשורות להזנה</li>
     </ul>
   </div>
   <div class="question-box">
@@ -1337,19 +1329,19 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
         <div class="accord-arrow">▼</div>
       </div>
       <div class="accord-body">
-        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px;direction:ltr">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px;direction:rtl">
           <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">👃<br>הרחה</div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🦶<br>בעיטות<br>באדמה</div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:var(--primary-light);border:2px solid var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🐴<br>עמידה על<br>אחוריות</div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center">🥊<br>תקיפה<br><span style="font-size:10px;font-weight:500">(נשיכות, בעיטות)</span></div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">💨<br>קרבות<br>אוויריים</div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:#fde8e8;border:2px solid #f87171;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">⬇️<br>הפלות<br>לרצפה</div>
-          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">→</div>
+          <div style="color:var(--text-muted);font-size:16px;display:flex;align-items:center">←</div>
           <div style="background:var(--green-light);border:2px solid var(--green);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">🏃<br>בריחת<br>המפסיד</div>
         </div>
         <p style="font-size:12px;color:var(--hot);font-weight:600;margin-top:10px;text-align:center">⚠️ פגיעות קשות רק כשאין למפסיד לאן לברוח</p>
@@ -1377,12 +1369,73 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">שלושה סוגי קשרים – ומה כדאי?</p>
   </div>
   <div class="goal-box">אני אוכל לתאר 3 סוגי מערכות יחסים בין סוס לאדם ולהסביר מה מצב אידיאלי.</div>
+
   <div class="card">
-    <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>🟢 אדם &gt; סוס (מצב הכרחי לתפקוד)</strong>אדם בן 55 ק"ג צריך לנהל סוס של 500 ק"ג – זה חייב לעבוד! <strong>אידיאלי כשנרכש בהיגיון "סוסי"</strong> (כולל כוח כשצריך). סוס שיכבד ויסמוך על המטפל.</div></div>
-    <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>🟡 אדם = סוס (גובה שווה)</strong>מתאים לאנשים שרוצים "חבר" בלבד. הבעיות יצוצו כשהסוס נדרש לעשות משהו לא נוח – הכנסת צינור קיבה, מעבר דרך מים. <strong>ינצח החזק!</strong></div></div>
-    <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>🔴 סוס &gt; אדם (נדיר, מסוכן!)</strong>נדיר יחסית. <strong>מסוכן מאוד לשני הצדדים.</strong> יופיע לסירוגין אצל זכרים ברגעים רוויי טסטוסטרון. לכן: <strong>סוסים זכרים – לגדל רק ע"י אנשים מנוסים!</strong></div></div>
+    <div class="section-title">📖 הקדמה</div>
+    <div class="definition-box">הקשר בין סוס לאדם מתפתח בדיוק כמו קשרים בתוך העדר – גם כאן נוצרת <strong>הירארכיה</strong>. ישנם שלושה מצבים אפשריים, ולכל אחד מהם השלכות ישירות על הבטיחות, רווחת הסוס ואיכות העבודה המשותפת.</div>
   </div>
-  <div class="remember-box">מצב אידיאלי: אדם > סוס, שנרכש בלוגיקה סוסית – לא בכוח מופרז!</div>
+
+  <!-- מצב 1: אדם > סוס -->
+  <div class="card" style="border-right:4px solid #2563eb;border-radius:var(--radius);">
+    <div class="section-title">מצב 1: האדם גבוה מהסוס בהירארכיה — המצב ההכרחי והאידיאלי</div>
+    <div class="highlight" style="background:#dbeafe;border-right:4px solid #2563eb"><strong>למה זה הכרחי?</strong> חישבו על זה: רוכבת בת 55 ק"ג או ילד בן 12 צריכים לנהל סוס של 500 ק"ג. בלי מעמד הירארכי גבוה יותר של האדם – זה פשוט לא יעבוד.</div>
+    <div class="highlight brown" style="margin-top:8px"><strong>מתי זה אידיאלי?</strong> כשהמעמד נרכש באמצעות <strong>"היגיון סוסי"</strong> – כלומר, תקשורת ברורה בשפה שהסוס מבין, כולל הפעלת כוח כשצריך, אבל בצורה מדודה והגיונית.</div>
+    <div class="two-col-compare" style="margin-top:12px">
+      <div class="compare-card" style="background:#d5f0e0;border:2px solid var(--green)">
+        <h3 style="color:#065f46">✅ כשנבנה נכון</h3>
+        <ul>
+          <li>הסוס <strong>מכבד</strong> את המטפל ו<strong>סומך</strong> עליו</li>
+          <li>מבצע הוראות באורווה וברכיבה</li>
+          <li>נשאר <strong>רגוע ושמח</strong> בחברת בני אדם</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fde8e8;border:2px solid var(--hot)">
+        <h3 style="color:#991b1b">❌ כשנבנה בכוח מופרז</h3>
+        <ul>
+          <li>שימוש בכוח שלא ברור ל"היגיון הסוסי"</li>
+          <li>התוצאה: סוס <strong>מבוהל, אומלל ומסוכן</strong></li>
+          <li>הסוס מציית מפחד – לא מכבוד ואמון</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- מצב 2: אדם = סוס -->
+  <div class="card" style="border-right:4px solid var(--amber);border-radius:var(--radius);">
+    <div class="section-title">מצב 2: האדם והסוס שווים בהירארכיה — גובה הירארכי שווה</div>
+    <div class="highlight" style="background:#dbeafe;border-right:4px solid #2563eb"><strong>מאפיינים:</strong> מצב שבו האדם והסוס נמצאים באותה רמה הירארכית. נפוץ כאשר הדגש בקשר הוא על חברות ומגע, ללא דרישות ביצוע מיוחדות ברכיבה. בשגרה היומיומית המצב עשוי להיראות תקין לחלוטין.</div>
+    <div class="highlight red" style="margin-top:8px"><strong>⚠️ הבעיות מתגלות כאשר</strong> הסוס נדרש לבצע פעולה שאינה נוחה לו:</div>
+    <div class="icon-row" style="margin-top:8px">
+      <div class="icon-item"><div class="icon">🌊</div><div class="label">מעבר דרך מים</div></div>
+      <div class="icon-item"><div class="icon">🚛</div><div class="label">כניסה לקרון הובלה</div></div>
+      <div class="icon-item"><div class="icon">🏥</div><div class="label">טיפול חריג (צינור קיבה)</div></div>
+    </div>
+    <div class="definition-box" style="margin-top:12px">
+      <strong>מה קורה במצבי עימות?</strong> כאשר אין הירארכיה ברורה – <strong>ינצח הצד החזק יותר</strong>. המטפל עלול להידרש להפעלת כוח או ריסון רב, מה שעלול להוביל ל<strong>מצבים מסוכנים לשני הצדדים</strong>.<br><br>
+      ⚠️ חשוב לציין: במקרים רבים המגדל אינו מודע לבעיה עד לרגע העימות, מכיוון שבשגרה הקשר נראה חיובי ויציב. <strong>הפער בין הציפייה למציאות עלול להוביל לתגובה שגויה של המטפל ולהסלמה מסוכנת.</strong>
+    </div>
+  </div>
+
+  <!-- מצב 3: סוס > אדם -->
+  <div class="card" style="border-right:4px solid var(--hot);border-radius:var(--radius);">
+    <div class="section-title">מצב 3: הסוס גבוה מהאדם בהירארכיה — נדיר ומסוכן מאוד!</div>
+    <div class="highlight red"><strong>מצב נדיר יחסית</strong>, אך <strong>מסוכן מאוד לשני הצדדים</strong> כאשר הוא מתרחש.</div>
+    <div class="highlight brown" style="margin-top:8px"><strong>מתי זה קורה?</strong> בעיקר אצל <strong>סוסים זכרים (סייחים)</strong> ברגעים רוויי טסטוסטרון. בטבע, הזכר המרביע הוא השליט בעדר – ולכן הסוס עלול "להתנגש" עם מעמד האדם כשהטסטוסטרון עולה.</div>
+    <div class="highlight purple" style="margin-top:8px"><strong>🔑 לכן – כללים חשובים:</strong></div>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="mini-card" style="border-color:var(--hot)">
+        <div class="title" style="color:var(--hot)">⚠️ סוסים זכרים</div>
+        לגדל <strong>רק על ידי אנשים מנוסים</strong> ובתנאים מתאימים
+      </div>
+      <div class="mini-card" style="border-color:var(--hot)">
+        <div class="title" style="color:var(--hot)">✂️ סירוס</div>
+        סוסי רכיבה שנפגשים עם רוכבים לא מנוסים או צעירים – <strong>יש לסרס</strong>
+      </div>
+    </div>
+    <div class="highlight green" style="margin-top:8px"><strong>💡 טיפ לעבודה משולבת עם זכרים:</strong> לפתח <strong>סימנים מותנים</strong> נפרדים לכל פעילות – מיקום שונה להרבעות, ציוד הולכה שונה, פעמון וכו'. כך הסוס לומד להפריד בין "מצב עבודה" ל"מצב הרבעה".</div>
+  </div>
+
+  <div class="exam-box">שלושת המצבים: אדם > סוס (אידיאלי כשנרכש בהיגיון סוסי) ← אדם = סוס (בעייתי במצבי לחץ) ← סוס > אדם (נדיר ומסוכן, בעיקר בזכרים). זכרו: כוח מופרז ≠ הירארכיה בריאה!</div>
   <div class="question-box">
     <div class="q-title">❓ מה הסכנה במצב שבו סוס ואדם שווים בהירארכיה?</div>
     <div class="mc-options" id="opts-s18q1">
@@ -1440,17 +1493,88 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">מתי תגובה היא "נורמלית" ומתי היא בעיה?</p>
   </div>
   <div class="goal-box">אני אוכל להסביר מה מגדיר אנומליה תגובתית ולזהות התנהגויות גבוליות.</div>
+
   <div class="card">
-    <div class="definition-box"><strong>אנומליות תגובתיות:</strong> התנפלויות, בעיטות, נשיכות, איומים, פחדנות, תגובות "היסטריה", היפראקטיביות.</div>
-    <div class="section-title">🤔 שתי שאלות מכריעות</div>
-    <div class="highlight brown"><strong>שאלה 1:</strong> האם ההתנהגות תורמת לקיום או לנוחות הסוס?</div>
-    <div class="highlight amber"><strong>שאלה 2:</strong> האם עוצמת התגובה סבירה ביחס למצב/אירוע?</div>
-    <p style="font-size:15px;line-height:1.7;margin-top:12px">אם התשובה ל<strong>שתיהן</strong> היא <strong>כן</strong> – ייתכן שזה נורמלי. אם עוצמת התגובה מוגזמת ביחס למצב – זו אנומליה.</p>
+    <div class="section-title">📖 מהי אנומליה תגובתית?</div>
+    <div class="definition-box"><strong>אנומליה תגובתית</strong> היא התנהגות שבבסיסה טבעית ונורמלית (כמו בעיטה, נשיכה או בריחה), אך היא מתבטאת <strong>בעוצמה מוגזמת, בתדירות חריגה, או בהקשר לא מתאים</strong> – כך שהיא הופכת לבעייתית ולעיתים מסוכנת.</div>
+    <p style="font-size:15px;line-height:1.7;margin-top:12px;color:var(--text-muted)">חשוב להבין: לכל סוס יש תגובות טבעיות של הגנה, פחד ואגרסיביות – אלו חלק מהישרדותו בטבע. הבעיה מתחילה כאשר תגובות אלו מופיעות <strong>במצבים שאינם מצדיקים אותן</strong>, או כשהעוצמה שלהן <strong>חורגת בהרבה ממה שנדרש</strong>. לרוב, אנומליות תגובתיות נובעות מתנאי מחיה לא מתאימים, חוסר סוציאליזציה, היסטוריה של התעללות או ממשק שגוי.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">⚡ דוגמאות להתנהגויות שעלולות להפוך לאנומליה</div>
+    <div class="highlight" style="background:#dbeafe;border-right:4px solid #2563eb"><strong>התנפלויות, בעיטות, נשיכות, איומים</strong> — התנהגויות אגרסיביות שבטבע משמשות להגנה, אך באורווה עלולות להופיע ללא סיבה מוצדקת.</div>
+    <div class="highlight purple" style="margin-top:8px"><strong>פחדנות יתר ותגובות "היסטריה"</strong> — תגובות בהלה קיצוניות למצבים שאינם מאיימים באמת.</div>
+    <div class="highlight amber" style="margin-top:8px"><strong>היפראקטיביות</strong> — רמת פעילות גבוהה באופן חריג שאינה קשורה לגירוי חיצוני ממשי.</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🤔 איך מבדילים בין נורמלי לאנומליה? שתי שאלות מכריעות</div>
+
+    <!-- Flowchart -->
+    <div style="padding:16px 8px;">
+      <!-- שאלה 1 -->
+      <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:16px 20px;text-align:center;font-weight:800;font-size:15px;max-width:420px;margin:0 auto;color:#4a2e0a;">
+        שאלה 1: האם ההתנהגות תורמת לקיום או לנוחות הסוס?
+      </div>
+      <!-- שאלה 1: חצים + תוצאות בשני טורים מיושרים -->
+      <div style="display:flex;justify-content:center;gap:24px;max-width:420px;margin:0 auto;">
+        <!-- טור שמאל: כן → שאלה 2 -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:2px;height:24px;background:var(--green);"></div>
+          <div style="background:var(--green-light);border:2px solid var(--green);color:#065f46;border-radius:99px;padding:4px 18px;font-weight:800;font-size:14px;">כן ✓</div>
+          <div style="width:2px;height:24px;background:var(--green);"></div>
+          <div style="width:100%;background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;text-align:center;font-weight:800;font-size:14px;color:#4a2e0a;">
+            שאלה 2: האם עוצמת התגובה סבירה ביחס למצב?
+          </div>
+        </div>
+        <!-- טור ימין: לא → אנומליה -->
+        <div style="flex:0 0 130px;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:2px;height:24px;background:var(--hot);"></div>
+          <div style="background:var(--hot-light);border:2px solid var(--hot);color:#991b1b;border-radius:99px;padding:4px 18px;font-weight:800;font-size:14px;">לא ✗</div>
+          <div style="width:2px;height:24px;background:var(--hot);"></div>
+          <div style="width:100%;background:var(--hot-light);border:2px solid var(--hot);border-radius:14px;padding:14px 12px;text-align:center;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;color:#991b1b;">
+            🚨 אנומליה תגובתית
+          </div>
+        </div>
+      </div>
+      <!-- שאלה 2: חצים + תוצאות בשני טורים מיושרים -->
+      <div style="display:flex;justify-content:center;gap:24px;max-width:420px;margin:0 auto;">
+        <!-- טור שמאל: כן → נורמלי -->
+        <div style="flex:1;display:flex;gap:12px;">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:24px;background:var(--green);"></div>
+            <div style="background:var(--green-light);border:2px solid var(--green);color:#065f46;border-radius:99px;padding:4px 18px;font-weight:800;font-size:14px;">כן ✓</div>
+            <div style="width:2px;height:24px;background:var(--green);"></div>
+            <div style="width:100%;background:var(--green-light);border:2px solid var(--green);border-radius:14px;padding:14px 12px;text-align:center;font-weight:800;font-size:14px;color:#065f46;">
+              ✅ התנהגות נורמלית
+            </div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:24px;background:var(--hot);"></div>
+            <div style="background:var(--hot-light);border:2px solid var(--hot);color:#991b1b;border-radius:99px;padding:4px 18px;font-weight:800;font-size:14px;">לא ✗</div>
+            <div style="width:2px;height:24px;background:var(--hot);"></div>
+            <div style="width:100%;background:var(--hot-light);border:2px solid var(--hot);border-radius:14px;padding:14px 12px;text-align:center;font-weight:800;font-size:14px;color:#991b1b;">
+              🚨 אנומליה תגובתית
+            </div>
+          </div>
+        </div>
+        <!-- ריווח למיקום מול הטור הימני למעלה -->
+        <div style="flex:0 0 130px;"></div>
+      </div>
+    </div>
+
+    <div class="remember-box">רק אם התשובה לשתי השאלות היא "כן" — ההתנהגות נחשבת נורמלית. בכל מקרה אחר — מדובר באנומליה תגובתית.</div>
   </div>
   <div class="card">
-    <div class="section-title">📋 דוגמאות</div>
-    <div class="highlight green">✅ <strong>נורמלי:</strong> סוס שבועט כשגישה מאחוריו – הגנה עצמית מתוך טבע</div>
-    <div class="highlight red">⚠️ <strong>אנומליה:</strong> סוס שמתנפל על מטפל שמביא לו אוכל – תגובה מוגזמת ביחס למצב</div>
+    <div class="section-title">📋 דוגמאות – יישום השאלות</div>
+    <div style="background:var(--green-light);border:2px solid var(--green);border-radius:12px;padding:14px 16px;margin-bottom:10px;">
+      <strong style="color:#065f46;font-size:15px;">✅ דוגמה לתגובה נורמלית</strong>
+      <p style="font-size:14px;margin-top:6px;line-height:1.6;">סוס שבועט כשניגשים אליו מאחור ← <strong>שאלה 1:</strong> כן, הגנה עצמית תורמת לקיום. <strong>שאלה 2:</strong> כן, העוצמה סבירה ביחס לאיום מאחור. <strong>→ תגובה נורמלית.</strong></p>
+    </div>
+    <div style="background:var(--hot-light);border:2px solid var(--hot);border-radius:12px;padding:14px 16px;">
+      <strong style="color:#991b1b;font-size:15px;">🚨 דוגמה לאנומליה תגובתית</strong>
+      <p style="font-size:14px;margin-top:6px;line-height:1.6;">סוס שמתנפל על מטפל שמביא לו אוכל ← <strong>שאלה 1:</strong> לא, התנפלות לא תורמת לקיום הסוס. <strong>שאלה 2:</strong> לא, העוצמה מוגזמת לחלוטין ביחס למצב. <strong>→ אנומליה תגובתית.</strong></p>
+    </div>
   </div>
   <div class="question-box">
     <div class="q-title">❓ סוס שמתנפל על המטפל בכל פעם שמנקים את תא האורווה – זה נחשב...</div>
@@ -1464,153 +1588,8 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
 </div>
 
-<!-- ===== S21: אכילה בטבע ===== -->
-<div class="screen" id="screen-21">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d6a4f)">
-    <span class="chapter-num">פרק 15</span><span class="emoji">🌿</span>
-    <h1>התנהגות אכילה בטבע</h1>
-    <p class="subtitle">כך אוכל הסוס בחופשיות</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את הרגלי האכילה הטבעיים של הסוס.</div>
-  <div class="card">
-    <div class="highlight green"><strong>אוכלי עשב ושיחים</strong> בטבע. אוספים ירק עם השפתיים וחותכים קרוב לשורש. <strong>מהלכים תוך כדי רעייה!</strong></div>
-    <div class="highlight brown"><strong>מרחק ברעייה חופשית:</strong> 3-10 ק"מ ביום.</div>
-    <div class="highlight amber"><strong>גידול במרעה אידיאלי לסייחים:</strong> שילוב של הזנה טבעית + תנועה. משמש ברוב אורוות הגידול בעולם!</div>
-    <div class="highlight red"><strong>⚠️ סכנות בטבע:</strong> הסוס לא תמיד מזהה צמחי רעל! דוגמאות בישראל: כלח, עשב סודני, אבוקדו.</div>
-    <div class="highlight purple"><strong>לעיסת קליפות עץ/גדרות עץ:</strong> בשעמום, חסר פעילות, חסר מינרלים.</div>
-  </div>
-  <div class="remember-box">סוס בטבע = עובר 3-10 ק"מ ביום תוך כדי אכילה! הכלא של האורווה שונה מאוד מכך.</div>
-  <div class="question-box">
-    <div class="q-title">❓ מדוע סוס לועס גדרות עץ?</div>
-    <div class="mc-options" id="opts-s21q1">
-      <button class="mc-option" onclick="pickOption('s21q1',0,this)"><span class="opt-letter">א</span>שעמום, חסר פעילות, או חסר מינרלים</button>
-      <button class="mc-option" onclick="pickOption('s21q1',1,this)"><span class="opt-letter">ב</span>כי עץ זה החלק העדיף בתפריטו</button>
-      <button class="mc-option" onclick="pickOption('s21q1',2,this)"><span class="opt-letter">ג</span>כדי לחדד את שיניו</button>
-      <button class="mc-option" onclick="pickOption('s21q1',3,this)"><span class="opt-letter">ד</span>כי עץ מכיל ויטמינים חשובים</button>
-    </div>
-    <div class="feedback" id="fb-s21q1"></div>
-  </div>
-</div>
-
-<!-- ===== S22: אכילה באורווה ===== -->
-<div class="screen" id="screen-22">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d6a4f)">
-    <span class="chapter-num">פרק 15 – המשך</span><span class="emoji">🪣</span>
-    <h1>אכילה ושתייה באורווה</h1>
-    <p class="subtitle">כמות, זמן ושיטות לשיפור</p>
-  </div>
-  <div class="goal-box">אני אוכל לפרט את זמני האכילה והשתייה של הסוס באורווה.</div>
-  <div class="card">
-    <table class="info-table">
-      <tr><th>סוג מזון</th><th>זמן אכילה ביממה</th></tr>
-      <tr><td>🌿 רעייה חופשית בטבע</td><td>15-18 שעות!</td></tr>
-      <tr><td>🌾 חציר חופשי</td><td>8-10 שעות</td></tr>
-      <tr><td>⚡ מזון מרוכז</td><td>פחות משעה</td></tr>
-      <tr><td>🏠 סוס באורווה (ממוצע)</td><td>כ-3 שעות</td></tr>
-    </table>
-    <div class="highlight amber"><strong>שתייה:</strong> מעט פעמים בלגימות גדולות. כ-30 ליטר ליממה לסוס ממוצע. באורווה – שותה כ-15 דקות ביום.</div>
-  </div>
-  <div class="card">
-    <div class="section-title">💡 כיצד מגבירים זמן אכילה באורווה?</div>
-    <div class="highlight green">• אבוס עם גבולים (גריל/חורים קטנים) • הוספת תבן (מזון גס קצוץ) למזון המרוכז • רשת חציר</div>
-    <div class="highlight red"><strong>⚠️ אזהרה:</strong> מערכת העיכול של הסוס רגישה מאוד לשינויי הזנה ולמזון באיכות גרועה!</div>
-    <div class="highlight brown"><strong>זיהוי חסר נתרן:</strong> הסוס ישלים מהקרקע – <strong>סכנה לאכילת חול!</strong></div>
-  </div>
-  <div class="exam-box">בטבע = 15-18 שעות אכילה. באורווה = 3 שעות בלבד. הגבלה זו משפיעה על הרווחה!</div>
-  <div class="question-box">
-    <div class="q-title">❓ כמה שעות ביממה אוכל סוס בטבע (רעייה)?</div>
-    <div class="mc-options" id="opts-s22q1">
-      <button class="mc-option" onclick="pickOption('s22q1',0,this)"><span class="opt-letter">א</span>3-5 שעות</button>
-      <button class="mc-option" onclick="pickOption('s22q1',1,this)"><span class="opt-letter">ב</span>15-18 שעות</button>
-      <button class="mc-option" onclick="pickOption('s22q1',2,this)"><span class="opt-letter">ג</span>8-10 שעות</button>
-      <button class="mc-option" onclick="pickOption('s22q1',3,this)"><span class="opt-letter">ד</span>24 שעות ללא הפסקה</button>
-    </div>
-    <div class="feedback" id="fb-s22q1"></div>
-  </div>
-</div>
-
-<!-- ===== S23: Wind Sucking ===== -->
-<div class="screen" id="screen-23">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#4a2a1a,#8b4513)">
-    <span class="chapter-num">פרק 16</span><span class="emoji">💨</span>
-    <h1>בעיות הזנה: Wind Sucking ואכילת עץ</h1>
-    <p class="subtitle">אנומליות הקשורות לשעמום ולחוסר גירוי</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר מה זה Crib-Biting/Wind Sucking ולהסביר כיצד לטפל בו.</div>
-  <div class="card">
-    <div class="section-title">💨 Crib-Biting / Wind Sucking</div>
-    <div class="definition-box"><strong>Crib-Biting:</strong> אחיזת עצם נוקשה בשיניים (גדר, אבוס), מתיחת צוואר, <strong>ובליעת אוויר.</strong></div>
-    <div class="highlight red"><strong>מתי מופיע?</strong> בעיקר באורווה, בסוסים <strong>משועממים.</strong> ניתן ללמוד מסוסים אחרים!</div>
-    <div class="highlight amber"><strong>תוצאות:</strong> שחיקת יתר בשיניים, עלייה בשכיחות קוליקים (כאבי בטן), איבוד משקל.</div>
-    <div class="section-title" style="margin-top:16px">🔧 טיפול</div>
-    <ul class="content-list">
-      <li data-icon="🌿">יציאה למרעה</li>
-      <li data-icon="🏃">הגברת פעילות</li>
-      <li data-icon="🌾">הגברת מזון גס</li>
-      <li data-icon="🎽">שימוש ברצועות לחץ (כואבות במתיחת צוואר)</li>
-      <li data-icon="🔪">טיפול כירורגי (הצלחות חלקיות בלבד)</li>
-      <li data-icon="⚡">התניה שלילית – שוק חשמלי (יעילות מוגבלת)</li>
-    </ul>
-    <div class="highlight red"><strong>⚠️ קשה מאוד להפטר מהרגל זה!</strong></div>
-  </div>
-  <div class="card">
-    <div class="section-title">🪵 אכילת עץ</div>
-    <div class="highlight brown">נפוצה מאוד! מזיק לאורווה, פחות לסוס. פונים ללא חציר לעסו 300 גרם עץ ביום – ירד ב-80% כשקיבלו חציר!</div>
-    <div class="highlight green"><strong>מניעה:</strong> מזון גס חופשי, דל חלבון.</div>
-  </div>
-  <div class="question-box">
-    <div class="q-title">❓ מהי הסיבה העיקרית להתפתחות Crib-Biting?</div>
-    <div class="mc-options" id="opts-s23q1">
-      <button class="mc-option" onclick="pickOption('s23q1',0,this)"><span class="opt-letter">א</span>כאבי שיניים</button>
-      <button class="mc-option" onclick="pickOption('s23q1',1,this)"><span class="opt-letter">ב</span>שעמום בסוסים המוגבלים באורווה</button>
-      <button class="mc-option" onclick="pickOption('s23q1',2,this)"><span class="opt-letter">ג</span>תזונה לקויה בלבד</button>
-      <button class="mc-option" onclick="pickOption('s23q1',3,this)"><span class="opt-letter">ד</span>גנטיקה – תורשתי בלבד</button>
-    </div>
-    <div class="feedback" id="fb-s23q1"></div>
-  </div>
-</div>
-
-<!-- ===== S24: אנומליות סומטיות ===== -->
-<div class="screen" id="screen-24">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#2a1a4a,#5a2e6e)">
-    <span class="chapter-num">פרק 17</span><span class="emoji">🚨</span>
-    <h1>אנומליות סומטיות – Stable Vices</h1>
-    <p class="subtitle">התנהגויות סטריאוטיפיות ואנומליות אכילה נוספות</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את ה-Stable Vices העיקריים ואת הגורמים להם.</div>
-  <div class="card">
-    <div class="definition-box"><strong>Stable Vices:</strong> תופעות סטריאוטיפיות החוזרות בתבנית קבועה. נפוצות בסוסים <strong>משועממים המוגבלים</strong> בתנועה ו/או במרחב ראייה. ייתכן התמכרות לאופייטים המשוחררים.</div>
-    <table class="info-table">
-      <tr><th>שם</th><th>תיאור</th><th>תוצאה</th></tr>
-      <tr><td><strong>Weaving</strong></td><td>נדנוד ראש מצד לצד/קדימה-אחורה</td><td>תשישות, איבוד משקל</td></tr>
-      <tr><td><strong>Pawing</strong></td><td>הקשה עם רגל קדמית ברצפה</td><td>פגיעה בפרסה ובקיר התא, בורות</td></tr>
-      <tr><td><strong>צעידה מתמשכת</strong></td><td>הליכה במעגל ללא הפסקה</td><td>איבוד משקל, בעיות גב</td></tr>
-      <tr><td><strong>זריקת ראש</strong></td><td>הנפה פתאומית של הראש</td><td>בהמשך לכאב ברכיבה (מתג, גב, שיניים)</td></tr>
-    </table>
-    <div class="highlight red"><strong>⚠️ כולם:</strong> טיפול עיקרי = הגדלת תא, מרעה, פעילות. קשה מאוד להפטר!</div>
-  </div>
-  <div class="card">
-    <div class="section-title">💧 שתיית יתר</div>
-    <div class="highlight amber">עד 140 ליטר ביממה (לעומת 30-40 בנורמלי). מלווה בהשתנת יתר. סכנה לפיתול מעי ונזק כלייתי. <strong>טיפול: הגבלת שתייה ל-50 ליטר, צמצום שעמום.</strong></div>
-  </div>
-  <div class="card">
-    <div class="section-title">💩 קורופגיה</div>
-    <div class="highlight brown"><strong>אכילת צואה:</strong> נורמלי בסייחים! נחשב להפרעה בבוגרים. <strong>טיפול: הקטנת שעמום, הוספת מזון גס.</strong></div>
-  </div>
-  <div class="question-box">
-    <div class="q-title">❓ מהו הטיפול הכללי ברוב ה-Stable Vices?</div>
-    <div class="mc-options" id="opts-s24q1">
-      <button class="mc-option" onclick="pickOption('s24q1',0,this)"><span class="opt-letter">א</span>תרופות להרגעה קבועה</button>
-      <button class="mc-option" onclick="pickOption('s24q1',1,this)"><span class="opt-letter">ב</span>הגדלת תא, מרעה, פעילות – הפחתת שעמום</button>
-      <button class="mc-option" onclick="pickOption('s24q1',2,this)"><span class="opt-letter">ג</span>ענישה בכל פעם שחוזר על ההתנהגות</button>
-      <button class="mc-option" onclick="pickOption('s24q1',3,this)"><span class="opt-letter">ד</span>ניתוח בכל מקרה</button>
-    </div>
-    <div class="feedback" id="fb-s24q1"></div>
-  </div>
-</div>
-
 <!-- ===== S25: מילון מונחים ===== -->
-<div class="screen" id="screen-25">
+<div class="screen" id="screen-21">
   <div class="chapter-header" style="background:linear-gradient(135deg,#2a2a4a,#1e3a8a)">
     <span class="chapter-num">פרק 18</span><span class="emoji">📖</span>
     <h1>מילון מונחים</h1>
@@ -1624,12 +1603,12 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
         <div class="flashcard-back"><div class="def">טיפוח עצמי: תנועות לניקוי, גירוד והרחקת טפילים. מעיד על הרגשה טובה.</div></div>
       </div>
     </div>
-    <div class="flashcard-nav"><button onclick="prevCard()">◀ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 12</span><button onclick="nextCard()">הבא ▶</button></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">◀ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 10</span><button onclick="nextCard()">הבא ▶</button></div>
   </div>
 </div>
 
 <!-- ===== S26: נכון / לא נכון ===== -->
-<div class="screen" id="screen-26">
+<div class="screen" id="screen-22">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#059669)">
     <span class="chapter-num">פרק 19</span><span class="emoji">✅</span>
     <h1>חזרה – נכון / לא נכון</h1>
@@ -1652,14 +1631,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="feedback" id="fb-r2"></div>
   </div>
   <div class="card">
-    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ הסוס יכול לזהות בצורה אמינה מזון מקולקל.</div>
-    <div class="tf-options" id="tfopts-r3">
-      <button class="tf-btn" data-val="true" onclick="pickTF('r3',true,this)">✅ נכון</button>
-      <button class="tf-btn" data-val="false" onclick="pickTF('r3',false,this)">❌ לא נכון</button>
-    </div>
-    <div class="feedback" id="fb-r3"></div>
-  </div>
-  <div class="card">
     <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px">❓ Flehmen היא התנהגות אופיינית לזכרים בנוכחות נקבות בייחום.</div>
     <div class="tf-options" id="tfopts-r4">
       <button class="tf-btn" data-val="true" onclick="pickTF('r4',true,this)">✅ נכון</button>
@@ -1678,7 +1649,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <!-- ===== S27: שאלות הבנה ===== -->
-<div class="screen" id="screen-27">
+<div class="screen" id="screen-23">
   <div class="chapter-header" style="background:linear-gradient(135deg,#4a3a1a,#8a6520)">
     <span class="chapter-num">פרק 19 – המשך</span><span class="emoji">❓</span>
     <h1>שאלות הבנה</h1>
@@ -1727,7 +1698,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <!-- ===== S28: התאמה ===== -->
-<div class="screen" id="screen-28">
+<div class="screen" id="screen-24">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#0369a1)">
     <span class="chapter-num">פרק 19 – סיכום</span><span class="emoji">🔗</span>
     <h1>התאמת מושגים</h1>
@@ -1740,7 +1711,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
         <div class="match-item left-item" data-id="a" onclick="selectLeft('a',this)">Flehmen</div>
         <div class="match-item left-item" data-id="b" onclick="selectLeft('b',this)">Pandiculation</div>
         <div class="match-item left-item" data-id="c" onclick="selectLeft('c',this)">Stay Apparatus</div>
-        <div class="match-item left-item" data-id="d" onclick="selectLeft('d',this)">Crib-Biting</div>
         <div class="match-item left-item" data-id="e" onclick="selectLeft('e',this)">VNO</div>
       </div>
       <div class="match-col" id="right-col">
@@ -1748,7 +1718,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
         <div class="match-item right-item" data-match="a" onclick="selectRight('a',this)">הרמת שפה עליונה – לאיסוף פורומונים</div>
         <div class="match-item right-item" data-match="e" onclick="selectRight('e',this)">איבר ג'ייקובסון – לזיהוי פורומונים</div>
         <div class="match-item right-item" data-match="b" onclick="selectRight('b',this)">תבנית מתיחות בסדר קבוע – מעיד על רווחה</div>
-        <div class="match-item right-item" data-match="d" onclick="selectRight('d',this)">אחיזת עצם ובליעת אוויר – בשעמום</div>
       </div>
     </div>
     <div id="match-score" class="score-box" style="display:none"></div>
@@ -1756,7 +1725,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <!-- ===== S29: סיום ===== -->
-<div class="screen" id="screen-29">
+<div class="screen" id="screen-25">
   <div class="completion-card">
     <div style="font-size:64px;margin-bottom:8px">🏆</div>
     <h2>כל הכבוד! סיימת את הלומדה!</h2>
@@ -1773,7 +1742,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <li data-icon="✅">שינה ומנוחה – REM, שינה בעמידה, זמני רביצה</li>
       <li data-icon="✅">כאב, פחד ותגובות – פיזיולוגיה וסימנים</li>
       <li data-icon="✅">טריטוריאליזם, הירארכיה ויחסי סוס-אדם</li>
-      <li data-icon="✅">Crib-Biting, Stable Vices ובעיות הזנה</li>
     </ul>
   </div>
   <div class="exam-box">זכור לחזור על הנושאים שהיו קשים יותר. בהצלחה בבגרות! 🎯</div>
@@ -1786,13 +1754,13 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 
 <div class="nav-buttons">
   <button class="btn btn-primary" id="btn-prev" onclick="goBack()">→ הקודם</button>
-  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 30</span>
+  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 26</span>
   <button class="btn btn-primary" id="btn-next" onclick="goNext()">הבא ←</button>
 </div>
 
 <script>
 // ============= DATA =============
-const TOTAL = 30;
+const TOTAL = 26;
 let current = 0;
 
 const chapterLabels = [
@@ -1803,8 +1771,6 @@ const chapterLabels = [
   'מגע וכאב','תגובות לכאב','סימני פחד',
   'מרחב וטריטוריה','הירארכיה ולחימה','הירארכיה: סוס-אדם',
   'סוסים תוקפניים','אנומליות תגובתיות',
-  'אכילה בטבע','אכילה באורווה',
-  'Wind Sucking','Stable Vices',
   'מילון מונחים',
   'נכון/לא נכון','שאלות הבנה','התאמה','סיום'
 ];
@@ -1869,10 +1835,6 @@ const mcData = {
   's18q1': { correct: 1, explanation: 'כשמגיעה סיטואציה לחוצה (טיפול רפואי, מעבר מים), ינצח החזק יותר. לכן אידיאלי שהאדם יהיה מעל הסוס בהירארכיה – ברכישה בדרכים סוסיות, לא בכוח.' },
   's19q1': { correct: 1, explanation: 'אוזניים שוכבות לאחור הוא אחד מסימני האגרסיביות (יחד עם מבט מתוח, כיווץ שרירים, גלגל עין מסובב לאחור). יש להבחין בינן לבין אוזניים ישרות שמעידות על סקרנות.' },
   's20q1': { correct: 1, explanation: 'אנומליה תגובתית מוגדרת כאשר: (1) ההתנהגות לא תורמת לקיום הסוס, (2) עוצמתה מוגזמת ביחס למצב. התנפלות על מנקה תא עונה על שני התנאים.' },
-  's21q1': { correct: 0, explanation: 'לעיסת עץ היא תגובה לשעמום, חסר פעילות, או חסר מינרלים – לא חלק מהתנהגות טבעית. הפתרון: פעילות, מרעה, ומינרלים.' },
-  's22q1': { correct: 1, explanation: 'בטבע הסוס ניזון ברעייה 15-18 שעות ביממה! לעומת זאת סוס באורווה עם מזון מרוכז אוכל פחות משעה. הפחתה דרסטית זו משפיעה מאוד על רווחתו.' },
-  's23q1': { correct: 1, explanation: 'Crib-Biting מתפתח בסוסים משועממים שמוגבלים באורווה, וניתן גם ללמוד אותו מסוסים אחרים. קשה מאוד להפטר ממנו.' },
-  's24q1': { correct: 1, explanation: 'הגורם השורשי לרוב ה-Stable Vices הוא שעמום ומגבלה. הטיפול: הגדלת תא, מרעה, פעילות. קשה מאוד להפטר – מניעה עדיפה על טיפול.' },
   'q27a': { correct: 1, explanation: 'המרחב האינדיוידואלי הוא ה"טבעת" הצמודה לסוס לצורך פעולות קיומיות. המרחק הקריטי הוא המרחק ממנו ישמר הסוס מסוסים אחרים לפני יצירת אינטראקציה כלשהי.' },
   'q27b': { correct: 1, explanation: 'כל הגורמים המפורטים (ריפוד לא נוח, רטוב, קשירה קצרה, רעש, תאורה, בעיות אורטופדיות) עלולים לגרום לסוס לרבוץ פחות. סוס שלא שוכב = בדוק את הסביבה!' },
   'q27c': { correct: 1, explanation: 'תנועות לעיסה הן אחד הסימנים הברורים ביותר לרגיעה. כשהסוס מפסיק לתקשר בשפת גוף מוגברת ומתחיל ללעוס – הוא נרגע.' },
@@ -1884,7 +1846,6 @@ const tfData = {
   's8q1':  { correct: false, explanation: 'לא נכון. "לא לסמוך על יכולת ההימנעות ממזונות מקולקלים." תפקיד המטפל לוודא איכות המזון – הסוס לא תמיד יזהה בעצמו!' },
   'r1':    { correct: false, explanation: 'לא נכון. שינה עמוקה (REM) אפשרית רק בשכיבה. בעמידה הסוס יכול לנמנם ולישון שינה קלה, אך לא להגיע לשינה העמוקה החיונית.' },
   'r2':    { correct: false, explanation: 'לא נכון. ההפך: תדירות Pandiculation יורדת בסוסים עם כאבי שריר-שלד כרוניים. היא מבטאת תחושת רווחה – ולכן נעלמת כשיש כאב.' },
-  'r3':    { correct: false, explanation: 'לא נכון. הסוס לא תמיד מזהה מזון מקולקל ולא יימנע ממנו באופן אוטומטי. תפקיד המטפל לוודא איכות המזון. מקרי הרעלה ידועים בארץ – כלח, עשב סודני, אבוקדו.' },
   'r4':    { correct: true,  explanation: 'נכון. Flehmen היא התנהגות זכרית אופיינית בנוכחות נקבות – בעיקר בזמן ייחום. היא מסייעת לאיסוף פורומונים ב-VNO.' },
   'r5':    { correct: true,  explanation: 'נכון. קצב הלב יכול לזנק מ-30 ל-160 פעימות תוך שניות – זו הסיבה שתגובות הסוס לכאב כל כך פתאומיות ומסוכנות.' }
 };
@@ -1946,10 +1907,8 @@ const glossaryData = [
   {term:'Stay Apparatus', def:'מנגנון נעילת הרגליים של הסוס המאפשר שינה בעמידה.'},
   {term:'REM', def:'שלב השינה העמוקה. אפשרי רק בשכיבה.'},
   {term:'Summer Itch', def:'רגישות יתר ליבחושים: גירוד חזק ברעמה, זנב וגב. נפוץ בישראל.'},
-  {term:'Crib-Biting / Wind Sucking', def:'אחיזת עצם ובליעת אוויר. בסוסים משועממים. קשה מאוד להפטר.'},
   {term:'מרחב אינדיוידואלי', def:'"טבעת" המקיפה את הסוס, המאפשרת פעולות קיומיות כאכילה ורביצה.'},
   {term:'מרחק קריטי', def:'המרחק הנשמר מסוסים אחרים לפני יצירת אינטראקציה.'},
-  {term:'Stable Vices', def:'תופעות סטריאוטיפיות קבועות בסוסים משועממים. Weaving, Pawing וכו\'.'},
   {term:'ראייה בינוקולרית', def:'ראייה בשתי עיניים יחד – כ-60% משדה הראייה של הסוס.'}
 ];
 let fcIndex = 0;
@@ -2005,7 +1964,7 @@ function selectRight(matchId, el) {
     if(leftEl) { leftEl.classList.add('matched'); leftEl.style.cursor='default'; }
     matchedPairs++;
     selectedLeft = null;
-    if(matchedPairs === 5) {
+    if(matchedPairs === 4) {
       const scoreDiv = document.getElementById('match-score');
       scoreDiv.style.display = 'flex';
       scoreDiv.innerHTML = '🎉 כל הכבוד! התאמת את כל המושגים נכון!';
