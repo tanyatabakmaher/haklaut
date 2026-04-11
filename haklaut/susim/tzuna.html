@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תזונת סוסים | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{
+  --bg:#f5f9f5;--card:#fff;--primary:#2d6a4f;--primary-light:#d8f0e4;
+  --secondary:#7c4f1a;--secondary-light:#fdf3e8;
+  --hot:#c0392b;--hot-light:#fde8e8;--green:#27ae60;--green-light:#d5f0e0;
+  --amber:#e07b3b;--amber-light:#feebd8;--purple:#6c3483;--purple-light:#ede0f5;
+  --blue:#1a6fa8;--blue-light:#dbeafe;
+  --text:#0f1f0f;--text-muted:#4a6a4a;--border:#c8e0d0;
+  --shadow:0 4px 20px rgba(45,106,79,0.10);--radius:16px;--font:'Heebo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#2d6a4f,#1a4a2e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;letter-spacing:.5px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#b0c8b0;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#progress-track{flex:1;height:10px;background:#c8e0d0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#2d6a4f,#e07b3b);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#1a4a2e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#fdf6ee,#fdf0df);border:2px solid #e8c99a;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;color:#3a2a0a;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.brown{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.amber{background:var(--amber-light);border-right:4px solid var(--amber);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.highlight.blue{background:var(--blue-light);border-right:4px solid var(--blue);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.exam-box{background:linear-gradient(135deg,#f0fdf4,#d1fae5);border:2px solid #6ee7b7;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
+.exam-box::before{content:"📋 חשוב לבגרות: ";color:#065f46;display:block;font-size:15px;margin-bottom:8px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;font-size:13px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{display:block;margin-bottom:4px;font-size:16px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:var(--primary);color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:var(--primary-light);}
+.question-box{background:#f0f7f2;border:2px solid #a8d8bc;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1a4a2e;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.tf-btn:disabled{cursor:not-allowed;}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#2d6a4f,#1a4a2e);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#e07b3b,#c05a20);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#1a4a2e 0%,#2d6a4f 40%,#7c4f1a 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🌾';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#2d6a4f,#7c4f1a);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:480px){.toc-grid{grid-template-columns:1fr;}}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.icon-row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.icon-item{flex:1;min-width:120px;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:center;font-size:13px;}
+.icon-item .icon{font-size:28px;display:block;margin-bottom:6px;}
+.icon-item .label{font-weight:700;font-size:14px;margin-bottom:4px;}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#f0f9f4;border-color:#a8d8bc;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:var(--primary-light);border-color:var(--primary);}
+.match-item.right-item{background:#fdf6ee;border-color:#e8c99a;}
+.match-item.matched{background:var(--green-light);border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.score-box{display:flex;gap:10px;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--primary);padding:12px;}
+.color-card{border-radius:12px;padding:16px;text-align:center;border:2px solid transparent;margin-bottom:8px;}
+.color-card .cc-emoji{font-size:32px;display:block;margin-bottom:6px;}
+.color-card .cc-label{font-weight:800;font-size:15px;}
+.color-card .cc-meaning{font-size:13px;margin-top:4px;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:80px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:var(--green-light);border:2px solid var(--green);color:#065f46;}
+.fill-sentence{font-size:16px;line-height:2.2;margin-bottom:12px;padding:14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.drag-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;justify-content:center;}
+.drag-card{background:white;border:2px solid var(--border);border-radius:10px;padding:8px 14px;cursor:grab;font-size:13px;font-weight:700;user-select:none;transition:all .2s;}
+.drag-card:hover{border-color:var(--primary);background:var(--primary-light);}
+.drop-zone{border:2px dashed var(--border);border-radius:10px;padding:10px 14px;min-height:48px;display:flex;align-items:center;gap:10px;font-size:13px;background:#f5f9f5;margin-bottom:8px;transition:all .2s;}
+
+.accord-item{border:2px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .2s;}
+.accord-item:hover{box-shadow:0 4px 14px rgba(0,0,0,0.09);}
+.accord-header{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;background:white;user-select:none;}
+.accord-num{min-width:38px;height:38px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0;}
+.accord-title{flex:1;font-size:16px;font-weight:700;color:var(--text);}
+.accord-arrow{font-size:13px;color:var(--text-muted);transition:transform .25s;flex-shrink:0;}
+.accord-item.open .accord-arrow{transform:rotate(180deg);}
+.accord-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;background:#f0f7f2;padding:0 16px;}
+.accord-item.open .accord-body{max-height:500px;padding:14px 16px;}
+.accord-body p{font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:6px;}
+.accord-body p:last-child{margin-bottom:0;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🌾 תפריט הלומדה</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🌿 סוגי מזון</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🌾</span>ממה ניזון הסוס</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🥬</span>מזון גס</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🌽</span>מזון מרוכז</button>
+    </div>
+    <div class="menu-chapter-title">🔍 איכות החציר</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🎨</span>יובש וצבע</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">👃</span>ריח ועלים</button>
+    </div>
+    <div class="menu-chapter-title">🌱 סוגי חציר</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🌾</span>חציר שיבולת שועל</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🌿</span>חציר אספסת + השוואה</button>
+    </div>
+    <div class="menu-chapter-title">🐴 אכילה בטבע</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🏕️</span>רעייה וצמחים</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">⚠️</span>צמחי רעל ועץ</button>
+    </div>
+    <div class="menu-chapter-title">⏰ אכילה ושתייה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">⏱️</span>זמן אכילה</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">💧</span>שתייה ואורווה</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🔧</span>שיטות להגברת אכילה</button>
+    </div>
+    <div class="menu-chapter-title">⚕️ רגישות ובעיות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🫁</span>מערכת עיכול רגישה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🧂</span>חסר נתרן ואכילת חול</button>
+    </div>
+    <div class="menu-chapter-title">💨 Wind Sucking</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">😮‍💨</span>הגדרה וגורמים</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❗</span>נזקים ולמידה</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">💊</span>טיפול</button>
+    </div>
+    <div class="menu-chapter-title">🌀 אנומליות אכילה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🪵</span>אכילת עץ</button>
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">🔄</span>קורפופגיה</button>
+    </div>
+    <div class="menu-chapter-title">💧 שתיית יתר</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🌊</span>שתיית יתר – נזקים</button>
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">🩺</span>אבחון וטיפול</button>
+    </div>
+    <div class="menu-chapter-title">📚 סיכום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות חזרה</button>
+      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span><span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700;margin-right:8px">פתיחה</span></button>
+  <span style="font-size:22px">🌾</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 25</span>
+</div>
+
+<div id="app">
+
+<!-- ===== S0: פתיחה ===== -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🌾🐴💧🌿</div>
+    <h1>תזונת סוסים</h1>
+    <p class="tagline">מזון גס, מרוכז, סוגי חציר ובעיות הזנה<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐎 סוסים</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">❓ מה נלמד בלומדה?</div>
+    <ul class="content-list">
+      <li data-icon="🌾">סוגי המזון של הסוס: מזון גס ומרוכז</li>
+      <li data-icon="🔍">איך מזהים חציר איכותי</li>
+      <li data-icon="🌿">סוגי חציר: שיבולת שועל ואספסת</li>
+      <li data-icon="🐴">איך סוסים אוכלים בטבע</li>
+      <li data-icon="⏰">כמה זמן הסוס אוכל ושותה ביום</li>
+      <li data-icon="💨">בעיות התנהגות: Wind Sucking, Crib Biting</li>
+      <li data-icon="🌀">אנומליות אכילה: אכילת עץ, קורפופגיה, שתיית יתר</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלת פתיחה – בדוק מה אתה כבר יודע!</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה שעות בערך אוכל סוס ברעייה חופשית ביום?</p>
+    <div class="tf-options" id="tfopts-s0">
+      <button class="tf-btn" onclick="pickTF('s0q1',false,this)">3–5 שעות</button>
+      <button class="tf-btn" onclick="pickTF('s0q1',true,this)">15–18 שעות</button>
+    </div>
+    <div class="feedback" id="fb-s0q1"></div>
+  </div>
+</div>
+
+<!-- ===== S1: ממה ניזון הסוס ===== -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2e,#2d6a4f)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🌾</span>
+    <h1>ממה ניזון הסוס?</h1>
+    <p class="subtitle">החלוקה הבסיסית של מזון הסוס</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות ולסווג את סוגי המזון של הסוס.</div>
+  <div class="definition-box">
+    מזון הסוס מתחלק לשני סוגים עיקריים: <strong>מזון גס</strong> ו<strong>מזון מרוכז</strong>.
+  </div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-color:#27ae60;border-width:2px">
+      <div class="title" style="color:#2d6a4f">🌾 מזון גס – <span style="font-weight:900">עיקרי</span></div>
+      <p>חציר מסוגים שונים: שיבולת שועל, בקיה, אספסת<br>
+      <span style="color:#2d6a4f;font-weight:700">הסוס אוכל ממנו רוב שעות היום</span></p>
+    </div>
+    <div class="mini-card" style="border-color:#e07b3b;border-width:2px">
+      <div class="title" style="color:#7c4f1a">🌽 מזון מרוכז – <span style="font-weight:900">משלים</span></div>
+      <p>תערובת וגרעינים<br>
+      <span style="color:#7c4f1a;font-weight:700">תוסף בלבד, לא תחליף</span></p>
+    </div>
+  </div>
+  <div class="remember-box">מזון גס = עיקרי | מזון מרוכז = משלים בלבד</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה כולל מזון גס?</p>
+    <div class="mc-options" id="opts-s1q1">
+      <button class="mc-option" onclick="pickOption('s1q1',0,this)"><span class="opt-letter">א</span>תערובת וגרעינים</button>
+      <button class="mc-option" onclick="pickOption('s1q1',1,this)"><span class="opt-letter">ב</span>ויטמינים ותוספים</button>
+      <button class="mc-option" onclick="pickOption('s1q1',2,this)"><span class="opt-letter">ג</span>חציר: שיבולת שועל, בקיה, אספסת</button>
+      <button class="mc-option" onclick="pickOption('s1q1',3,this)"><span class="opt-letter">ד</span>ירקות ופירות בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s1q1"></div>
+  </div>
+</div>
+
+<!-- ===== S2: מזון גס ===== -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2e,#2d6a4f)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">🥬</span>
+    <h1>מזון גס</h1>
+    <p class="subtitle">סוגים ודוגמאות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתת דוגמאות למזון גס שהסוס אוכל.</div>
+  <div class="definition-box">
+    <strong>מזון גס = חציר</strong> ממגוון צמחים – זהו הבסיס של תזונת הסוס.<br><br>
+    הסוס הוא בעל חיים שנועד לאכול <strong>כמויות גדולות של צמחים לאורך שעות רבות</strong>.
+    מזון גס מספק לו סיבים חיוניים, עוזר לתפקוד תקין של מערכת העיכול, ומעסיק אותו לאורך היום.
+  </div>
+  <div class="section-title">🌿 דוגמאות למזון גס:</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/hazir.png" alt="חציר לסוסים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="accord-item" id="acc-shib">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#2d6a4f">🌾</div>
+      <div class="accord-title">שיבולת שועל</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📊</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
+          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">נמוך יחסית</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📦</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">גדולה יחסית</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
+          <span style="font-size:18px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">ערך נמוך = אפשר לתת הרבה. מעסיק את הסוס שעות רבות ומונע שעמום.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item" id="acc-vicia">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60">🌱</div>
+      <div class="accord-title">בקיה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📊</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינוני</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📦</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינונית</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
+          <span style="font-size:18px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">משמשת לגיוון ולהשלמה בין שיבולת השועל לאספסת.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item" id="acc-alfalfa">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#7c4f1a">🌿</div>
+      <div class="accord-title">אספסת</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📊</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">גבוה יחסית</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📦</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
+          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">קטנה יחסית</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">✨</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">עשיר ב</span>
+          <span style="font-size:13px;color:#4a6a4a">חלבון + ויטמינים</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
+          <span style="font-size:18px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">ערך גבוה = כמות קטנה מספיקה. עודף עלול להשמין.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="highlight amber"><strong>למה מזון גס חשוב?</strong><br>הסוס צריך לאכול לאורך <strong>רוב היום</strong>. מזון גס מעסיק את הסוס ואת מערכת העיכול שלו לאורך שעות.</div>
+  <div class="exam-box">מזון גס = חציר (שיבולת שועל / בקיה / אספסת) | מזון מרוכז = תערובת + גרעינים</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">תערובת וגרעינים שייכים לקטגוריית מזון גס.</p>
+    <div class="tf-options" id="tfopts-s2">
+      <button class="tf-btn" onclick="pickTF('s2tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s2tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s2tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S3: מזון מרוכז ===== -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#5a3010,#7c4f1a)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">🌽</span>
+    <h1>מזון מרוכז</h1>
+    <p class="subtitle">תערובת וגרעינים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו מזון מרוכז ומתי משתמשים בו.</div>
+  <div class="definition-box">
+    <strong>מזון מרוכז</strong> = <strong>תערובת וגרעינים</strong><br>
+    מכיל הרבה אנרגיה וחומרי מזון בכמות קטנה.
+  </div>
+  <div class="highlight brown">🌽 <strong>דוגמאות:</strong> שעורה, תירס, גרעיני חמניות, תערובות מיוחדות לסוסים</div>
+  <div class="highlight red">⚠️ <strong>שים לב!</strong> הסוס גומר מזון מרוכז <strong>פחות משעה</strong>. זה מעט מאוד זמן לסוס שצריך לאכול לאורך היום!</div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:var(--primary-light)">
+      <h3 style="color:#1a4a2e">🌾 מזון גס</h3>
+      <ul>
+        <li><span>חציר מסוגים שונים</span></li>
+        <li><span>אכילה ארוכה – שעות</span></li>
+        <li><span>מעסיק את הסוס</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:var(--secondary-light)">
+      <h3 style="color:#7c4f1a">🌽 מזון מרוכז</h3>
+      <ul>
+        <li><span>תערובת וגרעינים</span></li>
+        <li><span>אכילה קצרה – פחות משעה</span></li>
+        <li><span>עשיר באנרגיה</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה זמן לוקח לסוס לאכול מזון מרוכז?</p>
+    <div class="mc-options" id="opts-s3q1">
+      <button class="mc-option" onclick="pickOption('s3q1',0,this)"><span class="opt-letter">א</span>15–18 שעות</button>
+      <button class="mc-option" onclick="pickOption('s3q1',1,this)"><span class="opt-letter">ב</span>8–10 שעות</button>
+      <button class="mc-option" onclick="pickOption('s3q1',2,this)"><span class="opt-letter">ג</span>3–5 שעות</button>
+      <button class="mc-option" onclick="pickOption('s3q1',3,this)"><span class="opt-letter">ד</span>פחות משעה</button>
+    </div>
+    <div class="feedback" id="fb-s3q1"></div>
+  </div>
+</div>
+
+<!-- ===== S4: איכות החציר – יובש וצבע ===== -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a5a2a,#2d8a4f)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🎨</span>
+    <h1>איכות החציר – יובש וצבע</h1>
+    <p class="subtitle">איך יודעים שהחציר טוב?</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות חציר איכותי לפי צבעו ויובשו.</div>
+  <div class="highlight green">📌 <strong>כלל ראשון:</strong> החציר בחבילה חייב להיות <strong>יבש</strong>. חציר רטוב עלול להירקב.</div>
+  <div class="section-title">🎨 מה הצבע אומר?</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+    <div class="color-card" style="background:#d5f0e0;border-color:#27ae60">
+      <span class="cc-emoji">🟢</span>
+      <div class="cc-label">ירוק בהיר</div>
+      <div class="cc-meaning">✅ חציר איכותי! ערך תזונתי גבוה</div>
+    </div>
+    <div class="color-card" style="background:#fef9c3;border-color:#eab308">
+      <span class="cc-emoji">🟡</span>
+      <div class="cc-label">צהוב</div>
+      <div class="cc-meaning">⚠️ ערך תזונתי נמוך יותר</div>
+    </div>
+    <div class="color-card" style="background:#fde8e8;border-color:#c0392b">
+      <span class="cc-emoji">🟤</span>
+      <div class="cc-label">חום</div>
+      <div class="cc-meaning">❌ חציר רקוב – לא לשימוש!</div>
+    </div>
+  </div>
+  <div class="remember-box">ירוק = טוב | צהוב = בינוני | חום = רקוב!</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">חציר בצבע חום מסמל:</p>
+    <div class="mc-options" id="opts-s4q1">
+      <button class="mc-option" onclick="pickOption('s4q1',0,this)"><span class="opt-letter">א</span>חציר איכותי מאוד</button>
+      <button class="mc-option" onclick="pickOption('s4q1',1,this)"><span class="opt-letter">ב</span>חציר רקוב – לא לשימוש</button>
+      <button class="mc-option" onclick="pickOption('s4q1',2,this)"><span class="opt-letter">ג</span>חציר יבש מאוד – מצוין</button>
+      <button class="mc-option" onclick="pickOption('s4q1',3,this)"><span class="opt-letter">ד</span>ערך תזונתי גבוה</button>
+    </div>
+    <div class="feedback" id="fb-s4q1"></div>
+  </div>
+</div>
+
+<!-- ===== S5: ריח ועלים ===== -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a5a2a,#2d8a4f)">
+    <span class="chapter-num">פרק 2 – המשך</span><span class="emoji">👃</span>
+    <h1>ריח ועלים בחציר</h1>
+    <p class="subtitle">עוד שני סימנים לאיכות</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות חציר איכותי לפי ריחו ומספר העלים.</div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:var(--primary-light)">
+      <h3 style="color:#1a4a2e">👃 ריח תקין</h3>
+      <ul>
+        <li><span>ריח ירוק של דשא</span></li>
+        <li><span>ריח טרי ונעים</span></li>
+        <li><span>✅ חציר טוב</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:var(--hot-light)">
+      <h3 style="color:#c0392b">🦠 ריח לא תקין</h3>
+      <ul>
+        <li><span>ריח עובש</span></li>
+        <li><span>ריח רקבון</span></li>
+        <li><span>❌ חציר פסול!</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight green">🍃 <strong>חשיבות העלים:</strong> חשוב שיהיו <strong>כמה שיותר עלים</strong> בחציר – כמות עלים גדולה מראה על <strong>ערך תזונתי גבוה</strong>.</div>
+  <div class="section-title">📋 סיכום 4 סימני איכות חציר:</div>
+  <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>יובש</strong>החציר חייב להיות יבש</div></div>
+  <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>צבע</strong>ירוק בהיר = מצוין | צהוב = בינוני | חום = רקוב</div></div>
+  <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>ריח</strong>ריח דשא = טוב | ריח עובש = פסול</div></div>
+  <div class="step-box"><div class="step-num">4</div><div class="step-content"><strong>עלים</strong>יותר עלים = ערך תזונתי גבוה יותר</div></div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">ריח עובש בחציר מעיד שהוא <strong>לא</strong> ראוי לשימוש.</p>
+    <div class="tf-options" id="tfopts-s5">
+      <button class="tf-btn" onclick="pickTF('s5tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s5tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s5tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S6: חציר שיבולת שועל ===== -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a5a10,#5a8a20)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">🌾</span>
+    <h1>חציר שיבולת שועל</h1>
+    <p class="subtitle">ערך תזונתי נמוך – כמות גדולה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר למה נותנים חציר שיבולת שועל בכמויות גדולות.</div>
+  <div class="definition-box">
+    <strong>חציר שיבולת שועל</strong> – מיוצר מגבעולי שיבולת שועל. נפוץ מאוד כמזון בסיסי לסוסים.
+  </div>
+  <div class="highlight green">📊 <strong>ערך תזונתי:</strong> נמוך <strong>יחסית</strong></div>
+  <div class="highlight amber">📦 <strong>כמות הניתנת:</strong> <strong>גדולה יחסית</strong></div>
+  <div class="highlight blue">💡 <strong>למה כמות גדולה?</strong><br>כדי <strong>להעסיק את הסוס</strong> ואת <strong>מערכת העיכול שלו</strong> לאורך שעות. הסוס צריך לאכול רוב היום!</div>
+  <div class="remember-box">שיבולת שועל = ערך נמוך + כמות גדולה = מעסיק את הסוס</div>
+  <div class="question-box">
+    <div class="q-title">❓ השלם את המשפט</div>
+    <p style="font-size:15px;margin-bottom:14px">חציר שיבולת שועל ניתן בכמויות גדולות כי...</p>
+    <div class="mc-options" id="opts-s6q1">
+      <button class="mc-option" onclick="pickOption('s6q1',0,this)"><span class="opt-letter">א</span>הוא מאוד יקר</button>
+      <button class="mc-option" onclick="pickOption('s6q1',1,this)"><span class="opt-letter">ב</span>הוא מכיל הרבה חלבון וויטמינים</button>
+      <button class="mc-option" onclick="pickOption('s6q1',2,this)"><span class="opt-letter">ג</span>הוא מעסיק את הסוס ומערכת העיכול לאורך שעות</button>
+      <button class="mc-option" onclick="pickOption('s6q1',3,this)"><span class="opt-letter">ד</span>ערכו התזונתי גבוה יחסית</button>
+    </div>
+    <div class="feedback" id="fb-s6q1"></div>
+  </div>
+</div>
+
+<!-- ===== S7: חציר אספסת + השוואה ===== -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a5a10,#5a8a20)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">🌿</span>
+    <h1>חציר אספסת + השוואה</h1>
+    <p class="subtitle">ערך תזונתי גבוה – כמות קטנה</p>
+  </div>
+  <div class="goal-box">אני אוכל להשוות בין חציר שיבולת שועל לחציר אספסת.</div>
+  <div class="definition-box">
+    <strong>חציר אספסת</strong> – עשיר מאוד בחומרים מזינים. משמש להעשרת התזונה.
+  </div>
+  <div class="highlight green">📊 <strong>ערך תזונתי:</strong> גבוה <strong>יחסית</strong></div>
+  <div class="highlight amber">📦 <strong>כמות הניתנת:</strong> <strong>קטנה יחסית</strong></div>
+  <div class="highlight purple">🎯 <strong>שימוש:</strong> להעשרת התזונה ב<strong>ויטמינים</strong> ו<strong>חלבון</strong></div>
+  <div class="section-title">📊 השוואה בין סוגי החציר:</div>
+  <table class="info-table">
+    <tr><th>סוג חציר</th><th>ערך תזונתי</th><th>כמות</th><th>מטרה</th></tr>
+    <tr><td>🌾 שיבולת שועל</td><td>נמוך יחסית</td><td>גדולה יחסית</td><td>העסקת הסוס</td></tr>
+    <tr><td>🌿 אספסת</td><td>גבוה יחסית</td><td>קטנה יחסית</td><td>העשרה בויטמינים וחלבון</td></tr>
+  </table>
+  <div class="exam-box">לכן נוהגים להשתמש ב<strong>כמה סוגי חציר</strong> – כי הסוס צריך לאכול לאורך רוב היום, ולקבל גם ערכים תזונתיים גבוהים.</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">חציר אספסת ניתן בכמויות קטנות כי:</p>
+    <div class="mc-options" id="opts-s7q1">
+      <button class="mc-option" onclick="pickOption('s7q1',0,this)"><span class="opt-letter">א</span>ערכו התזונתי גבוה – מספיק כמות קטנה להעשרה</button>
+      <button class="mc-option" onclick="pickOption('s7q1',1,this)"><span class="opt-letter">ב</span>הסוסים לא אוהבים אותו</span></button>
+      <button class="mc-option" onclick="pickOption('s7q1',2,this)"><span class="opt-letter">ג</span>הוא יקר מדי לרכישה</button>
+      <button class="mc-option" onclick="pickOption('s7q1',3,this)"><span class="opt-letter">ד</span>ערכו התזונתי נמוך</button>
+    </div>
+    <div class="feedback" id="fb-s7q1"></div>
+  </div>
+</div>
+
+<!-- ===== S8: אכילה בטבע ===== -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d7a2d)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">🏕️</span>
+    <h1>אכילה בטבע</h1>
+    <p class="subtitle">איך סוסים אוכלים כשהם חופשיים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את דפוסי האכילה הטבעיים של סוסים.</div>
+  <div class="definition-box">בטבע, הסוס הוא <strong>אוכל עשב ושיחים</strong>. הוא אוכל כל היום תוך כדי הליכה.</div>
+  <div class="step-box"><div class="step-num">🍃</div><div class="step-content"><strong>איסוף ירק עם השפתיים</strong>הסוס משתמש בשפתיים הגמישות שלו לאיסוף עשב</div></div>
+  <div class="step-box"><div class="step-num">✂️</div><div class="step-content"><strong>חיתוך קרוב לשורש</strong>השיניים חותכות את הצמח קרוב לאדמה</div></div>
+  <div class="step-box"><div class="step-num">🚶</div><div class="step-content"><strong>הליכה תוך כדי רעייה</strong>ממלאים פה ומתקדמים קדימה</div></div>
+  <div class="highlight green">📏 <strong>מרחק יומי:</strong> ברעייה חופשית, הסוס יעבור <strong>3–10 ק"מ ביום!</strong></div>
+  <div class="highlight amber">🐴 <strong>גידול בסייחים:</strong> מרעה הוא <strong>אידיאלי לסייחים</strong> – מספק הזנה טבעית ותנועה גופנית בו-זמנית. שיטה זו נפוצה ברוב אורוות הגידול בעולם.</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה קילומטרים יעבור סוס ברעייה חופשית ביום?</p>
+    <div class="mc-options" id="opts-s8q1">
+      <button class="mc-option" onclick="pickOption('s8q1',0,this)"><span class="opt-letter">א</span>עד קילומטר אחד</button>
+      <button class="mc-option" onclick="pickOption('s8q1',1,this)"><span class="opt-letter">ב</span>20–30 ק"מ</button>
+      <button class="mc-option" onclick="pickOption('s8q1',2,this)"><span class="opt-letter">ג</span>50 ק"מ ויותר</button>
+      <button class="mc-option" onclick="pickOption('s8q1',3,this)"><span class="opt-letter">ד</span>3–10 ק"מ</button>
+    </div>
+    <div class="feedback" id="fb-s8q1"></div>
+  </div>
+</div>
+
+<!-- ===== S9: צמחי רעל ועץ ===== -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a1a,#2d7a2d)">
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">⚠️</span>
+    <h1>צמחי רעל ולעיסת עץ</h1>
+    <p class="subtitle">סכנות בשטח</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות סכנות בהתנהגות האכילה הטבעית של הסוס.</div>
+  <div class="highlight green">🌿 <strong>העדפת צמחים:</strong> הסוסים מעדיפים צמחים <strong>עשירי פחמימות וסיבים</strong>.</div>
+  <div class="highlight red">⚠️ <strong>סכנה!</strong> הסוסים <strong>לא תמיד מזהים צמחי רעל</strong> ועלולים לאכול אותם בטעות!</div>
+  <div class="section-title">☠️ דוגמאות לצמחי רעל בארץ:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-color:#c0392b">
+      <div class="title" style="color:#c0392b">🌸 כַּלַח (הרדוף)</div>
+      <p>צמח רעיל נפוץ בארץ</p>
+    </div>
+    <div class="mini-card" style="border-color:#c0392b">
+      <div class="title" style="color:#c0392b">🌿 עשב סודני</div>
+      <p>יכול להיות מסוכן לסוסים</p>
+    </div>
+    <div class="mini-card" style="border-color:#c0392b">
+      <div class="title" style="color:#c0392b">🥑 אבוקדו</div>
+      <p>רעיל לסוסים</p>
+    </div>
+  </div>
+  <div class="highlight purple">🪵 <strong>לעיסת קליפות עץ / גדרות עץ:</strong><br>
+  מופיעה כאשר יש <strong>שעמום, חסר פעילות, או חסר מינרלים</strong>.</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">סוסים תמיד מזהים צמחי רעל ונמנעים מהם.</p>
+    <div class="tf-options" id="tfopts-s9">
+      <button class="tf-btn" onclick="pickTF('s9tf1',false,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s9tf1',true,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s9tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S10: זמן אכילה ===== -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">⏱️</span>
+    <h1>זמן אכילה ביממה</h1>
+    <p class="subtitle">כמה שעות אוכל הסוס?</p>
+  </div>
+  <div class="goal-box">אני אוכל לציין כמה שעות ביממה אוכל סוס לפי כל סוג מזון.</div>
+  <table class="info-table">
+    <tr><th>סוג מזון</th><th>זמן אכילה ביממה</th></tr>
+    <tr><td>🏕️ רעייה חופשית</td><td><strong>15–18 שעות!</strong></td></tr>
+    <tr><td>🌾 חציר חופשי באורווה</td><td><strong>8–10 שעות</strong></td></tr>
+    <tr><td>🌽 מזון מרוכז</td><td><strong>פחות משעה</strong></td></tr>
+    <tr><td>🏠 סוס באורווה (סך הכל)</td><td><strong>כ-3 שעות</strong></td></tr>
+  </table>
+  <div class="highlight red">😟 <strong>בעיה!</strong> סוס באורווה אוכל רק <strong>3 שעות ביממה</strong> – הרבה פחות מהטבעי. זה גורם לשעמום ובעיות התנהגות!</div>
+  <div class="remember-box">ברעייה: 15–18 שעות | חציר חופשי: 8–10 שעות | מרוכז: פחות משעה | אורווה: ~3 שעות</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה שעות אוכל סוס ברעייה חופשית ביממה?</p>
+    <div class="mc-options" id="opts-s10q1">
+      <button class="mc-option" onclick="pickOption('s10q1',0,this)"><span class="opt-letter">א</span>פחות משעה</button>
+      <button class="mc-option" onclick="pickOption('s10q1',1,this)"><span class="opt-letter">ב</span>15–18 שעות</button>
+      <button class="mc-option" onclick="pickOption('s10q1',2,this)"><span class="opt-letter">ג</span>3 שעות</button>
+      <button class="mc-option" onclick="pickOption('s10q1',3,this)"><span class="opt-letter">ד</span>8–10 שעות</button>
+    </div>
+    <div class="feedback" id="fb-s10q1"></div>
+  </div>
+</div>
+
+<!-- ===== S11: שתייה ואורווה ===== -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 5 – המשך</span><span class="emoji">💧</span>
+    <h1>שתייה ואורווה</h1>
+    <p class="subtitle">כמה שותה הסוס?</p>
+  </div>
+  <div class="goal-box">אני אוכל לציין את כמות השתייה היומית של סוס ממוצע.</div>
+  <div class="definition-box">
+    🐴 הסוס שותה <strong>מעט פעמים</strong> ביום אך <strong>לגימות גדולות</strong>.
+  </div>
+  <div class="highlight blue">💧 <strong>כמות שתייה יומית:</strong><br>סוס ממוצע שותה כ<strong>30 ליטר ביממה</strong>.</div>
+  <div class="highlight green">🏠 <strong>סוס באורווה:</strong><br>
+  • אוכל כ<strong>3 שעות ביממה</strong><br>
+  • שותה כ<strong>15 דקות ביממה</strong></div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:#f0fdf4">
+      <h3>🏕️ בטבע</h3>
+      <ul>
+        <li><span>15–18 שעות אכילה</span></li>
+        <li><span>3–10 ק"מ הליכה</span></li>
+        <li><span>מים טבעיים</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:#fef2f2">
+      <h3>🏠 באורווה</h3>
+      <ul>
+        <li><span>~3 שעות אכילה</span></li>
+        <li><span>פעילות מוגבלת</span></li>
+        <li><span>~15 דק שתייה</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה ליטר שותה סוס ממוצע ביממה?</p>
+    <div class="mc-options" id="opts-s11q1">
+      <button class="mc-option" onclick="pickOption('s11q1',0,this)"><span class="opt-letter">א</span>5 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s11q1',1,this)"><span class="opt-letter">ב</span>100 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s11q1',2,this)"><span class="opt-letter">ג</span>כ-30 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s11q1',3,this)"><span class="opt-letter">ד</span>200 ליטר</button>
+    </div>
+    <div class="feedback" id="fb-s11q1"></div>
+  </div>
+</div>
+
+<!-- ===== S12: שיטות להגברת זמן אכילה ===== -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a2a6a,#5a4a9a)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🔧</span>
+    <h1>שיטות להגברת זמן אכילה</h1>
+    <p class="subtitle">איך מאריכים את זמן האכילה של הסוס</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר 3 שיטות להגברת זמן האכילה של הסוס.</div>
+  <div class="highlight red">⚠️ <strong>הבעיה:</strong> סוס באורווה אוכל רק 3 שעות. הוא צריך עוד זמן אכילה!</div>
+  <div class="step-box">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <strong>🥣 אבוס עם גובלים</strong>
+      הגובלים מאטים את האכילה – הסוס מתאמץ יותר ואוכל לאט יותר
+    </div>
+  </div>
+  <div class="step-box">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <strong>🌾 הוספת תבן למזון המרוכז</strong>
+      תבן = מזון גס קצוץ. מוסיפים אותו למרוכז כדי להאריך את זמן האכילה
+    </div>
+  </div>
+  <div class="step-box">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <strong>🕸️ רשת חציר</strong>
+      רשת עם חורים קטנים שהחציר בתוכה – הסוס מושך אוכל לאט לאט
+    </div>
+  </div>
+  <div class="remember-box">3 שיטות: אבוס עם גובלים | תבן במרוכז | רשת חציר</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">רשת חציר עוזרת להאריך את זמן האכילה של הסוס.</p>
+    <div class="tf-options" id="tfopts-s12">
+      <button class="tf-btn" onclick="pickTF('s12tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s12tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s12tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S13: מערכת עיכול רגישה ===== -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a2a6a,#5a4a9a)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🫁</span>
+    <h1>מערכת עיכול רגישה</h1>
+    <p class="subtitle">שינויים בתזונה עלולים לגרום נזק</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר למה מערכת העיכול של הסוס רגישה.</div>
+  <div class="highlight red">⚠️ <strong>עובדה חשובה:</strong> מערכת העיכול של הסוס <strong>רגישה מאוד</strong> לשינויים בתזונה!</div>
+  <div class="step-box"><div class="step-num">❌</div><div class="step-content"><strong>מזון באיכות גרועה</strong>חציר עם עובש, צבע חום – מסכן את הסוס</div></div>
+  <div class="step-box"><div class="step-num">⚡</div><div class="step-content"><strong>שינוי פתאומי בתזונה</strong>מעבר מהיר ממזון אחד לאחר יכול לגרום לקוליק</div></div>
+  <div class="highlight amber">💡 <strong>כלל חשוב:</strong> כל שינוי בתזונת הסוס חייב להיות <strong>הדרגתי</strong>!</div>
+  <div class="exam-box">שינוי פתאומי בתזונה = סכנה לקוליק! תמיד מעברים הדרגתיים.</div>
+</div>
+
+<!-- ===== S14: חסר נתרן ואכילת חול ===== -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a2a6a,#5a4a9a)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🧂</span>
+    <h1>חסר בנתרן ואכילת חול</h1>
+    <p class="subtitle">סכנה שקשה לזהות</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את הקשר בין חסר נתרן לאכילת חול.</div>
+  <div class="highlight amber">🧂 <strong>חסר בנתרן:</strong><br>כשהסוס חסר נתרן (מלח), הוא ישלים זאת <strong>מהקרקע</strong> – ילחך אדמה, קירות ועצמים.</div>
+  <div class="highlight red">⚠️ <strong>הסכנה:</strong><br>אכילת חול עלולה לגרום <strong>חסימת מעי קשה</strong> ואפילו <strong>מוות!</strong></div>
+  <div class="step-box"><div class="step-num">🔍</div><div class="step-content"><strong>זיהוי יעיל</strong>אם הסוס לוחך אדמה – ייתכן חסר נתרן</div></div>
+  <div class="step-box"><div class="step-num">✅</div><div class="step-content"><strong>פתרון</strong>מתן אבן מלח (ליקוקית) לסוס</div></div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">סוס שמשלים נתרן מהקרקע עלול לסבול מ:</p>
+    <div class="mc-options" id="opts-s14q1">
+      <button class="mc-option" onclick="pickOption('s14q1',0,this)"><span class="opt-letter">א</span>אכילת חול וחסימת מעי</button>
+      <button class="mc-option" onclick="pickOption('s14q1',1,this)"><span class="opt-letter">ב</span>עלייה במשקל</button>
+      <button class="mc-option" onclick="pickOption('s14q1',2,this)"><span class="opt-letter">ג</span>שינה עמוקה</button>
+      <button class="mc-option" onclick="pickOption('s14q1',3,this)"><span class="opt-letter">ד</span>ירידה בתיאבון</button>
+    </div>
+    <div class="feedback" id="fb-s14q1"></div>
+  </div>
+</div>
+
+<!-- ===== S15: Wind Sucking – הגדרה ===== -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">😮‍💨</span>
+    <h1>Wind Sucking – שאיבת אוויר</h1>
+    <p class="subtitle">בעיה התנהגותית נפוצה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה זה Wind Sucking ומתי זה קורה.</div>
+  <div class="definition-box">
+    <strong>Wind Sucking / Crib Biting</strong> = <strong>בליעת אוויר</strong><br><br>
+    הסוס אוחז <strong>עצם נוקשה</strong> (כמו קצה אבוס) עם שיניו, <strong>מושך את הצוואר</strong> ו<strong>בולע אוויר</strong>.
+  </div>
+  <div class="highlight red">📍 <strong>איפה זה קורה?</strong><br>בעיקר <strong>באורווה</strong> – אצל סוסים <strong>משועממים</strong>.</div>
+  <div class="highlight amber">📚 <strong>למידה מסוסים אחרים:</strong><br>סוס שרואה סוס אחר עושה זאת – עלול ללמוד גם הוא!</div>
+  <div class="remember-box">Crib Biting = אחיזה בעצם נוקשה + מתיחת צוואר + בליעת אוויר</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה מתאר נכון את Crib Biting?</p>
+    <div class="mc-options" id="opts-s15q1">
+      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>הסוס בועט בקירות האורווה</button>
+      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>הסוס מסרב לאכול</button>
+      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>הסוס רץ בעיגולים באורווה</button>
+      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>אחיזה בעצם + מתיחת צוואר + בליעת אוויר</button>
+    </div>
+    <div class="feedback" id="fb-s15q1"></div>
+  </div>
+</div>
+
+<!-- ===== S16: נזקים ולמידה ===== -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
+    <span class="chapter-num">פרק 7 – המשך</span><span class="emoji">❗</span>
+    <h1>נזקי Wind Sucking</h1>
+    <p class="subtitle">מה הנזקים של בליעת אוויר?</p>
+  </div>
+  <div class="goal-box">אני אוכל למנות את הנזקים של Wind Sucking.</div>
+  <div class="section-title">⚠️ 3 נזקים עיקריים:</div>
+  <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>🦷 שחיקת יתר בשיניים</strong>האחיזה החוזרת גורמת לשחיקה מהירה של השיניים</div></div>
+  <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>🤕 עלייה בשכיחות קוליקים</strong>האוויר הנבלע מגיע למעיים ועלול לגרום לקוליק</div></div>
+  <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>⚖️ איבוד משקל</strong>הסוס לועס הרבה אך לא מקבל ערך תזונתי – יורד במשקל</div></div>
+  <div class="highlight red">🚨 <strong>סכנה נוספת:</strong> <strong>למידה מסוסים אחרים</strong> – חשוב להפריד בין סוס שואב אוויר לשאר הסוסים!</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">Wind Sucking עלול לגרום לעלייה בשכיחות קוליקים.</p>
+    <div class="tf-options" id="tfopts-s16">
+      <button class="tf-btn" onclick="pickTF('s16tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s16tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s16tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S17: טיפול בשואבי אוויר ===== -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
+    <span class="chapter-num">פרק 7 – המשך</span><span class="emoji">💊</span>
+    <h1>טיפול בשואבי אוויר</h1>
+    <p class="subtitle">קשה מאוד להיפטר מהתופעה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שיטות הטיפול ב-Wind Sucking.</div>
+  <div class="highlight red">⚠️ <strong>דבר חשוב!</strong> קשה <strong>מאוד</strong> להיפטר מתופעה זו לאחר שנוצרה!</div>
+  <div class="section-title">💊 שיטות הטיפול:</div>
+  <div class="step-box"><div class="step-num">🌿</div><div class="step-content"><strong>הוצאה למרעה</strong>יותר זמן בחוץ = פחות שעמום = פחות wind sucking</div></div>
+  <div class="step-box"><div class="step-num">🏃</div><div class="step-content"><strong>הגברת פעילות גופנית</strong>עבודה ותנועה מפחיתות את הדחף</div></div>
+  <div class="step-box"><div class="step-num">🌾</div><div class="step-content"><strong>הגברת מזון גס</strong>יותר חציר = יותר עיסוק = פחות wind sucking</div></div>
+  <div class="step-box"><div class="step-num">🎗️</div><div class="step-content"><strong>רצועות לחץ</strong>רצועה על הצוואר שמכאיבה בעת המתיחה</div></div>
+  <div class="step-box"><div class="step-num">🔬</div><div class="step-content"><strong>טיפול כירורגי</strong>הסרת שרירים/עצבים בצוואר. <strong>הצלחות חלקיות</strong> בלבד</div></div>
+  <div class="step-box"><div class="step-num">⚡</div><div class="step-content"><strong>התניה שלילית (שוק חשמלי)</strong>יעילות <strong>מוגבלת</strong></div></div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">איזה טיפול ב-Wind Sucking מצוין כבעל "הצלחות חלקיות"?</p>
+    <div class="mc-options" id="opts-s17q1">
+      <button class="mc-option" onclick="pickOption('s17q1',0,this)"><span class="opt-letter">א</span>הוצאה למרעה</button>
+      <button class="mc-option" onclick="pickOption('s17q1',1,this)"><span class="opt-letter">ב</span>טיפול כירורגי</button>
+      <button class="mc-option" onclick="pickOption('s17q1',2,this)"><span class="opt-letter">ג</span>הגברת מזון גס</button>
+      <button class="mc-option" onclick="pickOption('s17q1',3,this)"><span class="opt-letter">ד</span>רצועות לחץ</button>
+    </div>
+    <div class="feedback" id="fb-s17q1"></div>
+  </div>
+</div>
+
+<!-- ===== S18: אכילת עץ ===== -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a3010,#8a5a20)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">🪵</span>
+    <h1>אכילת עץ</h1>
+    <p class="subtitle">אנומליה נפוצה מאוד</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את הקשר בין חוסר חציר לאכילת עץ ואת דרכי המניעה.</div>
+  <div class="definition-box">
+    <strong>אכילת עץ</strong> – הסוס לועס קורות, גדרות ועצי אורווה.<br>
+    <strong>נפוץ מאוד</strong> – מזיק לאורווה יותר מאשר לסוס עצמו.
+  </div>
+  <div class="highlight amber">📊 <strong>עובדה ממחקר:</strong><br>
+  פוני שלא קיבלו חציר <strong>לעסו 300 גרם עץ ביום</strong>.<br>
+  כאשר קיבלו חציר – הלעיסה <strong>ירדה ב-80%!</strong></div>
+  <div class="highlight green">✅ <strong>מניעה:</strong><br>
+  • <strong>מזון גס חופשי</strong> – חציר זמין תמיד<br>
+  • <strong>מזון דל חלבון</strong></div>
+  <div class="remember-box">חציר חופשי = פחות אכילת עץ ב-80%!</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה ירדה אכילת עץ אצל פוני שקיבלו חציר?</p>
+    <div class="mc-options" id="opts-s18q1">
+      <button class="mc-option" onclick="pickOption('s18q1',0,this)"><span class="opt-letter">א</span>10%</button>
+      <button class="mc-option" onclick="pickOption('s18q1',1,this)"><span class="opt-letter">ב</span>50%</button>
+      <button class="mc-option" onclick="pickOption('s18q1',2,this)"><span class="opt-letter">ג</span>80%</button>
+      <button class="mc-option" onclick="pickOption('s18q1',3,this)"><span class="opt-letter">ד</span>20%</button>
+    </div>
+    <div class="feedback" id="fb-s18q1"></div>
+  </div>
+</div>
+
+<!-- ===== S19: קורפופגיה ===== -->
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a3010,#8a5a20)">
+    <span class="chapter-num">פרק 8 – המשך</span><span class="emoji">🔄</span>
+    <h1>קורפופגיה</h1>
+    <p class="subtitle">אכילת צואה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מתי קורפופגיה נורמלית ומתי היא הפרעה.</div>
+  <div class="definition-box">
+    <strong>קורפופגיה</strong> = <strong>אכילת צואה</strong>
+  </div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:var(--primary-light)">
+      <h3 style="color:#1a4a2e">🐴 בסייחים</h3>
+      <ul>
+        <li><span>נורמלי לחלוטין</span></li>
+        <li><span>חלק מהתפתחות הטבעית</span></li>
+        <li><span>אין צורך בטיפול</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:var(--hot-light)">
+      <h3 style="color:#c0392b">🐎 בסוסים בוגרים</h3>
+      <ul>
+        <li><span>נחשבת להפרעה התנהגותית</span></li>
+        <li><span>מעידה על שעמום</span></li>
+        <li><span>דורשת טיפול</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight green">✅ <strong>טיפול:</strong><br>
+  • <strong>הקטנת שעמום</strong><br>
+  • <strong>הוספת מזון גס</strong></div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">קורפופגיה (אכילת צואה) בסייחים:</p>
+    <div class="mc-options" id="opts-s19q1">
+      <button class="mc-option" onclick="pickOption('s19q1',0,this)"><span class="opt-letter">א</span>נורמלית ואינה מחייבת טיפול</button>
+      <button class="mc-option" onclick="pickOption('s19q1',1,this)"><span class="opt-letter">ב</span>הפרעה חמורה הדורשת ניתוח</button>
+      <button class="mc-option" onclick="pickOption('s19q1',2,this)"><span class="opt-letter">ג</span>גורמת למחלה מיידית</button>
+      <button class="mc-option" onclick="pickOption('s19q1',3,this)"><span class="opt-letter">ד</span>נדירה מאוד בסייחים</button>
+    </div>
+    <div class="feedback" id="fb-s19q1"></div>
+  </div>
+</div>
+
+<!-- ===== S20: שתיית יתר – נזקים ===== -->
+<div class="screen" id="screen-20">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a2a6a,#2a4ab0)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">🌊</span>
+    <h1>שתיית יתר</h1>
+    <p class="subtitle">כמות חריגה של שתייה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי שתיית יתר ומה הנזקים שלה.</div>
+  <div class="definition-box">
+    <strong>שתייה נורמלית:</strong> כ-30–40 ליטר ביממה<br>
+    <strong>שתיית יתר:</strong> עד <strong>140 ליטר ביממה!</strong>
+  </div>
+  <div class="section-title">⚠️ נזקי שתיית יתר:</div>
+  <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>🚿 השתנת יתר</strong>התא מוצף ומסריח, רקבונות פרסה</div></div>
+  <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>🔄 סיכון לפיתול מעי</strong>שתייה מרובה בבת אחת מגדילה סיכון לפיתול</div></div>
+  <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>🫘 נזק כלייתי</strong>כשל כלייתי בגלל העמסת יתר על הכליות</div></div>
+  <div class="remember-box">140 ליטר ביממה = שתיית יתר! נורמלי = 30–40 ליטר</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">עד כמה ליטר ביממה יכול להגיע סוס עם שתיית יתר?</p>
+    <div class="mc-options" id="opts-s20q1">
+      <button class="mc-option" onclick="pickOption('s20q1',0,this)"><span class="opt-letter">א</span>50 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s20q1',1,this)"><span class="opt-letter">ב</span>30 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s20q1',2,this)"><span class="opt-letter">ג</span>70 ליטר</button>
+      <button class="mc-option" onclick="pickOption('s20q1',3,this)"><span class="opt-letter">ד</span>140 ליטר</button>
+    </div>
+    <div class="feedback" id="fb-s20q1"></div>
+  </div>
+</div>
+
+<!-- ===== S21: אבחון וטיפול – שתיית יתר ===== -->
+<div class="screen" id="screen-21">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a2a6a,#2a4ab0)">
+    <span class="chapter-num">פרק 9 – המשך</span><span class="emoji">🩺</span>
+    <h1>אבחון וטיפול – שתיית יתר</h1>
+    <p class="subtitle">איך מאבחנים ומטפלים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את דרכי האבחון והטיפול בשתיית יתר.</div>
+  <div class="highlight amber">🔍 <strong>אבחון:</strong><br>
+  שלילת גורמים נוספים + <strong>מבחן הצמאה</strong> – בדיקת יכולת ריכוז השתן.</div>
+  <div class="section-title">💊 טיפול:</div>
+  <div class="step-box"><div class="step-num">💧</div><div class="step-content"><strong>הגבלת שתייה</strong>לרדת בהדרגה ל-<strong>50 ליטר ביום</strong></div></div>
+  <div class="step-box"><div class="step-num">🌿</div><div class="step-content"><strong>צמצום שעמום</strong>
+  יותר שעות בחוץ | חברה לסוסים אחרים | שדה ראייה | מזון גס</div></div>
+  <div class="highlight green">✅ <strong>מטרת הטיפול:</strong> לרדת לצריכה של <strong>עד 50 ליטר ביום</strong> + לצמצם שעמום.</div>
+  <div class="exam-box">אבחון: שלילת גורמים + מבחן הצמאה | טיפול: הגבלה ל-50 ל' + צמצום שעמום</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">הטיפול בשתיית יתר כולל הגבלה ל-50 ליטר ביום וצמצום שעמום.</p>
+    <div class="tf-options" id="tfopts-s21">
+      <button class="tf-btn" onclick="pickTF('s21tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s21tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s21tf1"></div>
+  </div>
+</div>
+
+<!-- ===== S22: מילון מונחים ===== -->
+<div class="screen" id="screen-22">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a2a4a,#1e3a8a)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">📖</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">מושגי מפתח</p>
+  </div>
+  <div class="goal-box">לחץ על כל מונח כדי לראות את ההגדרה.</div>
+  <div id="glossary-cards-container">
+    <div class="flashcard-container" style="min-height:130px">
+      <div class="flashcard" id="fc0" onclick="flipCard('fc0')">
+        <div class="flashcard-front"><div class="term">Wind Sucking</div><div class="hint">לחץ לגלות הגדרה</div></div>
+        <div class="flashcard-back"><div class="def">בליעת אוויר: אחיזת עצם נוקשה בשיניים, מתיחת צוואר ובליעת אוויר. נפוץ בסוסים משועממים.</div></div>
+      </div>
+    </div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 12</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🌾 מזון גס</div><div class="glossary-def">חציר ממגוון צמחים (שיבולת שועל, בקיה, אספסת). הבסיס לתזונת הסוס.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌽 מזון מרוכז</div><div class="glossary-def">תערובת וגרעינים. עשיר באנרגיה, אכילה קצרה (פחות משעה).</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌿 חציר שיבולת שועל</div><div class="glossary-def">ערך תזונתי נמוך יחסית, ניתן בכמות גדולה להעסקת הסוס.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌱 חציר אספסת</div><div class="glossary-def">ערך תזונתי גבוה יחסית, ניתן בכמות קטנה להעשרת הויטמינים והחלבון.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💨 Wind Sucking / Crib Biting</div><div class="glossary-def">בליעת אוויר. אחיזת עצם נוקשה + מתיחת צוואר. נפוץ בסוסים משועממים באורווה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🪵 קורפופגיה</div><div class="glossary-def">אכילת צואה. נורמלי בסייחים, הפרעה בסוסים בוגרים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💧 שתיית יתר</div><div class="glossary-def">שתייה של עד 140 ליטר ביממה (נורמלי = 30–40 ל'). גורם לנזק כלייתי, רקבון פרסה, סיכון לפיתול מעי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🕸️ רשת חציר</div><div class="glossary-def">רשת עם חורים קטנים שמאיטה את אכילת החציר ומאריכה את זמן האכילה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧂 חסר נתרן</div><div class="glossary-def">מחסור במלח גורם לסוס לאכול אדמה – סכנת אכילת חול וחסימת מעי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔬 מבחן הצמאה</div><div class="glossary-def">בדיקה לאבחון שתיית יתר – בודקת את יכולת ריכוז השתן.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌿 תבן</div><div class="glossary-def">מזון גס קצוץ. מוסיפים אותו למרוכז להארכת זמן האכילה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌾 רעייה</div><div class="glossary-def">אכילה חופשית בשטח. 15–18 שעות ביממה, תנועה של 3–10 ק"מ ביום.</div></div>
+  </div>
+</div>
+
+<!-- ===== S23: שאלות חזרה ===== -->
+<div class="screen" id="screen-23">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#059669)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">❓</span>
+    <h1>שאלות חזרה</h1>
+    <p class="subtitle">בדוק את עצמך!</p>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#1a4a2e">1. מה ההבדל בין חציר שיבולת שועל לאספסת?</div>
+    <div class="mc-options" id="opts-q23a">
+      <button class="mc-option" onclick="pickOption('q23a',0,this)"><span class="opt-letter">א</span>שניהם זהים לחלוטין</button>
+      <button class="mc-option" onclick="pickOption('q23a',1,this)"><span class="opt-letter">ב</span>שיבולת שועל – ערך גבוה, כמות קטנה | אספסת – ערך נמוך, כמות גדולה</button>
+      <button class="mc-option" onclick="pickOption('q23a',2,this)"><span class="opt-letter">ג</span>שיבולת שועל – ערך נמוך, כמות גדולה | אספסת – ערך גבוה, כמות קטנה</button>
+      <button class="mc-option" onclick="pickOption('q23a',3,this)"><span class="opt-letter">ד</span>אספסת היא תערובת, לא חציר</button>
+    </div>
+    <div class="feedback" id="fb-q23a"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#1a4a2e">2. מה גורם ל-Wind Sucking?</div>
+    <div class="mc-options" id="opts-q23b">
+      <button class="mc-option" onclick="pickOption('q23b',0,this)"><span class="opt-letter">א</span>יותר מדי מזון מרוכז</button>
+      <button class="mc-option" onclick="pickOption('q23b',1,this)"><span class="opt-letter">ב</span>בעיקר שעמום באורווה וחוסר פעילות</button>
+      <button class="mc-option" onclick="pickOption('q23b',2,this)"><span class="opt-letter">ג</span>יותר מדי חציר אספסת</button>
+      <button class="mc-option" onclick="pickOption('q23b',3,this)"><span class="opt-letter">ד</span>בעיה גנטית תורשתית</button>
+    </div>
+    <div class="feedback" id="fb-q23b"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#1a4a2e">3. מה ניתן לאכילת חול כסכנה?</div>
+    <div class="mc-options" id="opts-q23c">
+      <button class="mc-option" onclick="pickOption('q23c',0,this)"><span class="opt-letter">א</span>חסימת מעי</button>
+      <button class="mc-option" onclick="pickOption('q23c',1,this)"><span class="opt-letter">ב</span>שחיקת שיניים</button>
+      <button class="mc-option" onclick="pickOption('q23c',2,this)"><span class="opt-letter">ג</span>ירידה בתיאבון</button>
+      <button class="mc-option" onclick="pickOption('q23c',3,this)"><span class="opt-letter">ד</span>שינה יתר</button>
+    </div>
+    <div class="feedback" id="fb-q23c"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#1a4a2e">4. מה כולל הטיפול בשתיית יתר?</div>
+    <div class="mc-options" id="opts-q23d">
+      <button class="mc-option" onclick="pickOption('q23d',0,this)"><span class="opt-letter">א</span>הגברת שתייה</button>
+      <button class="mc-option" onclick="pickOption('q23d',1,this)"><span class="opt-letter">ב</span>ניתוח מיידי</button>
+      <button class="mc-option" onclick="pickOption('q23d',2,this)"><span class="opt-letter">ג</span>הפחתת מזון גס</button>
+      <button class="mc-option" onclick="pickOption('q23d',3,this)"><span class="opt-letter">ד</span>הגבלה ל-50 ליטר ביום + צמצום שעמום</button>
+    </div>
+    <div class="feedback" id="fb-q23d"></div>
+  </div>
+</div>
+
+<!-- ===== S24: סיום ===== -->
+<div class="screen" id="screen-24">
+  <div class="completion-card">
+    <div style="font-size:64px;margin-bottom:8px">🏆</div>
+    <h2>כל הכבוד! סיימת את הלומדה!</h2>
+    <p style="opacity:.9;margin-top:8px;font-size:16px">תזונת סוסים – הכנה לבגרות 5 יח"ל</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה למדת?</div>
+    <ul class="content-list">
+      <li data-icon="✅">מזון גס (חציר) ומזון מרוכז (תערובת + גרעינים)</li>
+      <li data-icon="✅">4 סימני איכות חציר: יובש, צבע, ריח, עלים</li>
+      <li data-icon="✅">שיבולת שועל (ערך נמוך, כמות גדולה) לעומת אספסת (ערך גבוה, כמות קטנה)</li>
+      <li data-icon="✅">דפוסי אכילה בטבע: 15–18 שעות, 3–10 ק"מ ביום</li>
+      <li data-icon="✅">שיטות להגברת זמן אכילה: גובלים, תבן, רשת חציר</li>
+      <li data-icon="✅">Wind Sucking: גורמים, נזקים וטיפול</li>
+      <li data-icon="✅">אנומליות: אכילת עץ, קורפופגיה, שתיית יתר</li>
+    </ul>
+  </div>
+  <div class="exam-box">חזור על הנושאים שהיו קשים. בהצלחה בבגרות! 🎯</div>
+  <div class="card" style="text-align:center">
+    <button class="btn btn-primary" onclick="goTo(0)" style="font-size:16px;padding:16px 32px">🔄 חזור לתחילת הלומדה</button>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<div class="nav-buttons">
+  <button class="btn btn-primary" id="btn-prev" onclick="goBack()">▶ הקודם</button>
+  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 25</span>
+  <button class="btn btn-primary" id="btn-next" onclick="goNext()">הבא ◀</button>
+</div>
+
+<script>
+const TOTAL = 25;
+let current = 0;
+const chapterLabels = [
+  'פתיחה','ממה ניזון הסוס','מזון גס','מזון מרוכז',
+  'יובש וצבע','ריח ועלים',
+  'חציר שיבולת שועל','חציר אספסת',
+  'אכילה בטבע','צמחי רעל ועץ',
+  'זמן אכילה','שתייה ואורווה','שיטות להגברת אכילה',
+  'מערכת עיכול רגישה','חסר נתרן ואכילת חול',
+  'Wind Sucking','נזקי Wind Sucking','טיפול',
+  'אכילת עץ','קורפופגיה',
+  'שתיית יתר','אבחון וטיפול',
+  'מילון מונחים','שאלות חזרה','סיום'
+];
+
+function goTo(n) {
+  const screens = document.querySelectorAll('.screen');
+  screens[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, TOTAL - 1));
+  screens[current].classList.add('active');
+  updateUI();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goNext() { if(current < TOTAL-1) goTo(current+1); }
+function goBack() { if(current > 0) goTo(current-1); }
+
+function updateUI() {
+  const pct = Math.round((current / (TOTAL-1)) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').innerText = 'מסך ' + (current+1) + ' מתוך ' + TOTAL;
+  document.getElementById('screen-indicator').innerText = (current+1) + ' / ' + TOTAL;
+  document.getElementById('menu-btn-label').innerText = chapterLabels[current] || '';
+  document.getElementById('btn-prev').className = current === 0 ? 'btn btn-disabled' : 'btn btn-primary';
+  document.getElementById('btn-next').className = current === TOTAL-1 ? 'btn btn-disabled' : 'btn btn-primary';
+  document.querySelectorAll('.menu-item').forEach((el,i) => el.classList.toggle('active', i === current));
+  if(current === 22) initGlossary();
+}
+function openMenu() {
+  document.getElementById('menu-sidebar').classList.add('open');
+  document.getElementById('menu-overlay').classList.add('open');
+}
+function closeMenu() {
+  document.getElementById('menu-sidebar').classList.remove('open');
+  document.getElementById('menu-overlay').classList.remove('open');
+}
+function menuGo(n) { closeMenu(); goTo(n); }
+
+// ============= QUESTIONS =============
+const mcData = {
+  's1q1': { correct: 2, explanation: 'מזון גס הוא חציר ממגוון צמחים: שיבולת שועל, בקיה ואספסת. תערובת וגרעינים הם מזון מרוכז.' },
+  's3q1': { correct: 3, explanation: 'מזון מרוכז נאכל פחות משעה. לעומת זאת ברעייה הסוס אוכל 15–18 שעות!' },
+  's4q1': { correct: 1, explanation: 'חציר חום = רקוב ולא ראוי לשימוש! ירוק בהיר = מצוין, צהוב = ערך נמוך.' },
+  's6q1': { correct: 2, explanation: 'ערך תזונתי נמוך יחסית, לכן נותנים בכמות גדולה כדי להעסיק את הסוס ומערכת העיכול שלו לאורך שעות.' },
+  's7q1': { correct: 0, explanation: 'ערך תזונתי גבוה יחסית – מספיק כמות קטנה להעשרת התזונה בויטמינים וחלבון.' },
+  's8q1': { correct: 3, explanation: 'ברעייה חופשית הסוס עובר 3–10 ק"מ ביום תוך כדי אכילה. זו סיבה מרכזית לכך שמרעה אידיאלי לסייחים.' },
+  's10q1': { correct: 1, explanation: 'ברעייה חופשית הסוס אוכל 15–18 שעות ביממה! באורווה (חציר חופשי) – 8–10 שעות, ומרוכז – פחות משעה.' },
+  's11q1': { correct: 2, explanation: 'סוס ממוצע שותה כ-30 ליטר ביממה. שתייה מעל 50 ליטר כבר נחשבת חריגה, ועד 140 ליטר – שתיית יתר.' },
+  's14q1': { correct: 0, explanation: 'חסר נתרן גורם לסוס לאכול אדמה כדי להשלים את המחסור – וזה מסוכן כי הוא עלול לבלוע חול שגורם לחסימת מעי.' },
+  's15q1': { correct: 3, explanation: 'Crib Biting: הסוס אוחז עצם נוקשה בשיניים, מושך את הצוואר ובולע אוויר. זה קורה בעיקר באורווה אצל סוסים משועממים.' },
+  's17q1': { correct: 1, explanation: 'טיפול כירורגי (הסרת שרירים ועצבים) מצוין כבעל "הצלחות חלקיות". התניה שלילית – יעילות מוגבלת.' },
+  's18q1': { correct: 2, explanation: 'פוני שקיבלו חציר – אכילת העץ ירדה ב-80%! זה מראה כמה חשוב חציר חופשי למניעת אכילת עץ.' },
+  's19q1': { correct: 0, explanation: 'קורפופגיה בסייחים היא נורמלית ואינה מחייבת טיפול. רק בסוסים בוגרים היא נחשבת להפרעה התנהגותית.' },
+  's20q1': { correct: 3, explanation: 'שתיית יתר יכולה להגיע ל-140 ליטר ביממה! נורמלי = 30–40 ליטר.' },
+  'q23a': { correct: 2, explanation: 'שיבולת שועל – ערך תזונתי נמוך יחסית, ניתן בכמות גדולה להעסקת הסוס. אספסת – ערך גבוה יחסית, ניתן בכמות קטנה להעשרה.' },
+  'q23b': { correct: 1, explanation: 'Wind Sucking נפוץ בעיקר בסוסים משועממים באורווה ללא מספיק מזון גס ופעילות.' },
+  'q23c': { correct: 0, explanation: 'אכילת חול עלולה לגרום לחסימת מעי קשה ומסוכנת. לכן חשוב לתת לסוס אבן מלח כשיש חסר בנתרן.' },
+  'q23d': { correct: 3, explanation: 'הטיפול כולל הגבלה הדרגתית ל-50 ליטר ביום + צמצום שעמום: יותר שעות בחוץ, חברה, שדה ראייה ומזון גס.' }
+};
+
+const tfData = {
+  's0q1':  { correct: true,  explanation: 'נכון! ברעייה חופשית הסוס אוכל 15–18 שעות ביממה.' },
+  's2tf1': { correct: false, explanation: 'לא נכון! תערובת וגרעינים הם מזון מרוכז, לא מזון גס. מזון גס = חציר.' },
+  's5tf1': { correct: true,  explanation: 'נכון! ריח עובש = חציר לא ראוי לשימוש. חציר טוב מריח כמו דשא ירוק.' },
+  's9tf1': { correct: false, explanation: 'לא נכון! סוסים לא תמיד מזהים צמחי רעל ועלולים לאכול אותם. לכן חשוב לבדוק את השטח.' },
+  's12tf1': { correct: true, explanation: 'נכון! רשת חציר מאיטה את האכילה – הסוס מוציא את החציר לאט דרך החורים הקטנים.' },
+  's16tf1': { correct: true, explanation: 'נכון! האוויר הנבלע מגיע למעיים ומגדיל את הסיכון לקוליק.' },
+  's21tf1': { correct: true, explanation: 'נכון! הגבלה ל-50 ליטר ביום + צמצום שעמום (שעות בחוץ, חברה, מזון גס).' }
+};
+
+function pickOption(qId, idx, btn) {
+  const data = mcData[qId];
+  const opts = document.querySelectorAll('#opts-' + qId + ' .mc-option');
+  opts.forEach(b => b.classList.remove('correct', 'wrong', 'selected'));
+  const isCorrect = idx === data.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts[data.correct].classList.add('correct');
+  const fb = document.getElementById('fb-' + qId);
+  if (fb) {
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = isCorrect
+      ? '🎉 <strong>נכון!</strong> ' + data.explanation
+      : '❌ <strong>לא נכון.</strong> ' + data.explanation;
+  }
+}
+
+function pickTF(qId, val, btn) {
+  const data = tfData[qId];
+  const container = btn.parentElement;
+  const btns = container.querySelectorAll('.tf-btn');
+  btns.forEach(b => { b.disabled = true; b.classList.remove('correct','wrong'); });
+  const isCorrect = val === data.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    btns.forEach(b => { if(b !== btn) b.classList.add('correct'); });
+  }
+  const fb = document.getElementById('fb-' + qId);
+  if (fb) {
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = isCorrect
+      ? '🎉 <strong>נכון!</strong> ' + data.explanation
+      : '❌ <strong>לא נכון.</strong> ' + data.explanation;
+  }
+}
+
+// ============= GLOSSARY =============
+const glossaryData = [
+  {term:'Wind Sucking', def:'בליעת אוויר: אחיזת עצם נוקשה בשיניים, מתיחת צוואר ובליעת אוויר. נפוץ בסוסים משועממים.'},
+  {term:'Crib Biting', def:'שם נוסף ל-Wind Sucking. הסוס "נושך" עצם נוקשה ובולע אוויר.'},
+  {term:'קורפופגיה', def:'אכילת צואה. נורמלי בסייחים, הפרעה בסוסים בוגרים.'},
+  {term:'מזון גס', def:'חציר ממגוון צמחים (שיבולת שועל, בקיה, אספסת). הבסיס לתזונה.'},
+  {term:'מזון מרוכז', def:'תערובת וגרעינים. עשיר באנרגיה, נאכל בפחות משעה.'},
+  {term:'חציר אספסת', def:'ערך תזונתי גבוה יחסית. ניתן בכמות קטנה להעשרה בויטמינים וחלבון.'},
+  {term:'חציר שיבולת שועל', def:'ערך תזונתי נמוך יחסית. ניתן בכמות גדולה להעסקת הסוס.'},
+  {term:'רשת חציר', def:'רשת עם חורים קטנים שמאיטה את האכילה ומאריכה את זמן האכילה.'},
+  {term:'מבחן הצמאה', def:'בדיקה לאבחון שתיית יתר – בודקת יכולת ריכוז השתן.'},
+  {term:'חסר נתרן', def:'מחסור במלח גורם לסוס לאכול אדמה – סכנת אכילת חול.'},
+  {term:'שתיית יתר', def:'שתייה עד 140 ליטר ביממה (נורמלי 30–40). גורם לנזק כלייתי ורקבון פרסה.'},
+  {term:'תבן', def:'מזון גס קצוץ. מוסיפים למרוכז להארכת זמן האכילה.'}
+];
+let fcIndex = 0;
+
+function initGlossary() { showGlossaryCard(0); }
+function showGlossaryCard(idx) {
+  const container = document.getElementById('glossary-cards-container');
+  const card = glossaryData[idx];
+  container.querySelector('.flashcard').id = 'fc' + idx;
+  container.querySelector('.flashcard').classList.remove('flipped');
+  container.querySelector('.term').textContent = card.term;
+  container.querySelector('.def').textContent = card.def;
+  container.querySelector('.flashcard').onclick = function() { flipCard('fc' + idx); };
+  document.getElementById('fc-counter').textContent = (idx+1) + ' / ' + glossaryData.length;
+}
+function flipCard(id) { const fc = document.getElementById(id); if(fc) fc.classList.toggle('flipped'); }
+function nextCard() { fcIndex = (fcIndex + 1) % glossaryData.length; showGlossaryCard(fcIndex); }
+function prevCard() { fcIndex = (fcIndex - 1 + glossaryData.length) % glossaryData.length; showGlossaryCard(fcIndex); }
+
+// init
+updateUI();
+
+function toggleAccord(el) { el.classList.toggle("open"); }
+</script>
+</body>
+</html>
