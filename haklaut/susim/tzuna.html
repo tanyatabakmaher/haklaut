@@ -862,7 +862,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <!-- ===== S12: שיטות להגברת זמן אכילה ===== -->
 <div class="screen" id="screen-12">
   <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a5a,#7a2a9a)">
-    <span class="chapter-num">פרק 5</span><span class="emoji">🔧</span>
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">🔧</span>
     <h1>שיטות להגברת זמן אכילה</h1>
     <p class="subtitle">איך מאריכים את זמן האכילה של הסוס</p>
   </div>
@@ -930,16 +930,75 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <!-- ===== S13: מערכת עיכול רגישה ===== -->
 <div class="screen" id="screen-13">
   <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a5a,#7a2a9a)">
-    <span class="chapter-num">פרק 5 – המשך</span><span class="emoji">🫁</span>
+    <span class="chapter-num">פרק 5</span><span class="emoji">🫁</span>
     <h1>מערכת עיכול רגישה</h1>
     <p class="subtitle">שינויים בתזונה עלולים לגרום נזק</p>
   </div>
-  <div class="goal-box">אני אוכל להסביר למה מערכת העיכול של הסוס רגישה.</div>
-  <div class="highlight red">⚠️ <strong>עובדה חשובה:</strong> מערכת העיכול של הסוס <strong>רגישה מאוד</strong> לשינויים בתזונה!</div>
-  <div class="step-box"><div class="step-num">❌</div><div class="step-content"><strong>מזון באיכות גרועה</strong>חציר עם עובש, צבע חום – מסכן את הסוס</div></div>
-  <div class="step-box"><div class="step-num">⚡</div><div class="step-content"><strong>שינוי פתאומי בתזונה</strong>מעבר מהיר ממזון אחד לאחר יכול לגרום לקוליק</div></div>
-  <div class="highlight amber">💡 <strong>כלל חשוב:</strong> כל שינוי בתזונת הסוס חייב להיות <strong>הדרגתי</strong>!</div>
-  <div class="exam-box">שינוי פתאומי בתזונה = סכנה לקוליק! תמיד מעברים הדרגתיים.</div>
+  <div class="goal-box">אני אוכל להסביר למה מערכת העיכול של הסוס רגישה ומה עלול לפגוע בה.</div>
+
+  <div class="definition-box">
+    מערכת העיכול של הסוס <strong>רגישה מאוד</strong> – שני דברים עיקריים יכולים לפגוע בה:<br>
+    מזון באיכות גרועה, ושינוי פתאומי בתזונה.
+  </div>
+
+  <div class="section-title">⚠️ מה פוגע במערכת העיכול?</div>
+
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:18px">🤢</div>
+      <div class="accord-title">מזון באיכות גרועה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">❌</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">חציר עם עובש – <strong>פסול לשימוש</strong></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">❌</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">חציר בצבע חום – <strong>רקוב ומסוכן</strong></span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:4px;background:#fde8e8;border-radius:8px;padding:8px">
+          <span style="font-size:15px">💡</span>
+          <span style="font-size:13px;color:#991b1b;font-weight:600">מזון שאינו טרי ואיכותי עלול לפגוע קשות בבריאות הסוס.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#f59e0b;font-size:18px">⚡</div>
+      <div class="accord-title">שינוי פתאומי בתזונה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">⚠️</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">מעבר מהיר ממזון אחד לאחר עלול לגרום ל<strong>קוליק</strong>.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:4px;background:#fef9c3;border-radius:8px;padding:8px">
+          <span style="font-size:15px">✅</span>
+          <span style="font-size:13px;color:#a16207;font-weight:600">כל שינוי בתזונה חייב להיות <strong>הדרגתי</strong>!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="remember-box">מזון גרוע + שינוי פתאומי = סכנה לסוס. תמיד מזון איכותי ומעברים הדרגתיים!</div>
+  <div class="exam-box">שינוי פתאומי בתזונה = סכנת קוליק! מזון עם עובש/חום = פסול לשימוש.</div>
+
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">מעבר פתאומי ממזון אחד לאחר הוא בטוח לגמרי עבור הסוס.</p>
+    <div class="tf-options" id="tfopts-s13">
+      <button class="tf-btn" onclick="pickTF('s13tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s13tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s13tf1"></div>
+  </div>
 </div>
 
 <!-- ===== S14: חסר נתרן ואכילת חול ===== -->
@@ -950,10 +1009,22 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">סכנה שקשה לזהות</p>
   </div>
   <div class="goal-box">אני אוכל להסביר את הקשר בין חסר נתרן לאכילת חול.</div>
-  <div class="highlight amber">🧂 <strong>חסר בנתרן:</strong><br>כשהסוס חסר נתרן (מלח), הוא ישלים זאת <strong>מהקרקע</strong> – ילחך אדמה, קירות ועצמים.</div>
-  <div class="highlight red">⚠️ <strong>הסכנה:</strong><br>אכילת חול עלולה לגרום <strong>חסימת מעי קשה</strong> ואפילו <strong>מוות!</strong></div>
-  <div class="step-box"><div class="step-num">🔍</div><div class="step-content"><strong>זיהוי יעיל</strong>אם הסוס לוחך אדמה – ייתכן חסר נתרן</div></div>
-  <div class="step-box"><div class="step-num">✅</div><div class="step-content"><strong>פתרון</strong>מתן אבן מלח (ליקוקית) לסוס</div></div>
+  <div style="background:var(--amber-light);border:2px solid var(--amber);border-radius:14px;padding:16px 18px;margin-bottom:16px">
+    <div style="font-weight:900;font-size:15px;color:#7c4f1a;margin-bottom:10px">🧂 חסר בנתרן</div>
+    <p style="font-size:14px;color:#4a2e0a;line-height:1.6;margin-bottom:14px">כשהסוס חסר נתרן (מלח), הוא ישלים זאת <strong>מהקרקע</strong> – ילחך אדמה, קירות ועצמים.</p>
+
+    <!-- תוצאה: סכנה -->
+    <div style="background:#fde8e8;border:2px solid #c0392b;border-radius:10px;padding:12px 14px;margin-bottom:10px">
+      <div style="font-weight:800;font-size:13px;color:#c0392b;margin-bottom:6px">⬇️ התוצאה: סכנת אכילת חול</div>
+      <p style="font-size:13px;color:#991b1b;line-height:1.5">אכילת חול עלולה לגרום <strong>חסימת מעי קשה</strong> ואפילו <strong>מוות!</strong></p>
+    </div>
+
+    <!-- זיהוי -->
+    <div style="background:white;border:1.5px solid #e8c99a;border-radius:10px;padding:10px 14px">
+      <div style="font-weight:700;font-size:12px;color:#7c4f1a;margin-bottom:4px">🔍 איך מזהים?</div>
+      <div style="font-size:12px;color:#4a2e0a;line-height:1.4">הסוס לוחך אדמה, קירות או עצמים</div>
+    </div>
+  </div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">סוס שמשלים נתרן מהקרקע עלול לסבול מ:</p>
@@ -971,25 +1042,81 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <div class="screen" id="screen-15">
   <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
     <span class="chapter-num">פרק 6</span><span class="emoji">😮‍💨</span>
-    <h1>Wind Sucking – שאיבת אוויר</h1>
-    <p class="subtitle">בעיה התנהגותית נפוצה</p>
+    <h1>Wind Sucking / Crib Biting</h1>
+    <p class="subtitle">התנהגות חזרתית לא תקינה אצל סוסים</p>
   </div>
-  <div class="goal-box">אני אוכל להסביר מה זה Wind Sucking ומתי זה קורה.</div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין Wind Sucking ל-Crib Biting ולתאר למה זה קורה.</div>
+
   <div class="definition-box">
-    <strong>Wind Sucking / Crib Biting</strong> = <strong>בליעת אוויר</strong><br><br>
-    הסוס אוחז <strong>עצם נוקשה</strong> (כמו קצה אבוס) עם שיניו, <strong>מושך את הצוואר</strong> ו<strong>בולע אוויר</strong>.
+    שתיהן <strong>סטריאוטיפיה</strong> – התנהגות שחוזרת על עצמה שוב ושוב בלי מטרה ברורה. שתיהן כוללות <strong>בליעת אוויר</strong>, אך יש הבדל:
   </div>
-  <div class="highlight red">📍 <strong>איפה זה קורה?</strong><br>בעיקר <strong>באורווה</strong> – אצל סוסים <strong>משועממים</strong>.</div>
-  <div class="highlight amber">📚 <strong>למידה מסוסים אחרים:</strong><br>סוס שרואה סוס אחר עושה זאת – עלול ללמוד גם הוא!</div>
-  <div class="remember-box">Crib Biting = אחיזה בעצם נוקשה + מתיחת צוואר + בליעת אוויר</div>
+
+  <img src="https://bagruyot.org/haklaut/susim/imag/wind.png" alt="Wind Sucking ו-Crib Biting" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <!-- טבלת הבדלים -->
+  <table style="width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:2px solid #a8d8bc;margin-bottom:16px">
+    <thead>
+      <tr>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:13px;font-weight:700;text-align:right;width:28%"> </th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center;border-right:1px solid rgba(255,255,255,0.2)">🦷 Crib Biting</th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center">🌀 Wind Sucking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">🦷 אחיזה</td>
+        <td style="padding:8px 10px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee">
+          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">נאחז בחפץ קשיח</span>
+        </td>
+        <td style="padding:8px 10px;text-align:center;border-bottom:1px solid #e8f4ee">
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">לפעמים בלי חפץ</span>
+        </td>
+      </tr>
+      <tr style="background:#f5fbf7">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">↕️ צוואר</td>
+        <td style="padding:8px 10px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee">
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מותח את הצוואר</span>
+        </td>
+        <td style="padding:8px 10px;text-align:center;border-bottom:1px solid #e8f4ee">
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מותח את הצוואר</span>
+        </td>
+      </tr>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700">💨 תוצאה</td>
+        <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f4ee">
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">בליעת אוויר</span>
+        </td>
+        <td style="padding:8px 10px;text-align:center">
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">בליעת אוויר</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- גורמים -->
+  <div class="section-title">🔍 למה זה קורה?</div>
+  <div class="highlight red">📍 בעיקר <strong>באורווה</strong> – אצל סוסים <strong>משועממים</strong> עם חוסר פעילות.</div>
+
+  <div style="margin-bottom:14px">
+    <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px">🌀 גורמים אפשריים לתופעה:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🏠 שהייה ממושכת באורווה</span>
+      <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🚶 חוסר תנועה</span>
+      <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">🌾 מעט מזון גס</span>
+      <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">👥 מעט קשר חברתי</span>
+      <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">😟 סטרס – גמילה, הכנסה לתא</span>
+    </div>
+  </div>
+
+  <div class="highlight amber">📚 <strong>למידה מסוסים אחרים:</strong> סוס שרואה סוס אחר עושה זאת – עלול ללמוד גם הוא!</div>
+  <div class="remember-box">Crib Biting = אחיזה בחפץ | Wind Sucking = לפעמים בלי חפץ | שניהם = בליעת אוויר + סטריאוטיפיה</div>
+
   <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מה מתאר נכון את Crib Biting?</p>
+    <div class="q-title">❓ מה ההבדל בין Crib Biting ל-Wind Sucking?</div>
     <div class="mc-options" id="opts-s15q1">
-      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>הסוס בועט בקירות האורווה</button>
-      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>הסוס מסרב לאכול</button>
-      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>הסוס רץ בעיגולים באורווה</button>
-      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>אחיזה בעצם + מתיחת צוואר + בליעת אוויר</button>
+      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>אין הבדל – שניהם זהים לחלוטין</button>
+      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>Wind Sucking קורה רק בחוץ, Crib Biting רק באורווה</button>
+      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>ב-Wind Sucking אין חובה להיאחז בחפץ, ב-Crib Biting כן</button>
+      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>Crib Biting הוא בליעת אוויר, Wind Sucking הוא בליעת מים</button>
     </div>
     <div class="feedback" id="fb-s15q1"></div>
   </div>
@@ -1357,7 +1484,7 @@ const mcData = {
   's10q1': { correct: 1, explanation: 'ברעייה חופשית הסוס אוכל 15–18 שעות ביממה! באורווה (חציר חופשי) – 8–10 שעות, ומרוכז – פחות משעה.' },
   's11q1': { correct: 2, explanation: 'סוס ממוצע שותה כ-30 ליטר ביממה. שתייה מעל 50 ליטר כבר נחשבת חריגה, ועד 140 ליטר – שתיית יתר.' },
   's14q1': { correct: 0, explanation: 'חסר נתרן גורם לסוס לאכול אדמה כדי להשלים את המחסור – וזה מסוכן כי הוא עלול לבלוע חול שגורם לחסימת מעי.' },
-  's15q1': { correct: 3, explanation: 'Crib Biting: הסוס אוחז עצם נוקשה בשיניים, מושך את הצוואר ובולע אוויר. זה קורה בעיקר באורווה אצל סוסים משועממים.' },
+  's15q1': { correct: 2, explanation: 'Crib Biting: הסוס אוחז עצם נוקשה בשיניים, מושך את הצוואר ובולע אוויר. זה קורה בעיקר באורווה אצל סוסים משועממים.' },
   's17q1': { correct: 1, explanation: 'טיפול כירורגי (הסרת שרירים ועצבים) מצוין כבעל "הצלחות חלקיות". התניה שלילית – יעילות מוגבלת.' },
   's18q1': { correct: 2, explanation: 'פוני שקיבלו חציר – אכילת העץ ירדה ב-80%! זה מראה כמה חשוב חציר חופשי למניעת אכילת עץ.' },
   's19q1': { correct: 0, explanation: 'קורפופגיה בסייחים היא נורמלית ואינה מחייבת טיפול. רק בסוסים בוגרים היא נחשבת להפרעה התנהגותית.' },
@@ -1373,6 +1500,7 @@ const tfData = {
   's2tf1': { correct: false, explanation: 'לא נכון! תערובת וגרעינים הם מזון מרוכז, לא מזון גס. מזון גס = חציר.' },
   's5tf1': { correct: true,  explanation: 'נכון! ריח עובש = חציר לא ראוי לשימוש. חציר טוב מריח כמו דשא ירוק.' },
   's9tf1': { correct: false, explanation: 'לא נכון! סוסים לא תמיד מזהים צמחי רעל ועלולים לאכול אותם. לכן חשוב לבדוק את השטח.' },
+  's13tf1': { correct: false, explanation: 'לא נכון! מעבר פתאומי בתזונה עלול לגרום לקוליק. כל שינוי חייב להיות הדרגתי.' },
   's12tf1': { correct: true, explanation: 'נכון! רשת חציר מאיטה את האכילה – הסוס מוציא את החציר לאט דרך החורים הקטנים.' },
   's16tf1': { correct: true, explanation: 'נכון! האוויר הנבלע מגיע למעיים ומגדיל את הסיכון לקוליק.' },
   's21tf1': { correct: true, explanation: 'נכון! הגבלה ל-50 ליטר ביום + צמצום שעמום (שעות בחוץ, חברה, מזון גס).' }
