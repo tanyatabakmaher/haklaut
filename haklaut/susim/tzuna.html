@@ -317,6 +317,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
   </div>
   <div class="remember-box">מזון גס = עיקרי | מזון מרוכז = משלים בלבד</div>
+  <div class="exam-box">מזון גס = חציר (שיבולת שועל / בקיה / אספסת) | מזון מרוכז = תערובת + גרעינים</div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">מה כולל מזון גס?</p>
@@ -339,62 +340,12 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתת דוגמאות למזון גס שהסוס אוכל.</div>
   <div class="definition-box">
-    <strong>מזון גס = חציר</strong> ממגוון צמחים – זהו הבסיס של תזונת הסוס.<br><br>
-    הסוס הוא בעל חיים שנועד לאכול <strong>כמויות גדולות של צמחים לאורך שעות רבות</strong>.
-    מזון גס מספק לו סיבים חיוניים, עוזר לתפקוד תקין של מערכת העיכול, ומעסיק אותו לאורך היום.
+    <strong>מזון גס = חציר</strong> ממגוון צמחים – זהו הבסיס של תזונת הסוס.<br>
+    הסוס נועד לאכול <strong>כמויות גדולות של צמחים לאורך שעות רבות</strong> –
+    מזון גס מספק סיבים חיוניים, תומך במערכת העיכול, ומעסיק אותו לאורך היום.
   </div>
   <div class="section-title">🌿 דוגמאות למזון גס:</div>
   <img src="https://bagruyot.org/haklaut/susim/imag/hazir.png" alt="חציר לסוסים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
-  <div class="accord-item" id="acc-shib">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#2d6a4f">🌾</div>
-      <div class="accord-title">שיבולת שועל</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:18px">📊</span>
-          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
-          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">נמוך יחסית</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:18px">📦</span>
-          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
-          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">גדולה יחסית</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
-          <span style="font-size:18px">💡</span>
-          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">ערך נמוך = אפשר לתת הרבה. מעסיק את הסוס שעות רבות ומונע שעמום.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="accord-item" id="acc-vicia">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#27ae60">🌱</div>
-      <div class="accord-title">בקיה</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:18px">📊</span>
-          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
-          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינוני</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:18px">📦</span>
-          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
-          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינונית</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
-          <span style="font-size:18px">💡</span>
-          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">משמשת לגיוון ולהשלמה בין שיבולת השועל לאספסת.</span>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="accord-item" id="acc-alfalfa">
     <div class="accord-header" onclick="toggleAccord(this.parentElement)">
       <div class="accord-num" style="background:#7c4f1a">🌿</div>
@@ -425,8 +376,57 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       </div>
     </div>
   </div>
-  <div class="highlight amber"><strong>למה מזון גס חשוב?</strong><br>הסוס צריך לאכול לאורך <strong>רוב היום</strong>. מזון גס מעסיק את הסוס ואת מערכת העיכול שלו לאורך שעות.</div>
-  <div class="exam-box">מזון גס = חציר (שיבולת שועל / בקיה / אספסת) | מזון מרוכז = תערובת + גרעינים</div>
+  <div class="accord-item" id="acc-vicia">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60">🌱</div>
+      <div class="accord-title">בקיה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📊</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינוני</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📦</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">בינונית</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
+          <span style="font-size:18px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">משמשת לגיוון ולהשלמה בין שיבולת השועל לאספסת.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item" id="acc-shib">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#2d6a4f">🌾</div>
+      <div class="accord-title">שיבולת שועל</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📊</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">ערך תזונתי</span>
+          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">נמוך יחסית</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">📦</span>
+          <span style="font-size:13px;font-weight:700;color:#6b5c47;min-width:90px">כמות</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800">גדולה יחסית</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:2px">
+          <span style="font-size:18px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">ערך נמוך = אפשר לתת הרבה. מעסיק את הסוס שעות רבות ומונע שעמום.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="highlight blue"><strong>למה מזון גס חשוב?</strong><br>הסוס צריך לאכול לאורך <strong>רוב היום</strong>. מזון גס מעסיק את הסוס ואת מערכת העיכול שלו לאורך שעות.</div>
   <div class="question-box">
     <div class="q-title">❓ נכון או לא נכון?</div>
     <p style="font-size:15px;margin-bottom:14px">תערובת וגרעינים שייכים לקטגוריית מזון גס.</p>
@@ -450,26 +450,43 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <strong>מזון מרוכז</strong> = <strong>תערובת וגרעינים</strong><br>
     מכיל הרבה אנרגיה וחומרי מזון בכמות קטנה.
   </div>
-  <div class="highlight brown">🌽 <strong>דוגמאות:</strong> שעורה, תירס, גרעיני חמניות, תערובות מיוחדות לסוסים</div>
-  <div class="highlight red">⚠️ <strong>שים לב!</strong> הסוס גומר מזון מרוכז <strong>פחות משעה</strong>. זה מעט מאוד זמן לסוס שצריך לאכול לאורך היום!</div>
-  <div class="two-col-compare">
-    <div class="compare-card" style="background:var(--primary-light)">
-      <h3 style="color:#1a4a2e">🌾 מזון גס</h3>
-      <ul>
-        <li><span>חציר מסוגים שונים</span></li>
-        <li><span>אכילה ארוכה – שעות</span></li>
-        <li><span>מעסיק את הסוס</span></li>
-      </ul>
-    </div>
-    <div class="compare-card" style="background:var(--secondary-light)">
-      <h3 style="color:#7c4f1a">🌽 מזון מרוכז</h3>
-      <ul>
-        <li><span>תערובת וגרעינים</span></li>
-        <li><span>אכילה קצרה – פחות משעה</span></li>
-        <li><span>עשיר באנרגיה</span></li>
-      </ul>
+  <div style="margin-bottom:14px">
+    <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px">🌽 דוגמאות למזון מרוכז:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="background:#fdf3e8;border:1.5px solid #e8c99a;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:600;color:#7c4f1a">🌾 שעורה</span>
+      <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:600;color:#1a4a2e">🌽 תירס</span>
+      <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:600;color:#a16207">🌻 גרעיני חמניות</span>
+      <span style="background:#ede0f5;border:1.5px solid #6c3483;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:600;color:#6c3483">🥣 תערובות מיוחדות לסוסים</span>
     </div>
   </div>
+  <div class="highlight red">⚠️ <strong>שים לב!</strong> הסוס גומר מזון מרוכז <strong>פחות משעה</strong>. זה מעט מאוד זמן לסוס שצריך לאכול לאורך היום!</div>
+  <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:12px">⚖️ השוואה: מזון גס מול מזון מרוכז</div>
+  <table style="width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:2px solid #a8d8bc;margin-bottom:16px">
+    <thead>
+      <tr>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:13px;font-weight:700;text-align:right;width:28%"> </th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center;border-right:1px solid rgba(255,255,255,0.2)">🌾 מזון גס</th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center;border-right:1px solid rgba(255,255,255,0.2)">🌽 מזון מרוכז</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">📦 סוג</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="font-size:13px;font-weight:700;color:#1a4a2e">חציר</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="font-size:13px;font-weight:700;color:#7c4f1a">תערובת וגרעינים</span></td>
+      </tr>
+      <tr style="background:#f5fbf7">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">⏱️ זמן אכילה</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">שעות רבות</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">פחות משעה</span></td>
+      </tr>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700">⭐ חשיבות</td>
+        <td style="padding:10px 12px;text-align:center;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">עיקרי</span></td>
+        <td style="padding:10px 12px;text-align:center"><span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">משלים</span></td>
+      </tr>
+    </tbody>
+  </table>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">כמה זמן לוקח לסוס לאכול מזון מרוכז?</p>
@@ -491,23 +508,23 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">איך יודעים שהחציר טוב?</p>
   </div>
   <div class="goal-box">אני אוכל לזהות חציר איכותי לפי צבעו ויובשו.</div>
-  <div class="highlight green">📌 <strong>כלל ראשון:</strong> החציר בחבילה חייב להיות <strong>יבש</strong>. חציר רטוב עלול להירקב.</div>
+  <div class="definition-box">
+    כדי שהחציר יהיה ראוי לשימוש הוא חייב להיות <strong>יבש לחלוטין</strong> – חציר רטוב עובש ומתקלקל. בנוסף, ניתן לזהות את איכותו גם לפי <strong>הצבע שלו</strong>: ירוק בהיר מעיד על חציר תקין ואיכותי, צהוב על ערך תזונתי נמוך יותר, וחום – סימן שהחציר רקוב ואסור לשימוש.
+  </div>
   <div class="section-title">🎨 מה הצבע אומר?</div>
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
-    <div class="color-card" style="background:#d5f0e0;border-color:#27ae60">
-      <span class="cc-emoji">🟢</span>
-      <div class="cc-label">ירוק בהיר</div>
-      <div class="cc-meaning">✅ חציר איכותי! ערך תזונתי גבוה</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/hairzeva.png" alt="סוגי חציר לפי צבע" style="width:100%;border-radius:12px;margin:0 0 12px;box-shadow:var(--shadow);display:block;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+    <div style="background:#d5f0e0;border:2px solid #27ae60;border-radius:12px;padding:14px">
+      <div style="font-weight:800;font-size:14px;color:#1a4a2e;margin-bottom:4px">ירוק בהיר</div>
+      <div style="font-size:12px;color:#2d6a4f;line-height:1.5">חציר איכותי<br>ערך תזונתי גבוה</div>
     </div>
-    <div class="color-card" style="background:#fef9c3;border-color:#eab308">
-      <span class="cc-emoji">🟡</span>
-      <div class="cc-label">צהוב</div>
-      <div class="cc-meaning">⚠️ ערך תזונתי נמוך יותר</div>
+    <div style="background:#fef9c3;border:2px solid #eab308;border-radius:12px;padding:14px">
+      <div style="font-weight:800;font-size:14px;color:#a16207;margin-bottom:4px">צהוב</div>
+      <div style="font-size:12px;color:#a16207;line-height:1.5">ערך תזונתי<br>נמוך יותר</div>
     </div>
-    <div class="color-card" style="background:#fde8e8;border-color:#c0392b">
-      <span class="cc-emoji">🟤</span>
-      <div class="cc-label">חום</div>
-      <div class="cc-meaning">❌ חציר רקוב – לא לשימוש!</div>
+    <div style="background:#f5e6d3;border:2px solid #a0522d;border-radius:12px;padding:14px">
+      <div style="font-weight:800;font-size:14px;color:#6b3a1f;margin-bottom:4px">חום</div>
+      <div style="font-size:12px;color:#7c4f1a;line-height:1.5">חציר רקוב<br>לא לשימוש!</div>
     </div>
   </div>
   <div class="remember-box">ירוק = טוב | צהוב = בינוני | חום = רקוב!</div>
