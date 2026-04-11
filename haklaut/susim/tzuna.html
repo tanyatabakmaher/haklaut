@@ -225,7 +225,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">😮‍💨</span>הגדרה וגורמים</button>
       <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">❗</span>נזקים ולמידה</button>
-      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">💊</span>טיפול</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">💊</span>דרכי טיפול</button>
     </div>
     <div class="menu-chapter-title">🌀 אנומליות אכילה</div>
     <div class="menu-chapter">
@@ -1131,10 +1131,46 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל למנות את הנזקים של Wind Sucking.</div>
   <div class="section-title">⚠️ 3 נזקים עיקריים:</div>
-  <div class="step-box"><div class="step-num">1</div><div class="step-content"><strong>🦷 שחיקת יתר בשיניים</strong>האחיזה החוזרת גורמת לשחיקה מהירה של השיניים</div></div>
-  <div class="step-box"><div class="step-num">2</div><div class="step-content"><strong>🤕 עלייה בשכיחות קוליקים</strong>האוויר הנבלע מגיע למעיים ועלול לגרום לקוליק</div></div>
-  <div class="step-box"><div class="step-num">3</div><div class="step-content"><strong>⚖️ איבוד משקל</strong>הסוס לועס הרבה אך לא מקבל ערך תזונתי – יורד במשקל</div></div>
-  <div class="highlight red">🚨 <strong>סכנה נוספת:</strong> <strong>למידה מסוסים אחרים</strong> – חשוב להפריד בין סוס שואב אוויר לשאר הסוסים!</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#f59e0b;font-size:18px">🦷</div>
+      <div class="accord-title">שחיקת יתר בשיניים</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">האחיזה החוזרת בחפץ גורמת לשחיקה מהירה ומוגזמת של השיניים.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:18px">🤕</div>
+      <div class="accord-title">עלייה בשכיחות קוליקים</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">האוויר הנבלע מגיע למעיים ועלול לגרום לקוליק.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#8b5cf6;font-size:18px">⚖️</div>
+      <div class="accord-title">איבוד משקל</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">הסוס לועס הרבה אך לא מקבל ערך תזונתי – יורד במשקל.</span>
+      </div>
+    </div>
+  </div>
+  <div class="highlight red">📚 <strong>למידה מסוסים אחרים:</strong> סוס שרואה סוס אחר עושה זאת – עלול ללמוד גם הוא!</div>
   <div class="question-box">
     <div class="q-title">❓ נכון או לא נכון?</div>
     <p style="font-size:15px;margin-bottom:14px">Wind Sucking עלול לגרום לעלייה בשכיחות קוליקים.</p>
@@ -1150,18 +1186,91 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <div class="screen" id="screen-17">
   <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
     <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">💊</span>
-    <h1>טיפול בשואבי אוויר</h1>
-    <p class="subtitle">קשה מאוד להיפטר מהתופעה</p>
+    <h1>דרכי טיפול</h1>
+    <p class="subtitle">שיטות הטיפול ב-Wind Sucking</p>
   </div>
   <div class="goal-box">אני אוכל לתאר את שיטות הטיפול ב-Wind Sucking.</div>
   <div class="highlight red">⚠️ <strong>דבר חשוב!</strong> קשה <strong>מאוד</strong> להיפטר מתופעה זו לאחר שנוצרה!</div>
   <div class="section-title">💊 שיטות הטיפול:</div>
-  <div class="step-box"><div class="step-num">🌿</div><div class="step-content"><strong>הוצאה למרעה</strong>יותר זמן בחוץ = פחות שעמום = פחות wind sucking</div></div>
-  <div class="step-box"><div class="step-num">🏃</div><div class="step-content"><strong>הגברת פעילות גופנית</strong>עבודה ותנועה מפחיתות את הדחף</div></div>
-  <div class="step-box"><div class="step-num">🌾</div><div class="step-content"><strong>הגברת מזון גס</strong>יותר חציר = יותר עיסוק = פחות wind sucking</div></div>
-  <div class="step-box"><div class="step-num">🎗️</div><div class="step-content"><strong>רצועות לחץ</strong>רצועה על הצוואר שמכאיבה בעת המתיחה</div></div>
-  <div class="step-box"><div class="step-num">🔬</div><div class="step-content"><strong>טיפול כירורגי</strong>הסרת שרירים/עצבים בצוואר. <strong>הצלחות חלקיות</strong> בלבד</div></div>
-  <div class="step-box"><div class="step-num">⚡</div><div class="step-content"><strong>התניה שלילית (שוק חשמלי)</strong>יעילות <strong>מוגבלת</strong></div></div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/tipul.png" alt="דרכי טיפול ב-Wind Sucking" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:18px">🌿</div>
+      <div class="accord-title">הוצאה למרעה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">יותר זמן בחוץ = פחות שעמום = פחות wind sucking.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#3b82f6;font-size:18px">🏃</div>
+      <div class="accord-title">הגברת פעילות גופנית</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">עבודה ותנועה מפחיתות את הדחף לביצוע התופעה.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#f59e0b;font-size:18px">🌾</div>
+      <div class="accord-title">הגברת מזון גס</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">יותר חציר = יותר עיסוק = פחות wind sucking.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#ec4899;font-size:18px">🎗️</div>
+      <div class="accord-title">רצועות לחץ</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">רצועה על הצוואר שמכאיבה בעת המתיחה.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#8b5cf6;font-size:18px">🔬</div>
+      <div class="accord-title">טיפול כירורגי</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">הסרת שרירים/עצבים בצוואר. <strong>הצלחות חלקיות בלבד.</strong></span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:18px">⚡</div>
+      <div class="accord-title">התניה שלילית</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#4a6a4a;line-height:1.5">שוק חשמלי. <strong>יעילות מוגבלת.</strong></span>
+      </div>
+    </div>
+  </div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">איזה טיפול ב-Wind Sucking מצוין כבעל "הצלחות חלקיות"?</p>
@@ -1435,7 +1544,7 @@ const chapterLabels = [
   'אכילה ברעייה','צמחי רעל ועץ',
   'זמן אכילה','רעייה מול אורווה','שיטות להגברת אכילה',
   'מערכת עיכול רגישה','חסר נתרן ואכילת חול',
-  'Wind Sucking','נזקי Wind Sucking','טיפול',
+  'Wind Sucking','נזקי Wind Sucking','דרכי טיפול',
   'אכילת עץ','קורפופגיה',
   'שתיית יתר','אבחון וטיפול',
   'מילון מונחים','שאלות חזרה','סיום'
