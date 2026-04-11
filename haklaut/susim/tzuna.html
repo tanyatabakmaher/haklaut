@@ -205,7 +205,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">👃</span>ריח ועלים</button>
     </div>
 
-    <div class="menu-chapter-title">🐴 אכילה בטבע</div>
+    <div class="menu-chapter-title">🐴 אכילה ברעייה</div>
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🏕️</span>רעייה וצמחים</button>
       <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">⚠️</span>צמחי רעל ועץ</button>
@@ -213,7 +213,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="menu-chapter-title">⏰ אכילה ושתייה</div>
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">⏱️</span>זמן אכילה</button>
-      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">💧</span>שתייה ואורווה</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>רעייה מול אורווה</button>
       <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🔧</span>שיטות להגברת אכילה</button>
     </div>
     <div class="menu-chapter-title">⚕️ רגישות ובעיות</div>
@@ -273,7 +273,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <li data-icon="🌾">סוגי המזון של הסוס: מזון גס ומרוכז</li>
       <li data-icon="🔍">איך מזהים חציר איכותי</li>
       <li data-icon="🌿">סוגי חציר: שיבולת שועל ואספסת</li>
-      <li data-icon="🐴">איך סוסים אוכלים בטבע</li>
+      <li data-icon="🐴">איך סוסים אוכלים ברעייה</li>
       <li data-icon="⏰">כמה זמן הסוס אוכל ושותה ביום</li>
       <li data-icon="💨">בעיות התנהגות: Wind Sucking, Crib Biting</li>
       <li data-icon="🌀">אנומליות אכילה: אכילת עץ, קורפופגיה, שתיית יתר</li>
@@ -622,17 +622,17 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 
-<!-- ===== S8: אכילה בטבע ===== -->
+<!-- ===== S8: אכילה ברעייה ===== -->
 <div class="screen" id="screen-8">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
     <span class="chapter-num">פרק 3</span><span class="emoji">🏕️</span>
-    <h1>אכילה בטבע</h1>
+    <h1>אכילה ברעייה</h1>
     <p class="subtitle">איך סוסים אוכלים כשהם חופשיים</p>
   </div>
   <div class="goal-box">אני אוכל לתאר את דפוסי האכילה הטבעיים של סוסים.</div>
-  <div class="definition-box">בטבע, הסוס הוא <strong>אוכל עשב ושיחים</strong>. הוא אוכל כל היום תוך כדי הליכה.</div>
-  <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:10px">🌿 איך הסוס אוכל בטבע?</div>
-  <img src="https://bagruyot.org/haklaut/susim/imag/ahila.png" alt="שלבי אכילה בטבע" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="definition-box">ברעייה, הסוס הוא <strong>אוכל עשב ושיחים</strong>. הוא אוכל כל היום תוך כדי הליכה.</div>
+  <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:10px">🌿 איך הסוס אוכל ברעייה?</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/ahila.png" alt="שלבי אכילה ברעייה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <div class="accord-item">
     <div class="accord-header" onclick="toggleAccord(this.parentElement)">
       <div class="accord-num" style="background:#ec4899;font-size:18px">🍃</div>
@@ -737,8 +737,8 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="q-title">❓ נכון או לא נכון?</div>
     <p style="font-size:15px;margin-bottom:14px">סוסים תמיד מזהים צמחי רעל ונמנעים מהם.</p>
     <div class="tf-options" id="tfopts-s9">
-      <button class="tf-btn" onclick="pickTF('s9tf1',false,this)">✅ נכון</button>
-      <button class="tf-btn" onclick="pickTF('s9tf1',true,this)">❌ לא נכון</button>
+      <button class="tf-btn" onclick="pickTF('s9tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s9tf1',false,this)">❌ לא נכון</button>
     </div>
     <div class="feedback" id="fb-s9tf1"></div>
   </div>
@@ -748,19 +748,51 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <div class="screen" id="screen-10">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
     <span class="chapter-num">פרק 4</span><span class="emoji">⏱️</span>
-    <h1>זמן אכילה ביממה</h1>
-    <p class="subtitle">כמה שעות אוכל הסוס?</p>
+    <h1>זמן אכילה ושתייה</h1>
+    <p class="subtitle">כמה שעות אוכל ושותה הסוס?</p>
   </div>
-  <div class="goal-box">אני אוכל לציין כמה שעות ביממה אוכל סוס לפי כל סוג מזון.</div>
-  <table class="info-table">
-    <tr><th>סוג מזון</th><th>זמן אכילה ביממה</th></tr>
-    <tr><td>🏕️ רעייה חופשית</td><td><strong>15–18 שעות!</strong></td></tr>
-    <tr><td>🌾 חציר חופשי באורווה</td><td><strong>8–10 שעות</strong></td></tr>
-    <tr><td>🌽 מזון מרוכז</td><td><strong>פחות משעה</strong></td></tr>
-    <tr><td>🏠 סוס באורווה (סך הכל)</td><td><strong>כ-3 שעות</strong></td></tr>
-  </table>
-  <div class="highlight red">😟 <strong>בעיה!</strong> סוס באורווה אוכל רק <strong>3 שעות ביממה</strong> – הרבה פחות מהטבעי. זה גורם לשעמום ובעיות התנהגות!</div>
-  <div class="remember-box">ברעייה: 15–18 שעות | חציר חופשי: 8–10 שעות | מרוכז: פחות משעה | אורווה: ~3 שעות</div>
+  <div class="goal-box">אני אוכל לציין כמה שעות ביממה אוכל ושותה הסוס לפי כל מצב.</div>
+
+  <!-- אכילה -->
+  <div class="section-title">⏱️ זמן אכילה ביממה</div>
+  <div class="step-box" style="border-color:#27ae60">
+    <div class="step-num" style="background:#27ae60;font-size:15px">🏕️</div>
+    <div class="step-content">
+      <strong>רעייה חופשית – 15–18 שעות</strong>
+    </div>
+  </div>
+  <div class="step-box" style="border-color:#3b82f6">
+    <div class="step-num" style="background:#3b82f6;font-size:15px">🌾</div>
+    <div class="step-content">
+      <strong>אוכלי חציר חופשי – 8–10 שעות</strong>
+    </div>
+  </div>
+  <div class="step-box" style="border-color:#c0392b">
+    <div class="step-num" style="background:#c0392b;font-size:15px">🏠</div>
+    <div class="step-content">
+      <strong>סוס באורווה – כ-3 שעות</strong>
+    </div>
+  </div>
+  <div class="highlight red">😟 <strong>בעיה!</strong> סוס באורווה אוכל רק <strong>3 שעות ביממה</strong> – הרבה פחות מהטבעי. זה גורם לשעמום ובעיות התנהגות.</div>
+
+  <!-- שתייה -->
+  <div class="section-title" style="margin-top:12px">💧 שתייה ביממה</div>
+  <div class="definition-box">
+    הסוס שותה <strong>מעט פעמים</strong> ביום אך <strong>לגימות גדולות</strong>.
+  </div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-color:#0ea5e9;border-top:4px solid #0ea5e9">
+      <div class="title" style="color:#0369a1">💧 כמות יומית ממוצעת</div>
+      <div style="font-size:26px;font-weight:900;color:#0ea5e9;margin:6px 0">~30 ליטר</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.4">לסוס ממוצע ביממה. בחום או עבודה – יותר.</div>
+    </div>
+    <div class="mini-card" style="border-color:#f59e0b;border-top:4px solid #f59e0b">
+      <div class="title" style="color:#92400e">🏠 שתייה באורווה</div>
+      <div style="font-size:26px;font-weight:900;color:#f59e0b;margin:6px 0">~15 דק'</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.4">בלבד ביממה – זמן קצר מאוד.</div>
+    </div>
+  </div>
+  <div class="remember-box">רעייה: 15–18 שעות | חציר חופשי: 8–10 שעות | אורווה: ~3 שעות | שתייה: ~30 ליטר ביממה, ~15 דקות באורווה</div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">כמה שעות אוכל סוס ברעייה חופשית ביממה?</p>
@@ -774,50 +806,57 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
 </div>
 
-<!-- ===== S11: שתייה ואורווה ===== -->
+<!-- ===== S11: טבע מול אורווה ===== -->
 <div class="screen" id="screen-11">
   <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
-    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">💧</span>
-    <h1>שתייה ואורווה</h1>
-    <p class="subtitle">כמה שותה הסוס?</p>
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">⚖️</span>
+    <h1>רעייה מול אורווה</h1>
+    <p class="subtitle">מה ההבדל בין סוס ברעייה לסוס באורווה?</p>
   </div>
-  <div class="goal-box">אני אוכל לציין את כמות השתייה היומית של סוס ממוצע.</div>
+  <div class="goal-box">אני אוכל להשוות בין סוס ברעייה לסוס באורווה.</div>
   <div class="definition-box">
-    🐴 הסוס שותה <strong>מעט פעמים</strong> ביום אך <strong>לגימות גדולות</strong>.
+    הסוס נועד לחיות ברעייה פתוח – לאכול שעות רבות, לנוע כל היום ולשתות ממקורות טבעיים.
+    באורווה, כל אלו מוגבלים מאוד. ההבדלים הם הבסיס להבנת הבעיות ההתנהגותיות.
   </div>
-  <div class="highlight blue">💧 <strong>כמות שתייה יומית:</strong><br>סוס ממוצע שותה כ<strong>30 ליטר ביממה</strong>.</div>
-  <div class="highlight amber">🏠 <strong>סוס באורווה:</strong><br>
-  • אוכל כ<strong>3 שעות ביממה</strong><br>
-  • שותה כ<strong>15 דקות ביממה</strong></div>
-  <div class="two-col-compare">
-    <div class="compare-card" style="background:#f0fdf4">
-      <h3>🏕️ בטבע</h3>
-      <ul>
-        <li><span>15–18 שעות אכילה</span></li>
-        <li><span>3–10 ק"מ הליכה</span></li>
-        <li><span>מים טבעיים</span></li>
-      </ul>
-    </div>
-    <div class="compare-card" style="background:#fef2f2">
-      <h3>🏠 באורווה</h3>
-      <ul>
-        <li><span>~3 שעות אכילה</span></li>
-        <li><span>פעילות מוגבלת</span></li>
-        <li><span>~15 דק שתייה</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">כמה ליטר שותה סוס ממוצע ביממה?</p>
-    <div class="mc-options" id="opts-s11q1">
-      <button class="mc-option" onclick="pickOption('s11q1',0,this)"><span class="opt-letter">א</span>5 ליטר</button>
-      <button class="mc-option" onclick="pickOption('s11q1',1,this)"><span class="opt-letter">ב</span>100 ליטר</button>
-      <button class="mc-option" onclick="pickOption('s11q1',2,this)"><span class="opt-letter">ג</span>כ-30 ליטר</button>
-      <button class="mc-option" onclick="pickOption('s11q1',3,this)"><span class="opt-letter">ד</span>200 ליטר</button>
-    </div>
-    <div class="feedback" id="fb-s11q1"></div>
-  </div>
+  <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:12px">⚖️ השוואה: רעייה מול אורווה</div>
+  <table style="width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:2px solid #a8d8bc;margin-bottom:16px">
+    <thead>
+      <tr>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:13px;font-weight:700;text-align:right;width:30%"> </th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center;border-right:1px solid rgba(255,255,255,0.2)">🏕️ ברעייה</th>
+        <th style="background:#2d6a4f;color:white;padding:10px 12px;font-size:14px;font-weight:900;text-align:center;border-right:1px solid rgba(255,255,255,0.2)">🏠 באורווה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">⏱️ אכילה</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">15–18 שעות</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">~3 שעות</span></td>
+      </tr>
+      <tr style="background:#f5fbf7">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">💧 שתייה</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">~30 ליטר ביממה</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">~15 דקות בלבד</span></td>
+      </tr>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">🚶 תנועה</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">3–10 ק"מ ביום</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מוגבלת</span></td>
+      </tr>
+      <tr style="background:#f5fbf7">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700;border-bottom:1px solid #e8f4ee">🌿 מזון</td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">עשב ושיחים</span></td>
+        <td style="padding:10px 12px;text-align:center;border-bottom:1px solid #e8f4ee"><span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">חציר + מרוכז</span></td>
+      </tr>
+      <tr style="background:white">
+        <td style="padding:10px 12px;font-size:12px;color:var(--text-muted);font-weight:700">👥 חברתיות</td>
+        <td style="padding:10px 12px;text-align:center;border-right:1px solid #e8f4ee"><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">עדר חופשי</span></td>
+        <td style="padding:10px 12px;text-align:center"><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מוגבל/בודד</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="highlight red">😟 <strong>המסקנה:</strong> הסוס באורווה חי בסביבה מוגבלת מאוד ביחס לרעייה – פחות אכילה, פחות תנועה, פחות חופש. זה הבסיס לבעיות ההתנהגות!</div>
+  <div class="exam-box">טבע: 15–18 שעות אכילה, 3–10 ק"מ תנועה | אורווה: ~3 שעות אכילה, ~15 דקות שתייה</div>
 </div>
 
 <!-- ===== S12: שיטות להגברת זמן אכילה ===== -->
@@ -829,25 +868,51 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר 3 שיטות להגברת זמן האכילה של הסוס.</div>
   <div class="highlight red">⚠️ <strong>הבעיה:</strong> סוס באורווה אוכל רק 3 שעות. הוא צריך עוד זמן אכילה!</div>
-  <div class="step-box">
-    <div class="step-num">1</div>
-    <div class="step-content">
-      <strong>🥣 אבוס עם גובלים</strong>
-      הגובלים מאטים את האכילה – הסוס מתאמץ יותר ואוכל לאט יותר
+  <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:10px">🔧 שיטות להגברת זמן אכילה:</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/zman.png" alt="שיטות להגברת זמן אכילה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#3b82f6;font-size:18px">🥣</div>
+      <div class="accord-title">אבוס עם גובלים</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:16px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">הגובלים מאטים את האכילה – הסוס מתאמץ יותר ואוכל לאט יותר.</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="step-box">
-    <div class="step-num">2</div>
-    <div class="step-content">
-      <strong>🌾 הוספת תבן למזון המרוכז</strong>
-      תבן = מזון גס קצוץ. מוסיפים אותו למרוכז כדי להאריך את זמן האכילה
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#f59e0b;font-size:18px">🌾</div>
+      <div class="accord-title">הוספת תבן למזון המרוכז</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:16px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">תבן = מזון גס קצוץ. מוסיפים אותו למרוכז כדי להאריך את זמן האכילה.</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="step-box">
-    <div class="step-num">3</div>
-    <div class="step-content">
-      <strong>🕸️ רשת חציר</strong>
-      רשת עם חורים קטנים שהחציר בתוכה – הסוס מושך אוכל לאט לאט
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#ec4899;font-size:18px">🕸️</div>
+      <div class="accord-title">רשת חציר</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:16px">💡</span>
+          <span style="font-size:13px;color:#4a6a4a;line-height:1.5">רשת עם חורים קטנים שהחציר בתוכה – הסוס מושך אוכל לאט לאט.</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="remember-box">3 שיטות: אבוס עם גובלים | תבן במרוכז | רשת חציר</div>
@@ -1214,7 +1279,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <li data-icon="✅">מזון גס (חציר) ומזון מרוכז (תערובת + גרעינים)</li>
       <li data-icon="✅">4 סימני איכות חציר: יובש, צבע, ריח, עלים</li>
       <li data-icon="✅">שיבולת שועל (ערך נמוך, כמות גדולה) לעומת אספסת (ערך גבוה, כמות קטנה)</li>
-      <li data-icon="✅">דפוסי אכילה בטבע: 15–18 שעות, 3–10 ק"מ ביום</li>
+      <li data-icon="✅">דפוסי אכילה ברעייה: 15–18 שעות, 3–10 ק"מ ביום</li>
       <li data-icon="✅">שיטות להגברת זמן אכילה: גובלים, תבן, רשת חציר</li>
       <li data-icon="✅">Wind Sucking: גורמים, נזקים וטיפול</li>
       <li data-icon="✅">אנומליות: אכילת עץ, קורפופגיה, שתיית יתר</li>
@@ -1240,8 +1305,8 @@ let current = 0;
 const chapterLabels = [
   'פתיחה','ממה ניזון הסוס','מזון גס','מזון מרוכז',
   'יובש וצבע','ריח ועלים',
-  'אכילה בטבע','צמחי רעל ועץ',
-  'זמן אכילה','שתייה ואורווה','שיטות להגברת אכילה',
+  'אכילה ברעייה','צמחי רעל ועץ',
+  'זמן אכילה','רעייה מול אורווה','שיטות להגברת אכילה',
   'מערכת עיכול רגישה','חסר נתרן ואכילת חול',
   'Wind Sucking','נזקי Wind Sucking','טיפול',
   'אכילת עץ','קורפופגיה',
