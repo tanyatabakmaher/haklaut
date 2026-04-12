@@ -1,18 +1,52 @@
 [
   {
     "username": "beitekshtein",
-    "password": "herzel44"
+    "password": "herzel44",
+    "real": 1
   },
   {
     "username": "admin",
-    "password": "1234"
-  },
-  {
-    "username": "revivo",
-    "password": "prhaklaut"
+    "password": "1234",
+    "real": 0
   },
   {
     "username": "test",
-    "password": "0004"
+    "password": "0002",
+    "real": 0
+  },
+  {
+    "username": "revivo",
+    "password": "prhaklaut",
+    "real": 1
+  },
+  {
+    "username": "e5",
+    "password": "rotman5",
+    "real": 1
+  },
+  {
+    "username": "a1",
+    "password": "rotman1",
+    "real": 1
+  },
+  {
+    "username": "b2",
+    "password": "rotman2",
+    "real": 1
+  },
+  {
+    "username": "c3",
+    "password": "rotman3",
+    "real": 1
+  },
+  {
+    "username": "d4",
+    "password": "rotman4",
+    "real": 1
+  },
+  {
+    "username": "asik",
+    "password": "12341234",
+    "real": 1
   }
 ]
