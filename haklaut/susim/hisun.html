@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מחלות, הריון והמלטה | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{
+  --bg:#f5f0fa;--card:#fff;--primary:#6c3483;--primary-light:#ede0f5;
+  --secondary:#1a6fa8;--secondary-light:#dbeafe;
+  --hot:#c0392b;--hot-light:#fde8e8;--green:#27ae60;--green-light:#d5f0e0;
+  --amber:#e07b3b;--amber-light:#feebd8;
+  --teal:#0d4a4a;--teal-light:#d0f0f0;
+  --text:#1a0a2e;--text-muted:#5a4a6a;--border:#ddd0ee;
+  --shadow:0 4px 20px rgba(108,52,131,0.10);--radius:16px;--font:'Heebo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#6c3483,#4a1a5a);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;letter-spacing:.5px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#c8b0d8;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#progress-track{flex:1;height:10px;background:#ddd0ee;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#6c3483,#1a6fa8);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#3a1a5a;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#fffbf0,#fef3d0);border:2px solid #e8c97a;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;color:#4a3010;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.purple{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.blue{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.amber{background:var(--amber-light);border-right:4px solid var(--amber);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.teal{background:var(--teal-light);border-right:4px solid var(--teal);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.exam-box{background:linear-gradient(135deg,#f0fdf4,#d1fae5);border:2px solid #6ee7b7;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
+.exam-box::before{content:"📋 חשוב לבגרות: ";color:#065f46;display:block;font-size:15px;margin-bottom:8px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{display:block;margin-bottom:4px;font-size:16px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:var(--primary);color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:var(--primary-light);}
+.question-box{background:#f5f0fa;border:2px solid #c8a0e8;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#3a1a5a;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.accord-item{border:2px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .2s;}
+.accord-item:hover{box-shadow:0 4px 14px rgba(0,0,0,0.09);}
+.accord-header{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;background:white;user-select:none;}
+.accord-num{min-width:38px;height:38px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0;}
+.accord-title{flex:1;font-size:16px;font-weight:700;color:var(--text);}
+.accord-arrow{font-size:13px;color:var(--text-muted);transition:transform .25s;flex-shrink:0;}
+.accord-item.open .accord-arrow{transform:rotate(180deg);}
+.accord-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;background:#f9f0ff;padding:0 16px;}
+.accord-item.open .accord-body{max-height:600px;padding:14px 16px;}
+.accord-body p{font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:6px;}
+.accord-body p:last-child{margin-bottom:0;}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#6c3483,#4a1a5a);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#1a6fa8,#0d4a7a);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#4a1a5a 0%,#6c3483 40%,#1a6fa8 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐴';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#6c3483,#1a6fa8);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:480px){.toc-grid{grid-template-columns:1fr;}}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#f9f0ff;border-color:#c8a0e8;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:var(--primary-light);border-color:var(--primary);}
+.match-item.right-item{background:#dbeafe;border-color:#93c5fd;}
+.match-item.matched{background:var(--green-light);border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.score-box{display:flex;gap:10px;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--primary);padding:12px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;font-size:13px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.icon-row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.icon-item{flex:1;min-width:120px;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:center;font-size:13px;}
+.icon-item .icon{font-size:28px;display:block;margin-bottom:6px;}
+.icon-item .label{font-weight:700;font-size:14px;margin-bottom:4px;}
+@media(max-width:480px){.color-grid{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🏥 תפריט הלומדה</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🐴 מחלות סייחים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">⚡</span>למה לטפל מהר?</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🛡️</span>כשל מעבר סביל</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🫁</span>דלקת ריאות</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">💧</span>שלשול</button>
+    </div>
+    <div class="menu-chapter-title">🪱 תולעים ותילוע</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🪱</span>סוגי תולעים</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🩸</span>תולעי דם</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🪰</span>גסטרופילוס</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">💊</span>עקרונות תילוע</button>
+    </div>
+    <div class="menu-chapter-title">🦟 טפילי עור</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🪰</span>זבובים</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🦟</span>יבחושים וגרדת</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🕷️</span>קרציות ופצעי קיץ</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🍄</span>פטריות</button>
+    </div>
+    <div class="menu-chapter-title">🧹 תברואה ושגרה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🧹</span>ממשק תברואה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>שגרת יום + כללי הזנה</button>
+    </div>
+    <div class="menu-chapter-title">🤰 הריון</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>בדיקת הריון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">👶</span>תאומים</button>
+    </div>
+    <div class="menu-chapter-title">🐣 המלטה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>הכנה להמלטה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🔴</span>שלב א</button>
+      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">🟡</span>שלב ב + זיהוי המלטה</button>
+      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🟢</span>שלב ג</button>
+      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">🍼</span>טיפול לאחר המלטה</button>
+    </div>
+    <div class="menu-chapter-title">📚 סיכום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות חזרה</button>
+      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span><span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700;margin-right:8px">פתיחה</span></button>
+  <span style="font-size:22px">🏥</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 25</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐴🏥🌿🤰</div>
+    <h1>מחלות, הריון והמלטה<br>בסוסים</h1>
+    <p class="tagline">מחלות סייחים, טפילים, תברואה, הריון והמלטה<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐎 סוסים</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">❓ מה נלמד בלומדה?</div>
+    <ul class="content-list">
+      <li data-icon="🐴">מחלות סייחים ולמה חשוב לטפל מהר</li>
+      <li data-icon="🛡️">כשל מעבר סביל, דלקת ריאות ושלשון</li>
+      <li data-icon="🪱">תולעים, תילוע וטפילי עור</li>
+      <li data-icon="🧹">ממשק תברואה ושגרת יום בחווה</li>
+      <li data-icon="🤰">בדיקת הריון, תאומים והכנה להמלטה</li>
+      <li data-icon="🐣">שלבי ההמלטה וטיפול לאחריה</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלת פתיחה</div>
+    <p style="font-size:15px;margin-bottom:14px">מדוע חשוב לטפל בסייח חולה מהר יותר מאשר בסוס בוגר?</p>
+    <div class="tf-options" id="tfopts-s0">
+      <button class="tf-btn" onclick="pickTF('s0tf1',true,this)">כי לסייחים אין מאגרי אנרגיה ומערכת החיסון שלהם חלשה</button>
+      <button class="tf-btn" onclick="pickTF('s0tf1',false,this)">כי סייחים רגישים יותר לרעש</button>
+    </div>
+    <div class="feedback" id="fb-s0tf1"></div>
+  </div>
+</div>
+
+<!-- S1: למה לטפל מהר -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#c0392b,#8a1a1a)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">⚡</span>
+    <h1>למה לטפל בסייח חולה מהר?</h1>
+    <p class="subtitle">קצב התדרדרות גבוה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע סייח חולה מסוכן יותר מסוס בוגר חולה.</div>
+  <div class="definition-box">
+    קצב ההתדרדרות בסייחים גבוה בהרבה מזה של סוסים בוגרים.
+    הסייח תלוי לחלוטין ב<strong>חלב האם</strong> כמקור האנרגיה והנוזלים שלו –
+    ללא חלב הוא יתייבש מהר ויסבול מנפילה ברמת הסוכר בדם.
+    בנוסף, מערכת החיסון שלו חלשה, כך שכל מחלה עלולה להיות קטלנית.
+  </div>
+  <div class="section-title">⚠️ 3 סיבות עיקריות:</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/siahhole.png" alt="3 סיבות לטיפול מהיר בסייח" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#5cb85c">🔋</div>
+      <div class="accord-title">חוסר מאגרי אנרגיה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <p>לסייחים אין מאגרי אנרגיה. ללא חלב – הם יתייבשו במהירות ויסבלו מנפילה ברמת הסוכר בדם.</p>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#5bc8d4">💧</div>
+      <div class="accord-title">התייבשות מהירה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <p>ללא מקור נוזלים קבוע (חלב), הסייח מתייבש מהר מאוד – מה שמחמיר כל מחלה.</p>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#b39ddb">🛡️</div>
+      <div class="accord-title">מערכת חיסון חלשה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <p>מערכת החיסון של סייח אינה חזקה – לכן כל מחלה עלולה להיות קטלנית.</p>
+    </div>
+  </div>
+  <div class="remember-box">ללא אנרגיה + התייבשות + חיסון חלש = סכנת חיים מיידית!</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה קורה לסייח ללא גישה לחלב?</p>
+    <div class="mc-options" id="opts-s1q1">
+      <button class="mc-option" onclick="pickOption('s1q1',0,this)"><span class="opt-letter">א</span>הוא ינסה לאכול עשב</button>
+      <button class="mc-option" onclick="pickOption('s1q1',1,this)"><span class="opt-letter">ב</span>הוא יתייבש ויסבול מנפילה ברמת הסוכר</button>
+      <button class="mc-option" onclick="pickOption('s1q1',2,this)"><span class="opt-letter">ג</span>הוא ישתה מים רגילים</button>
+      <button class="mc-option" onclick="pickOption('s1q1',3,this)"><span class="opt-letter">ד</span>לא יקרה כלום – יש לו מאגרי שומן</button>
+    </div>
+    <div class="feedback" id="fb-s1q1"></div>
+  </div>
+</div>
+
+<!-- S2: כשל מעבר סביל -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">🛡️</span>
+    <h1>כשל מעבר סביל</h1>
+    <p class="subtitle">הסייח לא קיבל מספיק נוגדנים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו כשל מעבר סביל, גורמיו ואיך מטפלים בו.</div>
+  <div class="definition-box">
+    <strong>כשל מעבר סביל</strong> = מצב שבו הסייח לא מקבל מספיק נוגדנים מיניקת הקולוסטרום.
+  </div>
+  <div class="section-title">🔍 גורמים אפשריים:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🍼 מחסור ביניקה</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🧪 חוסר ספיגה במעי</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">📉 ריכוז חלבון נמוך בקולוסטרום</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">📦 כמות קטנה של קולוסטרום</span>
+  </div>
+  <div class="highlight red">⚠️ <strong>פגיעה:</strong> אילוח דם – זיהום חיידקי הפוגע בכל האיברים.</div>
+  <div class="section-title">🤒 סימפטומים:</div>
+  <div class="grid-2">
+    <div style="background:white;border:2px solid #c0392b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">😴 חולשה</div>
+    <div style="background:white;border:2px solid #e07b3b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">🫁 דלקת ריאות</div>
+    <div style="background:white;border:2px solid #f59e0b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">💧 שלשולים</div>
+    <div style="background:white;border:2px solid #8b5cf6;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">🦵 מפרקים נפוחים</div>
+    <div style="background:white;border:2px solid #3b82f6;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">👁️ דלקות עיניים</div>
+  </div>
+  <div class="highlight green">💊 <strong>טיפול:</strong> אנטיביוטיקה תוך ורידית + הזנות בצינור קיבה.</div>
+  <div class="exam-box">כשל מעבר סביל ← אילוח דם ← סכנת חיים! טיפול: אנטיביוטיקה IV + צינור קיבה.</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">כשל מעבר סביל עלול לגרום לאילוח דם.</p>
+    <div class="tf-options" id="tfopts-s2">
+      <button class="tf-btn" onclick="pickTF('s2tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s2tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s2tf1"></div>
+  </div>
+</div>
+
+<!-- S3: דלקת ריאות -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a6fa8,#0d4a7a)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">🫁</span>
+    <h1>דלקת ריאות בסייחים</h1>
+    <p class="subtitle">גורם התמותה העיקרי בגיל חודש–6 חודשים</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות סימני דלקת ריאות ולתאר כיצד מאבחנים ומטפלים.</div>
+  <div class="highlight red">⚠️ <strong>גורם התמותה העיקרי</strong> בסייחים בגיל חודש עד שישה חודשים!</div>
+  <div class="definition-box">
+    <strong>הגורם:</strong> חיידקים. דלקת ריאות יכולה להוביל לאילוח דם.
+  </div>
+  <div class="section-title">🤒 סימנים:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😴 עייפות</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🍽️ ירידה בתיאבון</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🤧 שיעול</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">😮‍💨 קושי נשימתי</span>
+  </div>
+  <div class="section-title">🔬 אבחון:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-color:#1a6fa8;border-top:3px solid #1a6fa8;text-align:center">
+      <div class="title" style="color:#1a6fa8">📷 צילום רנטגן</div>
+    </div>
+    <div class="mini-card" style="border-color:#6c3483;border-top:3px solid #6c3483;text-align:center">
+      <div class="title" style="color:#6c3483">🧪 דוגמיות נוזל מהריאות</div>
+    </div>
+  </div>
+  <div class="highlight green">💊 <strong>טיפול:</strong> אנטיביוטיקה + מנוחה.</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מהו גורם התמותה העיקרי בסייחים בגיל חודש עד שישה חודשים?</p>
+    <div class="mc-options" id="opts-s3q1">
+      <button class="mc-option" onclick="pickOption('s3q1',0,this)"><span class="opt-letter">א</span>שלשון</button>
+      <button class="mc-option" onclick="pickOption('s3q1',1,this)"><span class="opt-letter">ב</span>כשל מעבר סביל</button>
+      <button class="mc-option" onclick="pickOption('s3q1',2,this)"><span class="opt-letter">ג</span>דלקת ריאות</button>
+      <button class="mc-option" onclick="pickOption('s3q1',3,this)"><span class="opt-letter">ד</span>תולעים</button>
+    </div>
+    <div class="feedback" id="fb-s3q1"></div>
+  </div>
+</div>
+
+<!-- S4: שלשול -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">💧</span>
+    <h1>שלשול בסייחים</h1>
+    <p class="subtitle">סיבות מגוונות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הגורמים לשלשול בסייחים.</div>
+  <div class="highlight red">⚠️ שלשול הוא הסימן הנפוץ ביותר לאילוח דם!</div>
+  <div class="section-title">🔍 גורמים לשלשול:</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b">🦠</div>
+      <div class="accord-title">חיידקים – סלמונלה ורוטה</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>הדבקות בחיידקים כסלמונלה ורוטה גורמת לשלשול קשה בסייחים.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#8b5cf6">🪱</div>
+      <div class="accord-title">טפילי מעיים</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מגע עם טפילי מעיים עלול לגרום לשלשול.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60">🐴</div>
+      <div class="accord-title">Foal Heat Diarrhea – שלשול ייחום האם</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>שלשול המופיע אצל הסייח בזמן ייחום האם – תופעה שכיחה.</p></div>
+  </div>
+  <div class="exam-box">שלשול = הסימן הנפוץ לאילוח דם | גורמים: סלמונלה, רוטה, טפילים, ייחום האם.</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">שלשול בסייח הוא תמיד סימן ל-Foal Heat Diarrhea בלבד.</p>
+    <div class="tf-options" id="tfopts-s4">
+      <button class="tf-btn" onclick="pickTF('s4tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s4tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s4tf1"></div>
+  </div>
+</div>
+
+<!-- S5: תולעים עגולות -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a4a00,#6a7a10)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🪱</span>
+    <h1>תולעים ותולעים עגולות</h1>
+    <p class="subtitle">נפוצות במיוחד בסייחים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הנזקים של תולעים ולהסביר על תולעים עגולות לבנות.</div>
+  <div class="definition-box">
+    קיימים <strong>למעלה מ-150 סוגים</strong> שונים של תולעים התוקפות סוסים.
+  </div>
+  <div class="section-title">⚠️ נזקים אפשריים:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">📉 דיכוי צמיחה</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">😴 חולשה</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">💧 שלשול</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🫠 כיבי קיבה</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">😤 עצבנות</span>
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🤕 קוליק</span>
+  </div>
+  <div class="section-title">🔍 תולעים עגולות לבנות:</div>
+  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:16px;margin-bottom:14px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">👁️</span><span style="font-size:13px;color:#3a1a5a">ניתן לראותן בצואה לאחר תילוע</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">👶</span><span style="font-size:13px;color:#3a1a5a">נפוצות בעיקר אצל <strong>סייחים</strong> – בשל מערכת חיסון חלשה</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🚿</span><span style="font-size:13px;color:#3a1a5a">הדבקה: שתיית מים או אכילת מזון מזוהם</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🫁</span><span style="font-size:13px;color:#3a1a5a">נודדות בגוף ופוגעות בכבד ובריאות</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">⚠️</span><span style="font-size:13px;color:#c0392b;font-weight:700">בסייחים: פגיעה במערכת הנשימה!</span></div>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה מיוחד בסכנת התולעים העגולות הלבנות בסייחים?</p>
+    <div class="mc-options" id="opts-s5q1">
+      <button class="mc-option" onclick="pickOption('s5q1',0,this)"><span class="opt-letter">א</span>הן גורמות לעצבנות בלבד</span></button>
+      <button class="mc-option" onclick="pickOption('s5q1',1,this)"><span class="opt-letter">ב</span>פגיעה במערכת הנשימה כתוצאה מנדידה לריאות</button>
+      <button class="mc-option" onclick="pickOption('s5q1',2,this)"><span class="opt-letter">ג</span>הן גדולות מאוד ונראות בעיניים</button>
+      <button class="mc-option" onclick="pickOption('s5q1',3,this)"><span class="opt-letter">ד</span>הן מדבקות לבני אדם בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s5q1"></div>
+  </div>
+</div>
+
+<!-- S6: תולעי דם -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#8a1a1a,#c0392b)">
+    <span class="chapter-num">פרק 2 – המשך</span><span class="emoji">🩸</span>
+    <h1>תולעי דם</h1>
+    <p class="subtitle">קטנות, אדומות ומסוכנות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הפגיעה של תולעי דם ודרכי מניעה.</div>
+  <div class="definition-box">
+    תולעים <strong>קטנות ואדומות</strong>, ניתן לראותן לעיתים בצואה. הדבקה: אכילת ירק נגוע.
+  </div>
+  <div class="section-title">⚠️ נזקים:</div>
+  <div class="step-box" style="border-color:#c0392b">
+    <div class="step-num" style="background:#c0392b;font-size:16px">🩸</div>
+    <div class="step-content"><strong>קרע כלי דם ודימומים פנימיים</strong>כלי הדם עלולים להיקרע וליצור דימומים פנימיים</div>
+  </div>
+  <div class="step-box" style="border-color:#8b5cf6">
+    <div class="step-num" style="background:#8b5cf6;font-size:16px">🔴</div>
+    <div class="step-content"><strong>קרישי דם וסתימת כלי דם</strong>גורם לקוליק ועלול להוביל לניתוח</div>
+  </div>
+  <div class="highlight amber">⏱️ מרגע יציאתן בצואה – נדרשים <strong>4–7 ימים</strong> עד שהן הופכות למדבקות.</div>
+  <div class="highlight green">✅ <strong>מניעה:</strong> שמירה על מרעה נקי + איסוף צואה <strong>פעמיים בשבוע</strong>.</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה פעמים בשבוע מומלץ לאסוף צואה למניעת תולעי דם?</p>
+    <div class="mc-options" id="opts-s6q1">
+      <button class="mc-option" onclick="pickOption('s6q1',0,this)"><span class="opt-letter">א</span>פעם בחודש</button>
+      <button class="mc-option" onclick="pickOption('s6q1',1,this)"><span class="opt-letter">ב</span>פעם בשבוע</button>
+      <button class="mc-option" onclick="pickOption('s6q1',2,this)"><span class="opt-letter">ג</span>פעמיים בשבוע</button>
+      <button class="mc-option" onclick="pickOption('s6q1',3,this)"><span class="opt-letter">ד</span>כל יום</button>
+    </div>
+    <div class="feedback" id="fb-s6q1"></div>
+  </div>
+</div>
+
+<!-- S7: גסטרופילוס -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a4a00,#6a7a10)">
+    <span class="chapter-num">פרק 2 – המשך</span><span class="emoji">🪰</span>
+    <h1>זבוב הגסטרופילוס</h1>
+    <p class="subtitle">ממטיל ביצים לקיבה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מחזור חייו של הגסטרופילוס ואיך מונעים אותו.</div>
+  <div class="section-title">🔄 מחזור ההדבקה:</div>
+  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:16px">1️⃣</div><div class="step-content"><strong>הזבובה מטילה ביצים על שערות הסוס</strong></div></div>
+  <div class="step-box" style="border-color:#f59e0b"><div class="step-num" style="background:#f59e0b;font-size:16px">2️⃣</div><div class="step-content"><strong>הסוס מלקק את השערות עם הביצים</strong></div></div>
+  <div class="step-box" style="border-color:#8b5cf6"><div class="step-num" style="background:#8b5cf6;font-size:16px">3️⃣</div><div class="step-content"><strong>הביצים בוקעות בפה ונודדות לקיבה</strong>שוכנת כ-10 חודשים עד לבגרותה</div></div>
+  <div class="highlight red">⚠️ <strong>פגיעות:</strong> כיבים, קוליק, דלקת בחלל הבטן.</div>
+  <div class="section-title">✅ מניעה:</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:16px">💊</div>
+      <div class="accord-title">תילוע בעונת הסתיו</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מומלץ לתלע את הסוסים בעונת הסתיו.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#3b82f6;font-size:16px">✂️</div>
+      <div class="accord-title">הסרת ביצים מהשערות</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>חיתוך השערה עם הביצה, או הרטבה במים פושרים ומריחה בחומר חיטוי נגד חרקים.</p></div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">ביצי הגסטרופילוס מגיעות לקיבה דרך ליקוק הסוס.</p>
+    <div class="tf-options" id="tfopts-s7">
+      <button class="tf-btn" onclick="pickTF('s7tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s7tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s7tf1"></div>
+  </div>
+</div>
+
+<!-- S8: עקרונות תילוע -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a4a00,#6a7a10)">
+    <span class="chapter-num">פרק 2 – המשך</span><span class="emoji">💊</span>
+    <h1>עקרונות תילוע</h1>
+    <p class="subtitle">איך, מתי, ולמי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את עקרונות התילוע הנכון.</div>
+  <div class="section-title">📋 כללי תילוע:</div>
+  <div class="step-box" style="border-color:#6c3483"><div class="step-num" style="background:#6c3483;font-size:16px">👄</div><div class="step-content"><strong>תילוע דרך הפה</strong>תילוע יעיל נעשה דרך הפה בלבד</div></div>
+  <div class="step-box" style="border-color:#1a6fa8"><div class="step-num" style="background:#1a6fa8;font-size:16px">📅</div><div class="step-content"><strong>תדירות</strong>כל חודשיים-שלושה, בהתאם לתדירות ההידבקות</div></div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:16px">👶</div><div class="step-content"><strong>סייחים</strong>מגיל חודשיים. כל חודש-חודשיים עד גיל שנה, אחר כך עם שאר הסוסים</div></div>
+  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:16px">🤰</div><div class="step-content"><strong>סוסות הרות</strong>4–6 שבועות לפני מועד ההמלטה</div></div>
+  <div class="step-box" style="border-color:#c0392b"><div class="step-num" style="background:#c0392b;font-size:16px">🐴</div><div class="step-content"><strong>סוס חדש</strong>לתלע מיד עם הגיעו ולהפריד שבוע–שבועיים</div></div>
+  <div class="highlight red">⚠️ <strong>חשוב!</strong> מינון לפי משקל – מינון נמוך ממשקל הסוס עלול לפתח <strong>התנגדות לתרופה!</strong></div>
+  <div class="exam-box">תילוע: כל 2–3 חודשים | סייחים מגיל 2 חודשים | סוסות הרות 4–6 שבועות לפני המלטה | מינון לפי משקל!</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מאיזה גיל מתלעים סייחים?</p>
+    <div class="mc-options" id="opts-s8q1">
+      <button class="mc-option" onclick="pickOption('s8q1',0,this)"><span class="opt-letter">א</span>מגיל שנה</button>
+      <button class="mc-option" onclick="pickOption('s8q1',1,this)"><span class="opt-letter">ב</span>מגיל חודש אחד</button>
+      <button class="mc-option" onclick="pickOption('s8q1',2,this)"><span class="opt-letter">ג</span>מגיל חודשיים</button>
+      <button class="mc-option" onclick="pickOption('s8q1',3,this)"><span class="opt-letter">ד</span>רק לאחר גמילה</button>
+    </div>
+    <div class="feedback" id="fb-s8q1"></div>
+  </div>
+</div>
+
+<!-- S9: זבובים -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a3010,#8a5a20)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">🪰</span>
+    <h1>טפילי עור – זבובים</h1>
+    <p class="subtitle">זבובי סוסים וזבוב האורווה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את הנזקים של זבובי הסוסים וזבוב האורווה.</div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:#fde8e8;border:2px solid #c0392b;border-radius:14px">
+      <h3 style="color:#c0392b">🪰 זבובי סוסים (Tabanus)</h3>
+      <ul>
+        <li><span>גדולים יחסית</span></li>
+        <li><span>עקיצה כואבת במיוחד</span></li>
+        <li><span>עלולה להופיע נפיחות</span></li>
+        <li><span>נצמדים לרגליים ובטן</span></li>
+        <li><span>הסוס מנסה לבעוט ולהסיר</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:#feebd8;border:2px solid #e07b3b;border-radius:14px">
+      <h3 style="color:#7c4f1a">🪰 זבוב האורווה</h3>
+      <ul>
+        <li><span>דומה לזבוב הבית</span></li>
+        <li><span>עוקץ ברגליים ובבטן</span></li>
+        <li><span>גירוי ופצעונים קטנים</span></li>
+        <li><span>מטיל ביצים בצואה וברפד</span></li>
+        <li><span>מניעה: ניקיון יומי + ריסוס</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">זבוב האורווה מטיל ביצים בצואת הסוס וברפד ספוג שתן.</p>
+    <div class="tf-options" id="tfopts-s9">
+      <button class="tf-btn" onclick="pickTF('s9tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s9tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s9tf1"></div>
+  </div>
+</div>
+
+<!-- S10: יבחושים וגרדת -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a6a,#2a6fa0)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">🦟</span>
+    <h1>יבחושים וגרדת</h1>
+    <p class="subtitle">מחלה אלרגית עונתית</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את גרדת הסוסים, סימניה וטיפול.</div>
+  <div class="highlight blue">🦟 <strong>יבחושים (Culicoides):</strong> פעילים בעיקר בשעות הערב המוקדמות ובשעות הבוקר לאחר הזריחה. עקיצתם גורמת גרד באזור הזנב, הרעמה, הכתפיים והפנים.</div>
+  <div class="definition-box">
+    <strong>גרדת</strong> = מחלה אלרגית בעלת מרכיב תורשתי. רגישות יתר לרוק היבחוש.
+  </div>
+  <div class="section-title">🤒 סימנים:</div>
+  <div class="grid-2">
+    <div style="background:white;border:2px solid #c0392b;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">🦲 קרחות</div>
+    <div style="background:white;border:2px solid #e07b3b;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">🔴 אדמומיות</div>
+    <div style="background:white;border:2px solid #f59e0b;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">🩹 קרסטים</div>
+    <div style="background:white;border:2px solid #8b5cf6;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">🫧 עיבוי עור</div>
+    <div style="background:white;border:2px solid #3b82f6;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">⬛ השחרת עור</div>
+    <div style="background:white;border:2px solid #c0392b;border-radius:10px;padding:8px;font-size:12px;text-align:center;font-weight:600">🩸 פצעים ודלקות</div>
+  </div>
+  <div class="highlight red">⚠️ סוסים לא "מחלימים" מגרדת – אבל שינוי ממשק יכול לבטל את הסימנים!</div>
+  <div class="section-title">🔬 אבחון:</div>
+  <div class="highlight blue">סימנים קליניים + היסטוריה + שלילת גורמים אחרים. מבחן ספציפי: <strong>IDAT</strong> – הזרקת אלרגנים עורית.</div>
+  <div class="section-title">💊 טיפול:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">🏠 אורווה נקייה ברשת דקה</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">💨 מאווררים בערב</span>
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">⚡ גדרות חשמל</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🧴 משחות ושמפו מרגיע</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">💉 סטרואידים + היפוסנסיטיזציה</span>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מהי הגדרת גרדת בסוסים?</p>
+    <div class="mc-options" id="opts-s10q1">
+      <button class="mc-option" onclick="pickOption('s10q1',0,this)"><span class="opt-letter">א</span>מחלה חיידקית הגורמת לפצעים</button>
+      <button class="mc-option" onclick="pickOption('s10q1',1,this)"><span class="opt-letter">ב</span>מחלה אלרגית בעלת מרכיב תורשתי עם רגישות לרוק היבחוש</button>
+      <button class="mc-option" onclick="pickOption('s10q1',2,this)"><span class="opt-letter">ג</span>זיהום פטרייתי של העור</button>
+      <button class="mc-option" onclick="pickOption('s10q1',3,this)"><span class="opt-letter">ד</span>מחלה תורשתית שאין לה כל טיפול</button>
+    </div>
+    <div class="feedback" id="fb-s10q1"></div>
+  </div>
+</div>
+
+<!-- S11: קרציות ופצעי קיץ -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">🕷️</span>
+    <h1>קרציות ופצעי קיץ</h1>
+    <p class="subtitle">סכנות נסתרות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הנזקים של קרציות ופצעי קיץ.</div>
+  <div class="two-col-compare">
+    <div class="compare-card" style="background:#fde8e8;border:2px solid #c0392b;border-radius:14px">
+      <h3 style="color:#c0392b">🕷️ קרציות</h3>
+      <ul>
+        <li><span>מסתתרות במפשעה וליד פי הטבעת</span></li>
+        <li><span>אובדן דם ואנמיה</span></li>
+        <li><span>מעבירות מחלות: קדחת קרציות</span></li>
+        <li><span>חום גבוה עולה ויורד</span></li>
+        <li><span>אבחון: בדיקת דם לטפילי דם</span></li>
+      </ul>
+    </div>
+    <div class="compare-card" style="background:#feebd8;border:2px solid #e07b3b;border-radius:14px">
+      <h3 style="color:#7c4f1a">🌞 פצעי קיץ (Habronemiasis)</h3>
+      <ul>
+        <li><span>זבובים מניחים ביצי טפיל על פצעים/עין</span></li>
+        <li><span>תגובה חריפה – הפצע מחריף</span></li>
+        <li><span>הטיפול הרגיל לא עוזר</span></li>
+        <li><span>טיפול: תילוע + טיפול תומך + רשתות</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="exam-box">קרציות → קדחת קרציות + אנמיה | פצעי קיץ → תילוע + טיפול תומך + מניעת זבובים</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">קרציות עלולות להעביר מחלות לסוס בזמן לקיחת מנת דם.</p>
+    <div class="tf-options" id="tfopts-s11">
+      <button class="tf-btn" onclick="pickTF('s11tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s11tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s11tf1"></div>
+  </div>
+</div>
+
+<!-- S12: פטריות -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a4a00,#6a7a10)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">🍄</span>
+    <h1>פטריות</h1>
+    <p class="subtitle">מתפתחות בתנאי לחות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר כיצד מתפשטות פטריות וכיצד מטפלים.</div>
+  <div class="highlight amber">🍄 <strong>תנאים:</strong> רוב הפטריות מתפתחות בתנאי לחות ומועברות דרך חפצים נגועים.</div>
+  <div class="highlight red">⚠️ חלק מהפטריות יכולות להידבק גם <strong>לבני אדם!</strong></div>
+  <div class="highlight green">✅ ברוב המקרים הפטריות נעלמות מעצמן לאחר חודש עד שלושה חודשים.</div>
+  <div class="section-title">💊 טיפול:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🧪 יוד וחומרי חיטוי</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🧴 שמפו המכיל יוד</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🔧 חיטוי ציוד</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">☀️ אור השמש</span>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה יעיל נגד פטריות?</p>
+    <div class="mc-options" id="opts-s12q1">
+      <button class="mc-option" onclick="pickOption('s12q1',0,this)"><span class="opt-letter">א</span>מים קרים בלבד</button>
+      <button class="mc-option" onclick="pickOption('s12q1',1,this)"><span class="opt-letter">ב</span>יוד, שמפו עם יוד, חיטוי ציוד ואור שמש</button>
+      <button class="mc-option" onclick="pickOption('s12q1',2,this)"><span class="opt-letter">ג</span>אנטיביוטיקה תוך ורידית</button>
+      <button class="mc-option" onclick="pickOption('s12q1',3,this)"><span class="opt-letter">ד</span>שמן קוקוס בלבד</button>
+    </div>
+    <div class="feedback" id="fb-s12q1"></div>
+  </div>
+</div>
+
+<!-- S13: ממשק תברואה -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">🧹</span>
+    <h1>ממשק תברואה</h1>
+    <p class="subtitle">עקרונות בסיסיים לאורווה בריאה</p>
+  </div>
+  <div class="goal-box">אני אוכל למנות עקרונות תברואה בסיסיים לאורווה.</div>
+  <div class="section-title">✅ כללי תברואה:</div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#c0392b;font-size:16px">🏖️</div><div class="accord-title">הימנעות מריפוד חול</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>ריפוד חול עלול לגרום קוליק חול אם יגיע למזון.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#8b5cf6;font-size:16px">🔒</div><div class="accord-title">בידוד סוסים חדשים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>לבודד ולתלע סוסים חדשים לפני הכנסתם לאורווה.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#1a6fa8;font-size:16px">🧹</div><div class="accord-title">ניקיון יומי</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>ניקיון יומי של האורווה מונע התפשטות מזיקים ותולעים.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#27ae60;font-size:16px">🚫</div><div class="accord-title">אי העברת ציוד בין סוסים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>מניעת פטריות – אין להעביר ציוד מסוס לסוס.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#e07b3b;font-size:16px">🍽️</div><div class="accord-title">הפרדת מזון, מים וצואה</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>מניעת הדבקת תולעים – חשוב להפריד מזון ומים מהצואה.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#6c3483;font-size:16px">💊</div><div class="accord-title">תילוע מקביל</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>לתלע את כל הסוסים באותו הזמן. אין להביא סוסים לא מחוסנים.</p></div></div>
+  <div class="exam-box">חול → קוליק | ציוד משותף → פטריות | צואה ליד מזון → תולעים</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">למה אסור להעביר ציוד מסוס לסוס?</p>
+    <div class="mc-options" id="opts-s13q1">
+      <button class="mc-option" onclick="pickOption('s13q1',0,this)"><span class="opt-letter">א</span>כי הסוסים מתעצבנים</button>
+      <button class="mc-option" onclick="pickOption('s13q1',1,this)"><span class="opt-letter">ב</span>כי הציוד יישחק מהר</button>
+      <button class="mc-option" onclick="pickOption('s13q1',2,this)"><span class="opt-letter">ג</span>כדי למנוע הדבקה בפטריות</button>
+      <button class="mc-option" onclick="pickOption('s13q1',3,this)"><span class="opt-letter">ד</span>כי זה מבלבל את הסוסים</button>
+    </div>
+    <div class="feedback" id="fb-s13q1"></div>
+  </div>
+</div>
+
+<!-- S14: שגרת יום + כללי הזנה -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">📋</span>
+    <h1>שגרת יום וכללי הזנה</h1>
+    <p class="subtitle">הסדר הנכון בחווה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שגרת היום בחווה ואת כללי ההזנה.</div>
+  <div class="section-title">🌅 שגרת יום בחווה:</div>
+  <div style="background:var(--teal-light);border:2px solid var(--teal);border-radius:14px;padding:14px 16px;margin-bottom:16px">
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#0d4a4a">
+      <div>🌄 <strong>הגעה בבוקר</strong> – בדיקת סוסים (אוכל, מים, גללים, מצב)</div>
+      <div>🍽️ <strong>האכלה</strong> → 💊 <strong>תרופות וניקיון</strong> → 🏃 <strong>הוצאת מרץ</strong></div>
+      <div>🧹 <strong>ניקיון התאים</strong> → 🐴 <strong>רכיבה/אילוף/שיעורים</strong></div>
+      <div>🪥 <strong>ניקיון הסוס</strong> → 🌙 <strong>האכלת ערב</strong> → 🔍 <strong>בדיקת ערב</strong></div>
+    </div>
+  </div>
+  <div class="section-title">📋 10 כללי הזנה עיקריים:</div>
+  <div class="info-table">
+    <tr><th>#</th><th>הכלל</th></tr>
+    <tr><td>1</td><td>האכל לפי משקל ורמת עבודה</td></tr>
+    <tr><td>2</td><td>שעות האכלה קבועות וסדירות</td></tr>
+    <tr><td>3</td><td>לא להאכיל מזון מעופש, תוסס או מאובק</td></tr>
+    <tr><td>4</td><td>לשמור על כלי אוכל ושתייה נקיים</td></tr>
+    <tr><td>5</td><td>לבדוק אם הסוס סיים את מנתו</td></tr>
+    <tr><td>6</td><td>לא להאכיל סוס חם או מזיע</td></tr>
+    <tr><td>7</td><td>לא לרכוב מיד לאחר ארוחה</td></tr>
+    <tr><td>8</td><td>לא לשנות מזון באופן פתאומי</td></tr>
+    <tr><td>9</td><td>לדאוג לבדיקת שיניים (וטרינר)</td></tr>
+    <tr><td>10</td><td>למנוע אכילת חול, חבלים וענפים</td></tr>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">מותר לרכוב על סוס מיד לאחר ארוחה.</p>
+    <div class="tf-options" id="tfopts-s14">
+      <button class="tf-btn" onclick="pickTF('s14tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s14tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s14tf1"></div>
+  </div>
+</div>
+
+<!-- S15: בדיקת הריון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🔬</span>
+    <h1>בדיקת הריון</h1>
+    <p class="subtitle">שיטות אבחון שונות</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את שיטות בדיקת ההריון בסוסה.</div>
+  <div class="section-title">🔬 שיטות בדיקה:</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:16px">🚫</div>
+      <div class="accord-title">בדיקת שתן – לא מקובלת</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מיום 120 להריון עד ההמלטה. בודקת הורמון אסטרוגן. <strong>אינה מקובלת.</strong></p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#e07b3b;font-size:16px">🩸</div>
+      <div class="accord-title">בדיקת דם (PMSG) – לא מקובלת</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>בדיקת הורמון PMSG בדם. <strong>אינה מקובלת.</strong></p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:16px">🤲</div>
+      <div class="accord-title">בדיקה רקטלית ידנית – מקובלת</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מ-18 יום. תלויה מאוד במיומנות הווטרינר. בשליש השלישי – קל לזהות ומקובלת.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#1a6fa8;font-size:16px">📡</div>
+      <div class="accord-title">אולטרסאונד – הכי מוקדם!</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span>📅</span><span style="font-size:13px">זיהוי מיום <strong>12–13</strong> לאחר ביוץ</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span>🔄</span><span style="font-size:13px">זיהוי סוסות שלא התעברו → הרבעה חוזרת במחזור הבא</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span>💉</span><span style="font-size:13px">ניתן להקדים ייחום עם פרוסטגלנדין</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span>❤️</span><span style="font-size:13px">מיום 22: ניתן לראות עובר ו<strong>לב פועם</strong></span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span>🔁</span><span style="font-size:13px">כדאי לחזור בסוף החודש השני – 10% עוברים ספיגה</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="exam-box">אולטרסאונד: מיום 12–13 | לב פועם: מיום 22 | לחזור בסוף חודש שני (10% ספיגה)</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מאיזה יום ניתן לזהות הריון עם אולטרסאונד?</p>
+    <div class="mc-options" id="opts-s15q1">
+      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>מיום 30</button>
+      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>מיום 60</button>
+      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>מיום 120</button>
+      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>מיום 12–13</button>
+    </div>
+    <div class="feedback" id="fb-s15q1"></div>
+  </div>
+</div>
+
+<!-- S16: תאומים -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 5 – המשך</span><span class="emoji">👶</span>
+    <h1>המלטת תאומים</h1>
+    <p class="subtitle">מצב שיש להימנע ממנו</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע מסוכן ריון תאומים ומה עושים.</div>
+  <div class="highlight red">⚠️ הסיכוי לשני סייחים בריאים מהריון תאומים – <strong>נמוך מאוד!</strong></div>
+  <div class="section-title">❌ סכנות בתאומים:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😮 ספיגת שני העוברים</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🤰 הפלה בחודש השביעי</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">💀 ולד אחד חי ואחד מת/חלש</span>
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😢 מוות לאחר ההמלטה</span>
+  </div>
+  <div class="highlight green">✅ <strong>פתרון:</strong> כאשר מזהים שני עוברים – <strong>מעיכה ידנית</strong> של אחד.<br>
+  רצוי לבדוק עד <strong>יום 15</strong> – עדיין ניתן להפריד בין העוברים.</div>
+  <div class="remember-box">תאומים = סכנה! בדיקה עד יום 15 → מעיכה ידנית של עובר אחד</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מדוע חשוב לזהות תאומים מוקדם?</p>
+    <div class="mc-options" id="opts-s16q1">
+      <button class="mc-option" onclick="pickOption('s16q1',0,this)"><span class="opt-letter">א</span>כי תאומים מצריכים תזונה כפולה</button>
+      <button class="mc-option" onclick="pickOption('s16q1',1,this)"><span class="opt-letter">ב</span>כדי להכין שני תאי מלטה</button>
+      <button class="mc-option" onclick="pickOption('s16q1',2,this)"><span class="opt-letter">ג</span>כדי לבצע מעיכה ידנית עד יום 15 ולמנוע הריון תאומים</button>
+      <button class="mc-option" onclick="pickOption('s16q1',3,this)"><span class="opt-letter">ד</span>כי תאומים לא נפוצים בסוסים</button>
+    </div>
+    <div class="feedback" id="fb-s16q1"></div>
+  </div>
+</div>
+
+<!-- S17: הכנה להמלטה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🏠</span>
+    <h1>הכנה להמלטה</h1>
+    <p class="subtitle">סימנים ותנאים</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את סימני ההתקרבות להמלטה ואת תנאי תא ההמלטה.</div>
+  <div class="highlight blue">📅 <strong>משך הריון תקין:</strong> בין <strong>320 ל-355 יום</strong> מההרבעה האחרונה.</div>
+  <div class="section-title">🔍 סימני התקרבות להמלטה:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-color:#6c3483;border-top:3px solid #6c3483;text-align:center">
+      <div class="title" style="color:#6c3483">🤰 בטן גדולה ועגולה</div>
+    </div>
+    <div class="mini-card" style="border-color:#1a6fa8;border-top:3px solid #1a6fa8;text-align:center">
+      <div class="title" style="color:#1a6fa8">🍼 הגדלת עטינים</div>
+    </div>
+    <div class="mini-card" style="border-color:#27ae60;border-top:3px solid #27ae60;text-align:center;grid-column:1/-1">
+      <div class="title" style="color:#1a4a2e">🕯️ מעטה דמוי שעווה על הפטמות</div>
+    </div>
+  </div>
+  <div class="section-title">🏠 תא המלטה מתאים:</div>
+  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+    <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:#3a1a5a">
+      <div>✅ גדול דייה ובטיחותי</div>
+      <div>✅ דפנות שלמות – הסייח לא יצא</div>
+      <div>⚠️ <strong>לא להעביר</strong> סוסה למקום חדש סמוך להמלטה</div>
+      <div>📅 אם חייבים – להעביר <strong>4–6 שבועות לפני</strong></div>
+    </div>
+  </div>
+  <div class="exam-box">הריון: 320–355 יום | סימנים: בטן, עטינים, שעווה | תא: גדול, בטיחותי, להעביר 4–6 שבועות לפני</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה מופיע על הפטמות לפני ההמלטה?</p>
+    <div class="mc-options" id="opts-s17q1">
+      <button class="mc-option" onclick="pickOption('s17q1',0,this)"><span class="opt-letter">א</span>אדמומיות</button>
+      <button class="mc-option" onclick="pickOption('s17q1',1,this)"><span class="opt-letter">ב</span>מעטה דמוי שעווה</button>
+      <button class="mc-option" onclick="pickOption('s17q1',2,this)"><span class="opt-letter">ג</span>פצעים קטנים</button>
+      <button class="mc-option" onclick="pickOption('s17q1',3,this)"><span class="opt-letter">ד</span>כלום – הפטמות לא משתנות</button>
+    </div>
+    <div class="feedback" id="fb-s17q1"></div>
+  </div>
+</div>
+
+<!-- S18: שלב א -->
+<div class="screen" id="screen-18">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#c0392b,#8a1a1a)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🔴</span>
+    <h1>שלב א – צירי לידה</h1>
+    <p class="subtitle">הכנת הגוף להמלטה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את סימני שלב א בהמלטה.</div>
+  <div class="definition-box">
+    <strong>שלב א</strong> – הסוסה סובלת מ"צירי לידה". יכול לקחת <strong>דקות או שעות</strong>.
+  </div>
+  <div class="section-title">🤒 סימנים בשלב א:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">💪 כיווצי בטן ורחם</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">😣 חוסר נוחות</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">💦 הזעה</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🍽️ לא אוכלת בזמן כיווצים</span>
+    <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">🍽️ חוזרת לאכול בין כיווצים</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🤕 סימני קוליק</span>
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🥛 יציאת חלב</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">🚽 צואה רכה תכופה</span>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">בשלב א הסוסה מסרבת לאכול בכלל, גם בין הכיווצים.</p>
+    <div class="tf-options" id="tfopts-s18">
+      <button class="tf-btn" onclick="pickTF('s18tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s18tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s18tf1"></div>
+  </div>
+</div>
+
+<!-- S19: שלב ב + זיהוי המלטה -->
+<div class="screen" id="screen-19">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#a16207,#c09020)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟡</span>
+    <h1>שלב ב – יציאת הסייח</h1>
+    <p class="subtitle">ההמלטה עצמה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלב ב בהמלטה ולדעת מתי נדרשת התערבות.</div>
+  <div class="section-title">🔄 מה קורה בשלב ב:</div>
+  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:16px">💧</div><div class="step-content"><strong>פקיעת המים</strong></div></div>
+  <div class="step-box" style="border-color:#f59e0b"><div class="step-num" style="background:#f59e0b;font-size:16px">🫧</div><div class="step-content"><strong>שק שקוף לבן בולט מהבושת</strong>כ-5 דקות לאחר פקיעת המים</div></div>
+  <div class="step-box" style="border-color:#8b5cf6"><div class="step-num" style="background:#8b5cf6;font-size:16px">🐴</div><div class="step-content"><strong>הסוסה שוכבת על צידה</strong>קמה ושוכבת לסירוגין לכיוון הסייח</div></div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:16px">⏱️</div><div class="step-content"><strong>המלטה תקינה: דקות ספורות בלבד!</strong></div></div>
+  <div class="highlight red">🚨 <strong>אם עובר יותר מ-20 דקות</strong> – סימן למצוקה. נדרשת <strong>התערבות וטרינר!</strong></div>
+  <div class="section-title">❓ איך יודעים שהסוסה בהמלטה?</div>
+  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;margin-bottom:14px;font-size:13px;color:#3a1a5a">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div>✅ האם ההתנהגות מתאימה (חוסר נוחות, שכיבה)?</div>
+      <div>✅ האם הזמן מתאים?</div>
+      <div>✅ האם רואים שק בולט מהבושת?</div>
+      <div>✅ האם רואים רגל/איבר בולט מהבושת?</div>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה זמן יכולה להימשך המלטה תקינה?</p>
+    <div class="mc-options" id="opts-s19q1">
+      <button class="mc-option" onclick="pickOption('s19q1',0,this)"><span class="opt-letter">א</span>שעה שלמה</button>
+      <button class="mc-option" onclick="pickOption('s19q1',1,this)"><span class="opt-letter">ב</span>דקות ספורות בלבד</button>
+      <button class="mc-option" onclick="pickOption('s19q1',2,this)"><span class="opt-letter">ג</span>30–60 דקות</button>
+      <button class="mc-option" onclick="pickOption('s19q1',3,this)"><span class="opt-letter">ד</span>כמה שעות</button>
+    </div>
+    <div class="feedback" id="fb-s19q1"></div>
+  </div>
+</div>
+
+<!-- S20: שלב ג -->
+<div class="screen" id="screen-20">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2e,#2d7a2d)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟢</span>
+    <h1>שלב ג – הוצאת השליה</h1>
+    <p class="subtitle">סיום ההמלטה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלב ג ולדעת מתי נדרשת התערבות דחופה.</div>
+  <div class="section-title">🔄 מה קורה בשלב ג:</div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:16px">✂️</div><div class="step-content"><strong>ניתוק חבל הטבור</strong>מתרחש לבד – ללא צורך בהתערבות (~30 דקות לאחר שלב ב)</div></div>
+  <div class="step-box" style="border-color:#1a6fa8"><div class="step-num" style="background:#1a6fa8;font-size:16px">🔄</div><div class="step-content"><strong>כיווצי הרחם ממשיכים</strong>לצורך הוצאת קרומי השליה</div></div>
+  <div class="step-box" style="border-color:#6c3483"><div class="step-num" style="background:#6c3483;font-size:16px">👁️</div><div class="step-content"><strong>דבר מה תלוי מבושת הסוסה</strong>הוצאת השליה מסתיימת תוך <strong>שעה</strong> מסוף שלב ב</div></div>
+  <div class="highlight red">🚨 עיכוב של הוצאת שליה <strong>מעל 3 שעות</strong> = טיפול וטרינרי <strong>דחוף!</strong></div>
+  <div class="highlight green">✅ יניקת הסייח מעודדת יציאת השליה. <strong>אין למשוך את השליה!</strong></div>
+  <div class="highlight amber">📋 שמור את קרומי השליה לבדיקת הווטרינר – לוודא שכל השליה יצאה.</div>
+  <div class="exam-box">שליה יוצאת תוך שעה | מעל 3 שעות = וטרינר דחוף | אין למשוך! | לשמור לבדיקה</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה עושים אם השליה לא יוצאת אחרי 3 שעות?</p>
+    <div class="mc-options" id="opts-s20q1">
+      <button class="mc-option" onclick="pickOption('s20q1',0,this)"><span class="opt-letter">א</span>מושכים אותה בכוח</button>
+      <button class="mc-option" onclick="pickOption('s20q1',1,this)"><span class="opt-letter">ב</span>ממתינים עוד 24 שעות</button>
+      <button class="mc-option" onclick="pickOption('s20q1',2,this)"><span class="opt-letter">ג</span>מזמינים וטרינר דחוף</button>
+      <button class="mc-option" onclick="pickOption('s20q1',3,this)"><span class="opt-letter">ד</span>נותנים לסוסה מים קרים</button>
+    </div>
+    <div class="feedback" id="fb-s20q1"></div>
+  </div>
+</div>
+
+<!-- S21: טיפול לאחר המלטה -->
+<div class="screen" id="screen-21">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🍼</span>
+    <h1>טיפול לאחר המלטה</h1>
+    <p class="subtitle">שעות קריטיות לסייח</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את המהלך התקין של הסייח ואת הטיפול הנדרש.</div>
+  <div class="highlight blue">🩺 <strong>ביקור וטרינר</strong> תוך 24 שעות מההמלטה.</div>
+  <div class="section-title">⏱️ מהלך תקין של הסייח:</div>
+  <table class="info-table">
+    <tr><th>זמן</th><th>מה קורה</th></tr>
+    <tr><td>15 דקות</td><td>שכיבה זקופה – ראש מורם</td></tr>
+    <tr><td>30–90 דקות</td><td>עמידה וניסיון יניקה</td></tr>
+    <tr><td>1.5–3.5 שעות</td><td>יניקה מוצלחת + העברת מקוניום</td></tr>
+    <tr><td>12 שעות</td><td>קים ושוכב בנקל, עוקב אחר האם, אינסטינקט יניקה חזק</td></tr>
+    <tr><td>48–72 שעות</td><td>צואה הופכת לצהובה – כל המקוניום יצא</td></tr>
+  </table>
+  <div class="section-title">🍼 טיפול בסייח:</div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#6c3483;font-size:16px">🥛</div><div class="accord-title">קולוסטרום – קריטי!</div><span class="accord-arrow">▼</span></div>
+  <div class="accord-body">
+    <p>הסייח צריך לינוק או לקבל קולוסטרום. נספג <strong>בצורה מיטבית ב-8 השעות הראשונות</strong>. לאחר 24 שעות – האפשרות נחסמת!</p>
+    <p>כמות נדרשת: <strong>לפחות ליטר-שניים</strong> של קולוסטרום.</p>
+  </div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#27ae60;font-size:16px">🤝</div><div class="accord-title">קשר אם-סייח</div><span class="accord-arrow">▼</span></div>
+  <div class="accord-body"><p>חשוב שהסוסה והסייח יהיו <strong>לבד ללא הפרעה</strong> – רק עם השגחה – כדי לאפשר קשר.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#1a6fa8;font-size:16px">🧴</div><div class="accord-title">חיטוי הטבור</div><span class="accord-arrow">▼</span></div>
+  <div class="accord-body"><p>לטבול את הטבור בחומר חיטוי <strong>בהזדמנות הראשונה</strong>. להמשיך <strong>פעמיים ביום, יומיים-שלושה</strong>.</p></div></div>
+  <div class="remember-box">קולוסטרום: 8 שעות ראשונות קריטיות! | חיטוי טבור: מיידי + פעמיים ביום 2–3 ימים</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מתי נספג הקולוסטרום בצורה מיטבית?</p>
+    <div class="mc-options" id="opts-s21q1">
+      <button class="mc-option" onclick="pickOption('s21q1',0,this)"><span class="opt-letter">א</span>ב-24 השעות הראשונות</button>
+      <button class="mc-option" onclick="pickOption('s21q1',1,this)"><span class="opt-letter">ב</span>ב-48 שעות הראשונות</button>
+      <button class="mc-option" onclick="pickOption('s21q1',2,this)"><span class="opt-letter">ג</span>ב-8 השעות הראשונות</button>
+      <button class="mc-option" onclick="pickOption('s21q1',3,this)"><span class="opt-letter">ד</span>רק לאחר יומיים</button>
+    </div>
+    <div class="feedback" id="fb-s21q1"></div>
+  </div>
+</div>
+
+<!-- S22: מילון מונחים -->
+<div class="screen" id="screen-22">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a2a4a,#1e3a8a)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">📖</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">מושגי מפתח</p>
+  </div>
+  <div class="goal-box">לחץ על כל מונח כדי לראות את ההגדרה.</div>
+  <div id="glossary-cards-container">
+    <div class="flashcard-container" style="min-height:130px">
+      <div class="flashcard" id="fc0" onclick="flipCard('fc0')">
+        <div class="flashcard-front"><div class="term">כשל מעבר סביל</div><div class="hint">לחץ לגלות הגדרה</div></div>
+        <div class="flashcard-back"><div class="def">מצב שבו הסייח לא מקבל מספיק נוגדנים מיניקת הקולוסטרום. עלול לגרום לאילוח דם.</div></div>
+      </div>
+    </div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 14</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🛡️ כשל מעבר סביל</div><div class="glossary-def">הסייח לא קיבל מספיק נוגדנים מהקולוסטרום. גורם: אילוח דם. טיפול: אנטיביוטיקה IV.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🥛 קולוסטרום</div><div class="glossary-def">החלב הראשוני העשיר בנוגדנים. נספג מיטבית ב-8 השעות הראשונות. לאחר 24 שעות – נחסם.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🩸 אילוח דם</div><div class="glossary-def">זיהום חיידקי הפוגע בכל האיברים. סכנת חיים לסייח.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💧 Foal Heat Diarrhea</div><div class="glossary-def">שלשול בסייח בזמן ייחום האם – תופעה שכיחה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🪱 גסטרופילוס</div><div class="glossary-def">זבוב המטיל ביצים על שערות הסוס. הסוס מלקק → ביצים מגיעות לקיבה. פגיעה: כיבים, קוליק.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🦟 גרדת</div><div class="glossary-def">מחלה אלרגית בעלת מרכיב תורשתי. רגישות לרוק יבחוש. מאופיינת בגרד, קרחות, אדמומיות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌞 Habronemiasis (פצעי קיץ)</div><div class="glossary-def">זבובים מניחים ביצי טפיל בפצעים/עיניים. הפצע מחריף. טיפול: תילוע + רשתות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📡 אולטרסאונד</div><div class="glossary-def">בדיקת הריון מיום 12–13. לב פועם מיום 22. כדאי לחזור בסוף חודש שני (10% ספיגה).</div></div>
+    <div class="glossary-item"><div class="glossary-term">👶 תאומים בסוסים</div><div class="glossary-def">מסוכן מאוד! לבדוק עד יום 15 ולבצע מעיכה ידנית של עובר אחד.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔴 שלב א בהמלטה</div><div class="glossary-def">צירי לידה – דקות עד שעות. סימנים: כיווצים, הזעה, חוסר אכילה בזמן כיווצים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟡 שלב ב בהמלטה</div><div class="glossary-def">יציאת הסייח. דקות ספורות. מעל 20 דקות = סכנה. נדרש וטרינר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟢 שלב ג בהמלטה</div><div class="glossary-def">הוצאת שליה תוך שעה. מעל 3 שעות = וטרינר דחוף. אין למשוך!</div></div>
+    <div class="glossary-item"><div class="glossary-term">💊 תילוע</div><div class="glossary-def">כל 2–3 חודשים. סייחים מגיל חודשיים. מינון לפי משקל – מינון נמוך יוצר התנגדות!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟤 מקוניום</div><div class="glossary-def">הצואה הראשונה של הסייח. חייב להיות מועבר תוך 1.5–3.5 שעות. הצואה הופכת לצהובה ב-48–72 שעות.</div></div>
+  </div>
+</div>
+
+<!-- S23: שאלות חזרה -->
+<div class="screen" id="screen-23">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#059669)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">❓</span>
+    <h1>שאלות חזרה</h1>
+    <p class="subtitle">בדוק את עצמך!</p>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">1. מה קורה אם הסייח לא מקבל קולוסטרום תוך 24 שעות?</div>
+    <div class="mc-options" id="opts-qa1">
+      <button class="mc-option" onclick="pickOption('qa1',0,this)"><span class="opt-letter">א</span>הוא יינק חלב רגיל ויסתדר</button>
+      <button class="mc-option" onclick="pickOption('qa1',1,this)"><span class="opt-letter">ב</span>אפשרות ספיגת הנוגדנים נחסמת לחלוטין</button>
+      <button class="mc-option" onclick="pickOption('qa1',2,this)"><span class="opt-letter">ג</span>הוא יקבל קולוסטרום מסוסה אחרת</button>
+      <button class="mc-option" onclick="pickOption('qa1',3,this)"><span class="opt-letter">ד</span>לא קורה כלום מיוחד</button>
+    </div>
+    <div class="feedback" id="fb-qa1"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">2. מה הסכנה בתאומים בסוסים?</div>
+    <div class="mc-options" id="opts-qa2">
+      <button class="mc-option" onclick="pickOption('qa2',0,this)"><span class="opt-letter">א</span>אין שום סכנה מיוחדת</button>
+      <button class="mc-option" onclick="pickOption('qa2',1,this)"><span class="opt-letter">ב</span>שניהם גדלים לאט</button>
+      <button class="mc-option" onclick="pickOption('qa2',2,this)"><span class="opt-letter">ג</span>סיכון לספיגה, הפלה, ולד מת – הסיכוי לשניים בריאים נמוך מאוד</button>
+      <button class="mc-option" onclick="pickOption('qa2',3,this)"><span class="opt-letter">ד</span>קשה להאכיל שניהם</button>
+    </div>
+    <div class="feedback" id="fb-qa2"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">3. כמה זמן אמורה להימשך המלטה תקינה (שלב ב)?</div>
+    <div class="mc-options" id="opts-qa3">
+      <button class="mc-option" onclick="pickOption('qa3',0,this)"><span class="opt-letter">א</span>שעה–שעתיים</button>
+      <button class="mc-option" onclick="pickOption('qa3',1,this)"><span class="opt-letter">ב</span>30–60 דקות</button>
+      <button class="mc-option" onclick="pickOption('qa3',2,this)"><span class="opt-letter">ג</span>דקות ספורות</button>
+      <button class="mc-option" onclick="pickOption('qa3',3,this)"><span class="opt-letter">ד</span>20–30 דקות</button>
+    </div>
+    <div class="feedback" id="fb-qa3"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">4. מדוע אסור לתת מינון תרופת תילוע נמוך ממשקל הסוס?</div>
+    <div class="mc-options" id="opts-qa4">
+      <button class="mc-option" onclick="pickOption('qa4',0,this)"><span class="opt-letter">א</span>כי זה יקר מדי</button>
+      <button class="mc-option" onclick="pickOption('qa4',1,this)"><span class="opt-letter">ב</span>כי מינון נמוך עלול לפתח התנגדות של התולעים לתרופה</button>
+      <button class="mc-option" onclick="pickOption('qa4',2,this)"><span class="opt-letter">ג</span>כי זה לא עובד בכלל</button>
+      <button class="mc-option" onclick="pickOption('qa4',3,this)"><span class="opt-letter">ד</span>כי הסוס יאכל יותר</button>
+    </div>
+    <div class="feedback" id="fb-qa4"></div>
+  </div>
+</div>
+
+<!-- S24: סיום -->
+<div class="screen" id="screen-24">
+  <div class="completion-card">
+    <div style="font-size:64px;margin-bottom:8px">🏆</div>
+    <h2>כל הכבוד! סיימת את הלומדה!</h2>
+    <p style="opacity:.9;margin-top:8px;font-size:16px">מחלות, הריון והמלטה בסוסים – הכנה לבגרות 5 יח"ל</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה למדת?</div>
+    <ul class="content-list">
+      <li data-icon="✅">למה לטפל בסייח חולה מהר – אין מאגרי אנרגיה, חיסון חלש</li>
+      <li data-icon="✅">כשל מעבר סביל, דלקת ריאות ושלשול – סימנים וטיפול</li>
+      <li data-icon="✅">תולעים עגולות, תולעי דם, גסטרופילוס – נזקים ומניעה</li>
+      <li data-icon="✅">גרדת, קרציות, פצעי קיץ, פטריות</li>
+      <li data-icon="✅">ממשק תברואה ועשרה כללי הזנה</li>
+      <li data-icon="✅">בדיקת הריון עם אולטרסאונד – מיום 12</li>
+      <li data-icon="✅">תאומים – בדיקה עד יום 15, מעיכה ידנית</li>
+      <li data-icon="✅">שלבי ההמלטה א, ב, ג – סימנים ומתי נדרש וטרינר</li>
+      <li data-icon="✅">קולוסטרום – 8 שעות קריטיות, חיטוי טבור</li>
+    </ul>
+  </div>
+  <div class="exam-box">חזור על הנושאים שהיו קשים. בהצלחה בבגרות! 🎯</div>
+  <div class="card" style="text-align:center">
+    <button class="btn btn-primary" onclick="goTo(0)" style="font-size:16px;padding:16px 32px">🔄 חזור לתחילת הלומדה</button>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<div class="nav-buttons">
+  <button class="btn btn-primary" id="btn-prev" onclick="goBack()">▶ הקודם</button>
+  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 25</span>
+  <button class="btn btn-primary" id="btn-next" onclick="goNext()">הבא ◀</button>
+</div>
+
+<script>
+const TOTAL = 25;
+let current = 0;
+const chapterLabels = [
+  'פתיחה',
+  'למה לטפל מהר?','כשל מעבר סביל','דלקת ריאות','שלשול',
+  'תולעים עגולות','תולעי דם','גסטרופילוס','עקרונות תילוע',
+  'זבובים','יבחושים וגרדת','קרציות ופצעי קיץ','פטריות',
+  'ממשק תברואה','שגרת יום + כללי הזנה',
+  'בדיקת הריון','תאומים',
+  'הכנה להמלטה','שלב א','שלב ב','שלב ג','טיפול לאחר המלטה',
+  'מילון מונחים','שאלות חזרה','סיום'
+];
+
+function goTo(n){
+  const screens=document.querySelectorAll('.screen');
+  screens[current].classList.remove('active');
+  current=Math.max(0,Math.min(n,TOTAL-1));
+  screens[current].classList.add('active');
+  updateUI();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goNext(){if(current<TOTAL-1)goTo(current+1);}
+function goBack(){if(current>0)goTo(current-1);}
+function updateUI(){
+  const pct=Math.round((current/(TOTAL-1))*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').innerText='מסך '+(current+1)+' מתוך '+TOTAL;
+  document.getElementById('screen-indicator').innerText=(current+1)+' / '+TOTAL;
+  document.getElementById('menu-btn-label').innerText=chapterLabels[current]||'';
+  document.getElementById('btn-prev').className=current===0?'btn btn-disabled':'btn btn-primary';
+  document.getElementById('btn-next').className=current===TOTAL-1?'btn btn-disabled':'btn btn-primary';
+  document.querySelectorAll('.menu-item').forEach((el,i)=>el.classList.toggle('active',i===current));
+  if(current===22)initGlossary();
+}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goTo(n);}
+function toggleAccord(el){el.classList.toggle('open');}
+
+const mcData={
+  's1q1':{correct:1,explanation:'ללא חלב הסייח יתייבש ויסבול מנפילה ברמת הסוכר – אין לו מאגרי אנרגיה.'},
+  's3q1':{correct:2,explanation:'דלקת ריאות היא גורם התמותה העיקרי בסייחים בגיל חודש עד שישה חודשים.'},
+  's5q1':{correct:1,explanation:'בסייחים התולעים נודדות לריאות וגורמות לפגיעה במערכת הנשימה – סכנה ייחודית לגיל זה.'},
+  's6q1':{correct:2,explanation:'פעמיים בשבוע – זה מקטין משמעותית את סיכויי ההדבקה.'},
+  's8q1':{correct:2,explanation:'מגיל חודשיים – כל חודש-חודשיים עד גיל שנה, ואחר כך עם שאר הסוסים.'},
+  's10q1':{correct:1,explanation:'גרדת = מחלה אלרגית בעלת מרכיב תורשתי. רגישות לרוק היבחוש.'},
+  's12q1':{correct:1,explanation:'יוד, שמפו עם יוד, חיטוי ציוד ואור שמש – כולם יעילים נגד פטריות.'},
+  's13q1':{correct:2,explanation:'ציוד משותף מעביר פטריות בין סוסים – אסור!'},
+  's15q1':{correct:3,explanation:'אולטרסאונד מזהה הריון כבר מיום 12–13 לאחר ביוץ – הכי מוקדם מכל השיטות.'},
+  's16q1':{correct:2,explanation:'חשוב לזהות עד יום 15 כדי שניתן יהיה לבצע מעיכה ידנית ולמנוע הריון תאומים מסוכן.'},
+  's17q1':{correct:1,explanation:'מעטה דמוי שעווה על הפטמות הוא אחד מסימני ההתקרבות להמלטה.'},
+  's19q1':{correct:1,explanation:'המלטה תקינה נמשכת דקות ספורות בלבד. מעל 20 דקות = סכנה.'},
+  's20q1':{correct:2,explanation:'עיכוב הוצאת שליה מעל 3 שעות מצריך טיפול וטרינרי דחוף. לעולם אין למשוך!'},
+  's21q1':{correct:2,explanation:'הקולוסטרום נספג בצורה מיטבית ב-8 השעות הראשונות. לאחר 24 שעות האפשרות נחסמת.'},
+  'qa1':{correct:1,explanation:'לאחר 24 שעות אפשרות ספיגת הנוגדנים נחסמת לחלוטין – לכן 8 השעות הראשונות קריטיות.'},
+  'qa2':{correct:2,explanation:'הסיכוי לשני סייחים בריאים נמוך מאוד. תאומים עלולים להיספג, להיות מופלים, או למות לאחר הלידה.'},
+  'qa3':{correct:2,explanation:'המלטה תקינה נמשכת דקות ספורות. מעל 20 דקות = מצוקה ונדרשת התערבות.'},
+  'qa4':{correct:1,explanation:'מינון נמוך ממשקל הסוס עלול לפתח התנגדות של התולעים לתרופה. תמיד לפי משקל!'}
+};
+
+const tfData={
+  's0tf1':{correct:true,explanation:'נכון! לסייחים אין מאגרי אנרגיה ומערכת החיסון שלהם חלשה – לכן כל מחלה מסוכנת.'},
+  's2tf1':{correct:true,explanation:'נכון! כשל מעבר סביל גורם לאילוח דם – זיהום חיידקי הפוגע בכל האיברים.'},
+  's4tf1':{correct:false,explanation:'לא נכון! שלשול יכול להיגרם מסלמונלה, רוטה, טפילים, ומייחום האם – סיבות מגוונות.'},
+  's7tf1':{correct:true,explanation:'נכון! הסוס מלקק את השערות עם הביצים → הביצים בוקעות בפה → נודדות לקיבה.'},
+  's9tf1':{correct:true,explanation:'נכון! זבוב האורווה מטיל ביצים בצואה וברפד ספוג שתן – לכן ניקיון יומי הכרחי.'},
+  's11tf1':{correct:true,explanation:'נכון! קרציות מעבירות מחלות כמו קדחת קרציות בזמן לקיחת מנת הדם.'},
+  's14tf1':{correct:false,explanation:'לא נכון! אסור לרכוב מיד לאחר ארוחה – זהו אחד מ-10 כללי ההזנה.'},
+  's18tf1':{correct:false,explanation:'לא נכון! בין הכיווצים הסוסה עשויה לחזור לאכול – היא לא מסרבת לאכול בכלל.'}
+};
+
+function pickOption(qId,idx,btn){
+  const data=mcData[qId];
+  const opts=document.querySelectorAll('#opts-'+qId+' .mc-option');
+  opts.forEach(b=>b.classList.remove('correct','wrong','selected'));
+  const isCorrect=idx===data.correct;
+  btn.classList.add(isCorrect?'correct':'wrong');
+  if(!isCorrect)opts[data.correct].classList.add('correct');
+  const fb=document.getElementById('fb-'+qId);
+  if(fb){
+    fb.className='feedback show '+(isCorrect?'correct':'wrong');
+    fb.innerHTML=isCorrect?'🎉 <strong>נכון!</strong> '+data.explanation:'❌ <strong>לא נכון.</strong> '+data.explanation;
+  }
+}
+
+function pickTF(qId,val,btn){
+  const data=tfData[qId];
+  const container=btn.parentElement;
+  const btns=container.querySelectorAll('.tf-btn');
+  btns.forEach(b=>b.classList.remove('correct','wrong'));
+  const isCorrect=val===data.correct;
+  btn.classList.add(isCorrect?'correct':'wrong');
+  if(!isCorrect){btns.forEach(b=>{if(b!==btn)b.classList.add('correct');});}
+  const fb=document.getElementById('fb-'+qId);
+  if(fb){
+    fb.className='feedback show '+(isCorrect?'correct':'wrong');
+    fb.innerHTML=isCorrect?'🎉 <strong>נכון!</strong> '+data.explanation:'❌ <strong>לא נכון.</strong> '+data.explanation;
+  }
+}
+
+const glossaryData=[
+  {term:'כשל מעבר סביל',def:'הסייח לא קיבל מספיק נוגדנים מהקולוסטרום. גורם: אילוח דם.'},
+  {term:'קולוסטרום',def:'החלב הראשוני עשיר בנוגדנים. נספג מיטבית ב-8 שעות ראשונות.'},
+  {term:'אילוח דם',def:'זיהום חיידקי הפוגע בכל האיברים – סכנת חיים.'},
+  {term:'Foal Heat Diarrhea',def:'שלשול בסייח בזמן ייחום האם – תופעה שכיחה.'},
+  {term:'גסטרופילוס',def:'זבוב מטיל ביצים על שערות. סוס מלקק → ביצים לקיבה. פגיעה: כיבים, קוליק.'},
+  {term:'גרדת',def:'מחלה אלרגית תורשתית. רגישות לרוק יבחוש. סימנים: גרד, קרחות, אדמומיות.'},
+  {term:'IDAT',def:'מבחן לאבחון גרדת – הזרקת אלרגנים עורית.'},
+  {term:'Habronemiasis',def:'פצעי קיץ – זבובים מניחים ביצי טפיל בפצעים. הפצע מחריף. טיפול: תילוע + רשתות.'},
+  {term:'אולטרסאונד',def:'בדיקת הריון מיום 12–13. לב פועם מיום 22.'},
+  {term:'מקוניום',def:'הצואה הראשונה של הסייח. חייב לצאת תוך 1.5–3.5 שעות.'},
+  {term:'שלב א',def:'צירי לידה – דקות עד שעות. כיווצים, הזעה.'},
+  {term:'שלב ב',def:'יציאת הסייח. דקות ספורות. מעל 20 דקות = סכנה!'},
+  {term:'שלב ג',def:'הוצאת שליה תוך שעה. מעל 3 שעות = וטרינר דחוף. אין למשוך!'},
+  {term:'תילוע',def:'כל 2–3 חודשים. מגיל חודשיים בסייחים. מינון לפי משקל.'}
+];
+let fcIndex=0;
+
+function initGlossary(){showGlossaryCard(0);}
+function showGlossaryCard(idx){
+  const container=document.getElementById('glossary-cards-container');
+  const card=glossaryData[idx];
+  container.querySelector('.flashcard').id='fc'+idx;
+  container.querySelector('.flashcard').classList.remove('flipped');
+  container.querySelector('.term').textContent=card.term;
+  container.querySelector('.def').textContent=card.def;
+  container.querySelector('.flashcard').onclick=function(){flipCard('fc'+idx);};
+  document.getElementById('fc-counter').textContent=(idx+1)+' / '+glossaryData.length;
+}
+function flipCard(id){const fc=document.getElementById(id);if(fc)fc.classList.toggle('flipped');}
+function nextCard(){fcIndex=(fcIndex+1)%glossaryData.length;showGlossaryCard(fcIndex);}
+function prevCard(){fcIndex=(fcIndex-1+glossaryData.length)%glossaryData.length;showGlossaryCard(fcIndex);}
+
+updateUI();
+</script>
+</body>
+</html>
