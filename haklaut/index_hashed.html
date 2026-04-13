@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>לומדת הכנה לבגרות בחקלאות</title>
+  <meta name="description" content="מסך ראשי ללומדות הכנה לבגרות בחקלאות" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-990G8Z7F1H');
+  </script>
+  <style>
+    :root{
+      --bg1:#5aa4c3;
+      --bg2:#2f6f8d;
+      --panel:#ffffff;
+      --text:#18311f;
+      --muted:#5c7363;
+      --accent:#4a8c5f;
+      --accent-dark:#2c6a45;
+      --accent-soft:#eef8f0;
+      --border:#d8e7da;
+      --danger:#c44b4b;
+      --danger-bg:#fff2f2;
+      --shadow:0 14px 36px rgba(24,49,31,0.10);
+      --shadow-strong:0 18px 40px rgba(24,49,31,0.16);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box; font-family:Arial,Helvetica,sans-serif !important;}
+
+    html, body, button, input, select, textarea {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      min-height:100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .wrap{
+      max-width:1250px;
+      margin:0 auto;
+      padding:24px 18px 40px;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    .app-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+      padding:14px 16px;
+      background:rgba(255,255,255,0.22);
+      border:1px solid rgba(255,255,255,0.30);
+      border-radius:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(8px);
+      position:sticky;
+      top:18px;
+      z-index:120;
+    }
+
+    .app-topbar-info{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .app-topbar-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      box-shadow:0 8px 18px rgba(0,0,0,0.10);
+      font-size:24px;
+      line-height:1;
+      flex:0 0 auto;
+      color:#fff;
+    }
+
+    .app-topbar-greeting{
+      margin:0;
+      font-size:clamp(22px,3.6vw,30px);
+      line-height:1.2;
+      font-weight:900;
+      color:#ffffff;
+      text-shadow:0 2px 10px rgba(0,0,0,0.12);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .app-topbar-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .main-self-test-mobile{
+      display:none !important;
+      flex:0 0 auto;
+      border-radius:14px;
+      padding:11px 14px;
+      font-size:14px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .grid-view{display:block}
+    .grid-view.hidden{display:none}
+
+    .sections-stack{
+      display:grid;
+      gap:24px;
+    }
+
+    .section-shell{
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(6px);
+    }
+
+    .section-kicker{
+      margin:0 0 18px;
+      font-size:28px;
+      font-weight:900;
+      color:#ffffff;
+      line-height:1.2;
+      letter-spacing:0;
+      text-shadow:0 2px 10px rgba(0,0,0,0.12);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .section-kicker-icon{
+      font-size:30px;
+      line-height:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:310px;
+      text-decoration:none;
+      color:inherit;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor:pointer;
+      position:relative;
+      padding:0;
+    }
+
+    .card:hover,
+    .card:focus-visible{
+      transform:translateY(-6px) scale(1.01);
+      box-shadow:var(--shadow-strong);
+      border-color:#b9d6bf;
+      outline:none;
+    }
+
+    .card-media{
+      height:170px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      background:#ffffff;
+      padding:18px;
+      border-bottom:1px solid #eef3ef;
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      background:#ffffff;
+    }
+
+    .card-media.fallback{
+      font-size:60px;
+      color:var(--accent-dark);
+      background:#ffffff;
+      border-bottom:1px solid #eef3ef;
+    }
+
+    .card-body{
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+      background:#ffffff;
+    }
+
+    .card-title{
+      margin:0;
+      font-size:24px;
+      line-height:1.3;
+      font-weight:800;
+    }
+
+    .card-text{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .card-footer{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:auto;
+      font-size:17px;
+      font-weight:900;
+      line-height:1;
+      color:#fff;
+      padding:14px 26px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+      box-shadow:0 10px 20px rgba(74,140,95,0.20);
+      align-self:center;
+      transition:transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      letter-spacing:0.01em;
+    }
+
+    .card:hover .card-footer,
+    .card:focus-visible .card-footer{
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 14px 24px rgba(74,140,95,0.28);
+    }
+
+    .state{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      box-shadow:var(--shadow);
+    }
+
+    .login-view{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 0 8px;
+    }
+
+    .login-shell{
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;
+      padding:20px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      backdrop-filter:blur(6px);
+    }
+
+    .login-card{
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px 20px;
+    }
+
+    .login-badge{
+      width:52px;
+      height:52px;
+      margin:0 auto 10px;
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, rgba(74,140,95,0.18), rgba(90,164,195,0.20));
+      border:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(0,0,0,0.08);
+      font-size:26px;
+    }
+
+    .login-title{
+      margin:0;
+      text-align:center;
+      font-size:clamp(22px, 3.5vw, 28px);
+      line-height:1.2;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .login-subtitle{
+      margin:6px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .login-form{
+      margin-top:16px;
+      display:grid;
+      gap:12px;
+    }
+
+    .field{
+      display:grid;
+      gap:5px;
+    }
+
+    .field-label{
+      font-size:15px;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .field-input-wrap{
+      position:relative;
+    }
+
+    .field-input{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:11px 14px;
+      font-size:16px;
+      color:var(--text);
+      background:#ffffff;
+      box-shadow:inset 0 1px 2px rgba(24,49,31,0.04);
+      transition:border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .field-input.with-toggle{
+      padding-left:94px;
+    }
+
+    .field-input:focus{
+      outline:none;
+      border-color:#9ccdb0;
+      box-shadow:0 0 0 4px rgba(74,140,95,0.12);
+    }
+
+    .password-toggle{
+      position:absolute;
+      left:10px;
+      top:50%;
+      transform:translateY(-50%);
+      border:none;
+      border-radius:12px;
+      padding:9px 12px;
+      font-size:14px;
+      font-weight:800;
+      background:var(--accent-soft);
+      color:var(--accent-dark);
+      cursor:pointer;
+      transition:transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+      box-shadow:0 6px 12px rgba(74,140,95,0.12);
+    }
+
+    .password-toggle:hover{
+      transform:translateY(-50%) scale(1.02);
+    }
+
+    .login-error{
+      display:none;
+      border:1px solid #f1c8c8;
+      background:var(--danger-bg);
+      color:var(--danger);
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:15px;
+      line-height:1.6;
+      font-weight:700;
+    }
+
+    .login-error.show{
+      display:block;
+    }
+
+    .login-btn{
+      width:100%;
+      justify-content:center;
+      font-size:18px;
+      padding:12px 22px;
+      margin-top:2px;
+    }
+
+    .login-note{
+      margin:10px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .login-section-divider{
+      border:none;
+      border-top:1px solid var(--border);
+      margin:16px 0;
+    }
+
+    .login-purchase-cta{
+      margin:14px 0 0;
+      padding:12px 14px 14px;
+      background:#f4f7f5;
+      border:1px solid var(--border);
+      border-radius:18px;
+      text-align:center;
+    }
+
+    .login-purchase-tagline{
+      margin:0 0 4px;
+      font-size:15px;
+      font-weight:800;
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    .login-purchase-sub{
+      margin:0 0 14px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .login-purchase-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:13px 22px;
+      background:linear-gradient(135deg,var(--accent-dark),var(--accent));
+      color:#ffffff;
+      font-size:16px;
+      font-weight:900;
+      border-radius:14px;
+      border:none;
+      text-decoration:none;
+      box-shadow:0 8px 18px rgba(44,106,69,0.22);
+      transition:transform 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing:0.01em;
+    }
+
+    .login-purchase-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 22px rgba(44,106,69,0.30);
+    }
+
+    .lesson-view{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      background:#fff;
+      overflow:hidden;
+      flex-direction:column;
+    }
+
+    .lesson-view.show{display:flex}
+
+    .lesson-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 20px;
+      background:linear-gradient(135deg,#eef8f0,#f8fbf8);
+      border-bottom:1px solid var(--border);
+      min-height:76px;
+      position:relative;
+      z-index:20;
+      flex:0 0 auto;
+    }
+
+    .lesson-topbar-info{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+      flex:1 1 auto;
+    }
+
+    .lesson-mobile-header{
+      display:block;
+      width:100%;
+    }
+
+    .lesson-mobile-back-btn{
+      display:none !important;
+      flex:0 0 auto;
+      white-space:nowrap;
+      padding:11px 14px;
+      border-radius:14px;
+      font-size:14px;
+      line-height:1;
+    }
+
+    .lesson-title{
+      margin:0;
+      font-size:24px;
+      line-height:1.3;
+      font-weight:800;
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .lesson-user{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .lesson-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .btn{
+      border:none;
+      border-radius:16px;
+      padding:13px 22px;
+      font-size:16px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+      background:linear-gradient(135deg,var(--accent-dark),var(--accent));
+      color:#fff;
+      box-shadow:0 10px 20px rgba(21,128,61,0.22);
+      letter-spacing:0.01em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+
+    .btn-secondary{
+      background:linear-gradient(135deg,#4a7390,#325e7b);
+      box-shadow:0 10px 20px rgba(50,94,123,0.20);
+    }
+
+    .mobile-menu,
+    .lesson-mobile-menu{
+      position:relative;
+      display:none;
+      flex:0 0 auto;
+    }
+
+    .mobile-menu-trigger{
+      border:none;
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--accent-dark),var(--accent));
+      color:#fff;
+      box-shadow:0 10px 20px rgba(21,128,61,0.22);
+      cursor:pointer;
+      font-size:22px;
+      line-height:1;
+      transition:transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .mobile-menu-trigger:hover{
+      transform:translateY(-1px);
+    }
+
+    .mobile-dropdown{
+      display:none;
+      position:absolute;
+      top:calc(100% + 10px);
+      right:0;
+      left:auto;
+      width:min(240px, calc(100vw - 32px));
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow-strong);
+      padding:10px;
+      z-index:1400;
+    }
+
+    .mobile-dropdown.show{
+      display:block;
+    }
+
+    .mobile-dropdown-user{
+      margin:0;
+      padding:10px 12px 12px;
+      color:var(--text);
+      font-size:15px;
+      line-height:1.6;
+      font-weight:800;
+      border-bottom:1px solid #eef3ef;
+    }
+
+    .mobile-dropdown-actions{
+      display:grid;
+      gap:8px;
+      padding-top:10px;
+    }
+
+    .mobile-dropdown .btn{
+      width:100%;
+      font-size:15px;
+      padding:12px 16px;
+    }
+
+    .iframe-wrap{
+      flex:1 1 auto;
+      min-height:0;
+      background:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      display:block;
+      background:#fff;
+    }
+
+
+    /* ── GUEST TOPBAR ── */
+    .guest-topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      margin-bottom:24px; padding:14px 16px;
+      background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.30);
+      border-radius:24px; box-shadow:0 12px 28px rgba(0,0,0,0.08); backdrop-filter:blur(8px);
+    }
+    .guest-topbar.hidden{display:none;}
+    .guest-topbar-left{display:flex;align-items:center;gap:10px;}
+    .guest-topbar-badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:46px;height:46px;border-radius:16px;
+      background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);
+      font-size:24px;color:#fff;flex:0 0 auto;
+    }
+    .guest-topbar-title{
+      margin:0;font-size:clamp(16px,3vw,24px);font-weight:900;
+      color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    /* ── LOGIN MODAL ── */
+    .modal-overlay{
+      display:none;position:fixed;inset:0;z-index:2000;
+      background:rgba(42,90,110,0.55);backdrop-filter:blur(4px);
+      align-items:center;justify-content:center;padding:16px;
+    }
+    .modal-overlay.show{display:flex;}
+    .modal-box{
+      width:100%;max-width:480px;
+      background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);
+      border-radius:28px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,0.18);
+      backdrop-filter:blur(10px);animation:modalIn 0.22s ease;
+    }
+    @keyframes modalIn{
+      from{opacity:0;transform:translateY(20px) scale(0.97);}
+      to{opacity:1;transform:translateY(0) scale(1);}
+    }
+    .modal-close-btn{
+      position:absolute;top:12px;right:12px;
+      border:none;background:#f0f4f1;color:#2c6a45;
+      font-size:20px;width:36px;height:36px;border-radius:10px;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:background 0.15s;
+    }
+    .modal-close-btn:hover{background:#dceee2;}
+
+    /* ── LESSON FOOTER ── */
+    .lesson-footer{
+      flex:0 0 auto;padding:6px 12px;
+      background:linear-gradient(135deg,#eef8f0,#f8fbf8);
+      border-top:1px solid var(--border);text-align:center;
+      font-size:12px;color:var(--muted);
+      display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+      line-height:1.4;
+    }
+    .lesson-footer a{color:var(--accent-dark);text-decoration:none;}
+    .lesson-footer a:hover{text-decoration:underline;}
+
+    @media (max-width: 740px){
+      .wrap{padding:18px 14px 28px}
+      .sections-stack{gap:18px}
+      .section-shell{padding:16px}
+      .section-kicker{font-size:22px; margin-bottom:14px; line-height:1.2; gap:8px}
+      .section-kicker-icon{font-size:24px}
+      .card{min-height:280px}
+      .card-title{font-size:22px}
+      .card-media{height:160px}
+      .card-footer{font-size:16px; padding:13px 22px}
+
+      .guest-topbar{
+        position:sticky;top:0;z-index:120;
+        margin:0 -14px 18px;padding:10px 14px 12px;
+        background:linear-gradient(180deg,var(--bg1) 0%, rgba(90,164,195,0.97) 70%, rgba(90,164,195,0.82) 100%);
+        border:none;border-radius:0 0 22px 22px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.12);backdrop-filter:blur(8px);
+      }
+      .login-view{padding-top:6px}
+      .login-shell{padding:14px}
+      .login-card{padding:22px 18px}
+      .login-title{font-size:26px}
+      .login-subtitle{font-size:16px}
+      .field-input{padding:14px 14px}
+      .field-input.with-toggle{padding-left:88px}
+      .login-btn{font-size:17px}
+      .password-toggle{left:8px; padding:8px 10px; font-size:13px}
+
+      .app-topbar{
+        position:sticky;
+        top:0;
+        z-index:120;
+        margin:0 -14px 18px;
+        padding:10px 14px 12px;
+        background:linear-gradient(180deg,var(--bg1) 0%, rgba(90,164,195,0.97) 70%, rgba(90,164,195,0.82) 100%);
+        border:none;
+        border-radius:0 0 22px 22px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.12);
+        backdrop-filter:blur(8px);
+        justify-content:space-between;
+      }
+
+      .app-topbar-info,
+      .app-topbar-actions{
+        display:none;
+      }
+
+      .mobile-menu{
+        display:block;
+      }
+
+      .main-self-test-mobile{
+        display:inline-flex !important;
+      }
+
+      .lesson-topbar{
+        padding:14px 16px;
+        min-height:72px;
+      }
+
+      .lesson-topbar-info{
+        width:100%;
+      }
+
+      .lesson-mobile-header{
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        gap:8px;
+      }
+
+      .lesson-user,
+      .lesson-actions{
+        display:none;
+      }
+
+      .lesson-mobile-menu{
+        display:block;
+      }
+
+      .lesson-mobile-back-btn{
+        display:inline-flex !important;
+      }
+
+      .lesson-title{
+        flex:1 1 auto;
+        font-size:19px;
+      }
+
+      .iframe-wrap{
+        min-height:0;
+      }
+
+      .btn{
+        font-size:15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Guest topbar -->
+    <div id="guestTopbar" class="guest-topbar">
+      <div class="guest-topbar-left">
+        <span class="guest-topbar-badge" aria-hidden="true">🌿</span>
+        <p class="guest-topbar-title">לומדת הכנה לבגרות בחקלאות</p>
+      </div>
+      <button id="guestLoginBtn" class="btn" type="button">כניסה</button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal-box">
+        <div class="login-shell" style="padding:0;background:none;border:none;box-shadow:none;backdrop-filter:none;">
+          <div class="login-card" style="position:relative;">
+            <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="סגירה">✕</button>
+            <div class="login-badge" aria-hidden="true">🌿</div>
+            <h2 class="login-title">כניסה ללומדת הכנה לבגרות בחקלאות</h2>
+            <p class="login-subtitle">התחברו כדי לצפות בלומדות</p>
+            <form id="loginForm" class="login-form" novalidate>
+              <div id="loginError" class="login-error" role="alert">שם המשתמש או הסיסמה שגויים</div>
+              <div class="field">
+                <label class="field-label" for="usernameInput">שם משתמש</label>
+                <div class="field-input-wrap">
+                  <input id="usernameInput" class="field-input" name="username" type="text" placeholder="שם משתמש" autocomplete="username" required />
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="passwordInput">סיסמה</label>
+                <div class="field-input-wrap">
+                  <input id="passwordInput" class="field-input with-toggle" name="password" type="password" placeholder="סיסמה" autocomplete="current-password" required />
+                  <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="הצגת סיסמה">הצג</button>
+                </div>
+              </div>
+              <button class="btn login-btn" type="submit">התחברות</button>
+            </form>
+            <hr class="login-section-divider">
+            <div class="login-purchase-cta">
+              <p class="login-purchase-tagline">עוד לא הצטרפת ללומדות?</p>
+              <p class="login-purchase-sub">קבלו גישה לכל הלומדות, התרגולים וההכנה לבגרות במקום אחד</p>
+              <a href="https://bagruyot.org/haklaut/rehisha.html" target="_blank" class="login-purchase-btn">
+                להתחיל ללמוד עכשיו ←
+              </a>
+            </div>
+            <p class="login-note">הכניסה מיועדת לצפייה בלומדות ההכנה לבגרות בחקלאות.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="appTopbar" class="app-topbar hidden" aria-live="polite">
+      <div class="app-topbar-info">
+        <span class="app-topbar-badge" aria-hidden="true">🌿</span>
+        <p id="greetingText" class="app-topbar-greeting">שלום: admin</p>
+      </div>
+      <div class="app-topbar-actions">
+        <button id="mainSelfTestBtn" class="btn" type="button">בחן את עצמך</button>
+        <button id="logoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+      </div>
+      <div id="mainMobileMenu" class="mobile-menu">
+        <button id="mainMenuTrigger" class="mobile-menu-trigger" type="button" aria-label="פתיחת תפריט משתמש" aria-expanded="false">☰</button>
+        <div id="mainMenuDropdown" class="mobile-dropdown" role="menu" aria-label="תפריט משתמש">
+          <p id="mainMenuUserText" class="mobile-dropdown-user">שלום: admin</p>
+          <div class="mobile-dropdown-actions">
+            <button id="mobileLogoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+          </div>
+        </div>
+      </div>
+      <button id="mainSelfTestMobileBtn" class="btn main-self-test-mobile" type="button">בחן את עצמך</button>
+    </section>
+
+    <section id="gridView" class="grid-view">
+      <div id="sectionsContainer" class="sections-stack"></div>
+    </section>
+
+    <section id="lessonView" class="lesson-view" aria-live="polite">
+      <div class="lesson-topbar">
+        <div class="lesson-topbar-info">
+          <div class="lesson-mobile-header">
+            <div id="lessonMobileMenu" class="lesson-mobile-menu">
+              <button id="lessonMenuTrigger" class="mobile-menu-trigger" type="button" aria-label="פתיחת תפריט משתמש" aria-expanded="false">☰</button>
+              <div id="lessonMenuDropdown" class="mobile-dropdown" role="menu" aria-label="תפריט משתמש">
+                <p id="lessonMenuUserText" class="mobile-dropdown-user">שלום: admin</p>
+                <div class="mobile-dropdown-actions">
+                  <button id="mobileLessonLogoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+                </div>
+              </div>
+            </div>
+            <h2 id="lessonTitle" class="lesson-title">שם הלומדה</h2>
+            <button id="mobileHeaderBackBtn" class="btn lesson-mobile-back-btn" type="button">חזרה</button>
+          </div>
+          <p id="lessonUser" class="lesson-user">שלום: admin</p>
+        </div>
+        <div class="lesson-actions">
+          <button id="backBtn" class="btn" type="button">חזרה למסך הראשי</button>
+          <button id="lessonLogoutBtn" class="btn btn-secondary" type="button">התנתקות</button>
+        </div>
+      </div>
+      <div class="iframe-wrap">
+        <iframe id="lessonFrame" title="לומדה"></iframe>
+      </div>
+      <div class="lesson-footer">
+        <span>&#x1F4DE; 054-216-6396</span>
+        <span>|</span>
+        <span style="white-space:nowrap;">&#x2709;&#xFE0F; tanyatabakmaher&#64;gmail&#46;com</span>
+        <span>|</span>
+        <a href="https://bagruyot.org/haklaut/terms.html" target="_blank">תנאי שימוש</a>
+        <span>|</span>
+        <span>&#169; כל הזכויות שמורות לטניה טבקמכר</span>
+      </div>
+    </section>
+  </div>
+
+  <footer style="margin-top:32px;padding:20px 18px;background:rgba(255,255,255,0.12);border-top:1px solid rgba(255,255,255,0.2);text-align:center;backdrop-filter:blur(6px);">
+    <p style="margin:0 0 8px;font-size:14px;color:rgba(255,255,255,0.9);">
+      &#x1F4DE; 054-216-6396
+      &nbsp;|&nbsp;
+      <span style="white-space:nowrap;">&#x2709;&#xFE0F; tanyatabakmaher&#64;gmail&#46;com</span>
+    </p>
+    <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.75);">
+      <a href="https://bagruyot.org/haklaut/terms.html" target="_blank" style="color:rgba(255,255,255,0.8);text-decoration:underline;">תנאי שימוש</a>
+      &nbsp;|&nbsp;
+      &#169; כל הזכויות שמורות לטניה טבקמכר
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const sectionsContainer = document.getElementById('sectionsContainer');
+    const loginModal = document.getElementById('loginModal');
+    const guestTopbar = document.getElementById('guestTopbar');
+    const guestLoginBtn = document.getElementById('guestLoginBtn');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const usernameInput = document.getElementById('usernameInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+
+    const appTopbar = document.getElementById('appTopbar');
+    const greetingText = document.getElementById('greetingText');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const mainSelfTestBtn = document.getElementById('mainSelfTestBtn');
+    const mainSelfTestMobileBtn = document.getElementById('mainSelfTestMobileBtn');
+
+    const mainMenuTrigger = document.getElementById('mainMenuTrigger');
+    const mainMenuDropdown = document.getElementById('mainMenuDropdown');
+    const mainMenuUserText = document.getElementById('mainMenuUserText');
+    const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+
+    const gridView = document.getElementById('gridView');
+    const lessonView = document.getElementById('lessonView');
+    const lessonFrame = document.getElementById('lessonFrame');
+    const lessonTitle = document.getElementById('lessonTitle');
+    const lessonUser = document.getElementById('lessonUser');
+    const backBtn = document.getElementById('backBtn');
+    const lessonLogoutBtn = document.getElementById('lessonLogoutBtn');
+
+    const lessonMenuTrigger = document.getElementById('lessonMenuTrigger');
+    const lessonMenuDropdown = document.getElementById('lessonMenuDropdown');
+    const lessonMenuUserText = document.getElementById('lessonMenuUserText');
+    const mobileHeaderBackBtn = document.getElementById('mobileHeaderBackBtn');
+    const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
+
+    const MENU_FILE = 'menu.xlsx';
+    const USERS_FILE = 'https://bagruyot.org/haklaut/users_hashed.json';
+    const USERNAME_PEPPER = 'u_9x3K_example';
+    const PASSWORD_PEPPER = 'p_7m2Q_example';
+    const PBKDF2_ITERATIONS = 150000;
+    const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
+    const AUTH_COOKIE_KEY = 'haklautLoggedInUser';
+    const LESSON_STORAGE_KEY = 'haklautCurrentLesson';
+    const SELF_TEST_TITLE = 'בחן את עצמך';
+    const SELF_TEST_URL = 'https://bagruyot.org/haklaut/bagruyot.html';
+
+    let currentUsername = '';
+    let usersList = [];
+    let usersLoaded = false;
+    let pendingLesson = null;
+
+    const SECTION_CONFIG = {
+      general: {
+        title: 'תחום בעלי החיים - נושאים משותפים',
+        icon: '🐾'
+      },
+      dogs: {
+        title: 'כלבים',
+        icon: '🐶'
+      }
+    };
+
+    function getFallbackIcon(title) {
+      const t = String(title || '').trim();
+      if (t.includes('מבוא')) return '🌱';
+      if (t.includes('ויסות חום על ידי החקלאי')) return '🐔';
+      if (t.includes('ויסות חום')) return '🌡️';
+      if (t.includes('חיסון') || t.includes('החיסון')) return '🛡️';
+      if (t.includes('נשימה')) return '🫁';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return '🐣';
+      if (t.includes('כלבים') || t.includes('גור')) return '🐶';
+      return '📘';
+    }
+
+    function getDefaultDescription(title) {
+      const t = String(title || '').trim();
+      if (t.includes('מבוא')) return 'מושגי יסוד, רקע והבנה ראשונית של עולם החקלאות.';
+      if (t.includes('ויסות חום על ידי החקלאי')) return 'תנאי ממשק, אוורור, חימום, קירור וטיפול נכון בסביבת הגידול.';
+      if (t.includes('ויסות חום')) return 'הבנת שמירת חום הגוף, התאמה לסביבה ומנגנוני קירור וחימום.';
+      if (t.includes('חיסון') || t.includes('החיסון')) return 'מחלות, קווי הגנה, חיסונים, מונחים מרכזיים ותרגול להבנה.';
+      if (t.includes('נשימה')) return 'מבנה מערכת הנשימה, חילוף גזים, נשימה בעופות וביונקים ותרגול.';
+      if (t.includes('רבייה') || t.includes('הרבייה')) return 'מבנה מערכת הרבייה, הורמונים, מחזוריות, הפריה ויישומים חקלאיים.';
+      if (t.includes('כלבים') || t.includes('גור')) return 'התפתחות הגור, חושים, תקופות קריטיות ויישום מעשי בגידול כלבים.';
+      return 'לומדה אינטראקטיבית להכנה לבגרות בחקלאות.';
+    }
+
+    function getDescription(row) {
+      const subTitle = String(row.sub_title || '').trim();
+      return subTitle || getDefaultDescription(row.page_name);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function normalizeUrl(url) {
+      const trimmed = String(url || '').trim();
+      return trimmed || '#';
+    }
+
+    function normalizeTopic(value) {
+      const topic = String(value || '').trim().toLowerCase();
+      if (!topic) return 'general';
+      if (topic === 'general' || topic === 'dogs') return topic;
+      return '';
+    }
+
+    function buildMediaHtml(row) {
+      const iconUrl = normalizeUrl(row.menu_icon);
+      const fallbackIcon = getFallbackIcon(row.page_name);
+
+      if (iconUrl && iconUrl !== '#') {
+        return `
+          <div class="card-media">
+            <img src="${escapeHtml(iconUrl)}" alt="${escapeHtml(row.page_name)}" loading="lazy"
+                 onerror="this.parentElement.classList.add('fallback'); this.remove(); this.parentElement.innerHTML='${fallbackIcon}';">
+          </div>
+        `;
+      }
+
+      return `<div class="card-media fallback">${fallbackIcon}</div>`;
+    }
+
+    function buildCard(row) {
+      const button = document.createElement('button');
+      button.className = 'card';
+      button.type = 'button';
+      button.dataset.title = row.page_name;
+      button.dataset.url = normalizeUrl(row.page_url);
+      button.setAttribute('aria-label', `פתיחת הלומדה ${row.page_name}`);
+
+      button.innerHTML = `
+        ${buildMediaHtml(row)}
+        <div class="card-body">
+          <h2 class="card-title">${escapeHtml(row.page_name)}</h2>
+          <p class="card-text">${escapeHtml(getDescription(row))}</p>
+          <div class="card-footer">כניסה ללומדה</div>
+        </div>
+      `;
+
+      button.addEventListener('click', () => {
+        if (!currentUsername) { showLoginModal(row.page_name, normalizeUrl(row.page_url)); return; }
+        openLesson(row.page_name, row.page_url);
+      });
+
+      return button;
+    }
+
+    function buildSection(key, rows) {
+      const config = SECTION_CONFIG[key];
+      if (!config || !rows.length) return null;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'section-shell';
+
+      const heading = document.createElement('p');
+      heading.className = 'section-kicker';
+      heading.innerHTML = `<span class="section-kicker-icon" aria-hidden="true">${config.icon}</span><span>${escapeHtml(config.title)}</span>`;
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      rows.forEach(row => grid.appendChild(buildCard(row)));
+
+      wrapper.appendChild(heading);
+      wrapper.appendChild(grid);
+      return wrapper;
+    }
+
+    function renderSections(rows) {
+      sectionsContainer.innerHTML = '';
+
+      const groups = {
+        general: [],
+        dogs: []
+      };
+
+      rows.forEach(row => {
+        const topic = normalizeTopic(row.topic);
+        if (topic && groups[topic]) {
+          groups[topic].push(row);
+        }
+      });
+
+      const generalSection = buildSection('general', groups.general);
+      const dogsSection = buildSection('dogs', groups.dogs);
+
+      if (generalSection) sectionsContainer.appendChild(generalSection);
+      if (dogsSection) sectionsContainer.appendChild(dogsSection);
+
+      if (!generalSection && !dogsSection) {
+        sectionsContainer.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
+      }
+    }
+
+    async function loadMenu() {
+      const response = await fetch(`${MENU_FILE}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.arrayBuffer();
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheet = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[firstSheet];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+
+      return rows
+        .map(row => ({
+          page_name: String(row.page_name || '').trim(),
+          page_url: String(row.page_url || '').trim(),
+          menu_icon: String(row.menu_icon || '').trim(),
+          topic: String(row.topic || row.Topic || row['נושא'] || '').trim(),
+          sub_title: String(row.sub_title || row.subTitle || row['sub title'] || row['subtitle'] || row['תת כותרת'] || '').trim()
+        }))
+        .filter(row => row.page_name && row.page_url);
+    }
+
+
+    async function loadUsers() {
+      const response = await fetch(`${USERS_FILE}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const users = await response.json();
+
+      if (!Array.isArray(users)) {
+        throw new Error('Invalid users_hashed.json format');
+      }
+
+      return users
+        .map(user => ({
+          u: String(user.u || '').trim(),
+          s: String(user.s || '').trim(),
+          p: String(user.p || '').trim(),
+          real: Number(user.real ?? 0)
+        }))
+        .filter(user => user.u && user.s && user.p);
+    }
+
+    function toHex(buffer) {
+      return [...new Uint8Array(buffer)]
+        .map(byte => byte.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    function fromBase64(base64) {
+      const binary = atob(base64);
+      return Uint8Array.from(binary, char => char.charCodeAt(0));
+    }
+
+    async function sha256Hex(text) {
+      const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return toHex(hash);
+    }
+
+    async function pbkdf2Hex(password, saltBase64, iterations = PBKDF2_ITERATIONS) {
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(password),
+        'PBKDF2',
+        false,
+        ['deriveBits']
+      );
+
+      const bits = await crypto.subtle.deriveBits(
+        {
+          name: 'PBKDF2',
+          salt: fromBase64(saltBase64),
+          iterations,
+          hash: 'SHA-256'
+        },
+        keyMaterial,
+        256
+      );
+
+      return toHex(bits);
+    }
+
+    async function findMatchingUser(username, password) {
+      const safeUsername = String(username || '').trim();
+      const safePassword = String(password || '').trim();
+
+      const usernameHash = await sha256Hex(safeUsername + USERNAME_PEPPER);
+      const user = usersList.find(item => item.u === usernameHash);
+
+      if (!user) return null;
+
+      const passwordHash = await pbkdf2Hex(safePassword + PASSWORD_PEPPER, user.s, PBKDF2_ITERATIONS);
+
+      if (passwordHash !== user.p) return null;
+
+      return {
+        username: safeUsername,
+        usernameHash,
+        passwordHash
+      };
+    }
+
+    function userExists(usernameHash) {
+      const safeUsernameHash = String(usernameHash || '').trim();
+      return usersList.some(user => user.u === safeUsernameHash);
+    }
+
+    function saveLoginSession(username, usernameHash, passwordHash) {
+      const sessionData = { username, usernameHash, passwordHash };
+
+      try {
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(sessionData));
+      } catch (error) {
+        console.warn('Could not save login session to localStorage', error);
+      }
+
+      try {
+        const val = encodeURIComponent(JSON.stringify(sessionData));
+        document.cookie = `${AUTH_COOKIE_KEY}=${val}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+      } catch (error) {
+        console.warn('Could not save login session to cookie', error);
+      }
+    }
+
+    function clearLoginSession() {
+      try {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+      } catch (error) {
+        console.warn('Could not clear login session from localStorage', error);
+      }
+
+      try {
+        document.cookie = `${AUTH_COOKIE_KEY}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
+      } catch (error) {
+        console.warn('Could not clear login session cookie', error);
+      }
+    }
+
+    function getCookieValue(name) {
+      try {
+        const cookie = document.cookie
+          .split('; ')
+          .find(item => item.startsWith(`${name}=`));
+
+        return cookie ? decodeURIComponent(cookie.split('=').slice(1).join('=')) : '';
+      } catch (error) {
+        console.warn('Could not read cookie value', error);
+        return '';
+      }
+    }
+
+    function getSavedLoginSession() {
+      function parseSession(raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.username && parsed.usernameHash && parsed.passwordHash) {
+            return {
+              username: String(parsed.username || '').trim(),
+              usernameHash: String(parsed.usernameHash || '').trim(),
+              passwordHash: String(parsed.passwordHash || '').trim()
+            };
+          }
+        } catch {}
+
+        return null;
+      }
+
+      try {
+        const saved = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (saved) return parseSession(saved);
+      } catch (error) {
+        console.warn('Could not read login session from localStorage', error);
+      }
+
+      const cookieRaw = String(getCookieValue(AUTH_COOKIE_KEY) || '').trim();
+      return cookieRaw ? parseSession(cookieRaw) : null;
+    }
+
+    function saveCurrentLesson(title, url) {
+      const lessonState = {
+        title: String(title || '').trim(),
+        url: normalizeUrl(url)
+      };
+
+      try {
+        localStorage.setItem(LESSON_STORAGE_KEY, JSON.stringify(lessonState));
+      } catch (error) {
+        console.warn('Could not save lesson state', error);
+      }
+    }
+
+    function clearCurrentLesson() {
+      try {
+        localStorage.removeItem(LESSON_STORAGE_KEY);
+      } catch (error) {
+        console.warn('Could not clear lesson state', error);
+      }
+    }
+
+    function getSavedLesson() {
+      try {
+        const raw = localStorage.getItem(LESSON_STORAGE_KEY);
+        if (!raw) return null;
+
+        const parsed = JSON.parse(raw);
+        const title = String(parsed?.title || '').trim();
+        const url = normalizeUrl(parsed?.url || '');
+
+        if (!url || url === '#') return null;
+
+        return { title, url };
+      } catch (error) {
+        console.warn('Could not read lesson state', error);
+        return null;
+      }
+    }
+
+    function updateUserGreeting() {
+      const safeName = currentUsername || 'משתמש';
+      const greeting = `שלום: ${safeName}`;
+      greetingText.textContent = greeting;
+      lessonUser.textContent = greeting;
+      mainMenuUserText.textContent = greeting;
+      lessonMenuUserText.textContent = greeting;
+    }
+
+    function closeMobileMenus() {
+      mainMenuDropdown.classList.remove('show');
+      lessonMenuDropdown.classList.remove('show');
+      mainMenuTrigger.setAttribute('aria-expanded', 'false');
+      lessonMenuTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMobileMenu(trigger, dropdown) {
+      const isOpen = dropdown.classList.contains('show');
+      closeMobileMenus();
+      if (!isOpen) {
+        dropdown.classList.add('show');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function openSelfTest() {
+      closeMobileMenus();
+      if (!currentUsername) { showLoginModal(SELF_TEST_TITLE, SELF_TEST_URL); return; }
+      openLesson(SELF_TEST_TITLE, SELF_TEST_URL, { saveState: true, smoothScroll: false });
+    }
+
+    function openLesson(title, url, options = {}) {
+      const { saveState = true, smoothScroll = true } = options;
+      const normalizedTitle = String(title || '').trim() || 'לומדה';
+      const normalizedUrl = normalizeUrl(url);
+
+      lessonTitle.textContent = normalizedTitle;
+      lessonFrame.src = normalizedUrl;
+      gridView.classList.add('hidden');
+      appTopbar.classList.add('hidden');
+      lessonView.classList.add('show');
+      updateUserGreeting();
+
+      if (saveState) {
+        saveCurrentLesson(normalizedTitle, normalizedUrl);
+      }
+
+      closeMobileMenus();
+      window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
+    }
+
+    function goHome(options = {}) {
+      const { clearSavedLesson = true, smoothScroll = true } = options;
+
+      lessonFrame.src = '';
+      lessonView.classList.remove('show');
+      appTopbar.classList.remove('hidden');
+      gridView.classList.remove('hidden');
+
+      if (clearSavedLesson) {
+        clearCurrentLesson();
+      }
+
+      closeMobileMenus();
+      window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
+    }
+
+    function showLoginError(message) {
+      loginError.textContent = message;
+      loginError.classList.add('show');
+    }
+
+    function clearLoginError() {
+      loginError.textContent = '';
+      loginError.classList.remove('show');
+    }
+
+    function setPasswordVisibility(isVisible) {
+      passwordInput.type = isVisible ? 'text' : 'password';
+      togglePasswordBtn.textContent = isVisible ? 'הסתר' : 'הצג';
+      togglePasswordBtn.setAttribute('aria-label', isVisible ? 'הסתרת סיסמה' : 'הצגת סיסמה');
+    }
+
+    function showLoginModal(title, url) {
+      pendingLesson = (title && url) ? { title, url } : null;
+      loginModal.classList.add('show');
+      clearLoginError();
+      setTimeout(() => usernameInput.focus(), 50);
+    }
+
+    function hideLoginModal() {
+      loginModal.classList.remove('show');
+      pendingLesson = null;
+      clearLoginError();
+    }
+
+    function showGuestGrid() {
+      guestTopbar.classList.remove('hidden');
+      appTopbar.classList.add('hidden');
+      gridView.classList.remove('hidden');
+      lessonView.classList.remove('show');
+    }
+
+    function showMainMenu() {
+      loginModal.classList.remove('show');
+      guestTopbar.classList.add('hidden');
+      lessonView.classList.remove('show');
+      appTopbar.classList.remove('hidden');
+      gridView.classList.remove('hidden');
+      clearLoginError();
+      updateUserGreeting();
+      closeMobileMenus();
+    }
+
+    function resetLoginForm() {
+      loginForm.reset();
+      setPasswordVisibility(false);
+      clearLoginError();
+    }
+
+    function logout() {
+      stopSessionCheck();
+      clearLoginSession();
+      clearCurrentLesson();
+      currentUsername = '';
+      lessonFrame.src = '';
+      resetLoginForm();
+      closeMobileMenus();
+      showGuestGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+
+      if (!usersLoaded) {
+        showLoginError('לא ניתן לטעון את רשימת המשתמשים כרגע');
+        passwordInput.value = '';
+        setPasswordVisibility(false);
+        return;
+      }
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      const matchedUser = await findMatchingUser(username, password);
+
+      if (matchedUser) {
+        currentUsername = matchedUser.username;
+        saveLoginSession(matchedUser.username, matchedUser.usernameHash, matchedUser.passwordHash);
+        showMainMenu();
+        startSessionCheck();
+        const lessonToOpen = pendingLesson;
+        pendingLesson = null;
+        passwordInput.value = '';
+        setPasswordVisibility(false);
+        if (lessonToOpen) {
+          openLesson(lessonToOpen.title, lessonToOpen.url, { saveState: true, smoothScroll: false });
+        }
+        return;
+      }
+
+      showLoginError('שם המשתמש או הסיסמה שגויים');
+      passwordInput.value = '';
+      setPasswordVisibility(false);
+      passwordInput.focus();
+    }
+
+    function handleTogglePassword() {
+      const isVisible = passwordInput.type === 'text';
+      setPasswordVisibility(!isVisible);
+      passwordInput.focus();
+    }
+
+    modalCloseBtn.addEventListener('click', hideLoginModal);
+    guestLoginBtn.addEventListener('click', () => showLoginModal(null, null));
+    loginModal.addEventListener('click', (e) => { if (e.target === loginModal) hideLoginModal(); });
+    backBtn.addEventListener('click', goHome);
+    logoutBtn.addEventListener('click', logout);
+    lessonLogoutBtn.addEventListener('click', logout);
+    mobileLogoutBtn.addEventListener('click', logout);
+    mobileLessonLogoutBtn.addEventListener('click', logout);
+    mobileHeaderBackBtn.addEventListener('click', goHome);
+    mainSelfTestBtn.addEventListener('click', openSelfTest);
+    mainSelfTestMobileBtn.addEventListener('click', openSelfTest);
+    loginForm.addEventListener('submit', handleLogin);
+    togglePasswordBtn.addEventListener('click', handleTogglePassword);
+    mainMenuTrigger.addEventListener('click', () => toggleMobileMenu(mainMenuTrigger, mainMenuDropdown));
+    lessonMenuTrigger.addEventListener('click', () => toggleMobileMenu(lessonMenuTrigger, lessonMenuDropdown));
+
+    usernameInput.addEventListener('input', clearLoginError);
+    passwordInput.addEventListener('input', clearLoginError);
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('#mainMobileMenu') && !event.target.closest('#lessonMobileMenu')) {
+        closeMobileMenus();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMobileMenus();
+      }
+    });
+
+    async function validateActiveSession() {
+      if (!currentUsername) return;
+
+      try {
+        const freshUsers = await loadUsers();
+        const savedSession = getSavedLoginSession();
+        const stillValid = savedSession
+          ? freshUsers.some(user => user.u === savedSession.usernameHash && user.p === savedSession.passwordHash)
+          : false;
+
+        if (!stillValid) {
+          console.warn(`Session for "${currentUsername}" is no longer valid — logging out.`);
+          logout();
+        } else {
+          usersList = freshUsers;
+        }
+      } catch (error) {
+        console.warn('Could not validate active session against users file', error);
+      }
+    }
+
+    const SESSION_CHECK_INTERVAL_MS = 5 * 60 * 1000; // every 5 minutes
+    let sessionCheckTimer = null;
+
+    function startSessionCheck() {
+      stopSessionCheck();
+      sessionCheckTimer = setInterval(validateActiveSession, SESSION_CHECK_INTERVAL_MS);
+    }
+
+    function stopSessionCheck() {
+      if (sessionCheckTimer !== null) {
+        clearInterval(sessionCheckTimer);
+        sessionCheckTimer = null;
+      }
+    }
+
+    async function init() {
+      setPasswordVisibility(false);
+
+      try {
+        const rows = await loadMenu();
+        renderSections(rows);
+      } catch (error) {
+        console.error(error);
+        sectionsContainer.innerHTML = `
+          <div class="state">
+            לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
+            ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
+            <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong>, <strong>topic</strong> ו־<strong>sub_title</strong>.
+          </div>
+        `;
+      }
+
+      try {
+        usersList = await loadUsers();
+        usersLoaded = true;
+        const savedSession = getSavedLoginSession();
+        if (savedSession) {
+          const matchedUser = usersList.some(user => user.u === savedSession.usernameHash && user.p === savedSession.passwordHash);
+          if (matchedUser) {
+            currentUsername = savedSession.username;
+            showMainMenu();
+            startSessionCheck();
+            const savedLesson = getSavedLesson();
+            if (savedLesson) {
+              openLesson(savedLesson.title, savedLesson.url, { saveState: false, smoothScroll: false });
+            }
+          } else {
+            clearLoginSession();
+            clearCurrentLesson();
+            showGuestGrid();
+          }
+        } else {
+          showGuestGrid();
+        }
+      } catch (error) {
+        console.error(error);
+        usersLoaded = false;
+        showGuestGrid();
+      }
+    }
+
+    init();
+
+  </script>
+</body>
+</html>
