@@ -63,8 +63,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .highlight.teal{background:var(--teal-light);border-right:4px solid var(--teal);}
 .remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
 .remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
-.exam-box{background:linear-gradient(135deg,#f0fdf4,#d1fae5);border:2px solid #6ee7b7;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
-.exam-box::before{content:"📋 חשוב לבגרות: ";color:#065f46;display:block;font-size:15px;margin-bottom:8px;}
+.exam-box{background:linear-gradient(135deg,#eef2ff,#e0e7ff);border:2px solid #6366f1;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
+.exam-box::before{content:"📋 חשוב לבגרות: ";color:#3730a3;display:block;font-size:15px;margin-bottom:8px;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 @media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
 .mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
@@ -189,7 +189,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
     <div class="menu-chapter-title">🪱 תולעים ותילוע</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🪱</span>סוגי תולעים</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🪱</span>סוגי תולעים ותולעים לבנות</button>
       <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🩸</span>תולעי דם</button>
       <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🪰</span>גסטרופילוס</button>
       <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">💊</span>עקרונות תילוע</button>
@@ -350,14 +350,23 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">📉 ריכוז חלבון נמוך בקולוסטרום</span>
     <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">📦 כמות קטנה של קולוסטרום</span>
   </div>
-  <div class="highlight red">⚠️ <strong>פגיעה:</strong> אילוח דם – זיהום חיידקי הפוגע בכל האיברים.</div>
-  <div class="section-title">🤒 סימפטומים:</div>
+  <!-- פגיעה: קופסה בולטת -->
+  <div style="background:#fde8e8;border:2px solid #c0392b;border-radius:14px;padding:16px 18px;margin-bottom:14px">
+    <div style="font-weight:900;font-size:15px;color:#c0392b;margin-bottom:8px">⚠️ מה קורה בעקבות כשל מעבר סביל?</div>
+    <p style="font-size:14px;color:#7a1a1a;line-height:1.6;margin-bottom:0">
+      הסייח מפתח <strong>אילוח דם (זיהום דם)</strong> – מצב שבו חיידקים חודרים לזרם הדם ופוגעים בכל האיברים.
+      זוהי תוצאה ישירה של מערכת חיסון לא מוגנת.
+    </p>
+  </div>
+
+  <!-- סימפטומים: מה רואים בשטח -->
+  <div class="section-title">🤒 סימני אילוח הדם:</div>
   <div class="grid-2">
     <div style="background:white;border:2px solid #c0392b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">😴 חולשה</div>
     <div style="background:white;border:2px solid #e07b3b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">🫁 דלקת ריאות</div>
     <div style="background:white;border:2px solid #f59e0b;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">💧 שלשולים</div>
     <div style="background:white;border:2px solid #8b5cf6;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">🦵 מפרקים נפוחים</div>
-    <div style="background:white;border:2px solid #3b82f6;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600">👁️ דלקות עיניים</div>
+    <div style="background:white;border:2px solid #3b82f6;border-radius:10px;padding:10px;font-size:13px;text-align:center;font-weight:600;grid-column:1/-1">👁️ דלקות עיניים</div>
   </div>
   <div class="highlight green">💊 <strong>טיפול:</strong> אנטיביוטיקה תוך ורידית + הזנות בצינור קיבה.</div>
   <div class="exam-box">כשל מעבר סביל ← אילוח דם ← סכנת חיים! טיפול: אנטיביוטיקה IV + צינור קיבה.</div>
@@ -381,8 +390,14 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לזהות סימני דלקת ריאות ולתאר כיצד מאבחנים ומטפלים.</div>
   <div class="highlight red">⚠️ <strong>גורם התמותה העיקרי</strong> בסייחים בגיל חודש עד שישה חודשים!</div>
-  <div class="definition-box">
-    <strong>הגורם:</strong> חיידקים. דלקת ריאות יכולה להוביל לאילוח דם.
+
+  <!-- גורם: חיידקים -->
+  <div style="display:flex;align-items:center;gap:14px;background:white;border:2px solid #c0392b;border-radius:14px;padding:14px 18px;margin-bottom:14px">
+    <div style="font-size:36px;flex-shrink:0">🦠</div>
+    <div>
+      <div style="font-weight:900;font-size:15px;color:#c0392b;margin-bottom:4px">הגורם: חיידקים</div>
+      <div style="font-size:13px;color:#7a1a1a;line-height:1.5">דלקת ריאות נגרמת מחיידקים ועלולה להוביל ל<strong>אילוח דם (זיהום דם)</strong> – זיהום שמתפשט לכל הגוף.</div>
+    </div>
   </div>
   <div class="section-title">🤒 סימנים:</div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
@@ -464,12 +479,13 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <div class="screen" id="screen-5">
   <div class="chapter-header" style="background:linear-gradient(135deg,#3a4a00,#6a7a10)">
     <span class="chapter-num">פרק 2</span><span class="emoji">🪱</span>
-    <h1>תולעים ותולעים עגולות</h1>
-    <p class="subtitle">נפוצות במיוחד בסייחים</p>
+    <h1>סוגי תולעים ותולעים לבנות</h1>
+    <p class="subtitle">תולעים עגולות לבנות – נפוצות בסייחים</p>
   </div>
   <div class="goal-box">אני אוכל לתאר את הנזקים של תולעים ולהסביר על תולעים עגולות לבנות.</div>
   <div class="definition-box">
     קיימים <strong>למעלה מ-150 סוגים</strong> שונים של תולעים התוקפות סוסים.
+    רוב התולעים אינן מזיקות, אך חלקן עלולות לגרום לנזקים חמורים – במיוחד אצל סייחים שמערכת החיסון שלהם עוד אינה בשלה.
   </div>
   <div class="section-title">⚠️ נזקים אפשריים:</div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
@@ -481,13 +497,54 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🤕 קוליק</span>
   </div>
   <div class="section-title">🔍 תולעים עגולות לבנות:</div>
-  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:16px;margin-bottom:14px">
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">👁️</span><span style="font-size:13px;color:#3a1a5a">ניתן לראותן בצואה לאחר תילוע</span></div>
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">👶</span><span style="font-size:13px;color:#3a1a5a">נפוצות בעיקר אצל <strong>סייחים</strong> – בשל מערכת חיסון חלשה</span></div>
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🚿</span><span style="font-size:13px;color:#3a1a5a">הדבקה: שתיית מים או אכילת מזון מזוהם</span></div>
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🫁</span><span style="font-size:13px;color:#3a1a5a">נודדות בגוף ופוגעות בכבד ובריאות</span></div>
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">⚠️</span><span style="font-size:13px;color:#c0392b;font-weight:700">בסייחים: פגיעה במערכת הנשימה!</span></div>
+
+  <!-- תיאור כללי -->
+  <div class="definition-box">
+    תולעים עגולות לבנות הן תולעים גדולות יחסית, הנפוצות <strong>בעיקר בסייחים</strong> בשל מערכת החיסון החלשה שלהם.
+    הן נודדות בגוף לפני שמגיעות למעי – ובדרך גורמות <strong>נזק לכבד ולריאות</strong>.
+  </div>
+
+  <img src="https://bagruyot.org/haklaut/susim/imag/lavan.png" alt="תולעים עגולות לבנות" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+
+  <!-- 3 נושאים נפרדים -->
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:18px">👁️</div>
+      <div class="accord-title">היכן רואים אותן?</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px">💡</span>
+        <span style="font-size:13px;color:#3a1a5a;line-height:1.5">ניתן לראותן <strong>בצואה</strong> – במיוחד לאחר תילוע הסוס.</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#3b82f6;font-size:18px">🚿</div>
+      <div class="accord-title">כיצד נדבקים?</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">💧</span><span style="font-size:13px;color:#3a1a5a"><strong>שתיית מים מזוהמים</strong></span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🌾</span><span style="font-size:13px;color:#3a1a5a"><strong>אכילת מזון מזוהם</strong></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:18px">⚠️</div>
+      <div class="accord-title">למה הן מסוכנות?</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🧭</span><span style="font-size:13px;color:#3a1a5a">התולעים <strong>נודדות בגוף</strong> לפני הגעתן למעי</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🫀</span><span style="font-size:13px;color:#3a1a5a">גורמות <strong>נזק לכבד ולריאות</strong> בדרכן</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">🫁</span><span style="font-size:13px;color:#c0392b;font-weight:700">בסייחים: פגיעה במערכת הנשימה כתוצאה מנדידה לריאות!</span></div>
+      </div>
     </div>
   </div>
   <div class="question-box">
@@ -1300,7 +1357,7 @@ const mcData={
 
 const tfData={
   's0tf1':{correct:true,explanation:'נכון! לסייחים אין מאגרי אנרגיה ומערכת החיסון שלהם חלשה – לכן כל מחלה מסוכנת.'},
-  's2tf1':{correct:true,explanation:'נכון! כשל מעבר סביל גורם לאילוח דם – זיהום חיידקי הפוגע בכל האיברים.'},
+  's2tf1':{correct:true,explanation:'נכון! כשל מעבר סביל גורם לאילוח דם (זיהום דם) – זיהום חיידקי הפוגע בכל האיברים.'},
   's4tf1':{correct:false,explanation:'לא נכון! שלשול יכול להיגרם מסלמונלה, רוטה, טפילים, ומייחום האם – סיבות מגוונות.'},
   's7tf1':{correct:true,explanation:'נכון! הסוס מלקק את השערות עם הביצים → הביצים בוקעות בפה → נודדות לקיבה.'},
   's9tf1':{correct:true,explanation:'נכון! זבוב האורווה מטיל ביצים בצואה וברפד ספוג שתן – לכן ניקיון יומי הכרחי.'},
