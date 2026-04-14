@@ -204,26 +204,15 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="menu-chapter-title">🧹 תברואה ושגרה</div>
     <div class="menu-chapter">
       <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🧹</span>ממשק תברואה</button>
-      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📋</span>שגרת יום + כללי הזנה</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🌅</span>שגרת יום</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🍽️</span>כללי הזנה</button>
     </div>
-    <div class="menu-chapter-title">🤰 הריון</div>
-    <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>בדיקת הריון</button>
-      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">👶</span>תאומים</button>
-    </div>
-    <div class="menu-chapter-title">🐣 המלטה</div>
-    <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>הכנה להמלטה</button>
-      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🔴</span>שלב א</button>
-      <button class="menu-item" onclick="menuGo(19)"><span class="menu-dot"></span><span class="menu-item-icon">🟡</span>שלב ב + זיהוי המלטה</button>
-      <button class="menu-item" onclick="menuGo(20)"><span class="menu-dot"></span><span class="menu-item-icon">🟢</span>שלב ג</button>
-      <button class="menu-item" onclick="menuGo(21)"><span class="menu-dot"></span><span class="menu-item-icon">🍼</span>טיפול לאחר המלטה</button>
-    </div>
+
     <div class="menu-chapter-title">📚 סיכום</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(22)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
-      <button class="menu-item" onclick="menuGo(23)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות חזרה</button>
-      <button class="menu-item" onclick="menuGo(24)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות חזרה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
     </div>
   </div>
 </div>
@@ -240,9 +229,9 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <!-- S0: פתיחה -->
 <div class="screen active" id="screen-0">
   <div class="intro-hero">
-    <div style="font-size:56px;margin-bottom:14px">🐴🏥🌿🤰</div>
-    <h1>מחלות, הריון והמלטה<br>בסוסים</h1>
-    <p class="tagline">מחלות סייחים, טפילים, תברואה, הריון והמלטה<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div style="font-size:56px;margin-bottom:14px">🐴🏥🪱🧹</div>
+    <h1>מחלות סייחים, טפילים<br>ותברואה</h1>
+    <p class="tagline">מחלות סייחים, תולעים, טפילי עור, ממשק תברואה וכללי הזנה<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
     <div class="badges">
       <span class="intro-badge">🐎 סוסים</span>
       <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
@@ -253,11 +242,10 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="section-title">❓ מה נלמד בלומדה?</div>
     <ul class="content-list">
       <li data-icon="🐴">מחלות סייחים ולמה חשוב לטפל מהר</li>
-      <li data-icon="🛡️">כשל מעבר סביל, דלקת ריאות ושלשון</li>
+      <li data-icon="🛡️">כשל מעבר סביל, דלקת ריאות ושלשול</li>
       <li data-icon="🪱">תולעים, תילוע וטפילי עור</li>
       <li data-icon="🧹">ממשק תברואה ושגרת יום בחווה</li>
-      <li data-icon="🤰">בדיקת הריון, תאומים והכנה להמלטה</li>
-      <li data-icon="🐣">שלבי ההמלטה וטיפול לאחריה</li>
+      <li data-icon="🍽️">עשרה כללי הזנה</li>
     </ul>
   </div>
   <div class="question-box">
@@ -322,8 +310,8 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">מה קורה לסייח ללא גישה לחלב?</p>
     <div class="mc-options" id="opts-s1q1">
-      <button class="mc-option" onclick="pickOption('s1q1',0,this)"><span class="opt-letter">א</span>הוא ינסה לאכול עשב</button>
-      <button class="mc-option" onclick="pickOption('s1q1',1,this)"><span class="opt-letter">ב</span>הוא יתייבש ויסבול מנפילה ברמת הסוכר</button>
+      <button class="mc-option" onclick="pickOption('s1q1',0,this)"><span class="opt-letter">א</span>הוא יתייבש ויסבול מנפילה ברמת הסוכר</button>
+      <button class="mc-option" onclick="pickOption('s1q1',1,this)"><span class="opt-letter">ב</span>הוא ינסה לאכול עשב</button>
       <button class="mc-option" onclick="pickOption('s1q1',2,this)"><span class="opt-letter">ג</span>הוא ישתה מים רגילים</button>
       <button class="mc-option" onclick="pickOption('s1q1',3,this)"><span class="opt-letter">ד</span>לא יקרה כלום – יש לו מאגרי שומן</button>
     </div>
@@ -551,10 +539,10 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">מה מיוחד בסכנת התולעים העגולות הלבנות בסייחים?</p>
     <div class="mc-options" id="opts-s5q1">
-      <button class="mc-option" onclick="pickOption('s5q1',0,this)"><span class="opt-letter">א</span>הן גורמות לעצבנות בלבד</span></button>
+      <button class="mc-option" onclick="pickOption('s5q1',0,this)"><span class="opt-letter">א</span>הן גורמות לעצבנות בלבד</button>
       <button class="mc-option" onclick="pickOption('s5q1',1,this)"><span class="opt-letter">ב</span>פגיעה במערכת הנשימה כתוצאה מנדידה לריאות</button>
-      <button class="mc-option" onclick="pickOption('s5q1',2,this)"><span class="opt-letter">ג</span>הן גדולות מאוד ונראות בעיניים</button>
-      <button class="mc-option" onclick="pickOption('s5q1',3,this)"><span class="opt-letter">ד</span>הן מדבקות לבני אדם בלבד</button>
+      <button class="mc-option" onclick="pickOption('s5q1',2,this)"><span class="opt-letter">ג</span>הן מדבקות לבני אדם בלבד</button>
+      <button class="mc-option" onclick="pickOption('s5q1',3,this)"><span class="opt-letter">ד</span>הן גדולות מאוד ונראות בעיניים</button>
     </div>
     <div class="feedback" id="fb-s5q1"></div>
   </div>
@@ -1071,11 +1059,12 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="definition-box">
     פטריות מתרבות בסביבה <strong>לחה וחמה</strong> – אורווה לא מאווררת, ריפוד רטוב, ציוד שלא מחוטא.
     הן מועברות <strong>דרך חפצים נגועים</strong> כמו מברשות, אוכפים ושמיכות משותפות.
+    <div style="background:white;border-right:3px solid #c0392b;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#7a1a1a;font-weight:600">
+      ⚠️ חלק מהפטריות <strong>מדבקות לבני אדם</strong> – חשוב לטפל ולמנוע מגע!
+    </div>
   </div>
 
-  <!-- אזהרה חשובה -->
-  <div class="highlight red">⚠️ חלק מהפטריות <strong>מדבקות לבני אדם</strong> – חשוב לטפל ולמנוע מגע!</div>
-
+  <img src="https://bagruyot.org/haklaut/susim/imag/pitriyot.png" alt="פטריות בסוסים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <!-- מהלך טבעי -->
   <div class="highlight green">✅ ברוב המקרים הפטריות נעלמות מעצמן לאחר <strong>חודש עד שלושה חודשים</strong>.</div>
 
@@ -1120,9 +1109,9 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p style="font-size:15px;margin-bottom:14px">מה יעיל נגד פטריות?</p>
     <div class="mc-options" id="opts-s12q1">
       <button class="mc-option" onclick="pickOption('s12q1',0,this)"><span class="opt-letter">א</span>מים קרים בלבד</button>
-      <button class="mc-option" onclick="pickOption('s12q1',1,this)"><span class="opt-letter">ב</span>יוד, שמפו עם יוד, חיטוי ציוד ואור שמש</button>
+      <button class="mc-option" onclick="pickOption('s12q1',1,this)"><span class="opt-letter">ב</span>שמן קוקוס בלבד</button>
       <button class="mc-option" onclick="pickOption('s12q1',2,this)"><span class="opt-letter">ג</span>אנטיביוטיקה תוך ורידית</button>
-      <button class="mc-option" onclick="pickOption('s12q1',3,this)"><span class="opt-letter">ד</span>שמן קוקוס בלבד</button>
+      <button class="mc-option" onclick="pickOption('s12q1',3,this)"><span class="opt-letter">ד</span>יוד, שמפו עם יוד, חיטוי ציוד ואור שמש</button>
     </div>
     <div class="feedback" id="fb-s12q1"></div>
   </div>
@@ -1136,14 +1125,20 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">עקרונות בסיסיים לאורווה בריאה</p>
   </div>
   <div class="goal-box">אני אוכל למנות עקרונות תברואה בסיסיים לאורווה.</div>
+  <div class="definition-box">
+    ממשק תברואה הוא מכלול הכללים לשמירה על <strong>סביבת מחיה בריאה</strong> לסוס.
+    תברואה טובה מונעת התפשטות מחלות, תולעים, פטריות ומזיקים – ובכך שומרת על
+    בריאות הסוסים וחוסכת טיפולים יקרים.
+  </div>
   <div class="section-title">✅ כללי תברואה:</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/tavura.png" alt="כללי תברואה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#c0392b;font-size:16px">🏖️</div><div class="accord-title">הימנעות מריפוד חול</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>ריפוד חול עלול לגרום קוליק חול אם יגיע למזון.</p></div></div>
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#8b5cf6;font-size:16px">🔒</div><div class="accord-title">בידוד סוסים חדשים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>לבודד ולתלע סוסים חדשים לפני הכנסתם לאורווה.</p></div></div>
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#1a6fa8;font-size:16px">🧹</div><div class="accord-title">ניקיון יומי</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>ניקיון יומי של האורווה מונע התפשטות מזיקים ותולעים.</p></div></div>
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#27ae60;font-size:16px">🚫</div><div class="accord-title">אי העברת ציוד בין סוסים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>מניעת פטריות – אין להעביר ציוד מסוס לסוס.</p></div></div>
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#e07b3b;font-size:16px">🍽️</div><div class="accord-title">הפרדת מזון, מים וצואה</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>מניעת הדבקת תולעים – חשוב להפריד מזון ומים מהצואה.</p></div></div>
   <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#6c3483;font-size:16px">💊</div><div class="accord-title">תילוע מקביל</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>לתלע את כל הסוסים באותו הזמן. אין להביא סוסים לא מחוסנים.</p></div></div>
-  <div class="exam-box">חול → קוליק | ציוד משותף → פטריות | צואה ליד מזון → תולעים</div>
+  <div class="exam-box">חול ← קוליק | ציוד משותף ← פטריות | צואה ליד מזון ← תולעים</div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
     <p style="font-size:15px;margin-bottom:14px">למה אסור להעביר ציוד מסוס לסוס?</p>
@@ -1157,37 +1152,51 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
 </div>
 
-<!-- S14: שגרת יום + כללי הזנה -->
+<!-- S14: שגרת יום -->
 <div class="screen" id="screen-14">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
-    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">📋</span>
-    <h1>שגרת יום וכללי הזנה</h1>
-    <p class="subtitle">הסדר הנכון בחווה</p>
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">🌅</span>
+    <h1>שגרת יום בחווה</h1>
+    <p class="subtitle">הסדר הנכון מבוקר עד ערב</p>
   </div>
-  <div class="goal-box">אני אוכל לתאר את שגרת היום בחווה ואת כללי ההזנה.</div>
-  <div class="section-title">🌅 שגרת יום בחווה:</div>
-  <div style="background:var(--teal-light);border:2px solid var(--teal);border-radius:14px;padding:14px 16px;margin-bottom:16px">
-    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#0d4a4a">
-      <div>🌄 <strong>הגעה בבוקר</strong> – בדיקת סוסים (אוכל, מים, גללים, מצב)</div>
-      <div>🍽️ <strong>האכלה</strong> → 💊 <strong>תרופות וניקיון</strong> → 🏃 <strong>הוצאת מרץ</strong></div>
-      <div>🧹 <strong>ניקיון התאים</strong> → 🐴 <strong>רכיבה/אילוף/שיעורים</strong></div>
-      <div>🪥 <strong>ניקיון הסוס</strong> → 🌙 <strong>האכלת ערב</strong> → 🔍 <strong>בדיקת ערב</strong></div>
-    </div>
+  <div class="goal-box">אני אוכל לתאר את שגרת היום בחווה בסדר הנכון.</div>
+  <div class="definition-box">
+    שגרת יום קבועה חשובה לבריאות הסוסים. כל פעולה נעשית בסדר מסוים – כדי לאפשר מעקב, טיפול ומניעת בעיות.
   </div>
-  <div class="section-title">📋 10 כללי הזנה עיקריים:</div>
-  <div class="info-table">
-    <tr><th>#</th><th>הכלל</th></tr>
-    <tr><td>1</td><td>האכל לפי משקל ורמת עבודה</td></tr>
-    <tr><td>2</td><td>שעות האכלה קבועות וסדירות</td></tr>
-    <tr><td>3</td><td>לא להאכיל מזון מעופש, תוסס או מאובק</td></tr>
-    <tr><td>4</td><td>לשמור על כלי אוכל ושתייה נקיים</td></tr>
-    <tr><td>5</td><td>לבדוק אם הסוס סיים את מנתו</td></tr>
-    <tr><td>6</td><td>לא להאכיל סוס חם או מזיע</td></tr>
-    <tr><td>7</td><td>לא לרכוב מיד לאחר ארוחה</td></tr>
-    <tr><td>8</td><td>לא לשנות מזון באופן פתאומי</td></tr>
-    <tr><td>9</td><td>לדאוג לבדיקת שיניים (וטרינר)</td></tr>
-    <tr><td>10</td><td>למנוע אכילת חול, חבלים וענפים</td></tr>
+  <img src="https://bagruyot.org/haklaut/susim/imag/shigra.png" alt="שגרת יום בחווה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">🌅 הסדר במהלך היום:</div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:18px">🌄</div><div class="step-content"><strong>הגעה בבוקר – בדיקת סוסים</strong>בדיקת אוכל, מים, גללים ומצב הסוס בתא</div></div>
+  <div class="step-box" style="border-color:#3b82f6"><div class="step-num" style="background:#3b82f6;font-size:18px">🍽️</div><div class="step-content"><strong>האכלה</strong>האכלה ראשונה של היום</div></div>
+  <div class="step-box" style="border-color:#8b5cf6"><div class="step-num" style="background:#8b5cf6;font-size:18px">💊</div><div class="step-content"><strong>טיפול בסוסים</strong>תרופות, ניקיון, הוצאת מרץ</div></div>
+  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:18px">🧹</div><div class="step-content"><strong>ניקיון התאים</strong>ניקוי יומי של האורווה</div></div>
+  <div class="step-box" style="border-color:#f59e0b"><div class="step-num" style="background:#f59e0b;font-size:18px">🐴</div><div class="step-content"><strong>רכיבה / אילוף / שיעורים</strong>פעילות יומית</div></div>
+  <div class="step-box" style="border-color:#ec4899"><div class="step-num" style="background:#ec4899;font-size:18px">🪥</div><div class="step-content"><strong>ניקיון הסוס</strong>טיפוח יומי</div></div>
+  <div class="step-box" style="border-color:#0d4a4a"><div class="step-num" style="background:#0d4a4a;font-size:18px">🌙</div><div class="step-content"><strong>האכלת ערב + בדיקת ערב</strong>האכלה אחרונה ובדיקה סופית של הסוסים</div></div>
+  <div class="exam-box">בדיקת בוקר ← האכלה ← טיפול ← ניקיון ← פעילות ← ניקיון סוס ← האכלת ערב ← בדיקת ערב</div>
+</div>
+
+<!-- S14b: כללי הזנה -->
+<div class="screen" id="screen-14b">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0d4a4a,#0e7a6a)">
+    <span class="chapter-num">פרק 4 – המשך</span><span class="emoji">🍽️</span>
+    <h1>עשרה כללי הזנה</h1>
+    <p class="subtitle">כיצד מאכילים סוס נכון</p>
   </div>
+  <div class="goal-box">אני אוכל למנות את עשרת כללי ההזנה של הסוס.</div>
+  <div class="definition-box">
+    הזנה נכונה היא חלק מהותי מבריאות הסוס. הכללים נועדו למנוע בעיות עיכול, קוליק ומחלות הנובעות מאכילה לא נכונה.
+  </div>
+  <div class="section-title">📋 10 כללי הזנה:</div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#27ae60;font-size:15px">1</div><div class="accord-title">האכל לפי משקל ורמת עבודה</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>כמות המזון מותאמת למשקל הסוס ולעבודה שהוא מבצע.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#3b82f6;font-size:15px">2</div><div class="accord-title">שעות האכלה קבועות</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>יש להאכיל בשעות קבועות וסדירות – הסוס מרגיש בטוח ומצפה לארוחה.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#8b5cf6;font-size:15px">3</div><div class="accord-title">לא מזון מעופש, תוסס או מאובק</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>מזון לא טרי עלול לפגוע במערכת העיכול הרגישה של הסוס.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#e07b3b;font-size:15px">4</div><div class="accord-title">כלי אוכל ושתייה נקיים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>ניקיון כלי האוכל מונע זיהום ומחלות.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#f59e0b;font-size:15px">5</div><div class="accord-title">בדוק שהסוס סיים את מנתו</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>אם הסוס לא אכל – זה סימן לבעיה בריאותית אפשרית.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#c0392b;font-size:15px">6</div><div class="accord-title">לא להאכיל סוס חם או מזיע</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>יש לתת לסוס לנוח לפני הארוחה – לא לאכול כשהוא חם.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#ec4899;font-size:15px">7</div><div class="accord-title">לא לרכוב מיד אחרי ארוחה</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>רכיבה לאחר ארוחה עלולה לגרום לקוליק.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#0d4a4a;font-size:15px">8</div><div class="accord-title">לא לשנות מזון פתאומי</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>כל שינוי בתזונה חייב להיות הדרגתי – שינוי פתאומי מסכן.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#1a6fa8;font-size:15px">9</div><div class="accord-title">בדיקת שיניים (וטרינר)</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>שיניים בריאות מאפשרות לסוס לאכול כראוי.</p></div></div>
+  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#6c3483;font-size:15px">10</div><div class="accord-title">מניעת אכילת חול, חבלים וענפים</div><span class="accord-arrow">▼</span></div><div class="accord-body"><p>אכילת דברים שאינם מזון עלולה לגרום לחסימות ולקוליק.</p></div></div>
   <div class="question-box">
     <div class="q-title">❓ נכון או לא נכון?</div>
     <p style="font-size:15px;margin-bottom:14px">מותר לרכוב על סוס מיד לאחר ארוחה.</p>
@@ -1196,285 +1205,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <button class="tf-btn" onclick="pickTF('s14tf1',false,this)">❌ לא נכון</button>
     </div>
     <div class="feedback" id="fb-s14tf1"></div>
-  </div>
-</div>
-
-<!-- S15: בדיקת הריון -->
-<div class="screen" id="screen-15">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
-    <span class="chapter-num">פרק 5</span><span class="emoji">🔬</span>
-    <h1>בדיקת הריון</h1>
-    <p class="subtitle">שיטות אבחון שונות</p>
-  </div>
-  <div class="goal-box">אני אוכל להסביר את שיטות בדיקת ההריון בסוסה.</div>
-  <div class="section-title">🔬 שיטות בדיקה:</div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#c0392b;font-size:16px">🚫</div>
-      <div class="accord-title">בדיקת שתן – לא מקובלת</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body"><p>מיום 120 להריון עד ההמלטה. בודקת הורמון אסטרוגן. <strong>אינה מקובלת.</strong></p></div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#e07b3b;font-size:16px">🩸</div>
-      <div class="accord-title">בדיקת דם (PMSG) – לא מקובלת</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body"><p>בדיקת הורמון PMSG בדם. <strong>אינה מקובלת.</strong></p></div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#27ae60;font-size:16px">🤲</div>
-      <div class="accord-title">בדיקה רקטלית ידנית – מקובלת</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body"><p>מ-18 יום. תלויה מאוד במיומנות הווטרינר. בשליש השלישי – קל לזהות ומקובלת.</p></div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
-      <div class="accord-num" style="background:#1a6fa8;font-size:16px">📡</div>
-      <div class="accord-title">אולטרסאונד – הכי מוקדם!</div>
-      <span class="accord-arrow">▼</span>
-    </div>
-    <div class="accord-body">
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;align-items:center;gap:8px"><span>📅</span><span style="font-size:13px">זיהוי מיום <strong>12–13</strong> לאחר ביוץ</span></div>
-        <div style="display:flex;align-items:center;gap:8px"><span>🔄</span><span style="font-size:13px">זיהוי סוסות שלא התעברו → הרבעה חוזרת במחזור הבא</span></div>
-        <div style="display:flex;align-items:center;gap:8px"><span>💉</span><span style="font-size:13px">ניתן להקדים ייחום עם פרוסטגלנדין</span></div>
-        <div style="display:flex;align-items:center;gap:8px"><span>❤️</span><span style="font-size:13px">מיום 22: ניתן לראות עובר ו<strong>לב פועם</strong></span></div>
-        <div style="display:flex;align-items:center;gap:8px"><span>🔁</span><span style="font-size:13px">כדאי לחזור בסוף החודש השני – 10% עוברים ספיגה</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="exam-box">אולטרסאונד: מיום 12–13 | לב פועם: מיום 22 | לחזור בסוף חודש שני (10% ספיגה)</div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מאיזה יום ניתן לזהות הריון עם אולטרסאונד?</p>
-    <div class="mc-options" id="opts-s15q1">
-      <button class="mc-option" onclick="pickOption('s15q1',0,this)"><span class="opt-letter">א</span>מיום 30</button>
-      <button class="mc-option" onclick="pickOption('s15q1',1,this)"><span class="opt-letter">ב</span>מיום 60</button>
-      <button class="mc-option" onclick="pickOption('s15q1',2,this)"><span class="opt-letter">ג</span>מיום 120</button>
-      <button class="mc-option" onclick="pickOption('s15q1',3,this)"><span class="opt-letter">ד</span>מיום 12–13</button>
-    </div>
-    <div class="feedback" id="fb-s15q1"></div>
-  </div>
-</div>
-
-<!-- S16: תאומים -->
-<div class="screen" id="screen-16">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
-    <span class="chapter-num">פרק 5 – המשך</span><span class="emoji">👶</span>
-    <h1>המלטת תאומים</h1>
-    <p class="subtitle">מצב שיש להימנע ממנו</p>
-  </div>
-  <div class="goal-box">אני אוכל להסביר מדוע מסוכן ריון תאומים ומה עושים.</div>
-  <div class="highlight red">⚠️ הסיכוי לשני סייחים בריאים מהריון תאומים – <strong>נמוך מאוד!</strong></div>
-  <div class="section-title">❌ סכנות בתאומים:</div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
-    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😮 ספיגת שני העוברים</span>
-    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🤰 הפלה בחודש השביעי</span>
-    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">💀 ולד אחד חי ואחד מת/חלש</span>
-    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😢 מוות לאחר ההמלטה</span>
-  </div>
-  <div class="highlight green">✅ <strong>פתרון:</strong> כאשר מזהים שני עוברים – <strong>מעיכה ידנית</strong> של אחד.<br>
-  רצוי לבדוק עד <strong>יום 15</strong> – עדיין ניתן להפריד בין העוברים.</div>
-  <div class="remember-box">תאומים = סכנה! בדיקה עד יום 15 → מעיכה ידנית של עובר אחד</div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מדוע חשוב לזהות תאומים מוקדם?</p>
-    <div class="mc-options" id="opts-s16q1">
-      <button class="mc-option" onclick="pickOption('s16q1',0,this)"><span class="opt-letter">א</span>כי תאומים מצריכים תזונה כפולה</button>
-      <button class="mc-option" onclick="pickOption('s16q1',1,this)"><span class="opt-letter">ב</span>כדי להכין שני תאי מלטה</button>
-      <button class="mc-option" onclick="pickOption('s16q1',2,this)"><span class="opt-letter">ג</span>כדי לבצע מעיכה ידנית עד יום 15 ולמנוע הריון תאומים</button>
-      <button class="mc-option" onclick="pickOption('s16q1',3,this)"><span class="opt-letter">ד</span>כי תאומים לא נפוצים בסוסים</button>
-    </div>
-    <div class="feedback" id="fb-s16q1"></div>
-  </div>
-</div>
-
-<!-- S17: הכנה להמלטה -->
-<div class="screen" id="screen-17">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
-    <span class="chapter-num">פרק 6</span><span class="emoji">🏠</span>
-    <h1>הכנה להמלטה</h1>
-    <p class="subtitle">סימנים ותנאים</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את סימני ההתקרבות להמלטה ואת תנאי תא ההמלטה.</div>
-  <div class="highlight blue">📅 <strong>משך הריון תקין:</strong> בין <strong>320 ל-355 יום</strong> מההרבעה האחרונה.</div>
-  <div class="section-title">🔍 סימני התקרבות להמלטה:</div>
-  <div class="grid-2">
-    <div class="mini-card" style="border-color:#6c3483;border-top:3px solid #6c3483;text-align:center">
-      <div class="title" style="color:#6c3483">🤰 בטן גדולה ועגולה</div>
-    </div>
-    <div class="mini-card" style="border-color:#1a6fa8;border-top:3px solid #1a6fa8;text-align:center">
-      <div class="title" style="color:#1a6fa8">🍼 הגדלת עטינים</div>
-    </div>
-    <div class="mini-card" style="border-color:#27ae60;border-top:3px solid #27ae60;text-align:center;grid-column:1/-1">
-      <div class="title" style="color:#1a4a2e">🕯️ מעטה דמוי שעווה על הפטמות</div>
-    </div>
-  </div>
-  <div class="section-title">🏠 תא המלטה מתאים:</div>
-  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;margin-bottom:14px">
-    <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:#3a1a5a">
-      <div>✅ גדול דייה ובטיחותי</div>
-      <div>✅ דפנות שלמות – הסייח לא יצא</div>
-      <div>⚠️ <strong>לא להעביר</strong> סוסה למקום חדש סמוך להמלטה</div>
-      <div>📅 אם חייבים – להעביר <strong>4–6 שבועות לפני</strong></div>
-    </div>
-  </div>
-  <div class="exam-box">הריון: 320–355 יום | סימנים: בטן, עטינים, שעווה | תא: גדול, בטיחותי, להעביר 4–6 שבועות לפני</div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מה מופיע על הפטמות לפני ההמלטה?</p>
-    <div class="mc-options" id="opts-s17q1">
-      <button class="mc-option" onclick="pickOption('s17q1',0,this)"><span class="opt-letter">א</span>אדמומיות</button>
-      <button class="mc-option" onclick="pickOption('s17q1',1,this)"><span class="opt-letter">ב</span>מעטה דמוי שעווה</button>
-      <button class="mc-option" onclick="pickOption('s17q1',2,this)"><span class="opt-letter">ג</span>פצעים קטנים</button>
-      <button class="mc-option" onclick="pickOption('s17q1',3,this)"><span class="opt-letter">ד</span>כלום – הפטמות לא משתנות</button>
-    </div>
-    <div class="feedback" id="fb-s17q1"></div>
-  </div>
-</div>
-
-<!-- S18: שלב א -->
-<div class="screen" id="screen-18">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#c0392b,#8a1a1a)">
-    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🔴</span>
-    <h1>שלב א – צירי לידה</h1>
-    <p class="subtitle">הכנת הגוף להמלטה</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את סימני שלב א בהמלטה.</div>
-  <div class="definition-box">
-    <strong>שלב א</strong> – הסוסה סובלת מ"צירי לידה". יכול לקחת <strong>דקות או שעות</strong>.
-  </div>
-  <div class="section-title">🤒 סימנים בשלב א:</div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
-    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">💪 כיווצי בטן ורחם</span>
-    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">😣 חוסר נוחות</span>
-    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">💦 הזעה</span>
-    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🍽️ לא אוכלת בזמן כיווצים</span>
-    <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">🍽️ חוזרת לאכול בין כיווצים</span>
-    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🤕 סימני קוליק</span>
-    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🥛 יציאת חלב</span>
-    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">🚽 צואה רכה תכופה</span>
-  </div>
-  <div class="question-box">
-    <div class="q-title">❓ נכון או לא נכון?</div>
-    <p style="font-size:15px;margin-bottom:14px">בשלב א הסוסה מסרבת לאכול בכלל, גם בין הכיווצים.</p>
-    <div class="tf-options" id="tfopts-s18">
-      <button class="tf-btn" onclick="pickTF('s18tf1',true,this)">✅ נכון</button>
-      <button class="tf-btn" onclick="pickTF('s18tf1',false,this)">❌ לא נכון</button>
-    </div>
-    <div class="feedback" id="fb-s18tf1"></div>
-  </div>
-</div>
-
-<!-- S19: שלב ב + זיהוי המלטה -->
-<div class="screen" id="screen-19">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#a16207,#c09020)">
-    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟡</span>
-    <h1>שלב ב – יציאת הסייח</h1>
-    <p class="subtitle">ההמלטה עצמה</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את שלב ב בהמלטה ולדעת מתי נדרשת התערבות.</div>
-  <div class="section-title">🔄 מה קורה בשלב ב:</div>
-  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:16px">💧</div><div class="step-content"><strong>פקיעת המים</strong></div></div>
-  <div class="step-box" style="border-color:#f59e0b"><div class="step-num" style="background:#f59e0b;font-size:16px">🫧</div><div class="step-content"><strong>שק שקוף לבן בולט מהבושת</strong>כ-5 דקות לאחר פקיעת המים</div></div>
-  <div class="step-box" style="border-color:#8b5cf6"><div class="step-num" style="background:#8b5cf6;font-size:16px">🐴</div><div class="step-content"><strong>הסוסה שוכבת על צידה</strong>קמה ושוכבת לסירוגין לכיוון הסייח</div></div>
-  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:16px">⏱️</div><div class="step-content"><strong>המלטה תקינה: דקות ספורות בלבד!</strong></div></div>
-  <div class="highlight red">🚨 <strong>אם עובר יותר מ-20 דקות</strong> – סימן למצוקה. נדרשת <strong>התערבות וטרינר!</strong></div>
-  <div class="section-title">❓ איך יודעים שהסוסה בהמלטה?</div>
-  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;margin-bottom:14px;font-size:13px;color:#3a1a5a">
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div>✅ האם ההתנהגות מתאימה (חוסר נוחות, שכיבה)?</div>
-      <div>✅ האם הזמן מתאים?</div>
-      <div>✅ האם רואים שק בולט מהבושת?</div>
-      <div>✅ האם רואים רגל/איבר בולט מהבושת?</div>
-    </div>
-  </div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">כמה זמן יכולה להימשך המלטה תקינה?</p>
-    <div class="mc-options" id="opts-s19q1">
-      <button class="mc-option" onclick="pickOption('s19q1',0,this)"><span class="opt-letter">א</span>שעה שלמה</button>
-      <button class="mc-option" onclick="pickOption('s19q1',1,this)"><span class="opt-letter">ב</span>דקות ספורות בלבד</button>
-      <button class="mc-option" onclick="pickOption('s19q1',2,this)"><span class="opt-letter">ג</span>30–60 דקות</button>
-      <button class="mc-option" onclick="pickOption('s19q1',3,this)"><span class="opt-letter">ד</span>כמה שעות</button>
-    </div>
-    <div class="feedback" id="fb-s19q1"></div>
-  </div>
-</div>
-
-<!-- S20: שלב ג -->
-<div class="screen" id="screen-20">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2e,#2d7a2d)">
-    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟢</span>
-    <h1>שלב ג – הוצאת השליה</h1>
-    <p class="subtitle">סיום ההמלטה</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את שלב ג ולדעת מתי נדרשת התערבות דחופה.</div>
-  <div class="section-title">🔄 מה קורה בשלב ג:</div>
-  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:16px">✂️</div><div class="step-content"><strong>ניתוק חבל הטבור</strong>מתרחש לבד – ללא צורך בהתערבות (~30 דקות לאחר שלב ב)</div></div>
-  <div class="step-box" style="border-color:#1a6fa8"><div class="step-num" style="background:#1a6fa8;font-size:16px">🔄</div><div class="step-content"><strong>כיווצי הרחם ממשיכים</strong>לצורך הוצאת קרומי השליה</div></div>
-  <div class="step-box" style="border-color:#6c3483"><div class="step-num" style="background:#6c3483;font-size:16px">👁️</div><div class="step-content"><strong>דבר מה תלוי מבושת הסוסה</strong>הוצאת השליה מסתיימת תוך <strong>שעה</strong> מסוף שלב ב</div></div>
-  <div class="highlight red">🚨 עיכוב של הוצאת שליה <strong>מעל 3 שעות</strong> = טיפול וטרינרי <strong>דחוף!</strong></div>
-  <div class="highlight green">✅ יניקת הסייח מעודדת יציאת השליה. <strong>אין למשוך את השליה!</strong></div>
-  <div class="highlight amber">📋 שמור את קרומי השליה לבדיקת הווטרינר – לוודא שכל השליה יצאה.</div>
-  <div class="exam-box">שליה יוצאת תוך שעה | מעל 3 שעות = וטרינר דחוף | אין למשוך! | לשמור לבדיקה</div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מה עושים אם השליה לא יוצאת אחרי 3 שעות?</p>
-    <div class="mc-options" id="opts-s20q1">
-      <button class="mc-option" onclick="pickOption('s20q1',0,this)"><span class="opt-letter">א</span>מושכים אותה בכוח</button>
-      <button class="mc-option" onclick="pickOption('s20q1',1,this)"><span class="opt-letter">ב</span>ממתינים עוד 24 שעות</button>
-      <button class="mc-option" onclick="pickOption('s20q1',2,this)"><span class="opt-letter">ג</span>מזמינים וטרינר דחוף</button>
-      <button class="mc-option" onclick="pickOption('s20q1',3,this)"><span class="opt-letter">ד</span>נותנים לסוסה מים קרים</button>
-    </div>
-    <div class="feedback" id="fb-s20q1"></div>
-  </div>
-</div>
-
-<!-- S21: טיפול לאחר המלטה -->
-<div class="screen" id="screen-21">
-  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
-    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🍼</span>
-    <h1>טיפול לאחר המלטה</h1>
-    <p class="subtitle">שעות קריטיות לסייח</p>
-  </div>
-  <div class="goal-box">אני אוכל לתאר את המהלך התקין של הסייח ואת הטיפול הנדרש.</div>
-  <div class="highlight blue">🩺 <strong>ביקור וטרינר</strong> תוך 24 שעות מההמלטה.</div>
-  <div class="section-title">⏱️ מהלך תקין של הסייח:</div>
-  <table class="info-table">
-    <tr><th>זמן</th><th>מה קורה</th></tr>
-    <tr><td>15 דקות</td><td>שכיבה זקופה – ראש מורם</td></tr>
-    <tr><td>30–90 דקות</td><td>עמידה וניסיון יניקה</td></tr>
-    <tr><td>1.5–3.5 שעות</td><td>יניקה מוצלחת + העברת מקוניום</td></tr>
-    <tr><td>12 שעות</td><td>קים ושוכב בנקל, עוקב אחר האם, אינסטינקט יניקה חזק</td></tr>
-    <tr><td>48–72 שעות</td><td>צואה הופכת לצהובה – כל המקוניום יצא</td></tr>
-  </table>
-  <div class="section-title">🍼 טיפול בסייח:</div>
-  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#6c3483;font-size:16px">🥛</div><div class="accord-title">קולוסטרום – קריטי!</div><span class="accord-arrow">▼</span></div>
-  <div class="accord-body">
-    <p>הסייח צריך לינוק או לקבל קולוסטרום. נספג <strong>בצורה מיטבית ב-8 השעות הראשונות</strong>. לאחר 24 שעות – האפשרות נחסמת!</p>
-    <p>כמות נדרשת: <strong>לפחות ליטר-שניים</strong> של קולוסטרום.</p>
-  </div></div>
-  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#27ae60;font-size:16px">🤝</div><div class="accord-title">קשר אם-סייח</div><span class="accord-arrow">▼</span></div>
-  <div class="accord-body"><p>חשוב שהסוסה והסייח יהיו <strong>לבד ללא הפרעה</strong> – רק עם השגחה – כדי לאפשר קשר.</p></div></div>
-  <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this.parentElement)"><div class="accord-num" style="background:#1a6fa8;font-size:16px">🧴</div><div class="accord-title">חיטוי הטבור</div><span class="accord-arrow">▼</span></div>
-  <div class="accord-body"><p>לטבול את הטבור בחומר חיטוי <strong>בהזדמנות הראשונה</strong>. להמשיך <strong>פעמיים ביום, יומיים-שלושה</strong>.</p></div></div>
-  <div class="remember-box">קולוסטרום: 8 שעות ראשונות קריטיות! | חיטוי טבור: מיידי + פעמיים ביום 2–3 ימים</div>
-  <div class="question-box">
-    <div class="q-title">❓ שאלה</div>
-    <p style="font-size:15px;margin-bottom:14px">מתי נספג הקולוסטרום בצורה מיטבית?</p>
-    <div class="mc-options" id="opts-s21q1">
-      <button class="mc-option" onclick="pickOption('s21q1',0,this)"><span class="opt-letter">א</span>ב-24 השעות הראשונות</button>
-      <button class="mc-option" onclick="pickOption('s21q1',1,this)"><span class="opt-letter">ב</span>ב-48 שעות הראשונות</button>
-      <button class="mc-option" onclick="pickOption('s21q1',2,this)"><span class="opt-letter">ג</span>ב-8 השעות הראשונות</button>
-      <button class="mc-option" onclick="pickOption('s21q1',3,this)"><span class="opt-letter">ד</span>רק לאחר יומיים</button>
-    </div>
-    <div class="feedback" id="fb-s21q1"></div>
   </div>
 </div>
 
@@ -1504,13 +1234,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="glossary-item"><div class="glossary-term">🪱 גסטרופילוס</div><div class="glossary-def">זבוב המטיל ביצים על שערות הסוס. הסוס מלקק → ביצים מגיעות לקיבה. פגיעה: כיבים, קוליק.</div></div>
     <div class="glossary-item"><div class="glossary-term">🦟 גרדת</div><div class="glossary-def">מחלה אלרגית בעלת מרכיב תורשתי. רגישות לרוק יבחוש. מאופיינת בגרד, קרחות, אדמומיות.</div></div>
     <div class="glossary-item"><div class="glossary-term">🌞 Habronemiasis (פצעי קיץ)</div><div class="glossary-def">זבובים מניחים ביצי טפיל בפצעים/עיניים. הפצע מחריף. טיפול: תילוע + רשתות.</div></div>
-    <div class="glossary-item"><div class="glossary-term">📡 אולטרסאונד</div><div class="glossary-def">בדיקת הריון מיום 12–13. לב פועם מיום 22. כדאי לחזור בסוף חודש שני (10% ספיגה).</div></div>
-    <div class="glossary-item"><div class="glossary-term">👶 תאומים בסוסים</div><div class="glossary-def">מסוכן מאוד! לבדוק עד יום 15 ולבצע מעיכה ידנית של עובר אחד.</div></div>
-    <div class="glossary-item"><div class="glossary-term">🔴 שלב א בהמלטה</div><div class="glossary-def">צירי לידה – דקות עד שעות. סימנים: כיווצים, הזעה, חוסר אכילה בזמן כיווצים.</div></div>
-    <div class="glossary-item"><div class="glossary-term">🟡 שלב ב בהמלטה</div><div class="glossary-def">יציאת הסייח. דקות ספורות. מעל 20 דקות = סכנה. נדרש וטרינר.</div></div>
-    <div class="glossary-item"><div class="glossary-term">🟢 שלב ג בהמלטה</div><div class="glossary-def">הוצאת שליה תוך שעה. מעל 3 שעות = וטרינר דחוף. אין למשוך!</div></div>
     <div class="glossary-item"><div class="glossary-term">💊 תילוע</div><div class="glossary-def">כל 2–3 חודשים. סייחים מגיל חודשיים. מינון לפי משקל – מינון נמוך יוצר התנגדות!</div></div>
-    <div class="glossary-item"><div class="glossary-term">🟤 מקוניום</div><div class="glossary-def">הצואה הראשונה של הסייח. חייב להיות מועבר תוך 1.5–3.5 שעות. הצואה הופכת לצהובה ב-48–72 שעות.</div></div>
   </div>
 </div>
 
@@ -1522,47 +1246,56 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">בדוק את עצמך!</p>
   </div>
   <div class="card">
-    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">1. מה קורה אם הסייח לא מקבל קולוסטרום תוך 24 שעות?</div>
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">1. מה גורם לסייח להתדרדר מהר יותר מסוס בוגר?</div>
     <div class="mc-options" id="opts-qa1">
-      <button class="mc-option" onclick="pickOption('qa1',0,this)"><span class="opt-letter">א</span>הוא יינק חלב רגיל ויסתדר</button>
-      <button class="mc-option" onclick="pickOption('qa1',1,this)"><span class="opt-letter">ב</span>אפשרות ספיגת הנוגדנים נחסמת לחלוטין</button>
-      <button class="mc-option" onclick="pickOption('qa1',2,this)"><span class="opt-letter">ג</span>הוא יקבל קולוסטרום מסוסה אחרת</button>
-      <button class="mc-option" onclick="pickOption('qa1',3,this)"><span class="opt-letter">ד</span>לא קורה כלום מיוחד</button>
+      <button class="mc-option" onclick="pickOption('qa1',0,this)"><span class="opt-letter">א</span>אין לו מאגרי אנרגיה ומערכת החיסון שלו חלשה</button>
+      <button class="mc-option" onclick="pickOption('qa1',1,this)"><span class="opt-letter">ב</span>הסייח קטן וחלש</button>
+      <button class="mc-option" onclick="pickOption('qa1',2,this)"><span class="opt-letter">ג</span>הוא ישן יותר מדי</button>
+      <button class="mc-option" onclick="pickOption('qa1',3,this)"><span class="opt-letter">ד</span>הוא לא שותה מספיק</button>
     </div>
     <div class="feedback" id="fb-qa1"></div>
   </div>
   <div class="card">
-    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">2. מה הסכנה בתאומים בסוסים?</div>
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">2. מה הסיכון המיוחד של תולעים עגולות לבנות בסייחים?</div>
     <div class="mc-options" id="opts-qa2">
-      <button class="mc-option" onclick="pickOption('qa2',0,this)"><span class="opt-letter">א</span>אין שום סכנה מיוחדת</button>
-      <button class="mc-option" onclick="pickOption('qa2',1,this)"><span class="opt-letter">ב</span>שניהם גדלים לאט</button>
-      <button class="mc-option" onclick="pickOption('qa2',2,this)"><span class="opt-letter">ג</span>סיכון לספיגה, הפלה, ולד מת – הסיכוי לשניים בריאים נמוך מאוד</button>
-      <button class="mc-option" onclick="pickOption('qa2',3,this)"><span class="opt-letter">ד</span>קשה להאכיל שניהם</button>
+      <button class="mc-option" onclick="pickOption('qa2',0,this)"><span class="opt-letter">א</span>הן גורמות לעצבנות בלבד</button>
+      <button class="mc-option" onclick="pickOption('qa2',1,this)"><span class="opt-letter">ב</span>הן גדולות מאוד</button>
+      <button class="mc-option" onclick="pickOption('qa2',2,this)"><span class="opt-letter">ג</span>פגיעה במערכת הנשימה כתוצאה מנדידה לריאות</button>
+      <button class="mc-option" onclick="pickOption('qa2',3,this)"><span class="opt-letter">ד</span>הן מדבקות רק לבני אדם</button>
     </div>
     <div class="feedback" id="fb-qa2"></div>
   </div>
   <div class="card">
-    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">3. כמה זמן אמורה להימשך המלטה תקינה (שלב ב)?</div>
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">3. מהי גרדת בסוסים?</div>
     <div class="mc-options" id="opts-qa3">
-      <button class="mc-option" onclick="pickOption('qa3',0,this)"><span class="opt-letter">א</span>שעה–שעתיים</button>
-      <button class="mc-option" onclick="pickOption('qa3',1,this)"><span class="opt-letter">ב</span>30–60 דקות</button>
-      <button class="mc-option" onclick="pickOption('qa3',2,this)"><span class="opt-letter">ג</span>דקות ספורות</button>
-      <button class="mc-option" onclick="pickOption('qa3',3,this)"><span class="opt-letter">ד</span>20–30 דקות</button>
+      <button class="mc-option" onclick="pickOption('qa3',0,this)"><span class="opt-letter">א</span>מחלה חיידקית</button>
+      <button class="mc-option" onclick="pickOption('qa3',1,this)"><span class="opt-letter">ב</span>מחלה אלרגית תורשתית עם רגישות לרוק יבחוש</button>
+      <button class="mc-option" onclick="pickOption('qa3',2,this)"><span class="opt-letter">ג</span>הפרעת עיכול</button>
+      <button class="mc-option" onclick="pickOption('qa3',3,this)"><span class="opt-letter">ד</span>זיהום פטרייתי</button>
     </div>
     <div class="feedback" id="fb-qa3"></div>
   </div>
   <div class="card">
     <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">4. מדוע אסור לתת מינון תרופת תילוע נמוך ממשקל הסוס?</div>
     <div class="mc-options" id="opts-qa4">
-      <button class="mc-option" onclick="pickOption('qa4',0,this)"><span class="opt-letter">א</span>כי זה יקר מדי</button>
-      <button class="mc-option" onclick="pickOption('qa4',1,this)"><span class="opt-letter">ב</span>כי מינון נמוך עלול לפתח התנגדות של התולעים לתרופה</button>
-      <button class="mc-option" onclick="pickOption('qa4',2,this)"><span class="opt-letter">ג</span>כי זה לא עובד בכלל</button>
-      <button class="mc-option" onclick="pickOption('qa4',3,this)"><span class="opt-letter">ד</span>כי הסוס יאכל יותר</button>
+      <button class="mc-option" onclick="pickOption('qa4',0,this)"><span class="opt-letter">א</span>כי זה יקר</button>
+      <button class="mc-option" onclick="pickOption('qa4',1,this)"><span class="opt-letter">ב</span>כי הסוס יאכל פחות</button>
+      <button class="mc-option" onclick="pickOption('qa4',2,this)"><span class="opt-letter">ג</span>כי זה לא עובד</button>
+      <button class="mc-option" onclick="pickOption('qa4',3,this)"><span class="opt-letter">ד</span>מינון נמוך עלול לפתח התנגדות של התולעים לתרופה</button>
     </div>
     <div class="feedback" id="fb-qa4"></div>
   </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">5. מה כלל ממשק התברואה שמונע הדבקת תולעים?</div>
+    <div class="mc-options" id="opts-qa5">
+      <button class="mc-option" onclick="pickOption('qa5',0,this)"><span class="opt-letter">א</span>הפרדת מזון ומים מהצואה</button>
+      <button class="mc-option" onclick="pickOption('qa5',1,this)"><span class="opt-letter">ב</span>ריסוס נגד זבובים</button>
+      <button class="mc-option" onclick="pickOption('qa5',2,this)"><span class="opt-letter">ג</span>ניקיון השיניים</button>
+      <button class="mc-option" onclick="pickOption('qa5',3,this)"><span class="opt-letter">ד</span>תילוע רק בסתיו</button>
+    </div>
+    <div class="feedback" id="fb-qa5"></div>
+  </div>
 </div>
-
 <!-- S24: סיום -->
 <div class="screen" id="screen-24">
   <div class="completion-card">
@@ -1579,10 +1312,6 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <li data-icon="✅">תולעים עגולות, תולעי דם, גסטרופילוס – נזקים ומניעה</li>
       <li data-icon="✅">גרדת, קרציות, פצעי קיץ, פטריות</li>
       <li data-icon="✅">ממשק תברואה ועשרה כללי הזנה</li>
-      <li data-icon="✅">בדיקת הריון עם אולטרסאונד – מיום 12</li>
-      <li data-icon="✅">תאומים – בדיקה עד יום 15, מעיכה ידנית</li>
-      <li data-icon="✅">שלבי ההמלטה א, ב, ג – סימנים ומתי נדרש וטרינר</li>
-      <li data-icon="✅">קולוסטרום – 8 שעות קריטיות, חיטוי טבור</li>
     </ul>
   </div>
   <div class="exam-box">חזור על הנושאים שהיו קשים. בהצלחה בבגרות! 🎯</div>
@@ -1600,16 +1329,14 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <script>
-const TOTAL = 25;
+const TOTAL = 19;
 let current = 0;
 const chapterLabels = [
   'פתיחה',
   'למה לטפל מהר?','כשל מעבר סביל','דלקת ריאות','שלשול',
   'תולעים עגולות','תולעי דם','גסטרופילוס','עקרונות תילוע',
   'זבובים','יבחושים וגרדת','קרציות ופצעי קיץ','פטריות',
-  'ממשק תברואה','שגרת יום + כללי הזנה',
-  'בדיקת הריון','תאומים',
-  'הכנה להמלטה','שלב א','שלב ב','שלב ג','טיפול לאחר המלטה',
+  'ממשק תברואה','שגרת יום','כללי הזנה',
   'מילון מונחים','שאלות חזרה','סיום'
 ];
 
@@ -1640,24 +1367,25 @@ function menuGo(n){closeMenu();goTo(n);}
 function toggleAccord(el){el.classList.toggle('open');}
 
 const mcData={
-  's1q1':{correct:1,explanation:'ללא חלב הסייח יתייבש ויסבול מנפילה ברמת הסוכר – אין לו מאגרי אנרגיה.'},
+  's1q1':{correct:0,explanation:'ללא חלב הסייח יתייבש ויסבול מנפילה ברמת הסוכר – אין לו מאגרי אנרגיה.'},
   's3q1':{correct:2,explanation:'דלקת ריאות היא גורם התמותה העיקרי בסייחים בגיל חודש עד שישה חודשים.'},
   's5q1':{correct:1,explanation:'בסייחים התולעים נודדות לריאות וגורמות לפגיעה במערכת הנשימה – סכנה ייחודית לגיל זה.'},
   's6q1':{correct:2,explanation:'פעמיים בשבוע – זה מקטין משמעותית את סיכויי ההדבקה.'},
   's8q1':{correct:2,explanation:'מגיל חודשיים – כל חודש-חודשיים עד גיל שנה, ואחר כך עם שאר הסוסים.'},
   's10q1':{correct:1,explanation:'גרדת = מחלה אלרגית בעלת מרכיב תורשתי. רגישות לרוק היבחוש.'},
-  's12q1':{correct:1,explanation:'יוד, שמפו עם יוד, חיטוי ציוד ואור שמש – כולם יעילים נגד פטריות.'},
+  's12q1':{correct:3,explanation:'יוד, שמפו עם יוד, חיטוי ציוד ואור שמש – כולם יעילים נגד פטריות.'},
   's13q1':{correct:2,explanation:'ציוד משותף מעביר פטריות בין סוסים – אסור!'},
-  's15q1':{correct:3,explanation:'אולטרסאונד מזהה הריון כבר מיום 12–13 לאחר ביוץ – הכי מוקדם מכל השיטות.'},
-  's16q1':{correct:2,explanation:'חשוב לזהות עד יום 15 כדי שניתן יהיה לבצע מעיכה ידנית ולמנוע הריון תאומים מסוכן.'},
-  's17q1':{correct:1,explanation:'מעטה דמוי שעווה על הפטמות הוא אחד מסימני ההתקרבות להמלטה.'},
-  's19q1':{correct:1,explanation:'המלטה תקינה נמשכת דקות ספורות בלבד. מעל 20 דקות = סכנה.'},
-  's20q1':{correct:2,explanation:'עיכוב הוצאת שליה מעל 3 שעות מצריך טיפול וטרינרי דחוף. לעולם אין למשוך!'},
-  's21q1':{correct:2,explanation:'הקולוסטרום נספג בצורה מיטבית ב-8 השעות הראשונות. לאחר 24 שעות האפשרות נחסמת.'},
-  'qa1':{correct:1,explanation:'לאחר 24 שעות אפשרות ספיגת הנוגדנים נחסמת לחלוטין – לכן 8 השעות הראשונות קריטיות.'},
-  'qa2':{correct:2,explanation:'הסיכוי לשני סייחים בריאים נמוך מאוד. תאומים עלולים להיספג, להיות מופלים, או למות לאחר הלידה.'},
-  'qa3':{correct:2,explanation:'המלטה תקינה נמשכת דקות ספורות. מעל 20 דקות = מצוקה ונדרשת התערבות.'},
-  'qa4':{correct:1,explanation:'מינון נמוך ממשקל הסוס עלול לפתח התנגדות של התולעים לתרופה. תמיד לפי משקל!'}
+  's15q1':{correct:1,explanation:'אולטרסאונד מזהה הריון כבר מיום 12–13 לאחר ביוץ – הכי מוקדם מכל השיטות.'},
+  's16q1':{correct:0,explanation:'חשוב לזהות עד יום 15 כדי שניתן יהיה לבצע מעיכה ידנית ולמנוע הריון תאומים מסוכן.'},
+  's17q1':{correct:2,explanation:'מעטה דמוי שעווה על הפטמות הוא אחד מסימני ההתקרבות להמלטה.'},
+  's19q1':{correct:3,explanation:'המלטה תקינה נמשכת דקות ספורות בלבד. מעל 20 דקות = סכנה.'},
+  's20q1':{correct:0,explanation:'עיכוב הוצאת שליה מעל 3 שעות מצריך טיפול וטרינרי דחוף. לעולם אין למשוך!'},
+  's21q1':{correct:1,explanation:'הקולוסטרום נספג בצורה מיטבית ב-8 השעות הראשונות. לאחר 24 שעות האפשרות נחסמת.'},
+  'qa1':{correct:0,explanation:'לסייחים אין מאגרי אנרגיה ומערכת החיסון שלהם חלשה – לכן כל מחלה עלולה להיות קטלנית.'},
+  'qa2':{correct:2,explanation:'תולעים עגולות לבנות נודדות לריאות בסייחים וגורמות לפגיעה במערכת הנשימה.'},
+  'qa3':{correct:1,explanation:'גרדת = מחלה אלרגית בעלת מרכיב תורשתי. רגישות לרוק היבחוש.'},
+  'qa4':{correct:3,explanation:'מינון נמוך ממשקל הסוס עלול לפתח התנגדות של התולעים לתרופה. תמיד לפי משקל!'},
+  'qa5':{correct:0,explanation:'הפרדת מזון ומים מהצואה מונעת הדבקת תולעים – כלל בסיסי בממשק תברואה.'}
 };
 
 const tfData={
