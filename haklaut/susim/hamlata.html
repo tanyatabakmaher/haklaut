@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>גנטיקה, הריון והמלטה בסוסים | לומדה דיגיטלית</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{
+  --bg:#f5f0fa;--card:#fff;--primary:#6c3483;--primary-light:#ede0f5;
+  --secondary:#1a6fa8;--secondary-light:#dbeafe;
+  --hot:#c0392b;--hot-light:#fde8e8;--green:#27ae60;--green-light:#d5f0e0;
+  --amber:#e07b3b;--amber-light:#feebd8;
+  --teal:#0d4a4a;--teal-light:#d0f0f0;
+  --text:#1a0a2e;--text-muted:#5a4a6a;--border:#ddd0ee;
+  --shadow:0 4px 20px rgba(108,52,131,0.10);--radius:16px;--font:'Heebo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#6c3483,#4a1a5a);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;letter-spacing:.5px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#c8b0d8;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#progress-track{flex:1;height:10px;background:#ddd0ee;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#6c3483,#1a6fa8);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#3a1a5a;}
+.goal-box::before{content:"🎯 ";}
+.definition-box{background:linear-gradient(135deg,#fffbf0,#fef3d0);border:2px solid #e8c97a;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;color:#4a3010;}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.purple{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.blue{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.amber{background:var(--amber-light);border-right:4px solid var(--amber);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.teal{background:var(--teal-light);border-right:4px solid var(--teal);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.exam-box{background:linear-gradient(135deg,#eef2ff,#e0e7ff);border:2px solid #6366f1;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:14px;}
+.exam-box::before{content:"📋 חשוב לבגרות: ";color:#3730a3;display:block;font-size:15px;margin-bottom:8px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{display:block;margin-bottom:4px;font-size:16px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:var(--primary);color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:var(--primary-light);}
+.question-box{background:#f5f0fa;border:2px solid #c8a0e8;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#3a1a5a;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.accord-item{border:2px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;}
+.accord-header{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;background:white;user-select:none;}
+.accord-num{min-width:38px;height:38px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0;}
+.accord-title{flex:1;font-size:16px;font-weight:700;color:var(--text);}
+.accord-arrow{font-size:13px;color:var(--text-muted);transition:transform .25s;flex-shrink:0;}
+.accord-item.open .accord-arrow{transform:rotate(180deg);}
+.accord-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;background:#f9f0ff;padding:0 16px;}
+.accord-item.open .accord-body{max-height:700px;padding:14px 16px;}
+.accord-body p{font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:6px;}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#6c3483,#4a1a5a);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#1a6fa8,#0d4a7a);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#4a1a5a 0%,#6c3483 40%,#1a6fa8 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐴';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#6c3483,#1a6fa8);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;font-size:13px;}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🧬 תפריט הלומדה</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🧬 השבחת סוסים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🎯</span>מהי השבחה ומבחן טיפוח</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>סכימה ואמות מידה</button>
+    </div>
+    <div class="menu-chapter-title">📚 ספר רישום וסוסי הרבעה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>ספר רישום</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🐎</span>סוסי הרבעה</button>
+    </div>
+    <div class="menu-chapter-title">🤰 בדיקת הריון</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>שיטות בדיקה</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">📡</span>אולטרסאונד</button>
+    </div>
+    <div class="menu-chapter-title">👶 תאומים והכנה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">👶</span>המלטת תאומים</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>הכנה להמלטה</button>
+    </div>
+    <div class="menu-chapter-title">🐣 שלבי המלטה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🔴</span>שלב א</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🟡</span>שלב ב + זיהוי</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🟢</span>שלב ג</button>
+    </div>
+    <div class="menu-chapter-title">🍼 טיפול לאחר המלטה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">⏱️</span>מהלך תקין</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🥛</span>קולוסטרום וטיפול</button>
+    </div>
+    <div class="menu-chapter-title">📚 סיכום</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📖</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>שאלות חזרה</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()">
+    <span style="color:white;font-size:16px">☰</span>
+    <span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700;margin-right:8px">פתיחה</span>
+  </button>
+  <span style="font-size:22px">🧬</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 17</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🧬🐎🤰🐣</div>
+    <h1>גנטיקה, הריון<br>והמלטה בסוסים</h1>
+    <p class="tagline">השבחה גנטית, בדיקת הריון, שלבי המלטה וטיפול בסייח<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐎 סוסים</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">❓ מה נלמד בלומדה?</div>
+    <ul class="content-list">
+      <li data-icon="🧬">השבחת סוסים – מבחן טיפוח ואמות מידה</li>
+      <li data-icon="📖">ספר רישום וסוסי הרבעה</li>
+      <li data-icon="🤰">שיטות בדיקת הריון כולל אולטרסאונד</li>
+      <li data-icon="👶">תאומים – למה מסוכן וכיצד מטפלים</li>
+      <li data-icon="🐣">שלבי ההמלטה א, ב, ג</li>
+      <li data-icon="🍼">קולוסטרום וטיפול בסייח לאחר המלטה</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלת פתיחה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה המטרה של השבחת סוסים?</p>
+    <div class="tf-options" id="tfopts-s0">
+      <button class="tf-btn" onclick="pickTF('s0tf1',true,this)">ליצור עדר עם תכונות רצויות דרך ברירה קפדנית ובדיקות גנטיות</button>
+      <button class="tf-btn" onclick="pickTF('s0tf1',false,this)">לבחור את הסוס הגדול ביותר</button>
+    </div>
+    <div class="feedback" id="fb-s0tf1"></div>
+  </div>
+</div>
+
+<!-- S1: השבחה + מבחן טיפוח -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🧬</span>
+    <h1>השבחת סוסים</h1>
+    <p class="subtitle">מהי השבחה ומהו המבחן לטיפוח</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי השבחת סוסים ומה כולל המבחן לטיפוח.</div>
+  <div class="definition-box">
+    <strong>השבחת סוסים</strong> = תהליך שבו בוחרים <strong>זכרים מסוימים</strong> לשמש כסוסי הרבעה, על בסיס מדדים קפדניים.
+    המטרה: ליצור עדר עם <strong>תכונות רצויות</strong> לאורך דורות.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/tipuah.png" alt="השבחת סוסים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">🎯 מדדים לבחירת זכרים – המבחן לטיפוח:</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#6c3483;font-size:18px">👑</div>
+      <div class="accord-title">ייחוס</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מי הוריו של הסוס – האם הם איכותיים? הייחוס מעיד על הרקע הגנטי.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#1a6fa8;font-size:18px">👀</div>
+      <div class="accord-title">חזות חיצונית</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>מראה הסוס – מבנה גוף, צבע, יחסי גוף. חשוב כמדד ראשוני.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:18px">🏃</div>
+      <div class="accord-title">תכונות וביצועים</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>כיצד הסוס מתפקד בפועל – מהירות, נוחות רכיבה, תנועות גפיים. נבדק בשלב הראשון.</p></div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#e07b3b;font-size:18px">🧪</div>
+      <div class="accord-title">כושר גנטי</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body"><p>נבדק בשלב <strong>מאוחר יותר</strong> – על ידי בחינת הצאצאים. האם הסוס העביר תכונות טובות?</p></div>
+  </div>
+  <div class="remember-box">ייחוס + חזות + ביצועים + כושר גנטי = המבחן לטיפוח</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כושר גנטי נבדק על ידי:</p>
+    <div class="mc-options" id="opts-s1q1">
+      <button class="mc-option" onclick="pickOption('s1q1',0,this)"><span class="opt-letter">א</span>בדיקת דם של הסוס</button>
+      <button class="mc-option" onclick="pickOption('s1q1',1,this)"><span class="opt-letter">ב</span>מראה הסוס בלבד</button>
+      <button class="mc-option" onclick="pickOption('s1q1',2,this)"><span class="opt-letter">ג</span>בחינת הצאצאים</button>
+      <button class="mc-option" onclick="pickOption('s1q1',3,this)"><span class="opt-letter">ד</span>גיל הסוס</button>
+    </div>
+    <div class="feedback" id="fb-s1q1"></div>
+  </div>
+</div>
+
+<!-- S2: סכימה כללית ואמות מידה -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 1 – המשך</span><span class="emoji">📊</span>
+    <h1>סכימה כללית לטיפוח</h1>
+    <p class="subtitle">מטרות, אמות מידה ותהליך</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מטרות הטיפוח ואת אמות המידה להשבחה.</div>
+  <div class="definition-box">
+    על ידי טיפוח המבוסס על <strong>ברירה קפדנית</strong>, מבחן הישגים ובדיקות כושר גנטי – ניתן ליצור עדר סוסים בעלי תכונות רצויות.
+    אמות המידה להשבחה הן <strong>ביצועים, חזות ומגילת יוחסין</strong>. שימוש בספר הרישום מסייע לבחירת הזכרים בהתאם למטרת ההשבחה.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/tipuahklali.png" alt="סכימה כללית לטיפוח" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">🎯 מטרות הטיפוח – דוגמאות:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#ede0f5;border:1.5px solid #6c3483;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#4a1a5a">🐴 סוס לרכיבה</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🏃 תנועות גפיים מהירות</span>
+    <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">😌 נוחות הרכיבה</span>
+  </div>
+  <div class="highlight blue">💡 על ידי <strong>ברירה קפדנית</strong>, מבחן הישגים ובדיקות כושר גנטי – ניתן ליצור עדר עם תכונות רצויות.</div>
+  <div class="section-title">📋 3 אמות המידה להשבחה:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-top:3px solid #6c3483;border-color:#6c3483;text-align:center">
+      <div class="title" style="color:#6c3483">🏆 ביצועים</div>
+      <p style="font-size:12px;color:var(--text-muted)">כיצד הסוס מתפקד בפועל</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #1a6fa8;border-color:#1a6fa8;text-align:center">
+      <div class="title" style="color:#1a6fa8">👁️ חזות</div>
+      <p style="font-size:12px;color:var(--text-muted)">מראה ומבנה גוף</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #27ae60;border-color:#27ae60;text-align:center;grid-column:1/-1">
+      <div class="title" style="color:#1a4a2e">📜 מגילת יוחסין</div>
+      <p style="font-size:12px;color:var(--text-muted)">ספר הרישום – עוזר לבחור זכרים לפי מטרת ההשבחה</p>
+    </div>
+  </div>
+  <div class="exam-box">3 אמות מידה: ביצועים + חזות + מגילת יוחסין | כלי: ספר הרישום</div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">ספר הרישום מסייע לבחור זכרים בהתאם למטרת ההשבחה.</p>
+    <div class="tf-options" id="tfopts-s2">
+      <button class="tf-btn" onclick="pickTF('s2tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s2tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s2tf1"></div>
+  </div>
+</div>
+
+<!-- S3: ספר רישום -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">📖</span>
+    <h1>ספר רישום</h1>
+    <p class="subtitle">תיעוד הזכרים והסוסות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מטרת ספר הרישום ומה נרשם בו.</div>
+  <div class="definition-box">
+    <strong>ספר רישום</strong> = מסמך שבו נרשמים כל הסוסים לצורך מעקב גנטי, זיהוי ובחירה לטיפוח.
+    <div style="background:white;border-right:3px solid #e8c97a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#4a3010;font-weight:700">
+      💡 ספר הרישום מאפשר לבחור זכרים מתאימים לפי מטרת ההשבחה!
+    </div>
+  </div>
+  <div class="grid-2">
+    <!-- ספר הזכרים -->
+    <div style="border:2px solid #6c3483;border-radius:14px;overflow:hidden">
+      <div style="background:#6c3483;color:white;padding:10px 14px;font-weight:900;font-size:14px">🐴 ספר הזכרים</div>
+      <div style="background:white;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">מי</span>
+          <span style="background:#ede0f5;color:#4a1a5a;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">כל הזכרים</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">רישום</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">גזע</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">פרטי זיהוי</span>
+        </div>
+      </div>
+    </div>
+    <!-- ספר הסוסות -->
+    <div style="border:2px solid #1a6fa8;border-radius:14px;overflow:hidden">
+      <div style="background:#1a6fa8;color:white;padding:10px 14px;font-weight:900;font-size:14px">🐴 ספר הסוסות</div>
+      <div style="background:white;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">מי</span>
+          <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">כל הנקבות</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">רישום</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">גזע</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">פרטי זיהוי</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✏️ השלם את המשפט</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">לחץ על מילה מהבנק ← אחר כך לחץ על החלק החסר</p>
+
+    <!-- המשפט עם חלקים ניתנים להשלמה -->
+    <div id="fill-sentence" style="font-size:16px;line-height:2;margin-bottom:16px;background:#f9f0ff;border-radius:12px;padding:14px 16px;text-align:right">
+      ספר רישום הוא מסמך שבו נרשמים
+      <span id="blank1" onclick="fillBlank('blank1')" style="display:inline-block;min-width:70px;border-bottom:2px dashed #6c3483;padding:2px 8px;margin:0 4px;cursor:pointer;border-radius:6px;font-weight:700;color:#6c3483;text-align:center;background:white">___</span>
+      הסוסים, לצורך מעקב גנטי, זיהוי ו
+      <span id="blank2" onclick="fillBlank('blank2')" style="display:inline-block;min-width:70px;border-bottom:2px dashed #6c3483;padding:2px 8px;margin:0 4px;cursor:pointer;border-radius:6px;font-weight:700;color:#6c3483;text-align:center;background:white">___</span>
+      לטיפוח.
+    </div>
+
+    <!-- בנק מילים -->
+    <div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:8px">בנק מילים – לחץ על מילה:</div>
+    <div id="word-bank" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <button class="word-chip" id="chip-kol" onclick="selectWord('כל','chip-kol')" style="background:#ede0f5;border:2px solid #6c3483;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:700;color:#4a1a5a;cursor:pointer;font-family:var(--font);transition:all .2s">כל</button>
+      <button class="word-chip" id="chip-behira" onclick="selectWord('בחירה','chip-behira')" style="background:#ede0f5;border:2px solid #6c3483;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:700;color:#4a1a5a;cursor:pointer;font-family:var(--font);transition:all .2s">בחירה</button>
+      <button class="word-chip" id="chip-halak" onclick="selectWord('חלק מ','chip-halak')" style="background:#ede0f5;border:2px solid #6c3483;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:700;color:#4a1a5a;cursor:pointer;font-family:var(--font);transition:all .2s">חלק מ</button>
+      <button class="word-chip" id="chip-imun" onclick="selectWord('אימון','chip-imun')" style="background:#ede0f5;border:2px solid #6c3483;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:700;color:#4a1a5a;cursor:pointer;font-family:var(--font);transition:all .2s">אימון</button>
+    </div>
+
+    <div id="fill-feedback" style="display:none;border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;margin-top:4px"></div>
+  </div>
+
+  <script>
+  (function(){
+    var selected = null; // the word currently selected from bank
+    var blanks = {blank1: null, blank2: null};
+    var correct = {blank1:'כל', blank2:'בחירה'};
+
+    window.selectWord = function(word, chipId) {
+      // Deselect previous
+      document.querySelectorAll('.word-chip').forEach(function(c){c.style.outline='none';c.style.transform='';});
+      selected = word;
+      var chip = document.getElementById(chipId);
+      chip.style.outline = '3px solid #6c3483';
+      chip.style.transform = 'scale(1.08)';
+    };
+
+    window.fillBlank = function(blankId) {
+      if (!selected) return;
+      var blank = document.getElementById(blankId);
+      blanks[blankId] = selected;
+      blank.textContent = selected;
+
+      var isCorrect = (selected === correct[blankId]);
+      blank.style.background = isCorrect ? '#d5f0e0' : '#fde8e8';
+      blank.style.color = isCorrect ? '#1a4a2e' : '#c0392b';
+      blank.style.borderBottom = isCorrect ? '2px solid #27ae60' : '2px solid #c0392b';
+
+      // Reset selection
+      selected = null;
+      document.querySelectorAll('.word-chip').forEach(function(c){c.style.outline='none';c.style.transform='';});
+
+      // Check if both filled
+      if (blanks.blank1 && blanks.blank2) {
+        var fb = document.getElementById('fill-feedback');
+        if (blanks.blank1 === correct.blank1 && blanks.blank2 === correct.blank2) {
+          fb.style.display = 'block';
+          fb.style.background = '#d5f0e0';
+          fb.style.border = '2px solid #27ae60';
+          fb.style.color = '#065f46';
+          fb.innerHTML = '🎉 <strong>נכון!</strong> ספר רישום = מסמך שנרשמים בו <strong>כל</strong> הסוסים לצורך מעקב גנטי, זיהוי ו<strong>בחירה</strong> לטיפוח.';
+        } else {
+          fb.style.display = 'block';
+          fb.style.background = '#fde8e8';
+          fb.style.border = '2px solid #c0392b';
+          fb.style.color = '#991b1b';
+          fb.innerHTML = '❌ לא מדויק – בדוק שוב! לחץ על חלל כדי לשנות.';
+        }
+      }
+    };
+  })();
+  </script>
+</div>
+
+<!-- S4: סוסי הרבעה -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a3a6a,#2a5fa0)">
+    <span class="chapter-num">פרק 2 – המשך</span><span class="emoji">🐎</span>
+    <h1>סוסי הרבעה</h1>
+    <p class="subtitle">גיל, בגרות ובדיקות לפני הרבעה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלבי הבגרות של הסוס ואת הבדיקות לפני הרבעה.</div>
+  <div class="definition-box">
+    ניתן להשתמש בסוס להרבעה מגיל <strong>שנתיים</strong>, למרות שהוא מגיע לבגרות מינית כבר ב-<strong>12–15 חודשים</strong>.
+    סוס בוגר משמש ל-<strong>2 הרבעות ביום</strong>. הבגרות המלאה מגיעה בגיל 5, והסוס נחשב זקן מגיל 18.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/bagrut.png" alt="ציר הזמן של הסוס" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">📅 ציר הזמן של הסוס:</div>
+  <div class="step-box" style="border-color:#e8d87a">
+    <div class="step-num" style="background:#e8d87a;font-size:16px;color:#a16207">1</div>
+    <div class="step-content"><strong>בגרות מינית: 12–15 חודשים</strong><span style="display:inline-block;background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;color:#c0392b;margin-top:4px">⛔ צעיר מדי</span></div>
+  </div>
+  <div class="step-box" style="border-color:#f4a97a">
+    <div class="step-num" style="background:#f4a97a;font-size:16px;color:#7c4f1a">2</div>
+    <div class="step-content"><strong>גיל שימוש להרבעה: שנתיים</strong><span style="display:inline-block;background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;color:#1a4a2e;margin-top:4px">✅ מומלץ</span> <span style="font-size:13px;color:var(--text-muted)">· 2 הרבעות ביום</span></div>
+  </div>
+  <div class="step-box" style="border-color:#86c9a8">
+    <div class="step-num" style="background:#86c9a8;font-size:16px;color:#1a4a2e">3</div>
+    <div class="step-content"><strong>בגרות מלאה: 5 שנים</strong><span style="display:inline-block;background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;color:#1a4a2e;margin-top:4px">✅ שיא הכוח</span></div>
+  </div>
+  <div class="step-box" style="border-color:#c8b0d8">
+    <div class="step-num" style="background:#c8b0d8;font-size:16px;color:#4a1a5a">4</div>
+    <div class="step-content"><strong>זקנה: 18 שנים</strong><span style="display:inline-block;background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;color:#c0392b;margin-top:4px">⛔ ירידה ביכולות</span></div>
+  </div>
+  <div class="section-title" style="margin-top:8px">🔬 בדיקות לפני הרבעה:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-top:3px solid #c0392b;border-color:#c0392b">
+      <div class="title" style="color:#c0392b">🧪 איכות הזרמה</div>
+      <p style="font-size:12px;color:var(--text-muted)">בדיקת כמות ואיכות הזרע לפני ההרבעה</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #e07b3b;border-color:#e07b3b">
+      <div class="title" style="color:#7c4f1a">🩺 אבחון מחלות</div>
+      <p style="font-size:12px;color:var(--text-muted)">בדיקת מחלות והשפעתן על הפוריות</p>
+    </div>
+  </div>
+  <div class="exam-box">שימוש מגיל שנתיים | 2 הרבעות ביום | בגרות מלאה 5 שנים | זקנה 18 שנים</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מאיזה גיל אפשר להשתמש בסוס להרבעה?</p>
+    <div class="mc-options" id="opts-s4q1">
+      <button class="mc-option" onclick="pickOption('s4q1',0,this)"><span class="opt-letter">א</span>6 חודשים</button>
+      <button class="mc-option" onclick="pickOption('s4q1',1,this)"><span class="opt-letter">ב</span>שנה</button>
+      <button class="mc-option" onclick="pickOption('s4q1',2,this)"><span class="opt-letter">ג</span>שנתיים</button>
+      <button class="mc-option" onclick="pickOption('s4q1',3,this)"><span class="opt-letter">ד</span>5 שנים</button>
+    </div>
+    <div class="feedback" id="fb-s4q1"></div>
+  </div>
+</div>
+
+<!-- S5: שיטות בדיקת הריון -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a1a6a,#6a2fa0)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">🔬</span>
+    <h1>בדיקת הריון</h1>
+    <p class="subtitle">ארבע שיטות אבחון</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שיטות בדיקת ההריון ולהסביר מה מקובל ומה לא.</div>
+  <div class="definition-box">
+    קיימות מספר שיטות לבדיקת הריון בסוסה. חלקן <strong>מקובלות</strong> בשימוש מעשי וחלקן <strong>אינן מקובלות</strong> – בשל מגבלות דיוק או זמינות.
+    <div style="background:white;border-right:3px solid #e8c97a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#4a3010;font-weight:700">
+      💡 <strong>סימן ראשוני:</strong> הסוסה אינה דורשת יותר – לא מגיבה לזכרים. מכך ניתן לחשוד בהריון.
+    </div>
+  </div>
+
+  <img src="https://bagruyot.org/haklaut/susim/imag/bdikaterayon.png" alt="בדיקת הריון" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">🔬 סוגי בדיקות לזיהוי הריון:</div>
+
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#1a6fa8;font-size:18px">📡</div>
+      <div class="accord-title">אולטרסאונד</div>
+      <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;margin-left:8px">✅ מקובלת</span>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+        <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">📅 מיום 12–13</span>
+        <span style="background:#ede0f5;color:#4a1a5a;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">⭐ הכי מוקדם ומדויק</span>
+      </div>
+      <p>ראה פרק הבא לפירוט מלא.</p>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#27ae60;font-size:18px">🤲</div>
+      <div class="accord-title">בדיקה רקטלית ידנית</div>
+      <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;margin-left:8px">✅ מקובלת</span>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+        <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">📅 מ-18 יום</span>
+        <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">בשליש השלישי – קל לזיהוי</span>
+      </div>
+      <p>תלויה מאוד במיומנות הווטרינר. ניתן לטעות בבדיקות מוקדמות.</p>
+    </div>
+  </div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#c0392b;font-size:18px">🩸</div>
+      <div class="accord-title">בדיקת דם (PMSG)</div>
+      <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;margin-left:8px">🚫 לא מקובלת</span>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">הורמון PMSG בדם</span>
+      </div>
+    </div>
+  </div>
+  <div class="accord-item" style="margin-bottom:14px">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#e07b3b;font-size:18px">🚿</div>
+      <div class="accord-title">בדיקת שתן</div>
+      <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;margin-left:8px">🚫 לא מקובלת</span>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+        <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">📅 מיום 120 עד המלטה</span>
+        <span style="background:#feebd8;color:#7c4f1a;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700">הורמון אסטרוגן</span>
+      </div>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">אילו שיטות בדיקת הריון מקובלות?</p>
+    <div class="mc-options" id="opts-s5q1">
+      <button class="mc-option" onclick="pickOption('s5q1',0,this)"><span class="opt-letter">א</span>שתן ודם בלבד</button>
+      <button class="mc-option" onclick="pickOption('s5q1',1,this)"><span class="opt-letter">ב</span>שתן בלבד</button>
+      <button class="mc-option" onclick="pickOption('s5q1',2,this)"><span class="opt-letter">ג</span>דם בלבד</button>
+      <button class="mc-option" onclick="pickOption('s5q1',3,this)"><span class="opt-letter">ד</span>בדיקה רקטלית ואולטרסאונד</button>
+    </div>
+    <div class="feedback" id="fb-s5q1"></div>
+  </div>
+</div>
+
+<!-- S6: אולטרסאונד -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#3a1a6a,#6a2fa0)">
+    <span class="chapter-num">פרק 3 – המשך</span><span class="emoji">📡</span>
+    <h1>אולטרסאונד</h1>
+    <p class="subtitle">הבדיקה המוקדמת והמדויקת ביותר</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את יתרונות האולטרסאונד ומה רואים בו.</div>
+  <div class="section-title">🔍 מה רואים ומתי:</div>
+  <div style="position:relative;padding-right:28px;margin-bottom:14px">
+    <!-- קו אנכי -->
+    <div style="position:absolute;right:10px;top:20px;bottom:20px;width:3px;background:#ddd0ee;border-radius:99px"></div>
+    <!-- שלב 1 -->
+    <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;position:relative">
+      <div style="min-width:36px;height:36px;background:#6c3483;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">1</div>
+      <div style="background:white;border:2px solid #6c3483;border-radius:12px;padding:12px 14px;flex:1">
+        <div style="font-weight:800;font-size:14px;color:#4a1a5a;margin-bottom:4px">יום 12–13 לאחר ביוץ</div>
+        <div style="font-size:13px;color:var(--text-muted)">זיהוי ראשוני של הריון – <strong>הכי מוקדם!</strong></div>
+      </div>
+    </div>
+    <!-- שלב 2 -->
+    <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;position:relative">
+      <div style="min-width:36px;height:36px;background:#1a6fa8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">2</div>
+      <div style="background:white;border:2px solid #1a6fa8;border-radius:12px;padding:12px 14px;flex:1">
+        <div style="font-weight:800;font-size:14px;color:#0d4a7a;margin-bottom:4px">שלפוחית עוברית</div>
+        <div style="font-size:13px;color:var(--text-muted)">בבדיקה מוקדמת רואים רק את השלפוחית העוברית</div>
+      </div>
+    </div>
+    <!-- שלב 3 -->
+    <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;position:relative">
+      <div style="min-width:36px;height:36px;background:#27ae60;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">3</div>
+      <div style="background:white;border:2px solid #27ae60;border-radius:12px;padding:12px 14px;flex:1">
+        <div style="font-weight:800;font-size:14px;color:#1a4a2e;margin-bottom:4px">מיום 22 – עובר ולב פועם</div>
+        <div style="font-size:13px;color:var(--text-muted)">ניתן לזהות את העובר עצמו ולהבחין בלב הפועם</div>
+      </div>
+    </div>
+    <!-- שלב 4 -->
+    <div style="display:flex;align-items:flex-start;gap:14px;position:relative">
+      <div style="min-width:36px;height:36px;background:#e07b3b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">4</div>
+      <div style="background:white;border:2px solid #e07b3b;border-radius:12px;padding:12px 14px;flex:1">
+        <div style="font-weight:800;font-size:14px;color:#7c4f1a;margin-bottom:4px">בדיקה חוזרת – סוף חודש שני</div>
+        <div style="font-size:13px;color:var(--text-muted)">10% מהריונות עוברים ספיגה או הפלה מוקדמת</div>
+      </div>
+    </div>
+  </div>
+  <div class="highlight green">✅ <strong>יתרון חשוב:</strong> זיהוי מוקדם של סוסות שלא התעברו → הרבעה חוזרת במחזור הבא. ניתן להקדים ייחום עם הורמון <strong>פרוסטגלנדין</strong>.</div>
+  <div class="exam-box">אולטרסאונד: יום 12–13 | לב פועם: יום 22 | לחזור בחודש שני (10% ספיגה)</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מאיזה יום ניתן לזהות לב פועם באולטרסאונד?</p>
+    <div class="mc-options" id="opts-s6q1">
+      <button class="mc-option" onclick="pickOption('s6q1',0,this)"><span class="opt-letter">א</span>מיום 5</button>
+      <button class="mc-option" onclick="pickOption('s6q1',1,this)"><span class="opt-letter">ב</span>מיום 12</button>
+      <button class="mc-option" onclick="pickOption('s6q1',2,this)"><span class="opt-letter">ג</span>מיום 22</button>
+      <button class="mc-option" onclick="pickOption('s6q1',3,this)"><span class="opt-letter">ד</span>מיום 60</button>
+    </div>
+    <div class="feedback" id="fb-s6q1"></div>
+  </div>
+</div>
+
+<!-- S7: תאומים -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#8a1a1a,#c0392b)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">👶</span>
+    <h1>המלטת תאומים</h1>
+    <p class="subtitle">מצב מסוכן שיש להימנע ממנו</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע הריון תאומים מסוכן וכיצד מטפלים.</div>
+  <div class="definition-box">
+    הריון תאומים בסוסות הוא מצב <strong>נדיר אך מסוכן</strong> – הסיכוי לשני סייחים בריאים נמוך מאוד, ולכן רצוי להימנע ממנו.
+    כאשר מזהים שני עוברים בשבועות הראשונים, ניתן לעצור אחד מהם על ידי <strong>מעיכה ידנית</strong>.
+    ככל שהפעולה מוקדמת יותר – הסיכוי להישרדות העובר השני טוב יותר.
+    לכן רצוי לבדוק עד <strong>יום 15</strong>, כשעדיין ניתן להפריד בין העוברים.
+    <div style="background:white;border-right:3px solid #c0392b;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#7a1a1a;font-weight:600">
+      ⚠️ הסיכוי לשני סייחים בריאים מהריון תאומים – <strong>נמוך מאוד!</strong> עוברים עלולים להיספג, להיות מופלים בחודש השביעי, או למות לאחר הלידה.
+    </div>
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/twins.png" alt="תאומים בסוסים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">❌ סכנות בתאומים:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">😮 שני העוברים יספגו</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">🤰 הפלה בחודש השביעי</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">💀 ולד אחד חי, אחד מת/חלש</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">😢 מוות לאחר המלטה</span>
+  </div>
+  <div class="section-title">✅ הפתרון – מעיכה ידנית:</div>
+  <div style="background:#d5f0e0;border:2px solid #27ae60;border-radius:14px;padding:16px 18px;margin-bottom:14px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:22px;flex-shrink:0">🤲</span>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:#1a4a2e;margin-bottom:3px">מעיכה ידנית של עובר אחד</div>
+          <div style="font-size:13px;color:#2d6a4f">כאשר מזהים שני עוברים – ניתן לעצור אחד על ידי מעיכה ידנית</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:22px;flex-shrink:0">⏰</span>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:#1a4a2e;margin-bottom:3px">ככל שמוקדם יותר – טוב יותר</div>
+          <div style="font-size:13px;color:#2d6a4f">לבדוק עד <strong>יום 15</strong> – עדיין ניתן להפריד בין העוברים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="remember-box">תאומים = סכנה! בדיקה עד יום 15 ← מעיכה ידנית של עובר אחד</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">עד איזה יום רצוי לבדוק לזיהוי תאומים?</p>
+    <div class="mc-options" id="opts-s7q1">
+      <button class="mc-option" onclick="pickOption('s7q1',0,this)"><span class="opt-letter">א</span>יום 30</button>
+      <button class="mc-option" onclick="pickOption('s7q1',1,this)"><span class="opt-letter">ב</span>יום 22</button>
+      <button class="mc-option" onclick="pickOption('s7q1',2,this)"><span class="opt-letter">ג</span>יום 15</button>
+      <button class="mc-option" onclick="pickOption('s7q1',3,this)"><span class="opt-letter">ד</span>יום 60</button>
+    </div>
+    <div class="feedback" id="fb-s7q1"></div>
+  </div>
+</div>
+
+<!-- S8: הכנה להמלטה -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🏠</span>
+    <h1>הכנה להמלטה</h1>
+    <p class="subtitle">סימנים, הכנת תא ומה שחשוב לדעת</p>
+  </div>
+  <div class="goal-box">אני אוכל לזהות סימני התקרבות להמלטה ולתאר את תנאי תא ההמלטה.</div>
+  <div class="highlight blue">📅 <strong>משך הריון תקין:</strong> 320–355 יום מההרבעה האחרונה.</div>
+  <div class="section-title">🔍 סימנים שהמלטה מתקרבת:</div>
+  <div class="grid-2">
+    <div class="mini-card" style="border-top:3px solid #6c3483;border-color:#6c3483;text-align:center">
+      <div style="font-size:28px;margin-bottom:6px">🤰</div>
+      <div class="title" style="color:#6c3483">בטן גדולה ועגולה</div>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #1a6fa8;border-color:#1a6fa8;text-align:center">
+      <div style="font-size:28px;margin-bottom:6px">🍼</div>
+      <div class="title" style="color:#1a6fa8">גדילת עטינים</div>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #27ae60;border-color:#27ae60;text-align:center;grid-column:1/-1">
+      <div style="font-size:28px;margin-bottom:6px">🕯️</div>
+      <div class="title" style="color:#1a4a2e">מעטה דמוי שעווה על הפטמות</div>
+    </div>
+  </div>
+  <div class="section-title">🏠 תא המלטה מתאים:</div>
+  <div class="definition-box">
+    רצוי לשכן את הסוסה באורווה מתאימה להמלטה כאשר מתקרב המועד.
+    האורווה צריכה להיות גדולה דייה ובטיחותית, עם דפנות שלמות כך שהסייח לא יוכל לצאת.
+    חשוב לא להעביר את הסוסה למקום חדש סמוך להמלטה – שינוי סביבה עלול לגרום לסטרס.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/taamlata.png" alt="תא המלטה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="grid-2" style="margin-bottom:14px">
+    <div class="mini-card" style="border-top:3px solid #27ae60;border-color:#27ae60;text-align:center">
+      <div style="font-size:26px;margin-bottom:6px">📐</div>
+      <div class="title" style="color:#1a4a2e">גדול ובטיחותי</div>
+      <p style="font-size:12px;color:var(--text-muted)">מרחב מספיק לסוסה ולסייח</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #1a6fa8;border-color:#1a6fa8;text-align:center">
+      <div style="font-size:26px;margin-bottom:6px">🧱</div>
+      <div class="title" style="color:#0d4a7a">דפנות שלמות</div>
+      <p style="font-size:12px;color:var(--text-muted)">הסייח לא יוכל לצאת</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #c0392b;border-color:#c0392b;text-align:center">
+      <div style="font-size:26px;margin-bottom:6px">🚫</div>
+      <div class="title" style="color:#c0392b">לא להעביר סמוך</div>
+      <p style="font-size:12px;color:var(--text-muted)">שינוי סביבה מסוכן לפני המלטה</p>
+    </div>
+    <div class="mini-card" style="border-top:3px solid #e07b3b;border-color:#e07b3b;text-align:center">
+      <div style="font-size:26px;margin-bottom:6px">📅</div>
+      <div class="title" style="color:#7c4f1a">אם חייבים – 4–6 שבועות לפני</div>
+      <p style="font-size:12px;color:var(--text-muted)">לאפשר לסוסה להסתגל</p>
+    </div>
+  </div>
+  <div class="exam-box">הריון: 320–355 יום | סימנים: בטן, עטינים, שעווה | תא: גדול + בטיחותי</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">אם חייבים להעביר סוסה טרם המלטה, מתי כדאי?</p>
+    <div class="mc-options" id="opts-s8q1">
+      <button class="mc-option" onclick="pickOption('s8q1',0,this)"><span class="opt-letter">א</span>יום לפני ההמלטה</button>
+      <button class="mc-option" onclick="pickOption('s8q1',1,this)"><span class="opt-letter">ב</span>שבוע לפני</span></button>
+      <button class="mc-option" onclick="pickOption('s8q1',2,this)"><span class="opt-letter">ג</span>4–6 שבועות לפני</button>
+      <button class="mc-option" onclick="pickOption('s8q1',3,this)"><span class="opt-letter">ד</span>חודשיים לפני</button>
+    </div>
+    <div class="feedback" id="fb-s8q1"></div>
+  </div>
+</div>
+
+<!-- S9: שלב א -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#c0392b,#8a1a1a)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🔴</span>
+    <h1>שלב א – צירי לידה</h1>
+    <p class="subtitle">ההכנה לקראת ההמלטה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את הסימנים של שלב א בהמלטה.</div>
+  <div class="definition-box">
+    בשלב א הסוסה סובלת מ"<strong>צירי לידה</strong>" – כיווצים של הבטן והרחם שמכינים את הגוף להמלטה.
+    הסוסה נעה בחוסר נוחות, עשויה להזיע, ועלולים להופיע סימנים הדומים לקוליק.
+    לא תאכל בזמן הכיווצים, אך עשויה לחזור לאכול ביניהם.
+    <div style="background:white;border-right:3px solid #e8c97a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#4a3010;font-weight:700">
+      ⏱️ שלב א יכול לקחת <strong>דקות עד שעות</strong>
+    </div>
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/zireleida.png" alt="צירי לידה שלב א" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div class="section-title">🤒 סימנים בשלב א:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">💪 כיווצי בטן ורחם</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">😣 חוסר נוחות</span>
+    <span style="background:#fef9c3;border:1.5px solid #eab308;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#a16207">💦 הזעה</span>
+    <span style="background:#dbeafe;border:1.5px solid #3b82f6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af">🍽️ לא אוכלת בזמן כיווצים</span>
+    <span style="background:#d5f0e0;border:1.5px solid #27ae60;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#1a4a2e">🍽️ חוזרת לאכול בין כיווצים</span>
+    <span style="background:#ede0f5;border:1.5px solid #8b5cf6;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#6c3483">🤕 סימני קוליק</span>
+    <span style="background:#fde8e8;border:1.5px solid #c0392b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#c0392b">🥛 יציאת חלב</span>
+    <span style="background:#feebd8;border:1.5px solid #e07b3b;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#7c4f1a">🚽 צואה רכה תכופה</span>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ נכון או לא נכון?</div>
+    <p style="font-size:15px;margin-bottom:14px">בשלב א הסוסה לא אוכלת בכלל, גם בין הכיווצים.</p>
+    <div class="tf-options" id="tfopts-s9">
+      <button class="tf-btn" onclick="pickTF('s9tf1',true,this)">✅ נכון</button>
+      <button class="tf-btn" onclick="pickTF('s9tf1',false,this)">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-s9tf1"></div>
+  </div>
+</div>
+
+<!-- S10: שלב ב + זיהוי -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#a16207,#c09020)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟡</span>
+    <h1>שלב ב – יציאת הסייח</h1>
+    <p class="subtitle">ההמלטה עצמה + כיצד לזהות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלב ב ולדעת מתי נדרשת התערבות.</div>
+  <div class="section-title">🔄 מה קורה בשלב ב:</div>
+  <div class="step-box" style="border-color:#e07b3b"><div class="step-num" style="background:#e07b3b;font-size:18px">💧</div><div class="step-content"><strong>פקיעת המים</strong></div></div>
+  <div class="step-box" style="border-color:#f59e0b"><div class="step-num" style="background:#f59e0b;font-size:18px">🫧</div><div class="step-content"><strong>שק שקוף לבן בולט מהבושת</strong>כ-5 דקות לאחר פקיעת המים</div></div>
+  <div class="step-box" style="border-color:#8b5cf6"><div class="step-num" style="background:#8b5cf6;font-size:18px">🐴</div><div class="step-content"><strong>הסוסה שוכבת על צידה</strong>קמה ושוכבת לסירוגין לכיוון הסייח</div></div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:18px">⏱️</div><div class="step-content"><strong>המלטה תקינה: דקות ספורות!</strong></div></div>
+  <div class="highlight red">🚨 <strong>מעל 20 דקות</strong> = מצוקה! נדרשת <strong>התערבות וטרינר!</strong></div>
+  <div class="section-title" style="margin-top:4px">❓ איך יודעים שהסוסה בהמלטה?</div>
+  <div style="background:var(--primary-light);border:2px solid var(--primary);border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:#3a1a5a">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div>✅ התנהגות מתאימה (חוסר נוחות, שכיבה)?</div>
+      <div>✅ הזמן מתאים?</div>
+      <div>✅ שק בולט מהבושת?</div>
+      <div>✅ רגל/איבר בולט מהבושת?</div>
+    </div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">כמה זמן יכולה להימשך המלטה תקינה בשלב ב?</p>
+    <div class="mc-options" id="opts-s10q1">
+      <button class="mc-option" onclick="pickOption('s10q1',0,this)"><span class="opt-letter">א</span>שעה–שעתיים</button>
+      <button class="mc-option" onclick="pickOption('s10q1',1,this)"><span class="opt-letter">ב</span>20–30 דקות</button>
+      <button class="mc-option" onclick="pickOption('s10q1',2,this)"><span class="opt-letter">ג</span>דקות ספורות</button>
+      <button class="mc-option" onclick="pickOption('s10q1',3,this)"><span class="opt-letter">ד</span>30–60 דקות</button>
+    </div>
+    <div class="feedback" id="fb-s10q1"></div>
+  </div>
+</div>
+
+<!-- S11: שלב ג -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a2e,#2d7a2d)">
+    <span class="chapter-num">פרק 6 – המשך</span><span class="emoji">🟢</span>
+    <h1>שלב ג – הוצאת השליה</h1>
+    <p class="subtitle">סיום ההמלטה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלב ג ולדעת מתי נדרשת התערבות דחופה.</div>
+  <div class="step-box" style="border-color:#27ae60"><div class="step-num" style="background:#27ae60;font-size:18px">✂️</div><div class="step-content"><strong>ניתוק חבל הטבור</strong>~30 דקות לאחר שלב ב – מתרחש לבד, ללא התערבות</div></div>
+  <div class="step-box" style="border-color:#1a6fa8"><div class="step-num" style="background:#1a6fa8;font-size:18px">🔄</div><div class="step-content"><strong>כיווצי הרחם ממשיכים</strong>לצורך הוצאת קרומי השליה</div></div>
+  <div class="step-box" style="border-color:#6c3483"><div class="step-num" style="background:#6c3483;font-size:18px">👁️</div><div class="step-content"><strong>דבר מה תלוי מבושת הסוסה</strong>השליה יוצאת תוך <strong>שעה</strong> מסוף שלב ב</div></div>
+  <div class="highlight red">🚨 עיכוב מעל <strong>3 שעות</strong> = וטרינר <strong>דחוף!</strong></div>
+  <div class="highlight green">✅ יניקת הסייח מעודדת יציאת השליה. <strong>אין למשוך!</strong></div>
+  <div class="highlight amber">📋 לשמור קרומי השליה לבדיקת הוטרינר – לוודא שיצאה כולה.</div>
+  <div class="exam-box">שליה תוך שעה | מעל 3 שעות = וטרינר דחוף | אין למשוך | לשמור לבדיקה</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מה עושים אם השליה לא יוצאת אחרי 3 שעות?</p>
+    <div class="mc-options" id="opts-s11q1">
+      <button class="mc-option" onclick="pickOption('s11q1',0,this)"><span class="opt-letter">א</span>מושכים אותה בכוח</button>
+      <button class="mc-option" onclick="pickOption('s11q1',1,this)"><span class="opt-letter">ב</span>מזמינים וטרינר דחוף</button>
+      <button class="mc-option" onclick="pickOption('s11q1',2,this)"><span class="opt-letter">ג</span>ממתינים עוד 24 שעות</button>
+      <button class="mc-option" onclick="pickOption('s11q1',3,this)"><span class="opt-letter">ד</span>נותנים לסוסה מים קרים</button>
+    </div>
+    <div class="feedback" id="fb-s11q1"></div>
+  </div>
+</div>
+
+<!-- S12: מהלך תקין של הסייח -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">⏱️</span>
+    <h1>מהלך תקין של הסייח</h1>
+    <p class="subtitle">ציר הזמן לאחר המלטה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את המהלך התקין של הסייח בשעות הראשונות.</div>
+  <div class="highlight blue">🩺 <strong>ביקור וטרינר</strong> תוך 24 שעות מההמלטה!</div>
+  <table class="info-table">
+    <tr><th>זמן</th><th>מה קורה</th></tr>
+    <tr><td><strong>15 דקות</strong></td><td>שכיבה זקופה – ראש מורם</td></tr>
+    <tr><td><strong>30–90 דקות</strong></td><td>עמידה וניסיון יניקה</td></tr>
+    <tr><td><strong>1.5–3.5 שעות</strong></td><td>יניקה מוצלחת + העברת מקוניום</td></tr>
+    <tr><td><strong>12 שעות</strong></td><td>קם ושוכב בנקל, עוקב אחר האם, יניקה חזקה</td></tr>
+    <tr><td><strong>48–72 שעות</strong></td><td>צואה הופכת לצהובה – כל המקוניום יצא</td></tr>
+  </table>
+  <div class="definition-box">
+    <strong>מקוניום</strong> = הצואה הראשונה של הסייח. חייב לצאת תוך 1.5–3.5 שעות.
+    לאחר 48–72 שעות הצואה הופכת לצהובה – סימן שכל המקוניום יצא וזו צואה מחלב האם.
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מתי הסייח עומד לראשונה ומנסה לינוק?</p>
+    <div class="mc-options" id="opts-s12q1">
+      <button class="mc-option" onclick="pickOption('s12q1',0,this)"><span class="opt-letter">א</span>מיד לאחר הלידה</button>
+      <button class="mc-option" onclick="pickOption('s12q1',1,this)"><span class="opt-letter">ב</span>אחרי 12 שעות</button>
+      <button class="mc-option" onclick="pickOption('s12q1',2,this)"><span class="opt-letter">ג</span>אחרי 30–90 דקות</button>
+      <button class="mc-option" onclick="pickOption('s12q1',3,this)"><span class="opt-letter">ד</span>אחרי 48 שעות</button>
+    </div>
+    <div class="feedback" id="fb-s12q1"></div>
+  </div>
+</div>
+
+<!-- S13: קולוסטרום וטיפול -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#6c3483,#4a1a5a)">
+    <span class="chapter-num">פרק 7 – המשך</span><span class="emoji">🥛</span>
+    <h1>קולוסטרום וטיפול בסייח</h1>
+    <p class="subtitle">8 שעות קריטיות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את חשיבות הקולוסטרום ואת הטיפול הנדרש לסייח.</div>
+  <div class="section-title">🥛 קולוסטרום – חלון הזמן הקריטי:</div>
+  <div class="step-box" style="border-color:#6c3483">
+    <div class="step-num" style="background:#6c3483;font-size:18px">⏰</div>
+    <div class="step-content"><strong>8 השעות הראשונות – ספיגה מיטבית</strong>הקולוסטרום נספג בדופן המעי בצורה הטובה ביותר</div>
+  </div>
+  <div class="step-box" style="border-color:#c0392b">
+    <div class="step-num" style="background:#c0392b;font-size:18px">🚫</div>
+    <div class="step-content"><strong>לאחר 24 שעות – האפשרות נחסמת</strong>לאחר 24 שעות לא ניתן עוד לספוג את הנוגדנים</div>
+  </div>
+  <div class="highlight green">✅ <strong>כמות נדרשת:</strong> הסייח צריך לינוק <strong>לפחות ליטר או שניים</strong> של קולוסטרום.</div>
+  <div class="section-title">💛 חשיבות הקשר אם–סייח:</div>
+  <div class="definition-box">
+    חשוב שהסוסה והסייח יהיו <strong>לבד ללא הפרעה</strong> – רק עם השגחה – כדי לאפשר לסוסה להיקשר לסייח.
+  </div>
+  <div class="section-title">🧴 טיפול בטבור:</div>
+  <div class="accord-item">
+    <div class="accord-header" onclick="toggleAccord(this.parentElement)">
+      <div class="accord-num" style="background:#1a6fa8;font-size:18px">💧</div>
+      <div class="accord-title">חיטוי הטבור</div>
+      <span class="accord-arrow">▼</span>
+    </div>
+    <div class="accord-body">
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:#3a1a5a">
+        <div>🕐 <strong>בהזדמנות הראשונה</strong> – לטבול הטבור בחומר חיטוי</div>
+        <div>📅 <strong>תדירות:</strong> פעמיים ביום</div>
+        <div>⏱️ <strong>משך:</strong> יומיים–שלושה</div>
+      </div>
+    </div>
+  </div>
+  <div class="remember-box">קולוסטרום: 8 שעות קריטיות! | לאחר 24 שעות – נחסם | טבור: חיטוי מיידי + פעמיים ביום</div>
+  <div class="exam-box">קולוסטרום: 8 שעות מיטביות, חסום לאחר 24 שעות | לפחות 1–2 ליטר | טבור: פעמיים ביום, 2–3 ימים</div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="font-size:15px;margin-bottom:14px">מתי נחסמת האפשרות לספוג קולוסטרום?</p>
+    <div class="mc-options" id="opts-s13q1">
+      <button class="mc-option" onclick="pickOption('s13q1',0,this)"><span class="opt-letter">א</span>לאחר 8 שעות</button>
+      <button class="mc-option" onclick="pickOption('s13q1',1,this)"><span class="opt-letter">ב</span>לאחר 48 שעות</button>
+      <button class="mc-option" onclick="pickOption('s13q1',2,this)"><span class="opt-letter">ג</span>לאחר 72 שעות</button>
+      <button class="mc-option" onclick="pickOption('s13q1',3,this)"><span class="opt-letter">ד</span>לאחר 24 שעות</button>
+    </div>
+    <div class="feedback" id="fb-s13q1"></div>
+  </div>
+</div>
+
+<!-- S14: מילון מונחים -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#2a2a4a,#1e3a8a)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">📖</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">מושגי מפתח</p>
+  </div>
+  <div class="goal-box">לחץ על כל מונח כדי לראות את ההגדרה.</div>
+  <div id="glossary-cards-container">
+    <div class="flashcard-container" style="min-height:130px">
+      <div class="flashcard" id="fc0" onclick="flipCard('fc0')">
+        <div class="flashcard-front"><div class="term">המבחן לטיפוח</div><div class="hint">לחץ לגלות הגדרה</div></div>
+        <div class="flashcard-back"><div class="def">בחינת כל פרט לפי: ייחוס, חזות חיצונית, תכונות וביצועים, וכושר גנטי (בחינת הצאצאים).</div></div>
+      </div>
+    </div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ הקודם</button><span class="flashcard-counter" id="fc-counter">1 / 12</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🧬 המבחן לטיפוח</div><div class="glossary-def">ייחוס + חזות + תכונות וביצועים + כושר גנטי (הצאצאים).</div></div>
+    <div class="glossary-item"><div class="glossary-term">📜 מגילת יוחסין</div><div class="glossary-def">ספר הרישום. מסייע לבחור זכרים לפי מטרת ההשבחה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧪 כושר גנטי</div><div class="glossary-def">נבדק בשלב מאוחר – לפי בחינת הצאצאים של הסוס.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📡 אולטרסאונד</div><div class="glossary-def">בדיקת הריון מיום 12–13. לב פועם מיום 22. לחזור בסוף חודש שני (10% ספיגה).</div></div>
+    <div class="glossary-item"><div class="glossary-term">🫧 שלפוחית עוברית</div><div class="glossary-def">מה שרואים בבדיקה המוקדמת. העובר עצמו נראה רק מיום 22.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💉 פרוסטגלנדין</div><div class="glossary-def">הורמון להקדמת ייחום – מאפשר הרבעה חוזרת מוקדמת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">👶 תאומים</div><div class="glossary-def">מסוכן! לבדוק עד יום 15. מעיכה ידנית של עובר אחד.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔴 שלב א</div><div class="glossary-def">צירי לידה – דקות עד שעות. כיווצים, הזעה, חוסר אכילה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟡 שלב ב</div><div class="glossary-def">יציאת הסייח. דקות ספורות. מעל 20 דקות = סכנה!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟢 שלב ג</div><div class="glossary-def">הוצאת שליה תוך שעה. מעל 3 שעות = וטרינר דחוף! אין למשוך!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🥛 קולוסטרום</div><div class="glossary-def">החלב הראשוני. ספיגה מיטבית ב-8 שעות. נחסם לאחר 24 שעות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟤 מקוניום</div><div class="glossary-def">הצואה הראשונה של הסייח. יוצא ב-1.5–3.5 שעות. הופך לצהוב ב-48–72 שעות.</div></div>
+  </div>
+</div>
+
+<!-- S15: שאלות חזרה -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a4a3a,#059669)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">❓</span>
+    <h1>שאלות חזרה</h1>
+    <p class="subtitle">בדוק את עצמך!</p>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">1. מהו הכלי שמסייע לבחור זכרים לפי מטרת ההשבחה?</div>
+    <div class="mc-options" id="opts-qa1">
+      <button class="mc-option" onclick="pickOption('qa1',0,this)"><span class="opt-letter">א</span>ספר הרישום (מגילת יוחסין)</button>
+      <button class="mc-option" onclick="pickOption('qa1',1,this)"><span class="opt-letter">ב</span>בדיקת דם</button>
+      <button class="mc-option" onclick="pickOption('qa1',2,this)"><span class="opt-letter">ג</span>אולטרסאונד</button>
+      <button class="mc-option" onclick="pickOption('qa1',3,this)"><span class="opt-letter">ד</span>מבחן ריצה</button>
+    </div>
+    <div class="feedback" id="fb-qa1"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">2. מה הסכנה בהריון תאומים?</div>
+    <div class="mc-options" id="opts-qa2">
+      <button class="mc-option" onclick="pickOption('qa2',0,this)"><span class="opt-letter">א</span>אין שום סכנה</span></button>
+      <button class="mc-option" onclick="pickOption('qa2',1,this)"><span class="opt-letter">ב</span>הסוסה תעלה במשקל יותר מדי</button>
+      <button class="mc-option" onclick="pickOption('qa2',2,this)"><span class="opt-letter">ג</span>הם גדלים לאט</button>
+      <button class="mc-option" onclick="pickOption('qa2',3,this)"><span class="opt-letter">ד</span>סיכון לספיגה, הפלה, ולד מת – סיכוי נמוך לשניים בריאים</button>
+    </div>
+    <div class="feedback" id="fb-qa2"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">3. מה ההמלטה הכי מוקדמת שניתן לזהות באולטרסאונד?</div>
+    <div class="mc-options" id="opts-qa3">
+      <button class="mc-option" onclick="pickOption('qa3',0,this)"><span class="opt-letter">א</span>יום 30</button>
+      <button class="mc-option" onclick="pickOption('qa3',1,this)"><span class="opt-letter">ב</span>יום 12–13</button>
+      <button class="mc-option" onclick="pickOption('qa3',2,this)"><span class="opt-letter">ג</span>יום 60</button>
+      <button class="mc-option" onclick="pickOption('qa3',3,this)"><span class="opt-letter">ד</span>יום 120</button>
+    </div>
+    <div class="feedback" id="fb-qa3"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">4. מה קורה אם השליה לא יוצאת ב-3 שעות?</div>
+    <div class="mc-options" id="opts-qa4">
+      <button class="mc-option" onclick="pickOption('qa4',0,this)"><span class="opt-letter">א</span>ממתינים 24 שעות</button>
+      <button class="mc-option" onclick="pickOption('qa4',1,this)"><span class="opt-letter">ב</span>מושכים בכוח</button>
+      <button class="mc-option" onclick="pickOption('qa4',2,this)"><span class="opt-letter">ג</span>לא קורה כלום</button>
+      <button class="mc-option" onclick="pickOption('qa4',3,this)"><span class="opt-letter">ד</span>וטרינר דחוף</button>
+    </div>
+    <div class="feedback" id="fb-qa4"></div>
+  </div>
+  <div class="card">
+    <div class="q-title" style="font-size:16px;font-weight:800;margin-bottom:14px;color:#3a1a5a">5. מתי נחסמת הספיגה של קולוסטרום?</div>
+    <div class="mc-options" id="opts-qa5">
+      <button class="mc-option" onclick="pickOption('qa5',0,this)"><span class="opt-letter">א</span>לאחר 8 שעות</button>
+      <button class="mc-option" onclick="pickOption('qa5',1,this)"><span class="opt-letter">ב</span>לאחר 48 שעות</button>
+      <button class="mc-option" onclick="pickOption('qa5',2,this)"><span class="opt-letter">ג</span>לאחר 24 שעות</button>
+      <button class="mc-option" onclick="pickOption('qa5',3,this)"><span class="opt-letter">ד</span>לאחר 72 שעות</button>
+    </div>
+    <div class="feedback" id="fb-qa5"></div>
+  </div>
+</div>
+
+<!-- S16: סיום -->
+<div class="screen" id="screen-16">
+  <div class="completion-card">
+    <div style="font-size:64px;margin-bottom:8px">🏆</div>
+    <h2>כל הכבוד! סיימת!</h2>
+    <p style="opacity:.9;margin-top:8px;font-size:16px">גנטיקה, הריון והמלטה בסוסים</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה למדת?</div>
+    <ul class="content-list">
+      <li data-icon="✅">השבחת סוסים: ייחוס, חזות, ביצועים, כושר גנטי</li>
+      <li data-icon="✅">ספר רישום ו-3 אמות מידה: ביצועים, חזות, מגילת יוחסין</li>
+      <li data-icon="✅">סוסי הרבעה: מגיל שנתיים, 2 הרבעות ביום</li>
+      <li data-icon="✅">בדיקת הריון: רקטלית + אולטרסאונד (יום 12–13)</li>
+      <li data-icon="✅">תאומים: בדיקה עד יום 15, מעיכה ידנית</li>
+      <li data-icon="✅">שלבי המלטה: א (צירים), ב (יציאת הסייח), ג (שליה)</li>
+      <li data-icon="✅">קולוסטרום: 8 שעות מיטביות, חסום ב-24 שעות</li>
+    </ul>
+  </div>
+  <div class="exam-box">חזור על הנושאים שהיו קשים. בהצלחה בבגרות! 🎯</div>
+  <div class="card" style="text-align:center">
+    <button class="btn btn-primary" onclick="goTo(0)" style="font-size:16px;padding:16px 32px">🔄 חזור לתחילת הלומדה</button>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<div class="nav-buttons">
+  <button class="btn btn-primary" id="btn-prev" onclick="goBack()">▶ הקודם</button>
+  <span id="screen-indicator" style="font-size:13px;color:var(--text-muted);font-weight:600">1 / 17</span>
+  <button class="btn btn-primary" id="btn-next" onclick="goNext()">הבא ◀</button>
+</div>
+
+<script>
+const TOTAL = 17;
+let current = 0;
+const chapterLabels = [
+  'פתיחה',
+  'מהי השבחה','סכימה ואמות מידה',
+  'ספר רישום','סוסי הרבעה',
+  'שיטות בדיקת הריון','אולטרסאונד',
+  'המלטת תאומים','הכנה להמלטה',
+  'שלב א','שלב ב + זיהוי','שלב ג',
+  'מהלך תקין','קולוסטרום וטיפול',
+  'מילון מונחים','שאלות חזרה','סיום'
+];
+
+function goTo(n){
+  const screens=document.querySelectorAll('.screen');
+  screens[current].classList.remove('active');
+  current=Math.max(0,Math.min(n,TOTAL-1));
+  screens[current].classList.add('active');
+  updateUI();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goNext(){if(current<TOTAL-1)goTo(current+1);}
+function goBack(){if(current>0)goTo(current-1);}
+function updateUI(){
+  const pct=Math.round((current/(TOTAL-1))*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').innerText='מסך '+(current+1)+' מתוך '+TOTAL;
+  document.getElementById('screen-indicator').innerText=(current+1)+' / '+TOTAL;
+  document.getElementById('menu-btn-label').innerText=chapterLabels[current]||'';
+  document.getElementById('btn-prev').className=current===0?'btn btn-disabled':'btn btn-primary';
+  document.getElementById('btn-next').className=current===TOTAL-1?'btn btn-disabled':'btn btn-primary';
+  document.querySelectorAll('.menu-item').forEach((el,i)=>el.classList.toggle('active',i===current));
+  if(current===14)initGlossary();
+}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goTo(n);}
+function toggleAccord(el){el.classList.toggle('open');}
+
+const mcData={
+  's1q1':{correct:2,explanation:'כושר גנטי נבדק בשלב מאוחר – על ידי בחינת הצאצאים של הסוס.'},
+  's4q1':{correct:2,explanation:'אפשר להשתמש בסוס להרבעה מגיל שנתיים, אף שהבגרות המינית מתחילה ב-12–15 חודשים.'},
+  's5q1':{correct:3,explanation:'הבדיקות המקובלות הן בדיקה רקטלית ידנית ואולטרסאונד. שתן ודם אינן מקובלות.'},
+  's6q1':{correct:2,explanation:'מיום 22 ניתן לזהות את העובר עצמו ולהבחין בלב הפועם. מיום 12–13 רואים רק את השלפוחית.'},
+  's7q1':{correct:2,explanation:'את בדיקת ההריון לזיהוי תאומים רצוי לבצע עד יום 15 – כדי שניתן עדיין להפריד בין העוברים.'},
+  's8q1':{correct:2,explanation:'אם חייבים להעביר – כדאי לעשות זאת 4–6 שבועות לפני ההמלטה.'},
+  's10q1':{correct:2,explanation:'המלטה תקינה נמשכת דקות ספורות בלבד. מעל 20 דקות = מצוקה.'},
+  's11q1':{correct:1,explanation:'עיכוב מעל 3 שעות מצריך טיפול וטרינרי דחוף. לעולם אין למשוך את השליה!'},
+  's12q1':{correct:2,explanation:'ב-30–90 דקות הסייח עומד ומנסה לינוק לראשונה.'},
+  's13q1':{correct:3,explanation:'לאחר 24 שעות נחסמת האפשרות לספוג קולוסטרום. ב-8 שעות הראשונות הספיגה מיטבית.'},
+  'qa1':{correct:0,explanation:'ספר הרישום (מגילת יוחסין) מסייע לבחור זכרים בהתאם למטרת ההשבחה.'},
+  'qa2':{correct:3,explanation:'הריון תאומים מסוכן מאוד – ספיגה, הפלה, ולד מת. הסיכוי לשניים בריאים נמוך מאוד.'},
+  'qa3':{correct:1,explanation:'ניתן לזהות הריון באולטרסאונד כבר ביום 12–13 לאחר ביוץ.'},
+  'qa4':{correct:3,explanation:'עיכוב מעל 3 שעות = וטרינר דחוף! לא למשוך.'},
+  'qa5':{correct:2,explanation:'לאחר 24 שעות נחסמת הספיגה של קולוסטרום.'}
+};
+
+const tfData={
+  's0tf1':{correct:true,explanation:'נכון! מטרת ההשבחה היא ליצור עדר עם תכונות רצויות – דרך ברירה קפדנית ובדיקות גנטיות.'},
+  's2tf1':{correct:true,explanation:'נכון! ספר הרישום הוא כלי מרכזי לבחירת זכרים בהתאם למטרת ההשבחה.'},
+
+  's9tf1':{correct:false,explanation:'לא נכון! בין הכיווצים הסוסה עשויה לחזור לאכול – היא לא מסרבת לאכול לאורך כל הזמן.'}
+};
+
+function pickOption(qId,idx,btn){
+  const data=mcData[qId];
+  const opts=document.querySelectorAll('#opts-'+qId+' .mc-option');
+  opts.forEach(b=>b.classList.remove('correct','wrong'));
+  const isCorrect=idx===data.correct;
+  btn.classList.add(isCorrect?'correct':'wrong');
+  if(!isCorrect)opts[data.correct].classList.add('correct');
+  const fb=document.getElementById('fb-'+qId);
+  if(fb){fb.className='feedback show '+(isCorrect?'correct':'wrong');
+    fb.innerHTML=isCorrect?'🎉 <strong>נכון!</strong> '+data.explanation:'❌ <strong>לא נכון.</strong> '+data.explanation;}
+}
+function pickTF(qId,val,btn){
+  const data=tfData[qId];
+  const container=btn.parentElement;
+  const btns=container.querySelectorAll('.tf-btn');
+  btns.forEach(b=>b.classList.remove('correct','wrong'));
+  const isCorrect=val===data.correct;
+  btn.classList.add(isCorrect?'correct':'wrong');
+  if(!isCorrect){btns.forEach(b=>{if(b!==btn)b.classList.add('correct');});}
+  const fb=document.getElementById('fb-'+qId);
+  if(fb){fb.className='feedback show '+(isCorrect?'correct':'wrong');
+    fb.innerHTML=isCorrect?'🎉 <strong>נכון!</strong> '+data.explanation:'❌ <strong>לא נכון.</strong> '+data.explanation;}
+}
+
+const glossaryData=[
+  {term:'המבחן לטיפוח',def:'ייחוס + חזות + ביצועים + כושר גנטי (בחינת הצאצאים).'},
+  {term:'כושר גנטי',def:'נבדק בשלב מאוחר – על פי ביצועי הצאצאים.'},
+  {term:'מגילת יוחסין',def:'ספר הרישום. מסייע לבחור זכרים לפי מטרת ההשבחה.'},
+  {term:'אולטרסאונד',def:'מזהה הריון מיום 12–13. לב פועם מיום 22. לחזור בסוף חודש שני.'},
+  {term:'שלפוחית עוברית',def:'מה שרואים באולטרסאונד מוקדם. עובר עצמו נראה מיום 22.'},
+  {term:'פרוסטגלנדין',def:'הורמון להקדמת ייחום לאחר כישלון הרבעה.'},
+  {term:'תאומים',def:'מסוכן! לבדוק עד יום 15 ולבצע מעיכה ידנית.'},
+  {term:'שלב א',def:'צירי לידה. דקות עד שעות. כיווצים, הזעה, חוסר אכילה.'},
+  {term:'שלב ב',def:'יציאת הסייח. דקות ספורות. מעל 20 דקות = סכנה!'},
+  {term:'שלב ג',def:'הוצאת שליה תוך שעה. מעל 3 שעות = וטרינר דחוף. אין למשוך!'},
+  {term:'קולוסטרום',def:'החלב הראשוני. ספיגה מיטבית ב-8 שעות. נחסם לאחר 24 שעות.'},
+  {term:'מקוניום',def:'הצואה הראשונה. יוצא ב-1.5–3.5 שעות. הופך לצהוב ב-48–72 שעות.'}
+];
+let fcIndex=0;
+function initGlossary(){showGlossaryCard(0);}
+function showGlossaryCard(idx){
+  const container=document.getElementById('glossary-cards-container');
+  const card=glossaryData[idx];
+  container.querySelector('.flashcard').id='fc'+idx;
+  container.querySelector('.flashcard').classList.remove('flipped');
+  container.querySelector('.term').textContent=card.term;
+  container.querySelector('.def').textContent=card.def;
+  container.querySelector('.flashcard').onclick=function(){flipCard('fc'+idx);};
+  document.getElementById('fc-counter').textContent=(idx+1)+' / '+glossaryData.length;
+}
+function flipCard(id){const fc=document.getElementById(id);if(fc)fc.classList.toggle('flipped');}
+function nextCard(){fcIndex=(fcIndex+1)%glossaryData.length;showGlossaryCard(fcIndex);}
+function prevCard(){fcIndex=(fcIndex-1+glossaryData.length)%glossaryData.length;showGlossaryCard(fcIndex);}
+
+updateUI();
+</script>
+</body>
+</html>
