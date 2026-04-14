@@ -997,7 +997,10 @@
     const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
 
     const MENU_FILE = 'menu.xlsx';
-    const USERS_FILE = 'users.json';
+    const USERS_FILE = 'https://bagruyot.org/haklaut/users_hashed.json';
+    const USERNAME_PEPPER = 'u_9x3K_example';
+    const PASSWORD_PEPPER = 'p_7m2Q_example';
+    const PBKDF2_ITERATIONS = 150000;
     const AUTH_STORAGE_KEY = 'haklautLoggedInUser';
     const AUTH_COOKIE_KEY = 'haklautLoggedInUser';
     const LESSON_STORAGE_KEY = 'haklautCurrentLesson';
@@ -1191,38 +1194,94 @@
       const users = await response.json();
 
       if (!Array.isArray(users)) {
-        throw new Error('Invalid users.json format');
+        throw new Error('Invalid users_hashed.json format');
       }
 
       return users
         .map(user => ({
-          username: String(user.username || '').trim(),
-          password: String(user.password || '').trim()
+          u: String(user.u || '').trim(),
+          s: String(user.s || '').trim(),
+          p: String(user.p || '').trim(),
+          real: Number(user.real ?? 0)
         }))
-        .filter(user => user.username && user.password);
+        .filter(user => user.u && user.s && user.p);
     }
 
-    function findMatchingUser(username, password) {
+    function toHex(buffer) {
+      return [...new Uint8Array(buffer)]
+        .map(byte => byte.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    function fromBase64(base64) {
+      const binary = atob(base64);
+      return Uint8Array.from(binary, char => char.charCodeAt(0));
+    }
+
+    async function sha256Hex(text) {
+      const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return toHex(hash);
+    }
+
+    async function pbkdf2Hex(password, saltBase64, iterations = PBKDF2_ITERATIONS) {
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(password),
+        'PBKDF2',
+        false,
+        ['deriveBits']
+      );
+
+      const bits = await crypto.subtle.deriveBits(
+        {
+          name: 'PBKDF2',
+          salt: fromBase64(saltBase64),
+          iterations,
+          hash: 'SHA-256'
+        },
+        keyMaterial,
+        256
+      );
+
+      return toHex(bits);
+    }
+
+    async function findMatchingUser(username, password) {
       const safeUsername = String(username || '').trim();
       const safePassword = String(password || '').trim();
 
-      return usersList.find(user => user.username === safeUsername && user.password === safePassword) || null;
+      const usernameHash = await sha256Hex(safeUsername + USERNAME_PEPPER);
+      const user = usersList.find(item => item.u === usernameHash);
+
+      if (!user) return null;
+
+      const passwordHash = await pbkdf2Hex(safePassword + PASSWORD_PEPPER, user.s, PBKDF2_ITERATIONS);
+
+      if (passwordHash !== user.p) return null;
+
+      return {
+        username: safeUsername,
+        usernameHash,
+        passwordHash
+      };
     }
 
-    function userExists(username) {
-      const safeUsername = String(username || '').trim();
-      return usersList.some(user => user.username === safeUsername);
+    function userExists(usernameHash) {
+      const safeUsernameHash = String(usernameHash || '').trim();
+      return usersList.some(user => user.u === safeUsernameHash);
     }
 
-    function saveLoginSession(username, password) {
+    function saveLoginSession(username, usernameHash, passwordHash) {
+      const sessionData = { username, usernameHash, passwordHash };
+
       try {
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ username, password }));
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(sessionData));
       } catch (error) {
         console.warn('Could not save login session to localStorage', error);
       }
 
       try {
-        const val = encodeURIComponent(JSON.stringify({ username, password }));
+        const val = encodeURIComponent(JSON.stringify(sessionData));
         document.cookie = `${AUTH_COOKIE_KEY}=${val}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
       } catch (error) {
         console.warn('Could not save login session to cookie', error);
@@ -1260,11 +1319,16 @@
       function parseSession(raw) {
         try {
           const parsed = JSON.parse(raw);
-          if (parsed && parsed.username) return parsed;
+          if (parsed && parsed.username && parsed.usernameHash && parsed.passwordHash) {
+            return {
+              username: String(parsed.username || '').trim(),
+              usernameHash: String(parsed.usernameHash || '').trim(),
+              passwordHash: String(parsed.passwordHash || '').trim()
+            };
+          }
         } catch {}
-        // fallback: old format was plain username string
-        const str = String(raw || '').trim();
-        return str ? { username: str, password: '' } : null;
+
+        return null;
       }
 
       try {
@@ -1449,7 +1513,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function handleLogin(event) {
+    async function handleLogin(event) {
       event.preventDefault();
 
       if (!usersLoaded) {
@@ -1461,11 +1525,11 @@
 
       const username = usernameInput.value.trim();
       const password = passwordInput.value.trim();
-      const matchedUser = findMatchingUser(username, password);
+      const matchedUser = await findMatchingUser(username, password);
 
       if (matchedUser) {
         currentUsername = matchedUser.username;
-        saveLoginSession(matchedUser.username, matchedUser.password);
+        saveLoginSession(matchedUser.username, matchedUser.usernameHash, matchedUser.passwordHash);
         showMainMenu();
         startSessionCheck();
         const lessonToOpen = pendingLesson;
@@ -1528,7 +1592,7 @@
         const freshUsers = await loadUsers();
         const savedSession = getSavedLoginSession();
         const stillValid = savedSession
-          ? freshUsers.some(u => u.username === savedSession.username && u.password === savedSession.password)
+          ? freshUsers.some(user => user.u === savedSession.usernameHash && user.p === savedSession.passwordHash)
           : false;
 
         if (!stillValid) {
@@ -1579,9 +1643,9 @@
         usersLoaded = true;
         const savedSession = getSavedLoginSession();
         if (savedSession) {
-          const matchedUser = findMatchingUser(savedSession.username, savedSession.password);
+          const matchedUser = usersList.some(user => user.u === savedSession.usernameHash && user.p === savedSession.passwordHash);
           if (matchedUser) {
-            currentUsername = matchedUser.username;
+            currentUsername = savedSession.username;
             showMainMenu();
             startSessionCheck();
             const savedLesson = getSavedLesson();
