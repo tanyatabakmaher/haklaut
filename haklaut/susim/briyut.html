@@ -76,7 +76,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .info-table th{background:var(--primary);color:white;padding:10px 14px;text-align:right;font-weight:700;}
 .info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
 .info-table tr:last-child td{border-bottom:none;}
-.info-table tr:nth-child(even) td{background:var(--primary-light);}
+.info-table tr td{background:#fff;}
 .question-box{background:#f5f0fa;border:2px solid #c8a0e8;border-radius:14px;padding:20px;margin-top:20px;}
 .question-box .q-title{font-size:16px;font-weight:800;color:#3a1a5a;margin-bottom:14px;}
 .mc-options{display:flex;flex-direction:column;gap:10px;}
@@ -243,7 +243,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     מערכת הלב היא בעצם <strong>משאבה עם צינורות</strong> הנושאים דם לכל תאי הגוף.
     הלב פועם ללא הרף ודוחף את הדם דרך רשת של כלי דם – <strong>עורקים</strong> שמובילים את הדם מהלב החוצה, <strong>ורידים</strong> שמחזירים את הדם חזרה ללב, ו<strong>נימים</strong> – כלי הדם הזעירים שמאפשרים לדם להגיע לכל תא ותא בגוף.
   </div>
-  <img src="https://bagruyot.org/haklaut/susim/imag/lev.png?fsdf" alt="מערכת הלב וכלי הדם" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <img src="https://bagruyot.org/haklaut/susim/imag/lev.png" alt="מערכת הלב וכלי הדם" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <div class="section-title">🩸 שלושה סוגי כלי דם:</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px" class="blood-vessel-grid">
 
@@ -477,9 +477,9 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div style="position:relative;padding-right:28px;margin-bottom:14px">
     <div style="position:absolute;right:10px;top:20px;bottom:20px;width:3px;background:#ddd0ee;border-radius:99px"></div>
     <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;position:relative">
-      <div style="min-width:36px;height:36px;background:#c0392b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">1</div>
-      <div style="background:white;border:2px solid #c0392b;border-radius:12px;padding:12px 14px;flex:1">
-        <div style="font-weight:800;font-size:14px;color:#c0392b;margin-bottom:6px">קו הגנה ראשון – מחסום פיזי</div>
+      <div style="min-width:36px;height:36px;background:#1a6fa8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;flex-shrink:0;position:relative;z-index:1">1</div>
+      <div style="background:white;border:2px solid #1a6fa8;border-radius:12px;padding:12px 14px;flex:1">
+        <div style="font-weight:800;font-size:14px;color:#1a6fa8;margin-bottom:6px">קו הגנה ראשון – מחסום פיזי</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.5">מנגנון <strong>בלתי ייחודי</strong> – מונע חדירה <strong>ללא הבחנה</strong> בין מזהמים. מצוי באזורי מגע עם העולם החיצון.</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
           <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">עור</span>
@@ -527,6 +527,10 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">מושגי מפתח</p>
   </div>
   <div class="goal-box">אני אוכל להגדיר אנטיגן, נוגדנים וזיכרון חיסוני.</div>
+  <div class="definition-box">
+    כשגורם זר נכנס לגוף הוא נקרא <strong>אנטיגן</strong>. תגובת הגוף היא לייצר <strong>נוגדנים</strong> – חלבונים שנקשרים לאנטיגן ומנטרלים אותו. לאחר המפגש הראשון, מערכת החיסון שומרת <strong>זיכרון חיסוני</strong> – כך שבחשיפה הבאה לאותו גורם, הגוף יגיב מהר וחזק הרבה יותר.
+  </div>
+  <img src="https://bagruyot.org/haklaut/bg/antigen.png" alt="אנטיגן ונוגדנים" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <div class="accord-item">
     <div class="accord-header" onclick="toggleAccord(this.parentElement)">
       <div class="accord-num" style="background:#c0392b;font-size:18px">🦠</div>
@@ -581,9 +585,15 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">שני סוגי חיסון שונים</p>
   </div>
   <div class="goal-box">אני אוכל להסביר את ההבדל בין חיסון פעיל לחיסון סביל.</div>
+  <div class="definition-box">
+    חיסון הוא דרך להגן על הגוף מפני מחלה. קיימים שני סוגים עיקריים: <strong>חיסון פעיל</strong> – שבו הגוף עצמו מפתח נוגדנים וזיכרון חיסוני, ו<strong>חיסון סביל</strong> – שבו נוגדנים מוכנים מוזרקים מבחוץ לטיפול מיידי.
+    <div style="background:white;border-right:3px solid #e8c97a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#4a3010;font-weight:700">
+      ⚡ ההבדל המרכזי: חיסון פעיל מגן <strong>לאורך זמן</strong> | חיסון סביל פועל <strong>מיד</strong> אך לא נשאר
+    </div>
+  </div>
   <div class="grid-2">
-    <div style="border:2px solid #27ae60;border-radius:14px;overflow:hidden">
-      <div style="background:#27ae60;color:white;padding:10px 14px;font-weight:900;font-size:14px">✅ חיסון פעיל (אקטיבי)</div>
+    <div style="border:2px solid #6c3483;border-radius:14px;overflow:hidden">
+      <div style="background:#6c3483;color:white;padding:10px 14px;font-weight:900;font-size:14px">✅ חיסון פעיל (אקטיבי)</div>
       <div style="background:white;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
         <div style="display:flex;align-items:center;gap:8px">
           <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">מטרה</span>
@@ -597,11 +607,19 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
           <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">זיכרון</span>
           <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">✅ מתפתח</span>
         </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">זמן תגובה</span>
+          <span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">ימים עד שבועות</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">משך פעולה</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">ארוך טווח</span>
+        </div>
         <div style="font-size:11px;color:var(--text-muted)">דוגמאות: שפעת, טטנוס, כלבת</div>
       </div>
     </div>
-    <div style="border:2px solid #e07b3b;border-radius:14px;overflow:hidden">
-      <div style="background:#e07b3b;color:white;padding:10px 14px;font-weight:900;font-size:14px">⚡ חיסון סביל (פסיבי)</div>
+    <div style="border:2px solid #1a6fa8;border-radius:14px;overflow:hidden">
+      <div style="background:#1a6fa8;color:white;padding:10px 14px;font-weight:900;font-size:14px">⚡ חיסון סביל (פסיבי)</div>
       <div style="background:white;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
         <div style="display:flex;align-items:center;gap:8px">
           <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">מטרה</span>
@@ -614,6 +632,14 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
         <div style="display:flex;align-items:center;gap:8px">
           <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">זיכרון</span>
           <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">❌ לא מתפתח</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">זמן תגובה</span>
+          <span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">מיידי</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:50px">משך פעולה</span>
+          <span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">קצר טווח</span>
         </div>
         <div style="font-size:11px;color:var(--text-muted)">דוגמה: נוגדנים נגד ארס נחש</div>
       </div>
@@ -641,22 +667,27 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">מחלות שחיסון נגדן חובה</p>
   </div>
   <div class="goal-box">אני אוכל לתאר את כלבת ושפעת ואת מדיניות החיסון.</div>
-  <div style="border:2px solid #c0392b;border-radius:14px;overflow:hidden;margin-bottom:12px">
-    <div style="background:#c0392b;color:white;padding:10px 16px;font-weight:900;font-size:14px">🐺 כלבת – זואונוטית!</div>
+  <div class="definition-box">
+    כלבת ושפעת הן שתי מחלות נפוצות שנגדן מקובל לחסן סוסים. הן שונות מאוד בחומרתן ובאופן הדבקתן – אך לשתיהן חיסון מניע.
+    <strong>כלבת</strong> היא מחלה קשה ומסוכנת שגורמת למוות, ואילו <strong>שפעת</strong> קלה יחסית אך מדבקת מאוד ועלולה לפגוע ביכולת הסוס להתחרות.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/kalshap.png" alt="כלבת ושפעת" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div style="border:2px solid #e07b3b;border-radius:14px;overflow:hidden;margin-bottom:12px">
+    <div style="background:#e07b3b;color:white;padding:10px 16px;font-weight:900;font-size:14px">🐺 כלבת – זואונוטית!</div>
     <div style="background:white;padding:12px 16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">סוג</span><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מחלה עצבית קשה</span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">גורם</span><span style="font-size:12px;color:#7a1a1a">נגיף המועבר לרוב דרך <strong>רוק</strong> (לא הדבקה סביבתית)</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">תמותה</span><span style="background:#fde8e8;color:#c0392b;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">ללא חיסון – 100%!</span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">חיסון</span><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מומלץ לכולם | חובה לסוס מתחרה</span></div>
     </div>
   </div>
-  <div style="border:2px solid #e07b3b;border-radius:14px;overflow:hidden;margin-bottom:14px">
-    <div style="background:#e07b3b;color:white;padding:10px 16px;font-weight:900;font-size:14px">🤧 שפעת – מדבקת מאוד!</div>
+  <div style="border:2px solid #1a6fa8;border-radius:14px;overflow:hidden;margin-bottom:14px">
+    <div style="background:#1a6fa8;color:white;padding:10px 16px;font-weight:900;font-size:14px">🤧 שפעת – מדבקת מאוד!</div>
     <div style="background:white;padding:12px 16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">סימנים</span><span style="display:flex;flex-wrap:wrap;gap:4px"><span style="background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">שיעול</span><span style="background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">נזלת</span><span style="background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">חום</span><span style="background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700">ירידה בתאבון</span></span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">מהלך</span><span style="font-size:12px;color:#7c4f1a">לרוב עוברת מעצמה, אינה מסכנת חיים</span></div>
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <span style="font-size:16px;flex-shrink:0">💡</span>
-        <span style="font-size:12px;color:#7c4f1a;line-height:1.4"><strong>לא ניתן להשתתף בתחרות</strong> ללא חיסון שפעת בר תוקף</span>
+      <div style="background:#fde8e8;border-right:3px solid #c0392b;border-radius:8px;padding:8px 10px;font-size:12px;color:#7a1a1a;font-weight:700">
+        🚫 לא ניתן להשתתף בתחרות ללא חיסון שפעת בר תוקף
       </div>
     </div>
   </div>
@@ -679,23 +710,26 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <p class="subtitle">מחלות חמורות הדורשות חיסון</p>
   </div>
   <div class="goal-box">אני אוכל לתאר טטנוס והרפס ואת מדיניות החיסון.</div>
-  <div style="border:2px solid #8b5cf6;border-radius:14px;overflow:hidden;margin-bottom:12px">
-    <div style="background:#8b5cf6;color:white;padding:10px 16px;font-weight:900;font-size:14px">⚡ טטנוס – גורמת למוות בייסורים</div>
+  <div class="definition-box">
+    טטנוס והרפס הן שתי מחלות חמורות שמחייבות חיסון סדיר. <strong>טטנוס</strong> – חיידק מסוכן שנמצא בכל מקום וגורם לשיתוק ולמוות. <strong>הרפס</strong> – וירוס שסוסים רבים נושאים אך לא תמיד חולים, ועלול לגרום לנזק חמור ואף להפלה.
+  </div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/tet.png" alt="טטנוס והרפס" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
+  <div style="border:2px solid #e07b3b;border-radius:14px;overflow:hidden;margin-bottom:12px">
+    <div style="background:#e07b3b;color:white;padding:10px 16px;font-weight:900;font-size:14px">⚡ טטנוס – גורמת למוות בייסורים</div>
     <div style="background:white;padding:12px 16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">פגיעה</span><span style="background:#ede0f5;color:#6c3483;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מערכת העצבים – שיתוק ושרירים תפוסים</span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">מקור</span><span style="font-size:12px;color:#4a1a5a">החיידק נמצא בכל מקום: אדמה, פגרים, עצמים חשופים</span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">חיסון</span><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">פעם בשנה – יעיל מאוד!</span></div>
     </div>
   </div>
-  <div style="border:2px solid #1a6fa8;border-radius:14px;overflow:hidden;margin-bottom:14px">
-    <div style="background:#1a6fa8;color:white;padding:10px 16px;font-weight:900;font-size:14px">🫁 הרפס – טיפול בעייתי</div>
+  <div style="border:2px solid #0891b2;border-radius:14px;overflow:hidden;margin-bottom:14px">
+    <div style="background:#0891b2;color:white;padding:10px 16px;font-weight:900;font-size:14px">🫁 הרפס – טיפול בעייתי</div>
     <div style="background:white;padding:12px 16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">תסמינים</span><span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מחלת נשימה + עלייה בחום</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">תסמינים</span><span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מחלת נשימה + עלייה בחום</span></div>
       <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">נשאים</span><span style="font-size:12px;color:#0d4a7a">סוסים רבים נושאים את הוירוס אך אינם חולים</span></div>
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">העברה</span><span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מגע קרוב בין סוסים</span></div>
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <span style="font-size:16px;flex-shrink:0">⚠️</span>
-        <span style="font-size:12px;color:#7a1a1a;font-weight:700">יכול לגרום להפלה או המלטת סייח חלש | לבודד סוס חולה!</span>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:var(--text-muted);min-width:65px">העברה</span><span style="background:#fef9c3;color:#a16207;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800">מגע קרוב בין סוסים</span></div>
+      <div style="background:#fde8e8;border-right:3px solid #c0392b;border-radius:8px;padding:8px 10px;font-size:12px;color:#7a1a1a;font-weight:700">
+        🚫 יכול לגרום להפלה או המלטת סייח חלש – לבודד סוס חולה!
       </div>
     </div>
   </div>
@@ -725,27 +759,27 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <tr><th>מחלה</th><th>סייחים</th><th>מתחרים</th><th>ביתיים</th></tr>
     <tr>
       <td style="font-weight:800">🐺 כלבת</td>
-      <td>3–4 חודשים<br>+ שנה</td>
-      <td>פעם בשנה</td>
-      <td>פעם בשנה</td>
+      <td><span style="font-size:11px">3–4 חודשים + שנה</span></td>
+      <td><span style="display:inline-block;background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">פעם בשנה</span></td>
+      <td><span style="display:inline-block;background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">פעם בשנה</span></td>
     </tr>
     <tr>
       <td style="font-weight:800">⚡ טטנוס</td>
-      <td>6, 7, 8–9 חודשים</td>
-      <td>פעם בשנה</td>
-      <td>פעם בשנה</td>
+      <td><span style="font-size:11px">6, 7, 8–9 חודשים</span></td>
+      <td><span style="display:inline-block;background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">פעם בשנה</span></td>
+      <td><span style="display:inline-block;background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">פעם בשנה</span></td>
     </tr>
     <tr>
       <td style="font-weight:800">🤧 שפעת</td>
-      <td>6, 7, 8 חודשים<br>ואח"כ כל 3–4 חודשים עד גיל שנתיים</td>
-      <td>כל 3–4 חודשים</td>
-      <td>אחת לשנה</td>
+      <td><span style="font-size:11px">6, 7, 8 חודשים<br>ואח"כ כל 3–4 חודשים עד שנתיים</span></td>
+      <td><span style="display:inline-block;background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">כל 3–4 חודשים</span></td>
+      <td><span style="display:inline-block;background:#feebd8;color:#7c4f1a;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">אחת לשנה</span></td>
     </tr>
     <tr>
       <td style="font-weight:800">🫁 הרפס</td>
-      <td>6 חודשים + 7–8 חודשים</td>
-      <td>כל חצי שנה</td>
-      <td>כל חצי שנה</td>
+      <td><span style="font-size:11px">6 חודשים + 7–8 חודשים</span></td>
+      <td><span style="display:inline-block;background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">כל חצי שנה</span></td>
+      <td><span style="display:inline-block;background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap">כל חצי שנה</span></td>
     </tr>
   </table>
   <div class="question-box">
@@ -768,10 +802,13 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את חיסוני הסוסות ההרות ואת העברת ההגנה לסייח.</div>
   <div class="definition-box">
-    מומלץ לחסן חיסוני דחף את הסוסות <strong>4–6 שבועות לפני המלטה</strong>.
-    ככל שרמת הנוגדנים בדם הסוסה גבוהה – כך תהיה רמתם בקולוסטרום.
+    חיסון סוסות הרות נועד להגן על הסוסה עצמה – ועל הסייח שייוולד. כשמחסנים סוסה לפני ההמלטה, רמת הנוגדנים בדמה עולה, וכך גם בקולוסטרום שהיא תייצר – החלב הראשוני שהסייח יינק.
+    <div style="background:white;border-right:3px solid #e8c97a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:13px;color:#4a3010;font-weight:700">
+      💡 מומלץ לחסן <strong>4–6 שבועות לפני המלטה</strong> – כדי שהנוגדנים יהיו בשיאם ביום הלידה!
+    </div>
   </div>
   <div class="section-title">🥛 קולוסטרום ומעבר הגנה:</div>
+  <img src="https://bagruyot.org/haklaut/susim/imag/kolestrum.png" alt="קולוסטרום ומעבר הגנה" style="width:100%;border-radius:12px;margin:0 0 14px;box-shadow:var(--shadow);display:block;">
   <div class="step-box" style="border-color:#6c3483">
     <div class="step-num" style="background:#6c3483;font-size:16px">1</div>
     <div class="step-content"><strong>הסוסה מייצרת קולוסטרום</strong>החלב הראשוני עשיר באנרגיה ומכיל נוגדנים של הסוסה</div>
@@ -785,21 +822,15 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="step-content"><strong>ההגנה הסבילה נמוגה לאט</strong>הסייח חייב לפתח הגנה פעילה משלו</div>
   </div>
   <div class="section-title" style="margin-top:8px">🫁 חיסון הרפס בהריון:</div>
-  <div class="highlight blue">💡 חיסון הרפס 1 ניתן <strong>במהלך ההריון</strong> למניעת הפלה.</div>
-  <div class="grid-2">
-    <div class="mini-card" style="border-top:3px solid #6c3483;border-color:#6c3483;text-align:center">
-      <div style="font-size:22px;font-weight:900;color:#4a1a5a">חודש 5</div>
-      <div style="font-size:12px;color:var(--text-muted)">חיסון ראשון</div>
-    </div>
-    <div class="mini-card" style="border-top:3px solid #1a6fa8;border-color:#1a6fa8;text-align:center">
-      <div style="font-size:22px;font-weight:900;color:#0d4a7a">חודש 7</div>
-      <div style="font-size:12px;color:var(--text-muted)">חיסון שני</div>
-    </div>
-    <div class="mini-card" style="border-top:3px solid #27ae60;border-color:#27ae60;text-align:center;grid-column:1/-1">
-      <div style="font-size:22px;font-weight:900;color:#1a4a2e">חודש 9</div>
-      <div style="font-size:12px;color:var(--text-muted)">חיסון שלישי</div>
-    </div>
+  <div class="definition-box">
+    כדי למנוע הפלה בשל הרפס, מחסנים סוסה הרה <strong>שלוש פעמים</strong> במהלך ההריון – בחודשים 5, 7 ו-9. כך הגנתה גבוהה לאורך כל ההריון ובמיוחד קרוב להמלטה.
   </div>
+  <table class="info-table">
+    <tr><th>חיסון</th><th>מועד</th><th>מטרה</th></tr>
+    <tr><td style="font-weight:800">ראשון</td><td><span style="background:#ede0f5;color:#4a1a5a;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">חודש 5</span></td><td>הכנת מערכת החיסון</td></tr>
+    <tr><td style="font-weight:800">שני</td><td><span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">חודש 7</span></td><td>חיזוק ההגנה</td></tr>
+    <tr><td style="font-weight:800">שלישי</td><td><span style="background:#d5f0e0;color:#1a4a2e;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">חודש 9</span></td><td>הגנה לפני הלידה</td></tr>
+  </table>
   <div class="exam-box">דחף לפני המלטה: 4–6 שבועות | הרפס בהריון: חודשים 5, 7, 9</div>
   <div class="question-box">
     <div class="q-title">❓ שאלה</div>
