@@ -1073,7 +1073,7 @@
     function normalizeTopic(value) {
       const topic = String(value || '').trim().toLowerCase();
       if (!topic) return 'general';
-      if (topic === 'general' || topic === 'dogs') return topic;
+      if (topic === 'general' || topic === 'dogs' || topic === 'hors') return topic;
       return '';
     }
 
