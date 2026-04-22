@@ -1144,7 +1144,8 @@
 
       const groups = {
         general: [],
-        dogs: []
+        dogs: [],
+        hors: []
       };
 
       rows.forEach(row => {
@@ -1156,11 +1157,13 @@
 
       const generalSection = buildSection('general', groups.general);
       const dogsSection = buildSection('dogs', groups.dogs);
+      const horsSection = buildSection('hors', groups.hors);
 
       if (generalSection) sectionsContainer.appendChild(generalSection);
       if (dogsSection) sectionsContainer.appendChild(dogsSection);
+      if (horsSection) sectionsContainer.appendChild(horsSection);
 
-      if (!generalSection && !dogsSection) {
+      if (!generalSection && !dogsSection && !horsSection) {
         sectionsContainer.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
       }
     }
