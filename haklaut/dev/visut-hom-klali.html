@@ -844,119 +844,151 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
   <div class="goal-box">אני אוכל לתאר ולהסביר את מנגנוני הקירור אצל בעלי חיים.</div>
 
   <div class="card">
-    <div class="highlight red" style="text-align:center;font-size:16px;font-weight:700">
-      ⭐ הדרך העיקרית לקירור הגוף היא <strong>התאדות</strong> — מים שמתאדים לוקחים איתם חום מהגוף!
-    </div>
-    <div class="highlight blue" style="margin-top:10px">
-      💡 <strong>הסבר כיצד התאדות מקררת:</strong><br>
-      מים מתאדים ממשטח לח (עור או דרכי נשימה) → התאדות צורכת חום מהאזור הסמוך → הדם שזורם שם מתקרר → הדם הקר חוזר לגוף ומצנן אותו.
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">כאשר הגוף נחשף לחום, המנגנון המרכזי שעוזר לו להתקרר הוא <strong>התאדות מים</strong>. תהליך זה מאפשר לגוף לשחרר חום בצורה יעילה — בין אם דרך העור או דרכי הנשימה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/hitadut.png" alt="התמודדות עם טמפרטורה גבוהה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
+
+    <div style="background:#fff1f2;border-right:4px solid #dc2626;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+      <div style="font-weight:800;font-size:15px;color:#dc2626;margin-bottom:10px;">⭐ מדוע התאדות מקררת?</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;min-width:22px;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px;">1</span>
+          <span>מים מתאדים ממשטח לח — <strong>עור או דרכי נשימה</strong></span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;min-width:22px;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px;">2</span>
+          <span>ההתאדות <strong>שואבת חום</strong> מהאזור הסמוך</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;min-width:22px;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px;">3</span>
+          <span>הדם שזורם שם <strong>מתקרר</strong></span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;min-width:22px;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px;">4</span>
+          <span>הדם הקר חוזר לגוף ו<strong>מצנן אותו</strong></span>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="card">
     <div class="section-title" style="color:#dc2626">🔬 מנגנונים פיזיולוגיים (אוטומטיים)</div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">אלה מנגנונים שמתרחשים בגוף מאליהם, ללא בחירה:</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">מנגנונים שמתרחשים בגוף מאליהם, ללא בחירה:</p>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0369a1">1</div>
-      <div class="step-content">
-        <strong>💧 הזעה — דרך עור</strong><br>
-        בלוטות זיעה בעור מפרישות מים → מתאדים ומקררים.<br>
-        <span class="pill cold">בני אדם</span><span class="pill cold">סוסים</span><br>
-        <span style="font-size:13px;color:var(--text-muted)">⚠️ אצל כלבים, כבשים ועופות — <strong>אין בלוטות זעה</strong>, לכן הם מתקררים אחרת!</span>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">💧 הזעה — דרך עור</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          בלוטות זיעה בעור מפרישות מים → מתאדים ומקררים.<br>
+          <span class="pill cold">בני אדם</span><span class="pill cold">סוסים</span><br>
+          <span style="font-size:13px;color:var(--text-muted);">⚠️ אצל כלבים, כבשים ועופות — <strong>אין בלוטות זעה</strong>, לכן הם מתקררים אחרת!</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#059669">2</div>
-      <div class="step-content">
-        <strong>💨 הלחתה — דרך מערכת הנשימה</strong><br>
-        קצב הנשימה עולה → אוויר הנפלט מכיל הרבה אדי מים → מצנן את הגוף.<br>
-        <span class="pill green">כלבים</span><span class="pill green">כבשים</span><span class="pill green">עופות</span><br>
-        <span style="font-size:13px;color:var(--text-muted)">🐕 כלבים גם <strong>משרבבים לשון</strong> — כך מגדילים את שטח ההתאדות ומתקררים מהר יותר!</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">💨 הלחתה — דרך מערכת הנשימה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          קצב הנשימה עולה → אוויר הנפלט מכיל הרבה אדי מים → מצנן את הגוף.<br>
+          <span class="pill green">כלבים</span><span class="pill green">כבשים</span><span class="pill green">עופות</span><br>
+          <span style="font-size:13px;color:var(--text-muted);">🐕 כלבים גם <strong>משרבבים לשון</strong> — כך מגדילים את שטח ההתאדות ומתקררים מהר יותר!</span>
+          <div style="background:#fefce8;border:1px solid #fde047;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:13px;">
+            <strong>🔍 הזעה vs הלחתה:</strong><br>
+            💧 הזעה — מים יוצאים דרך <strong>עור</strong> | בני אדם, סוסים<br>
+            💨 הלחתה — מים יוצאים דרך <strong>מערכת הנשימה</strong> | כלבים, כבשים, עופות
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="highlight yellow" style="margin:8px 0 12px;padding:12px 16px">
-      <strong>🔍 מה ההבדל בין הזעה להלחתה?</strong><br>
-      <table style="width:100%;font-size:14px;margin-top:8px;border-collapse:collapse">
-        <tr style="background:rgba(0,0,0,0.04)">
-          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">מנגנון</th>
-          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">מאיפה המים יוצאים?</th>
-          <th style="padding:6px 10px;text-align:right;border-bottom:1px solid #e2e8f0">אצל מי?</th>
-        </tr>
-        <tr>
-          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">💧 <strong>הזעה</strong></td>
-          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">דרך <strong>עור</strong> (בלוטות זעה)</td>
-          <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">בני אדם, סוסים</td>
-        </tr>
-        <tr>
-          <td style="padding:6px 10px">💨 <strong>הלחתה</strong></td>
-          <td style="padding:6px 10px">דרך <strong>מערכת הנשימה</strong></td>
-          <td style="padding:6px 10px">כלבים, כבשים, עופות</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="step-box">
-      <div class="step-num" style="background:#dc2626">3</div>
-      <div class="step-content">
-        <strong>🩸 הרחבת כלי דם היקפיים</strong><br>
-        יותר דם זורם לעור → יותר חום עובר מהגוף לסביבה.<br>
-        <span class="pill hot">כל ההומאותרמיים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff5f5;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">🩸 הרחבת כלי דם היקפיים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          יותר דם זורם לעור → יותר חום עובר מהגוף לסביבה.<br>
+          <span class="pill hot">כל ההומאותרמיים</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#7c3aed">4</div>
-      <div class="step-content">
-        <strong>📐 הגדלת שטח פנים</strong><br>
-        פרישת כנפיים, הוצאת לשון — מגדילים שטח מגע עם האוויר לפיזור חום.<br>
-        <span class="pill" style="background:#ede9fe;color:#5b21b6">עופות (פרישת כנפיים)</span>
-        <span class="pill" style="background:#ede9fe;color:#5b21b6">כלבים (לשון)</span>
-      </div>
-    </div>
-
-    <div class="step-box">
-      <div class="step-num" style="background:#b45309">5</div>
-      <div class="step-content">
-        <strong>🚫 הימנעות מאכילה</strong><br>
-        תהליכי עיכול מייצרים חום — הפחתת אכילה מורידה את החום המטבולי.<br>
-        <span class="pill hot">עופות בחום</span><span class="pill hot">פרות בקיץ</span>
-      </div>
-    </div>
-
-    <div class="step-box">
-      <div class="step-num" style="background:#0f766e">6</div>
-      <div class="step-content">
-        <strong>💦 שתיית מים קרים / הרטבת פרווה</strong><br>
-        מים קרים מקררים מבפנים; הרטבת הפרווה מגדילה את ההתאדות מהעור.<br>
-        <span class="pill green">פרות</span><span class="pill green">כלבים</span>
-      </div>
     </div>
   </div>
 
   <div class="card">
     <div class="section-title" style="color:#b45309">🧠 מנגנונים התנהגותיים (בחירה)</div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">אלה פעולות שבעל החיים <strong>בוחר לעשות</strong>. מתקיימים גם אצל פויקילותרמיים!</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">פעולות שבעל החיים <strong>בוחר לעשות</strong>. מתקיימים גם אצל פויקילותרמיים!</p>
 
-    <div class="grid-2">
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
-        <div class="title">🌳 חיפוש צל</div>
-        הימנעות מקרינת שמש ישירה — מפחיתה חום חיצוני שנקלט.
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff7ed;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="background:#b45309;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">📐 הגדלת שטח פנים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fed7aa;font-size:14px;line-height:1.8;">
+          פרישת כנפיים, הוצאת לשון — מגדילים שטח מגע עם האוויר לפיזור חום.<br>
+          <span class="pill" style="background:#ede9fe;color:#5b21b6">עופות (פרישת כנפיים)</span>
+          <span class="pill" style="background:#ede9fe;color:#5b21b6">כלבים (לשון)</span>
+        </div>
       </div>
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
-        <div class="title">🌙 שינוי שעות פעילות</div>
-        פעילות בבוקר ובלילה — הימנעות משעות השיא החמות.
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff5f5;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">🚫 הימנעות מאכילה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          תהליכי עיכול מייצרים חום — הפחתת אכילה מורידה את החום המטבולי.<br>
+          <span class="pill hot">עופות בחום</span><span class="pill hot">פרות בקיץ</span>
+        </div>
       </div>
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
-        <div class="title">🐌 הימנעות מתנועה</div>
-        פחות פעילות = פחות ייצור חום פנימי.
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">💦 שתיית מים קרים / הרטבת פרווה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          מים קרים מקררים מבפנים; הרטבת הפרווה מגדילה את ההתאדות מהעור.<br>
+          <span class="pill green">פרות</span><span class="pill green">כלבים</span>
+        </div>
       </div>
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b">
-        <div class="title">🥛 אכילה בשעות קרות</div>
-        פרות אוכלות בלילה — כשקצב ייצור החום פוגע פחות.
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">🌳 חיפוש צל ושינוי שעות פעילות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          🌳 <strong>חיפוש צל</strong> — הימנעות מקרינת שמש ישירה מפחיתה חום חיצוני שנקלט.<br>
+          🌙 <strong>שינוי שעות פעילות</strong> — פעילות בבוקר ובלילה, הימנעות משעות השיא החמות.
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#faf5ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">5</span>
+          <span style="flex:1;">🐌 הימנעות מתנועה ואכילה בשעות קרות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:14px;line-height:1.8;">
+          🐌 <strong>הימנעות מתנועה</strong> — פחות פעילות = פחות ייצור חום פנימי.<br>
+          🥛 <strong>אכילה בשעות קרות</strong> — פרות אוכלות בלילה, כשקצב ייצור החום פוגע פחות.
+        </div>
+      </div>
+
     </div>
 
     <div class="remember-box">פיזיולוגי = אוטומטי בגוף | התנהגותי = בוחר לעשות (גם פויקילותרמים!)</div>
@@ -1002,38 +1034,56 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
   <div class="goal-box">אני אוכל לתאר ולהסביר את מנגנוני החימום אצל בעלי חיים.</div>
 
   <div class="card">
-    <div class="section-title" style="color:#1d4ed8">🔬 מנגנונים מבניים (בנייה של הגוף)</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">כאשר הגוף נחשף לקור, הוא מפעיל שלושה סוגי מנגנונים כדי לשמור על חמימות: מנגנוני <strong>בנייה</strong> שמשולבים במבנה הגוף עצמו, מנגנונים <strong>פיזיולוגיים</strong> שפועלים אוטומטית, ומנגנונים <strong>התנהגותיים</strong> שבהם בעל החיים בוחר לנקוט.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/kirur.png" alt="התמודדות עם טמפרטורה נמוכה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="color:#1d4ed8">🏗️ מנגנונים מבניים (בנייה של הגוף)</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">מנגנונים הקיימים במבנה הגוף עצמו — רק אצל הומאותרמיים:</p>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#1d4ed8">1</div>
-      <div class="step-content">
-        <strong>🧥 שכבת בידוד — פרווה ונוצות</strong><br>
-        פרווה ונוצות לוכדות אוויר בין השערות/נוצות → האוויר משמש כמבודד מהקור.<br>
-        כשקר — החיה <strong>סומרת</strong> את הפרווה → יותר אוויר נלכד → בידוד טוב יותר.<br>
-        בחורף — הגוף <strong>מגדל פרווה עבה יותר</strong> מאשר בקיץ.<br>
-        <span class="pill cold">עופות — נוצות</span><span class="pill cold">יונקים — פרווה</span>
-      </div>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0369a1">2</div>
-      <div class="step-content">
-        <strong>🧈 שכבת שומן תת-עורית</strong><br>
-        שומן מוביל חום פחות טוב מרקמות אחרות → פועל כבידוד טבעי.<br>
-        ככל שהשכבה עבה יותר — הגוף שומר חום טוב יותר.<br>
-        <span class="pill cold">לוויתנים</span><span class="pill cold">כלבי ים</span><span class="pill cold">חזירים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#1d4ed8;text-align:right;">
+          <span style="background:#1d4ed8;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">🧥 שכבת בידוד — פרווה ונוצות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          פרווה ונוצות לוכדות אוויר בין השערות/נוצות → האוויר משמש כמבודד מהקור.<br>
+          כשקר — החיה <strong>סומרת</strong> את הפרווה → יותר אוויר נלכד → בידוד טוב יותר.<br>
+          בחורף — הגוף <strong>מגדל פרווה עבה יותר</strong> מאשר בקיץ.<br>
+          <span class="pill cold">עופות — נוצות</span><span class="pill cold">יונקים — פרווה</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#7c3aed">3</div>
-      <div class="step-content">
-        <strong>📐 שינוי בגודל הגוף</strong><br>
-        פרטים מאותו מין החיים באזורים <strong>קרים הם גדולים יותר</strong> מפרטים באזורים חמים.<br>
-        גוף גדול = שטח פנים קטן יחסית למשקל = פחות אובדן חום.<br>
-        <span style="font-size:13px;color:var(--text-muted)">דוגמה: דב קוטב גדול בהרבה מדב שחור טרופי.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">🧈 שכבת שומן תת-עורית</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          שומן מוביל חום פחות טוב מרקמות אחרות → פועל כבידוד טבעי.<br>
+          ככל שהשכבה עבה יותר — הגוף שומר חום טוב יותר.<br>
+          <span class="pill cold">לוויתנים</span><span class="pill cold">כלבי ים</span><span class="pill cold">חזירים</span>
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#faf5ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">📐 שינוי בגודל הגוף</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:14px;line-height:1.8;">
+          פרטים מאותו מין החיים באזורים <strong>קרים הם גדולים יותר</strong> מפרטים באזורים חמים.<br>
+          גוף גדול = שטח פנים קטן יחסית למשקל = פחות אובדן חום.<br>
+          <span style="font-size:13px;color:var(--text-muted);">💡 דוגמה: דב קוטב גדול בהרבה מדב שחור טרופי.</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1041,56 +1091,75 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
     <div class="section-title" style="color:#dc2626">🔬 מנגנונים פיזיולוגיים (אוטומטיים)</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">מתרחשים בגוף מאליהם — רק אצל הומאותרמיים:</p>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#dc2626">1</div>
-      <div class="step-content">
-        <strong>🙀 רעידת שרירים (צמרמורת)</strong><br>
-        תנועה לא רצונית של השרירים בתגובה לקור → מגבירה ייצור חום.<br>
-        ככל שהרעידה חזקה יותר — יותר חום מיוצר.<br>
-        <span class="pill hot">כל היונקים</span><span class="pill hot">בני אדם</span>
-      </div>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0369a1">2</div>
-      <div class="step-content">
-        <strong>💉 בקרה הורמונלית</strong><br>
-        מערכת העצבים קולטת את הקור ומשפיעה על הפרשת הורמונים:<br>
-        • <strong>נוראדרנלין ואדרנלין</strong> — מכווצים כלי דם היקפיים → פחות אובדן חום לסביבה.<br>
-        • <strong>תירוקסין</strong> (הורמון בלוטת התריס) — מגביר את קצב חילוף החומרים → יותר חום מיוצר.<br>
-        <span class="pill hot">כל ההומאותרמיים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff5f5;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">🙀 רעידת שרירים (צמרמורת)</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          תנועה לא רצונית של השרירים בתגובה לקור → מגבירה ייצור חום.<br>
+          ככל שהרעידה חזקה יותר — יותר חום מיוצר.<br>
+          <span class="pill hot">כל היונקים</span><span class="pill hot">בני אדם</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#059669">3</div>
-      <div class="step-content">
-        <strong>🩸 כיווץ כלי דם היקפיים</strong><br>
-        כלי הדם בחלק החיצוני של הגוף מתכווצים → פחות דם מגיע לעור → פחות חום אובד לחוץ.<br>
-        הדם זורם בכלי הדם הפנימיים יותר — שם החום נשמר.<br>
-        <span class="pill cold">כל ההומאותרמיים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">💉 בקרה הורמונלית</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          מערכת העצבים קולטת את הקור ומשפיעה על הפרשת הורמונים:<br>
+          • <strong>נוראדרנלין ואדרנלין</strong> — מכווצים כלי דם היקפיים → פחות אובדן חום לסביבה.<br>
+          • <strong>תירוקסין</strong> (הורמון בלוטת התריס) — מגביר את קצב חילוף החומרים → יותר חום מיוצר.<br>
+          <span class="pill hot">כל ההומאותרמיים</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#b45309">4</div>
-      <div class="step-content">
-        <strong>⚡ הגברת קצב חילוף חומרים</strong><br>
-        הגוף "שורף" יותר אנרגיה → מייצר יותר חום פנימי.<br>
-        בקור — קצב חילוף החומרים עולה כדי לפצות על אובדן החום.<br>
-        <span class="pill hot">יונקים ועופות</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">🩸 כיווץ כלי דם היקפיים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          כלי הדם בחלק החיצוני של הגוף מתכווצים → פחות דם מגיע לעור → פחות חום אובד לחוץ.<br>
+          הדם זורם בכלי הדם הפנימיים יותר — שם החום נשמר.<br>
+          <span class="pill cold">כל ההומאותרמיים</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0f766e">5</div>
-      <div class="step-content">
-        <strong>💤 תרדמה עונתית</strong><br>
-        יש חיות שבמצבי קור קיצוני — קצב חילוף החומרים <strong>יורד</strong> והן נכנסות לתרדמה.<br>
-        בתרדמה: חום הגוף נשמר קבוע, הגוף חי על מאגרי שומן, פעילות מינימלית.<br>
-        מאפיין חיות באזורי קור קיצוני.<br>
-        <span class="pill cold">דובים</span><span class="pill cold">נחשים</span><span class="pill cold">צפרדעים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff7ed;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="background:#b45309;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">⚡ הגברת קצב חילוף חומרים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fed7aa;font-size:14px;line-height:1.8;">
+          הגוף "שורף" יותר אנרגיה → מייצר יותר חום פנימי.<br>
+          בקור — קצב חילוף החומרים עולה כדי לפצות על אובדן החום.<br>
+          <span class="pill hot">יונקים ועופות</span>
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#faf5ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">5</span>
+          <span style="flex:1;">💤 תרדמה עונתית</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:14px;line-height:1.8;">
+          יש חיות שבמצבי קור קיצוני — קצב חילוף החומרים <strong>יורד</strong> והן נכנסות לתרדמה.<br>
+          בתרדמה: חום הגוף נשמר קבוע, הגוף חי על מאגרי שומן, פעילות מינימלית.<br>
+          מאפיין חיות באזורי קור קיצוני.<br>
+          <span class="pill cold">דובים</span><span class="pill cold">נחשים</span><span class="pill cold">צפרדעים</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1098,24 +1167,53 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
     <div class="section-title" style="color:#b45309">🧠 מנגנונים התנהגותיים (בחירה)</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">פעולות שבעל החיים בוחר לעשות — מתקיימים <strong>גם אצל פויקילותרמיים!</strong></p>
 
-    <div class="grid-2">
-      <div class="mini-card cold-card">
-        <div class="title">🤝 הצטופפות</div>
-        בעלי חיים מצטופפים יחד → טמפרטורת הסביבה ביניהם עולה → מחממים אחד את השני.<br>
-        <span style="font-size:12px;color:var(--text-muted)">דוגמה: דבורים מצטופפות לכדור בחורף!</span>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">🤝 הצטופפות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          בעלי חיים מצטופפים יחד → טמפרטורת הסביבה ביניהם עולה → מחממים אחד את השני.<br>
+          <span style="font-size:13px;color:var(--text-muted);">💡 דוגמה: דבורים מצטופפות לכדור בחורף!</span>
+        </div>
       </div>
-      <div class="mini-card cold-card">
-        <div class="title">🌞 חשיפה לשמש</div>
-        חיפוש מקום חשוף לשמש כדי להתחמם — נפוץ במיוחד אצל זוחלים (פויקילותרמיים).
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff5f5;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">🌞 חשיפה לשמש</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          חיפוש מקום חשוף לשמש כדי להתחמם — נפוץ במיוחד אצל זוחלים (פויקילותרמיים).
+        </div>
       </div>
-      <div class="mini-card cold-card">
-        <div class="title">🏠 חיפוש מסתור</div>
-        מציאת מחסה מפני רוח וקור — מפחית אובדן חום מהסביבה.
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">🏠 חיפוש מסתור</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          מציאת מחסה מפני רוח וקור — מפחית אובדן חום מהסביבה.
+        </div>
       </div>
-      <div class="mini-card cold-card">
-        <div class="title">🌙 פעילות בשעות חמות</div>
-        פעילות בשעות היום החמות ומנוחה בלילה — חיסכון בחום.
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:#faf5ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">🌙 פעילות בשעות חמות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:14px;line-height:1.8;">
+          פעילות בשעות היום החמות ומנוחה בלילה — חיסכון בחום.
+        </div>
       </div>
+
     </div>
 
     <div class="remember-box">מבני = פרווה/שומן/גודל | פיזיולוגי = הורמונים/צמרמורת/כיווץ כלי דם | התנהגותי = גם בפויקילותרמים!</div>
@@ -1161,6 +1259,11 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
   <div class="goal-box">אני אוכל להבדיל בין מנגנונים פיזיולוגיים להתנהגותיים.</div>
 
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">לא כל מנגנוני ויסות החום זהים — חלקם מתרחשים <strong>אוטומטית בגוף</strong> ללא שליטה של בעל החיים, ואחרים הם <strong>פעולות בחירה</strong> שהוא נוקט כדי להסתגל לסביבה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/evdel.png" alt="פיזיולוגי מול התנהגותי" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
+  </div>
+
+  <div class="card">
     <div class="two-col-compare">
       <div class="compare-card" style="background:#eff6ff;border:2px solid #93c5fd">
         <h3>🔬 פיזיולוגיים</h3>
@@ -1173,7 +1276,7 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
           <li>נשיפה מהירה</li>
         </ul>
       </div>
-      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+      <div class="compare-card" style="background:#f0fdf4;border:2px solid #86efac">
         <h3>🧠 התנהגותיים/סביבתיים</h3>
         <p style="font-size:13px;margin-bottom:8px">פעולות שבעל החיים <strong>בוחר לעשות</strong>:</p>
         <ul>
