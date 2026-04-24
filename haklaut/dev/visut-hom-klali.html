@@ -615,14 +615,16 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
   <div class="card">
     <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">שתי הקבוצות נבדלות זו מזו בעיקרון אחד יסודי: האם הגוף שולט בטמפרטורתו בעצמו, או שהסביבה היא שקובעת אותה. ההבדל הזה משפיע על צריכת האנרגיה, רמת הפעילות ועל היכולת לשרוד בתנאים משתנים.</p>
     <img src="https://bagruyot.org/haklaut/bg/visut/homopoik.png" alt="השוואה הומאותרמים פויקילותרמים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
-    <table class="info-table">
-      <tr><th></th><th>🦅 הומאותרמיים</th><th>🦎 פויקילותרמיים</th></tr>
-      <tr><td><strong>חום הגוף</strong></td><td>קבוע ויציב</td><td>משתנה עם הסביבה</td></tr>
-      <tr><td><strong>תלות בסביבה</strong></td><td>לא תלויים</td><td>תלויים מאוד</td></tr>
-      <tr><td><strong>פעילות בחורף</strong></td><td>פעילים כרגיל</td><td>איטיים/רדומים</td></tr>
-      <tr><td><strong>צריכת אנרגיה</strong></td><td>גבוהה — לשמור על חום</td><td>נמוכה — אין ויסות</td></tr>
-      <tr><td><strong>דוגמאות</strong></td><td>עופות, יונקים</td><td>זוחלים, דגים, דו-חיים</td></tr>
-    </table>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;">
+      <table class="info-table" style="min-width:420px;font-size:13px;">
+        <tr><th style="min-width:90px;"></th><th style="min-width:130px;">🦅 הומאותרמיים</th><th style="min-width:150px;">🦎 פויקילותרמיים</th></tr>
+        <tr><td><strong>חום הגוף</strong></td><td>קבוע ויציב</td><td>משתנה עם הסביבה</td></tr>
+        <tr><td><strong>תלות בסביבה</strong></td><td>לא תלויים</td><td>תלויים מאוד</td></tr>
+        <tr><td><strong>פעילות בחורף</strong></td><td>פעילים כרגיל</td><td>איטיים/רדומים</td></tr>
+        <tr><td><strong>צריכת אנרגיה</strong></td><td>גבוהה — לשמור על חום</td><td>נמוכה — אין ויסות</td></tr>
+        <tr><td><strong>דוגמאות</strong></td><td>עופות, יונקים</td><td>זוחלים, דגים, דו-חיים</td></tr>
+      </table>
+    </div>
     <div class="remember-box">הומאותרמי = קבוע + עופות/יונקים | פויקילותרמי = משתנה + זוחלים/דגים/דו-חיים</div>
   </div>
 
@@ -650,33 +652,48 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
   <div class="goal-box">אני אוכל לתאר את שלושת סוגי המנגנונים לוויסות חום.</div>
 
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">בעלי חיים הומאותרמיים משתמשים במגוון מנגנונים כדי לשמור על טמפרטורת גוף קבועה. המנגנונים מתחלקים לשלושה סוגים עיקריים — בהתאם לכיוון פעולתם: שמירת חום, ייצור חום או סילוקו.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/visuthom.png" alt="מנגנוני ויסות חום" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
     <div class="section-title">🛠️ שלושה סוגי מנגנונים</div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0369a1">1</div>
-      <div class="step-content">
-        <strong>🧥 בידוד</strong><br>
-        מנגנונים שמונעים מעבר חום בין הגוף לסביבה — שומרים על החום בפנים.<br>
-        <span style="font-size:13px;color:var(--text-muted)">דוגמה: שיער עבה, נוצות, שכבת שומן</span>
-      </div>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#dc2626">2</div>
-      <div class="step-content">
-        <strong>🔥 מנגנונים שמייצרים חום</strong><br>
-        מנגנונים שמגבירים ייצור חום בתוך הגוף.<br>
-        <span style="font-size:13px;color:var(--text-muted)">דוגמה: רטט שרירים, הגברת חילוף חומרים</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#eff6ff;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">🧥 בידוד</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          מנגנונים שמונעים מעבר חום בין הגוף לסביבה — <strong>שומרים על החום בפנים</strong>.<br>
+          <span style="color:var(--text-muted);">💡 דוגמה: שיער עבה, נוצות, שכבת שומן</span>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#059669">3</div>
-      <div class="step-content">
-        <strong>💧 מנגנונים שמעבירים חום לסביבה</strong><br>
-        מנגנונים שמסלקים עודף חום מהגוף לסביבה.<br>
-        <span style="font-size:13px;color:var(--text-muted)">דוגמה: הזעה, נשימה מהירה</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff5f5;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">🔥 מנגנונים שמייצרים חום</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          מנגנונים שמגבירים <strong>ייצור חום בתוך הגוף</strong>.<br>
+          <span style="color:var(--text-muted);">💡 דוגמה: רטט שרירים, הגברת חילוף חומרים</span>
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f0fdf4;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">💧 מנגנונים שמעבירים חום לסביבה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          מנגנונים שמסלקים <strong>עודף חום מהגוף לסביבה</strong>.<br>
+          <span style="color:var(--text-muted);">💡 דוגמה: הזעה, נשימה מהירה</span>
+        </div>
+      </div>
+
     </div>
 
     <div class="highlight blue" style="margin-top:8px">
@@ -710,26 +727,46 @@ ul.content-list li::before { content:attr(data-icon); font-size:18px; min-width:
 
   <div class="card">
     <div class="section-title">🩸 איך כלי הדם עוזרים?</div>
-    <div class="two-col-compare">
-      <div class="compare-card hot-card">
-        <h3>🔆 כשחם</h3>
-        <ul>
-          <li>כלי הדם ה<strong>היקפיים</strong> (קרוב לעור) <strong>מתרחבים</strong></li>
-          <li>יותר דם זורם לעור</li>
-          <li><strong>יותר חום</strong> מועבר מהגוף לסביבה</li>
-        </ul>
-      </div>
-      <div class="compare-card cold-card">
-        <h3>❄️ כשקר</h3>
-        <ul>
-          <li>כלי הדם ה<strong>היקפיים מתכווצים</strong></li>
-          <li>פחות דם זורם לעור</li>
-          <li><strong>פחות חום</strong> אובד לסביבה</li>
-        </ul>
-      </div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">כלי הדם ההיקפיים — אלה הנמצאים קרוב לעור — משמשים כ"ברז" חכם לוויסות חום. על ידי התרחבות או התכווצות, הם שולטים בכמות הדם שזורמת לעור ובכך קובעים כמה חום עובר בין הגוף לסביבה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/klidam.png" alt="כלי דם היקפיים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
+
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;margin-bottom:16px;border:2px solid #0369a1;box-shadow:0 4px 12px rgba(3,105,161,0.12);">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;font-family:var(--font);">
+        <thead>
+          <tr>
+            <th style="padding:10px 10px;background:#0369a1;color:white;font-weight:800;text-align:right;border-bottom:2px solid #0369a1;white-space:nowrap;">מה קורה?</th>
+            <th style="padding:10px 10px;background:#0369a1;color:white;font-weight:800;text-align:center;border-bottom:2px solid #0369a1;white-space:nowrap;">🔆 כשחם</th>
+            <th style="padding:10px 10px;background:#0369a1;color:white;font-weight:800;text-align:center;border-bottom:2px solid #0369a1;white-space:nowrap;">❄️ כשקר</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:white;">
+            <td style="padding:9px 10px;font-weight:700;border-bottom:1px solid #f1f5f9;font-size:13px;">כלי הדם ההיקפיים</td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#fee2e2;color:#dc2626;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">מתרחבים</span></td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#dbeafe;color:#1d4ed8;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">מתכווצים</span></td>
+          </tr>
+          <tr style="background:#fafafa;">
+            <td style="padding:9px 10px;font-weight:700;border-bottom:1px solid #f1f5f9;font-size:13px;">זרימת דם לעור</td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#fee2e2;color:#dc2626;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">יותר דם</span></td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#dbeafe;color:#1d4ed8;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">פחות דם</span></td>
+          </tr>
+          <tr style="background:white;">
+            <td style="padding:9px 10px;font-weight:700;border-bottom:1px solid #f1f5f9;font-size:13px;">העברת חום</td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#fee2e2;color:#dc2626;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">יותר יוצא</span></td>
+            <td style="padding:9px 10px;text-align:center;border-bottom:1px solid #f1f5f9;"><span style="background:#dbeafe;color:#1d4ed8;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">פחות יוצא</span></td>
+          </tr>
+          <tr style="background:#fafafa;">
+            <td style="padding:9px 10px;font-weight:700;font-size:13px;">תוצאה</td>
+            <td style="padding:9px 10px;text-align:center;"><span style="background:#dcfce7;color:#16a34a;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">מתקרר</span></td>
+            <td style="padding:9px 10px;text-align:center;"><span style="background:#dcfce7;color:#16a34a;font-weight:700;border-radius:20px;padding:3px 10px;font-size:12px;white-space:nowrap;">שומר חום</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="section-title" style="margin-top:8px">📐 שטח פנים — למה זה חשוב?</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">שטח הפנים של הגוף קובע כמה חום יכול לעבור בין הגוף לסביבה. ככל שהגוף קטן יותר, שטח הפנים שלו <strong>גדול יחסית</strong> לנפחו — ולכן הוא מאבד חום מהר יותר. חיות גדולות, לעומת זאת, מאבדות חום לאט יותר אך מתקשות יותר להתקרר.</p>
+    <img src="https://bagruyot.org/haklaut/bg/visut/shetah.png" alt="שטח פנים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:16px;">
     <div class="highlight green">
       ככל ש<strong>שטח הפנים גדול יותר</strong> ביחס לנפח הגוף — כך <strong>יותר חום יכול לעבור</strong> מהגוף לסביבה.
     </div>
