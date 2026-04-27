@@ -1792,6 +1792,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 
   <div class="card">
     <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">ישנם שלושה סוגי אוורור, שנבדלים זה מזה לפי מסלול האוויר בתוך הלול. ככל שהמסלול ארוך יותר, האוויר מתחמם יותר בדרכו — ולכן כל סוג מתאים לאקלים שונה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/haklai/sugivrur.png" alt="סוגי אוורור" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
 
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
@@ -1884,35 +1885,66 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל להסביר מהו מזרון לח וכיצד הוא מקרר.</div>
 
   <div class="card">
-    <div class="definition-box">
-      <strong>מזרון לח</strong> = שיטה לקירור האוויר הנכנס ללול באמצעות <strong>אידוי</strong>.
-    </div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">מזרון לח הוא שיטה לקירור האוויר לפני שנכנס ללול. הוא ממוקם מחוץ לפתח כניסת האוויר ועובד על עיקרון פשוט: מים מתאדים ← שואבים חום ← מקררים את האוויר העובר דרכם.</p>
+    <img src="https://bagruyot.org/haklaut/bg/haklai/mizron.png" alt="מזרון לח" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:10px;">
+    <div style="margin-bottom:14px;"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">מזרון לח = קירור האוויר הנכנס ללול באמצעות אידוי</span></div>
 
     <div class="section-title">⚙️ כיצד עובד מזרון לח?</div>
-    <div class="step-box">
-      <div class="step-num" style="background:#0369a1">1</div>
-      <div class="step-content">מרכיבים מזרון <strong>לפני פתחי כניסת האוויר</strong> — מחוץ ללול.</div>
-    </div>
-    <div class="step-box">
-      <div class="step-num" style="background:#0284c7">2</div>
-      <div class="step-content"><strong>מים מוזרמים</strong> על המזרון כל הזמן.</div>
-    </div>
-    <div class="step-box">
-      <div class="step-num" style="background:#059669">3</div>
-      <div class="step-content">המים <strong>מתאדים</strong> מהמזרון לאוויר → האידוי צורך חום → <strong>המזרון מתקרר</strong>.</div>
-    </div>
-    <div class="step-box">
-      <div class="step-num" style="background:#7c3aed">4</div>
-      <div class="step-content">האוויר שנכנס ללול <strong>חייב לעבור דרך המזרון</strong> → נכנס <strong>אוויר קר יותר</strong>.</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="background:#b45309;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">הצבת המזרון</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fed7aa;font-size:14px;line-height:1.8;">
+          מרכיבים מזרון לפני פתחי כניסת האוויר — מחוץ ללול.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">הזרמת מים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          מים מוזרמים על המזרון כל הזמן.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0284c7;text-align:right;">
+          <span style="background:#0284c7;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">אידוי וקירור</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #7dd3fc;font-size:14px;line-height:1.8;">
+          המים מתאדים מהמזרון ← האידוי צורך חום ← המזרון מתקרר.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">אוויר קר נכנס ללול</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          האוויר חייב לעבור דרך המזרון ← נכנס אוויר קר יותר ללול.
+        </div>
+      </div>
+
     </div>
 
-    <div class="highlight yellow">
+    <div style="background:#fefce8;border-right:4px solid #b45309;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:10px;">
       💡 <strong>העיקרון:</strong> אידוי מים = קירור. כמו שאדם שרטוב מרגיש קר כשיש רוח.
     </div>
-    <div class="highlight blue">
-      ⚠️ <strong>חיסרון:</strong> מזרון לח <strong>מגביר לחות</strong> — לא מתאים כשהלחות החיצונית גבוהה מאוד.
+    <div style="background:#fff1f2;border-right:4px solid #dc2626;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:12px;">
+      ⚠️ <strong>חיסרון:</strong> מזרון לח מגביר לחות — לא מתאים כשהלחות החיצונית גבוהה מאוד.
     </div>
-    <div class="remember-box">מזרון לח: מים על מזרון → אידוי → מזרון מתקרר → אוויר קר נכנס ללול!</div>
+    <div class="remember-box">מזרון לח: מים על מזרון ← אידוי ← מזרון מתקרר ← אוויר קר נכנס ללול!</div>
   </div>
 
   <div class="question-box">
@@ -1961,7 +1993,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     <div class="glossary-item"><div class="glossary-term">🌡️ טמפרטורה תרמונטרלית</div><div class="glossary-def">טווח 20–28°C שבו בעל החיים לא צריך לווסת חום — חוסך אנרגיה לייצור.</div></div>
     <div class="glossary-item"><div class="glossary-term">💨 הלחתה</div><div class="glossary-def">מנגנון הקירור העיקרי בעוף — אידוי מים דרך מערכת הנשימה.</div></div>
     <div class="glossary-item"><div class="glossary-term">🔥 BTU</div><div class="glossary-def">British Thermal Units — יחידה למדידת ייצור חום עצמי.</div></div>
-    <div class="glossary-item"><div class="glossary-term">💧 מטרה</div><div class="glossary-def">מערכת השקיית מים לקירור גג הלול — עובדת על עיקרון האידוי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💧 המטרה</div><div class="glossary-def">מערכת השקיית מים לקירור גג הלול — עובדת על עיקרון האידוי.</div></div>
     <div class="glossary-item"><div class="glossary-term">🧊 מזרון לח</div><div class="glossary-def">מזרון שמוזרמים עליו מים לפני פתחי האוורור — האוויר עובר דרכו ומתקרר.</div></div>
     <div class="glossary-item"><div class="glossary-term">🔄 אוורור רוחב</div><div class="glossary-def">כניסה וויציאה בקירות האורך — מסלול קצר — מתאים לאקלים חם.</div></div>
     <div class="glossary-item"><div class="glossary-term">🔄 אוורור גג</div><div class="glossary-def">כניסה מקירות האורך, יציאה מהגג — מסלול בינוני — מתאים לאקלים ממוצע.</div></div>
@@ -2158,7 +2190,7 @@ const cards=[
   {term:"🌡️ תרמונטרלי",def:"טווח 20–28°C שבו בעל החיים לא מפעיל מנגנוני ויסות חום — חוסך אנרגיה לייצור."},
   {term:"💨 הלחתה",def:"מנגנון הקירור של העוף — אידוי מים דרך מערכת הנשימה (אין לו בלוטות זעה!)."},
   {term:"🔥 BTU",def:"British Thermal Units — יחידה למדידת ייצור חום עצמי בלול."},
-  {term:"💧 מטרה",def:"מערכת השקיית מים על הגג — קירור דרך אידוי."},
+  {term:"💧 המטרה",def:"מערכת השקיית מים על הגג — קירור דרך אידוי."},
   {term:"🧊 מזרון לח",def:"מזרון לפני פתחי הכניסה — מים מתאדים, מזרון מתקרר, אוויר נכנס קר יותר."},
   {term:"🔄 אוורור רוחב",def:"מסלול קצר בין קירות האורך — מתאים לאקלים חם."},
   {term:"🔄 אוורור גג",def:"מסלול בינוני — כניסה מקירות האורך, יציאה מהגג — מתאים לאקלים ממוצע."},
