@@ -1102,7 +1102,7 @@ ul.content-list li::before {
   <div class="card">
     <div class="section-title">📖 3 מושגים חשובים לדעת</div>
     <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">כשמחלה מסתיימת, הגוף מגיע להחלמה מלאה. אבל לא תמיד. לפעמים מחלה שחלפה חוזרת בשנית, ולפעמים מחלה כרונית עוברת לתקופת רגיעה שנקראת הפוגה.</p>
-    <img src="https://bagruyot.org/haklaut/bg/hisun/amusag.png" alt="מושגים חשובים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
+    <img src="https://bagruyot.org/haklaut/bg/hisun/musag.png" alt="מושגים חשובים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
     <div style="display:flex;flex-direction:column;gap:8px;">
       <div style="background:#fefce8;border-right:4px solid #b45309;border-radius:10px;padding:10px 14px;font-size:14px;">
         <strong>🔁 מחלה חוזרת</strong><br>מחלה אקוטית שחלפה ולאחר מכן חזרה והתפרצה בשנית.
@@ -1332,47 +1332,76 @@ ul.content-list li::before {
   <div class="goal-box">אני אדע לזהות סוגי מחלות נוספים.</div>
 
   <div class="card">
-    <div class="section-title">🧬 מחלות תורשתיות (גנטיות)</div>
-    <div class="highlight blue">
-      בכל תאי הגוף קיים <strong>גן פגום</strong> שגורם לחלבון פגום → פגיעה ברקמות.<br>
-      כ-4,000 מחלות גנטיות ידועות.<br>
-      <strong>טיפול:</strong> בדרך כלל חשוכות מרפא – רק טיפול סימפטומלי (הקלת תסמינים).
-    </div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">ישנם סוגי מחלות רבים: מחלות תורשתיות שמועברות בגנים, מחלות מטבוליות שנובעות מתקלות בחילוף החומרים, סרטן שנגרם מחלוקה לא נשלטת של תאים, ומחלות אוטואימוניות שבהן הגוף תוקף את תאיו שלו.</p>
+    <img src="https://bagruyot.org/haklaut/bg/hisun/mahalotsug.png" alt="סוגי מחלות" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="section-title">🔴 סרטן</div>
-    <div class="highlight red">
-      חלוקה <strong>מהירה ובלתי נשלטת</strong> של תאים.<br>
-      גורמים: מוטציות, חומרים מזיקים (ניקוטין, אזבסט), נגיפים מסוימים.<br>
-      <strong>טיפול:</strong> הרס/הסרת הרקמה הסרטנית (קרינה, תרופות, ניתוח).
-    </div>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="flex:1;">🧬 מחלות תורשתיות (גנטיות)</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          בכל תאי הגוף קיים <strong>גן פגום</strong> שגורם לחלבון פגום ← פגיעה ברקמות. כ-4,000 מחלות גנטיות ידועות.<br>
+          <div style="margin-top:8px;"><span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> בדרך כלל חשוכות מרפא — רק טיפול סימפטומלי (הקלת תסמינים)</span></div>
+        </div>
+      </div>
 
-    <div class="section-title">🍖 תזונה לקויה</div>
-    <div class="highlight yellow">
-      חוסר איזון בין תזונה רצויה לאכילה בפועל.<br>
-      <strong>30-40% מהכלבים</strong> בארה"ב סובלים מחוסר איזון במשקל!<br>
-      משפיעה על: מחזור דם, נשימה, עצמות, שרירים.<br>
-      <strong>טיפול:</strong> דיאטה מותאמת + פעילות גופנית.
-    </div>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="flex:1;">🔴 סרטן</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:14px;line-height:1.8;">
+          חלוקה <strong>מהירה ובלתי נשלטת</strong> של תאים. גורמים: מוטציות, חומרים מזיקים (ניקוטין, אזבסט), נגיפים מסוימים.<br>
+          <div style="margin-top:8px;"><span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> הרס/הסרת הרקמה הסרטנית — קרינה, תרופות, ניתוח</span></div>
+        </div>
+      </div>
 
-    <div class="section-title">⚗️ מחלות מטבוליות</div>
-    <div class="highlight purple">
-      הפרעה בחילוף החומרים (<strong>מטבוליזם</strong>).<br>
-      דוגמה: <strong>סוכרת</strong> – מחסור בהורמון אינסולין.<br>
-      <strong>טיפול:</strong> החדרת אינסולין מלאכותית.
-    </div>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fde047;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="flex:1;">🍖 תזונה לקויה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fde047;font-size:14px;line-height:1.8;">
+          חוסר איזון בין תזונה רצויה לאכילה בפועל. <strong>30-40% מהכלבים</strong> בארה"ב סובלים מחוסר איזון במשקל. משפיעה על מחזור דם, נשימה, עצמות ושרירים.<br>
+          <div style="margin-top:8px;"><span style="background:#fef9c3;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> דיאטה מותאמת ופעילות גופנית</span></div>
+        </div>
+      </div>
 
-    <div class="section-title">🛡️ מחלות אוטואימוניות</div>
-    <div class="highlight green">
-      מערכת החיסון <strong>תוקפת בטעות</strong> תאי גוף בריאים.<br>
-      <strong>טיפול:</strong> האטת ההתקדמות, הפחתת התלקחויות.
-    </div>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="flex:1;">⚗️ מחלות מטבוליות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:14px;line-height:1.8;">
+          הפרעה בחילוף החומרים (<strong>מטבוליזם</strong>). דוגמה: <strong>סוכרת</strong> — מחסור בהורמון אינסולין שגורם לאי-ויסות הסוכר בדם.<br>
+          <div style="margin-top:8px;"><span style="background:#d1fae5;color:#059669;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> החדרת אינסולין מלאכותית</span></div>
+        </div>
+      </div>
 
-    <div class="section-title">🦠 מחלות זיהומיות</div>
-    <div class="highlight blue">
-      טפילים מתרבים ומפרישים <strong>רעלנים</strong> שמשבשים פעולת תאים.<br>
-      תגובת הגוף: <strong>עייפות + עליית חום</strong>.<br>
-      האופן בו הטפיל מזיק = <strong>פתוגניות</strong>.<br>
-      <strong>טיפול: אנטיביוטיקה</strong>.
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="flex:1;">🛡️ מחלות אוטואימוניות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:14px;line-height:1.8;">
+          מערכת החיסון <strong>תוקפת בטעות</strong> תאי גוף בריאים במקום לתקוף גורמים זרים.<br>
+          <div style="margin-top:8px;"><span style="background:#e9d5ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> האטת ההתקדמות והפחתת התלקחויות</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #374151;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#111827;text-align:right;">
+          <span style="flex:1;">🦠 מחלות זיהומיות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #374151;font-size:14px;line-height:1.8;">
+          טפילים מתרבים ומפרישים <strong>רעלנים</strong> שמשבשים פעולת תאים. תגובת הגוף: <strong>עייפות ועליית חום</strong>. האופן בו הטפיל מזיק נקרא <strong>פתוגניות</strong>.<br>
+          <div style="margin-top:8px;"><span style="background:#e5e7eb;color:#111827;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>טיפול:</strong> אנטיביוטיקה</span></div>
+        </div>
+      </div>
+
     </div>
 
     <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:12px;padding:16px;margin-top:12px;margin-right:18px;border-right:4px solid #059669">
@@ -1507,33 +1536,53 @@ ul.content-list li::before {
   <div class="goal-box">אני אדע להסביר את דרכי ההדבקה השונות.</div>
 
   <div class="card">
-    <div class="definition-box">
-      <strong>מחלה מדבקת</strong> = כל מחלה שעשויה לעבור מבעל חיים אחד לשני.
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">מחלות זיהומיות יכולות לעבור מבעל חיים אחד לאחר בדרכים שונות. יש מחלות שעוברות במגע ישיר בין שני בעלי חיים, ויש שעוברות דרך סביבה משותפת, אוויר, מים, מזון או בעלי חיים שמשמשים כמתווכים.</p>
+    <div style="margin-bottom:14px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">מחלה מדבקת = כל מחלה שעשויה לעבור מבעל חיים אחד לשני</span></div>
+
+    <img src="https://bagruyot.org/haklaut/bg/hisun/hadbaka.png" alt="הדבקה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="flex:1;">🤝 הדבקה ישירה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:14px;line-height:1.8;">
+          מגע ישיר עם נוזלי גוף של בעל חיים נגוע.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">רוק, דם, זרע, נזלת, צואה</span>
+            <span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">ליקוק, נשיכה, מגע מיני</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fde047;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="flex:1;">💨 הדבקה עקיפה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fde047;font-size:14px;line-height:1.8;">
+          העברת מחלה ללא מגע ישיר בין שני בעלי חיים.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">שאיפת אוויר מזוהם (שיעול, עיטוש)</span>
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">מגע עם חפצים מזוהמים</span>
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">מזון ומים מזוהמים</span>
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">וקטור — חרק/בעל חיים נושא מחלה</span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="grid-2">
-      <div class="mini-card" style="background:#dbeafe;border:2px solid #93c5fd">
-        <div class="title" style="color:#1d4ed8">🤝 הדבקה ישירה</div>
-        מגע ישיר עם נוזלי גוף של בעל חיים נגוע:<br>
-        • רוק, דם, זרע, נזלת, צואה<br>
-        • ליקוק, נשיכה, מגע מיני
-      </div>
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #fbbf24">
-        <div class="title" style="color:#d97706">💨 הדבקה עקיפה</div>
-        • שאיפת אוויר מזוהם (שיעול, עיטוש)<br>
-        • מגע עם חפצים מזוהמים<br>
-        • מזון ומים מזוהמים<br>
-        • וקטור — חרק/בע"ח נושא מחלה
-      </div>
-    </div>
-    <div class="highlight blue" style="margin-top:4px">
+    <div style="background:#eff6ff;border-right:4px solid #0369a1;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:10px;">
       💡 <strong>יכולת ההדבקה</strong> נקבעת לפי יכולת הפאתוגן לחדור, לשרוד ולהתרבות בגוף.
     </div>
 
-    <div class="highlight yellow">
+    <div style="background:#fefce8;border-right:4px solid #b45309;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:12px;">
       💡 <strong>לא כל המחלות מדבקות!</strong><br>
-      מחלות <strong>גנטיות</strong> – כמעט לעולם <strong>לא</strong> מדבקות.<br>
-      מחלות מ<strong>אורגניזם זר/נגיף</strong> – <strong>בדרך כלל כן</strong> מדבקות.
+      מחלות <strong>גנטיות</strong> — כמעט לעולם לא מדבקות.<br>
+      מחלות מ<strong>אורגניזם זר/נגיף</strong> — בדרך כלל כן מדבקות.
     </div>
   </div>
 
@@ -1574,42 +1623,68 @@ ul.content-list li::before {
   <div class="goal-box">אני אוכל לתאר את 4 שלבי המחלה ולהסביר כל אחד.</div>
 
   <div class="card">
-    <div class="highlight pink" style="background:#fce7f3;border-right:4px solid #be185d;text-align:center;font-size:16px;font-weight:700">
-      כל מחלה מדבקת עוברת <strong>4 שלבים</strong> בסדר קבוע 🔄
-    </div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">כשמחלה נכנסת לגוף, היא לא מתפרצת מיד. הגוף עובר 4 שלבים בסדר קבוע, מהרגע שהמחלה נכנסת ועד שהיא נגמרת.</p>
+    <img src="https://bagruyot.org/haklaut/bg/hisun/shlavim.png" alt="שלבי המחלה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:10px;">
+    <div style="margin-bottom:14px;"><span style="display:inline-block;background:#fce7f3;color:#be185d;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">כל מחלה מדבקת עוברת 4 שלבים בסדר קבוע</span></div>
 
-    <div class="step-box" style="margin-top:14px">
-      <div class="step-num" style="background:#be185d">1</div>
-      <div class="step-content">
-        <strong>🦠 הדבקה</strong><br>
-        הפאתוגן (גורם המחלה) חודר לגוף — דרך נשיכה, מגע, אוויר, מזון וכו'. עצם כניסת הגורם לגוף.
-      </div>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#7c3aed">2</div>
-      <div class="step-content">
-        <strong>⏱️ דגירה</strong><br>
-        הגורם התיישב בגוף והתחיל להתרבות — <strong>אין עדיין סימנים</strong>. בעל החיים נראה בריא אך כבר נגוע.<br>
-        <span style="font-size:13px;color:#6b7280">⚠️ לא כל הדבקה מתפתחת למחלה! לפעמים הגוף מדביר את הגורם בשלב זה.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fbcfe8;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#be185d;text-align:right;">
+          <span style="background:#be185d;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">הדבקה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fbcfe8;font-size:15px;line-height:1.8;">
+          הפאתוגן (גורם המחלה) חודר לגוף דרך נשיכה, מגע, אוויר, מזון וכו'. עצם כניסת הגורם לגוף.
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#dc2626">3</div>
-      <div class="step-content">
-        <strong>🤒 מחלה</strong><br>
-        הסימנים הקליניים מופיעים במלואם — חום, חולשה, שינויי התנהגות ועוד. הגוף נלחם בגורם.
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">דגירה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:15px;line-height:1.8;">
+          הגורם התיישב בגוף והתחיל להתרבות. בעל החיים נראה בריא אך כבר נגוע.<br>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#e9d5ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;"><strong>אין עדיין סימנים</strong></span>
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;">⚠️ לא כל הדבקה מתפתחת למחלה — לפעמים מערכת החיסון מצליחה להכות את הגורם לפני שמופיעים סימנים</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#059669">4</div>
-      <div class="step-content">
-        <strong>💚 החלמה</strong><br>
-        הסימנים הקליניים דועכים ובעל החיים חוזר לתפקוד תקין.<br>
-        <span style="font-size:13px;color:#6b7280">לעיתים המחלה נותרת רדומה ויכולה להתפרץ שוב בעתיד.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">מחלה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          הסימנים הקליניים מופיעים במלואם. הגוף נלחם בגורם.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">חום</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">חולשה</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">שינויי התנהגות</span>
+          </div>
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">החלמה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          הסימנים הקליניים דועכים ובעל החיים חוזר לתפקוד תקין.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#fefce8;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">⚠️ לעיתים המחלה נותרת רדומה ויכולה להתפרץ שוב</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1657,59 +1732,99 @@ ul.content-list li::before {
   <div class="goal-box">אני אוכל לתאר את דרכי הטיפול והמניעה במחלות בבעלי חיים.</div>
 
   <div class="card">
-    <div class="section-title">🛡️ 5 דרכי טיפול ומניעה</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">כשמחלה מתפרצת בעדר, החקלאי צריך לפעול מהר. ישנן 5 דרכים עיקריות להתמודד עם מחלות: חלקן מיועדות למנוע את המחלה מראש, וחלקן לטפל בה לאחר שכבר הופיעה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/hisun/derehtipul.png" alt="דרכי טיפול ומניעה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#2563eb">1</div>
-      <div class="step-content">
-        <strong>💉 חיסון</strong><br>
-        מניעה מראש — חיסון פעיל (לפני המחלה) או סביל (נוגדנים מוכנים). הדרך הטובה ביותר!
-      </div>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
 
-    <div class="step-box">
-      <div class="step-num" style="background:#7c3aed">2</div>
-      <div class="step-content">
-        <strong>🔒 בידוד והסגר</strong><br>
-        הפרדת הפרטים החולים משאר העדר כדי לעצור את ההתפשטות. חיסכון בחיים!
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">חיסון</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          מניעה מראש — חיסון פעיל (לפני המחלה) או סביל (נוגדנים מוכנים).
+          <div style="margin-top:8px;"><span style="background:#d1fae5;color:#059669;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">✅ הדרך הטובה ביותר למנוע מחלה!</span></div>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#0891b2">3</div>
-      <div class="step-content">
-        <strong>🩺 טיפול תומך</strong><br>
-        שיפור תנאי האחזקה: מרחב מחייה, אוורור, הזנה נאותה, שמירה על היגיינה.
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">בידוד והסגר</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          הפרדת הפרטים החולים משאר העדר כדי לעצור את ההתפשטות.
+          <div style="margin-top:8px;"><span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">מונע הדבקת שאר העדר</span></div>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#d97706">4</div>
-      <div class="step-content">
-        <strong>💊 תרופות</strong><br>
-        אנטיביוטיקה (נגד חיידקים), תרופות אנטי-ויראליות ועוד — לפי סוג הגורם.
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #99f6e4;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0f766e;text-align:right;">
+          <span style="background:#0f766e;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">טיפול תומך</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #99f6e4;font-size:15px;line-height:1.8;">
+          שיפור תנאי האחזקה: מרחב מחייה, אוורור, הזנה נאותה, שמירה על היגיינה.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#ccfbf1;color:#0f766e;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">מרחב מחייה</span>
+            <span style="background:#ccfbf1;color:#0f766e;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">אוורור</span>
+            <span style="background:#ccfbf1;color:#0f766e;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">הזנה נאותה</span>
+            <span style="background:#ccfbf1;color:#0f766e;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">היגיינה</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="step-box">
-      <div class="step-num" style="background:#dc2626">5</div>
-      <div class="step-content">
-        <strong>☠️ השמדה (ביעור)</strong><br>
-        במקרים קשים — השמדת כל העדר הנגוע כדי למנוע התפשטות למשקים אחרים ולבני אדם.
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">תרופות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #e9d5ff;font-size:15px;line-height:1.8;">
+          לפי סוג הגורם בוחרים את התרופה המתאימה.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="background:#e9d5ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">אנטיביוטיקה (נגד חיידקים)</span>
+            <span style="background:#e9d5ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">תרופות אנטי-ויראליות</span>
+          </div>
+        </div>
       </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">5</span>
+          <span style="flex:1;">השמדה (ביעור)</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          במקרים קשים: השמדת כל העדר הנגוע כדי למנוע התפשטות למשקים אחרים ולבני אדם.
+          <div style="margin-top:8px;"><span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">⚠️ האמצעי הקיצוני ביותר</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="card">
     <div class="section-title">🔒 מהו הסגר (קרנטינה)?</div>
-    <div class="definition-box">
-      <strong>הסגר = קרנטינה</strong> = כליאה בבידוד של בעל חיים חשוד או נגוע.<br><br>
-      📋 לפי החוק בישראל: כל בעל חיים <strong>מיובא</strong> חייב בהסגר של <strong>מינימום 8 ימים</strong> בתחנת הסגר ממשלתית.
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">הסגר הוא כליאה בבידוד של בעל חיים חשוד או נגוע, כדי למנוע הפצת המחלה.</p>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:12px;background:#eff6ff;border-right:4px solid #0369a1;border-radius:10px;padding:10px 14px;">
+        <span style="font-size:20px;flex-shrink:0;">📋</span>
+        <div style="font-size:14px;"><strong>לפי החוק בישראל:</strong> כל בעל חיים מיובא חייב בהסגר של <strong>מינימום 8 ימים</strong> בתחנת הסגר ממשלתית.</div>
+      </div>
     </div>
-    <div class="highlight yellow">
+
+    <div style="background:#fefce8;border-right:4px solid #b45309;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:12px;">
       💡 <strong>מאיפה המילה "קרנטינה"?</strong><br>
       מהמילה האיטלקית "קוורנטה" = <strong>ארבעים</strong> — ארבעים ימי הסגר שהוטלו בעבר על ספינות שהגיעו לאיטליה מאזורי מגפה. הרופא עלה על הספינה בתום 40 הימים ובדק אם יש חולים.
     </div>
+
+    <div class="remember-box">הסגר = קרנטינה = בידוד מינימום 8 ימים לכל בעל חיים מיובא!</div>
   </div>
 
   <div class="card">
