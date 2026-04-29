@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מערכת הנשימה | לומדה דיגיטלית</title>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-990G8Z7F1H');
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--secondary:#b45309;--secondary-light:#fef3c7;--hot:#dc2626;--hot-light:#fee2e2;--cold:#2563eb;--cold-light:#dbeafe;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right 0.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;padding:10px 12px 4px;}
+.menu-chapter{padding:0 8px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;transition:background .2s;}
+#menu-btn:hover{background:#075985;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#menu-btn-icon{font-size:16px;color:white;}
+#lung-icon{font-size:22px;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--secondary-light);border-right:4px solid var(--secondary);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.two-col-compare{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:16px;font-size:14px;}
+.compare-card h3{font-weight:900;font-size:16px;margin-bottom:10px;}
+.compare-card ul{list-style:none;padding:0;}
+.compare-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:6px;}
+.compare-card ul li::before{content:"•";font-weight:900;}
+.step-box{display:flex;gap:12px;align-items:flex-start;background:white;border:2px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.step-num{min-width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.step-content{font-size:15px;line-height:1.5;}
+.step-content strong{font-size:16px;display:block;margin-bottom:4px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn:hover{transform:scale(1.02);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:80px;cursor:pointer;font-weight:700;color:#1e40af;transition:all .2s;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:16px;line-height:2.2;margin-bottom:12px;padding:14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item:hover,.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.right-item:hover,.match-item.right-item.selected{background:#dcfce7;border-color:var(--green);}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:120px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:120px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:22px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:15px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;}
+.flashcard-nav button:hover{transform:scale(1.05);}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;box-shadow:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#7c3aed 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🫁';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;line-height:1.3;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.intro-hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:17px;color:var(--primary);}
+.glossary-def{font-size:15px;line-height:1.6;color:var(--text);margin-top:4px;}
+.pill{display:inline-block;background:var(--primary-light);color:var(--primary);border-radius:99px;padding:4px 14px;font-size:13px;font-weight:700;margin:3px;}
+.pill.hot{background:var(--hot-light);color:#991b1b;}
+.pill.green{background:var(--green-light);color:#065f46;}
+.pill.purple{background:var(--purple-light);color:#5b21b6;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🫁 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🎯 תפקידים ויסודות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🎯</span>תפקידי מערכת הנשימה</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🌡️</span>הומאותרמיים</button>
+    </div>
+    <div class="menu-chapter-title">👃 האף ומבנה יונקים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">👃</span>האף — סינון, חימום, לחלוח</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🗺️</span>מסלול האוויר ביונקים</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🫁</span>הריאות והנאדיות</button>
+    </div>
+    <div class="menu-chapter-title">🔄 פיזיולוגיה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">💨</span>חילוף גזים ודיפוזיה</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🌬️</span>שאיפה ונשיפה</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>הומאוסטזיס</button>
+    </div>
+    <div class="menu-chapter-title">🐦 עופות</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🐦</span>נשימה בעופות</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🛍️</span>שקי האוויר</button>
+    </div>
+    <div class="menu-chapter-title">🐝 פויקילותרמיים</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🐝</span>דבורים — טרכיאות</button>
+    </div>
+    <div class="menu-chapter-title">🐕 הכלב</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🐕</span>מערכת הנשימה של הכלב</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📐</span>מקדם הנשימה</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div class="menu-chapter">
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה – התאמה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span id="menu-btn-icon">☰</span><span id="menu-btn-label">פתיחה</span></button>
+  <span id="lung-icon">🫁</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 19</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🫁💨🐦🐝</div>
+    <h1>מערכת הנשימה<br>בחיות משק</h1>
+    <p class="tagline">מאדם לכלב, מעוף לדבורה — איך כל יצור נושם?<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐄 חקלאות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🎯">תפקידי מערכת הנשימה — חילוף גזים ועוד</li>
+      <li data-icon="👃">האף — סינון, חימום ולחלוח האוויר</li>
+      <li data-icon="🗺️">מבנה מערכת הנשימה ביונקים — מהאף עד הנאדיות</li>
+      <li data-icon="🔄">חילוף גזים, דיפוזיה, שאיפה ונשיפה</li>
+      <li data-icon="🐦">מערכת הנשימה בעופות — שקי האוויר ונשימה חד-כיוונית</li>
+      <li data-icon="🐝">דבורים — טרכיאות, טרכיאולות ופתחי אוויר</li>
+      <li data-icon="🐕">מערכת הנשימה של הכלב ומקדם הנשימה</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">מה התפקיד העיקרי של מערכת הנשימה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">א</span>לייצר חום לגוף</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">ב</span>חילוף גזים — כניסת O₂ ויציאת CO₂</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ג</span>לסנן את הדם</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- S1: תפקידים -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🎯</span>
+    <h1>תפקידי מערכת הנשימה</h1>
+    <p class="subtitle">תפקיד עיקרי ותפקידים נוספים</p>
+  </div>
+  <div class="goal-box">אני אוכל לפרט את כל תפקידי מערכת הנשימה.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">מערכת הנשימה לא רק מכניסה אוויר לגוף. יש לה מספר תפקידים חשובים: החיוני ביותר הוא חילוף גזים, אבל היא גם מסייעת לווסת את חום הגוף, לנקות את האוויר ולהפיק קולות.</p>
+    <img src="https://bagruyot.org/haklaut/bg/neshima/neshima.png" alt="מערכת הנשימה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div class="section-title">⭐ התפקיד העיקרי</div>
+    <div class="definition-box" style="text-align:center">
+      <strong>חילוף גזים (Breathing)</strong><br>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+        <div style="background:#d1fae5;border-radius:12px;padding:12px 20px;border:2px solid #34d399">
+          <div style="font-size:24px">↘️</div><strong>O₂ נכנס</strong><br><span style="font-size:13px">חמצן לתאי הגוף</span>
+        </div>
+        <div style="background:#fee2e2;border-radius:12px;padding:12px 20px;border:2px solid #fca5a5">
+          <div style="font-size:24px">↗️</div><strong>CO₂ יוצא</strong><br><span style="font-size:13px">פחמן דו-חמצני החוצה</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:8px">➕ תפקידים נוספים</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">סילוק עודפי מים וחום</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          האוויר הנפלט נושא עמו מים ועודפי חום מהגוף.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">שמירה על חומציות הדם, מטבוליזם והומאוסטזיס</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          ריכוז CO₂ בדם קובע את חומציותו — הנשימה מסייעת לאיזון.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">חלק מקו ההגנה הראשון של מערכת החיסון</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #e9d5ff;font-size:15px;line-height:1.8;">
+          מניעת חדירת פתוגנים — האף, הריסים והריר מסננים חיידקים.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fde047;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="background:#b45309;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">חוש ריח</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fde047;font-size:15px;line-height:1.8;">
+          כולל איבר יעקובסון ופרומונים — תפקיד בתקשורת ובהתנהגות.
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">חילוף גזים + סילוק מים/חום + איזון חומציות + הגנה + ריח!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">מערכת הנשימה מכניסה <span class="fill-blank" onclick="revealBlank(this,'O₂')">___</span> לגוף ומוציאה <span class="fill-blank" onclick="revealBlank(this,'CO₂')">___</span> החוצה.</div>
+  </div>
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">מערכת הנשימה מסייעת גם לסנן פתוגנים ולשמור על חומציות הדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf1a"></div>
+  </div>
+</div>
+
+<!-- S2: הומאותרמיים -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#92400e)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🌡️</span>
+    <h1>הומאותרמיים ונשימה</h1>
+    <p class="subtitle">מי הם ואיך הנשימה קשורה לוויסות חום?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה הם הומאותרמיים ואת הקשר בין נשימה לוויסות חום.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">יונקים ועופות מסוגלים לשמור על טמפרטורת גוף קבועה גם כשהסביבה חמה או קרה. יכולת זו דורשת אנרגיה, וחלק ממנה מגיע ישירות מתהליך הנשימה שמייצרת חום כתוצר לוואי.</p>
+    <img src="https://bagruyot.org/haklaut/bg/neshima/homonesh.png" alt="הומאותרמיים ונשימה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div style="margin-bottom:14px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">הומאותרמיים = בעלי חיים ששומרים על טמפרטורת גוף קבועה בכל תנאי סביבה. יונקים ועופות.</span></div>
+
+    <div class="section-title">🔗 הקשר לנשימה</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">סילוק עודפי חום</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          האוויר הנפלט נושא עמו עודפי חום מהגוף.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">הלחתה בעופות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          לעופות אין בלוטות זעה — שחרור חום נעשה דרך הלחתה ורעידת הגרון וקרקעית הפה.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">חימום אוויר נכנס</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          האף מחמם את האוויר ל-37°C לפני שהוא מגיע לריאות — שמירה על חום הגוף.
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">הומאותרמים = יונקים + עופות = חום גוף קבוע!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מיהם הומאותרמיים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">א</span>זוחלים ודגים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s2q')"><span class="opt-letter">ב</span>חרקים ודו-חיים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s2q')"><span class="opt-letter">ג</span>יונקים ועופות</button>
+    </div>
+    <div class="feedback" id="fb-s2q"></div>
+  </div>
+</div>
+
+<!-- S3: האף -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#047857)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">👃</span>
+    <h1>האף — שלוש משימות חיוניות</h1>
+    <p class="subtitle">סינון, חימום ורוויית האוויר לפני הריאות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את שלוש ההתאמות של האף ולהסביר למה הן חשובות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">האוויר שנכנס בנשימה קר, יבש ומלא חלקיקים שעלולים לפגוע בריאות. האף הוא תחנת הכנה שמטפלת באוויר לפני שהוא מגיע לריאות, ועושה זאת בשלוש דרכים חיוניות.</p>
+    <img src="https://bagruyot.org/haklaut/bg/neshima/mivneaf.png" alt="האף" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:10px;">
+    <div style="margin-bottom:14px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">⭐ האוויר שאנו שואפים קר, יבש ומלא חלקיקים — האף מכין אותו לריאות!</span></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">סינון</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          מנקה את האוויר מחלקיקים לפני שמגיע לריאות — בשני שלבים:
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px;">
+            <div style="background:#f0fdf4;border-right:3px solid #059669;border-radius:8px;padding:8px 12px;font-size:15px;">
+              <strong>שערות האף</strong> — עוצרות חלקיקי אבק ולכלוך גדולים
+            </div>
+            <div style="background:#f0fdf4;border-right:3px solid #059669;border-radius:8px;padding:8px 12px;font-size:15px;">
+              <strong>ריסים מיקרוסקופיים (Cilia) + רירית האף</strong> — חלקיקים קטנים נדבקים לריר; הריסים דוחפים את הריר עם האבק החוצה בתנועה בלתי פוסקת
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">רוויית האוויר באדי מים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          מתחת לשערות יש <strong>קרומים לחים</strong> — מים מתאדים מהם לאוויר.
+          <div style="margin-top:8px;"><span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;">✅ האוויר מגיע לריאות לח ולא יבש</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">חימום האוויר</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:14px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          טמפרטורת הקרומים באף היא כ-<strong>37°C</strong> — גבוהה מהאוויר החיצוני. האוויר בא במגע עם הקרומים ומתחמם.
+          <div style="background:#fff1f2;border-right:3px solid #dc2626;border-radius:8px;padding:8px 12px;font-size:15px;margin-top:8px;">
+            💡 <strong>מבנה מיוחד:</strong> מערות האף בנויות עם דפנות מפותלות ← שטח פנים גדול ← מגע רב עם האוויר ← חימום, לחלוח וסינון יעילים!
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">האף = סינון (שערות + ריסים) + לחלוח + חימום ל-37°C!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s3" class="match-container">
+      <div class="match-col" id="s3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s3')">שערות האף</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s3')">קרומים לחים</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s3')">חום הקרומים 37°C</div>
+      </div>
+      <div class="match-col" id="s3-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s3')">מרוות האוויר באדי מים</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s3')">מחמם את האוויר הנכנס</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s3')">עוצרות חלקיקים גדולים</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s3match"></div>
+  </div>
+</div>
+
+<!-- S4: מסלול האוויר -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#4f46e5)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">🗺️</span>
+    <h1>מסלול האוויר ביונקים</h1>
+    <p class="subtitle">מהאף עד הנאדיות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מסלול האוויר ואת תפקיד כל חלק.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">האוויר שנכנס לגוף עובר מסלול ארוך לפני שמגיע לריאות. בכל עצירה במסלול הוא מטופל: מסונן, מחומם, ולבסוף מועבר לחילוף גזים. הכרת המסלול חיונית להבנת תפקיד כל איבר בנשימה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/neshima/hiluf.png" alt="מסלול האוויר" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
+    <table class="info-table">
+      <tr><th>חלק</th><th>מבנה</th><th>תפקיד</th></tr>
+      <tr><td>👃 <strong>אף</strong></td><td>שערות, ריסים, קרומים</td><td>סינון, חימום, לחלוח</td></tr>
+      <tr><td>🗣️ <strong>גרון</strong></td><td>מיתרי קול</td><td>ייצור קול; מעבר אוויר</td></tr>
+      <tr><td>🌀 <strong>קנה הנשימה</strong></td><td>טבעות סחוסיות, ריסים, ריר</td><td>מעבר אוויר פתוח תמיד; סינון נוסף</td></tr>
+      <tr><td>🫁 <strong>סמפונות</strong></td><td>2 ענפים ראשיים</td><td>מוביל אוויר לכל ריאה</td></tr>
+      <tr><td>🔀 <strong>סימפוניות</strong></td><td>ענפים דקים בריאה</td><td>מפזר אוויר בריאה</td></tr>
+      <tr><td>🔴 <strong>נאדיות</strong></td><td>שקיות זעירות, שטח פנים עצום</td><td>חילוף גזים בדיפוזיה</td></tr>
+    </table>
+    <div class="remember-box">אף ← גרון ← קנה ← סמפונות ← סימפוניות ← נאדיות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מונע מקנה הנשימה להתמוטט?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s4q')"><span class="opt-letter">א</span>טבעות סחוסיות שמחזיקות אותו פתוח תמיד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ב</span>שרירים חזקים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s4q')"><span class="opt-letter">ג</span>הדם שזורם סביבו</button>
+    </div>
+    <div class="feedback" id="fb-s4q"></div>
+  </div>
+</div>
+
+<!-- S5: הריאות -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🫁</span>
+    <h1>הריאות והנאדיות</h1>
+    <p class="subtitle">איפה מתרחש חילוף הגזים?</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מבנה הריאות ולהסביר מה מתרחש בנאדיות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:14px;">הריאות הן האיבר המרכזי בנשימה. הן בנויות ממבנה מיוחד שמגדיל את שטח הפנים ככל האפשר, כדי לאפשר חילוף גזים מהיר ויעיל בין האוויר לדם.</p>
+    <img src="https://bagruyot.org/haklaut/bg/neshima/reot.png" alt="הריאות והנאדיות" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div class="section-title">🫁 מבנה הריאות</div>
+    <div style="margin-bottom:10px;"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">הריאות נראות כמו זוג אשכולות ענבים — מיליוני נאדיות זעירות בקצות הצינורות</span></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+      <div style="background:#fff7ed;border:2px solid #fed7aa;border-radius:10px;padding:10px 14px;text-align:center;">
+        <div style="font-weight:800;font-size:14px;color:#b45309;margin-bottom:4px;">ריאה ימנית</div>
+        <div style="font-size:28px;margin-bottom:4px;">🫁</div>
+        <span style="background:#fed7aa;color:#b45309;border-radius:20px;padding:2px 10px;font-size:13px;font-weight:700;">3 אונות</span>
+      </div>
+      <div style="background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:10px 14px;text-align:center;">
+        <div style="font-weight:800;font-size:14px;color:#0369a1;margin-bottom:4px;">ריאה שמאלית</div>
+        <div style="font-size:28px;margin-bottom:4px;">🫁</div>
+        <span style="background:#bfdbfe;color:#0369a1;border-radius:20px;padding:2px 10px;font-size:13px;font-weight:700;">2 אונות</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#f8fafc;border-radius:8px;padding:10px 14px;font-size:15px;">
+        <span style="flex-shrink:0;">📍</span>
+        <span>נמצאות בחלל החזה, מתחת לצלעות, משני צידי הלב</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#f8fafc;border-radius:8px;padding:10px 14px;font-size:15px;">
+        <span style="flex-shrink:0;">🌀</span>
+        <span>בנויות ממערכת צינורות אוויר (סמפונות) ובקצותיהן מערכת <strong>נאדיות</strong></span>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:8px">🔴 הנאדיות — שם קורה הכל</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">מה הן הנאדיות?</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          שקיות זעירות בקצות הסימפוניות. ריבוי עצום שיוצר <strong>שטח פנים גדול מאוד</strong> לחילוף גזים.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">נימי הדם סביבן</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #e9d5ff;font-size:15px;line-height:1.8;">
+          כל נאדית מלופפת ב<strong>כלי דם זעירים רבים</strong> לאספקת גזים מהירה.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">חילוף הגזים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="background:#dbeafe;border-right:3px solid #0369a1;border-radius:8px;padding:8px 12px;">
+              O₂ מהאוויר ← מומס ← עובר דרך דופן הנאדית ← לנימי הדם ← לתאי דם אדומים ← לתאי הגוף
+            </div>
+            <div style="background:#fee2e2;border-right:3px solid #dc2626;border-radius:8px;padding:8px 12px;">
+              CO₂ מהדם ← עובר לנאדית ← יוצא בנשיפה
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="highlight green">💡 ריבוי הנאדיות הזעירות + ריבוי נימי הדם = <strong>שטח קרומים עצום</strong> שמאפשר חילוף גזים מהיר ויעיל.</div>
+    <div class="remember-box">נאדיות = שטח פנים ענק + קרום דק + נימי דם = חילוף גזים יעיל!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">חילוף הגזים מתרחש בקנה הנשימה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf5a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf5a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf5a"></div>
+  </div>
+</div>
+
+<!-- S6: דיפוזיה -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🔄</span>
+    <h1>חילוף גזים ודיפוזיה</h1>
+    <p class="subtitle">כיצד עובר O₂ לדם ו-CO₂ לנאדיות?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי דיפוזיה ומה תפקיד מפל הריכוזים.</div>
+  <div class="card">
+    <div class="section-title">🔄 דיפוזיה</div>
+    <div class="definition-box"><strong>דיפוזיה</strong> = מעבר חומרים מאזור <strong>ריכוז גבוה</strong> לאזור <strong>ריכוז נמוך</strong> — <em>ללא צריכת אנרגיה</em>.<br>חילוף הגזים בנאדיות מתרחש כולו בדיפוזיה לפי <strong>מפל הריכוזים</strong>.</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#d1fae5;border:2px solid #34d399">
+        <h3>💚 O₂ — חמצן</h3>
+        <ul><li>בנאדית: ריכוז <strong>גבוה</strong></li><li>בדם: ריכוז <strong>נמוך</strong></li><li>→ עובר מהנאדית <strong>לדם</strong></li></ul>
+      </div>
+      <div class="compare-card" style="background:#fee2e2;border:2px solid #fca5a5">
+        <h3>❤️ CO₂ — פחמן דו-חמצני</h3>
+        <ul><li>בדם: ריכוז <strong>גבוה</strong></li><li>בנאדית: ריכוז <strong>נמוך</strong></li><li>→ עובר מהדם <strong>לנאדית</strong></li></ul>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:4px">⚡ מה מאפשר חילוף יעיל?</div>
+    <div class="highlight blue">
+      • <strong>שטח פנים גדול</strong> — ריבוי נאדיות וריבוי נימי דם<br>
+      • <strong>קרומים דקים ולחים</strong> — של הנאדיות ושל נימי הדם<br>
+      • <strong>מפל ריכוזים</strong> — הבדל ריכוז בין הנאדית לדם
+    </div>
+    <div class="remember-box">דיפוזיה = ריכוז גבוה → נמוך | O₂ לדם | CO₂ לנאדית!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">חמצן עובר מהנאדיות <span class="fill-blank" onclick="revealBlank(this,'לדם')">____</span> בגלל שריכוזו שם <span class="fill-blank" onclick="revealBlank(this,'נמוך')">_____</span> יותר — תהליך הנקרא <span class="fill-blank" onclick="revealBlank(this,'דיפוזיה')">_______</span>.</div>
+  </div>
+</div>
+
+<!-- S7: שאיפה ונשיפה -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#4f46e5)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">🌬️</span>
+    <h1>שאיפה ונשיפה</h1>
+    <p class="subtitle">אקטיבי ופסיבי</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין שאיפה לנשיפה.</div>
+  <div class="card">
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#dbeafe;border:2px solid #93c5fd">
+        <h3>↘️ שאיפה — <span style="color:#dc2626">אקטיבי</span></h3>
+        <ul>
+          <li>שרירים בין-צלעיים <strong>מתכווצים</strong></li>
+          <li>סרעפת <strong>מתכווצת</strong> ויורדת</li>
+          <li>בית החזה <strong>מתרחב</strong></li>
+          <li>הריאות מתרחבות</li>
+          <li>לחץ יורד → <strong>אוויר נכנס</strong></li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
+        <h3>↗️ נשיפה — <span style="color:#059669">פסיבי</span></h3>
+        <ul>
+          <li>שרירים <strong>מתרפים</strong></li>
+          <li>הצלעות <strong>יורדות</strong></li>
+          <li>הריאות <strong>מתכווצות</strong></li>
+          <li>לחץ עולה → <strong>אוויר יוצא</strong></li>
+          <li>לא דורש מאמץ שרירי</li>
+        </ul>
+      </div>
+    </div>
+    <div class="remember-box">שאיפה = אקטיבי (שרירים מתכווצים) | נשיפה = פסיבי (שרירים נחים)!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הנשיפה היא תהליך אקטיבי שדורש התכווצות שרירים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<!-- S8: הומאוסטזיס -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">⚖️</span>
+    <h1>הומאוסטזיס</h1>
+    <p class="subtitle">שמירה על יציבות הסביבה הפנימית</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר כיצד מערכת הנשימה מסייעת להומאוסטזיס.</div>
+  <div class="card">
+    <div class="definition-box"><strong>הומאוסטזיס</strong> = שמירה על <strong>יציבות הסביבה הפנימית</strong> של הגוף — טמפרטורה, לחות, חומציות.</div>
+    <div class="section-title">🤔 מה היה קורה ללא חימום ולחלוח?</div>
+    <div class="highlight red">
+      אילו אוויר קר ויבש הגיע <strong>ישירות לריאות</strong>:<br>
+      • <strong>אובדן חום</strong> — האוויר הקר שואב חום מהריאות<br>
+      • <strong>אובדן מים</strong> — הריאות הלחות מתייבשות<br>
+      • פגיעה חמורה בהומאוסטזיס — <strong>מסכן חיים!</strong>
+    </div>
+    <div class="section-title" style="margin-top:8px">✅ כיצד האף מגן?</div>
+    <div class="highlight green">
+      האוויר עובר דרך <strong>מערות האף</strong> → מתחמם ומתלחלח → מגיע לריאות בטמפרטורה ולחות מתאימות.<br>
+      תנודות חריפות בטמפרטורת הריאות נמנעות — <strong>הומאוסטזיס נשמר!</strong>
+    </div>
+    <div class="remember-box">אוויר קר ויבש = סכנה לריאות | האף מגן = הומאוסטזיס נשמר!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדוע חשוב שהאוויר יתחמם ויתלחלח לפני שיגיע לריאות?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">א</span>כדי שהאוויר יהיה נעים לריח</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s8q')"><span class="opt-letter">ב</span>כדי למנוע אובדן חום ומים ולשמור על הומאוסטזיס</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s8q')"><span class="opt-letter">ג</span>כדי שהאוויר יזרום מהר יותר</button>
+    </div>
+    <div class="feedback" id="fb-s8q"></div>
+  </div>
+</div>
+
+<!-- S9: עופות -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#1e40af)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">🐦</span>
+    <h1>מערכת הנשימה בעופות</h1>
+    <p class="subtitle">יעילה במיוחד — למה?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מדוע לעופות מערכת נשימה ייחודית ויעילה.</div>
+
+  <div class="card">
+    <div class="highlight yellow"><strong>🛫 תעופה יקרה אנרגטית!</strong><br>תעופה דורשת חילוף חומרים גבוה מאוד — ייצור חום מוגבר וטמפרטורת גוף גבוהה. לכן לעופות צורך גדול באספקת חמצן.</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🐦 איך נראית מערכת הנשימה של העוף?</div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px">לחץ על כל חלק לקבל הסבר:</p>
+
+    <!-- Bird respiratory SVG illustration -->
+    <svg width="100%" viewBox="0 0 640 380" style="display:block;margin-bottom:4px;background:#e8f4fd;border-radius:14px">
+
+      <!-- background sky tint -->
+      <rect x="0" y="0" width="640" height="380" rx="14" fill="#e8f4fd"/>
+
+      <!-- ===== BIRD BODY ===== -->
+      <!-- Main body -->
+      <ellipse cx="310" cy="210" rx="130" ry="95" fill="white" stroke="#94a3b8" stroke-width="1.5"/>
+      <!-- Head -->
+      <ellipse cx="450" cy="128" rx="58" ry="52" fill="white" stroke="#94a3b8" stroke-width="1.5"/>
+      <!-- Beak -->
+      <path d="M500 118 L540 112 L500 130 Z" fill="#f59e0b" stroke="#d97706" stroke-width="1"/>
+      <!-- Eye -->
+      <circle cx="470" cy="120" r="8" fill="#1e293b"/>
+      <circle cx="473" cy="118" r="2.5" fill="white"/>
+      <!-- Tail -->
+      <path d="M185 215 L140 190 L150 220 L138 240 L180 230 Z" fill="white" stroke="#94a3b8" stroke-width="1.5"/>
+      <!-- Wing hint -->
+      <ellipse cx="305" cy="195" rx="95" ry="55" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" opacity="0.6"/>
+      <!-- Feet -->
+      <path d="M270 300 L255 330 M270 300 L268 332 M270 300 L282 328" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M350 305 L335 333 M350 305 L348 335 M350 305 L362 332" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <!-- Legs -->
+      <line x1="285" y1="295" x2="270" y2="330" stroke="#94a3b8" stroke-width="3"/>
+      <line x1="340" y1="298" x2="350" y2="330" stroke="#94a3b8" stroke-width="3"/>
+
+      <!-- ===== INTERNAL ORGANS ===== -->
+      <!-- Trachea (קנה הנשימה) - from beak area down -->
+      <path d="M460 170 Q445 185 420 200 L380 210" fill="none" stroke="#0369a1" stroke-width="5" stroke-linecap="round" id="trachea-path"/>
+      <!-- Trachea label line -->
+      <line x1="430" y1="185" x2="390" y2="150" stroke="#0369a1" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="430" cy="185" r="3" fill="#0369a1"/>
+
+      <!-- LUNGS (ריאות) - small, dorsal -->
+      <ellipse cx="310" cy="195" rx="45" ry="32" fill="#fde68a" stroke="#d97706" stroke-width="2" opacity="0.9"/>
+      <text x="310" y="191" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="900" fill="#92400e">ריאות</text>
+      <text x="310" y="207" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#92400e">קטנות וצפופות</text>
+
+      <!-- POSTERIOR AIR SACS (שקי אוויר אחוריים) - large, rear -->
+      <ellipse cx="235" cy="230" rx="52" ry="42" fill="#bfdbfe" stroke="#2563eb" stroke-width="2" opacity="0.85"/>
+      <text x="235" y="225" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" font-weight="700" fill="#1e40af">שקים</text>
+      <text x="235" y="239" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" font-weight="700" fill="#1e40af">אחוריים</text>
+
+      <!-- ANTERIOR AIR SACS (שקי אוויר קדמיים) - upper front -->
+      <ellipse cx="375" cy="175" rx="40" ry="30" fill="#c7d2fe" stroke="#4f46e5" stroke-width="2" opacity="0.85"/>
+      <text x="375" y="171" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" font-weight="700" fill="#3730a3">שקים</text>
+      <text x="375" y="184" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" font-weight="700" fill="#3730a3">קדמיים</text>
+
+      <!-- ===== FLOW ARROWS ===== -->
+      <!-- Trachea → lungs connection -->
+      <path d="M380 210 L358 205" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Trachea → rear air sacs -->
+      <path d="M375 215 Q340 230 290 232" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" stroke-linecap="round"/>
+
+      <!-- Lungs → anterior air sacs -->
+      <path d="M352 178 L415 175" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"
+        marker-end="url(#af)"/>
+
+      <!-- Rear air sacs → lungs (phase 2) -->
+      <path d="M283 218 L268 207" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"
+        marker-end="url(#af)"/>
+
+      <!-- Air entry arrow from beak -->
+      <path d="M80 125 L160 125" fill="none" stroke="#0369a1" stroke-width="3" stroke-linecap="round"
+        marker-end="url(#af)"/>
+      <text x="116" y="118" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#0369a1">אוויר</text>
+      <text x="116" y="133" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" fill="#0369a1">נכנס</text>
+
+      <!-- Arrow markers -->
+      <defs>
+        <marker id="af" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- ===== CALLOUT LABELS (outside bird) ===== -->
+      <!-- Trachea label -->
+      <rect x="370" y="135" width="90" height="26" rx="6" fill="white" stroke="#0369a1" stroke-width="1.5" opacity="0.92"/>
+      <text x="415" y="153" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="700" fill="#0c4a6e">קנה הנשימה</text>
+
+      <!-- Rear air sacs label -->
+      <rect x="55" y="255" width="115" height="26" rx="6" fill="white" stroke="#2563eb" stroke-width="1.5" opacity="0.92"/>
+      <text x="112" y="273" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#1e40af">שקי אוויר אחוריים</text>
+      <line x1="167" y1="268" x2="195" y2="255" stroke="#2563eb" stroke-width="1" stroke-dasharray="3 2"/>
+
+      <!-- Anterior air sacs label -->
+      <rect x="440" y="210" width="110" height="26" rx="6" fill="white" stroke="#4f46e5" stroke-width="1.5" opacity="0.92"/>
+      <text x="495" y="228" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#3730a3">שקי אוויר קדמיים</text>
+      <line x1="440" y1="223" x2="412" y2="190" stroke="#4f46e5" stroke-width="1" stroke-dasharray="3 2"/>
+
+      <!-- Lungs label -->
+      <rect x="440" y="155" width="68" height="26" rx="6" fill="white" stroke="#d97706" stroke-width="1.5" opacity="0.92"/>
+      <text x="474" y="173" text-anchor="middle" font-family="Heebo,sans-serif" font-size="13" font-weight="700" fill="#92400e">ריאות</text>
+      <line x1="440" y1="168" x2="355" y2="192" stroke="#d97706" stroke-width="1" stroke-dasharray="3 2"/>
+
+      <!-- Caption box -->
+      <rect x="60" y="325" width="265" height="38" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="192" y="340" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#1e40af">בעת שאיפה:</text>
+      <text x="192" y="356" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" fill="#1e40af">שקי האוויר מתמלאים</text>
+
+    </svg>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600"><span style="width:14px;height:14px;border-radius:50%;background:#fde68a;border:2px solid #d97706;display:inline-block"></span>ריאות</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600"><span style="width:14px;height:14px;border-radius:50%;background:#bfdbfe;border:2px solid #2563eb;display:inline-block"></span>שקים אחוריים</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600"><span style="width:14px;height:14px;border-radius:50%;background:#c7d2fe;border:2px solid #4f46e5;display:inline-block"></span>שקים קדמיים</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600"><span style="width:14px;height:14px;border-radius:3px;background:#e0f2fe;border:2px solid #0369a1;display:inline-block"></span>קנה הנשימה</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🌟 מאפיינים ייחודיים</div>
+    <div class="step-box"><div class="step-num" style="background:#0369a1">1</div><div class="step-content"><strong>ריאות קטנות + שקי אוויר</strong><br>הריאות קטנות יחסית, אך שקי האוויר המפוזרים בגוף מסייעים להחדיר חמצן <strong>גם בשאיפה וגם בנשיפה</strong></div></div>
+    <div class="step-box"><div class="step-num" style="background:#dc2626">2</div><div class="step-content"><strong>מערכת נשימה חד-כיוונית!</strong><br>כיוון זרימת האוויר בריאות <strong>זהה</strong> בשאיפה ובנשיפה — שונה מיונקים. יעיל הרבה יותר!</div></div>
+    <div class="step-box"><div class="step-num" style="background:#059669">3</div><div class="step-content"><strong>שחרור חום ללא זיעה</strong><br>לעופות אין בלוטות זעה — שחרור חום נעשה דרך <strong>הלחתה</strong> ורעידת החלק העליון של הגרון וקרקעית הפה</div></div>
+    <div class="remember-box">עוף: ריאות קטנות + שקי אוויר + נשימה חד-כיוונית = יעיל מאוד!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בריאות העוף, כיוון זרימת האוויר מנוגד בשאיפה ובנשיפה (כמו ביונקים).</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf9a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf9a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf9a"></div>
+  </div>
+</div>
+<!-- S10: שקי אוויר -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">🛍️</span>
+    <h1>שקי האוויר בעופות</h1>
+    <p class="subtitle">הסוד מאחורי הנשימה היעילה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה תפקידם של שקי האוויר ואיך זורם האוויר בעוף בשני השלבים.</div>
+
+  <div class="card">
+    <div class="highlight blue">
+      ברוב העופות: <strong>2 ריאות + 9 שקי אוויר</strong><br>
+      שקי האוויר מחוברים לחללים בעצמות הארוכות ולריאות — אך <strong>אינם מבצעים חילוף גזים</strong> בעצמם — רק מאחסנים ומזרימים אוויר!
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">🔄 שאיפה ונשיפה — 2 שלבים</div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px">בשונה מיונקים — בעוף נדרשים <strong>שני מחזורי נשימה</strong> כדי שחלקיק אוויר יעבור את כל הדרך:</p>
+
+    <!-- STEP 1 DIAGRAM -->
+    <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #93c5fd;border-radius:14px;padding:16px;margin-bottom:14px">
+      <div style="font-weight:900;font-size:16px;color:#1e40af;margin-bottom:10px">🔵 שלב 1 — שאיפה ראשונה</div>
+      <svg width="100%" viewBox="0 0 620 160" style="display:block;margin-bottom:8px">
+        <defs>
+          <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- Outside air -->
+        <rect x="10" y="55" width="80" height="50" rx="8" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
+        <text x="50" y="74" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#0c4a6e">אוויר</text>
+        <text x="50" y="90" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" fill="#0c4a6e">מבחוץ</text>
+        <text x="50" y="105" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" fill="#059669">עשיר O₂</text>
+        <!-- Arrow 1: outside to fork -->
+        <line x1="90" y1="80" x2="135" y2="80" stroke="#0369a1" stroke-width="2" marker-end="url(#ab)"/>
+        <!-- Fork point -->
+        <circle cx="140" cy="80" r="5" fill="#0369a1"/>
+        <!-- Arrow 2a: to lungs (upper path) -->
+        <path d="M140 80 L140 40 L230 40" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#ab)"/>
+        <!-- Lungs -->
+        <rect x="230" y="20" width="100" height="40" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="1.5"/>
+        <text x="280" y="36" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#065f46">ריאות</text>
+        <text x="280" y="52" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#065f46">חילוף גזים</text>
+        <!-- Arrow from lungs to front air sacs -->
+        <path d="M330 40 L380 40 L380 60 L420 60" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#ab)"/>
+        <!-- Front air sacs -->
+        <rect x="420" y="40" width="110" height="40" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="475" y="56" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#5b21b6">שקים קדמיים</text>
+        <text x="475" y="71" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#5b21b6">אוויר נכנס</text>
+        <!-- Arrow 2b: direct to rear air sacs (lower path) -->
+        <path d="M140 80 L140 120 L230 120" fill="none" stroke="#0369a1" stroke-width="2" marker-end="url(#ab)"/>
+        <!-- Rear air sacs -->
+        <rect x="230" y="100" width="110" height="40" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <text x="285" y="116" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#92400e">שקים אחוריים</text>
+        <text x="285" y="131" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#92400e">אוויר נכנס ישיר</text>
+      </svg>
+      <ul style="list-style:none;padding:0;font-size:14px;line-height:1.8">
+        <li>🟢 חלק מהאוויר → דרך <strong>הריאות</strong> (מספק O₂) → <strong>שקים קדמיים</strong></li>
+        <li>🔵 חלק מהאוויר → <strong>ישירות לשקים האחוריים</strong> (אחסון)</li>
+      </ul>
+    </div>
+
+    <!-- STEP 2 DIAGRAM -->
+    <div style="background:linear-gradient(135deg,#fef3c7,#fed7aa);border:2px solid #f97316;border-radius:14px;padding:16px;margin-bottom:14px">
+      <div style="font-weight:900;font-size:16px;color:#c2410c;margin-bottom:10px">🟠 שלב 2 — נשיפה (וגם שאיפה שנייה)</div>
+      <svg width="100%" viewBox="0 0 620 160" style="display:block;margin-bottom:8px">
+        <defs>
+          <marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- Front air sacs -->
+        <rect x="10" y="20" width="110" height="40" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="65" y="36" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#5b21b6">שקים קדמיים</text>
+        <text x="65" y="51" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#5b21b6">מתרוקנים</text>
+        <!-- Arrow: front sacs direct out -->
+        <path d="M120 40 L180 40 L180 20 L560 20 L560 55" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#ao)"/>
+        <!-- Out box -->
+        <rect x="530" y="55" width="70" height="36" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="565" y="71" text-anchor="middle" font-family="Heebo,sans-serif" font-size="11" font-weight="700" fill="#991b1b">החוצה!</text>
+        <text x="565" y="84" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#991b1b">CO₂</text>
+        <!-- Rear air sacs -->
+        <rect x="10" y="100" width="110" height="40" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <text x="65" y="116" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#92400e">שקים אחוריים</text>
+        <text x="65" y="131" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#92400e">מתרוקנים</text>
+        <!-- Arrow: rear sacs through lungs -->
+        <path d="M120 120 L200 120 L200 90" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#ao)"/>
+        <!-- Lungs -->
+        <rect x="170" y="50" width="100" height="40" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+        <text x="220" y="66" text-anchor="middle" font-family="Heebo,sans-serif" font-size="12" font-weight="700" fill="#065f46">ריאות</text>
+        <text x="220" y="82" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" fill="#065f46">חילוף גזים שוב!</text>
+        <!-- Arrow: lungs to out -->
+        <path d="M270 70 L520 70" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#ao)"/>
+      </svg>
+      <ul style="list-style:none;padding:0;font-size:14px;line-height:1.8">
+        <li>🟠 השקים <strong>האחוריים</strong> מתרוקנים → שולחים אוויר <strong>דרך הריאות</strong> (חילוף גזים שוב!) → החוצה</li>
+        <li>🟣 השקים <strong>הקדמיים</strong> מתרוקנים → ישירות החוצה</li>
+      </ul>
+    </div>
+
+    <div class="highlight yellow">
+      💡 <strong>למה זה יעיל כל כך?</strong><br>
+      בכל מחזור נשימה — אוויר עובר דרך הריאות <strong>פעמיים</strong> (פעם בשאיפה, פעם בנשיפה)!<br>
+      כיוון זרימת האוויר בריאות תמיד <strong>חד-כיווני</strong> — לא נגד הזרם כמו ביונקים.
+    </div>
+    <div class="highlight blue">
+      📊 <strong>בשונה מיונקים:</strong><br>
+      • ביונקים — נפח האוויר בריאות <strong>משתנה</strong> בין שאיפה לנשיפה<br>
+      • בעוף — נפח האוויר בריאות <strong>קבוע</strong> — השינוי הוא בשקי האוויר
+    </div>
+    <div class="remember-box">שלב 1 (שאיפה): אוויר → ריאות + שקים אחוריים | שלב 2 (נשיפה): שקים אחוריים → ריאות שוב → החוצה!</div>
+  </div>
+
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדוע מערכת הנשימה של העוף יעילה יותר מזו של היונק?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s10q')"><span class="opt-letter">א</span>אוויר עשיר בחמצן עובר דרך הריאות גם בשאיפה וגם בנשיפה — פעמיים!</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ב</span>כי לעוף ריאות גדולות יותר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s10q')"><span class="opt-letter">ג</span>כי העוף נושם מהר יותר</button>
+    </div>
+    <div class="feedback" id="fb-s10q"></div>
+  </div>
+
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">שקי האוויר בעוף מבצעים חילוף גזים בעצמם.</p>
+    <div class="tf-options">
+      <button class="tf-btn" onclick="answerTF(this,'wrong','tf10b')">✅ נכון</button>
+      <button class="tf-btn" onclick="answerTF(this,'correct','tf10b')">❌ לא נכון</button>
+    </div>
+    <div class="feedback" id="fb-tf10b"></div>
+  </div>
+</div>
+<!-- S11: דבורים -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#b45309)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">🐝</span>
+    <h1>דבורים — נשימה דרך טרכיאות</h1>
+    <p class="subtitle">פויקילותרמיים ומערכת נשימה ייחודית</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר כיצד דבורים נושמות ומתמודדות עם שינויי טמפרטורה.</div>
+  <div class="card">
+    <div class="definition-box"><strong>פויקילותרמיים</strong> = בעלי חיים שטמפרטורת גופם משתנה עם הסביבה.<br>דבורים שייכות לקבוצה זו — הפעילות שלהן תלויה בטמפרטורה החיצונית.</div>
+    <div class="section-title">🌀 מבנה מערכת הנשימה של דבורה</div>
+    <div class="step-box"><div class="step-num" style="background:#d97706">1</div><div class="step-content"><strong>פתחי אוויר (Spiracles)</strong><br>פתחים על השלד החיצוני — דרכם נכנס ויוצא האוויר.<br>שרירים מיוחדים: <strong>מנוחה = סגורים | פעילות = פתוחים</strong></div></div>
+    <div class="step-box"><div class="step-num" style="background:#b45309">2</div><div class="step-content"><strong>טרכיאות</strong><br>רשת צינורות דקים שמסתעפים בתוך הגוף — מגיעים ישירות לתאים.</div></div>
+    <div class="step-box"><div class="step-num" style="background:#92400e">3</div><div class="step-content"><strong>טרכיאולות</strong><br>צינוריות זעירות בקצות הטרכיאות — שם חילוף הגזים בדיפוזיה <strong>ישירות לתאים</strong>.</div></div>
+    <div class="section-title" style="margin-top:8px">🌡️ כיצד מתמודדות עם טמפרטורה?</div>
+    <div class="grid-2">
+      <div class="mini-card" style="background:#dbeafe;border:2px solid #60a5fa"><div class="title">❄️ בקור</div>הפעלת שרירי חזה <strong>ללא תנועת כנפיים</strong> — ייצור חום פנימי. פעילות מינימלית בחורף.</div>
+      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">☀️ בחום</div>קירור הכוורת על ידי <strong>משאבי רוח</strong> ואידוי מים ע"י <strong>רקיקה</strong>.</div>
+    </div>
+    <div class="remember-box">דבורה: פתחי אוויר ← טרכיאות ← טרכיאולות ← דיפוזיה ישירה לתאים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s11" class="match-container">
+      <div class="match-col" id="s11-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s11')">פתחי אוויר</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s11')">טרכיאות</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s11')">טרכיאולות</div>
+      </div>
+      <div class="match-col" id="s11-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s11')">חילוף גזים ישיר עם התאים</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s11')">פתחים בשלד החיצוני</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s11')">רשת צינורות בתוך הגוף</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s11match"></div>
+  </div>
+</div>
+
+<!-- S12: הכלב -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0369a1)">
+    <span class="chapter-num">פרק 12</span><span class="emoji">🐕</span>
+    <h1>מערכת הנשימה של הכלב</h1>
+    <p class="subtitle">מבנה ותפקוד</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מבנה מערכת הנשימה של הכלב.</div>
+  <div class="card">
+    <table class="info-table">
+      <tr><th>חלק</th><th>תפקיד בכלב</th></tr>
+      <tr><td>👃 <strong>האף</strong></td><td>סינון, חימום, הרטבת האוויר</td></tr>
+      <tr><td>🗣️ <strong>גרון</strong></td><td>מיתרי קול — האוויר גורם לרעידה ולנביחה</td></tr>
+      <tr><td>🌀 <strong>קנה הנשימה</strong></td><td>מעביר אוויר לסמפונות — כל אחת לריאה אחרת</td></tr>
+      <tr><td>🫁 <strong>ריאות</strong></td><td>הסמפונות מסתעפות לסימפוניות ובקצה — נאדיות</td></tr>
+      <tr><td>🔴 <strong>נאדיות</strong></td><td>חילוף גזים בדיפוזיה עם הדם</td></tr>
+    </table>
+    <div class="section-title" style="margin-top:8px">💡 מיוחד בכלב</div>
+    <div class="highlight blue"><strong>🌡️ הלחתה (panting):</strong><br>כשכלבים מלחיתים — הם פולטים כמות גדולה מאוד של CO₂. לכן יש לכלבים <strong>יכולת לסבול ירידה גדולה ב-CO₂ בדם</strong> בהשוואה לחיות אחרות.</div>
+    <div class="highlight green"><strong>⏱️ קצב נשימה נורמלי:</strong> <span style="font-size:20px;font-weight:900;color:#059669">22 נשימות בדקה</span></div>
+    <div class="highlight yellow"><strong>🎛️ מה מסדיר את הנשימה?</strong><br>הגורם המרכזי הוא <strong>ריכוז CO₂ בדם</strong> — כשהוא עולה, הנשימה מואצת.</div>
+    <div class="remember-box">כלב: 22 נשימות/דקה | CO₂ מסדיר נשימה | הלחתה = פליטת CO₂ לקירור!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">ריכוז O₂ הוא הגורם העיקרי שמסדיר את קצב הנשימה בכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf12a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf12a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf12a"></div>
+  </div>
+</div>
+
+<!-- S13: מקדם נשימה -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#78350f)">
+    <span class="chapter-num">פרק 13</span><span class="emoji">📐</span>
+    <h1>מקדם הנשימה</h1>
+    <p class="subtitle">היחס בין O₂ ל-CO₂</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו מקדם הנשימה ולפרש את ערכיו.</div>
+  <div class="card">
+    <div class="definition-box">
+      <strong>מקדם הנשימה</strong> = היחס בין החמצן (O₂) הנקלט לפחמן הדו-חמצני (CO₂) הנפלט בנשימה.<br>
+      <div style="text-align:center;margin:14px 0;font-size:20px;font-weight:900;color:#0369a1">CO₂ שנפלט<br><span style="font-size:28px">──────────</span><br>O₂ שנקלט</div>
+    </div>
+    <div class="section-title">2 סוגי מקדם נשימה</div>
+    <div class="two-col-compare">
+      <div class="compare-card" style="background:#dbeafe;border:2px solid #93c5fd"><h3>1️⃣ מקדם נשימה של מערכת הנשימה</h3><p style="font-size:14px">היחס בין גזים הנכנסים ויוצאים דרך ריאות/טרכיאות.</p></div>
+      <div class="compare-card" style="background:#d1fae5;border:2px solid #34d399"><h3>2️⃣ מקדם נשימה תאי</h3><p style="font-size:14px">תהליך חמצון מרכיבי המזון בתאים לשחרור אנרגיה.</p></div>
+    </div>
+    <div class="section-title" style="margin-top:8px">📊 ערכים לפי סוג מזון</div>
+    <table class="info-table">
+      <tr><th>מרכיב מזון</th><th style="text-align:center">מקדם נשימה</th><th>הסבר</th></tr>
+      <tr><td>🍞 פחמימות</td><td style="text-align:center;font-size:20px;font-weight:900;color:#0369a1">1.0</td><td>CO₂ = O₂</td></tr>
+      <tr><td>🥩 חלבון</td><td style="text-align:center;font-size:20px;font-weight:900;color:#059669">0.82</td><td>קצת פחות CO₂</td></tr>
+      <tr><td>🧈 שומן</td><td style="text-align:center;font-size:20px;font-weight:900;color:#dc2626">0.7</td><td>הכי פחות CO₂</td></tr>
+      <tr style="background:#ede9fe"><td>🐾 תזונה מעורבת</td><td style="text-align:center;font-size:20px;font-weight:900;color:#7c3aed">0.84</td><td>ממוצע טיפוסי לבע"ח</td></tr>
+    </table>
+    <div class="remember-box">פחמימה=1 | חלבון=0.82 | שומן=0.7 | ממוצע=0.84</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">מקדם נשימה של <span class="fill-blank" onclick="revealBlank(this,'0.98')">____</span> מעיד שהדיאטה עשירה בעיקר ב<span class="fill-blank" onclick="revealBlank(this,'פחמימות')">_______</span>.</div>
+  </div>
+  <div class="question-box" style="margin-top:12px">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מדדנו בעל חיים ומצאנו מקדם נשימה של 0.72. מה ניתן להסיק?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">א</span>הוא אוכל בעיקר פחמימות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ב</span>הוא אוכל בעיקר חלבונים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">ג</span>הוא אוכל בעיקר שומנים</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+</div>
+
+<!-- S14: מילון -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 14</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+    <p class="subtitle">לחץ על כרטיסייה לגלות הסבר</p>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 15</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🔄 דיפוזיה</div><div class="glossary-def">מעבר חומרים מריכוז גבוה לריכוז נמוך — ללא צריכת אנרגיה. כך עוברים O₂ ו-CO₂ בריאות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📊 מפל ריכוזים</div><div class="glossary-def">הפרש ריכוז בין שני צידי קרום — מניע את הדיפוזיה ללא אנרגיה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔴 נאדיות הריאה</div><div class="glossary-def">שקיות זעירות בריאה עם שטח פנים עצום — מקום חילוף הגזים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌀 קנה הנשימה</div><div class="glossary-def">צינור עם טבעות סחוסיות — תמיד פתוח. מרופד ריסים וריר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🫁 סמפונות</div><div class="glossary-def">שני ענפים ראשיים מקנה הנשימה — אחד לכל ריאה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔀 סימפוניות</div><div class="glossary-def">ענפים דקים בתוך הריאה — מובילים לנאדיות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💨 שאיפה</div><div class="glossary-def">תהליך אקטיבי — שרירים + סרעפת מתכווצים → בית חזה מתרחב → אוויר נכנס.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💨 נשיפה</div><div class="glossary-def">תהליך פסיבי — שרירים נרפים → ריאות מתכווצות → אוויר יוצא.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚖️ הומאוסטזיס</div><div class="glossary-def">שמירה על יציבות הסביבה הפנימית — טמפרטורה, לחות, חומציות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐝 טרכיאות</div><div class="glossary-def">רשת צינורות הנשימה בחרקים — מגיעות ישירות לתאי הגוף.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐝 טרכיאולות</div><div class="glossary-def">צינוריות זעירות בקצות הטרכיאות — שם חילוף הגזים עם התאים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐦 שקי אוויר</div><div class="glossary-def">שקים בגוף העוף — מאפשרים זרימת אוויר חד-כיוונית דרך הריאות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐝 פתחי אוויר</div><div class="glossary-def">פתחים בשלד החיצוני של חרקים — כניסת ויציאת האוויר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📐 מקדם נשימה</div><div class="glossary-def">יחס CO₂/O₂. פחמימה=1, חלבון=0.82, שומן=0.7, ממוצע=0.84.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎭 ריסים (Cilia)</div><div class="glossary-def">שערות מיקרוסקופיות — דוחפות ריר עם אבק החוצה מהנשימה.</div></div>
+  </div>
+</div>
+
+<!-- S15: נכון/לא נכון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. שאיפה היא תהליך פסיבי שלא דורש שרירים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. חילוף הגזים בנאדיות מתרחש בדיפוזיה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. בדבורה חמצן מגיע לתאים דרך הדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. בעוף, האוויר בריאות מתחלף רק בשאיפה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. מקדם הנשימה של שומנים הוא 1.0.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. האוויר מתחמם ומתלחלח באף לפני שמגיע לריאות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">7. ריאה ימנית מורכבת מ-2 אונות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1g')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1g')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1g"></div>
+  </div>
+</div>
+
+<!-- S16: שאלות -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה מיוחד בנשימה של עוף לעומת יונק?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>לעוף אין ריאות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>אוויר עשיר בחמצן עובר בריאות גם בשאיפה וגם בנשיפה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>לעוף ריאות גדולות יותר</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה מסדיר את קצב הנשימה בכלב?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>ריכוז O₂ בדם</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ב</span>טמפרטורת הגוף</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ג</span>ריכוז CO₂ בדם</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. מדוע לריאות שטח פנים גדול?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">א</span>לאפשר דיפוזיה מהירה ויעילה של גזים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>כדי לאחסן יותר אוויר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ג</span>לחמם את האוויר</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. דבורה ביום קר מפעילה שרירי חזה ללא כנפיים. מדוע?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>לחסוך אנרגיה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ב</span>לייצר חום פנימי בלי לעוף</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>לנשום מהר יותר</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S17: התאמה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה מסכמת</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר חלק לתפקידו</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">נאדיות הריאה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">ריסים באף</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">שקי אוויר בעוף</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">טרכיאולות בדבורה</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">דוחפים ריר עם אבק החוצה</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">חילוף גזים בדיפוזיה</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">חילוף גזים ישירות עם תאי הגוף</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">מאפשרים זרימה חד-כיוונית</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">שאיפה = <span class="fill-blank" onclick="revealBlank(this,'אקטיבי')">_______</span> | נשיפה = <span class="fill-blank" onclick="revealBlank(this,'פסיבי')">_______</span>.</div>
+    <div class="fill-sentence">בדבורה, חמצן עובר ישירות לתאים דרך <span class="fill-blank" onclick="revealBlank(this,'טרכיאות וטרכיאולות')">_________________</span>.</div>
+    <div class="fill-sentence">קצב הנשימה הנורמלי של כלב הוא <span class="fill-blank" onclick="revealBlank(this,'22')">__</span> נשימות בדקה.</div>
+  </div>
+</div>
+
+<!-- S18: סיום -->
+<div class="screen" id="screen-18">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת מערכת הנשימה!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="🎯">תפקידים: חילוף גזים + סילוק מים/חום + חומציות + הגנה + ריח</li>
+      <li data-icon="👃">האף: סינון (שערות+ריסים) + לחלוח + חימום ל-37°C</li>
+      <li data-icon="🗺️">מסלול: אף ← גרון ← קנה ← סמפונות ← סימפוניות ← נאדיות</li>
+      <li data-icon="🔄">דיפוזיה = ריכוז גבוה → נמוך | O₂ לדם | CO₂ לנאדית</li>
+      <li data-icon="💨">שאיפה = אקטיבי (שרירים) | נשיפה = פסיבי</li>
+      <li data-icon="🐦">עוף: ריאות קטנות + 9 שקי אוויר + נשימה חד-כיוונית</li>
+      <li data-icon="🐝">דבורה: פתחי אוויר → טרכיאות → טרכיאולות → דיפוזיה לתאים</li>
+      <li data-icon="🐕">כלב: 22 נשימות/דקה | CO₂ מסדיר נשימה | הלחתה לקירור</li>
+      <li data-icon="📐">מקדם נשימה: פחמימה=1 | חלבון=0.82 | שומן=0.7 | ממוצע=0.84</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🏆</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>תפקידים</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>האף</button>
+      <button class="toc-item" onclick="goToScreen(4)"><span class="num">4</span>מסלול האוויר</button>
+      <button class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>דיפוזיה</button>
+      <button class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>עוף</button>
+      <button class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>דבורה</button>
+      <button class="toc-item" onclick="goToScreen(12)"><span class="num">12</span>כלב</button>
+      <button class="toc-item" onclick="goToScreen(13)"><span class="num">13</span>מקדם נשימה</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">▶ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 19</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ◀</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=19,SCREEN_NAMES=["פתיחה","תפקידי מערכת הנשימה","הומאותרמיים","האף","מסלול האוויר","הריאות והנאדיות","חילוף גזים ודיפוזיה","שאיפה ונשיפה","הומאוסטזיס","עופות","שקי האוויר","דבורים","הכלב","מקדם הנשימה","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"🔄 דיפוזיה",def:"מעבר חומרים מריכוז גבוה לנמוך — ללא אנרגיה. כך עוברים O₂ ו-CO₂ בריאות."},
+  {term:"🔴 נאדיות הריאה",def:"שקיות זעירות בריאה עם שטח פנים עצום — מקום חילוף הגזים."},
+  {term:"🌀 קנה הנשימה",def:"צינור עם טבעות סחוסיות — תמיד פתוח. ריסים וריר מסננים."},
+  {term:"🫁 סמפונות",def:"שני ענפים מקנה הנשימה — אחד לכל ריאה."},
+  {term:"💨 שאיפה",def:"אקטיבי — שרירים + סרעפת מתכווצים → בית חזה מתרחב → אוויר נכנס."},
+  {term:"💨 נשיפה",def:"פסיבי — שרירים נרפים → ריאות מתכווצות → אוויר יוצא."},
+  {term:"⚖️ הומאוסטזיס",def:"שמירה על יציבות הסביבה הפנימית — טמפרטורה, לחות, חומציות."},
+  {term:"🛍️ שקי אוויר",def:"שקים בגוף העוף — מאפשרים זרימת אוויר חד-כיוונית דרך הריאות."},
+  {term:"🐝 טרכיאות",def:"צינורות הנשימה של חרקים — מגיעות ישירות לתאי הגוף."},
+  {term:"🐝 טרכיאולות",def:"צינוריות זעירות בקצות הטרכיאות — חילוף הגזים עם התאים."},
+  {term:"🐝 פתחי אוויר",def:"פתחים בשלד החיצוני של חרקים — כניסת ויציאת האוויר."},
+  {term:"📐 מקדם נשימה",def:"CO₂/O₂. פחמימה=1, חלבון=0.82, שומן=0.7, ממוצע=0.84."},
+  {term:"🎭 ריסים (Cilia)",def:"שערות מיקרוסקופיות — דוחפות ריר עם אבק החוצה."},
+  {term:"👃 רירית האף",def:"שכבת תאים מפרישי ריר — לוכדת חלקיקים ומלחלחת האוויר."},
+  {term:"📊 מפל ריכוזים",def:"הפרש ריכוז בין שני צידי קרום — מניע דיפוזיה ללא אנרגיה."}
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===14)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';document.getElementById('btn-next').style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const m=btn.getAttribute('onclick').match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const arrow = btn.querySelector('.acc-arrow');
+  const isOpen = body.style.display === 'block';
+  arrow.style.transition = 'transform 0.2s ease';
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  if (!isOpen) {
+    body.style.display = 'block';
+    body.style.overflow = 'hidden';
+    body.style.maxHeight = '0px';
+    const h = body.scrollHeight;
+    requestAnimationFrame(() => {
+      body.style.transition = 'max-height 0.22s ease';
+      body.style.maxHeight = h + 'px';
+    });
+    setTimeout(() => { body.style.maxHeight = 'none'; body.style.overflow = ''; body.style.transition = ''; }, 240);
+  } else {
+    body.style.transition = '';
+    body.style.maxHeight = '';
+    body.style.overflow = '';
+    body.style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>
