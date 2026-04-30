@@ -499,7 +499,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
           <tr style="background:white;">
             <td style="padding:9px 12px;font-weight:700;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">🧪 פפסין</td>
             <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">מפרק <strong>חלבונים</strong></td>
-            <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;"><span style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:6px;padding:4px 10px;font-size:13px;font-weight:700;line-height:1.7;">פועל בחומצי בלבד!</span></td>
+            <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;"><span style="background:#fee2e2;color:#dc2626;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;">פועל בחומצי בלבד!</span></td>
           </tr>
           <tr style="background:#f8fafc;">
             <td style="padding:9px 12px;font-weight:700;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">⚡ HCl</td>
@@ -508,7 +508,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
           </tr>
           <tr style="background:white;">
             <td style="padding:9px 12px;font-weight:700;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">💧 ריר</td>
-            <td style="padding:9px 12px;text-align:center;border-right:1px solid #e2e8f0;" colspan="2">מגן על דפנות הקיבה מהפפסין ומה-HCl ← <strong style="color:#dc2626;">הקיבה לא מעכלת את עצמה!</strong></td>
+            <td style="padding:9px 12px;text-align:center;border-right:1px solid #e2e8f0;" colspan="2">מגן על דפנות הקיבה מהפפסין ומה-HCl ← הקיבה לא מעכלת את עצמה!</td>
           </tr>
         </tbody>
       </table>
@@ -857,65 +857,62 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 
     <div style="display:flex;flex-direction:column;gap:0">
 
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
-
-      <div style="border-radius:12px;overflow:hidden;border:2px solid #6ee7b7;background:white;">
-        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
-          <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
-          <span style="flex:1;">הכנסת מזון לגוף</span>
-          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
-        </button>
-        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #6ee7b7;font-size:15px;line-height:1.8;">
-          באכילה נכניסים חומרים מוצקים ונוזלים לגוף. המזון מגיע ברובו כ<strong>מולקולות גדולות ולא מסיסות</strong> שהגוף לא יכול להשתמש בהן ישירות.
-          <div style="margin-top:8px;"><span style="background:#d1fae5;color:#059669;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">הגוף לא יכול להשתמש במזון כמות שהוא</span></div>
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:48px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0">1</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#d1fae5;border:2px solid #6ee7b7;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:800;font-size:15px;color:#059669;margin-bottom:4px">הכנסת מזון לגוף</div>
+          <div style="font-size:15px;color:#374151;line-height:1.6">באכילה נכניסים חומרים מוצקים ונוזלים לגוף. המזון מגיע ברובו כ<strong>מולקולות גדולות ולא מסיסות</strong> שהגוף לא יכול להשתמש בהן ישירות.</div>
+          <div style="margin-top:6px;"><span style="background:#d1fae5;color:#059669;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">הגוף לא יכול להשתמש במזון כמות שהוא</span></div>
         </div>
       </div>
 
-      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;background:white;">
-        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
-          <span style="background:#b45309;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
-          <span style="flex:1;">פירוק מכני</span>
-          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
-        </button>
-        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fed7aa;font-size:15px;line-height:1.8;">
-          השיניים טוחנות ורוסקות את המזון לחתיכות קטנות. <strong>אין שינוי כימי</strong> — אותו חומר, רק בחתיכות קטנות יותר.
-          <div style="margin-top:8px;"><span style="background:#fed7aa;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">מגדיל שטח פנים לפעולת האנזימים</span></div>
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:48px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#b45309;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0">2</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#fff7ed;border:2px solid #fed7aa;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:800;font-size:15px;color:#b45309;margin-bottom:4px">פירוק מכני</div>
+          <div style="font-size:15px;color:#374151;line-height:1.6">השיניים טוחנות ורוסקות את המזון לחתיכות קטנות. <strong>אין שינוי כימי</strong> — אותו חומר, רק בחתיכות קטנות יותר.</div>
+          <div style="margin-top:6px;"><span style="background:#fed7aa;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">מגדיל שטח פנים לפעולת האנזימים</span></div>
         </div>
       </div>
 
-      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
-        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0891b2;text-align:right;">
-          <span style="background:#0891b2;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
-          <span style="flex:1;">פירוק כימי</span>
-          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
-        </button>
-        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
-          אנזימים שוברים את הקשרים הכימיים במולקולות. <strong>נוצרים חומרים חדשים</strong> שונים מהמזון המקורי.
-          <div style="margin-top:8px;"><span style="background:#bae6fd;color:#0891b2;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">כל אנזים מפרק סוג מסוים של מזון</span></div>
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:48px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#0891b2;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0">3</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#e0f2fe;border:2px solid #7dd3fc;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:800;font-size:15px;color:#0891b2;margin-bottom:4px">פירוק כימי</div>
+          <div style="font-size:15px;color:#374151;line-height:1.6">אנזימים שוברים את הקשרים הכימיים במולקולות. <strong>נוצרים חומרים חדשים</strong> שונים מהמזון המקורי.</div>
+          <div style="margin-top:6px;"><span style="background:#bae6fd;color:#0891b2;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">כל אנזים מפרק סוג מסוים של מזון</span></div>
         </div>
       </div>
 
-      <div style="border-radius:12px;overflow:hidden;border:2px solid #fca5a5;background:white;">
-        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
-          <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
-          <span style="flex:1;">ספיגה לדם</span>
-          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
-        </button>
-        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fca5a5;font-size:15px;line-height:1.8;">
-          התוצרים החדשים — קטנים ומסיסים — עוברים דרך דופן המעי <strong>ישירות לדם</strong>.
-          <div style="margin-top:8px;"><span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">הדם מוביל אותם לכל תאי הגוף</span></div>
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:48px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#dc2626;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0">4</div>
+          <div style="width:3px;flex:1;background:#e2e8f0;margin:4px 0"></div>
+        </div>
+        <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:12px 14px;flex:1;margin-bottom:4px">
+          <div style="font-weight:800;font-size:15px;color:#dc2626;margin-bottom:4px">ספיגה לדם</div>
+          <div style="font-size:15px;color:#374151;line-height:1.6">התוצרים החדשים — קטנים ומסיסים — עוברים דרך דופן המעי <strong>ישירות לדם</strong>.</div>
+          <div style="margin-top:6px;"><span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">הדם מוביל אותם לכל תאי הגוף</span></div>
         </div>
       </div>
 
-      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
-        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
-          <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">5</span>
-          <span style="flex:1;">שימוש בתאים</span>
-          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
-        </button>
-        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
-          התאים משתמשים בחומרים לתהליכים חיוניים.
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+      <div style="display:flex;align-items:stretch;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:48px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0">5</div>
+        </div>
+        <div style="background:#f3e8ff;border:2px solid #c4b5fd;border-radius:12px;padding:12px 14px;flex:1">
+          <div style="font-weight:800;font-size:15px;color:#7c3aed;margin-bottom:4px">שימוש בתאים</div>
+          <div style="font-size:15px;color:#374151;line-height:1.6">התאים משתמשים בחומרים לתהליכים חיוניים.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
             <span style="background:#f3e8ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">אנרגיה — גלוקוז</span>
             <span style="background:#f3e8ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">בניה — חומצות אמינו</span>
             <span style="background:#f3e8ff;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;line-height:1.7;">הגנה — נוגדנים</span>
