@@ -942,6 +942,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל להסביר את ההבדל בין פירוק מכני לפירוק כימי.</div>
   <div class="card">
     <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">כדי שהמזון יגיע לתאי הגוף, הוא עובר שני שלבי פירוק שונים לחלוטין. הפירוק המכני קודם לכימי ומכין את הקרקע לפעולת האנזימים.</p>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/peruk.png" alt="פירוק מכני וכימי" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
 
     <table style="width:100%;border-collapse:collapse;font-size:15px;border-radius:12px;overflow:hidden;border:2px solid #0369a1;margin-bottom:12px;">
       <thead>
@@ -1003,7 +1004,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   <div class="goal-box">אני אוכל להסביר מהם חומרים אורגניים ואי-אורגניים ולתת דוגמאות.</div>
   <div class="card">
     <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">כל החומרים בטבע מחולקים לשתי קבוצות עיקריות. ההבדל המרכזי הוא אם החומר מכיל פחמן ומגיע מיצורים חיים, או לא.</p>
-    <img src="https://bagruyot.org/haklaut/bg/ikul/peruk.png" alt="חומרים אורגניים ואי-אורגניים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
+    <img src="https://bagruyot.org/haklaut/bg/ikul/organi.png" alt="חומרים אורגניים ואי-אורגניים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
 
     <table style="width:100%;border-collapse:collapse;font-size:15px;border-radius:12px;overflow:hidden;border:2px solid #059669;margin-bottom:12px;">
       <thead>
@@ -1087,47 +1088,67 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את חשיבות המים, מיקומם בגוף ותפקידיהם.</div>
   <div class="card">
-    <div class="definition-box" style="text-align:center;font-size:18px">המים הם המרכיב העיקרי בגופו של כל יצור חי.<br>כל תהליכי החיים מתרחשים בסביבה מימית.<br><strong>מים מהווים כ-60%–70% מהגוף!</strong></div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">המים הם המרכיב החשוב ביותר בגוף. כמעט כל תהליך ביולוגי מתרחש בסביבה מימית. ללא מים הגוף לא יכול לתפקד אפילו לימים ספורים.</p>
+    <div style="margin-bottom:10px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">⭐ מים מהווים כ-60%–70% מגוף האדם!</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/maim.png" alt="המים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
 
     <div class="section-title">📍 היכן נמצאים המים?</div>
-    <div class="grid-2">
-      <div class="mini-card" style="background:#dbeafe;border:2px solid #60a5fa">
-        <div class="title">🔵 מדור תוך-תאי</div>
-        מים בתוך תאי הגוף עצמם
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #60a5fa;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#1d4ed8;text-align:right;">
+          <span style="flex:1;display:flex;align-items:center;gap:8px;">מדור תוך-תאי <span style="background:#dbeafe;color:#1d4ed8;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;">בפנים</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #60a5fa;font-size:15px;line-height:1.8;">
+          מים בתוך תאי הגוף עצמם.
+        </div>
       </div>
-      <div class="mini-card" style="background:#e0f2fe;border:2px solid #7dd3fc">
-        <div class="title">🩵 מדור חוץ-תאי</div>
-        נוזל הדם + נוזל בין-תאי<br>המים עוברים בין המדורים לפי לחץ וריכוז
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="flex:1;display:flex;align-items:center;gap:8px;">מדור חוץ-תאי <span style="background:#e0f2fe;color:#0369a1;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;">בחוץ</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          נוזל הדם + נוזל בין-תאי. המים עוברים בין המדורים לפי לחץ וריכוז.
+        </div>
       </div>
+
     </div>
 
     <div class="section-title" style="margin-top:8px">📊 אובדן מים ממערכות הגוף (ב-22°C)</div>
-    <table class="info-table">
+    <table class="info-table" style="font-size:15px;">
       <tr><th>מערכת</th><th>צורת איבוד</th><th>אחוז מכלל</th></tr>
       <tr><td>🫀 הכליות</td><td>שתן</td><td style="font-weight:700;color:#0369a1">62%</td></tr>
-      <tr><td>🌬️ הריאות</td><td>אידוי מים</td><td style="font-weight:700">13%</td></tr>
       <tr><td>🧴 העור</td><td>דיפוזיה וזיעה</td><td style="font-weight:700">19%</td></tr>
+      <tr><td>🌬️ הריאות</td><td>אידוי מים</td><td style="font-weight:700">13%</td></tr>
       <tr><td>🍽️ מערכת העיכול</td><td>צואה</td><td style="font-weight:700">6%</td></tr>
     </table>
 
     <div class="section-title" style="margin-top:8px">✅ תפקידי המים</div>
     <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">1</div>
-        <span><strong>ממיס</strong> — חומרים רבים מתמוססים במים לחלקיקים קטנים</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">2</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:15px">
+        <div style="min-width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">1</div>
         <span><strong>הובלה</strong> — הדם מוביל חומרים בגוף בזכות תכונת הזרימה</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">3</div>
-        <span><strong>הולכת חום</strong> — מעביר חום ממקום למקום בגוף</span>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #a7f3d0;border-radius:10px;padding:10px 14px;font-size:15px">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">2</div>
+        <span><strong>ממיס</strong> — חומרים רבים מתמוססים במים לחלקיקים קטנים</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">4</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e9d5ff;border-radius:10px;padding:10px 14px;font-size:15px">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">3</div>
         <span><strong>תהליכים כימיים</strong> — כל תהליכי החיים מתרחשים בתמיסות מימיות</span>
       </div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:15px">
+        <div style="min-width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">4</div>
+        <span><strong>הולכת חום</strong> — מעביר חום ממקום למקום בגוף</span>
+      </div>
+
     </div>
     <div class="remember-box">מים = 60–70% מהגוף | תוך-תאי + חוץ-תאי | ממיס + הובלה + חום!</div>
   </div>
@@ -1147,28 +1168,28 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מאפייני המינרלים ולציין דוגמאות.</div>
   <div class="card">
-    <div class="highlight yellow">
-      מינרלים נמצאים ב<strong>כמויות זעירות</strong> בגוף האדם ובבעלי חיים.<br>
-      לכל מינרל <strong>תפקיד ייחודי</strong>.<br>
-      נמצאים בצורה של <strong>יונים</strong> בדרך כלל.
-    </div>
-    <div class="section-title" style="margin-top:8px">🔬 דוגמאות למינרלים</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
-      <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:14px;text-align:center">
-        <div style="font-size:28px;margin-bottom:6px">🦴</div>
-        <div style="font-weight:800;font-size:14px;color:#92400e">סידן Ca²⁺</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">עצמות ושיניים, התכווצות שרירים</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">מינרלים הם חומרים אי-אורגניים שהגוף זקוק להם בכמויות קטנות מאוד. כל מינרל ממלא תפקיד ספציפי ואי אפשר להחליפו במינרל אחר.</p>
+    <div style="margin-bottom:10px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">⭐ כמויות זעירות, תפקיד ייחודי לכל מינרל, נמצאים בצורת יונים</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/mineralim.png" alt="מינרלים ומלחים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
+
+    <div class="section-title">🔬 דוגמאות למינרלים</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e9d5ff;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🦴</div>
+        <span><strong>סידן Ca²⁺</strong> — עצמות ושיניים, התכווצות שרירים</span>
       </div>
-      <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:14px;text-align:center">
-        <div style="font-size:28px;margin-bottom:6px">⚡</div>
-        <div style="font-weight:800;font-size:14px;color:#92400e">כלור Cl⁻</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">שיווי משקל חומצה-בסיס</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #fde047;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="width:28px;height:28px;background:#b45309;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">⚡</div>
+        <span><strong>כלור Cl⁻</strong> — שיווי משקל חומצה-בסיס</span>
       </div>
-      <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:14px;text-align:center">
-        <div style="font-size:28px;margin-bottom:6px">🩸</div>
-        <div style="font-weight:800;font-size:14px;color:#92400e">ברזל Fe</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">הובלת חמצן בדם</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🩸</div>
+        <span><strong>ברזל Fe</strong> — הובלת חמצן בדם</span>
       </div>
+
     </div>
     <div class="remember-box">מינרלים = כמויות זעירות | יונים | כל מינרל — תפקיד ייחודי!</div>
   </div>
@@ -1190,18 +1211,36 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מבנה החלבון, תפקידיו ומקורותיו.</div>
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">חלבונים הם אבני הבניין של הגוף. הם משמשים לבניית רקמות ושרירים, לייצור אנזימים ונוגדנים, ולתהליכים חיוניים רבים. הגוף מפרק אותם לחומצות אמינו ומרכיב מהן חלבונים חדשים לפי הצורך.</p>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/helbonim.png" alt="חלבונים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
     <div class="section-title">🔬 מבנה החלבון</div>
-    <div class="definition-box">
-      חלבונים הם <strong>מולקולות ענק</strong> הבנויות מ<strong>חומצות אמינו</strong>.<br>
-      חומצות האמינו = <strong>אבני היסוד</strong> של כל החלבונים.<br>
-      בטבע קיימות <strong>20 חומצות אמינו</strong>.<br>
-      לכל יצור חי — סדר <strong>שונה</strong> של חומצות אמינו.
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;gap:10px;background:#fff5f5;border-radius:8px;padding:10px 14px;font-size:15px;">
+        <span>חלבונים בנויות מ<strong>חומצות אמינו</strong> שהן אבני היסוד שלהם</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#fff5f5;border-radius:8px;padding:10px 14px;font-size:15px;">
+        <span>בטבע קיימות <strong>20 חומצות אמינו</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#fff5f5;border-radius:8px;padding:10px 14px;font-size:15px;">
+        <span>לכל יצור חי סדר <strong>שונה</strong> של חומצות אמינו — לכן כל חלבון ייחודי</span>
+      </div>
     </div>
-    <div class="highlight blue">💡 <strong>מה קורה בגוף?</strong><br>האדם מפרק חלבוני מזון → קולט חומצות אמינו → בונה מהן <strong>חלבונים חדשים ייחודיים לו</strong>.<br>חלק מחומצות האמינו — הגוף מייצר. חלק — חייב לקבל <strong>מהמזון</strong>!</div>
+
+    <div class="section-title" style="margin-top:8px">🔄 מה קורה בגוף?</div>
+    <div style="display:flex;align-items:center;gap:8px;background:#f8fafc;border-radius:10px;padding:12px 14px;font-size:15px;margin-bottom:12px;flex-wrap:wrap;">
+      <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;">חלבוני מזון</span>
+      <span style="color:#94a3b8;">←</span>
+      <span style="background:#fef9c3;color:#b45309;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;">פירוק</span>
+      <span style="color:#94a3b8;">←</span>
+      <span style="background:#dbeafe;color:#0369a1;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;">חומצות אמינו</span>
+      <span style="color:#94a3b8;">←</span>
+      <span style="background:#d1fae5;color:#059669;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;">חלבונים חדשים ייחודיים!</span>
+    </div>
+    <div style="margin-bottom:12px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">⭐ חלק מחומצות האמינו הגוף מייצר. חלק חייב לקבל מהמזון!</span></div>
 
     <div class="section-title" style="margin-top:8px">⭐ חלבון מלא מול חלבון חסר</div>
     <table class="info-table" style="margin-bottom:12px">
-      <tr><th></th><th>✅ חלבון מלא</th><th>⚠️ חלבון חסר</th></tr>
+      <tr><th></th><th>חלבון מלא</th><th>חלבון חסר</th></tr>
       <tr>
         <td><strong>חומצות אמינו</strong></td>
         <td>מכיל <strong>את כולן</strong></td>
@@ -1219,31 +1258,42 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       </tr>
     </table>
 
-    <div class="highlight yellow" style="font-size:14px">
-      💡 <strong>למה חשוב לקבל את כל חומצות האמינו?</strong><br>
-      הגוף לא יכול לייצר חלק מחומצות האמינו בעצמו — הוא <strong>חייב לקבל אותן מהמזון</strong>.<br>
-      אם חסרה חומצת אמינו אחת — הגוף לא יוכל לבנות את החלבון שצריך אותה.<br>
-      <strong>פתרון לצמחונים:</strong> שילוב בין סוגי מזון צמחי שונים (לדוגמה: אורז + קטניות) משלים את כל חומצות האמינו הדרושות!
+    <div class="section-title" style="margin-top:8px">⚠️ למה חשוב לקבל את כל חומצות האמינו?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <div style="background:#fff5f5;border-right:4px solid #dc2626;border-radius:10px;padding:12px 14px;font-size:15px;">
+        <div style="font-weight:700;color:#dc2626;margin-bottom:4px;">הבעיה</div>
+        הגוף לא יכול לייצר חלק מחומצות האמינו בעצמו. אם חסרה אחת, הגוף לא יוכל לבנות את החלבון שצריך אותה.
+      </div>
+      <div style="background:#f0fdf4;border-right:4px solid #059669;border-radius:10px;padding:12px 14px;font-size:15px;">
+        <div style="font-weight:700;color:#059669;margin-bottom:4px;">הפתרון לצמחונים</div>
+        שילוב בין סוגי מזון צמחי שונים משלים את כל חומצות האמינו. למשל: <strong>אורז + קטניות</strong>.
+      </div>
     </div>
 
     <div class="section-title" style="margin-top:8px">⚡ תפקידי החלבונים</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:#fce7f3;border:2px solid #f9a8d4;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:14px;color:#9d174d;margin-bottom:4px">🏗️ חומר בניין</div>
-        <div style="font-size:13px;color:var(--text)">תפקיד עיקרי — בניית רקמות ושרירים</div>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/tafkidim.png" alt="תפקידי חלבונים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:10px;">
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #bfdbfe;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;">1</div>
+        <span><strong>חומר בניין</strong> — בניית רקמות ושרירים</span>
       </div>
-      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:14px;color:#065f46;margin-bottom:4px">⚗️ אנזימים</div>
-        <div style="font-size:13px;color:var(--text)">מזרזים תהליכים כימיים בתאים — פירוק, בנייה, שינוי</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #a7f3d0;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;">2</div>
+        <span><strong>אנזימים</strong> — מזרזים תהליכים כימיים בתאים: פירוק, בנייה, שינוי</span>
       </div>
-      <div style="background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:14px;color:#1e40af;margin-bottom:4px">🛡️ נוגדנים</div>
-        <div style="font-size:13px;color:var(--text)">הגנה על הגוף מגורמים זרים ומזיקים</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #e9d5ff;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;">3</div>
+        <span><strong>נוגדנים</strong> — הגנה על הגוף מגורמים זרים ומזיקים</span>
       </div>
-      <div style="background:#ede9fe;border:2px solid #c4b5fd;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:14px;color:#5b21b6;margin-bottom:4px">💉 הורמונים</div>
-        <div style="font-size:13px;color:var(--text)">ויסות תהליכים בגוף</div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid #fed7aa;border-radius:10px;padding:10px 14px;font-size:15px;">
+        <div style="min-width:28px;height:28px;background:#b45309;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;">4</div>
+        <span><strong>הורמונים</strong> — שליחים כימיים שמווסתים תהליכים בגוף</span>
       </div>
+
     </div>
 
     <div class="section-title" style="margin-top:4px">🍽️ מקורות לחלבונים</div>
@@ -1287,12 +1337,12 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מבנה הפחמימות, סוגיהן ותפקידיהן.</div>
   <div class="card">
-    <div class="definition-box">
-      פחמימות מורכבות מ: <strong>פחמן (C) + מימן (H) + חמצן (O)</strong><br>
-      יחס מימן לחמצן: <strong>2:1</strong> | נוסחה כללית: C(H₂O)<br>
-      <strong>תפקיד עיקרי: מקור האנרגיה הזמינה בגוף!</strong>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">פחמימות הן מקור האנרגיה הראשי של הגוף. הן מורכבות מפחמן, מימן וחמצן, ונמצאות בצורות שונות מהפשוט ועד המורכב. הגוף מפרק אותן לגלוקוז ומשתמש בו לייצור אנרגיה.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+      <span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">⚡ תפקיד עיקרי: מקור האנרגיה הזמינה בגוף!</span>
+      <span style="display:inline-block;background:#d1fae5;color:#059669;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">🌱 נוצרות בפוטוסינתזה — מ-CO₂ + מים + אנרגיית השמש</span>
     </div>
-    <div class="highlight yellow">🌱 <strong>כיצד נוצרות?</strong><br>פוטוסינתזה — ייצור גלוקוז מפחמן דו-חמצני ומים בסיוע אנרגיית השמש.</div>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/pahmemot.png" alt="פחמימות" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
 
     <div class="section-title" style="margin-top:8px">📊 שלוש קבוצות של פחמימות</div>
 
@@ -1331,28 +1381,50 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <text x="430" y="113" text-anchor="middle" font-family="Heebo,sans-serif" font-size="10" font-weight="700" fill="#7c2d12">עמילן</text>
     </svg>
 
-    <!-- Clean table -->
-    <table class="info-table" style="margin-bottom:14px">
-      <tr><th>סוג</th><th>מבנה</th><th>דוגמאות</th><th>מקורות</th></tr>
-      <tr>
-        <td>🟡 <strong>חד סוכר</strong></td>
-        <td>משושה אחד | C₆H₁₂O₆</td>
-        <td>גלוקוז, פרוקטוז</td>
-        <td>פירות, דבש</td>
-      </tr>
-      <tr>
-        <td>🟠 <strong>דו סוכר</strong></td>
-        <td>שני משושים מחוברים</td>
-        <td>סוכרוז (גלוקוז+פרוקטוז)<br>מלטוז (גלוקוז+גלוקוז)</td>
-        <td>סוכר לבן, דגנים נובטים</td>
-      </tr>
-      <tr>
-        <td>🔴 <strong>רב סוכר</strong></td>
-        <td>שרשרת ארוכה של גלוקוז</td>
-        <td>עמילן</td>
-        <td>חיטה, אורז, תפו"א</td>
-      </tr>
-    </table>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fde047;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="flex:1;display:flex;align-items:center;gap:8px;">חד סוכר <span style="background:#fef9c3;color:#b45309;border-radius:20px;padding:2px 10px;font-size:14px;font-weight:700;">הפשוט ביותר</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fde047;font-size:15px;line-height:1.8;">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
+            <span style="background:#fef9c3;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">C₆H₁₂O₆</span>
+            <span style="background:#fef9c3;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">גלוקוז, פרוקטוז</span>
+            <span style="background:#fef9c3;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">פירות, דבש</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="flex:1;display:flex;align-items:center;gap:8px;">דו סוכר <span style="background:#fff7ed;color:#b45309;border-radius:20px;padding:2px 10px;font-size:14px;font-weight:700;">שני חד-סוכרים</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fed7aa;font-size:15px;line-height:1.8;">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
+            <span style="background:#fff7ed;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">סוכרוז = גלוקוז + פרוקטוז</span>
+            <span style="background:#fff7ed;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">מלטוז = גלוקוז + גלוקוז</span>
+            <span style="background:#fff7ed;color:#b45309;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">סוכר לבן, דגנים נובטים</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="flex:1;display:flex;align-items:center;gap:8px;">רב סוכר <span style="background:#fee2e2;color:#dc2626;border-radius:20px;padding:2px 10px;font-size:14px;font-weight:700;">שרשרת ארוכה</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
+            <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">עמילן</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:8px;padding:3px 10px;font-size:15px;font-weight:600;">חיטה, אורז, תפו"א</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <div class="remember-box">חד סוכר ← דו סוכר ← רב סוכר | הכל מתפרק לגלוקוז בסוף!</div>
   </div>
   <div class="question-box">
@@ -1371,50 +1443,84 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מבנה השומנים, סוגיהם ותפקידיהם.</div>
   <div class="card">
-    <div class="definition-box">
-      ליפידים = קבוצת חומרים מגוונת שאינם מסיסים במים.<br>
-      מבנה: מולקולות גדולות מ<strong>3 חומצות שומן + גליצרול</strong>.<br>
-      שרשרת ארוכה של פחמן ומימן — <strong>אורכה ומספר קשרים כפולים קובעים תכונותיה.</strong>
-    </div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">שומנים הם חומרים שאינם מסיסים במים. הם משמשים כמקור אנרגיה עצום, מרכיבים של קרום התא, ועוד תפקידים חיוניים. שרשרת הפחמן שלהם קובעת אם הם מוצקים או נוזליים.</p>
+    <div style="margin-bottom:10px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:14px;line-height:1.7;">בנויים מ: 3 חומצות שומן + גליצרול. לא מסיסים במים!</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/shumanim.png" alt="שומנים וליפידים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:12px;">
 
     <div class="section-title" style="margin-top:4px">⚡ 3 סוגי חומצות שומן</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:13px;color:#065f46;margin-bottom:4px">✅ רוויות</div>
-        <div style="font-size:12px;color:var(--text)">ללא קשרים כפולים | מוצק בטמפ' חדר | בעיקר מהחי</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:12px;padding:12px 14px;">
+        <div style="font-weight:800;font-size:15px;color:#065f46;margin-bottom:4px;">רוויות</div>
+        <div style="font-size:15px;color:var(--text);">ללא קשרים כפולים | מוצק בטמפרטורת חדר | בעיקר מהחי</div>
       </div>
-      <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:13px;color:#92400e;margin-bottom:4px">⚡ בלתי רוויות</div>
-        <div style="font-size:12px;color:var(--text)">קשר כפול אחד | נוזלי בטמפ' חדר</div>
+      <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:12px 14px;">
+        <div style="font-weight:800;font-size:15px;color:#92400e;margin-bottom:4px;">חד בלתי רוויות</div>
+        <div style="font-size:15px;color:var(--text);">קשר כפול אחד | נוזלי בטמפרטורת חדר</div>
       </div>
-      <div style="background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px">
-        <div style="font-weight:800;font-size:13px;color:#1e40af;margin-bottom:4px">⚡⚡ רב בלתי רוויות</div>
-        <div style="font-size:12px;color:var(--text)">שני קשרים כפולים ומעלה</div>
+      <div style="background:#dbeafe;border:2px solid #93c5fd;border-radius:12px;padding:12px 14px;">
+        <div style="font-weight:800;font-size:15px;color:#1e40af;margin-bottom:4px;">רב בלתי רוויות</div>
+        <div style="font-size:15px;color:var(--text);">שני קשרים כפולים ומעלה</div>
       </div>
     </div>
 
     <div class="section-title">⚡ תפקידי השומן</div>
-    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#f97316;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">1</div>
-        <span><strong>מקור אנרגיה</strong> — 1 ק"ג שומן = <strong>7,000 קלוריות!</strong></span>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fecaca;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#dc2626;text-align:right;">
+          <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">1</span>
+          <span style="flex:1;">מקור אנרגיה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fecaca;font-size:15px;line-height:1.8;">
+          1 ק"ג שומן = <strong>7,000 קלוריות!</strong> המאגר הכי עשיר באנרגיה בגוף.
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#f97316;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">2</div>
-        <span><strong>קרום התא</strong> — אבן היסוד של קרום כל תא</span>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #bfdbfe;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">2</span>
+          <span style="flex:1;">קרום התא</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #bfdbfe;font-size:15px;line-height:1.8;">
+          אבן היסוד של <strong>קרום כל תא</strong> בגוף.
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#f97316;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">3</div>
-        <span><strong>הורמונים</strong> — חומרי מוצא לייצור הורמונים</span>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #e9d5ff;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">3</span>
+          <span style="flex:1;">הורמונים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #e9d5ff;font-size:15px;line-height:1.8;">
+          חומרי מוצא לייצור <strong>הורמונים</strong> בגוף.
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#f97316;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">4</div>
-        <span><strong>מסיסות ויטמינים</strong> — ויטמינים A, D, E, K מסיסים בשומן</span>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #a7f3d0;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">4</span>
+          <span style="flex:1;">מסיסות ויטמינים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #a7f3d0;font-size:15px;line-height:1.8;">
+          ויטמינים <strong>A, D, E, K</strong> מסיסים בשומן ודורשים שומן לספיגתם.
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px">
-        <div style="min-width:28px;height:28px;background:#f97316;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">5</div>
-        <span><strong>בידוד</strong> — שמירת חום גוף והגנת רקמות פנימיות</span>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fde047;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#b45309;text-align:right;">
+          <span style="background:#b45309;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">5</span>
+          <span style="flex:1;">בידוד</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fde047;font-size:15px;line-height:1.8;">
+          שמירת חום הגוף והגנת רקמות פנימיות.
+        </div>
       </div>
+
     </div>
 
     <div class="section-title">🍽️ מקורות לשומנים</div>
@@ -1448,33 +1554,48 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מאפייני הויטמינים ולהבדיל בין סוגיהם.</div>
   <div class="card">
-    <div class="highlight purple">
-      <strong>מהם ויטמינים?</strong><br>
-      מולקולות אורגניות בעלות <strong>מבנה קטן יחסית</strong>.<br>
-      <strong>לא מתפרקים</strong> במערכת העיכול.<br>
-      <strong>אינם מיוצרים</strong> על ידי הגוף (חוץ מויטמין D — שנוצר בעור עם קרינת השמש).<br>
-      <strong>חיוניים</strong> לקיום תהליכים שונים בתאים.
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">ויטמינים הם חומרים אורגניים שהגוף זקוק להם בכמויות קטנות מאוד, אבל לא יכול לייצרם לבד (למעט ויטמין D). ללא ויטמינים הגוף לא יכול לבצע תהליכים חיוניים.</p>
+    <img src="https://bagruyot.org/haklaut/bg/ikul/vitaminim.png" alt="ויטמינים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:10px;">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+      <span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:5px 10px;font-weight:700;font-size:13px;line-height:1.7;">חומרים אורגניים</span>
+      <span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:5px 10px;font-weight:700;font-size:13px;line-height:1.7;">מבנה קטן יחסית</span>
+      <span style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:6px;padding:5px 10px;font-weight:700;font-size:13px;line-height:1.7;">לא מתפרקים בעיכול</span>
+      <span style="display:inline-block;background:#f3e8ff;color:#7c3aed;border-radius:6px;padding:5px 10px;font-weight:700;font-size:13px;line-height:1.7;">לא מיוצרים על ידי הגוף</span>
+      <span style="display:inline-block;background:#d1fae5;color:#059669;border-radius:6px;padding:5px 10px;font-weight:700;font-size:13px;line-height:1.7;">חיוניים לתהליכי התא</span>
     </div>
 
     <div class="section-title" style="margin-top:8px">📊 שני סוגי ויטמינים</div>
-    <div class="two-col-compare">
-      <div class="compare-card" style="background:#dbeafe;border:2px solid #93c5fd">
-        <h3>💧 מסיסים במים</h3>
-        <ul>
-          <li>הגוף <strong>צריך אספקה יומיומית</strong></li>
-          <li>עודף <strong>מופרש מהר</strong></li>
-          <li>ויטמיני <strong>B, C</strong></li>
-        </ul>
-      </div>
-      <div class="compare-card" style="background:#fef3c7;border:2px solid #fbbf24">
-        <h3>🧈 מסיסים בשומן</h3>
-        <ul>
-          <li>יכולים <strong>להיאגר</strong> לפרק זמן ארוך</li>
-          <li>עודף עלול לגרום <strong>נזק!</strong></li>
-          <li>ויטמינים <strong>A, D, E, K</strong></li>
-        </ul>
-      </div>
-    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:15px;border-radius:12px;overflow:hidden;border:2px solid #0369a1;margin-bottom:12px;">
+      <thead>
+        <tr>
+          <th style="padding:10px 12px;background:#0369a1;color:white;font-weight:800;text-align:right;border-left:1px solid #1d4ed8;"></th>
+          <th style="padding:10px 12px;background:#0369a1;color:white;font-weight:800;text-align:center;border-left:1px solid #1d4ed8;">💧 מסיסים במים</th>
+          <th style="padding:10px 12px;background:#0369a1;color:white;font-weight:800;text-align:center;">🧈 מסיסים בשומן</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:white;">
+          <td style="padding:9px 12px;font-weight:700;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">דוגמאות</td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">B, C</td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;">A, D, E, K</td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td style="padding:9px 12px;font-weight:700;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">אחסון בגוף</td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;"><span style="background:#fee2e2;color:#dc2626;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;display:inline-block;">לא נאגרים</span></td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;"><span style="background:#d1fae5;color:#059669;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;display:inline-block;">נאגרים</span></td>
+        </tr>
+        <tr style="background:white;">
+          <td style="padding:9px 12px;font-weight:700;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">עודף</td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">יוצא בשתן</td>
+          <td style="padding:9px 12px;text-align:center;border-bottom:1px solid #e2e8f0;"><span style="background:#fef9c3;color:#b45309;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;display:inline-block;">⚠️ עלול להרעיל!</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td style="padding:9px 12px;font-weight:700;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">ספיגה</td>
+          <td style="padding:9px 12px;text-align:center;border-right:1px solid #e2e8f0;">ישירות לדם</td>
+          <td style="padding:9px 12px;text-align:center;">דורשת שומן</td>
+        </tr>
+      </tbody>
+    </table>
     <div class="remember-box">ויטמינים: לא מתפרקים | לא מיוצרים (חוץ מ-D!) | B,C = מים | A,D,E,K = שומן!</div>
   </div>
   <div class="question-box">
