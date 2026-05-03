@@ -133,6 +133,64 @@
       gap:24px;
     }
 
+    /* ── Filter Tabs ── */
+    .filter-bar{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:20px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding-bottom:4px;
+    }
+    .filter-bar::-webkit-scrollbar{display:none;}
+
+    .filter-tab{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:9px 18px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,0.35);
+      background:rgba(255,255,255,0.18);
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:15px;
+      font-weight:700;
+      white-space:nowrap;
+      cursor:pointer;
+      transition:background 0.18s, border-color 0.18s, transform 0.15s;
+      backdrop-filter:blur(6px);
+      flex-shrink:0;
+    }
+    .filter-tab:hover{
+      background:rgba(255,255,255,0.30);
+      transform:translateY(-1px);
+    }
+    .filter-tab.active{
+      background:rgba(255,255,255,0.95);
+      border-color:rgba(255,255,255,0.95);
+      color:var(--accent-dark);
+    }
+    .filter-tab .tab-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:20px;
+      height:20px;
+      padding:0 5px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.28);
+      font-size:12px;
+      font-weight:900;
+      line-height:1;
+    }
+    .filter-tab.active .tab-badge{
+      background:var(--accent);
+      color:#fff;
+    }
+
     .section-shell{
       background:rgba(255,255,255,0.18);
       border:1px solid rgba(255,255,255,0.28);
@@ -904,6 +962,7 @@
     </section>
 
     <section id="gridView" class="grid-view">
+      <div id="filterBar" class="filter-bar" role="tablist" aria-label="סינון לומדות לפי נושא"></div>
       <div id="sectionsContainer" class="sections-stack"></div>
     </section>
 
@@ -961,6 +1020,7 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const sectionsContainer = document.getElementById('sectionsContainer');
+    const filterBar = document.getElementById('filterBar');
     const loginModal = document.getElementById('loginModal');
     const guestTopbar = document.getElementById('guestTopbar');
     const guestLoginBtn = document.getElementById('guestLoginBtn');
@@ -996,7 +1056,7 @@
     const mobileHeaderBackBtn = document.getElementById('mobileHeaderBackBtn');
     const mobileLessonLogoutBtn = document.getElementById('mobileLessonLogoutBtn');
 
-    const MENU_FILE = 'menu.xlsx';
+    const MENU_FILE = 'menu-dev.xlsx';
     const USERS_FILE = 'https://bagruyot.org/haklaut/users_hashed.json';
     const USERNAME_PEPPER = 'u_9x3K_example';
     const PASSWORD_PEPPER = 'p_7m2Q_example';
@@ -1020,6 +1080,10 @@
       dogs: {
         title: 'כלבים',
         icon: '🐶'
+      },
+      hors: {
+        title: 'סוסים',
+        icon: '🐴'
       }
     };
 
@@ -1069,7 +1133,7 @@
     function normalizeTopic(value) {
       const topic = String(value || '').trim().toLowerCase();
       if (!topic) return 'general';
-      if (topic === 'general' || topic === 'dogs') return topic;
+      if (topic === 'general' || topic === 'dogs' || topic === 'hors') return topic;
       return '';
     }
 
@@ -1120,6 +1184,7 @@
 
       const wrapper = document.createElement('div');
       wrapper.className = 'section-shell';
+      wrapper.dataset.sectionKey = key;
 
       const heading = document.createElement('p');
       heading.className = 'section-kicker';
@@ -1135,12 +1200,63 @@
       return wrapper;
     }
 
+    let allGroups = {};
+    let activeFilter = 'all';
+
+    function buildFilterBar(groups) {
+      filterBar.innerHTML = '';
+
+      const tabs = [
+        { key: 'all', label: 'הכל', icon: '📚' },
+        { key: 'general', label: SECTION_CONFIG.general.title.replace('תחום בעלי החיים - ', ''), icon: SECTION_CONFIG.general.icon },
+        { key: 'dogs', label: SECTION_CONFIG.dogs.title, icon: SECTION_CONFIG.dogs.icon },
+        { key: 'hors', label: SECTION_CONFIG.hors.title, icon: SECTION_CONFIG.hors.icon },
+      ];
+
+      tabs.forEach(tab => {
+        const count = tab.key === 'all'
+          ? Object.values(groups).reduce((s, a) => s + a.length, 0)
+          : (groups[tab.key] || []).length;
+
+        if (tab.key !== 'all' && count === 0) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'filter-tab' + (tab.key === activeFilter ? ' active' : '');
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', tab.key === activeFilter ? 'true' : 'false');
+        btn.setAttribute('aria-label', `${tab.label} — ${count} לומדות`);
+        btn.innerHTML = `<span>${tab.icon}</span><span>${escapeHtml(tab.label)}</span><span class="tab-badge">${count}</span>`;
+
+        btn.addEventListener('click', () => {
+          activeFilter = tab.key;
+          applyFilter();
+          filterBar.querySelectorAll('.filter-tab').forEach(b => {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+          });
+        });
+
+        filterBar.appendChild(btn);
+      });
+    }
+
+    function applyFilter() {
+      sectionsContainer.querySelectorAll('.section-shell').forEach(el => {
+        if (activeFilter === 'all' || el.dataset.sectionKey === activeFilter) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+
     function renderSections(rows) {
       sectionsContainer.innerHTML = '';
 
       const groups = {
         general: [],
-        dogs: []
+        dogs: [],
+        hors: []
       };
 
       rows.forEach(row => {
@@ -1150,13 +1266,20 @@
         }
       });
 
+      allGroups = groups;
+      activeFilter = 'all';
+
+      buildFilterBar(groups);
+
       const generalSection = buildSection('general', groups.general);
       const dogsSection = buildSection('dogs', groups.dogs);
+      const horsSection = buildSection('hors', groups.hors);
 
       if (generalSection) sectionsContainer.appendChild(generalSection);
       if (dogsSection) sectionsContainer.appendChild(dogsSection);
+      if (horsSection) sectionsContainer.appendChild(horsSection);
 
-      if (!generalSection && !dogsSection) {
+      if (!generalSection && !dogsSection && !horsSection) {
         sectionsContainer.innerHTML = '<div class="state">לא נמצאו לומדות להצגה.</div>';
       }
     }
@@ -1631,7 +1754,7 @@
         console.error(error);
         sectionsContainer.innerHTML = `
           <div class="state">
-            לא הצלחתי לטעון את הקובץ <strong>menu.xlsx</strong>.<br>
+            לא הצלחתי לטעון את הקובץ <strong>menu-dev.xlsx</strong>.<br>
             ודאי שהוא נמצא באותה תיקייה כמו קובץ ה־HTML ושהעמודות נקראות בדיוק
             <strong>page_name</strong>, <strong>page_url</strong>, <strong>menu_icon</strong>, <strong>topic</strong> ו־<strong>sub_title</strong>.
           </div>
