@@ -182,7 +182,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
     </div>
     <div class="menu-chapter-title">📚 חזרה</div>
     <div class="menu-chapter">
-      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלת סיכום</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>כל התקופות</button>
       <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
       <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה – נכון/לא נכון</button>
       <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה – שאלות</button>
@@ -996,12 +996,31 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את המאפיינים הפיזיים של תקופה 5.</div>
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">בגיל 4 עד 7 חודשים הכלב עובר שינויים פיזיים מהירים: הוא גדל, עצמותיו מתחזקות ושיני החלב מתחלפות בשיני קבע. במקביל זוהי תקופה מצוינת לאילוף מתקדם, כי הכלב כבר מסוגל להתמקד ולהחזיק מידע לאורך זמן.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tkufot/zmiha.png" alt="תקופה 5" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
     <div class="period-badge" style="background:#dbeafe;color:#1e40af">⏱️ גיל 4–7 חודשים</div>
-    <div class="grid-2">
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">📈 צמיחה מהירה</div>הכלב גדל בקצב מהיר מאוד</div>
-      <div class="mini-card" style="background:#fef3c7;border:2px solid #f59e0b"><div class="title">🦴 גדילת עצמות</div>העצמות גדלות ומתחזקות</div>
-      <div class="mini-card" style="background:#fee2e2;border:2px solid #fca5a5"><div class="title">🦷 החלפת שיניים</div>שיני חלב מתחלפות בשיני קבע</div>
-      <div class="mini-card" style="background:#d1fae5;border:2px solid #34d399"><div class="title">🎓 אילוף מתקדם</div>גיל מצוין להתחלת עבודה אינטנסיבית</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;border:2px solid #7dd3fc;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">📈</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#0369a1;">צמיחה מהירה</strong> — הכלב גדל בקצב מהיר מאוד</span>
+      </div>
+
+      <div style="border-radius:12px;border:2px solid #86efac;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">🦴</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#059669;">גדילת עצמות</strong> — העצמות גדלות ומתחזקות</span>
+      </div>
+
+      <div style="border-radius:12px;border:2px solid #fed7aa;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#ea580c;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">🦷</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#ea580c;">החלפת שיניים</strong> — שיני חלב מתחלפות בשיני קבע</span>
+      </div>
+
+      <div style="border-radius:12px;border:2px solid #c4b5fd;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">🎓</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#7c3aed;">אילוף מתקדם</strong> — גיל מצוין להתחלת עבודה אינטנסיבית</span>
+      </div>
+
     </div>
     <div class="remember-box">תקופה 5: צמיחה + שיניים + עצמות + אילוף מתקדם!</div>
   </div>
@@ -1026,47 +1045,72 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מאפייני תקופה 6 ואיך להתמודד עם בחינת הגבולות.</div>
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">מגיל 7 חודשים ועד הבגרות הכלב עובר את השינויים האחרונים בדרך לבגרות פיזית ומנטלית. הגוף מתייצב, ההורמונים משפיעים יותר ויותר ועלולות להופיע בעיות התנהגות אם לא מתמודדים איתן בזמן.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tkufot/tkufa5.png" alt="תקופה 6" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
     <div class="period-badge" style="background:#fee2e2;color:#991b1b">⏱️ גיל 7 חודשים עד בגרות</div>
 
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">1</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>כמעט סיים לגדול</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">הכלב גדל בצורה מתונה מאוד — עיקר הצמיחה הפיזית כבר מאחוריו. הגוף מתייצב.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+          <span style="flex:1;">כמעט סיים לגדול</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          הכלב גדל בצורה מתונה מאוד. עיקר הצמיחה הפיזית כבר מאחוריו.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">הגוף מתייצב</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#dc2626;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">2</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>סימנים הורמונליים</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">מתחילים להופיע שינויים הורמונליים — בנקבות: ייחום ראשון, בזכרים: עלייה ברמות טסטוסטרון. שינויים אלה עשויים להשפיע על ההתנהגות.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+          <span style="flex:1;">סימנים הורמונליים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
+          מתחילים להופיע שינויים הורמונליים שמשפיעים על ההתנהגות.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">נקבות: ייחום ראשון</span>
+            <span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">זכרים: עלייה בטסטוסטרון</span>
+          </div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">3</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>בחינת גבולות מחדש</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">בדומה לתקופה 4 — הכלב מתחיל שוב לבחון מה מותר ומה אסור. זהו הזמן לשמור על <strong>קונסיסטנטיות</strong> ולא לאפשר "פרצות" בגבולות שכבר נקבעו. מה שהיה אסור — נשאר אסור!</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fed7aa;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#ea580c;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#ea580c;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+          <span style="flex:1;">בחינת גבולות מחדש</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fed7aa;font-size:15px;line-height:1.8;">
+          הכלב מתחיל שוב לבחון מה מותר ומה אסור — בדומה לתקופה 4.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מה שהיה אסור — נשאר אסור! קונסיסטנטיות!</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">4</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>ניתוב משמעותי לצרכינו</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">עכשיו נעצב את הכלב ונתחיל לנתב אותו לצרכים שלנו בצורה ממוקדת — אילוף מתקדם, עבודה, ספורט או כל מה שהכלב מיועד לו.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">4</span>
+          <span style="flex:1;">ניתוב לצרכינו</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          עכשיו מנתבים את הכלב לצרכים ממוקדים: אילוף מתקדם, עבודה או ספורט.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">הזמן לעצב את הכלב לתפקידו</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">5</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>פיתוח יכולות פיזיות גבוהות</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">הכלב מפתח כוח, מהירות וסיבולת. כעת ניתן להגביר את עצימות האימון הפיזי ולהוציא יותר אנרגיה בצורה ממוקדת.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">5</span>
+          <span style="flex:1;">פיתוח יכולות פיזיות גבוהות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          הכלב מפתח כוח, מהירות וסיבולת. ניתן להגביר את עצימות האימון הפיזי.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">להוציא אנרגיה בצורה ממוקדת</span></div>
         </div>
       </div>
 
@@ -1089,45 +1133,59 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
   </div>
   <div class="goal-box">אני אוכל לתאר את מאפייני שלב הבגרות ומה ניתן לעשות בו.</div>
   <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">בשלב הבגרות הכלב כבר מעוצב גם פיזית וגם באופיו. מה שנבנה בתקופות הקריטיות הוא הבסיס שממנו יוצאים. עכשיו המטרה היא לחזק, ללטש ולנתב את הכישורים הקיימים לכיוון הרצוי.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tkufot/tkufa6.png" alt="בגרות" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
     <div class="period-badge" style="background:#d1fae5;color:#065f46">⏱️ בגרות — תקופה יציבה יחסית</div>
+    <div style="margin:12px 0;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:15px;line-height:1.7;">הכלב מעוצב פיזית ובאופיו. עכשיו מחזקים, מלטשים ומעצבים סופית.</span></div>
 
-    <div class="highlight green" style="font-size:15px;text-align:center;margin-bottom:14px">
-      בגיל זה הכלב כבר <strong>מעוצב באופיו ומעוצב פיזית</strong>.<br>
-      עכשיו — נחזק, נלטש ונעצב אותו <strong>סופית</strong>.
-    </div>
+    <div class="section-title">מה ניתן לעשות בתקופת הבגרות?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
 
-    <div class="section-title">✅ מה ניתן לעשות בתקופת הבגרות?</div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
-
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#0369a1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">1</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>חיזוק מה שנלמד</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">כל הפקודות והתרגילים שנלמדו בתקופות הקודמות — מחזקים, מייצבים ומשכללים. הכלב כבר מכיר — עכשיו נהפוך את זה לאוטומטי ואמין.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+          <span style="flex:1;">חיזוק מה שנלמד</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          כל הפקודות והתרגילים שנלמדו בתקופות הקודמות מחזקים ומשכללים.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מהפקודה הידועה לאוטומטית ואמינה</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">2</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>לימוד דברים חדשים</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">ניתן ללמד את הכלב מיומנויות ותרגילים חדשים — כלב שקיבל חשיפה מוקדמת נכונה בשלבים הקודמים ילמד גם עכשיו בקלות יחסית.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+          <span style="flex:1;">לימוד דברים חדשים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          ניתן ללמד מיומנויות ותרגילים חדשים. כלב שקיבל חשיפה נכונה בעבר ילמד גם עכשיו בקלות.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">חשיפה מוקדמת נכונה = למידה קלה גם בבגרות</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#d97706;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">3</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>עיצוב סופי של האופי</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">ליטוש ועיצוב האופי — להפוך את הכלב למה שרצינו מהתחלה. זהו השלב שבו "מוצרים הסופי" של כל ההשקעה שהושקעה מגיל הגור.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fbbf24;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#d97706;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#d97706;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+          <span style="flex:1;">עיצוב סופי של האופי</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fbbf24;font-size:15px;line-height:1.8;">
+          ליטוש ועיצוב האופי לתוצר הסופי של כל ההשקעה מגיל הגור.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef3c7;color:#d97706;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">המוצר הסופי של כל תקופות הגידול</span></div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px">
-        <div style="min-width:28px;height:28px;background:#7c3aed;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;margin-top:2px">4</div>
-        <div style="font-size:14px;line-height:1.6">
-          <strong>שמירה על קונסיסטנטיות</strong><br>
-          <span style="font-size:13px;color:var(--text-muted)">הגבולות שנקבעו נשמרים גם בבגרות. כלב בוגר עדיין צריך מסגרת ברורה ועקבית — זה מה שמייצר ביטחון אצלו.</span>
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">4</span>
+          <span style="flex:1;">שמירה על קונסיסטנטיות</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
+          הגבולות שנקבעו נשמרים גם בבגרות. כלב בוגר עדיין צריך מסגרת ברורה ועקבית.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מסגרת ברורה = ביטחון לכלב</span></div>
         </div>
       </div>
 
@@ -1145,20 +1203,97 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 <div class="screen" id="screen-13">
   <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
     <span class="chapter-num">סיכום</span><span class="emoji">📊</span>
-    <h1>כל 7 התקופות — טבלת סיכום</h1>
-    <p class="subtitle">בת אחת עיני</p>
+    <h1>כל 7 התקופות סיכום</h1>
+    <p class="subtitle">סקירה מהירה של כל השלבים</p>
   </div>
   <div class="card">
-    <table class="info-table">
-      <tr><th>תקופה</th><th>גיל</th><th>עיקרי התקופה</th><th>חשוב לזכור</th></tr>
-      <tr><td style="white-space:nowrap">1️⃣ <strong>ראשונה</strong></td><td>0–3 שבועות</td><td>עיוור + חרש, תלוי באם</td><td>מגע אדם בלבד</td></tr>
-      <tr><td style="white-space:nowrap">2️⃣ <strong>שנייה</strong></td><td>3–7 שבועות</td><td>לומד להיות כלב, חושים מתפתחים</td><td>אל תפריד! סוציאליזציה</td></tr>
-      <tr><td style="white-space:nowrap">3️⃣ <strong>שלישית</strong></td><td>7–12 שבועות</td><td>סביבה מורחבת, שיתוף פעולה</td><td>⭐ הגיל האידיאלי לבית חדש</td></tr>
-      <tr><td style="white-space:nowrap">4️⃣ <strong>רביעית</strong></td><td>3–4 חודשים</td><td>בוחן גבולות, קונסיסטנטיות</td><td>אחרון להחתמה! "אלי", "שב", "רגלי", "ארצה"</td></tr>
-      <tr><td style="white-space:nowrap">5️⃣ <strong>חמישית</strong></td><td>4–7 חודשים</td><td>צמיחה מהירה, החלפת שיניים</td><td>אילוף מתקדם</td></tr>
-      <tr><td style="white-space:nowrap">6️⃣ <strong>שישית</strong></td><td>7 חודשים–בגרות</td><td>סימנים הורמונליים, בוחן גבולות מחדש</td><td>קונסיסטנטיות!</td></tr>
-      <tr><td style="white-space:nowrap">7️⃣ <strong>שביעית</strong></td><td>בגרות</td><td>מעוצב, יציב יחסית</td><td>חיזוק + עיצוב סופי</td></tr>
-    </table>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#1e40af;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#1e40af;">תקופה 1</span><span style="display:inline-block;background:#dbeafe;color:#1e40af;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">0–3 שבועות</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          <div><strong>עיוור וחרש, תלוי לחלוטין באם</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 מגע אדם בלבד</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#065f46;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#065f46;">תקופה 2</span><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">3–7 שבועות</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          <div><strong>חושים נפתחים, לומד להיות כלב</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 אל תפריד! סוציאליזציה</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#1e3a8a;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#1d4ed8;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#1e3a8a;">תקופה 3</span><span style="display:inline-block;background:#dbeafe;color:#1e3a8a;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">7–12 שבועות</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          <div><strong>סביבה מורחבת, שיתוף פעולה עם אדם</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 ⭐ הגיל האידיאלי לבית חדש!</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #f9a8d4;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#9d174d;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#be185d;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">4</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#9d174d;">תקופה 4</span><span style="display:inline-block;background:#fce7f3;color:#9d174d;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">3–4 חודשים</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #f9a8d4;font-size:15px;line-height:1.8;">
+          <div><strong>בוחן גבולות, תרגילי אילוף ראשונים</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 אחרון להחתמה! "אלי", "שב", "רגלי", "ארצה"</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#5b21b6;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">5</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#5b21b6;">תקופה 5</span><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">4–7 חודשים</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
+          <div><strong>צמיחה מהירה, החלפת שיניים</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 אילוף מתקדם</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #fca5a5;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#991b1b;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#dc2626;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">6</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#991b1b;">תקופה 6</span><span style="display:inline-block;background:#fee2e2;color:#991b1b;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">7 חודשים עד בגרות</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #fca5a5;font-size:15px;line-height:1.8;">
+          <div><strong>סימנים הורמונליים, בוחן גבולות מחדש</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 קונסיסטנטיות!</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="toggleAcc(this)" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:800;color:#065f46;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">7</span>
+          <span style="flex:1;display:flex;align-items:center;gap:8px;"><span style="font-size:15px;font-weight:800;color:#065f46;">תקופה 7</span><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;">בגרות</span></span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          <div><strong>מעוצב, יציב יחסית</strong></div>
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700;">📌 חיזוק וליטוש סופי</span></div>
+        </div>
+      </div>
+
+    </div>
     <div class="remember-box">תקופות 1–4 = תקופות ההחתמה | 7–12 שבועות = הגיל הטוב ביותר לבית חדש!</div>
   </div>
   <div class="question-box">
@@ -1377,7 +1512,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
       <button class="toc-item" onclick="goToScreen(5)"><span class="num">5</span>תקופה 2</button>
       <button class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>תקופה 3</button>
       <button class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>תקופה 4</button>
-      <button class="toc-item" onclick="goToScreen(13)"><span class="num">13</span>טבלת סיכום</button>
+      <button class="toc-item" onclick="goToScreen(13)"><span class="num">13</span>כל התקופות</button>
       <button class="toc-item" onclick="goToScreen(18)"><span class="num">18</span>מטלה</button>
     </div>
     <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
@@ -1393,7 +1528,7 @@ ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px
 </div>
 
 <script>
-const TOTAL_SCREENS=20,SCREEN_NAMES=["פתיחה","תקופה קריטית","בחירת גור","מושגי יסוד","תקופה 1","תקופה 2","החתמה וסוציאליזציה","תקופה 3","חושים והשפעה","תקופה 4","תקופה 5","תקופה 6","תקופה 7","טבלת סיכום","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","מטלה מסכמת","סיום 🏆"];
+const TOTAL_SCREENS=20,SCREEN_NAMES=["פתיחה","תקופה קריטית","בחירת גור","מושגי יסוד","תקופה 1","תקופה 2","החתמה וסוציאליזציה","תקופה 3","חושים והשפעה","תקופה 4","תקופה 5","תקופה 6","תקופה 7","כל התקופות","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","מטלה מסכמת","סיום 🏆"];
 let currentScreen=0;
 const cards=[
   {term:"🔒 החתמה",def:"פרק זמן מוגבל לקליטת מידע בלתי הפיכה — נתיבים עצביים חקוקים במוח לכל החיים."},
