@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הזנה, עור ופרווה בכלבים | לומדה דיגיטלית</title>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-990G8Z7F1H');
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--hot:#dc2626;--hot-light:#fee2e2;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--yellow:#d97706;--yellow-light:#fef3c7;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#menu-btn-label{color:white;font-family:var(--font);font-size:14px;font-weight:700;white-space:nowrap;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--yellow-light);border-right:4px solid var(--yellow);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:70px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:15px;line-height:2.2;margin-bottom:10px;padding:12px 14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:130px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:130px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:20px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:14px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐕';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.completion-card h2{font-size:28px;font-weight:900;margin-bottom:8px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:16px;color:var(--primary);}
+.glossary-def{font-size:14px;line-height:1.6;color:var(--text);margin-top:4px;}
+.nr{display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:8px;}
+.nc{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;flex-shrink:0;margin-top:1px;font-size:13px;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐕 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🍖 הזנה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🍖</span>מטרות ההזנה</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>מערכת העיכול</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🚫</span>מזונות אסורים</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">📅</span>כמה להאכיל?</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🔢</span>חישוב קלוריות</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🥫</span>סוגי מזון</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">🥩</span>האכלה טבעית</button>
+    </div>
+    <div class="menu-chapter-title">🧴 עור ופרווה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🧴</span>העור: מבנה ותפקידים</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">🐾</span>הפרווה: מבנה וסוגים</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🎨</span>צבע פרווה ומחזור שיער</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">👃</span>בלוטות העור והריח</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">🦠</span>מחלות עור</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">📊</span>טבלאות סיכום</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה: נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה: שאלות</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה: התאמה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span>&nbsp;<span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700">פתיחה</span></button>
+  <span style="font-size:22px">🐕</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 19</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕🍖🧴🐾</div>
+    <h1>הזנה, עור ופרווה<br>בכלבים</h1>
+    <p class="tagline">מה הכלב אוכל, מה אסור לו, ואיך העור והפרווה מגנים עליו<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges">
+      <span class="intro-badge">🐕 כלבנות יא-יב</span>
+      <span class="intro-badge">🎯 בגרות 5 יח"ל</span>
+      <span class="intro-badge">⚡ אינטראקטיבי</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🍖">מטרות ההזנה ומערכת העיכול</li>
+      <li data-icon="🚫">מזונות אסורים: ומה הסכנה בכל אחד</li>
+      <li data-icon="📅">כמה להאכיל לפי גיל וחישוב קלוריות</li>
+      <li data-icon="🥫">סוגי מזון: יבש, רטוב, טבעי, ייעודי</li>
+      <li data-icon="🧴">מבנה ותפקידי העור</li>
+      <li data-icon="🐾">סוגי פרווה, מחזור שיער ובלוטות הריח</li>
+      <li data-icon="🦠">מחלות עור ומניעתן</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מהבאים אסור לתת לכלב?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s0q')"><span class="opt-letter">א</span>ענבים וצימוקים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ב</span>עוף מבושל</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s0q')"><span class="opt-letter">ג</span>אורז מבושל</button>
+    </div>
+    <div class="feedback" id="fb-s0q"></div>
+  </div>
+</div>
+
+<!-- S1: מטרות ההזנה -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🍖</span>
+    <h1>מטרות ההזנה</h1>
+    <p class="subtitle">למה מזון חשוב כל כך לכלב?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את מטרות ההזנה ולמה מזון מתאים חיוני לכלב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">מזון מהווה מקור לאנרגיה לפעילות מערכות הגוף. מזון איכותי ומתאים יספק לכלב את האנרגיה הדרושה לקיום מטרות רבות.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/matarot.png" alt="מטרות ההזנה" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+
+    <div class="section-title">🎯 6 מטרות ההזנה: לחץ לפרטים</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">התפתחות וגדילה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #93c5fd">לכל שלב בחיים: ממינקות ועד זקנה: יש צרכים שונים.<br>מזון מותאם מספק <strong>אבות מזון, ויטמינים ומינרלים</strong> לגדילה תקינה של עצמות, שרירים ורקמות.<br><div style="margin-top:8px"><span style="display:inline-block;background:#dbeafe;color:#0369a1;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מזון מותאם = גדילה תקינה של עצמות ורקמות</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">בריאות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">תזונה <strong>מאוזנת</strong> = מערכת חיסון חזקה, עור ופרווה בריאים, שיניים חזקות.<br>תזונה <strong>לא מאוזנת</strong> עלולה לגרום לפגיעות בריאותיות שונות.<br><div style="margin-top:8px"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">תזונה מאוזנת = מערכת חיסון חזקה ועור בריא</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">ויסות חום</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fbbf24">הגוף משתמש באנרגיה מהמזון כדי <strong>לשמור על טמפרטורה תקינה</strong>.<br>חסרון באנרגיה פוגע ביכולת לוויסות חום: בעיקר בקור ובחום.<br><div style="margin-top:8px"><span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">חסרון אנרגיה = פגיעה בוויסות חום</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#7c3aed">תפקוד לפי ייעוד</span>
+          </div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #c4b5fd">כלבי <strong>צייד, שמירה, ליווי, הגנה וכלבי שירות</strong>: כל אחד צריך רמת אנרגיה שונה.<br>מזון מותאם לייעוד מאפשר לכלב לתפקד ברמה הנדרשת ממנו.<br><div style="margin-top:8px"><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מזון לפי ייעוד = תפקוד מיטבי</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #f9a8d4;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#be185d;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">5</span>
+            <span style="font-weight:800;font-size:15px;color:#be185d">היריון</span>
+          </div>
+          <span class="toggle-arrow" style="color:#be185d;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #f9a8d4">מתפתחות <strong>רקמות הרחם והשליה</strong>, מתגברת אספקת הדם, הגוף נערך לעובר ולהנקה.<br>הנקבה ההרה זקוקה ל<strong>אנרגיה גבוהה במיוחד</strong>: מאכילים אותה במזון גורים.<br><div style="margin-top:8px"><span style="display:inline-block;background:#fce7f3;color:#9d174d;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">הנקבה ההרה זקוקה לאנרגיה גבוהה במיוחד</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fed7aa;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#ea580c;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">6</span>
+            <span style="font-weight:800;font-size:15px;color:#ea580c">בעיות התנהגות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#ea580c;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fed7aa">תזונה לא תקינה עלולה לגרום ל<strong>בעיות פסיכולוגיות והתנהגותיות</strong>.<br>מחסור בחומרים חיוניים משפיע גם על <strong>מצב הרוח והתנהגות</strong> הכלב.<br><div style="margin-top:8px"><span style="display:inline-block;background:#ffedd5;color:#9a3412;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">תזונה לקויה = בעיות פסיכולוגיות והתנהגותיות</span></div></div>
+        </div>
+      </div>
+    </div>
+        <div class="remember-box">מזון = אנרגיה | 6 מטרות: גדילה, בריאות, חום, ייעוד, היריון, התנהגות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">תזונה לא מאוזנת יכולה לגרום לבעיות התנהגות בכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf1a"></div>
+  </div>
+</div>
+
+<!-- S2: מערכת העיכול -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🔬</span>
+    <h1>מערכת העיכול בכלבים</h1>
+    <p class="subtitle">האיברים ותפקידיהם</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את האיברים במערכת העיכול ואת תפקיד כל אחד.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">מערכת העיכול בכלב אחראית על פירוק המזון, ספיגת חומרי המזון לדם והפרשת הפסולת. היא מורכבת מסדרת איברים שכל אחד ממלא תפקיד ייחודי בתהליך. הכרת האיברים ותפקידם חיונית להבנת תזונה נכונה ובריאות הכלב.</p>
+    <table class="info-table">
+      <tr><th>איבר</th><th>תפקיד</th></tr>
+      <tr><td style="font-size:15px">👄 <strong>פה, לשון ושיניים</strong></td><td style="font-size:15px">פירוק ראשוני: הפרשת רוק, לעיסה ובליעה</td></tr>
+      <tr><td style="font-size:15px">🔵 <strong>לוע</strong></td><td style="font-size:15px">העברת מזון לוושט + העברת אוויר לקנה הנשימה</td></tr>
+      <tr><td style="font-size:15px">🫁 <strong>וושט</strong></td><td style="font-size:15px">צינור שרירי המחבר לוע לקיבה: מעבר בלבד</td></tr>
+      <tr><td style="font-size:15px">🫙 <strong>קיבה</strong></td><td style="font-size:15px">ערבוב מזון עם הפרשות קיבה + אגירה לפני מעי דק</td></tr>
+      <tr><td style="font-size:15px">🟡 <strong>כבד</strong></td><td style="font-size:15px">אגירת מזון + ייצור נוזל המרה לספיגת שומנים</td></tr>
+      <tr><td style="font-size:15px">🔬 <strong>תריסריון</strong></td><td style="font-size:15px">רוב תהליכי העיכול והספיגה: מקבל תוצרי לבלב וכבד</td></tr>
+      <tr><td style="font-size:15px">🌀 <strong>מעי גס</strong></td><td style="font-size:15px">ספיגת נוזלים משאריות + הפרשת צואה</td></tr>
+      <tr><td style="font-size:15px">📎 <strong>תוספתן</strong></td><td style="font-size:15px">צינורית מהמעי הגס: מכילה תאי מערכת חיסון</td></tr>
+      <tr><td style="font-size:15px">📤 <strong>פי הטבעת</strong></td><td style="font-size:15px">הפתח החיצוני: דרכו מופרשת הצואה</td></tr>
+      <tr><td style="font-size:15px">🔵 <strong>טחול</strong></td><td style="font-size:15px">ממוקם בחלל הבטן: מייצר תאי דם לבנים</td></tr>
+    </table>
+    <div class="remember-box">פה ← לוע ← וושט ← קיבה ← תריסריון ← מעי גס ← פי הטבעת!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s2" class="match-container">
+      <div class="match-col" id="s2-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s2')">כבד</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s2')">תוספתן</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s2')">טחול</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'s2')">קיבה</div>
+      </div>
+      <div class="match-col" id="s2-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s2')">מייצר תאי דם לבנים</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s2')">ייצור נוזל מרה</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'s2')">אגירה + ערבוב מזון</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s2')">תאי מערכת חיסון</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s2match"></div>
+  </div>
+</div>
+
+<!-- S3: מזונות אסורים -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">🚫</span>
+    <h1>מזונות אסורים לכלבים</h1>
+    <p class="subtitle">סכנות שחייבים להכיר!</p>
+  </div>
+  <div class="goal-box">אני אוכל לציין מזונות אסורים ולהסביר מה הסכנה בכל אחד.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">ישנם מזונות הנחשבים בריאים לבני אדם אך מסוכנים לכלבים. חלקם עלולים לגרום לנזק חמור ואף לסכן חיים. חשוב להכיר את הרשימה ולוודא שהכלב לא נחשף אליהם.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/asur.png" alt="מזונות אסורים" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div style="overflow-x:auto;">
+    <table class="info-table">
+      <tr><th>מזון</th><th>הסכנה</th></tr>
+      <tr><td>🥑 <strong>אבוקדו</strong></td><td style="font-size:15px">מכיל פרסין: כמות גדולה גורמת הרעלה</td></tr>
+      <tr><td>🍺 <strong>אלכוהול</strong></td><td style="font-size:15px">כמות קטנה פוגעת בכבד ובמוח: עלולה לגרום הרעלה</td></tr>
+      <tr><td>🧅 <strong>בצל ושום</strong></td><td style="font-size:15px">נזק לתאי דם אדומים: <strong>אנמיה חמורה!</strong></td></tr>
+      <tr><td>☕ <strong>קפאין</strong></td><td style="font-size:15px">כמות גדולה קטלנית: <strong>אין טיפול</strong> נגד ההרעלה!</td></tr>
+      <tr><td>🍇 <strong>ענבים וצימוקים</strong></td><td style="font-size:15px">עלולים לגרום <strong>כשל בכליות</strong></td></tr>
+      <tr><td>🥛 <strong>חלב ומוצריו</strong></td><td style="font-size:15px">גירודים בעור, שלשולים, בעיות עיכול</td></tr>
+      <tr><td>🍞 <strong>בצק שמרים</strong></td><td style="font-size:15px">תפיחת בצק בקיבה לפני האפייה</td></tr>
+      <tr><td>🍬 <strong>מתוקים</strong></td><td style="font-size:15px">עודף סוכר</td></tr>
+      <tr><td>🧂 <strong>מלוחים</strong></td><td style="font-size:15px">גורמים להשתנת יתר</td></tr>
+      <tr><td>🥩 <strong>בשר ודגים נאים</strong></td><td style="font-size:15px">חיידקים: קלקול קיבה</td></tr>
+      <tr><td>🥚 <strong>ביצים חיות</strong></td><td style="font-size:15px">חיידקי אי.קולי וסלמונלה: קלקול קיבה</td></tr>
+    </table>
+    </div>
+    <div class="highlight red">⚠️ <strong>מסוכנים במיוחד:</strong> קפאין (אין טיפול!), ענבים (כשל כליות), בצל ושום (אנמיה)!</div>
+    <div class="remember-box">אסור: אבוקדו, אלכוהול, בצל/שום, קפאין, ענבים, חלב, בצק שמרים, מתוק, מלוח, נאים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה הסכנה המיוחדת בקפאין לכלבים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s3q')"><span class="opt-letter">א</span>גורם לקלקול קיבה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s3q')"><span class="opt-letter">ב</span>גורם לאנמיה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s3q')"><span class="opt-letter">ג</span>כמות גדולה קטלנית ואין טיפול נגד ההרעלה</button>
+    </div>
+    <div class="feedback" id="fb-s3q"></div>
+  </div>
+</div>
+
+<!-- S4: כמה להאכיל -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#92400e)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">📅</span>
+    <h1>כמה להאכיל?</h1>
+    <p class="subtitle">לפי גיל ועצות חשובות</p>
+  </div>
+  <div class="goal-box">אני אוכל לציין את מספר הארוחות המומלץ לפי גיל הכלב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">כמות הארוחות ביום משתנה לפי גיל הכלב. גורים צעירים זקוקים לארוחות תכופות יותר בגלל קיבה קטנה וצורך גבוה באנרגיה לגדילה. ככל שהכלב מבוגר יותר כך מספר הארוחות יורד.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/kamut.png" alt="כמה להאכיל" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div class="section-title" style="margin-bottom:10px">למה מספר הארוחות משתנה לפי גיל?</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">👶</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">עד 3 חודשים: 4–5 פעמים ביום</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fca5a5">קיבת הגור <strong>קטנה מאוד</strong> ולא יכולה להכיל כמות גדולה. הגוף צומח מהר ודורש <strong>אנרגיה מתמדת</strong> לאורך כל היום.<div style="margin-top:8px"><span style="display:inline-block;background:#fee2e2;color:#991b1b;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700">קיבה קטנה = ארוחות תכופות</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">🐶</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">3–6 חודשים: 3 פעמים ביום</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fbbf24">הקיבה <strong>גדלה מעט</strong> ומסוגלת להכיל יותר. הגוף עדיין עסוק בגדילה ודורש אספקת אנרגיה תכופה.<div style="margin-top:8px"><span style="display:inline-block;background:#fef3c7;color:#92400e;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700">קיבה גדלה = מעט פחות ארוחות</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">🐕</span>
+            <span style="font-weight:800;font-size:15px;color:#7c3aed">6 חודשים–שנה: 2 פעמים ביום</span>
+          </div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #c4b5fd">הגוף עובר לשלב <strong>גדילה איטי</strong> יותר. שתי ארוחות מספקות את האנרגיה מבלי להעמיס על מערכת העיכול.<div style="margin-top:8px"><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700">גדילה מואטת = 2 ארוחות ביום</span></div></div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden;transition:all .2s">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">🦮</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">מגיל שנה ומעלה: 2 פעמים ביום</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">הכלב <strong>הבוגר</strong>: קטן כגדול: מוזן <strong>פעמיים ביום</strong>. שתי ארוחות שומרות על רמת אנרגיה יציבה ומונעות אכילה מהירה מדי.<div style="margin-top:8px"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700">כלב בוגר = 2 ארוחות ביום תמיד</span></div></div>
+        </div>
+      </div>
+    </div>
+    <table class="info-table">
+      <tr><th>גיל</th><th>ארוחות ביום</th><th>סוג מזון</th></tr>
+      <tr><td>עד 3 חודשים</td><td><strong>4–5 פעמים ביום</strong></td><td>מזון גורים בלבד</td></tr>
+      <tr><td>3–6 חודשים</td><td><strong>3 פעמים ביום</strong></td><td>מזון גורים</td></tr>
+      <tr><td>6 חודשים–שנה</td><td><strong>2 פעמים ביום</strong></td><td>מזון גורים</td></tr>
+      <tr><td>מגיל שנה ומעלה</td><td><strong>2 פעמים ביום</strong></td><td>מזון בוגר</td></tr>
+    </table>
+    <div class="highlight blue">💧 <strong>מים טריים: זמינים תמיד!</strong><br>בכל גיל ובכל שלב: מים טריים חייבים להיות זמינים כל הזמן.</div>
+    <div class="highlight yellow">⏱️ <strong>מנוחה אחרי אכילה:</strong> מומלצת מנוחה של כשעה לפחות לפני פעילות גופנית.</div>
+    <div class="remember-box">גור עד 3 חודשים = 4–5 פעמים | מגיל שנה = 2 פעמים ביום | מים תמיד!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">עד גיל 3 חודשים מאכילים <span class="fill-blank" onclick="revealBlank(this,'4–5 פעמים ביום')">_________</span>. מגיל שנה ומעלה: <span class="fill-blank" onclick="revealBlank(this,'2 פעמים ביום')">__________</span>.</div>
+  </div>
+</div>
+
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🔢</span>
+    <h1>חישוב קלוריות יומי</h1>
+    <p class="subtitle">הנוסחה לחישוב צריכה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר כיצד מחשבים את צריכת הקלוריות היומית של כלב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">כל כלב שונה ויש לחשב את כמות הקלוריות שלו לפי נוסחה בסיסית. אך הנוסחה היא רק נקודת ההתחלה: יש להתאים אותה לפי גיל הכלב, ייעודו ומצבו הבריאותי.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/kalor.png" alt="חישוב קלוריות" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border-radius:14px;padding:20px;text-align:center;margin-bottom:16px">
+      <div style="font-size:15px;margin-bottom:8px;opacity:.85">הנוסחה הבסיסית</div>
+      <div style="font-size:22px;font-weight:900">(משקל הכלב × 70) + 30</div>
+      <div style="font-size:15px;margin-top:8px;opacity:.85">= מספר הקלוריות היומי</div>
+    </div>
+    <div class="section-title">תוספות לפי הכלב</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+          <span style="flex:1;">גיל</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          גור צעיר צורך <strong>יותר קלוריות</strong> יחסית למשקלו כי גופו עסוק בגדילה ובניית רקמות. ככל שהכלב מבוגר יותר: צרכיו הקלוריים יורדים.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#dbeafe;color:#1e40af;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">גור = יותר קלוריות | בוגר = פחות</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+          <span style="flex:1;">ייעוד</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
+          כלב <strong>עבודה, ספורט או שמירה</strong> שורף הרבה יותר אנרגיה מכלב שרק שוכב בבית. ייעוד גבוה = כמות קלוריות גבוהה יותר.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">ייעוד גבוה = יותר קלוריות</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+          <span style="flex:1;">מצב בריאותי</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          כלב <strong>חולה או מחלים</strong> עשוי להזדקק להתאמה מיוחדת: לפעמים פחות קלוריות (השמנה), ולפעמים יותר (החלמה, ניתוח).
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">בריאות משפיעה על הכמות</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">נוסחה: (משקל × 70) + 30 = קלוריות יומיות | + תוספת לגיל, ייעוד ובריאות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">לכל כלב יש אותה צריכת קלוריות ללא קשר לגילו.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf5a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf5a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf5a"></div>
+  </div>
+</div>
+
+<!-- S6: סוגי מזון -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🥫</span>
+    <h1>סוגי מזון לכלבים</h1>
+    <p class="subtitle">יבש, רטוב, ייעודי וטבעי</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדלים בין סוגי המזון ולאיזה שלב חיים מתאים כל אחד.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">ישנם מספר סוגי מזון לכלבים, וכל אחד מתאים לצרכים שונים. המזון היבש הוא הנפוץ ביותר ומגיע ב-3 גרסאות לפי שלב חיים. לצידו קיים מזון רטוב ומזון ייעודי לצרכים רפואיים.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/sug.png" alt="סוגי מזון" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+
+    <div class="section-title">מזון יבש: 3 שלבי חיים</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #86efac;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#059669;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#059669;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+          <span style="flex:1;">גורים</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #86efac;font-size:15px;line-height:1.8;">
+          חלבונים, ויטמינים, שומן ומינרלים לגדילה תקינה.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">גם לכלבות בהיריון!</span></div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #7dd3fc;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#0369a1;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#0369a1;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+          <span style="flex:1;">בוגר: גיל שנה עד 7</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #7dd3fc;font-size:15px;line-height:1.8;">
+          חלבונים, פחמימות, ויטמינים ונוגדי חמצון לתחזוקת הגוף הבוגר.
+        </div>
+      </div>
+
+      <div style="border-radius:12px;overflow:hidden;border:2px solid #c4b5fd;background:white;">
+        <button onclick="this.parentElement.querySelector('.acc-body').style.display=this.parentElement.querySelector('.acc-body').style.display==='block'?'none':'block';this.querySelector('.acc-arrow').style.transform=this.parentElement.querySelector('.acc-body').style.display==='block'?'rotate(180deg)':''" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:white;border:none;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#7c3aed;text-align:right;">
+          <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+          <span style="flex:1;">סניור: גיל 7–8 ומעלה</span>
+          <span class="acc-arrow" style="font-size:12px;transition:transform .3s;">▼</span>
+        </button>
+        <div class="acc-body" style="display:none;padding:13px 16px;background:white;border-top:1px solid #c4b5fd;font-size:15px;line-height:1.8;">
+          פחות קלוריות, יותר חלבונים ונוגדי חמצון לתמיכה בגיל המבוגר.
+          <div style="margin-top:8px;"><span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">פחות קלוריות = פחות השמנה בגיל הזהב</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title" style="margin-top:4px">מזון רטוב</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:10px;">מזון לח בשקיות או קופסאות שימורים. מרקם רך ורמת לחות גבוהה. משמש בדרך כלל כתוספת למזון היבש.</p>
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <div style="flex:1;border-radius:12px;border:2px solid #86efac;background:white;padding:12px 14px;">
+        <div style="font-weight:800;font-size:15px;color:#059669;margin-bottom:8px;">✅ יתרונות</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מתאים לבעיות שיניים</span>
+          <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">מתאים לכל שלבי החיים</span>
+        </div>
+      </div>
+      <div style="flex:1;border-radius:12px;border:2px solid #fca5a5;background:white;padding:12px 14px;">
+        <div style="font-weight:800;font-size:15px;color:#dc2626;margin-bottom:8px;">❌ חסרונות</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="display:inline-block;background:#fee2e2;color:#991b1b;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">יקר יותר יחסית לכמות</span>
+          <span style="display:inline-block;background:#fee2e2;color:#991b1b;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;">שמירה קצרה מרגע הפתיחה</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:4px">מזונות ייעודיים</div>
+    <div class="highlight blue">ניתנים <strong>בהמלצת וטרינר בלבד</strong>: לכל מטרה רפואית ספציפית.</div>
+    <div class="remember-box">יבש: גורים ← בוגר ← סניור | רטוב = יקר + שמירה קצרה | ייעודי = וטרינר בלבד!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב מגיל שנה עד 7 שנים מאכילים במזון מאיזה סוג?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s6q')"><span class="opt-letter">א</span>בוגר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ב</span>גורים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s6q')"><span class="opt-letter">ג</span>סניור</button>
+    </div>
+    <div class="feedback" id="fb-s6q"></div>
+  </div>
+</div>
+
+<!-- S7: האכלה טבעית -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#065f46,#059669)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">🥩</span>
+    <h1>האכלה טבעית</h1>
+    <p class="subtitle">יתרונות וסכנות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את ההרכב, היתרונות והסכנות של האכלה טבעית.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">האכלה טבעית היא גישת תזונה שמבוססת על מזון אמיתי ולא מעובד. במקום אוכל מוכן מהשקית, הכלב מקבל בשר, ירקות ותוספות. לשיטה יתרונות אך גם סכנות שחשוב להכיר.</p>
+    <div style="margin-bottom:14px;line-height:2.2;">
+      <span style="display:inline-block;background:#fef9c3;color:#b45309;border-radius:6px;padding:6px 12px;font-weight:700;font-size:15px;margin-left:6px;margin-bottom:6px;">מכיל בעיקר: חלבון ושומן</span>
+      <span style="display:inline-block;background:#fee2e2;color:#991b1b;border-radius:6px;padding:6px 12px;font-weight:700;font-size:15px;margin-bottom:6px;">פחות: פחמימות</span>
+    </div>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/tivi.png" alt="האכלה טבעית" style="width:100%;height:auto;display:block;border-radius:12px;margin-bottom:14px;">
+    <div class="highlight blue" style="font-size:15px;margin-bottom:14px;">האכלה טבעית = בשר נא + דגנים + ירקות + ויטמינים ומינרלים בהתאמה אישית.</div>
+
+    <div class="section-title">✅ יתרונות</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:6px 12px;font-weight:700;font-size:15px;">עיכול קל יותר</span>
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:6px;padding:6px 12px;font-weight:700;font-size:15px;">שמירה על משקל תקין ובריא</span>
+    </div>
+
+    <div class="section-title">⚠️ סכנות</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <div style="border-radius:12px;border:2px solid #fca5a5;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#dc2626;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#dc2626;">זיהום מחיידקים ובקטריות</strong> בבשר הנא</span>
+      </div>
+      <div style="border-radius:12px;border:2px solid #f9a8d4;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#be185d;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">2</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#be185d;">תזונה לא מאוזנת</strong>: מרכיבים חסרים לפי צורך הפרט</span>
+      </div>
+      <div style="border-radius:12px;border:2px solid #fbbf24;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#d97706;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#d97706;">יקר מאוד</strong> בהשוואה למזון מסחרי</span>
+      </div>
+      <div style="border-radius:12px;border:2px solid #c4b5fd;background:white;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">4</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#7c3aed;">אבנית מואצת</strong> בשיניים (להבדיל ממזון יבש)</span>
+      </div>
+    </div>
+    <div class="remember-box">טבעי = בשר + דגנים + ירקות | יתרון: עיכול קל | סכנות: חיידקים, לא מאוזן, יקר, אבנית!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">האכלה טבעית זולה יותר ממזון מסחרי.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf7a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf7a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf7a"></div>
+  </div>
+</div>
+
+<!-- S8: העור -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#d97706)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">🧴</span>
+    <h1>העור: מבנה ותפקידים</h1>
+    <p class="subtitle">האיבר הגדול ביותר בגוף!</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מבנה העור ואת תפקידיו העיקריים.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">העור הוא האיבר הגדול ביותר בגוף הכלב. הוא אינו רק עטיפה חיצונית: אלא מערכת מורכבת שמגנה על הגוף, מווסתת טמפרטורה, מאפשרת תחושה ומשתתפת בהגנה החיסונית.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <span style="display:inline-block;background:#fef3c7;color:#92400e;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">⚖️ כ-15% ממשקל הגוף</span>
+      <span style="display:inline-block;background:#e0f2fe;color:#0c4a6e;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🛡️ חלק ממערכת החיסון</span>
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🩸 מכיל תאי דם לבנים</span>
+    </div>
+
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/or.png" alt="מבנה שכבות העור" style="width:100%;border-radius:12px;display:block;margin-bottom:14px"/>
+    <div class="section-title">🔬 שכבות העור</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div style="border-radius:12px;border:2px solid #fcd34d;background:white;padding:13px 16px;display:flex;align-items:flex-start;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#d97706;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">1</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#d97706;">אפידרמיס: השכבה החיצונית</strong><br>שכבת המגן הראשית: חוסמת חיידקים, לכלוך ונזקים חיצוניים. השכבה שאנו רואים ונוגעים בה.</span>
+      </div>
+
+      <div style="border-radius:12px;border:2px solid #f9a8d4;background:white;padding:13px 16px;display:flex;align-items:flex-start;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#be185d;color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">2</span>
+        <div style="font-size:15px;color:#374151;">
+          <strong style="color:#be185d;">דרמיס: השכבה הפנימית</strong><br>
+          השכבה העשירה בתוכן: מכילה:
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+            <div style="background:#f1f5f9;border-radius:8px;padding:6px 12px;font-size:15px;white-space:nowrap">🌀 <strong>זקיקי שיער</strong></div>
+            <div style="background:#f1f5f9;border-radius:8px;padding:6px 12px;font-size:15px;white-space:nowrap">🫧 <strong>בלוטות שומן</strong></div>
+            <div style="background:#f1f5f9;border-radius:8px;padding:6px 12px;font-size:15px;white-space:nowrap">💪 <strong>שריר בסיס השערה</strong></div>
+            <div style="background:#f1f5f9;border-radius:8px;padding:6px 12px;font-size:15px;white-space:nowrap">🩸 <strong>כלי דם</strong></div>
+            <div style="background:#f1f5f9;border-radius:8px;padding:6px 12px;font-size:15px">⚡ <strong>תאי עצב</strong>: מעבירים תחושות מגע, כאב וחום</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:12px;border:2px solid #c4b5fd;background:white;padding:13px 16px;display:flex;align-items:flex-start;gap:12px;">
+        <span style="min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;">3</span>
+        <span style="font-size:15px;color:#374151;"><strong style="color:#7c3aed;">סב-קוטיס: שכבת השומן</strong><br>שכבת שומן שמתחת לשתי השכבות. מבדדת חום, שומרת על טמפרטורה ומגנה על האיברים הפנימיים.</span>
+      </div>
+
+    </div>
+
+    <div class="section-title">✅ תפקידי העור</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div style="background:var(--primary-light);border-radius:10px;padding:10px 12px;font-size:15px"><strong>🌡️ ויסות טמפרטורה</strong><br>פליטת חום ע"י נידוף זיעה</div>
+      <div style="background:var(--green-light);border-radius:10px;padding:10px 12px;font-size:15px"><strong>💧 מונע התייבשות</strong><br>שמירת מאזן המים</div>
+      <div style="background:var(--yellow-light);border-radius:10px;padding:10px 12px;font-size:15px"><strong>🛡️ הגנה מכאנית</strong><br>על האיברים הפנימיים</div>
+      <div style="background:var(--purple-light);border-radius:10px;padding:10px 12px;font-size:15px"><strong>🔬 הגנה חיסונית</strong><br>תאי דם לבנים</div>
+      <div style="background:#fce7f3;border-radius:10px;padding:10px 12px;font-size:15px"><strong>🤲 חוש מגע</strong><br>איבר תחושה</div>
+      <div style="background:#dbeafe;border-radius:10px;padding:10px 12px;font-size:15px"><strong>☀️ ויטמין D</strong><br>נאגר ומיוצר בעור</div>
+    </div>
+    <div class="remember-box">עור = 15% ממשקל | 3 שכבות | ויסות חום, הגנה, מניעת התייבשות, ויטמין D!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">העור מהווה כ-15% ממשקל הגוף של הכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf8a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf8a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf8a"></div>
+  </div>
+</div>
+
+<!-- S9: פרווה -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#7c3aed)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">🐾</span>
+    <h1>הפרווה: מבנה וסוגים</h1>
+    <p class="subtitle">בידוד, הגנה וסירוק</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את תפקידי הפרווה ואת מאפייני כל סוג.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">הפרווה היא כסות השיער של הכלב. היא בנויה משתי שכבות: שכבה פנימית קצרה ורכה שמחממת, ושכבה חיצונית ארוכה שמגינה. הפרווה שומרת על חום הגוף ומגינה על העור מפני פגיעות חיצוניות. חשוב להכיר את סוג הפרווה של הכלב כדי לדעת איך לטפל בה נכון.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <span style="display:inline-block;background:#e0f2fe;color:#0c4a6e;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🐕 כסות השיער</span>
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🛡️ בידוד והגנה</span>
+      <span style="display:inline-block;background:#fef3c7;color:#92400e;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🔵 שכבה פנימית: קצרה ורכה (חום)</span>
+      <span style="display:inline-block;background:#ede9fe;color:#5b21b6;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700;">🔶 שכבה חיצונית: ארוכה, הגנה</span>
+    </div>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/meshit.png" alt="סוגי פרווה" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div class="section-title">🐕 5 סוגי פרווה: לחץ לפרטים</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🌊</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">משיית</span>
+            <span style="background:#e0f2fe;color:#0369a1;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700">כמעט ללא נשירה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #93c5fd">היפואלרגנית: קולטת ריחות ולכלוך.<br><span style="display:inline-block;margin-top:8px;background:#e0f2fe;color:#0c4a6e;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">✂️ טיפוח: סירוק יומיומי + מספרה חודשית.</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🌀</span>
+            <span style="font-weight:800;font-size:15px;color:#7c3aed">מתולתלת</span>
+            <span style="background:#ede9fe;color:#7c3aed;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700">כמעט ללא נשירה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #c4b5fd">צומחת מהר.<br><span style="display:inline-block;margin-top:8px;background:#ede9fe;color:#5b21b6;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">✂️ טיפוח: סירוק שבועי + מספרה חודשית.</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📏</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">קצרה</span>
+            <span style="background:#fef3c7;color:#d97706;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700">נשירה רבה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fbbf24">נשירה בעיקר בעונות המעבר.<br><span style="display:inline-block;margin-top:8px;background:#fef3c7;color:#92400e;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">✂️ טיפוח: סירוק קבוע להפחתת נשירה.</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🌿</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">בינונית-ארוכה צפופה</span>
+            <span style="background:#d1fae5;color:#059669;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700">נשירה רבה מאוד</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">פרווה <strong>כפולה</strong>: הפנימית נושרת בעיקר.<br><span style="display:inline-block;margin-top:8px;background:#d1fae5;color:#065f46;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">✂️ טיפוח: סירוק כל כמה ימים + דילול.</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #cbd5e1;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#475569;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🗡️</span>
+            <span style="font-weight:800;font-size:15px;color:#475569">זיפית</span>
+            <span style="background:#f1f5f9;color:#475569;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700">טיפוח מקצועי</span>
+          </div>
+          <span class="toggle-arrow" style="color:#475569;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 12px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #cbd5e1">דרישות טיפוח רציניות.<br><span style="display:inline-block;margin-top:8px;background:#f1f5f9;color:#334155;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">✂️ טיפוח: מריטה פעם בחודש על ידי מקצוען.</span></div>
+        </div>
+      </div>
+
+    </div>
+        <div class="remember-box">משיית = היפואלרגנית יומי | מתולתלת = שבועי | זיפית = מריטה חודשית!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">איזה סוג פרווה נחשב היפואלרגני?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">א</span>זיפית</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s9q')"><span class="opt-letter">ב</span>משיית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ג</span>קצרה</button>
+    </div>
+    <div class="feedback" id="fb-s9q"></div>
+  </div>
+</div>
+
+<!-- S10: צבע שיער ומחזור -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#92400e,#d97706)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">🎨</span>
+    <h1>צבע פרווה ומחזור שיער</h1>
+    <p class="subtitle">מה קובע את הצבע ולמה נושרים?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מה קובע את צבע הפרווה ומה משפיע על הנשירה.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">צבע הפרווה של הכלב נקבע על ידי פיגמנט שנקרא מלנין. לכל גזע יש שילוב שונה של צבעי יסוד ודילולים שלהם. בנוסף, השיער עובר מחזור גדילה קבוע של 4 שלבים שחוזרים על עצמם לאורך כל חיי הכלב.</p>
+    <div class="section-title">🎨 צבע הפרווה</div>
+    <div class="highlight yellow" style="margin-bottom:12px">
+      צבע הפרווה = פונקציה של ה<strong>מלנין</strong> בשיער.<br>
+      כל שאר הצבעים = <strong>דילול</strong> של 5 צבעי היסוד.
+    </div>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#1a1a1a;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.2)"></div>
+        <span style="font-size:13px;font-weight:700;color:#374151">שחור</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#7B4B2A;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.15)"></div>
+        <span style="font-size:13px;font-weight:700;color:#374151">חום</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#C0392B;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.15)"></div>
+        <span style="font-size:13px;font-weight:700;color:#374151">אדום</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#E5C16A;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.1)"></div>
+        <span style="font-size:13px;font-weight:700;color:#374151">צהוב</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#f8fafc;border:3px solid #cbd5e1;box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div>
+        <span style="font-size:13px;font-weight:700;color:#374151">לבן</span>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:8px">🔄 מחזור גדילת השיער</div>
+    <div class="highlight blue" style="margin-bottom:12px">השיער עשוי <strong>קרטין</strong> (חלבון) וצומח ללא הפסקה לאורך כל חיי הכלב. הצמיחה היא <strong>מחזורית</strong>: חוזרת שוב ושוב.</div>
+
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/shalavmah.png" alt="מחזור גדילת השיער" style="width:100%;border-radius:12px;display:block;margin-bottom:14px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">גדילה</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:3px 10px;font-size:13px;font-weight:700;">צמיחה פעילה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">שלב הצמיחה הפעיל: השיער צומח מהזקיק כלפי מעלה. נמשך בהתאם לגזע ועונת השנה.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fdba74;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#ea580c;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#ea580c">נסיגה</span>
+            <span style="background:#fff7ed;color:#c2410c;border-radius:99px;padding:3px 10px;font-size:13px;font-weight:700;">עצירת גדילה</span>
+          </div>
+          <span class="toggle-arrow" style="color:#ea580c;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fdba74">שלב מעבר: הזקיק מפסיק לייצר שיער חדש. השיער נשאר במקומו אך לא גדל יותר.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">נשירה</span>
+            <span style="background:#e0f2fe;color:#0c4a6e;border-radius:99px;padding:3px 10px;font-size:13px;font-weight:700;">שיער נושר</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #93c5fd">השיער הישן נושר ומפנה מקום לשיער חדש. בעיקר בעונות המעבר: אביב וסתיו.</div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#7c3aed">צמיחה מחדש</span>
+            <span style="background:#ede9fe;color:#5b21b6;border-radius:99px;padding:3px 10px;font-size:13px;font-weight:700;">התחלה מחדש</span>
+          </div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #c4b5fd">הזקיק מתעורר מחדש ומתחיל לייצר שיער חדש: המחזור מתחיל מחדש!</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title" style="margin-top:24px">❓ מה משפיע על הנשירה?</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+      <div style="background:white;border-radius:12px;border:2px solid #e2e8f0;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">1</span>
+        <span style="font-size:15px;color:#374151;"><strong>עונות השנה, טמפרטורה ואורך יום</strong>: עיקר הנשירה בעונות המעבר</span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #e2e8f0;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">2</span>
+        <span style="font-size:15px;color:#374151;"><strong>מחלה כללית וטפילי עור</strong></span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #e2e8f0;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">3</span>
+        <span style="font-size:15px;color:#374151;"><strong>תספורת / גילוח</strong></span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #e2e8f0;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">4</span>
+        <span style="font-size:15px;color:#374151;"><strong>מריטת שיער</strong> בגזעים שאינם נושרים</span>
+      </div>
+    </div>
+    <div class="highlight red">⚠️ <strong>חשוב!</strong> נשירה מוגברת או לא אחידה יכולה להעיד על <strong>מחלה או מצב נפשי מעורער</strong>!</div>
+    <div class="remember-box">מלנין = 5 צבעי יסוד | קרטין = חומר השיער | נשירה לא אחידה = אזהרה!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">צבע הפרווה נקבע על ידי <span class="fill-blank" onclick="revealBlank(this,'מלנין')">_______</span>. לפרווה <span class="fill-blank" onclick="revealBlank(this,'5')">_</span> צבעי יסוד, וכל שאר הצבעים הם <span class="fill-blank" onclick="revealBlank(this,'דילול')">_______</span> שלהם.</div>
+  </div>
+</div>
+
+<!-- S11: בלוטות הריח -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#4f46e5,#0369a1)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">👃</span>
+    <h1>בלוטות העור והריח</h1>
+    <p class="subtitle">סוגי הבלוטות, תפקידיהן וריחות הכלב</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את סוגי בלוטות העור, תפקידיהן וסוגי הריחות בכלב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">לכלב יש מספר סוגים של בלוטות עור, וכל אחת ממלאת תפקיד שונה. חלקן קשורות לוויסות הגוף, חלקן מגינות על איברי החישה, וחלקן משמשות לתקשורת עם כלבים אחרים.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/baluta.png" alt="בלוטות העור והריח" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div class="section-title">💧 סוגי בלוטות: לחץ לפרטים</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">💧</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">בלוטות אפוקריניות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #93c5fd">נמצאות ליד כל קבוצת שיער. <strong>אינן משמשות לקירור</strong>: תפקידן ייצור אותות כימיים לתקשורת עם כלבים אחרים.<br><span style="display:inline-block;margin-top:8px;background:#e0f2fe;color:#0c4a6e;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">📡 תקשורת כימית עם כלבים אחרים</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🦶</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">בלוטות אקריניות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">בכפות הרגליים ובחוטם: שומרות על לחות ותפקוד תקין.<br><span style="display:inline-block;margin-top:8px;background:#d1fae5;color:#065f46;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">🦶 המקום היחיד שממנו הכלב מזיע!</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">👂</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">בלוטות תעלת האוזן</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fbbf24">בלוטות חלב ושומן בתעלת האוזן.<br><span style="display:inline-block;margin-top:8px;background:#fef3c7;color:#92400e;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">👂 מייצרות "דונג" שומני שמגן על האוזן</span></div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🔵</span>
+            <span style="font-weight:800;font-size:15px;color:#7c3aed">שקים אנאליים</span>
+          </div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #c4b5fd">שתי בלוטות ריח ליד הרקטום: מייצרות הפרשות ייחודיות לכל כלב.<br><span style="display:inline-block;margin-top:8px;background:#ede9fe;color:#5b21b6;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">🔵 זיהוי אישי בין כלבים</span></div>
+        </div>
+      </div>
+
+    </div>
+        <div class="highlight red">⚠️ <strong>ריחות לא טבעיים</strong> יכולים לנבוע מ: מחלות עור, אלרגיות, דלקות אוזניים, שקים אנאליים מודלקים!</div>
+    <div class="remember-box">אפוקריניות = תקשורת | אקריניות = כפות/חוטם | שקים אנאליים = זיהוי!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מאיפה הכלב מזיע?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">א</span>מכל גוף העור</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">ב</span>מהאוזניים בלבד</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s11q')"><span class="opt-letter">ג</span>מכפות הרגליים ומהלשון בהלחתה</button>
+    </div>
+    <div class="feedback" id="fb-s11q"></div>
+  </div>
+</div>
+
+<!-- S12: מחלות עור -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 12</span><span class="emoji">🦠</span>
+    <h1>מחלות עור</h1>
+    <p class="subtitle">זיהוי, סכנות ומניעה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את מחלות העור העיקריות ואיך למנוע הדבקה.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">מחלות עור בכלבים יכולות להיגרם מטפילים, פטריות או בעיות חיסוניות. חשוב לזהות כל מחלה בזמן, כי חלקן מדבקות גם לבני אדם. טיפול מהיר הוא המפתח למניעת התפשטות.</p>
+    <img src="https://bagruyot.org/haklaut/bg/tzuna/mahalot.png" alt="מחלות עור" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div class="section-title">🦠 3 מחלות עיקריות</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🦟</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">סקאביאס</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700;">מדבק</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fca5a5">
+            טפיל עור זעיר (קרדית) שגורם לגירוד עז ולנשירת שיער.<br>
+            מועבר <strong>במגע ישיר</strong> עם כלב נגוע.<br>
+            <span style="display:inline-block;margin-top:8px;background:#fee2e2;color:#dc2626;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">מדבק: טיפול מיידי!</span>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fdba74;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#ea580c;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🍄</span>
+            <span style="font-weight:800;font-size:15px;color:#ea580c">פטריות</span>
+            <span style="background:#fff7ed;color:#c2410c;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700;">מדבק</span>
+          </div>
+          <span class="toggle-arrow" style="color:#ea580c;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #fdba74">
+            זיהום פטרייתי הגורם לכתמים עגולים קרחים על העור.<br>
+            מועבר <strong>במגע עם כלבים נגועים</strong> או עצמים מזוהמים.<br>
+            <span style="display:inline-block;margin-top:8px;background:#fff7ed;color:#c2410c;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">מדבק: טיפול מיידי!</span>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🔬</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">דמודקס</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:4px 12px;font-size:15px;font-weight:700;">לא מדבק</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px;font-size:15px;color:#374151;line-height:1.7;border-top:1px solid #86efac">
+            טפיל הגר באופן טבעי ב<strong>זקיקי השיער</strong> של כל כלב.<br>
+            <strong>מתפרץ רק כשמערכת החיסון חלשה</strong>: גורם לנשירת שיער ועור אדמומי.<br>
+            <span style="display:inline-block;margin-top:8px;background:#d1fae5;color:#065f46;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700;">לא מדבק</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+        <div class="section-title">🛡️ מניעה</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:8px;padding:6px 14px;font-size:15px;font-weight:700;">✅ טיפול מיידי כאשר רואים את המחלה</span>
+      <span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:8px;padding:6px 14px;font-size:15px;font-weight:700;">✅ סקאביאס ופטרת יכולות לעבור לאדם: חשוב לטפל מיד!</span>
+    </div>
+    <div class="remember-box">סקאביאס + פטרת = מדבקות לאדם | דמודקס = חיסון חלש | טיפול מיידי = מניעה!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">דמודקס מדבק לבני אדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf12a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf12a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf12a"></div>
+  </div>
+</div>
+
+<!-- S13: טבלאות סיכום -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f766e,#059669)">
+    <span class="chapter-num">סיכום</span><span class="emoji">📊</span>
+    <h1>טבלאות סיכום</h1>
+  </div>
+  <div class="card">
+    <div class="section-title">🐾 סוגי פרווה: מבט מהיר</div>
+    <table class="info-table" style="margin-bottom:16px">
+      <tr><th>סוג</th><th>נשירה</th><th>טיפוח</th></tr>
+      <tr><td>משיית</td><td>כמעט ללא</td><td>יומיומי</td></tr>
+      <tr><td>מתולתלת</td><td>כמעט ללא</td><td>שבועי + חודשי</td></tr>
+      <tr><td>קצרה</td><td>רבה (עונות)</td><td>סירוק תדיר</td></tr>
+      <tr><td>בינונית-ארוכה</td><td>רבה מאוד</td><td>כמה ימים + דילול</td></tr>
+      <tr><td>זיפית</td><td>בינונית</td><td>מריטה חודשית</td></tr>
+    </table>
+    <div class="section-title">🍖 מזון לפי שלב</div>
+    <table class="info-table">
+      <tr><th>שלב</th><th>גיל</th><th>מיוחד</th></tr>
+      <tr><td>Puppy / גורים</td><td>עד שנה</td><td>פרוטאין, שומן, גם להריון</td></tr>
+      <tr><td>Adult / בוגר</td><td>שנה–7</td><td>לפי ייעוד ומרכיבים</td></tr>
+      <tr><td>Senior / מבוגר</td><td>7–8+</td><td>פחות קל', יותר חלבון</td></tr>
+    </table>
+    <div class="remember-box">מזון + גיל + ייעוד = כלב בריא | עור בריא = מזון + טיפוח!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה מייחד את מזון הסניור?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">א</span>פחות קלוריות ויותר חלבון + נוגדי חמצון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ב</span>יותר קלוריות ופחות חלבון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ג</span>זהה למזון גורים</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+</div>
+
+<!-- S14: מילון -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">פרק 14</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 14</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🧴 אפידרמיס</div><div class="glossary-def">השכבה החיצונית של העור: מגינה מהסביבה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔬 דרמיס</div><div class="glossary-def">השכבה הפנימית של העור: מכילה זקיקי שיער, בלוטות, כלי דם ותאי עצב.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧈 סב-קוטיס</div><div class="glossary-def">שכבת השומן מתחת לעור: בידוד חום.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎨 מלנין</div><div class="glossary-def">הפיגמנט הקובע את צבע הפרווה. 5 צבעי יסוד + דילולים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧬 קרטין</div><div class="glossary-def">חלבון המרכיב את השיער.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐾 היפואלרגני</div><div class="glossary-def">גזע שפרוותו כמעט לא נושרת ולא גורמת לאלרגיות: לרוב פרווה משיית.</div></div>
+    <div class="glossary-item"><div class="glossary-term">💧 בלוטות אפוקריניות</div><div class="glossary-def">בלוטות ריח ליד כל קבוצת שיער: לתקשורת כימית בין כלבים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🦶 בלוטות אקריניות</div><div class="glossary-def">בלוטות זיעה בכפות הרגליים: שמירה על לחות. המקום היחיד שממנו הכלב מזיע.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔵 שקים אנאליים</div><div class="glossary-def">שתי בלוטות ליד הרקטום: ייצור הפרשות לזיהוי אישי בין כלבים.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🦟 סקאביאס</div><div class="glossary-def">טפיל עור ממגע עם כלבים: מדבק לבני אדם. טיפול מיידי!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔬 דמודקס</div><div class="glossary-def">טפיל בזקיקי שיער: מתפרץ כשהחיסון חלש. לא מדבק לאדם.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🍄 פטרת</div><div class="glossary-def">מחלת עור פטרייתית: מדבקת לכלבים ולבני אדם!</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔄 מריטה</div><div class="glossary-def">הסרת פרווה מתה מגזעי שיער זיפי: ע"י מקצוע פעם בחודש.</div></div>
+  </div>
+</div>
+
+<!-- S15: נכון/לא נכון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. ענבים עלולים לגרום לכשל בכליות הכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. העור מהווה כ-30% ממשקל גוף הכלב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. פרווה משיית נחשבת היפואלרגנית.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. הכלב מזיע מכל גוף העור כמו בני האדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. מזון ייעודי ניתן ללא המלצת וטרינר.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. פטרת עור מדבקת לבני אדם.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+  </div>
+</div>
+
+<!-- S16: שאלות -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה הנוסחה לחישוב קלוריות יומיות?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>משקל × 100</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>(משקל × 70) + 30</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>משקל × 50 + 100</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. מה תפקיד הטחול?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>ייצור נוזל מרה</span></button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ב</span>אגירת מזון</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ג</span>ייצור תאי דם לבנים</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. מה מרכיב את השיער?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>קולגן</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ב</span>קרטין</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ג</span>מלנין</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. כמה ארוחות מאכילים גור עד גיל 3 חודשים?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">א</span>2 ארוחות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ב</span>3 ארוחות</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">ג</span>4–5 ארוחות</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S17: התאמה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר מזון אסור לסכנה</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">ענבים</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">בצל ושום</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">קפאין</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">אלכוהול</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">קטלני: אין טיפול</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">כשל בכליות</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">פגיעה בכבד ובמוח</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">אנמיה חמורה</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">שלוש שכבות העור: <span class="fill-blank" onclick="revealBlank(this,'אפידרמיס')">_________</span>, <span class="fill-blank" onclick="revealBlank(this,'דרמיס')">_______</span>, <span class="fill-blank" onclick="revealBlank(this,'סב-קוטיס')">________</span>.</div>
+    <div class="fill-sentence">נשירה מוגברת או לא אחידה יכולה להעיד על <span class="fill-blank" onclick="revealBlank(this,'מחלה או מצב נפשי מעורער')">___________________</span>.</div>
+  </div>
+</div>
+
+<!-- S18: סיום -->
+<div class="screen" id="screen-18">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת הזנה, עור ופרווה!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="🍖">6 מטרות הזנה: גדילה, בריאות, חום, ייעוד, היריון, התנהגות</li>
+      <li data-icon="🚫">אסור: קפאין (קטלני!), ענבים (כליות), בצל/שום (אנמיה)</li>
+      <li data-icon="📅">גור עד 3 חודשים = 4–5 ארוחות | גדול בוגר = ארוחה 1</li>
+      <li data-icon="🔢">קלוריות = (משקל × 70) + 30 + תוספות</li>
+      <li data-icon="🥫">Puppy/Adult/Senior | מזון ייעודי = ווטרינר בלבד</li>
+      <li data-icon="🧴">עור = 15% | 3 שכבות: אפידרמיס, דרמיס, סב-קוטיס</li>
+      <li data-icon="🐾">משיית = היפואלרגני + יומי | זיפית = מריטה חודשית</li>
+      <li data-icon="👃">כלב מזיע רק מכפות + לשון | אפוקריניות = תקשורת</li>
+      <li data-icon="🦠">סקאביאס + פטרת = מדבקות לאדם | דמודקס = חיסון חלש</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🐕</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>מטרות הזנה</button>
+      <button class="toc-item" onclick="goToScreen(2)"><span class="num">2</span>מערכת עיכול</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>מזונות אסורים</button>
+      <button class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>סוגי מזון</button>
+      <button class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>העור</button>
+      <button class="toc-item" onclick="goToScreen(9)"><span class="num">9</span>הפרווה</button>
+      <button class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>בלוטות ריח</button>
+      <button class="toc-item" onclick="goToScreen(12)"><span class="num">12</span>מחלות עור</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">▶ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 19</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ◀</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=19,SCREEN_NAMES=["פתיחה","מטרות ההזנה","מערכת העיכול","מזונות אסורים","כמה להאכיל","חישוב קלוריות","סוגי מזון","האכלה טבעית","העור","הפרווה","צבע פרווה ושיער","בלוטות הריח","מחלות עור","טבלאות סיכום","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"🧴 אפידרמיס",def:"השכבה החיצונית של העור: מגינה מהסביבה החיצונית."},
+  {term:"🔬 דרמיס",def:"השכבה הפנימית: זקיקי שיער, בלוטות, כלי דם, תאי עצב."},
+  {term:"🧈 סב-קוטיס",def:"שכבת שומן מתחת לעור: בידוד חום."},
+  {term:"🎨 מלנין",def:"הפיגמנט הקובע את צבע הפרווה. 5 צבעי יסוד + דילולים."},
+  {term:"🧬 קרטין",def:"חלבון המרכיב את השיער."},
+  {term:"🐾 היפואלרגני",def:"פרווה כמעט ללא נשירה: בעיקר פרווה משיית."},
+  {term:"💧 אפוקריניות",def:"בלוטות ריח ליד שיער: לתקשורת כימית בין כלבים."},
+  {term:"🦶 אקריניות",def:"בלוטות זיעה בכפות + חוטם: מזיעים רק כאן!"},
+  {term:"🔵 שקים אנאליים",def:"שתי בלוטות ריח ליד הרקטום: זיהוי בין כלבים."},
+  {term:"🦟 סקאביאס",def:"טפיל עור ממגע עם כלבים: מדבק לאדם!"},
+  {term:"🔬 דמודקס",def:"טפיל בזקיקי שיער: מתפרץ בחיסון חלש. לא מדבק לאדם."},
+  {term:"🍄 פטרת",def:"מחלת עור: מדבקת לכלבים ולאדם!"},
+  {term:"🔄 מריטה",def:"הסרת פרווה מתה מגזע זיפי: ע\"י מקצוע פעם בחודש."}
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');if(!fc)return;fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const sc=document.getElementById('screen-'+n);if(!sc)return;sc.classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===14)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function toggleGoal(card){
+  const body=card.querySelector('.goal-body');
+  const arrow=card.querySelector('.toggle-arrow');
+  const isOpen=body.style.maxHeight&&body.style.maxHeight!=='0px';
+  // Close all
+  document.querySelectorAll('.goal-body').forEach(b=>b.style.maxHeight='0px');
+  document.querySelectorAll('.toggle-arrow').forEach(a=>{a.style.transform='rotate(0deg)';});
+  // Open this one if was closed
+  if(!isOpen){body.style.maxHeight='200px';arrow.style.transform='rotate(180deg)';}
+}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';const bn=document.getElementById('btn-next');if(bn)bn.style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const oc=btn.getAttribute('onclick');if(!oc)return;const m=oc.match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){if(!btn)return;const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! התאמת הכל נכון! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+</script>
+</body>
+</html>
