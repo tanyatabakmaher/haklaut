@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יצרים בכלבים | לומדה דיגיטלית</title>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-990G8Z7F1H');
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--hot:#dc2626;--hot-light:#fee2e2;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--yellow:#d97706;--yellow-light:#fef3c7;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px;display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--yellow-light);border-right:4px solid var(--yellow);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:70px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:15px;line-height:2.2;margin-bottom:10px;padding:12px 14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:130px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:130px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:20px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:14px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐕';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:16px;color:var(--primary);}
+.glossary-def{font-size:14px;line-height:1.6;color:var(--text);margin-top:4px;}
+.nr{display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:8px;}
+.nc{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;flex-shrink:0;margin-top:1px;font-size:13px;}
+.acc-item{background:white;border-radius:12px;margin-bottom:6px;overflow:hidden;cursor:pointer;}
+.acc-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none;}
+.acc-icon{border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.acc-body-inner{padding:0 16px 12px;font-size:14px;color:#374151;line-height:1.7;}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐕 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🧠 יסודות</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">💡</span>יצר, תכונה ואופי</button>
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">⚡</span>מוטיבציה ומניעים</button>
+          </div>
+    <div class="menu-chapter-title">🗂️ סוגי יצרים</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">🗂️</span>חלוקת היצרים</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">🐾</span>יצרי קיום הפרט</button>
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🐕</span>יצרי קיום המין</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🐺</span>יצרים חברתיים</button>
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">⚙️</span>יצרים תפקודיים</button>
+    </div>
+    <div class="menu-chapter-title">🔧 אחיזה וסתירה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">🔧</span>אחיזת יצר ודחף</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>סתירה וסיפוק חלקי</button>
+    </div>
+    <div class="menu-chapter-title">🧬 תכונות ומזג</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">🧬</span>תכונות</button>
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">🌡️</span>מזג — פבלוב</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">📏</span>תחומי הדיגר</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">🐕</span>טיפוסי הדיגר</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה — נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(16)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה — שאלות</button>
+      <button class="menu-item" onclick="menuGo(17)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה — התאמה</button>
+      <button class="menu-item" onclick="menuGo(18)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span>&nbsp;<span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700">פתיחה</span></button>
+  <span style="font-size:22px">🐕</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 20</span>
+</div>
+
+<div id="app">
+
+<!-- S0 -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕⚡🧠🐾</div>
+    <h1>יצרים בכלבים</h1>
+    <p class="tagline">מה מניע את הכלב? יצרים, דחפים, תכונות ומזג<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges"><span class="intro-badge">🐕 כלבנות יא-יב</span><span class="intro-badge">🎯 בגרות 5 יח"ל</span><span class="intro-badge">⚡ אינטראקטיבי</span></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="💡">יצר, תכונה ואופי — מה ההבדל?</li>
+      <li data-icon="⚡">מוטיבציה ו-3 סוגי מניעים</li>
+      <li data-icon="🗂️">4 קבוצות יצרים — קיום, מין, חברתי, תפקודי</li>
+      <li data-icon="🔧">אחיזת יצר, אחיזת דחף וסתירת יצר</li>
+      <li data-icon="🧬">תכונות תורשתיות ונרכשות</li>
+      <li data-icon="🌡️">מזג לפי פבלוב ותחומי הדיגר</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">יצר הוא התנהגות שנלמדת מהמאלף.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','s0tf')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','s0tf')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-s0tf"></div>
+  </div>
+</div>
+
+<!-- S1: יצר, תכונה, אופי -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">💡</span>
+    <h1>יצר, תכונה ואופי</h1>
+    <p class="subtitle">שלושה מושגים שחייבים להכיר</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין יצר לתכונה ואיך שניהם יוצרים את האופי.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">כדי להבין כלב ולאמן אותו נכון, חייבים להכיר שלושה מושגי יסוד: <strong>יצר</strong>, <strong>תכונה</strong> ו<strong>אופי</strong>. הם בנויים אחד על השני ומסבירים מה מניע את הכלב ואיך הוא מתנהג.</p>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/ofi.png" alt="יצר תכונה ואופי" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px;flex-shrink:0">⚡</span><span style="font-weight:800;font-size:15px;color:#0369a1">יצר</span></div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #93c5fd">
+            התנהגות כלבית <strong>טבעית ומולדת</strong> — מתבצעת ללא השפעה של מאמן או כלב אחר.
+            <div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block">מולד ובלתי נלמד</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px;flex-shrink:0">🔍</span><span style="font-weight:800;font-size:15px;color:#7c3aed">תכונה</span></div>
+          <span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #c4b5fd">
+            ה<strong>ביטוי החיצוני</strong> של היצר — מה שאנו רואים בהתנהגות הכלב. התכונות יחד יוצרות את <strong>אופיו הייחודי</strong>.
+            <div style="margin-top:10px"><span style="background:#ede9fe;color:#5b21b6;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block">הביטוי החיצוני של היצר</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fcd34d;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px;flex-shrink:0">🐕</span><span style="font-weight:800;font-size:15px;color:#d97706">אופי</span></div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #fcd34d">
+            נקבע על ידי <strong>מכלול התכונות</strong> של הכלב. גזעים דומים יכולים להיות שונים לגמרי.
+            <div style="margin-top:10px"><span style="background:#fef9c3;color:#92400e;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block">מכלול כל התכונות יחד</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="highlight yellow">🏆 <strong>למה זה חשוב?</strong> היצרים והתכונות הם מאפיינים חשובים ב<strong>הכנת תוכנית אימונים</strong> — בין אם כלב משפחה ובין אם כלב עבודה.</div>
+    <div class="remember-box">יצר = התנהגות מולדת | תכונה = ביטוי חיצוני | אופי = מכלול התכונות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה היחס בין יצר לתכונה?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">א</span>התכונה היא מה שמניע את הכלב פנימית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">ב</span>יצר הוא תכונה שנלמדת</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s1q')"><span class="opt-letter">ג</span>התכונה היא הביטוי החיצוני של היצר</button>
+    </div>
+    <div class="feedback" id="fb-s1q"></div>
+  </div>
+</div>
+
+<!-- S2: מוטיבציה -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">⚡</span>
+    <h1>מוטיבציה ומניעים</h1>
+    <p class="subtitle">מה גורם לכלב לפעול?</p>
+  </div>
+  <div class="goal-box">אני אוכל להגדיר מוטיבציה ולתאר את 3 סוגי המניעים.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;"><strong>מוטיבציה (הנעה)</strong> היא מכלול התהליכים אשר מעוררים, מכוונים ומשמרים את התנהגות הכלב לעבר מטרה מסוימת. הבנת מה מניע את הכלב חיונית לאילוף — כי כלב שמונע פנימית ילמד <strong>הרבה יותר מהר</strong>.</p>
+    <div style="margin-bottom:16px"><span style="background:#ede9fe;color:#5b21b6;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">⚡ מוטיבציה = מה שמעורר, מכוון ומשמר את התנהגות הכלב</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/motivazya.png" alt="מוטיבציה" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div class="section-title">🔬 3 סוגי מניעים</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🧬</span><span style="font-weight:800;font-size:15px;color:#dc2626">מניעים ביולוגיים</span></div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">מבוססים על <strong>צרכים ביולוגיים מולדים</strong> — הכלב נולד איתם, לא צריך ללמוד אותם.<br>דוגמאות בכלב: <strong>רעב, צמא, יצר ציד, שינה</strong> — הכלב לא יכול לחיות בלעדיהם.<br>💡 מניעים אלה הם הכי חזקים ולכן <strong>הכי שימושיים לאילוף</strong> — למשל שימוש בפינוקים.
+            <div style="margin-top:10px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">מולדים ולא נרכשים — הכי חזקים לאילוף</span></div>
+          </div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🧠</span><span style="font-weight:800;font-size:15px;color:#0369a1">מניעים פסיכולוגיים</span></div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">צרכים <strong>משניים שנרכשים</strong> במהלך החיים — הכלב יכול לחיות בלעדיהם אך הם משפיעים על התנהגותו.<br>דוגמאות בכלב: <strong>הצורך בחיבה, ביטחון וגבולות ברורים</strong> — כלב שאין לו ביטחון עלול לפתח חרדה ובעיות התנהגות.<br>💡 חשובים במיוחד בעבודה עם כלבים עם חרדות.
+            <div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">נרכשים — חיבה, ביטחון, גבולות ברורים</span></div>
+          </div>
+        </div>
+      </div>
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">👥</span><span style="font-weight:800;font-size:15px;color:#059669">מניעים חברתיים</span></div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">מבוססים על <strong>רצונות וצרכים חברתיים</strong> — כלבים הם חיות חברתיות שחיות בלהקה.<br>דוגמאות בכלב: <strong>הצורך בתשומת לב, בהשתייכות וקרבה לאדם</strong> — לחץ חברתי בתוך הלהקה משפיע על התנהגות.<br>💡 כלב שצריך תשומת לב עלול לפתח בעיות התנהגות אם מתעלמים ממנו.
+            <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:6px 14px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">צורך בלהקה, קרבה ותשומת לב</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="remember-box">ביולוגי = מולד (רעב/צמא) | פסיכולוגי = נרכש (אהבה) | חברתי = נרכש (לחץ חברתי)!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">מניעים ביולוגיים הם צרכים שנרכשים במהלך החיים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf2a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf2a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf2a"></div>
+  </div>
+</div>
+
+<!-- S3: יצר ודחף -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#0f766e)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">🗂️</span>
+    <h1>חלוקת היצרים</h1>
+    <p class="subtitle">4 קבוצות עיקריות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 4 קבוצות היצרים ולהסביר מה מאפיין כל אחת.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">היצרים בכלב מחולקים ל-<strong>4 קבוצות עיקריות</strong> לפי המטרה שהם משרתים. חלקם נועדו לשמור על הכלב עצמו, חלקם על המין, חלקם על החיים בלהקה וחלקם על שמירת מיומנויות.</p>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/haluka.png" alt="חלוקת היצרים" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span><span style="font-weight:800;font-size:15px;color:#0369a1">יצרי קיום הפרט</span></div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #93c5fd">
+            התנהגויות המונעות על ידי צרכים שסיפוקם <strong>נחוץ לקיומו של הכלב עצמו</strong> — כדי שיישאר בחיים ובריא.
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+              <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר הציד</span>
+              <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר האכילה</span>
+              <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר ההגנה</span>
+              <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר הבריחה</span>
+              <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר החשדנות</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span><span style="font-weight:800;font-size:15px;color:#059669">יצרי קיום המין</span></div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #86efac">
+            התנהגויות המונעות על ידי צרכים שסיפוקם <strong>נחוץ לקיומו של המין הכלבי כולו</strong> — הבטחת המשך הדורות.
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+              <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר החיזור</span>
+              <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר ההזדווגות</span>
+              <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר אימהי</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span><span style="font-weight:800;font-size:15px;color:#d97706">יצרים חברתיים</span></div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #fbbf24">
+            התנהגויות שמונעות על ידי צרכים של <strong>כלב החי בחברה או בלהקה</strong> — מאפשרות חיי שיתוף מסודרים.
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+              <span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר מנהיגות</span>
+              <span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר כניעה</span>
+              <span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר השתייכות</span>
+              <span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר הגנת הלהקה</span>
+              <span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר ההבאה</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fcd34d;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="background:#ca8a04;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">4</span><span style="font-weight:800;font-size:15px;color:#ca8a04">יצרים תפקודיים</span></div>
+          <span class="toggle-arrow" style="color:#ca8a04;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:2px solid #fcd34d">
+            התנהגויות הנחוצות <strong>לשמור על מיומנויות</strong> כך שיהיו מוכנות ומדויקות בעת הצורך.
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+              <span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר משחק</span>
+              <span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר לחימה</span>
+              <span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יצר רדיפה</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">פרט + מין + חברתי + תפקודי = 4 קבוצות יצרים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s4" class="match-container">
+      <div class="match-col" id="s4-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s4')">קיום הפרט</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s4')">קיום המין</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s4')">תפקודיים</div>
+      </div>
+      <div class="match-col" id="s4-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s4')">נחוץ לקיום כל המין</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s4')">שמירה על מיומנויות</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s4')">נחוץ לקיום הפרט</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s4match"></div>
+  </div>
+</div>
+
+<!-- S5: יצרי קיום הפרט -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b91c1c,#dc2626)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">🐾</span>
+    <h1>יצרי קיום הפרט</h1>
+    <p class="subtitle">7 יצרים לשרידות הפרט</p>
+  </div>
+  <div class="goal-box">אני אוכל לציין ולהסביר את 7 יצרי קיום הפרט.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">יצרי קיום הפרט הם התנהגויות שמטרתן <strong>שמירה על חיי הכלב עצמו</strong> — אכילה, הגנה, בריחה ועוד. ללא יצרים אלה הכלב לא יוכל לשרוד. אלה הם היצרים הבסיסיים והחזקים ביותר.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">שמירה על חיי הכלב עצמו</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/prat.png" alt="יצרי קיום הפרט" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#dc2626;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🏹</span><span style="font-weight:800;font-size:15px;color:#dc2626">יצר צייד</span></div><span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">הדחף לצוד, לרדוף ולתפוס טרף — אחד היצרים הבסיסיים והחזקים ביותר בכלב.<br>כולל שלבים: <strong>לכידה ← רדיפה ← עיניים על הטרף ← זיהוי</strong>.<br><div style="margin-top:10px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 בכלב המודרני יצר זה מתבטא ברדיפת כדורים, חתולים, אופניים ועוד.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#d97706;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">👃</span><span style="font-weight:800;font-size:15px;color:#d97706">יצר הרחה מהאוויר</span></div><span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">הדחף לאסוף מידע ריחני מהאוויר — חיוני לאיתור מזון, טרף, סכנות ופרטים אחרים.<br>כלב מריח את האוויר ובונה "תמונה" של סביבתו הרבה לפני שהוא רואה אותה.<br><div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלבי איתור וחיפוש מאומנים בדיוק על יצר חשוב זה.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#059669;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🍖</span><span style="font-weight:800;font-size:15px;color:#059669">יצר האכילה</span></div><span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">הדחף לאכול — מהצרכים הביולוגיים הבסיסיים ביותר לקיום הפרט.<br>הכלב יחפש מזון ויסגל לעצמו דפוסי חיפוש.<br><div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 המאלף יכול לנצל יצר זה כדי לאלף עם פינוקים — מניע חזק מאוד.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#7c3aed;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🚫</span><span style="font-weight:800;font-size:15px;color:#7c3aed">יצר ההימנעות</span></div><span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #c4b5fd">הדחף להתרחק מגורמים לא נעימים, כואבים או מאיימים — שומר על שלמות הפרט.<br>כלב עם יצר הימנעות חזק יתרחק מאדם לא מוכר, מרעש חזק או מכאב.<br><div style="margin-top:10px"><span style="background:#ede9fe;color:#5b21b6;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלב שנענש הרבה עלול לפתח יצר הימנעות חזק שיקשה על האילוף.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#0369a1;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🛡️</span><span style="font-weight:800;font-size:15px;color:#0369a1">יצר ההגנה</span></div><span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">הדחף להתגונן בפני איום — הכלב עובר למצב התקפי כשאין ברירה לבריחה.<br>מתבטא בנביחה, חשיפת שיניים, עמידה נוקשה.<br><div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 יצר זה בסתירה עם יצר הציד — לא יכולים להיות פעילים בו-זמנית.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fed7aa;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#ea580c;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🏃</span><span style="font-weight:800;font-size:15px;color:#ea580c">יצר הבריחה</span></div><span class="toggle-arrow" style="color:#ea580c;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fed7aa">הדחף לברוח מסכנה — תגובת ה"flight" ב-fight or flight.<br>כלב שמרגיש מאוים ויש לו מפלט — יברח. ללא מפלט — יעבור ליצר הגנה.<br><div style="margin-top:10px"><span style="background:#ffedd5;color:#9a3412;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלב שנשוך בזמן בריחה עלול להפוך תוקפני יותר בעתיד.</span></div></div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #e2e8f0;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#475569;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">👀</span><span style="font-weight:800;font-size:15px;color:#475569">יצר החשדנות והערנות</span></div><span class="toggle-arrow" style="color:#475569;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #e2e8f0">הדחף להיות ערני לסביבה ולחשוד בגורמים לא מוכרים — מנגנון הגנה ראשוני.<br>כלב עם יצר ערנות גבוה ינבח על כל רעש, גם קטן.<br><div style="margin-top:10px"><span style="background:#f1f5f9;color:#334155;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 יצר זה מועיל מאוד לכלבי שמירה — אך יכול להפוך לבעייתי בכלב בית.</span></div></div></div>
+      </div>
+
+    </div>
+    <div class="remember-box">7 יצרי קיום: צייד, הרחה, אכילה, הימנעות, הגנה, בריחה, חשדנות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">כלב שמריח את האוויר עושה זאת רק כשהוא רעב.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','s4tf')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','s4tf')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-s4tf"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#be185d,#9d174d)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🐕🐾</span>
+    <h1>יצרי קיום המין</h1>
+    <p class="subtitle">יצר חיזור ויצר אימהי</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את יצרי קיום המין ואת מאפייני היצר האימהי.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">יצרי קיום המין הם התנהגויות שמטרתן <strong>הבטחת המשך המין הכלבי</strong> — רבייה, הגנה על צאצאים וטיפול בהם. בלי יצרים אלה הכלבים כמין לא היו מצליחים לשרוד לאורך דורות.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">הבטחת המשך המין</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/kiyum.png" alt="יצרי קיום המין" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#d97706;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">💕</span><span style="font-weight:800;font-size:15px;color:#d97706">יצר החיזור והזדווגות</span></div><span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+          הדחף לחפש בן/בת זוג ולהתרבות — קשור ישירות ל<strong>הישרדות המין הכלבי</strong>.<br>
+          הביהביוריסטים (כולל קונרד לורנץ) טענו שיש התנהגויות המונעות על ידי <strong>אהבת הזולת</strong> שמטרתה רבייה של המין.<br>
+          <div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 מתגבר בעונת הייחום — הכלב עלול להתעלם מפקודות אילוף לגמרי.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#0369a1;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🐣</span><span style="font-weight:800;font-size:15px;color:#0369a1">יצר אימהי</span></div><span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+          הדחף לטפל ולהגן על הגורים — <strong>מתעורר רק לאחר ההמלטה</strong>, לא לפניה.<br>
+          הכלבה אינה מבינה שהיא בהריון — ההכנות לפני הלידה הן חושים קדומים שהתעוררו.<br>
+          <strong>נמשך עד גיל 6–8 שבועות</strong> של הגורים — לאחר מכן האם <strong>לא מזהה אותם כגוריה</strong>.<br>
+          <div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 אחרי שהגורים יהיו בוגרים — האמא לא תזכור ולא תזהה אותם.</span></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="remember-box">יצר חיזור = הישרדות המין | יצר אימהי = מתעורר אחרי המלטה | נגמר בגיל 6–8 שבועות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הכלבה מכירה ביצר האימהי עוד לפני ההמלטה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf6a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf6a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf6a"></div>
+  </div>
+</div>
+
+<!-- S7: יצרים חברתיים -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#7c3aed)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🐺</span>
+    <h1>יצרים חברתיים</h1>
+    <p class="subtitle">חיים בלהקה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 6 היצרים החברתיים.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">יצרים חברתיים הם התנהגויות שמאפשרות לכלב <strong>לחיות בחברה ובלהקה</strong> בצורה מסודרת. הם קובעים מי מוביל, מי נכנע, ומי שמור — ומאפשרים להקה לתפקד כיחידה אחת.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">לחיות בחברה ובלהקה</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/hevra.png" alt="יצרים חברתיים" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#0369a1;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">👑</span><span style="font-weight:800;font-size:15px;color:#0369a1">יצר מנהיגות</span></div><span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+          הדחף לנהל ולהוביל — לתפוס עמדת מנהיג בלהקה.<br>
+          כלב עם יצר מנהיגות גבוה ינסה תמיד לשלוט במצב, לעבור ראשון בדלת, לאכול ראשון.<br>
+          <div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלב שמנסה "לנהל" את הבית — חייבים לנהל אותו בצורה ברורה.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#059669;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🙇</span><span style="font-weight:800;font-size:15px;color:#059669">יצר כניעה</span></div><span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+          הדחף לכפוף ראש בפני מנהיג ולקבל את מרותו — ההפך ממנהיגות.<br>
+          מאפשר מבנה היררכי יציב ומונע קונפליקטים מיותרים בתוך הלהקה.<br>
+          <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלב עם יצר כניעה גבוה קל יותר לאילוף.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #c4b5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#7c3aed;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🐺</span><span style="font-weight:800;font-size:15px;color:#7c3aed">יצר השתייכות ללהקה</span></div><span class="toggle-arrow" style="color:#7c3aed;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #c4b5fd">
+          הדחף להיות חלק מקבוצה — כלב לא אוהב להיות לבד.<br>
+          בכלב המודרני, המשפחה האנושית מהווה את "הלהקה" שלו.<br>
+          <div style="margin-top:10px"><span style="background:#ede9fe;color:#5b21b6;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 יצר גבוה עלול לגרום לחרדת נטישה חזקה כשמשאירים לבד.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#d97706;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🛡️</span><span style="font-weight:800;font-size:15px;color:#d97706">יצר הגנת הלהקה</span></div><span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+          הדחף להגן על חברי הלהקה מפני גורמים חיצוניים — "אחד בעד כולם".<br>
+          מתבטא בנביחה על זרים, עמידה בין הבעלים לאיום, פטרול של הבית.<br>
+          <div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 הבסיס לאילוף כלבי שמירה ולהגנה אישית.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#dc2626;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🎾</span><span style="font-weight:800;font-size:15px;color:#dc2626">יצר ההבאה והביזה</span></div><span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+          הדחף לתפוס חפץ ולהחזיר אותו ללהקה — שיתוף משאבים עם הקבוצה.<br>
+          בכלב המודרני מתבטא בהבאת כדורים, משחקי משיכה ושמירה על חפצים.<br>
+          <div style="margin-top:10px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 הבסיס לאילוף "הבא" — ניצול מצוין של יצר חברתי טבעי.</span></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="remember-box">מנהיגות + כניעה + השתייכות + הגנה + הבאה = 5 יצרים חברתיים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">יצר <span class="fill-blank" onclick="revealBlank(this,'כניעה')">_______</span> הוא ההפך מיצר <span class="fill-blank" onclick="revealBlank(this,'מנהיגות')">__________</span> ומאפשר מבנה <span class="fill-blank" onclick="revealBlank(this,'היררכי')">_________</span> בלהקה.</div>
+  </div>
+</div>
+
+<!-- S8: יצרים תפקודיים -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">⚙️</span>
+    <h1>יצרים תפקודיים</h1>
+    <p class="subtitle">שמירה על מיומנויות</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 3 היצרים התפקודיים ולהסביר מדוע הם חשובים.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">יצרים תפקודיים הם התנהגויות שנועדו <strong>לשמור על מיומנויות</strong> כך שיהיו מוכנות ומדויקות בעת הצורך. כלב שלא מפעיל יצרים אלה "מחליד" — המיומנויות שלו יהיו פחות חדות ברגע האמת.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">שמירה על מיומנויות</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/tafkud.png" alt="יצרים תפקודיים" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#059669;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🎮</span><span style="font-weight:800;font-size:15px;color:#059669">יצר משחק</span></div><span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+          הדחף לשחק — המשחק הוא <strong>"אימון" טבעי</strong> שבאמצעותו הכלב מתרגל ומשמר מיומנויות ציד, לחימה וריצה.<br>
+          גורים משחקים הרבה כי מוחם עסוק בבנייה ולמידה. כלבים בוגרים ממשיכים לשחק לאורך כל חייהם.<br>
+          <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 כלב שלא משחק מספיק עלול לפתח בעיות התנהגות מחוסר גירוי.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#d97706;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚔️</span><span style="font-weight:800;font-size:15px;color:#d97706">יצר לחימה</span></div><span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+          הדחף להתמודד פיזית — שמירה על מיומנויות קרב שנחוצות להגנה עצמית ולשמירה על משאבים.<br>
+          מתבטא במשחקי משיכה (tug), קרבות עם כלבים אחרים ובמשחקי כוח.<br>
+          <div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 בסיס לאילוף כלבי שמירה, צבא ומשטרה — הם מחזיקים חפץ בעוצמה.</span></div>
+        </div></div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none"><div style="display:flex;align-items:center;gap:8px"><span style="background:#dc2626;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🏃</span><span style="font-weight:800;font-size:15px;color:#dc2626">יצר רדיפה</span></div><span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span></div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+          הדחף לרדוף אחרי יעד נע — שמירה על מיומנות הציד והמרדף.<br>
+          בכלב המודרני מתבטא ברדיפת כדורים, פרפרים, אופניים, רכבים ועוד.<br>
+          <div style="margin-top:10px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 בסיס לספורט כלבים כמו Flyball ו-Agility.</span></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="remember-box">משחק + לחימה + רדיפה = 3 יצרים תפקודיים | מטרה: לשמור מיומנויות זמינות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">יצרים תפקודיים נועדו לשמור על מיומנויות זמינות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','tf8a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','tf8a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf8a"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#d97706,#92400e)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">🔧</span>
+    <h1>אחיזת יצר ואחיזת דחף</h1>
+    <p class="subtitle">עד כמה הכלב יכול להחזיק מעמד?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את ההבדל בין אחיזת יצר לאחיזת דחף ולתת דוגמאות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">כל יצר קיים בשני מצבים: <strong>רדום</strong> או <strong>דחף פעיל</strong>. <strong>אחיזת יצר</strong> מודדת כמה קשה להעיר את היצר הרדום. <strong>אחיזת דחף</strong> מודדת כמה זמן הכלב מצליח להתאפק ברגע שהדחף התעורר. מאלף שמבין את שניהם יוכל לאלף בצורה יעילה ומדויקת.</p>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/yezer.png" alt="אחיזת יצר ודחף" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden;margin-bottom:6px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:20px">😴</span>
+          <span style="font-weight:800;font-size:15px;color:#0369a1">אחיזת יצר</span>
+          <span style="background:#e0f2fe;color:#0369a1;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">יצר רדום</span>
+        </div>
+        <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+      </div>
+      <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+        <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+          יכולת הכלב להישאר במצב <strong>יצר רדום</strong>. ככל שגבוהה יותר — נדרש גירוי <strong>חזק יותר</strong> כדי להפוך אותו לדחף.
+          <div style="margin-top:10px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">דוגמה: כלב רואה חתול ונשאר רגוע — נדרש גירוי חזק מאוד כדי לעורר אותו</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden;margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:20px">⚡</span>
+          <span style="font-weight:800;font-size:15px;color:#059669">אחיזת דחף</span>
+          <span style="background:#d1fae5;color:#059669;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700">דחף פעיל</span>
+        </div>
+        <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+      </div>
+      <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+        <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+          יכולת הכלב לעמוד בדחף שכבר הופעל — <strong>מבלי לפרוק אותו</strong> מיד. השאיפה היא להגיע לשיא.
+          <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">דוגמה: כלב רואה כדור ורוצה לרוץ — אך מחכה בשקט לפקודה. כמה זמן יכול לחכות?</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="remember-box">אחיזת יצר = כמה גירוי צריך לעורר | אחיזת דחף = כמה זמן עומד בדחף!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב עם אחיזת יצר גבוהה יעבור לדחף...</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s9q')"><span class="opt-letter">א</span>רק עם גירוי חזק מאוד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ב</span>מאוד מהר עם גירוי קל</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ג</span>לעולם לא</button>
+    </div>
+    <div class="feedback" id="fb-s9q"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#475569,#1e293b)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">⚖️</span>
+    <h1>סתירה, סיפוק ויצר נהיג</h1>
+    <p class="subtitle">מה קורה כשיצרים מתנגשים?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר סתירת יצר, סיפוק חלקי ויצר נהיג.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">כשכלב חווה שני יצרים בו-זמנית שאינם יכולים להתקיים יחד, נוצרת <strong>סתירת יצר</strong>. כשמספקים לכלב חלק מהדחף אך לא את כולו, יורדת עוצמת הדחף אך הוא לא נפרק לגמרי. זהו <strong>סיפוק חלקי</strong>. <strong>יצר נהיג</strong> הוא יצר שהמאלף בוחר להפעיל בכוונה ולהשתמש בו ככלי לאילוף.</p>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/dahaf.png" alt="סתירה סיפוק ויצר נהיג" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px;flex-shrink:0">📉</span><span style="font-weight:800;font-size:15px;color:#d97706">סיפוק חלקי של דחף</span></div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+            מוריד את עוצמת הדחף אך <strong>לא מביא לסיפוק מלא</strong>. הדחף נשאר חלקית פעיל.
+            <div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">דוגמה: הכלב נושך צעצוע לרגע קצר, הדחף יורד אך לא נפרק לגמרי</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px;flex-shrink:0">⚔️</span><span style="font-weight:800;font-size:15px;color:#dc2626">סתירת יצר</span></div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            שני יצרים שאינם יכולים להיות פעילים בו-זמנית.
+            <div style="margin-top:10px;background:#fee2e2;color:#9f1239;border-radius:12px;padding:8px 14px;font-size:15px;font-weight:700;line-height:1.6">דוגמה: זאב רואה צבי (יצר ציד) אך הצבי מראה קרניים (יצר הגנה)</div>
+            <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:flex-start;gap:8px;background:#fff5f5;border-radius:10px;padding:8px 12px">
+                <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;margin-top:1px">1</span>
+                <span style="font-size:14px;color:#374151;font-weight:600;line-height:1.6">אחד היצרים מנצח והכלב פועל לפיו</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:8px;background:#fff5f5;border-radius:10px;padding:8px 12px">
+                <span style="background:#dc2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;margin-top:1px">2</span>
+                <span style="font-size:14px;color:#374151;font-weight:600;line-height:1.6">שניהם פעילים בו-זמנית והכלב קופא בבלבול</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px;flex-shrink:0">🎯</span><span style="font-weight:800;font-size:15px;color:#059669">יצר נהיג</span></div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+            יצר שהמאלף מפעיל בכוונה ומשתמש בו ככלי לאילוף. <strong>כל יצר יכול להיות יצר נהיג.</strong>
+            <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">דוגמה: מאלף מפעיל את יצר ההבאה כדי ללמד "הבא"</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="remember-box">סתירת יצר = שני יצרים לא יכולים יחד | יצר נהיג = כלי לאילוף!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">רק יצר ציד יכול להיות יצר נהיג.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf10a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf10a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf10a"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#059669)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">🧬</span>
+    <h1>תכונות</h1>
+    <p class="subtitle">תורשתיות ונרכשות</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי תכונה ולהבחין בין תכונות תורשתיות לנרכשות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">תכונה היא הביטוי החיצוני של יצר. מכלול התכונות של הכלב יוצר את <strong>אופיו הייחודי</strong>. יש תכונות שהכלב נולד איתן ויש תכונות שנבנות לאורך חייו דרך ניסיון וסביבה.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תכונה היא הביטוי החיצוני של יצר</span>
+      <span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">מכלול התכונות יוצר את האופי</span>
+    </div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/thuna.png" alt="תכונות" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div style="background:white;border-radius:12px;border:2px solid #93c5fd;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:2px solid #93c5fd">
+          <span style="font-size:20px;flex-shrink:0">🧬</span>
+          <span style="font-weight:800;font-size:15px;color:#0369a1">תכונות תורשתיות</span>
+        </div>
+        <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7">
+          קיימות <strong>מיום הלידה</strong> ומתפתחות עם הכלב.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">זריזות</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">אומץ לב</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">סף רגישות</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">נטייה למצבי רוח</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">נטייה לקרבות</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:12px;border:2px solid #86efac;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:2px solid #86efac">
+          <span style="font-size:20px;flex-shrink:0">📚</span>
+          <span style="font-weight:800;font-size:15px;color:#059669">תכונות נרכשות</span>
+        </div>
+        <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7">
+          <strong>נבנות על בסיס התכונות התורשתיות</strong> דרך ניסיון וסביבה.
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">יכולת אימון</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">קשיחות / רוך</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block">חוסר מיקוד</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight yellow" style="font-size:15px">⚠️ אלה <strong>רק דוגמאות</strong> — ניתן להוסיף עוד תכונות רבות. מגוון התכונות משקף את האופי.</div>
+    <div class="remember-box">תכונות = ביטוי חיצוני | תורשתי = מיום הלידה | נרכש = בונה על התורשתי!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">זריזות היא דוגמה לתכונה מאיזה סוג?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">א</span>נרכשת</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s11q')"><span class="opt-letter">ב</span>תורשתית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s11q')"><span class="opt-letter">ג</span>חברתית</button>
+    </div>
+    <div class="feedback" id="fb-s11q"></div>
+  </div>
+</div>
+
+<!-- S12: מזג פבלוב -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#0369a1)">
+    <span class="chapter-num">פרק 11</span><span class="emoji">🌡️</span>
+    <h1>מזג — חלוקת פבלוב</h1>
+    <p class="subtitle">4 סוגי מזג לפי מהירות התגובה</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 4 סוגי המזג לפי פבלוב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px;">פבלוב, פיזיולוג רוסי מפורסם שחקר כלבים בניסוייו, גילה שכלבים שונים מגיבים באופן שונה לגירויים. חלקם מהירים וחזקים, חלקם איטיים ושקטים. הבנת סוג המזג עוזרת למאלף לבחור את <strong>שיטת האילוף המתאימה</strong> ולהבין כמה לדחוף ומתי לתת מנוחה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/mezeg.png" alt="מזג פבלוב" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#ede9fe;border-right:4px solid #7c3aed;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+      <span style="font-size:24px;flex-shrink:0">🌡️</span>
+      <div>
+        <div style="font-weight:800;font-size:15px;color:#5b21b6;margin-bottom:4px">מהו מזג?</div>
+        <div style="font-size:15px;color:#374151;line-height:1.7">הלהט שבו הכלב עושה דברים והנטייה שלו <strong>להתמיד ברגשי רצון ואי-רצון</strong> או להמיר רגש אחד במשנהו.</div>
+      </div>
+    </div>
+    <div class="section-title">🔬 4 סוגי מזג לפי פבלוב</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">פלגמטי</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">איטי</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+            מגיב לאט, שקט ומאוזן. קשה לעורר ולהרגיז.
+            <div style="margin-top:8px"><span style="background:#dbeafe;color:#1e40af;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">לאילוף: צריך גירויים חזקים ועקביות</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">חוליקרני</span>
+            <span style="background:#fee2e2;color:#9f1239;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מהיר וחם מזג</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            מגיב מהר ובעוצמה, קשה להרגעה.
+            <div style="margin-top:8px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">לאילוף: אימונים קצרים, להימנע מלחץ יתר</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">סנגווין</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מתרגש ונרגע מהר</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+            גמיש רגשית, קל לאילוף.
+            <div style="margin-top:8px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">לאילוף: הכי קל לעבוד איתו</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #cbd5e1;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#475569;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#475569">מלנכולי</span>
+            <span style="background:#f1f5f9;color:#334155;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">דיכאוני</span>
+          </div>
+          <span class="toggle-arrow" style="color:#475569;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #cbd5e1">
+            מגיב בעמקות, מתקשה לצאת ממצב שלילי.
+            <div style="margin-top:8px"><span style="background:#f1f5f9;color:#334155;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">לאילוף: צריך עידוד ורוגע, להימנע מענישה</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="remember-box">פלגמטי=איטי | חוליקרני=מהיר וחם מזג | סנגווין=מתרגש ונרגע | מלנכולי=דיכאוני!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s12" class="match-container">
+      <div class="match-col" id="s12-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s12')">פלגמטי</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s12')">חוליקרני</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s12')">סנגווין</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'s12')">מלנכולי</div>
+      </div>
+      <div class="match-col" id="s12-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s12')">מהיר חימה</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'s12')">דיכאוני</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s12')">איטי</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s12')">מתרגש ונרגע מהר</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s12match"></div>
+  </div>
+</div>
+
+<!-- S13: תחומי הדיגר -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#92400e,#d97706)">
+    <span class="chapter-num">פרק 12</span><span class="emoji">📏</span>
+    <h1>תחומי הדיגר</h1>
+    <p class="subtitle">3 שלבים עם התקרבות גירוי זר</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 3 תחומי הדיגר ואת תגובת הכלב בכל אחד.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">הדיגר, חוקר התנהגות, גילה שכלב מגיב באופן שונה לגורם זר בהתאם למרחק שבו הגורם נמצא. ככל שהגורם מתקרב, תגובת הכלב משתנה ומתחזקת. הוא מצא 3 תחומים שונים בכל תגובה.</p>
+    <div style="margin-bottom:14px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תמיד מתחילים את העבודה בתחום האדישות</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/hediger.png" alt="תחומי הדיגר" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">תחום האדישות</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">זיהוי</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+            הכלב <strong>מזהה את הגירוי</strong> הזר אך הוא עדיין רחוק מדי להוות סכנה.
+            <div style="margin-top:10px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תגובה: הכלב ממשיך בשגרתו ללא שינוי</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">תחום הבריחה</span>
+            <span style="background:#fef3c7;color:#92400e;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">סכנה פוטנציאלית</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+            הגירוי <strong>מתקרב והופך לסכנה פוטנציאלית</strong>.
+            <div style="margin-top:10px"><span style="background:#fef3c7;color:#92400e;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תגובה: הכלב יעדיף לסגת ולברוח, יסתפק בנביחה וחשיפת שיניים</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">התחום הקריטי</span>
+            <span style="background:#fee2e2;color:#9f1239;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">אין מפלט</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            הגירוי <strong>קרוב מדי ואין מפלט</strong>.
+            <div style="margin-top:10px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:5px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תגובה: התקפה או כניעה מוחלטת (fight or flight)</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="highlight yellow" style="font-size:15px;margin-top:4px">
+      🏆 <strong>למה זה חשוב לאילוף ולפתרון בעיות?</strong><br>
+      הבנת תחומי הדיגר מאפשרת למאלף לדעת <strong>מאיפה להתחיל לעבוד</strong> עם גירוי, תמיד בתחום האדישות, ולהתקדם לאט.<br>
+      <span style="background:#0369a1;color:white;border-radius:12px;padding:6px 12px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6;margin-top:6px">דוגמה: כלב שמגיב בפחד לאנשים, מתחילים מרחוק, נותנים פינוקים ומתקרבים בהדרגה.</span>
+    </div>
+    <div class="remember-box">קריטי ← בריחה ← אדישות | ככל שהגירוי קרוב יותר, תגובה חזקה יותר!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">בתחום הקריטי הכלב...</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">א</span>מגיב באדישות</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s13q')"><span class="opt-letter">ב</span>מסתפק בנביחה</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s13q')"><span class="opt-letter">ג</span>עובר להתקפה או כניעה מוחלטת</button>
+    </div>
+    <div class="feedback" id="fb-s13q"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e293b,#0369a1)">
+    <span class="chapter-num">פרק 13</span><span class="emoji">🐕</span>
+    <h1>4 טיפוסי כלבים — הדיגר</h1>
+    <p class="subtitle">חריף/בלתי-חריף × אמיץ/פחדן</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 4 טיפוסי הכלבים לפי הדיגר.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">הדיגר הגדיר 4 טיפוסי כלבים על בסיס שני מאפיינים: עד כמה הכלב <strong>חושד</strong> בגירוי זר, ועד כמה הוא <strong>נוטה לברוח</strong>. הכרת הטיפוס עוזרת למאלף להבין כיצד הכלב יגיב במצבי לחץ ולבחור את שיטת העבודה המתאימה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">חשד בגירוי זר × נטייה לבריחה = 4 טיפוסים</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/yezarim/tipus.png" alt="4 טיפוסי כלבים" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div class="section-title">🐕 4 טיפוסי הדיגר</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">חריף ואמיץ</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">חושד, לא בורח</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+            עם התקרבות הגירוי הזר, <strong>יחשוד ולא ימהר לברוח</strong>. יעמוד מולו.
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">חריף ופחדן</span>
+            <span style="background:#fee2e2;color:#9f1239;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">חושד וגם בורח</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            עם התקרבות הגירוי הזר, <strong>יחשוד וימהר לברוח</strong>. מסוכן, כלב שנלכד בזמן בריחה עלול לנשוך.
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">בלתי-חריף ואמיץ</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">לא חושד, לא בורח</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+            <strong>לא יחשוד מיד</strong> בגירוי הזר ו<strong>לא ימהר לברוח</strong>. רגוע יחסית.
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #cbd5e1;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#475569;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#475569">בלתי-חריף ופחדן</span>
+            <span style="background:#f1f5f9;color:#334155;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">לא חושד, כן בורח</span>
+          </div>
+          <span class="toggle-arrow" style="color:#475569;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #cbd5e1">
+            <strong>לא יחשוד מיד</strong> בגירוי הזר אבל <strong>ימהר לברוח</strong> ממנו.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-title" style="margin-top:4px">📊 טבלה מסכמת</div>
+    <table class="info-table" style="margin-bottom:12px">
+      <tr><th>טיפוס</th><th>חושד בגירוי זר?</th><th>בורח?</th></tr>
+      <tr style="background:#d1fae5"><td><strong>חריף ואמיץ</strong></td><td>✅ כן</td><td>❌ לא</td></tr>
+      <tr><td><strong>חריף ופחדן</strong></td><td>✅ כן</td><td>✅ כן</td></tr>
+      <tr style="background:#dbeafe"><td><strong>בלתי-חריף ואמיץ</strong></td><td>❌ לא</td><td>❌ לא</td></tr>
+      <tr><td><strong>בלתי-חריף ופחדן</strong></td><td>❌ לא</td><td>✅ כן</td></tr>
+    </table>
+    <div class="remember-box">חריף = חושד מהר | אמיץ = לא בורח | 4 שילובים = 4 טיפוסים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">כלב <span class="fill-blank" onclick="revealBlank(this,'חריף ופחדן')">____________</span> יחשוד בגירוי הזר <strong>וגם ימהר לברוח</strong> ממנו.</div>
+  </div>
+</div>
+
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">מילון</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">◀ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 16</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">⚡ יצר</div><div class="glossary-def">התנהגות כלבית טבעית שמתבצעת מבלי השפעה חיצונית. קיים תמיד.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔥 דחף</div><div class="glossary-def">יצר שבא לידי ביטוי — ניתן לעבוד עמו באילוף.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔍 תכונה</div><div class="glossary-def">הביטוי החיצוני של היצר. התכונות יחד יוצרות את האופי.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🧠 מוטיבציה</div><div class="glossary-def">מכלול התהליכים המעוררים, מכוונים ומשמרים התנהגות לעבר מטרה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">😴 אחיזת יצר</div><div class="glossary-def">יכולת הכלב להישאר במצב יצר רדום — ככל שגבוהה יותר, נדרש גירוי חזק יותר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚡ אחיזת דחף</div><div class="glossary-def">יכולת עמידה בדחף מבלי לפרוק אותו — שאיפה להגיע לשיא.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚖️ סתירת יצר</div><div class="glossary-def">שני יצרים לא יכולים להיות פעילים בו-זמנית — אחד עוצר את השני.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎯 יצר נהיג</div><div class="glossary-def">יצר המובא לדחף ע"י הנוהג — ניתן לשימוש לאילוף.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🌡️ מזג</div><div class="glossary-def">הלהט שבו הכלב עושה דברים ונטייתו להתמיד ברגשות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐢 פלגמטי</div><div class="glossary-def">סוג מזג — איטי בתגובה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔥 חוליקרני</div><div class="glossary-def">סוג מזג — מהיר חימה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">😄 סנגווין</div><div class="glossary-def">סוג מזג — מתרגש ונרגע מהר.</div></div>
+    <div class="glossary-item"><div class="glossary-term">😔 מלנכולי</div><div class="glossary-def">סוג מזג — דיכאוני.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟢 תחום האדישות</div><div class="glossary-def">גירוי זר רחוק — הכלב מגיב באדישות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟡 תחום הבריחה</div><div class="glossary-def">גירוי מתקרב — הכלב מעדיף לסגת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔴 התחום הקריטי</div><div class="glossary-def">גירוי צמוד — הכלב עובר להתקפה או כניעה מוחלטת.</div></div>
+  </div>
+</div>
+
+<!-- S16: נכון/לא נכון -->
+<div class="screen" id="screen-15">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. יצר הוא התנהגות שנלמדת מהמאלף.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. מניעים ביולוגיים הם מולדים ולא נלמדים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. יצר אימהי קיים אצל כלבה גם לפני ההמלטה.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. בתחום הקריטי הכלב מגיב באדישות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. יצרים תפקודיים נועדים לשמור על מיומנויות זמינות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+  </div>
+</div>
+
+<!-- S17: שאלות -->
+<div class="screen" id="screen-16">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה ההבדל בין יצר לדחף?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">א</span>יצר רדום — דחף הוא יצר שבא לידי ביטוי</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ב</span>אין הבדל — זה אותו הדבר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>דחף הוא תכונה נרכשת</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. כמה זמן נמשך יצר אימהי?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>לכל החיים</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ב</span>עד גיל 6–8 שבועות של הגורים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ג</span>שנה שלמה</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. כלב חריף ואמיץ — כיצד יגיב לגירוי זר?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>לא יחשוד ולא ימהר לברוח</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ב</span>יחשוד וימהר לברוח</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ג</span>יחשוד ולא ימהר לברוח</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מה קורה בסתירת יצר?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">א</span>שני יצרים לא יכולים להיות פעילים בו-זמנית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ב</span>הכלב מגביר שניהם יחד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>הכלב נרדם</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S18: התאמה -->
+<div class="screen" id="screen-17">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר מושג להגדרה</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">אחיזת דחף</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">יצר נהיג</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">סנגווין</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">תחום הבריחה</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">יצר לאילוף</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">הגירוי מתקרב, כלב נסוג</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">עמידה בדחף מבלי לפרוק</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">מתרגש ונרגע מהר</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">פבלוב חילק את המזג ל-<span class="fill-blank" onclick="revealBlank(this,'4')">_</span> סוגים לפי <span class="fill-blank" onclick="revealBlank(this,'מהירות התגובה')">___________</span>.</div>
+    <div class="fill-sentence">יצרים <span class="fill-blank" onclick="revealBlank(this,'תפקודיים')">__________</span> נועדו לשמור על <span class="fill-blank" onclick="revealBlank(this,'מיומנויות')">__________</span> זמינות.</div>
+    <div class="fill-sentence">ב<span class="fill-blank" onclick="revealBlank(this,'תחום הקריטי')">______________</span> הכלב עובר להתקפה או <span class="fill-blank" onclick="revealBlank(this,'כניעה מוחלטת')">______________</span>.</div>
+  </div>
+</div>
+
+<!-- S19: סיום -->
+<div class="screen" id="screen-18">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת היצרים בכלבים!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="💡">יצר = מולד | תכונה = ביטוי חיצוני | אופי = מכלול תכונות</li>
+      <li data-icon="⚡">יצר רדום → דחף = יצר בפעולה | ניתן לאלף עם דחפים</li>
+      <li data-icon="🗂️">4 קבוצות: קיום פרט (7) + קיום מין + חברתי + תפקודי</li>
+      <li data-icon="🔧">אחיזת יצר = קשה לעורר | אחיזת דחף = קשה לפרוק</li>
+      <li data-icon="⚖️">סתירת יצר = שני יצרים לא יכולים יחד | יצר נהיג = כלי לאילוף</li>
+      <li data-icon="🌡️">מזג לפי פבלוב: פלגמטי/חוליקרני/סנגווין/מלנכולי</li>
+      <li data-icon="📏">תחומי הדיגר: אדישות → בריחה → קריטי</li>
+      <li data-icon="🐕">טיפוסי הדיגר: חריף/בלתי-חריף × אמיץ/פחדן = 4 טיפוסים</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div class="section-title" style="text-align:center;justify-content:center;margin-bottom:12px">🔁 חזור לפרקים</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>יצר ותכונה</button>
+      <button class="toc-item" onclick="goToScreen(2)"><span class="num">2</span>מוטיבציה</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>חלוקת יצרים</button>
+      <button class="toc-item" onclick="goToScreen(4)"><span class="num">4</span>קיום הפרט</button>
+      <button class="toc-item" onclick="goToScreen(8)"><span class="num">8</span>אחיזת יצר ודחף</button>
+      <button class="toc-item" onclick="goToScreen(10)"><span class="num">10</span>תכונות</button>
+      <button class="toc-item" onclick="goToScreen(11)"><span class="num">11</span>מזג פבלוב</button>
+      <button class="toc-item" onclick="goToScreen(12)"><span class="num">12</span>תחומי הדיגר</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">▶ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 20</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ◀</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=19,SCREEN_NAMES=["פתיחה","יצר, תכונה ואופי","מוטיבציה ומניעים","חלוקת היצרים","יצרי קיום הפרט","יצרי קיום המין","יצרים חברתיים","יצרים תפקודיים","אחיזת יצר ודחף","סתירה וסיפוק","תכונות","מזג — פבלוב","תחומי הדיגר","טיפוסי הדיגר","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"⚡ יצר",def:"התנהגות כלבית טבעית ומולדת — מתבצעת ללא השפעה חיצונית."},
+  {term:"🔥 דחף",def:"יצר שבא לידי ביטוי — ניתן לעבוד עמו באילוף."},
+  {term:"🔍 תכונה",def:"הביטוי החיצוני של היצר. תכונות יחד = אופי."},
+  {term:"🧠 מוטיבציה",def:"מכלול תהליכים המעוררים, מכוונים ומשמרים התנהגות."},
+  {term:"😴 אחיזת יצר",def:"יכולת הישארות במצב יצר רדום — גבוהה = צריך גירוי חזק."},
+  {term:"⚡ אחיזת דחף",def:"יכולת עמידה בדחף מבלי לפרוק — שאיפה לשיא."},
+  {term:"⚖️ סתירת יצר",def:"שני יצרים לא יכולים להיות פעילים בו-זמנית."},
+  {term:"🎯 יצר נהיג",def:"יצר המובא לדחף ע\"י הנוהג — כלי לאילוף."},
+  {term:"🌡️ מזג",def:"הלהט שבו הכלב עושה דברים ונטייתו לרגשות."},
+  {term:"🐢 פלגמטי",def:"מזג איטי — מגיב לאט."},
+  {term:"🔥 חוליקרני",def:"מזג מהיר חימה — מגיב מהר ובעוצמה."},
+  {term:"😄 סנגווין",def:"מתרגש ונרגע מהר — גמיש רגשית."},
+  {term:"😔 מלנכולי",def:"מזג דיכאוני — מגיב בעמקות."},
+  {term:"🟢 תחום האדישות",def:"גירוי זר רחוק — הכלב מגיב באדישות."},
+  {term:"🟡 תחום הבריחה",def:"גירוי מתקרב — הכלב מעדיף לסגת ולברוח."},
+  {term:"🔴 התחום הקריטי",def:"גירוי צמוד — הכלב עובר להתקפה או כניעה מוחלטת."},
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');if(!fc)return;fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const sc=document.getElementById('screen-'+n);if(!sc)return;sc.classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===15)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';const bn=document.getElementById('btn-next');if(bn)bn.style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const oc=btn.getAttribute('onclick');if(!oc)return;const m=oc.match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){if(!btn)return;const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+function toggleGoal(card){const body=card.querySelector('.goal-body');const arrow=card.querySelector('.toggle-arrow');const isOpen=body.style.maxHeight&&body.style.maxHeight!=='0px';document.querySelectorAll('.goal-body').forEach(b=>b.style.maxHeight='0px');document.querySelectorAll('.toggle-arrow').forEach(a=>{a.style.transform='rotate(0deg)';});if(!isOpen){body.style.maxHeight=body.scrollHeight+'px';arrow.style.transform='rotate(180deg)';}}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+</script>
+</body>
+</html>
