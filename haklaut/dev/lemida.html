@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>כיצד כלבים לומדים | לומדה דיגיטלית</title>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-990G8Z7F1H"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-990G8Z7F1H');
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+:root{--bg:#f0f7ff;--card:#fff;--primary:#0369a1;--primary-light:#e0f2fe;--hot:#dc2626;--hot-light:#fee2e2;--green:#059669;--green-light:#d1fae5;--purple:#7c3aed;--purple-light:#ede9fe;--yellow:#d97706;--yellow-light:#fef3c7;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--shadow:0 4px 20px rgba(0,0,0,0.08);--radius:16px;--font:'Heebo',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;direction:rtl;}
+#menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;backdrop-filter:blur(2px);}
+#menu-overlay.open{display:block;}
+#menu-sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:white;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+#menu-sidebar.open{right:0;}
+#menu-header{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;padding:20px 18px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+#menu-header h2{font-size:17px;font-weight:900;}
+#menu-close{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:32px;height:32px;color:white;font-size:18px;cursor:pointer;font-family:var(--font);}
+#menu-body{overflow-y:auto;flex:1;padding:8px 0;}
+.menu-chapter-title{font-size:11px;font-weight:800;color:var(--text-muted);padding:10px 12px 4px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:600;color:var(--text);border:none;background:none;width:100%;text-align:right;font-family:var(--font);}
+.menu-item:hover{background:var(--primary-light);color:var(--primary);}
+.menu-item.active{background:var(--primary-light);color:var(--primary);}
+.menu-dot{min-width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+.menu-item.active .menu-dot{background:var(--primary);}
+.menu-item-icon{font-size:18px;min-width:24px;text-align:center;}
+#progress-bar-container{position:fixed;top:0;right:0;left:0;background:white;z-index:100;padding:10px 14px 10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;gap:12px;}
+#menu-btn{background:var(--primary);border:none;border-radius:10px;height:36px;padding:0 12px;display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0;}
+#progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+#progress-fill{height:100%;background:linear-gradient(90deg,#0369a1,#059669);border-radius:99px;transition:width .5s ease;}
+#progress-label{font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap;}
+#app{max-width:760px;margin:0 auto;padding:75px 16px 100px;}
+.screen{display:none;animation:fadeIn .4s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;}
+.chapter-header{color:white;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+.chapter-header::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.chapter-header .emoji{font-size:48px;display:block;margin-bottom:8px;}
+.chapter-header h1{font-size:26px;font-weight:900;margin-bottom:4px;}
+.chapter-header .subtitle{font-size:15px;opacity:.85;}
+.chapter-header .chapter-num{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:3px 14px;font-size:13px;margin-bottom:10px;font-weight:700;}
+.goal-box{background:var(--primary-light);border-right:4px solid var(--primary);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:15px;font-weight:600;color:#0c4a6e;}
+.goal-box::before{content:"🎯 ";}
+.section-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.definition-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:16px;line-height:1.6;}
+.highlight{border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.6;}
+.highlight.blue{background:var(--primary-light);border-right:4px solid var(--primary);}
+.highlight.green{background:var(--green-light);border-right:4px solid var(--green);}
+.highlight.yellow{background:var(--yellow-light);border-right:4px solid var(--yellow);}
+.highlight.red{background:var(--hot-light);border-right:4px solid var(--hot);}
+.highlight.purple{background:var(--purple-light);border-right:4px solid var(--purple);}
+.remember-box{background:linear-gradient(135deg,#fefce8,#fef08a);border:2px solid #facc15;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:700;font-size:15px;text-align:center;}
+.remember-box::before{content:"📌 חשוב לזכור: ";color:#a16207;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr;}}
+.mini-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:14px;line-height:1.5;}
+.mini-card .title{font-weight:800;font-size:15px;margin-bottom:6px;}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin-bottom:16px;font-size:14px;}
+.info-table th{background:#0369a1;color:white;padding:10px 14px;text-align:right;font-weight:700;}
+.info-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.info-table tr:last-child td{border-bottom:none;}
+.info-table tr:nth-child(even) td{background:#f0f9ff;}
+.question-box{background:#f8faff;border:2px solid #c7d7fe;border-radius:14px;padding:20px;margin-top:20px;}
+.question-box .q-title{font-size:16px;font-weight:800;color:#1e40af;margin-bottom:14px;}
+.mc-options{display:flex;flex-direction:column;gap:10px;}
+.mc-option{background:white;border:2px solid #d1d5db;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:15px;transition:all .2s;text-align:right;font-family:var(--font);width:100%;display:flex;align-items:center;gap:10px;}
+.mc-option:hover{border-color:var(--primary);background:var(--primary-light);}
+.mc-option .opt-letter{min-width:28px;height:28px;background:#e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.mc-option.correct{border-color:var(--green)!important;background:var(--green-light)!important;}
+.mc-option.wrong{border-color:var(--hot)!important;background:var(--hot-light)!important;}
+.mc-option.correct .opt-letter{background:var(--green);color:white;}
+.mc-option.wrong .opt-letter{background:var(--hot);color:white;}
+.tf-options{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;background:white;transition:all .2s;font-family:var(--font);}
+.tf-btn.correct{border-color:var(--green);background:var(--green-light);color:#065f46;}
+.tf-btn.wrong{border-color:var(--hot);background:var(--hot-light);color:#991b1b;}
+.fill-blank{background:#dbeafe;border:2px dashed #2563eb;border-radius:8px;padding:3px 12px;display:inline-block;min-width:70px;cursor:pointer;font-weight:700;color:#1e40af;font-family:var(--font);font-size:15px;}
+.fill-blank.revealed{background:#d1fae5;border:2px solid #059669;color:#065f46;}
+.fill-sentence{font-size:15px;line-height:2.2;margin-bottom:10px;padding:12px 14px;background:white;border-radius:12px;border:2px solid var(--border);}
+.match-container{display:flex;gap:12px;align-items:flex-start;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;min-height:44px;display:flex;align-items:center;text-align:right;}
+.match-item.left-item{background:#eff6ff;border-color:#93c5fd;}
+.match-item.left-item.selected{background:#dbeafe;border-color:var(--primary);}
+.match-item.right-item{background:#f0fdf4;border-color:#86efac;}
+.match-item.matched{background:#d1fae5;border-color:var(--green);cursor:default;}
+.match-item.wrong-match{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:var(--green-light);color:#065f46;border:2px solid var(--green);}
+.feedback.wrong{background:var(--hot-light);color:#991b1b;border:2px solid var(--hot);}
+.flashcard-container{perspective:1000px;margin-bottom:12px;}
+.flashcard{width:100%;min-height:130px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;min-height:130px;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.flashcard-front{background:linear-gradient(135deg,#0369a1,#0c4a6e);color:white;}
+.flashcard-front .term{font-size:20px;font-weight:900;}
+.flashcard-front .hint{font-size:12px;opacity:.75;margin-top:8px;}
+.flashcard-back{background:linear-gradient(135deg,#059669,#047857);color:white;transform:rotateY(180deg);}
+.flashcard-back .def{font-size:14px;line-height:1.6;}
+.flashcard-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;}
+.flashcard-nav button{padding:8px 18px;border:none;border-radius:99px;background:var(--primary);color:white;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;}
+.flashcard-counter{font-weight:700;color:var(--text-muted);font-size:15px;}
+.nav-buttons{position:fixed;bottom:0;right:0;left:0;background:white;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);display:flex;gap:12px;justify-content:space-between;align-items:center;z-index:99;}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:white;}
+.btn-secondary{background:#f1f5f9;color:var(--text);}
+.btn-disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+.btn-disabled:hover{transform:none;}
+.intro-hero{background:linear-gradient(160deg,#0c4a6e 0%,#0369a1 40%,#059669 100%);color:white;border-radius:24px;padding:40px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.intro-hero::after{content:'🐕';position:absolute;font-size:120px;bottom:-20px;left:-10px;opacity:.1;}
+.intro-hero h1{font-size:28px;font-weight:900;margin-bottom:8px;}
+.intro-hero .tagline{font-size:16px;opacity:.85;margin-bottom:20px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.intro-badge{background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;}
+ul.content-list{list-style:none;padding:0;margin:0;}
+ul.content-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:attr(data-icon);font-size:18px;min-width:24px;}
+.completion-card{background:linear-gradient(135deg,#0369a1,#7c3aed);color:white;border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:16px;}
+.stars{display:flex;gap:6px;justify-content:center;font-size:32px;margin:12px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.toc-item{background:white;border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;font-family:var(--font);text-align:right;width:100%;}
+.toc-item:hover{border:2px solid var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+.toc-item .num{min-width:28px;height:28px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:var(--primary);}
+.glossary-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-weight:800;font-size:16px;color:var(--primary);}
+.glossary-def{font-size:14px;line-height:1.6;color:var(--text);margin-top:4px;}
+.nr{display:flex;align-items:flex-start;gap:10px;background:white;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:8px;}
+.nc{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;flex-shrink:0;margin-top:1px;font-size:13px;}
+.toggle-arrow{transform:rotate(180deg);}
+</style>
+</head>
+<body>
+<div id="menu-overlay" onclick="closeMenu()"></div>
+<div id="menu-sidebar">
+  <div id="menu-header"><h2>🐕 תפריט פרקים</h2><button id="menu-close" onclick="closeMenu()">✕</button></div>
+  <div id="menu-body">
+    <div class="menu-chapter-title">📖 פתיחה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(0)"><span class="menu-dot"></span><span class="menu-item-icon">🏠</span>מסך פתיחה</button>
+    </div>
+    <div class="menu-chapter-title">🐾 גורים והתפתחות</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(1)"><span class="menu-dot"></span><span class="menu-item-icon">🐶</span>תקופות קריטיות</button>
+    </div>
+    <div class="menu-chapter-title">🧠 יסודות הלמידה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(2)"><span class="menu-dot"></span><span class="menu-item-icon">🔬</span>הגישה ההתנהגותית</button>
+      <button class="menu-item" onclick="menuGo(3)"><span class="menu-dot"></span><span class="menu-item-icon">⚡</span>אינסטינקט ורפלקס</button>
+      <button class="menu-item" onclick="menuGo(4)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>למידה</button>
+    </div>
+    <div class="menu-chapter-title">🔗 סוגי למידה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(5)"><span class="menu-dot"></span><span class="menu-item-icon">🔔</span>התניה קלאסית</button>
+      <button class="menu-item" onclick="menuGo(6)"><span class="menu-dot"></span><span class="menu-item-icon">🎯</span>התניה אופרנטית</button>
+    </div>
+    <div class="menu-chapter-title">➕ חיזוקים ועונש</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(7)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חיזוק חיובי</button>
+      <button class="menu-item" onclick="menuGo(8)"><span class="menu-dot"></span><span class="menu-item-icon">➖</span>חיזוק שלילי</button>
+      <button class="menu-item" onclick="menuGo(9)"><span class="menu-dot"></span><span class="menu-item-icon">⛔</span>עונש</button>
+      <button class="menu-item" onclick="menuGo(10)"><span class="menu-dot"></span><span class="menu-item-icon">⚖️</span>השוואת מושגים</button>
+    </div>
+    <div class="menu-chapter-title">📚 חזרה</div>
+    <div style="padding:0 8px 4px">
+      <button class="menu-item" onclick="menuGo(11)"><span class="menu-dot"></span><span class="menu-item-icon">📚</span>מילון מונחים</button>
+      <button class="menu-item" onclick="menuGo(12)"><span class="menu-dot"></span><span class="menu-item-icon">✅</span>חזרה — נכון/לא נכון</button>
+      <button class="menu-item" onclick="menuGo(13)"><span class="menu-dot"></span><span class="menu-item-icon">❓</span>חזרה — שאלות</button>
+      <button class="menu-item" onclick="menuGo(14)"><span class="menu-dot"></span><span class="menu-item-icon">🔗</span>חזרה — התאמה</button>
+      <button class="menu-item" onclick="menuGo(15)"><span class="menu-dot"></span><span class="menu-item-icon">🏆</span>סיום</button>
+    </div>
+  </div>
+</div>
+
+<div id="progress-bar-container">
+  <button id="menu-btn" onclick="openMenu()"><span style="color:white;font-size:16px">☰</span>&nbsp;<span id="menu-btn-label" style="color:white;font-family:var(--font);font-size:14px;font-weight:700">פתיחה</span></button>
+  <span style="font-size:22px">🐕</span>
+  <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+  <span id="progress-label">מסך 1 מתוך 16</span>
+</div>
+
+<div id="app">
+
+<!-- S0: פתיחה -->
+<div class="screen active" id="screen-0">
+  <div class="intro-hero">
+    <div style="font-size:56px;margin-bottom:14px">🐕📚🧠🔔</div>
+    <h1>כיצד כלבים לומדים</h1>
+    <p class="tagline">גורים, אינסטינקט, התניה וחיזוקים<br>לומדה דיגיטלית | הכנה לבגרות 5 יח"ל</p>
+    <div class="badges"><span class="intro-badge">🐕 כלבנות יא-יב</span><span class="intro-badge">🎯 בגרות 5 יח"ל</span><span class="intro-badge">⚡ אינטראקטיבי</span></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 מה נלמד?</div>
+    <ul class="content-list">
+      <li data-icon="🐶">תקופות קריטיות בחיי הגור</li>
+      <li data-icon="🔬">הגישה ההתנהגותית — גירוי ותגובה</li>
+      <li data-icon="⚡">אינסטינקט, רפלקס ולמידה — ההבדלים</li>
+      <li data-icon="🔔">התניה קלאסית — פבלוב וניסוי הפעמון</li>
+      <li data-icon="🎯">התניה אופרנטית — למידה לפי תוצאות</li>
+      <li data-icon="➕">חיזוק חיובי, חיזוק שלילי ועונש</li>
+    </ul>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה פותחת</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב שמקבל חטיף כשהוא יושב — זו דוגמה להתניה קלאסית.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','s0tf')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','s0tf')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-s0tf"></div>
+  </div>
+</div>
+
+<!-- S1: תקופות קריטיות -->
+<div class="screen" id="screen-1">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">
+    <span class="chapter-num">פרק 1</span><span class="emoji">🐶</span>
+    <h1>תקופות קריטיות בגור</h1>
+    <p class="subtitle">החלונות החשובים בחיי הגור</p>
+  </div>
+  <div class="goal-box">אני אוכל לתאר את 4 התקופות הקריטיות ולהסביר למה הן חשובות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">בחיי הגור יש שלבים שבהם המוח שלו פתוח במיוחד ללמידה. מה שהגור חווה בתקופות אלה משפיע על אופיו, תגובותיו ויכולת האילוף שלו לכל חייו. מאלף שמכיר את התקופות הללו יודע מתי לחשוף את הגור לגירויים חשובים ומתי לתת לו מנוחה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">תקופה קריטית = שלב שבו לחוויות הגור יש השפעה חזקה במיוחד על התנהגותו בעתיד</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/tkufot.png" alt="תקופות קריטיות בגור" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div class="section-title">🕐 4 התקופות</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">התקופה היילודית</span>
+            <span style="background:#fee2e2;color:#9f1239;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">0–2 שבועות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            הגור תלוי לחלוטין באמו. עדיין לא שומע ולא רואה היטב. מבלה בשינה, יניקה ושמירת חום. ההתנהגות מבוססת בעיקר על <strong>רפלקסים</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#059669">תקופת המעבר</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">שבועות 2–3</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #86efac">
+            החושים מתחילים להיפתח: הגור רואה, שומע והולך טוב יותר. מתחיל לחקור את הסביבה. מעבר מתלות מוחלטת לתחילת עצמאות.
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#d97706">תקופת החיברות ⭐</span>
+            <span style="background:#fef3c7;color:#92400e;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">שבועות 3–12</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fbbf24">
+            הגור לומד להכיר <strong>בני אדם, כלבים, רעשים, מקומות וחפצים</strong>. החלון ההתפתחותי החשוב ביותר לאורך כל חיי הכלב.
+            <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+              <div style="background:#f0fdf4;border-radius:10px;padding:8px 12px">
+                <div style="font-weight:800;font-size:14px;color:#065f46;margin-bottom:3px">✅ חוויות חיוביות ומבוקרות</div>
+                <div style="font-size:14px;color:#374151;line-height:1.6">כלב <strong>בטוח, רגוע וחברותי</strong> שמסתגל בקלות לסביבות חדשות, לאנשים ולכלבים</div>
+              </div>
+              <div style="background:#fff5f5;border-radius:10px;padding:8px 12px">
+                <div style="font-weight:800;font-size:14px;color:#dc2626;margin-bottom:3px">❌ חוויות שליליות</div>
+                <div style="font-size:14px;color:#374151;line-height:1.6"><strong>פחדים, קושי בהסתגלות</strong> ולעיתים גם <strong>תוקפנות</strong></div>
+              </div>
+              <div style="background:#fffbeb;border-radius:10px;padding:8px 12px">
+                <div style="font-weight:800;font-size:14px;color:#d97706;margin-bottom:3px">⚠️ היעדר חשיפה</div>
+                <div style="font-size:14px;color:#374151;line-height:1.6"><strong>פחד ממה שלא מכיר</strong>: כלב שלא נחשף לילדים בגיל זה עלול לפחד מהם כבוגר</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #cbd5e1;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#475569;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">4</span>
+            <span style="font-weight:800;font-size:15px;color:#475569">תקופות פחד</span>
+            <span style="background:#f1f5f9;color:#334155;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">כ 8-16 שבועות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#475569;font-size:16px;transition:transform .3s;flex-shrink:0">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #cbd5e1">
+            תקופות שבהן הגור רגיש יותר לחוויות מפחידות. חשוב: <strong>להימנע מהכרחה</strong> ולהעדיף חשיפה <strong>הדרגתית, רגועה וחיובית</strong>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="highlight blue">🏆 <strong>חשיבות לאילוף:</strong> בתקופות קריטיות קל במיוחד ללמד הרגלים נכונים — עשיית צרכים, הליכה ברצועה, התנהגות נאותה ליד ילדים וכלבים.</div>
+    <div class="remember-box">פחד ← חיברות (הכי חשובה!) ← מעבר ← יילודית | חוויות חיוביות בחיברות = כלב בריא!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">איזו תקופה היא החשובה ביותר מבחינה התנהגותית?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">א</span>התקופה היילודית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s1q')"><span class="opt-letter">ב</span>תקופת המעבר</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s1q')"><span class="opt-letter">ג</span>תקופת החיברות</button>
+    </div>
+    <div class="feedback" id="fb-s1q"></div>
+  </div>
+</div>
+
+<!-- S2: הגישה ההתנהגותית -->
+<div class="screen" id="screen-2">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+    <span class="chapter-num">פרק 2</span><span class="emoji">🔬</span>
+    <h1>הגישה ההתנהגותית</h1>
+    <p class="subtitle">גירוי ← תגובה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר את הגישה ההתנהגותית ואת הקשר בין גירוי לתגובה.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">הגישה ההתנהגותית מתמקדת ב<strong>התנהגות הגלויה</strong>, כלומר מה שאפשר לראות ולמדוד. לפי גישה זו, ההתנהגות מושפעת בעיקר מהסביבה ומהתוצאות שהיא מייצרת.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">התנהגות מושפעת מהסביבה ומהתוצאות שלה</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/hitnahagut.png" alt="הגישה ההתנהגותית" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div class="section-title">🔑 עיקרון מרכזי</div>
+    <div style="display:flex;gap:12px;align-items:center;background:#dbeafe;border-right:4px solid #0369a1;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+      <div style="display:flex;gap:8px;align-items:center;font-size:16px;font-weight:800;justify-content:center;flex-wrap:wrap;gap:12px">
+        <span style="background:#0369a1;color:white;border-radius:10px;padding:8px 16px">גירוי</span>
+        <span style="font-size:20px;color:#0369a1">←</span>
+        <span style="background:#059669;color:white;border-radius:10px;padding:8px 16px">תגובה</span>
+        <span style="font-size:20px;color:#374151">←</span>
+        <span style="background:#d97706;color:white;border-radius:10px;padding:8px 16px">תוצאה</span>
+      </div>
+    </div>
+    <div class="highlight yellow" style="font-size:15px">
+      💡 <strong>דוגמאות</strong><br>
+      כלב קופץ ← מקבל תשומת לב ← התנהגות מתחזקת<br>
+      כלב יושב ← מקבל חטיף ← ישיבה מתחזקת
+    </div>
+    <div class="highlight green" style="font-size:15px">🏆 <strong>למה זה חשוב?</strong> הגישה ההתנהגותית היא הבסיס לאילוף המודרני ומאפשרת להבין כיצד התנהגות נוצרת וכיצד אפשר לשנות אותה באופן שיטתי.</div>
+    <div class="remember-box">גירוי ← תגובה ← תוצאה | התנהגות מתחזקת בגלל תוצאות חיוביות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">הגישה ההתנהגותית עוסקת בתהליכים נפשיים פנימיים שאי אפשר לראות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf2a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf2a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf2a"></div>
+  </div>
+</div>
+
+<!-- S3: אינסטינקט ורפלקס -->
+<div class="screen" id="screen-3">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#9f1239)">
+    <span class="chapter-num">פרק 3</span><span class="emoji">⚡</span>
+    <h1>אינסטינקט ורפלקס</h1>
+    <p class="subtitle">תגובות מולדות — מה ההבדל?</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהם אינסטינקט ורפלקס ולתאר את ההבדל ביניהם.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">חלק מהתנהגויות הכלב הן <strong>מולדות ואוטומטיות</strong> ולא נלמדו ולא ניתן להעלים אותן לחלוטין. הבנת מה מולד ומה נלמד מאפשרת למאלף לדעת במה ניתן לעבוד ומה טבוע בטבעו של הכלב. למשל, כלב שרודף אחרי תנועה, זו תגובה מולדת. אפשר ללמד אותו לשלוט בה, אך לא להעלים אותה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">אינסטינקט ורפלקס הם תגובות מולדות</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/reflex.png" alt="אינסטינקט ורפלקס" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚡</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">אינסטינקט</span>
+            <span style="background:#fee2e2;color:#dc2626;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">רצף פעולות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #fca5a5">
+            תגובה <strong>לא נלמדת ומולדת</strong>, האופיינית לבני מין מסוים. מופעלת בעקבות גירוי ויכולה לכלול <strong>רצף שלם של פעולות אוטומטיות</strong>.
+            <div style="margin-top:10px">
+              <div style="font-size:13px;font-weight:800;color:#9f1239;margin-bottom:6px">מאפיינים</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">מולד</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">לא דורש למידה</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">משותף לבני המין</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">שרשרת תגובות</span>
+              </div>
+              <div style="font-size:13px;font-weight:800;color:#9f1239;margin-bottom:6px">דוגמאות</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">יצר ציד</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">מרדף אחרי תנועה</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">חיפוש מזון</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">שמירת טריטוריה</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚡</span>
+            <span style="font-weight:800;font-size:15px;color:#0369a1">רפלקס</span>
+            <span style="background:#dbeafe;color:#0369a1;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">תגובה אחת</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:12px 16px 14px;font-size:15px;color:#374151;line-height:1.7;border-top:2px solid #93c5fd">
+            תגובה <strong>אוטומטית, מהירה ובלתי רצונית</strong> לגירוי. בניגוד לאינסטינקט, רפלקס הוא <strong>תגובה אחת, פשוטה ומידית</strong>.
+            <div style="margin-top:10px">
+              <div style="font-size:13px;font-weight:800;color:#1e40af;margin-bottom:6px">מאפיינים</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">אוטומטי</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">בלתי רצוני</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px 10px;font-weight:700">מהיר מאוד</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">מולד</span>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:700">תגובה ישירה</span>
+              </div>
+              <div style="font-size:13px;font-weight:800;color:#1e40af;margin-bottom:6px">דוגמאות</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">מצמוץ מגירוי</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">משיכת איבר מכאב</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">בהלה מרעש</span>
+                <span style="background:#fef9c3;color:#713f12;border-radius:10px;padding:4px 10px;font-size:14px;font-weight:600;border:1px solid #fcd34d">ריור למראה מזון</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">⚖️ ההבדל המרכזי</div>
+    <table class="info-table">
+      <tr><th></th><th>⚡ אינסטינקט</th><th>⚡ רפלקס</th></tr>
+      <tr><td><strong>מורכבות</strong></td><td>רצף פעולות</td><td>תגובה אחת</td></tr>
+      <tr><td><strong>מהירות</strong></td><td>יכול להימשך</td><td>מידי ומהיר</td></tr>
+      <tr><td><strong>מולד?</strong></td><td>✅ כן</td><td>✅ כן</td></tr>
+    </table>
+    <div class="remember-box">אינסטינקט = רצף מורכב (ציד) | רפלקס = תגובה אחת מהירה (מצמוץ)!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence">רפלקס הוא תגובה <span class="fill-blank" onclick="revealBlank(this,'אחת')">____</span>, <span class="fill-blank" onclick="revealBlank(this,'מהירה')">_______</span> ואוטומטית, בעוד אינסטינקט הוא דפוס התנהגות <span class="fill-blank" onclick="revealBlank(this,'מורכב')">_______</span> שיכול לכלול <span class="fill-blank" onclick="revealBlank(this,'רצף פעולות')">____________</span>.</div>
+  </div>
+</div>
+
+<!-- S4: למידה -->
+<div class="screen" id="screen-4">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#0f766e)">
+    <span class="chapter-num">פרק 4</span><span class="emoji">📚</span>
+    <h1>למידה</h1>
+    <p class="subtitle">שינוי בהתנהגות בעקבות ניסיון</p>
+  </div>
+  <div class="goal-box">אני אוכל להגדיר למידה ולהסביר מדוע היא חשובה לכלב.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">למידה היא התהליך שבו הכלב משנה את התנהגותו בעקבות ניסיון. בניגוד לאינסטינקט ורפלקס שהם מולדים, למידה היא תהליך <strong>נרכש ומושפע מהסביבה</strong>. כל מפגש של הכלב עם העולם הוא הזדמנות ללמידה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">למידה = שינוי קבוע יחסית בהתנהגות, או ביכולת להתנהג בדרך מסוימת, בעקבות ניסיון</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/lemida.png" alt="למידה" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div class="grid-2">
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#d1fae5;border-right:4px solid #059669;border-radius:10px;padding:12px">
+        <span style="font-size:20px">🎯</span>
+        <div><div style="font-weight:800;font-size:15px;color:#065f46">ניסיון ישיר</div><div style="font-size:15px;color:#374151">הכלב חווה משהו בעצמו</div></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#dbeafe;border-right:4px solid #0369a1;border-radius:10px;padding:12px">
+        <span style="font-size:20px">🔗</span>
+        <div><div style="font-weight:800;font-size:15px;color:#1e40af">ניסיון מתווך</div><div style="font-size:15px;color:#374151">לומד דרך קשרים בין אירועים</div></div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:4px">🐕 למה למידה חשובה לכלב?</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+      <div style="background:white;border-radius:12px;border:2px solid #86efac;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <span style="font-size:15px;color:#374151">מאפשרת <strong>הסתגלות לסביבה</strong></span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #93c5fd;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <span style="font-size:15px;color:#374151">עוזרת לקשר בין <strong>פעולות לתוצאות</strong></span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #c4b5fd;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <span style="font-size:15px;color:#374151">מאפשרת <strong>פיתוח הרגלים</strong> ורכישת תגובות חדשות</span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #fbbf24;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#d97706;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <span style="font-size:15px;color:#374151">בסיס לאילוף: <strong>לחזק רצוי ולהפחית לא רצוי</strong></span>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:4px">📅 כלב לומד לאורך כל חייו</div>
+    <div style="display:flex;gap:10px;margin-bottom:14px">
+      <div style="flex:1;background:#d1fae5;border-radius:14px;padding:14px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🐾</div>
+        <div style="font-weight:900;font-size:15px;color:#065f46;margin-bottom:6px">גיל צעיר</div>
+        <div style="background:white;border-radius:99px;padding:4px 10px;font-size:15px;font-weight:700;color:#059669;margin-bottom:8px;display:inline-block">לומד מהר יותר</div>
+        <div style="font-size:15px;color:#374151;line-height:1.6;text-align:right">המוח גמיש וסקרן. כדאי <strong>להתחיל מוקדם ככל האפשר</strong>.</div>
+      </div>
+      <div style="flex:1;background:#dbeafe;border-radius:14px;padding:14px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🐕</div>
+        <div style="font-weight:900;font-size:15px;color:#1e40af;margin-bottom:6px">גיל מבוגר</div>
+        <div style="background:white;border-radius:99px;padding:4px 10px;font-size:15px;font-weight:700;color:#0369a1;margin-bottom:8px;display:inline-block">אפשרי, אך איטי יותר</div>
+        <div style="font-size:15px;color:#374151;line-height:1.6;text-align:right">כלב מבוגר יכול ללמוד, אך דורש <strong>עקביות וסבלנות</strong>.</div>
+      </div>
+    </div>
+
+    <div class="section-title">🧬 השפעת אופי וגנטיקה על הלמידה</div>
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">לא כל הכלבים לומדים אותו הדבר באותה קלות. <strong>הגנטיקה והאופי</strong> משפיעים על:</p>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+      <div style="background:white;border-radius:12px;border:2px solid #86efac;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#059669;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:15px;color:#374151"><strong>מהירות הלמידה</strong>: כלב אינטליגנטי יקלוט מהר יותר</span>
+          <span style="background:#d1fae5;color:#065f46;border-radius:10px;padding:3px 10px;font-size:14px;font-weight:700;display:inline-block">אינטליגנציה = מהירות קליטה</span>
+        </div>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #93c5fd;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#0369a1;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:15px;color:#374151"><strong>סוג הלמידה המתאים</strong>: כלב בעל יצר ציד גבוה ילמד בקלות עם צעצוע</span>
+          <span style="background:#dbeafe;color:#1e40af;border-radius:10px;padding:3px 10px;font-size:14px;font-weight:700;display:inline-block">האופי קובע את שיטת הלמידה המתאימה</span>
+        </div>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #c4b5fd;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="background:#7c3aed;color:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">✓</span>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:15px;color:#374151"><strong>מוטיבציה</strong>: כלב גרגרן ילמד מהר עם פינוקים; כלב חברתי עם ליטוף ומשחק</span>
+          <span style="background:#ede9fe;color:#5b21b6;border-radius:10px;padding:3px 10px;font-size:14px;font-weight:700;display:inline-block">גרגרן = פינוקים | חברתי = ליטוף ומשחק</span>
+        </div>
+      </div>
+    </div>
+    <div class="remember-box">למידה = שינוי קבוע + ניסיון | ישיר (חווה) או מתווך (קשרים) | בסיס לאילוף!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">למידה היא שינוי זמני בהתנהגות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf4a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf4a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf4a"></div>
+  </div>
+</div>
+
+<!-- S5: התניה קלאסית -->
+<div class="screen" id="screen-5">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#b45309,#d97706)">
+    <span class="chapter-num">פרק 5</span><span class="emoji">🔔</span>
+    <h1>התניה קלאסית</h1>
+    <p class="subtitle">למידה דרך קשר בין גירויים</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר התניה קלאסית ולתאר את 5 המושגים המרכזיים.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">התניה קלאסית היא סוג למידה שבו הכלב <strong>יוצר קישור אסוציאטיבי בין שני גירויים</strong>. גירוי שתחילה אינו מעורר תגובה — לאחר שמוצג שוב ושוב יחד עם גירוי שכן מעורר תגובה — מתחיל בעצמו לעורר את אותה התגובה. התופעה התגלתה על ידי <strong>פבלוב</strong>, חוקר רוסי שחקר את מערכת העיכול של כלבים וגילה זאת במקרה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">התניה קלאסית = למידה באמצעות יצירת קישור אסוציאטיבי בין שני גירויים</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/pavlov.png" alt="ניסוי פבלוב - התניה קלאסית" style="width:100%;border-radius:12px;display:block;margin-bottom:14px"/>
+    <div class="section-title">🔬 ניסוי פבלוב</div>
+    <div class="highlight purple" style="font-size:15px;margin-bottom:12px">
+      פבלוב היה <strong>פיזיולוג רוסי</strong> שחקר את מערכת העיכול של כלבים. במהלך מחקריו הוא שם לב לדבר מפתיע: הכלבים <strong>התחילו לרייר עוד לפני שהאוכל הגיע</strong> — כשראו את הטכנאי שהאכיל אותם בדרך כלל, או כששמעו צלילים שקשרו לאכילה.<br>
+      פבלוב הבין שהכלבים <strong>למדו לקשר</strong> גירוי ניטרלי (צליל, אדם) לאוכל — וזה שינה את תגובתם. הוא החליט לחקור זאת שיטתית ובנה ניסוי עם פעמון.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0">1</span>
+            <span style="font-weight:800;font-size:15px;color:#1e40af">לפני הלמידה</span>
+            <span style="background:#dbeafe;color:#1e40af;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">לפני האימון</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #93c5fd">
+            <div style="margin-bottom:8px">🍖 <strong>אוכל</strong> מוצג לכלב ← הכלב <strong>מרייר מיד</strong> — תגובה מולדת, ללא כל למידה.</div>
+            <div style="margin-bottom:8px">🔔 <strong>פעמון</strong> מצלצל ← הכלב <strong>לא מרייר</strong> — הפעמון עדיין לא אומר לו כלום.</div>
+            <div style="background:#eff6ff;border-radius:8px;padding:8px 12px;font-size:15px;color:#374151">📌 בשלב זה: אוכל = גירוי בלתי מותנה | ריור = תגובה בלתי מותנית | פעמון = גירוי ניטרלי</div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #34d399;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0">2</span>
+            <span style="font-weight:800;font-size:15px;color:#065f46">בזמן האימון</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">חזרות רבות</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #34d399">
+            <div style="margin-bottom:8px">🔔+🍖 <strong>פעמון ואוכל מוצגים יחד</strong> — שוב ושוב, כחזרות רבות.</div>
+            <div style="margin-bottom:8px">הכלב מתחיל לקשר בין שני הגירויים: <strong>"פעמון = אוכל עומד להגיע"</strong>.</div>
+            <div style="background:#f0fdf4;border-radius:8px;padding:8px 12px;font-size:15px;color:#374151">📌 בשלב זה נוצר בהדרגה קשר אסוציאטיבי במוח הכלב בין הפעמון לאוכל.</div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0">3</span>
+            <span style="font-weight:800;font-size:15px;color:#92400e">אחרי הלמידה</span>
+            <span style="background:#fef3c7;color:#92400e;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">הקשר נוצר!</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #fbbf24">
+            <div style="margin-bottom:8px">🔔 <strong>פעמון בלבד</strong> מצלצל (ללא אוכל) ← הכלב <strong>מרייר!</strong></div>
+            <div style="margin-bottom:8px">הפעמון הפך ל<strong>גירוי מותנה</strong> — הכלב למד לצפות לאוכל כששומע אותו. הריור בתגובה לפעמון הוא <strong>תגובה מותנית</strong>.</div>
+            <div style="background:#fffbeb;border-radius:8px;padding:8px 12px;font-size:15px;color:#374151">📌 בשלב זה: פעמון = גירוי מותנה | ריור מפעמון = תגובה מותנית</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title">📋 5 מושגים מרכזיים</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+      <span style="background:#fee2e2;border:2px solid #fca5a5;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700">גירוי בלתי מותנה<br><span style="font-weight:400">מעורר תגובה טבעית</span></span>
+      <span style="background:#d1fae5;border:2px solid #34d399;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700">תגובה בלתי מותנית<br><span style="font-weight:400">מולדת, ללא למידה</span></span>
+      <span style="background:#f1f5f9;border:2px solid #94a3b8;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700">גירוי ניטרלי<br><span style="font-weight:400">לא מעורר תחילה</span></span>
+      <span style="background:#fef3c7;border:2px solid #fbbf24;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700">גירוי מותנה<br><span style="font-weight:400">לאחר הלמידה</span></span>
+      <span style="background:#dbeafe;border:2px solid #93c5fd;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:700">תגובה מותנית<br><span style="font-weight:400">נלמדת</span></span>
+    </div>
+    <div class="highlight blue" style="font-size:15px">💡 <strong>חשיבות באילוף:</strong> כלב שומע צליל רצועה ומתרגש — כי למד שהוא מנבא טיול. כלב שמפחד ממרפאה — כי קישר אותה לחוויה לא נעימה.</div>
+    <div class="remember-box">פבלוב: אוכל+פעמון → ריור מפעמון | גירוי ניטרלי הופך למותנה!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">בניסוי פבלוב — מה היה הגירוי הניטרלי?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s5q')"><span class="opt-letter">א</span>הפעמון</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s5q')"><span class="opt-letter">ב</span>האוכל</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s5q')"><span class="opt-letter">ג</span>הריור</button>
+    </div>
+    <div class="feedback" id="fb-s5q"></div>
+  </div>
+</div>
+
+<!-- S6: התניה אופרנטית -->
+<div class="screen" id="screen-6">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#0c4a6e)">
+    <span class="chapter-num">פרק 6</span><span class="emoji">🎯</span>
+    <h1>התניה אופרנטית</h1>
+    <p class="subtitle">למידה לפי תוצאות</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהי התניה אופרנטית ולתת דוגמאות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">התניה אופרנטית היא סוג למידה שבו הכלב לומד לפי <strong>תוצאות ההתנהגות שלו</strong>. פעולה שמשתלמת — תחזור ותתחזק. פעולה שאינה משתלמת — תחלש ותיעלם. זוהי למידה של <strong>ניסוי וטעייה</strong>, שפותחה ונחקרה על ידי הפסיכולוג האמריקאי ב.פ. סקינר.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">התניה אופרנטית = הכלב לומד לפי תוצאות ההתנהגות שלו. למידה של ניסוי וטעייה.</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/skiner.png" alt="ניסוי סקינר - התניה אופרנטית" style="width:100%;border-radius:12px;display:block;margin-bottom:14px"/>
+    <div class="highlight purple" style="font-size:15px;margin-bottom:14px">
+      <strong>ב.פ. סקינר</strong> — פסיכולוג אמריקאי — פיתח את תיאוריית ההתניה האופרנטית. הוא ניסה עם חיות בתיבה מיוחדת ("תיבת סקינר") שבה החיה לחצה על מנוף ומיד קיבלה אוכל. הוא גילה שחיות <strong>לומדות להגדיל התנהגות שמשתלמת</strong> ולהפחית התנהגות שלא.
+    </div>
+    <div class="section-title">🔑 4 כלים של התניה אופרנטית
+      <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700;margin-right:6px">הוספה</span>
+      <span style="background:#fee2e2;color:#991b1b;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700">הורדה</span>
+    </div>
+    <div class="highlight yellow" style="font-size:15px;margin-bottom:10px">
+      ⚠️ <strong>זכור:</strong> + = <strong>מוסיפים</strong> | − = <strong>מסירים</strong> | אין קשר לטוב או רע!
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #86efac;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#059669;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">📈</span>
+            <span style="font-weight:800;font-size:15px;color:#065f46">חיזוק חיובי</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מוסיפים</span>
+            <span style="background:#6ee7b7;color:#064e3b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מתחזקת</span>
+          </div>
+          <span class="toggle-arrow" style="color:#059669;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #86efac">
+            <div style="margin-bottom:8px"><strong>מוסיפים</strong> משהו לסיטואציה ← ההתנהגות <strong>מתחזקת</strong>.</div>
+            <div style="background:#d1fae5;border-radius:8px;padding:8px 12px;">🔹 כלב יושב ← מקבל חטיף → יושב שוב בפעם הבאה</div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #93c5fd;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#0369a1;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">📈</span>
+            <span style="font-weight:800;font-size:15px;color:#1e40af">חיזוק שלילי</span>
+            <span style="background:#fee2e2;color:#991b1b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מסירים</span>
+            <span style="background:#6ee7b7;color:#064e3b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מתחזקת</span>
+          </div>
+          <span class="toggle-arrow" style="color:#0369a1;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #93c5fd">
+            <div style="margin-bottom:8px"><strong>מסירים</strong> משהו מהסיטואציה ← ההתנהגות <strong>מתחזקת</strong>.</div>
+            <div style="background:#dbeafe;border-radius:8px;padding:8px 12px;">🔹 כלב הולך ליד ← רצועה נרפית → ימשיך ללכת ליד</div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fca5a5;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#dc2626;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">📉</span>
+            <span style="font-weight:800;font-size:15px;color:#dc2626">עונש חיובי</span>
+            <span style="background:#d1fae5;color:#065f46;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מוסיפים</span>
+            <span style="background:#fee2e2;color:#991b1b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">נחלשת</span>
+          </div>
+          <span class="toggle-arrow" style="color:#dc2626;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #fca5a5">
+            <div style="margin-bottom:8px"><strong>מוסיפים</strong> משהו לסיטואציה ← ההתנהגות <strong>נחלשת</strong>.</div>
+            <div style="background:#fee2e2;border-radius:8px;padding:8px 12px;">🔹 כלב קופץ ← קול "לא!" → יפסיק לקפוץ</div>
+          </div>
+        </div>
+      </div>
+
+      <div onclick="toggleGoal(this)" style="background:white;border-radius:12px;border:2px solid #fbbf24;cursor:pointer;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;user-select:none">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:#d97706;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0">📉</span>
+            <span style="font-weight:800;font-size:15px;color:#92400e">עונש שלילי</span>
+            <span style="background:#fee2e2;color:#991b1b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">מסירים</span>
+            <span style="background:#fee2e2;color:#991b1b;border-radius:99px;padding:2px 10px;font-size:15px;font-weight:700">נחלשת</span>
+          </div>
+          <span class="toggle-arrow" style="color:#d97706;font-size:16px;transition:transform .3s">▼</span>
+        </div>
+        <div class="goal-body" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+          <div style="padding:0 16px 14px;font-size:15px;color:#374151;line-height:1.8;border-top:1px solid #fbbf24">
+            <div style="margin-bottom:8px"><strong>מסירים</strong> משהו מהסיטואציה ← ההתנהגות <strong>נחלשת</strong>.</div>
+            <div style="background:#fef3c7;border-radius:8px;padding:8px 12px;">🔹 כלב נובח ← בעלים עוזב החדר → יפסיק לנבוח</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight green" style="font-size:15px">🏆 <strong>חשיבות:</strong> רוב האילוף המעשי מבוסס על התניה אופרנטית — מאפשרת לעצב התנהגויות בצורה ברורה.</div>
+    <div class="remember-box">חיזוק = מתחזק | עונש = נחלש | חיובי = מוסיפים | שלילי = מסירים!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">בהתניה אופרנטית הכלב לומד קשר בין שני גירויים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf6a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf6a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf6a"></div>
+  </div>
+</div>
+
+<!-- S7: חיזוק חיובי -->
+<div class="screen" id="screen-7">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#065f46)">
+    <span class="chapter-num">פרק 7</span><span class="emoji">✅</span>
+    <h1>חיזוק חיובי</h1>
+    <p class="subtitle">מוסיפים משהו לסיטואציה</p>
+  </div>
+  <div class="goal-box">אני אוכל להגדיר חיזוק חיובי ולתת דוגמאות.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">חיזוק חיובי הוא כאשר <strong>מוסיפים משהו לסיטואציה</strong> לאחר התנהגות, וכתוצאה מכך ההתנהגות <strong>מתחזקת</strong>. חשוב לדעת: "חיובי" לא אומר נעים בהכרח, אלא פשוט שמוסיפים משהו לסביבה.</p>
+    <img src="https://bagruyot.org/haklaut/bg/limud/hiyuvi.png" alt="חיזוק חיובי" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">חיובי = מוסיפים משהו לסיטואציה ← ההתנהגות מתחזקת</span></div>
+    <div class="section-title">🔹 דוגמאות</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+      <div style="background:white;border-radius:12px;border:2px solid #86efac;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px;flex-shrink:0">🦴</span>
+        <span style="font-size:15px;color:#374151"><strong>כלב יושב</strong> ← מקבל חטיף</span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #93c5fd;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px;flex-shrink:0">🤚</span>
+        <span style="font-size:15px;color:#374151"><strong>כלב בא כשקוראים</strong> ← מקבל ליטוף / משחק</span>
+      </div>
+      <div style="background:white;border-radius:12px;border:2px solid #fbbf24;padding:12px 16px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px;flex-shrink:0">🏃</span>
+        <span style="font-size:15px;color:#374151"><strong>כלב הולך יפה ליד הבעלים</strong> ← מקבל חיזוק</span>
+      </div>
+    </div>
+    <div style="margin-bottom:14px"><span style="background:#d1fae5;color:#065f46;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">💡 חשוב: "חיובי" לא אומר "טוב" אלא שמוסיפים גירוי לסיטואציה</span></div>
+    <div class="remember-box">חיובי = מוסיפים משהו לסיטואציה (נעים או לא נעים) ← התנהגות מתחזקת!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">כלב קופץ ומקבל תשומת לב. זה דוגמה ל...</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q')"><span class="opt-letter">א</span>עונש — כי הקפיצה לא רצויה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s7q')"><span class="opt-letter">ב</span>חיזוק שלילי — כי מסירים משהו</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','s7q')"><span class="opt-letter">ג</span>חיזוק חיובי — כי מוסיפים תשומת לב, ולכן הקפיצה תתחזק</button>
+    </div>
+    <div class="feedback" id="fb-s7q"></div>
+  </div>
+</div>
+
+<!-- S8: חיזוק שלילי -->
+<div class="screen" id="screen-8">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0369a1,#7c3aed)">
+    <span class="chapter-num">פרק 8</span><span class="emoji">➖</span>
+    <h1>חיזוק שלילי</h1>
+    <p class="subtitle">מסירים משהו מהסיטואציה</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר חיזוק שלילי ולהבחין אותו מעונש.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">חיזוק שלילי הוא כאשר <strong>מסירים משהו מהסיטואציה</strong> לאחר התנהגות, וכתוצאה מכך ההתנהגות <strong>מתחזקת</strong>. חשוב לדעת: "שלילי" לא אומר רע בהכרח, אלא פשוט שמסירים משהו מהסביבה.</p>
+    <div style="margin-bottom:16px"><span style="background:#fef9c3;color:#713f12;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">שלילי = מורידים משהו מהסיטואציה ← ההתנהגות מתחזקת</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/shlili.png" alt="חיזוק שלילי" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#dbeafe;border-right:4px solid #0369a1;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+      <span style="font-size:26px;flex-shrink:0">➖</span>
+      <div>
+        <div style="font-weight:800;font-size:15px;color:#1e40af;margin-bottom:4px">חיזוק שלילי</div>
+        <div style="font-size:15px;color:#374151;line-height:1.7"><strong>מסירים</strong> משהו מהסיטואציה אחרי ההתנהגות ← ההתנהגות <strong>מתחזקת</strong>.</div>
+      </div>
+    </div>
+    <div class="highlight yellow" style="font-size:15px">💡 <strong>דוגמה:</strong> מופעל לחץ בסיטואציה. כשהכלב מבצע את ההתנהגות הרצויה, הלחץ נפסק. הכלב לומד לבצע כדי להסיר את הלחץ.</div>
+    <div class="section-title" style="margin-top:4px">⚖️ חיזוק שלילי ≠ עונש!</div>
+    <table class="info-table">
+      <tr><th></th><th>➖ חיזוק שלילי</th><th>⛔ עונש</th></tr>
+      <tr><td><strong>מה קורה?</strong></td><td>מסירים משהו</td><td>מוסיפים משהו / לוקחים משהו</td></tr>
+      <tr><td><strong>תוצאה</strong></td><td><span style="background:#d1fae5;color:#065f46;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5;word-break:keep-all">התנהגות מתחזקת</span></td><td><span style="background:#fee2e2;color:#9f1239;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5;word-break:keep-all">התנהגות נחלשת</span></td></tr>
+    </table>
+    <div class="remember-box">שלילי = מסירים משהו מהסיטואציה ← ההתנהגות עדיין מתחזקת (≠ עונש)!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">חיזוק שלילי ועונש שניהם גורמים להתנהגות להיחלש.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','tf8a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','tf8a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-tf8a"></div>
+  </div>
+</div>
+
+<!-- S9: עונש -->
+<div class="screen" id="screen-9">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#dc2626,#7f1d1d)">
+    <span class="chapter-num">פרק 9</span><span class="emoji">⛔</span>
+    <h1>עונש</h1>
+    <p class="subtitle">הפחתת תדירות ההתנהגות</p>
+  </div>
+  <div class="goal-box">אני אוכל להסביר מהו עונש ולהבין את הסיכונים בשימוש לא נכון בו.</div>
+  <div class="card">
+    <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:12px;">עונש הוא כלי שמטרתו <strong>להפחית התנהגות</strong>. בניגוד לחיזוק שמחזק התנהגות, עונש פועל בכיוון ההפוך. עם זאת, עונש לא מלמד את הכלב מה כן לעשות, ושימוש לא נכון בו עלול לגרום נזק.</p>
+    <div style="margin-bottom:16px"><span style="background:#fee2e2;color:#9f1239;border-radius:12px;padding:8px 16px;font-size:15px;font-weight:700;display:inline-block;line-height:1.6">אחרי ההתנהגות מופיע משהו, או נלקח משהו ← ההתנהגות נחלשת</span></div>
+    <img src="https://bagruyot.org/haklaut/bg/limud/onesh.png" alt="עונש" style="width:100%;border-radius:12px;display:block;margin-bottom:16px"/>
+    <div style="background:white;border:2px solid #fca5a5;border-radius:14px;padding:16px;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:800;color:#dc2626;margin-bottom:8px">⚠️ מה חשוב לדעת</div>
+      <p style="font-size:15px;color:#374151;line-height:1.7;margin-bottom:12px">עונש עשוי לעצור התנהגות ברגע מסוים, אך <strong>לא מלמד מה כן לעשות</strong>.</p>
+      <div style="font-size:14px;font-weight:700;color:#9f1239;margin-bottom:8px">שימוש לא נכון עלול לגרום:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">😨 פחד</span>
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">😰 לחץ</span>
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">😵 בלבול</span>
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">💔 פגיעה בקשר</span>
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">😤 תוקפנות</span>
+        <span style="background:#fee2e2;color:#9f1239;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700">🙈 הימנעות</span>
+      </div>
+    </div>
+    <div class="highlight green" style="font-size:15px">🏆 <strong>באילוף מודרני:</strong> מעדיפים לחזק התנהגויות <strong>רצויות</strong> במקום להסתמך על ענישה.</div>
+    <div class="remember-box">עונש = מפחית התנהגות | לא מלמד מה כן לעשות | חיזוק עדיף על עונש!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלה</div>
+    <p style="margin-bottom:14px;font-size:15px">מה הסיכון העיקרי בשימוש לא נכון בעונש?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','s9q')"><span class="opt-letter">א</span>פחד, לחץ, בלבול ופגיעה בקשר</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ב</span>הכלב ישכח את ההתנהגות לחלוטין</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','s9q')"><span class="opt-letter">ג</span>הכלב ילמד מהר יותר</button>
+    </div>
+    <div class="feedback" id="fb-s9q"></div>
+  </div>
+</div>
+
+<!-- S10: השוואות -->
+<div class="screen" id="screen-10">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#475569,#1e293b)">
+    <span class="chapter-num">פרק 10</span><span class="emoji">⚖️</span>
+    <h1>השוואת המושגים</h1>
+    <p class="subtitle">טבלאות מסכמות</p>
+  </div>
+  <div class="goal-box">אני אוכל להבחין בין כל המושגים שלמדנו.</div>
+  <div class="card">
+
+    <div style="margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="background:#0369a1;color:white;border-radius:8px;padding:4px 12px;font-weight:800;font-size:13px">1</span>
+        <span style="font-weight:800;font-size:16px;color:#0369a1">אינסטינקט / רפלקס / למידה</span>
+      </div>
+      <table class="info-table" style="margin-bottom:0">
+        <tr><th style="background:#0369a1"></th><th style="background:#0369a1">⚡ אינסטינקט</th><th style="background:#0369a1">⚡ רפלקס</th><th style="background:#0369a1">📚 למידה</th></tr>
+        <tr><td><strong>מקור</strong></td><td>מולד</td><td>מולד</td><td>מניסיון</td></tr>
+        <tr><td><strong>מורכבות</strong></td><td>רצף פעולות</td><td>תגובה אחת</td><td>שינוי קבוע</td></tr>
+        <tr><td><strong>דוגמה</strong></td><td>יצר ציד</td><td>מצמוץ</td><td>שב בפקודה</td></tr>
+      </table>
+    </div>
+
+    <div style="margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="background:#d97706;color:white;border-radius:8px;padding:4px 12px;font-weight:800;font-size:13px">2</span>
+        <span style="font-weight:800;font-size:16px;color:#d97706">התניה קלאסית מול אופרנטית</span>
+      </div>
+      <table class="info-table" style="margin-bottom:0">
+        <tr><th style="background:#d97706"></th><th style="background:#d97706">🔔 קלאסית</th><th style="background:#d97706">🎯 אופרנטית</th></tr>
+        <tr><td><strong>מה לומדים?</strong></td><td>קשר בין 2 גירויים</td><td>תוצאות ההתנהגות</td></tr>
+        <tr><td><strong>מי גילה?</strong></td><td>פבלוב</td><td>סקינר</td></tr>
+        <tr><td><strong>דוגמה</strong></td><td>פעמון → ריור</td><td>שב → חטיף</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="background:#7c3aed;color:white;border-radius:8px;padding:4px 12px;font-weight:800;font-size:13px">3</span>
+        <span style="font-weight:800;font-size:16px;color:#7c3aed">חיזוק חיובי / שלילי / עונש</span>
+      </div>
+      <table class="info-table" style="margin-bottom:0">
+        <tr><th style="background:#7c3aed"></th><th style="background:#7c3aed">מה קורה?</th><th style="background:#7c3aed">תוצאה</th></tr>
+        <tr style="background:#f0fdf4"><td>✅ <strong>חיזוק חיובי</strong></td><td><span style="background:#d1fae5;color:#065f46;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5">מוסיפים</span></td><td><span style="background:#d1fae5;color:#065f46;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5">מתחזק</span></td></tr>
+        <tr style="background:#eff6ff"><td>➖ <strong>חיזוק שלילי</strong></td><td><span style="background:#fee2e2;color:#9f1239;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5">מורידים</span></td><td><span style="background:#d1fae5;color:#065f46;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5">מתחזק</span></td></tr>
+        <tr style="background:#fff5f5"><td>⛔ <strong>עונש</strong></td><td><span style="background:#fef9c3;color:#713f12;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5;word-break:keep-all">מוסיפים או מורידים</span></td><td><span style="background:#fee2e2;color:#9f1239;border-radius:8px;padding:3px 8px;font-size:14px;font-weight:700;display:inline-block;line-height:1.5">נחלש</span></td></tr>
+      </table>
+    </div>
+
+    <div class="remember-box" style="margin-top:16px">חיזוק (+ ו−) = מתחזק | עונש = נחלש | קלאסית = גירויים | אופרנטית = תוצאות!</div>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 התאמה</div>
+    <div id="match-s10" class="match-container">
+      <div class="match-col" id="s10-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'s10')">חיזוק חיובי</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'s10')">חיזוק שלילי</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'s10')">עונש</div>
+      </div>
+      <div class="match-col" id="s10-right">
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'s10')">מפחית התנהגות</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'s10')">מוסיפים משהו נעים</div>
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'s10')">מסירים משהו</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-s10match"></div>
+  </div>
+</div>
+
+<!-- S11: מילון -->
+<div class="screen" id="screen-11">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e40af,#0369a1)">
+    <span class="chapter-num">מילון</span><span class="emoji">📚</span>
+    <h1>מילון מונחים</h1>
+  </div>
+  <div id="flashcard-area">
+    <div class="flashcard-container"><div class="flashcard" id="fc" onclick="flipCard()"><div class="flashcard-front"><div class="term" id="fc-term"></div><div class="hint">לחץ לגלות הסבר</div></div><div class="flashcard-back"><div class="def" id="fc-def"></div></div></div></div>
+    <div class="flashcard-nav"><button onclick="prevCard()">▶ קודם</button><span class="flashcard-counter" id="fc-counter">1 / 14</span><button onclick="nextCard()">הבא ◀</button></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 כל המונחים</div>
+    <div class="glossary-item"><div class="glossary-term">🐶 תקופה קריטית</div><div class="glossary-def">שלב בהתפתחות שבו לחוויות יש השפעה חזקה על ההתנהגות בעתיד.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔬 גישה התנהגותית</div><div class="glossary-def">מתמקדת בהתנהגות גלויה ובקשר גירוי-תגובה-תוצאה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚡ אינסטינקט</div><div class="glossary-def">תגובה מולדת ולא נלמדת, יכולה לכלול רצף פעולות.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⚡ רפלקס</div><div class="glossary-def">תגובה אחת, אוטומטית ומהירה לגירוי. מולד.</div></div>
+    <div class="glossary-item"><div class="glossary-term">📚 למידה</div><div class="glossary-def">שינוי קבוע יחסית בהתנהגות בעקבות ניסיון.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔔 התניה קלאסית</div><div class="glossary-def">למידה דרך קישור בין שני גירויים (פבלוב).</div></div>
+    <div class="glossary-item"><div class="glossary-term">🔴 גירוי בלתי מותנה</div><div class="glossary-def">מעורר תגובה טבעית ללא למידה (אוכל).</div></div>
+    <div class="glossary-item"><div class="glossary-term">⬜ גירוי ניטרלי</div><div class="glossary-def">לא מעורר תגובה בתחילה (פעמון).</div></div>
+    <div class="glossary-item"><div class="glossary-term">🟡 גירוי מותנה</div><div class="glossary-def">גירוי שהיה ניטרלי, קיבל משמעות אחרי למידה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🎯 התניה אופרנטית</div><div class="glossary-def">למידה לפי תוצאות ההתנהגות — ניסוי וטעייה.</div></div>
+    <div class="glossary-item"><div class="glossary-term">✅ חיזוק חיובי</div><div class="glossary-def">מוסיפים משהו ← ההתנהגות מתחזקת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">➖ חיזוק שלילי</div><div class="glossary-def">מסירים משהו ← ההתנהגות מתחזקת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">⛔ עונש</div><div class="glossary-def">מוסיפים או מורידים משהו ← ההתנהגות נחלשת.</div></div>
+    <div class="glossary-item"><div class="glossary-term">🐾 תגובה רפלקסיבית</div><div class="glossary-def">תגובה מולדת, אוטומטית ומידית = תגובה בלתי מותנית.</div></div>
+  </div>
+</div>
+
+<!-- S12: נכון/לא נכון -->
+<div class="screen" id="screen-12">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">
+    <span class="chapter-num">חזרה א'</span><span class="emoji">✅</span>
+    <h1>נכון או לא נכון?</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">✅ נכון או לא נכון?</div>
+
+    <p style="margin-bottom:10px;font-weight:600;font-size:15px">1. תקופת החיברות היא החשובה ביותר להתפתחות הגור.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1a')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1a')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1a"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">2. חיזוק שלילי הוא סוג של עונש.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1b')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1b')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1b"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">3. בהתניה קלאסית הכלב לומד קשר בין שני גירויים.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1c')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1c')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1c"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">4. רפלקס יכול לכלול רצף שלם של פעולות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1d')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1d')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1d"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">5. בהתניה אופרנטית הכלב לומד לפי תוצאות ההתנהגות שלו.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'correct','r1e')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'wrong','r1e')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1e"></div>
+
+    <p style="margin:16px 0 10px;font-weight:600;font-size:15px">6. עונש מלמד את הכלב מה כן לעשות.</p>
+    <div class="tf-options"><button class="tf-btn" onclick="answerTF(this,'wrong','r1f')">✅ נכון</button><button class="tf-btn" onclick="answerTF(this,'correct','r1f')">❌ לא נכון</button></div>
+    <div class="feedback" id="fb-r1f"></div>
+  </div>
+</div>
+
+<!-- S13: שאלות -->
+<div class="screen" id="screen-13">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1e3a5f,#0f766e)">
+    <span class="chapter-num">חזרה ב'</span><span class="emoji">❓</span>
+    <h1>שאלות אמריקאיות</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">❓ שאלות</div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">1. מה מתאפיין בתקופת החיברות?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">א</span>הגור ישן בעיקר ותלוי באמו</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2a')"><span class="opt-letter">ב</span>הגור לומד להכיר בני אדם, כלבים ומצבים שונים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2a')"><span class="opt-letter">ג</span>החושים מתחילים להיפתח לראשונה</button>
+    </div>
+    <div class="feedback" id="fb-r2a" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">2. בניסוי פבלוב, מה הפך הפעמון לגירוי מותנה?</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">א</span>הכלב למד לאהוב פעמונים</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2b')"><span class="opt-letter">ב</span>הפעמון הפסיק לצלצל</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2b')"><span class="opt-letter">ג</span>הצגת הפעמון יחד עם האוכל שוב ושוב</button>
+    </div>
+    <div class="feedback" id="fb-r2b" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">3. כלב יושב ומקבל חטיף — זו דוגמה ל...</p>
+    <div class="mc-options" style="margin-bottom:16px">
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">א</span>התניה קלאסית</button>
+      <button class="mc-option" onclick="answerMC(this,'correct','r2c')"><span class="opt-letter">ב</span>חיזוק חיובי בהתניה אופרנטית</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2c')"><span class="opt-letter">ג</span>עונש</button>
+    </div>
+    <div class="feedback" id="fb-r2c" style="margin-bottom:16px"></div>
+
+    <p style="margin-bottom:12px;font-weight:700;font-size:15px">4. מה ההבדל בין אינסטינקט לרפלקס?</p>
+    <div class="mc-options">
+      <button class="mc-option" onclick="answerMC(this,'correct','r2d')"><span class="opt-letter">א</span>אינסטינקט יכול לכלול רצף פעולות; רפלקס הוא תגובה אחת פשוטה</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ב</span>רפלקס הוא נלמד, אינסטינקט הוא מולד</button>
+      <button class="mc-option" onclick="answerMC(this,'wrong','r2d')"><span class="opt-letter">ג</span>אין הבדל — שניהם זהים לחלוטין</button>
+    </div>
+    <div class="feedback" id="fb-r2d"></div>
+  </div>
+</div>
+
+<!-- S14: התאמה -->
+<div class="screen" id="screen-14">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#059669,#7c3aed)">
+    <span class="chapter-num">חזרה ג'</span><span class="emoji">🔗</span>
+    <h1>התאמה</h1>
+  </div>
+  <div class="question-box">
+    <div class="q-title">🔗 חבר מושג להגדרה</div>
+    <div id="match-r3" class="match-container">
+      <div class="match-col" id="r3-left">
+        <div class="match-item left-item" data-id="a" onclick="selectMatch(this,'r3')">גירוי מותנה</div>
+        <div class="match-item left-item" data-id="b" onclick="selectMatch(this,'r3')">התניה אופרנטית</div>
+        <div class="match-item left-item" data-id="c" onclick="selectMatch(this,'r3')">חיזוק שלילי</div>
+        <div class="match-item left-item" data-id="d" onclick="selectMatch(this,'r3')">תקופת החיברות</div>
+      </div>
+      <div class="match-col" id="r3-right">
+        <div class="match-item right-item" data-match="b" onclick="selectMatch(this,'r3')">למידה לפי תוצאות</div>
+        <div class="match-item right-item" data-match="d" onclick="selectMatch(this,'r3')">החשובה ביותר לגור</div>
+        <div class="match-item right-item" data-match="a" onclick="selectMatch(this,'r3')">גירוי שהיה ניטרלי</div>
+        <div class="match-item right-item" data-match="c" onclick="selectMatch(this,'r3')">מסירים משהו ← מתחזק</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb-r3match"></div>
+  </div>
+  <div class="question-box" style="margin-top:16px">
+    <div class="q-title">✍️ השלם</div>
+    <div class="fill-sentence"><span class="fill-blank" onclick="revealBlank(this,'חיזוק חיובי')">______________</span> = מוסיפים משהו ← התנהגות <span class="fill-blank" onclick="revealBlank(this,'מתחזקת')">__________</span>.</div>
+    <div class="fill-sentence"><span class="fill-blank" onclick="revealBlank(this,'עונש')">______</span> = מפחית התנהגות, אך לא <span class="fill-blank" onclick="revealBlank(this,'מלמד מה כן לעשות')">_____________________</span>.</div>
+    <div class="fill-sentence">פבלוב גילה את <span class="fill-blank" onclick="revealBlank(this,'ההתניה הקלאסית')">________________</span> במהלך מחקריו על מערכת העיכול.</div>
+  </div>
+</div>
+
+<!-- S15: סיום -->
+<div class="screen" id="screen-15">
+  <div class="completion-card">
+    <div class="stars">⭐⭐⭐</div>
+    <h2>כל הכבוד! 🎉</h2>
+    <p>סיימת את לומדת "כיצד כלבים לומדים"!</p>
+  </div>
+  <div class="card">
+    <div class="section-title" style="justify-content:center;text-align:center">📌 מה חשוב לזכור לבגרות</div>
+    <ul class="content-list">
+      <li data-icon="🐶">תקופת החיברות — החשובה ביותר | חוויות חיוביות = כלב בריא</li>
+      <li data-icon="🔬">גישה התנהגותית — גירוי → תגובה → תוצאה</li>
+      <li data-icon="⚡">אינסטינקט = רצף מולד | רפלקס = תגובה אחת מהירה | למידה = מניסיון</li>
+      <li data-icon="🔔">קלאסית = קשר בין גירויים (פבלוב) | אופרנטית = לפי תוצאות</li>
+      <li data-icon="✅">חיזוק חיובי = מוסיפים | שלילי = מסירים | שניהם מחזקים!</li>
+      <li data-icon="⛔">עונש = מפחית | לא מלמד מה כן | עדיף לחזק רצויות</li>
+    </ul>
+  </div>
+  <div class="card" style="text-align:center">
+    <div class="section-title" style="justify-content:center;text-align:center;margin-bottom:12px">🔁 חזור לפרקים</div>
+    <div class="toc-grid">
+      <button class="toc-item" onclick="goToScreen(1)"><span class="num">1</span>תקופות קריטיות</button>
+      <button class="toc-item" onclick="goToScreen(2)"><span class="num">2</span>גישה התנהגותית</button>
+      <button class="toc-item" onclick="goToScreen(3)"><span class="num">3</span>אינסטינקט ורפלקס</button>
+      <button class="toc-item" onclick="goToScreen(5)"><span class="num">5</span>התניה קלאסית</button>
+      <button class="toc-item" onclick="goToScreen(6)"><span class="num">6</span>התניה אופרנטית</button>
+      <button class="toc-item" onclick="goToScreen(7)"><span class="num">7</span>חיזוק חיובי</button>
+      <button class="toc-item" onclick="goToScreen(10)"><span class="num">10</span>השוואות</button>
+      <button class="toc-item" onclick="goToScreen(11)"><span class="num">מילון</span>מילון</button>
+    </div>
+    <button class="btn btn-primary" onclick="goToScreen(0)" style="margin-top:12px;width:100%">🔄 התחל מחדש</button>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevScreen()">▶ הקודם</button>
+  <span id="screen-counter" style="font-weight:700;color:var(--text-muted);font-size:14px">1 / 16</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextScreen()">הבא ◀</button>
+</div>
+</div>
+
+<script>
+const TOTAL_SCREENS=16,SCREEN_NAMES=["פתיחה","תקופות קריטיות","הגישה ההתנהגותית","אינסטינקט ורפלקס","למידה","התניה קלאסית","התניה אופרנטית","חיזוק חיובי","חיזוק שלילי","עונש","השוואת מושגים","מילון מונחים","חזרה – נכון/לא נכון","חזרה – שאלות","חזרה – התאמה","סיום 🏆"];
+let currentScreen=0;
+const cards=[
+  {term:"🐶 תקופה קריטית",def:"שלב שבו לחוויות יש השפעה חזקה על ההתנהגות בעתיד."},
+  {term:"🌟 תקופת החיברות",def:"החשובה ביותר — לומד להכיר אנשים, כלבים, רעשים. חוויות חיוביות = כלב בריא."},
+  {term:"🔬 גישה התנהגותית",def:"מתמקדת בהתנהגות גלויה: גירוי → תגובה → תוצאה."},
+  {term:"⚡ אינסטינקט",def:"מולד, לא נלמד, יכול לכלול רצף פעולות. דוגמה: יצר ציד."},
+  {term:"⚡ רפלקס",def:"תגובה אחת, אוטומטית ומהירה. דוגמה: מצמוץ."},
+  {term:"📚 למידה",def:"שינוי קבוע יחסית בהתנהגות בעקבות ניסיון."},
+  {term:"🔔 התניה קלאסית",def:"קישור בין שני גירויים (פבלוב). גירוי ניטרלי → גירוי מותנה."},
+  {term:"🎯 התניה אופרנטית",def:"למידה לפי תוצאות — ניסוי וטעייה."},
+  {term:"✅ חיזוק חיובי",def:"מוסיפים משהו ← התנהגות מתחזקת."},
+  {term:"➖ חיזוק שלילי",def:"מסירים משהו ← התנהגות מתחזקת (≠ עונש)."},
+  {term:"⛔ עונש",def:"מוסיפים או מורידים משהו ← התנהגות נחלשת."},
+  {term:"🔴 גירוי בלתי מותנה",def:"מעורר תגובה טבעית ללא למידה. בפבלוב: אוכל."},
+  {term:"🟡 גירוי מותנה",def:"היה ניטרלי — קיבל משמעות אחרי למידה. בפבלוב: פעמון."},
+  {term:"🐾 תגובה רפלקסיבית",def:"תגובה מולדת ואוטומטית = תגובה בלתי מותנית."},
+];
+let fcIndex=0,fcFlipped=false;
+function updateFlashcard(){const fc=document.getElementById('fc');if(!fc)return;fc.classList.remove('flipped');fcFlipped=false;document.getElementById('fc-term').textContent=cards[fcIndex].term;document.getElementById('fc-def').textContent=cards[fcIndex].def;document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+cards.length;}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc').classList.toggle('flipped',fcFlipped);}
+function nextCard(){fcIndex=(fcIndex+1)%cards.length;updateFlashcard();}
+function prevCard(){fcIndex=(fcIndex-1+cards.length)%cards.length;updateFlashcard();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const sc=document.getElementById('screen-'+n);if(!sc)return;sc.classList.add('active');currentScreen=n;updateProgress();updateMenuActive();window.scrollTo(0,0);if(n===11)updateFlashcard();}
+function nextScreen(){if(currentScreen<TOTAL_SCREENS-1)goToScreen(currentScreen+1);}
+function prevScreen(){if(currentScreen>0)goToScreen(currentScreen-1);}
+function updateProgress(){const pct=Math.round((currentScreen/(TOTAL_SCREENS-1))*100);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent='מסך '+(currentScreen+1)+' מתוך '+TOTAL_SCREENS;document.getElementById('screen-counter').textContent=(currentScreen+1)+' / '+TOTAL_SCREENS;document.getElementById('btn-prev').className=currentScreen===0?'btn btn-disabled':'btn btn-secondary';const bn=document.getElementById('btn-next');if(bn)bn.style.display=currentScreen===TOTAL_SCREENS-1?'none':'';const lbl=document.getElementById('menu-btn-label');if(lbl)lbl.textContent=SCREEN_NAMES[currentScreen]||'';}
+function openMenu(){document.getElementById('menu-sidebar').classList.add('open');document.getElementById('menu-overlay').classList.add('open');updateMenuActive();}
+function closeMenu(){document.getElementById('menu-sidebar').classList.remove('open');document.getElementById('menu-overlay').classList.remove('open');}
+function menuGo(n){closeMenu();goToScreen(n);}
+function updateMenuActive(){document.querySelectorAll('.menu-item').forEach(btn=>{const oc=btn.getAttribute('onclick');if(!oc)return;const m=oc.match(/\d+/);if(m)btn.classList.toggle('active',parseInt(m[0])===currentScreen);});}
+function answerMC(btn,result,qid){if(!btn)return;const opts=btn.closest('.mc-options').querySelectorAll('.mc-option');opts.forEach(o=>{o.classList.remove('correct','wrong');});const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='מצוין! תשובה נכונה! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function answerTF(btn,result,qid){const parent=btn.closest('.tf-options');parent.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('correct','wrong'));const fb=document.getElementById('fb-'+qid);if(result==='correct'){btn.classList.add('correct');fb.className='feedback show correct';fb.innerHTML='✅ נכון! כל הכבוד! 🎉';}else{btn.classList.add('wrong');fb.className='feedback show wrong';fb.innerHTML='❌ לא בדיוק. נסה שוב!';}}
+function revealBlank(el,answer){el.textContent=answer;el.classList.add('revealed');el.onclick=null;}
+function toggleGoal(card){const body=card.querySelector('.goal-body');const arrow=card.querySelector('.toggle-arrow');const isOpen=body.style.maxHeight&&body.style.maxHeight!=='0px';document.querySelectorAll('.goal-body').forEach(b=>b.style.maxHeight='0px');document.querySelectorAll('.toggle-arrow').forEach(a=>{a.style.transform='rotate(180deg)';});if(!isOpen){body.style.maxHeight=body.scrollHeight+'px';arrow.style.transform='rotate(0deg)';}}
+const matchState={};
+function selectMatch(el,gameId){if(el.classList.contains('matched'))return;const isLeft=el.classList.contains('left-item');if(!matchState[gameId])matchState[gameId]={leftSel:null,rightSel:null,correct:0,busy:false};const state=matchState[gameId];if(state.busy)return;if(isLeft){if(state.leftSel)state.leftSel.classList.remove('selected');state.leftSel=el;el.classList.add('selected');}else{if(state.rightSel)state.rightSel.classList.remove('selected');state.rightSel=el;el.classList.add('selected');}if(state.leftSel&&state.rightSel){const leftId=state.leftSel.getAttribute('data-id');const rightMatch=state.rightSel.getAttribute('data-match');if(leftId===rightMatch){state.leftSel.classList.add('matched');state.rightSel.classList.add('matched');state.leftSel.classList.remove('selected');state.rightSel.classList.remove('selected');state.correct++;state.leftSel=null;state.rightSel=null;const leftItems=document.getElementById(gameId+'-left');const total=leftItems?leftItems.querySelectorAll('.match-item').length:2;if(state.correct>=total){const fb=document.getElementById('fb-'+gameId+'match');if(fb){fb.className='feedback show correct';fb.innerHTML='✅ מצוין! 🎉🎉';}}}else{const wL=state.leftSel,wR=state.rightSel;state.leftSel=null;state.rightSel=null;state.busy=true;wL.classList.add('wrong-match');wR.classList.add('wrong-match');setTimeout(()=>{wL.classList.remove('wrong-match','selected');wR.classList.remove('wrong-match','selected');state.busy=false;},500);}}}
+updateProgress();updateFlashcard();updateMenuActive();
+document.querySelectorAll('.toggle-arrow').forEach(a=>{a.style.transform='rotate(180deg)';});
+</script>
+</body>
+</html>
