@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>לומדת הכנה לבגרות בחקלאות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-bg-from: #3a9db5;
+    --teal-bg-to:   #5bc4d8;
+    --green-primary: #2d6e3a;
+    --green-cta:    #2d7a3a;
+    --green-hover:  #236030;
+    --green-light-bg: #e8f8ee;
+    --green-light-border: #c0e8cc;
+    --white: #ffffff;
+    --text-dark: #1a3a2a;
+    --text-muted: #5a7a6a;
+    --shadow-card: 0 8px 32px rgba(0,0,0,0.11);
+    --shadow-btn:  0 4px 16px rgba(45,122,58,0.35);
+    --radius-card: 20px;
+    --radius-btn:  12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(160deg, var(--teal-bg-from) 0%, var(--teal-bg-to) 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    direction: rtl;
+  }
+
+  .hero {
+    padding: 56px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-100px; left:-100px;
+    width:400px; height:400px; border-radius:50%;
+    background:rgba(255,255,255,0.07); pointer-events:none;
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:-80px; right:-60px;
+    width:280px; height:280px; border-radius:50%;
+    background:rgba(255,255,255,0.05); pointer-events:none;
+  }
+  .logo-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:72px; height:72px; background:rgba(255,255,255,0.88);
+    border-radius:18px; margin-bottom:22px; font-size:36px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  }
+  .hero-tag {
+    display:inline-block;
+    background:rgba(255,255,255,0.2);
+    color:white; font-size:13px; font-weight:600;
+    padding:6px 18px; border-radius:100px; margin-bottom:20px;
+    border:1px solid rgba(255,255,255,0.35);
+  }
+  .hero h1 {
+    font-size:clamp(26px,6vw,46px); font-weight:900;
+    color:white; line-height:1.2; margin-bottom:16px;
+    text-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero h1 span { color:#b8f0d0; }
+  .hero-sub {
+    font-size:clamp(15px,2.5vw,18px); color:rgba(255,255,255,0.88);
+    max-width:580px; margin:0 auto 40px; line-height:1.65;
+  }
+  .hero-cta {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--green-cta); color:white; text-decoration:none;
+    font-family:'Heebo',sans-serif; font-size:18px; font-weight:700;
+    padding:16px 36px; border-radius:var(--radius-btn);
+    box-shadow:var(--shadow-btn);
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .hero-cta:hover { background:var(--green-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,122,58,0.45); }
+
+  .hero-stats {
+    display:flex; justify-content:center; gap:20px;
+    margin-top:48px; flex-wrap:wrap;
+  }
+  .stat {
+    background:rgba(255,255,255,0.18); backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.3); border-radius:16px;
+    padding:14px 22px; text-align:center; color:white; min-width:100px;
+  }
+  .stat-num { font-size:28px; font-weight:900; color:#b8f0d0; line-height:1; }
+  .stat-label { font-size:12px; font-weight:500; margin-top:4px; opacity:.9; }
+
+  .section-wrap { max-width:1100px; margin:0 auto; padding:0 24px 64px; }
+  .section-title {
+    text-align:center; font-size:clamp(22px,4vw,30px);
+    font-weight:800; color:white; margin-bottom:8px;
+  }
+  .section-sub {
+    text-align:center; color:rgba(255,255,255,0.82);
+    font-size:15px; margin-bottom:36px;
+  }
+
+  .screenshots-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+  }
+  .screenshot-card {
+    background:rgba(255,255,255,0.14); backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.28); border-radius:var(--radius-card);
+    overflow:hidden; transition:transform .3s;
+  }
+  .screenshot-card:hover { transform:translateY(-4px); }
+  .screenshot-card img {
+    width:100%; height:210px;
+    object-fit:cover; object-position:top; display:block;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+  }
+  .screenshot-label {
+    color:white; font-size:14px; font-weight:600;
+    padding:12px 16px; text-align:center;
+  }
+
+  .modules-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+  }
+  .module-card {
+    background:var(--white); border-radius:var(--radius-card);
+    padding:28px 24px; box-shadow:var(--shadow-card);
+    border:1px solid rgba(255,255,255,0.8);
+    transition:transform .3s;
+  }
+  .module-card:hover { transform:translateY(-4px); }
+  .module-icon {
+    width:66px; height:66px; border-radius:50%;
+    background:linear-gradient(135deg,#c8f0da,#a0e0c0);
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; flex-shrink:0;
+    border:3px solid rgba(74,180,120,0.3);
+  }
+  .module-header {
+    display:flex; align-items:center; gap:16px; margin-bottom:14px;
+  }
+  .module-card h3 { font-size:20px; font-weight:800; color:var(--text-dark); margin-bottom:0; }
+  .module-card .intro { font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:16px; }
+
+  .topics-list {
+    list-style:none; margin-bottom:18px;
+  }
+  .topics-list li {
+    display:flex; align-items:flex-start; gap:8px;
+    font-size:13.5px; color:var(--text-dark);
+    padding:5px 0; border-bottom:1px solid #f2f7f4;
+  }
+  .topics-list li:last-child { border-bottom:none; }
+  .topics-list .dot {
+    width:18px; height:18px; background:var(--green-cta);
+    border-radius:50%; color:white; font-size:10px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:1px;
+  }
+  .topic-name { font-weight:600; }
+  .topic-desc { font-size:12px; color:var(--text-muted); }
+
+  .module-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag {
+    background:var(--green-light-bg); color:var(--green-primary);
+    font-size:12px; font-weight:600; padding:4px 10px;
+    border-radius:100px; border:1px solid var(--green-light-border);
+  }
+
+  .why-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:16px;
+  }
+  .why-card {
+    background:rgba(255,255,255,0.18); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.35); border-radius:16px;
+    padding:22px 18px; text-align:center; color:white;
+  }
+  .why-icon { font-size:34px; margin-bottom:10px; }
+  .why-card h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
+  .why-card p { font-size:13px; opacity:.85; line-height:1.5; }
+
+  .pricing-wrap { max-width:760px; margin:0 auto; padding:0 24px 80px; text-align:center; }
+  .pricing-card {
+    background:white; border-radius:24px;
+    padding:40px 32px; box-shadow:0 16px 60px rgba(0,0,0,0.15);
+    position:relative; overflow:hidden;
+  }
+  .pricing-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--green-cta),var(--teal-bg-to));
+  }
+  .pricing-badge {
+    display:inline-block; background:linear-gradient(90deg,var(--green-cta),#3da85a);
+    color:white; font-size:12px; font-weight:700;
+    padding:6px 16px; border-radius:100px; margin-bottom:20px;
+  }
+  .pricing-card h2 { font-size:24px; font-weight:900; color:var(--text-dark); margin-bottom:6px; }
+  .price {
+    font-size:54px; font-weight:900; color:var(--green-primary);
+    line-height:1; margin:16px 0 6px;
+  }
+  .price .currency { font-size:28px; vertical-align:super; margin-left:2px; }
+  .price-note { font-size:13px; color:var(--text-muted); margin-bottom:28px; }
+
+  .pricing-features { list-style:none; text-align:right; margin-bottom:32px; }
+  .pricing-features li {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:9px 0; font-size:14.5px; color:var(--text-dark);
+    border-bottom:1px solid #f0f0f0;
+  }
+  .pricing-features li:last-child { border-bottom:none; }
+  .check {
+    width:22px; height:22px; background:var(--green-cta);
+    color:white; border-radius:50%; display:flex;
+    align-items:center; justify-content:center;
+    font-size:12px; flex-shrink:0; margin-top:1px;
+  }
+
+  .manual-payment-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f6fffa 100%);
+    border-radius: 24px;
+    padding: 34px 28px;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.15);
+    margin-top: 28px;
+    border: 1px solid rgba(45,122,58,0.12);
+  }
+  .manual-payment-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .manual-payment-sub {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+  .payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-bottom: 24px;
+  }
+  .payment-method {
+    background: white;
+    border: 1px solid #e6f4ec;
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .payment-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #d8f7e3, #b9ecd0);
+    border: 3px solid rgba(74,180,120,0.25);
+    font-size: 30px;
+  }
+  .payment-method h3 {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .payment-method p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .payment-steps {
+    list-style: none;
+    text-align: right;
+    margin-bottom: 18px;
+  }
+  .payment-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    color: var(--text-dark);
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f2;
+  }
+  .payment-steps li:last-child { border-bottom: none; }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--green-cta);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .payment-highlight {
+    background: var(--green-light-bg);
+    border: 1px solid var(--green-light-border);
+    color: var(--green-primary);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .qr-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0 10px;
+  }
+  .qr-card {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 18px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    border: 1px solid #e8f2ec;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .qr-card img {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+  .qr-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .contact-alert {
+    background: linear-gradient(135deg, #fff9ea, #fff4cf);
+    border: 1px solid #f0d98a;
+    border-radius: 18px;
+    padding: 18px 18px;
+    text-align: center;
+    color: #6d5613;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+  .contact-alert strong {
+    color: #4a3a07;
+  }
+  .contact-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .contact-links a {
+    color: var(--green-primary);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(45,110,58,0.14);
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .payment-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--green-cta);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 14px 20px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-btn);
+    transition: transform .2s, box-shadow .2s, background .2s;
+    margin-top: 8px;
+  }
+  .payment-action-button:hover {
+    background: var(--green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,122,58,0.45);
+  }
+  .jump-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    background: var(--green-cta);
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 16px 36px;
+    border-radius: var(--radius-btn);
+    box-shadow: var(--shadow-btn);
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .jump-button:hover {
+    background: var(--green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,122,58,0.45);
+  }
+
+  footer {
+    text-align:center; padding:28px 24px;
+    color:rgba(255,255,255,0.6); font-size:13px;
+  }
+  footer a { color:rgba(255,255,255,0.7); }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hero > * { animation:fadeUp 0.65s ease both; }
+  .hero .logo-badge  { animation-delay:.05s; }
+  .hero .hero-tag    { animation-delay:.12s; }
+  .hero h1           { animation-delay:.2s; }
+  .hero .hero-sub    { animation-delay:.28s; }
+  .hero .hero-cta    { animation-delay:.36s; }
+  .hero .hero-stats  { animation-delay:.44s; }
+
+  /* ── Track Toggle ── */
+  .track-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 32px 0 28px;
+    flex-wrap: wrap;
+  }
+  .track-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 18px 28px;
+    border-radius: 18px;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    min-width: 180px;
+    transition: all .25s ease;
+  }
+  .track-tab:hover {
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+  }
+  .track-tab.active {
+    background: white;
+    border-color: white;
+    color: var(--text-dark);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+  }
+  .track-tab-icon { font-size: 28px; }
+  .track-tab-title { font-size: 16px; font-weight: 800; }
+  .track-tab-sub { font-size: 12px; font-weight: 500; opacity: .8; }
+  .track-tab.active .track-tab-sub { opacity: .65; }
+
+  /* ── Track Panels ── */
+  .track-panel { animation: fadeUp 0.4s ease both; }
+  .track-panel.hidden { display: none; }
+
+  /* ── School-specific overrides ── */
+  .pricing-card-school::before {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+  }
+  .school-badge {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+  }
+  .school-price { color: #1a5fa8 !important; }
+  .school-check { background: #1a5fa8 !important; }
+  .school-jump-button {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+    box-shadow: 0 4px 16px rgba(26,95,168,0.35) !important;
+  }
+  .school-jump-button:hover {
+    background: #154e8f !important;
+  }
+
+  .school-highlight-box {
+    background: linear-gradient(135deg, #eaf3ff, #daeeff);
+    border: 1px solid #b3d4f5;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 0 0 24px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .school-highlight-item {
+    font-size: 14px;
+    color: #1a3a5c;
+    line-height: 1.6;
+  }
+
+  .school-payment-card {
+    border-color: rgba(26,95,168,0.15) !important;
+  }
+  .school-payment-card .manual-payment-title { color: #1a3a5c; }
+  .school-icon {
+    background: linear-gradient(135deg, #cce0ff, #a8c8f5) !important;
+    border-color: rgba(26,95,168,0.25) !important;
+  }
+  .school-step { background: #1a5fa8 !important; }
+  .school-contact-alert {
+    background: linear-gradient(135deg, #eaf3ff, #daeeff) !important;
+    border-color: #b3d4f5 !important;
+    color: #1a3a5c !important;
+  }
+  .school-contact-alert strong { color: #0d2b4e !important; }
+  .school-contact-alert .contact-links a { color: #1a5fa8 !important; }
+  .school-payment-highlight {
+    background: #eaf3ff !important;
+    border-color: #b3d4f5 !important;
+    color: #1a3a5c !important;
+  }
+
+  @media (max-width:600px) {
+    .hero { padding:40px 16px 56px; }
+    .hero-stats { gap:12px; }
+    .stat { min-width:85px; padding:10px 14px; }
+    .pricing-card, .manual-payment-card { padding:28px 16px; }
+    .payment-methods { grid-template-columns: 1fr; }
+    .qr-card img { width: 190px; }
+    .contact-links { flex-direction: column; }
+    .track-tab { min-width: 140px; padding: 14px 18px; }
+    .track-tab-title { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="logo-badge">🌿</div>
+  <div class="hero-tag">🎓 לומדה דיגיטלית לבגרות בחקלאות</div>
+  <h1>הכנה <span>חכמה ואינטרקטיבית</span><br>לבגרות 5 יחידות בחקלאות</h1>
+  <p class="hero-sub">
+    כל מה שצריך להצליח בבגרות — 18 לומדות אינטרקטיביות, שאלות חזרה, מושגים ו-100+ שאלות מבגרויות אמיתיות. הכל במקום אחד, בצורה ברורה וכיפית.
+  </p>
+  <a class="hero-cta" href="#pricing">🛒 לרכישה עכשיו</a>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">18</div><div class="stat-label">לומדות</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">שאלות בגרות</div></div>
+    <div class="stat"><div class="stat-num">170+</div><div class="stat-label">יחידות לימוד</div></div>
+  </div>
+</section>
+
+<div class="section-wrap">
+  <h2 class="section-title">ממשק פשוט ונוח לשימוש</h2>
+  <p class="section-sub">עיצוב ידידותי שמקל על הלמידה — בדסקטופ ובמובייל</p>
+  <div class="screenshots-grid">
+    <div class="screenshot-card"> 
+      <img src="https://bagruyot.org/haklaut/bg/lp/haim.png">
+      <div class="screenshot-label">🐾 תחום בעלי החיים — 7 לומדות</div>
+    </div>
+    <div class="screenshot-card">
+      <img src="https://bagruyot.org/haklaut/bg/lp/klavim.png">
+      <div class="screenshot-label">🐕 מודול הכלבים — 6 לומדות</div>
+    </div>
+    <div class="screenshot-card">
+      <img src="https://bagruyot.org/haklaut/bg/lp/sus.png" alt="תמונת לומדת סוסים">
+      <div class="screenshot-label">🐴 מודול הסוסים — 5 לומדות</div>
+    </div>
+    <div class="screenshot-card">
+      <img src="https://bagruyot.org/haklaut/bg/lp/bagrut.png" alt="תמונת לומדה">
+      <div class="screenshot-label">📝 שאלות מבגרויות</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap">
+  <h2 class="section-title">מה כלול בלומדה?</h2>
+  <p class="section-sub">ארבעה עולמות תוכן מקיפים — 18 לומדות + בנק שאלות</p>
+  <div class="modules-grid">
+    <div class="module-card">
+      <div class="module-header"><div class="module-icon">🐾</div><h3>בעלי חיים — 7 לומדות</h3></div>
+      <p class="intro">כיסוי מקיף של כל הנושאים המשותפים בתחום בעלי החיים, עם הסברים, תמונות, שאלות חזרה ומושגים.</p>
+      <ul class="topics-list">
+        <li><span class="dot">1</span><div><div class="topic-name">מבוא לחקלאות</div><div class="topic-desc">מהי חקלאות, תיאוריית מלטוס, המהפכה הירוקה, שיפורים טכנולוגיים</div></div></li>
+        <li><span class="dot">2</span><div><div class="topic-name">ויסות חום בעלי חיים</div><div class="topic-desc">הומאוטרמיים, פויקילוטרמיים, מנגנוני ויסות, חילוף חומרים</div></div></li>
+        <li><span class="dot">3</span><div><div class="topic-name">ויסות חום על ידי החקלאי</div><div class="topic-desc">תכנון הלול, אוורור, קירור, חימום, מבנים מבוקרי אקלים</div></div></li>
+        <li><span class="dot">4</span><div><div class="topic-name">מערכת החיסון</div><div class="topic-desc">מחלות, דרכי הדבקה, קווי הגנה, חיסון סביל ופעיל</div></div></li>
+        <li><span class="dot">5</span><div><div class="topic-name">מערכת הרבייה</div><div class="topic-desc">מחזור רבייה, ביוץ, הורמונים והתערבות האדם</div></div></li>
+        <li><span class="dot">6</span><div><div class="topic-name">מערכת העיכול</div><div class="topic-desc">מבנה, פירוק מכני וכימי, מים, מינרלים ואבות המזון</div></div></li>
+        <li><span class="dot">7</span><div><div class="topic-name">מערכת הנשימה</div><div class="topic-desc">תפקיד המערכת, חילוף גזים, מבנה הנשימה ביונקים ועופות</div></div></li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag">שאלות חזרה</span>
+        <span class="tag">מושגים</span>
+        <span class="tag">תמונות ואיורים</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-header"><div class="module-icon">🐕</div><h3>ענף הכלבים — 6 לומדות</h3></div>
+      <p class="intro">מודול ייעודי ומעמיק לכל נושאי ענף הכלבים, עם שאלות חזרה ומושגים מרכזיים בכל לומדה.</p>
+      <ul class="topics-list">
+        <li><span class="dot">1</span><div><div class="topic-name">תקופות קריטיות</div><div class="topic-desc">מושגי יסוד בהתפתחות הגור, שבע התקופות, חשיפה והחתמה, בחירת גור</div></div></li>
+        <li><span class="dot">2</span><div><div class="topic-name">רבייה</div><div class="topic-desc">מחזור הרבייה, שלבי היייחום, הריון, מלטה, טיפול בגורים, מניעת היריון</div></div></li>
+        <li><span class="dot">3</span><div><div class="topic-name">הזנה וטיפוח</div><div class="topic-desc">מטרות ההזנה, מערכת העיכול, מזונות אסורים, חישוב קלוריות, עור ופרווה</div></div></li>
+        <li><span class="dot">4</span><div><div class="topic-name">כלבת</div><div class="topic-desc">פקודת הכלבת, מחלה זואונוטית, דרכי הדבקה, סימני המחלה, חיסון</div></div></li>
+        <li><span class="dot">5</span><div><div class="topic-name">יצרים</div><div class="topic-desc">טפילים פנימיים וחיצוניים, זיהוי, מניעה וטיפול</div></div></li>
+        <li><span class="dot">6</span><div><div class="topic-name">כיצד כלבים לומדים</div><div class="topic-desc">עקרונות למידה, חיזוק חיובי ושלילי, התניה קלאסית ואופרנטית</div></div></li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag">שאלות חזרה</span>
+        <span class="tag">מושגים</span>
+        <span class="tag">תמונות ואיורים</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-header"><div class="module-icon">🐴</div><h3>ענף הסוסים — 5 לומדות</h3></div>
+      <p class="intro">מודול ייעודי לכל נושאי ענף הסוסים — עם הסברים, תמונות, שאלות חזרה ומושגים מרכזיים בכל לומדה.</p>
+      <ul class="topics-list">
+        <li><span class="dot">1</span><div><div class="topic-name">תזונה</div><div class="topic-desc">מזון גס ומרוכז, חציר ומרעה, סוגי מזון, אנומליות אכילה ושגרת שתייה בסוסים</div></div></li>
+        <li><span class="dot">2</span><div><div class="topic-name">מחלות, תולעים וטפילים</div><div class="topic-desc">מחלות נפוצות בסוסים, טפילים, מניעה, ממשק תברואה, עזרה ראשונה וכללי הזנה במצבי מחלה</div></div></li>
+        <li><span class="dot">3</span><div><div class="topic-name">גנטיקה והמלטה</div><div class="topic-desc">השבחה גנטית, בדיקת הריון, שלבי ההמלטה, טיפול בסיח, זיהוי מצבי סיכון</div></div></li>
+        <li><span class="dot">4</span><div><div class="topic-name">מערכת הדם וחיסונים</div><div class="topic-desc">מערכת הדם, תפקידי הלב וכלי הדם, מדדי בריאות בסוסים, חיסונים, מוגדנים וזיכרון חיסוני</div></div></li>
+        <li><span class="dot">5</span><div><div class="topic-name">חושים והתנהגות</div><div class="topic-desc">חמשת החושים, התנהגות טבעית, מנוחה, תקשורת, פחד ותגובות, הירריכיה ויחסים בתוך הקבוצה</div></div></li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag">שאלות חזרה</span>
+        <span class="tag">מושגים</span>
+        <span class="tag">תמונות ואיורים</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <p class="intro">אוסף שאלות מבגרויות אמיתיות של שנים קודמות — הדרך הכי טובה לתרגל ולדעת היכן אתה עומד לפני הבחינה.</p>
+      <ul class="topics-list">
+        <li><span class="dot">✓</span><div><div class="topic-name">שאלות אמריקאיות</div><div class="topic-desc">תרגול ממגוון שנים עם מגוון נושאים</div></div></li>
+        <li><span class="dot">✓</span><div><div class="topic-name">שאלות פתוחות</div><div class="topic-desc">שאלות עם פתרון מלא וכתוב</div></div></li>
+        <li><span class="dot">✓</span><div><div class="topic-name">הסברים לכל תשובה</div><div class="topic-desc">לא רק הפתרון — גם ההסבר המלא</div></div></li>
+        <li><span class="dot">✓</span><div><div class="topic-name">ניתן לחזור כמה פעמים</div><div class="topic-desc">תתרגל עד שהנושא ברור לחלוטין</div></div></li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag">בגרויות משנים קודמות</span>
+        <span class="tag">אמריקאיות ופתוחות</span>
+        <span class="tag">פתרונות מלאים</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" style="max-width:900px;">
+  <h2 class="section-title">למה כדאי לקנות?</h2>
+  <p class="section-sub">הלומדה נבנתה במיוחד לתלמידים שרוצים להצליח בבגרות</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🎯</div><h4>ממוקדת בגרות</h4><p>כל התוכן בנוי על פי דרישות הבגרות ב-5 יחידות</p></div>
+    <div class="why-card"><div class="why-icon">⚡</div><h4>למידה אינטרקטיבית</h4><p>לא קריאת ספרים — חוויה שמחברת ומעניינת</p></div>
+    <div class="why-card"><div class="why-icon">📱</div><h4>בכל מכשיר</h4><p>עובד מושלם במובייל, טאבלט ומחשב</p></div>
+    <div class="why-card"><div class="why-icon">🔄</div><h4>גישה ללא הגבלה</h4><p>לומד בקצב שלך, חוזר כמה פעמים שרוצה</p></div>
+    <div class="why-card"><div class="why-icon">✅</div><h4>שאלות אמיתיות</h4><p>100+ שאלות מבגרויות קודמות עם פתרונות</p></div>
+    <div class="why-card"><div class="why-icon">🧠</div><h4>חזרה חכמה</h4><p>מושגים, שאלות חזרה ותרגול בכל לומדה</p></div>
+  </div>
+</div>
+
+<div class="pricing-wrap" id="pricing">
+  <h2 class="section-title">רכישה ותשלום</h2>
+  <p class="section-sub">בחרו את המסלול המתאים לכם</p>
+
+  <!-- Track Toggle -->
+  <div class="track-toggle" role="tablist">
+    <button class="track-tab active" id="tab-school" role="tab" aria-selected="true" onclick="switchTrack('school')">
+      <span class="track-tab-icon">🏫</span>
+      <span class="track-tab-title">רכישה למגמה</span>
+      <span class="track-tab-sub">לבית ספר · ₪1,000</span>
+    </button>
+    <button class="track-tab" id="tab-private" role="tab" aria-selected="false" onclick="switchTrack('private')">
+      <span class="track-tab-icon">🎒</span>
+      <span class="track-tab-title">רכישה פרטית</span>
+      <span class="track-tab-sub">לתלמיד בודד · ₪49</span>
+    </button>
+  </div>
+
+  <!-- ======================== PRIVATE TRACK ======================== -->
+  <div class="track-panel hidden" id="track-private">
+    <div class="pricing-card" style="margin-top:0;">
+      <div class="pricing-badge">🌿 חבילה מלאה — כל הלומדות</div>
+      <h2>לומדת הכנה לבגרות בחקלאות</h2>
+      <div class="price"><span class="currency">₪</span>49</div>
+      <div class="price-note">רק ₪49 · תשלום חד פעמי · גישה לשנה</div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> 7 לומדות אינטרקטיביות בנושאי בעלי חיים</li>
+        <li><span class="check">✓</span> 6 לומדות מודול הכלבים המלא</li>
+        <li><span class="check">✓</span> 5 לומדות מודול הסוסים המלא</li>
+        <li><span class="check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
+        <li><span class="check">✓</span> שאלות חזרה ומושגים בכל לומדה</li>
+        <li><span class="check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
+        <li><span class="check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
+      </ul>
+      <a href="#payment-private" class="jump-button">🔒 לפרטי תשלום ורכישה</a>
+      <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
+        🔒 אפשרויות תשלום מאובטחות · פרטי התשלום מופיעים בהמשך
+      </p>
+    </div>
+
+    <div class="manual-payment-card" id="payment-private">
+      <h3 class="manual-payment-title">אפשרויות תשלום — רכישה פרטית</h3>
+      <p class="manual-payment-sub">
+        כדי לקבל גישה ללומדת החקלאות, יש לשלם <strong>49 ש״ח</strong> ולציין שמדובר ב<strong>גישה ללומדת החקלאות</strong>.
+      </p>
+      <div class="contact-alert">
+        <strong>חשוב מאוד:</strong> לאחר התשלום, אם לא מתקבל מייל עם פרטי ההתחברות תוך 24 שעות, יש ליצור קשר כדי שנוכל לוודא שהתשלום אכן התקבל ונוצר עבורך חשבון.
+        <div class="contact-links">
+          <a href="tel:0542166396">📞 0542166396</a>
+          <a href="mailto:tanyatabakmaher@gmail.com?subject=בדיקת תשלום עבור לומדת החקלאות">✉️ tanyatabakmaher@gmail.com</a>
+        </div>
+      </div>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <div class="payment-icon">📲</div>
+          <h3>תשלום דרך PayBox</h3>
+          <p>אפשר לשלם דרך אפליקציית PayBox בסריקת הקוד או ישירות דרך מספר הטלפון.</p>
+          <div class="payment-highlight">יש לשלם 49 ש״ח ולציין בהערה: גישה ללומדת החקלאות</div>
+          <ul class="payment-steps">
+            <li><span class="step-num">1</span><span>פותחים את PayBox וסורקים את ה־QR או מחפשים לפי 0542166396</span></li>
+            <li><span class="step-num">2</span><span>משלמים 49 ש״ח</span></li>
+            <li><span class="step-num">3</span><span>מציינים: גישה ללומדת החקלאות</span></li>
+            <li><span class="step-num">4</span><span>ממתינים למייל עם פרטי ההתחברות תוך 24 שעות</span></li>
+          </ul>
+          <div class="qr-wrap">
+            <div class="qr-card">
+              <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
+              <div class="qr-note">סרקו את הקוד לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a href="tel:0542166396">📞 0542166396</a>
+          </div>
+        </div>
+        <div class="payment-method">
+          <div class="payment-icon">💳</div>
+          <h3>תשלום באשראי</h3>
+          <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+          <div class="payment-highlight">תשלום מאובטח דרך PayMe עבור גישה ללומדת החקלאות בעלות 49 ש״ח</div>
+          <ul class="payment-steps">
+            <li><span class="step-num">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+            <li><span class="step-num">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+            <li><span class="step-num">3</span><span>ממתינים למייל עם פרטי ההתחברות תוך 24 שעות</span></li>
+          </ul>
+          <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SCHOOL TRACK ======================== -->
+  <div class="track-panel" id="track-school">
+    <div class="pricing-card pricing-card-school" style="margin-top:0;">
+      <div class="pricing-badge school-badge">🏫 מסלול מגמה — לכל תלמידי הכיתה</div>
+      <h2>רכישה מוסדית למגמת חקלאות</h2>
+      <div class="price school-price"><span class="currency">₪</span>1,000</div>
+      <div class="price-note">מחיר אחיד לכל המגמה · תשלום חד פעמי · גישה לשנה לכל תלמידי הכיתה</div>
+      <div class="school-highlight-box">
+        <div class="school-highlight-item">🎓 <strong>מחיר קבוע ואחיד</strong> — ₪1,000 בלבד, ללא קשר למספר התלמידים</div>
+        <div class="school-highlight-item">👩‍🏫 <strong>ניהול מרכזי</strong> — המורה מקבל חשבון נפרד משאר התלמידים</div>
+        <div class="school-highlight-item">📋 <strong>חשבונית מס</strong> — מסמך רשמי לצרכי בית הספר</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check school-check">✓</span> גישה ל-18 לומדות לכל תלמידי המגמה</li>
+        <li><span class="check school-check">✓</span> בעלי חיים, כלבים, סוסים ובנק שאלות</li>
+        <li><span class="check school-check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
+        <li><span class="check school-check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
+        <li><span class="check school-check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
+        <li><span class="check school-check">✓</span> ליווי וסיוע טכני לצוות המורים</li>
+      </ul>
+      <a href="#payment-school" class="jump-button school-jump-button">📋 לפרטי הרכישה המוסדית</a>
+      <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
+        📞 מוזמנים ליצור קשר לכל שאלה לפני הרכישה
+      </p>
+    </div>
+
+    <div class="manual-payment-card school-payment-card" id="payment-school">
+      <h3 class="manual-payment-title">רכישה מוסדית — מגמת חקלאות</h3>
+      <p class="manual-payment-sub">
+        מחיר אחיד של <strong>1,000 ש״ח</strong> לכל המגמה — ללא קשר למספר התלמידים. יש לציין <strong>שם בית הספר ושם המורה</strong> בעת התשלום.
+      </p>
+
+      <div class="contact-alert school-contact-alert">
+        <strong>מומלץ לפני הרכישה:</strong> ניתן ליצור קשר לתיאום, קבלת חשבונית מס ופתיחת חשבונות לתלמידים. נשמח לעזור בכל שאלה!
+        <div class="contact-links">
+          <a href="tel:0542166396">📞 0542166396</a>
+          <a href="mailto:tanyatabakmaher@gmail.com?subject=רכישה מוסדית — מגמת חקלאות">✉️ tanyatabakmaher@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="payment-methods">
+        <div class="payment-method">
+          <div class="payment-icon school-icon">📲</div>
+          <h3>תשלום דרך PayBox</h3>
+          <p>ניתן לשלם דרך PayBox על סך 1,000 ש״ח. יש לציין שם בית הספר ושם מורה המגמה בהערה.</p>
+          <div class="payment-highlight school-payment-highlight">יש לשלם 1,000 ש״ח ולציין: רכישה מוסדית — [שם בית הספר]</div>
+          <ul class="payment-steps">
+            <li><span class="step-num school-step">1</span><span>פותחים PayBox וסורקים QR או מחפשים לפי 0542166396</span></li>
+            <li><span class="step-num school-step">2</span><span>משלמים 1,000 ש״ח</span></li>
+            <li><span class="step-num school-step">3</span><span>מציינים: רכישה מוסדית + שם בית הספר + שם המורה</span></li>
+            <li><span class="step-num school-step">4</span><span>תוך 48 שעות יישלח אישור עם פרטי גישה לכל התלמידים</span></li>
+          </ul>
+          <div class="qr-wrap">
+            <div class="qr-card">
+              <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
+              <div class="qr-note">סרקו לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a href="tel:0542166396">📞 0542166396</a>
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <div class="payment-icon school-icon">💳</div>
+          <h3>תשלום באשראי</h3>
+          <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+          <div class="payment-highlight school-payment-highlight">תשלום מאובטח דרך PayMe עבור רכישת מגמה בעלות 1,000 ש״ח</div>
+          <ul class="payment-steps">
+            <li><span class="step-num school-step">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+            <li><span class="step-num school-step">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+            <li><span class="step-num school-step">3</span><span>תוך 48 שעות נפתחת גישה לכל תלמידי המגמה</span></li>
+          </ul>
+          <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1779-022273ZT-DXBSHF6H-UQKEJM2K" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© לומדת הכנה לבגרות בחקלאות | כל הזכויות שמורות</p>
+</footer>
+
+<script>
+  // Track switcher
+  function switchTrack(track) {
+    document.querySelectorAll('.track-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.track-panel').forEach(p => p.classList.add('hidden'));
+
+    document.getElementById('tab-' + track).classList.add('active');
+    document.getElementById('tab-' + track).setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('track-' + track);
+    panel.classList.remove('hidden');
+  }
+
+  // Intersection observer for scroll animations
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.module-card,.why-card,.screenshot-card,.pricing-card,.manual-payment-card,.payment-method,.track-tab').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = 'opacity .55s ease, transform .55s ease';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
