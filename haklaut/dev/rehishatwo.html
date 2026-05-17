@@ -565,7 +565,7 @@
   <p class="hero-sub">
     כל מה שצריך להצליח בבגרות — 18 לומדות אינטרקטיביות, שאלות חזרה, מושגים ו-100+ שאלות מבגרויות אמיתיות. הכל במקום אחד, בצורה ברורה וכיפית.
   </p>
-  <a class="hero-cta" href="#manual-payment">🛒 לרכישה עכשיו</a>
+  <a class="hero-cta" href="#pricing">🛒 לרכישה עכשיו</a>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">18</div><div class="stat-label">לומדות</div></div>
     <div class="stat"><div class="stat-num">100+</div><div class="stat-label">שאלות בגרות</div></div>
@@ -586,7 +586,7 @@
       <div class="screenshot-label">🐕 מודול הכלבים — 6 לומדות</div>
     </div>
     <div class="screenshot-card">
-      <img src="https://bagruyot.org/haklaut/bg/lp/klavim.png" alt="תמונת לומדת סוסים">
+      <img src="https://bagruyot.org/haklaut/bg/lp/sus.png" alt="תמונת לומדת סוסים">
       <div class="screenshot-label">🐴 מודול הסוסים — 5 לומדות</div>
     </div>
     <div class="screenshot-card">
@@ -690,32 +690,32 @@
 
   <!-- Track Toggle -->
   <div class="track-toggle" role="tablist">
-    <button class="track-tab active" id="tab-private" role="tab" aria-selected="true" onclick="switchTrack('private')">
-      <span class="track-tab-icon">🎒</span>
-      <span class="track-tab-title">רכישה פרטית</span>
-      <span class="track-tab-sub">לתלמיד בודד · ₪49</span>
-    </button>
-    <button class="track-tab" id="tab-school" role="tab" aria-selected="false" onclick="switchTrack('school')">
+    <button class="track-tab active" id="tab-school" role="tab" aria-selected="true" onclick="switchTrack('school')">
       <span class="track-tab-icon">🏫</span>
       <span class="track-tab-title">רכישה למגמה</span>
       <span class="track-tab-sub">לבית ספר · ₪1,000</span>
     </button>
+    <button class="track-tab" id="tab-private" role="tab" aria-selected="false" onclick="switchTrack('private')">
+      <span class="track-tab-icon">🎒</span>
+      <span class="track-tab-title">רכישה פרטית</span>
+      <span class="track-tab-sub">לתלמיד בודד · ₪49</span>
+    </button>
   </div>
 
   <!-- ======================== PRIVATE TRACK ======================== -->
-  <div class="track-panel" id="track-private">
+  <div class="track-panel hidden" id="track-private">
     <div class="pricing-card" style="margin-top:0;">
       <div class="pricing-badge">🌿 חבילה מלאה — כל הלומדות</div>
       <h2>לומדת הכנה לבגרות בחקלאות</h2>
       <div class="price"><span class="currency">₪</span>49</div>
-      <div class="price-note">רק ₪49 · תשלום חד פעמי · גישה ללא הגבלת זמן</div>
+      <div class="price-note">רק ₪49 · תשלום חד פעמי · גישה לשנה</div>
       <ul class="pricing-features">
         <li><span class="check">✓</span> 7 לומדות אינטרקטיביות בנושאי בעלי חיים</li>
         <li><span class="check">✓</span> 6 לומדות מודול הכלבים המלא</li>
         <li><span class="check">✓</span> 5 לומדות מודול הסוסים המלא</li>
         <li><span class="check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
         <li><span class="check">✓</span> שאלות חזרה ומושגים בכל לומדה</li>
-        <li><span class="check">✓</span> גישה מלאה ממובייל ומחשב</li>
+        <li><span class="check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
         <li><span class="check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
       </ul>
       <a href="#payment-private" class="jump-button">🔒 לפרטי תשלום ורכישה</a>
@@ -775,23 +775,22 @@
   </div>
 
   <!-- ======================== SCHOOL TRACK ======================== -->
-  <div class="track-panel hidden" id="track-school">
+  <div class="track-panel" id="track-school">
     <div class="pricing-card pricing-card-school" style="margin-top:0;">
       <div class="pricing-badge school-badge">🏫 מסלול מגמה — לכל תלמידי הכיתה</div>
       <h2>רכישה מוסדית למגמת חקלאות</h2>
       <div class="price school-price"><span class="currency">₪</span>1,000</div>
-      <div class="price-note">מחיר אחיד לכל המגמה · תשלום חד פעמי · גישה לכל תלמידי הכיתה</div>
+      <div class="price-note">מחיר אחיד לכל המגמה · תשלום חד פעמי · גישה לשנה לכל תלמידי הכיתה</div>
       <div class="school-highlight-box">
         <div class="school-highlight-item">🎓 <strong>מחיר קבוע ואחיד</strong> — ₪1,000 בלבד, ללא קשר למספר התלמידים</div>
-        <div class="school-highlight-item">👩‍🏫 <strong>ניהול מרכזי</strong> — מורה המגמה מקבל גישה לכל חשבונות התלמידים</div>
+        <div class="school-highlight-item">👩‍🏫 <strong>ניהול מרכזי</strong> — המורה מקבל חשבון נפרד משאר התלמידים</div>
         <div class="school-highlight-item">📋 <strong>חשבונית מס</strong> — מסמך רשמי לצרכי בית הספר</div>
       </div>
       <ul class="pricing-features">
         <li><span class="check school-check">✓</span> גישה ל-18 לומדות לכל תלמידי המגמה</li>
         <li><span class="check school-check">✓</span> בעלי חיים, כלבים, סוסים ובנק שאלות</li>
         <li><span class="check school-check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
-        <li><span class="check school-check">✓</span> פתיחת חשבונות לכל תלמיד בנפרד</li>
-        <li><span class="check school-check">✓</span> גישה מלאה ממובייל ומחשב</li>
+        <li><span class="check school-check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
         <li><span class="check school-check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
         <li><span class="check school-check">✓</span> ליווי וסיוע טכני לצוות המורים</li>
       </ul>
@@ -839,20 +838,16 @@
         </div>
 
         <div class="payment-method">
-          <div class="payment-icon school-icon">✉️</div>
-          <h3>תיאום ישיר עם המורה</h3>
-          <p>לרכישה מוסדית מומלץ לפנות ישירות לתיאום — נסדר הכל כולל חשבונית מס וגישה לכל התלמידים.</p>
-          <div class="payment-highlight school-payment-highlight">פנו אלינו ונסדר יחד את כל הפרטים — מחיר אחיד ₪1,000 לכל המגמה</div>
+          <div class="payment-icon school-icon">💳</div>
+          <h3>תשלום באשראי</h3>
+          <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+          <div class="payment-highlight school-payment-highlight">תשלום מאובטח דרך PayMe עבור רכישת מגמה בעלות 1,000 ש״ח</div>
           <ul class="payment-steps">
-            <li><span class="step-num school-step">1</span><span>שולחים מייל או מתקשרים עם שם בית הספר ומספר התלמידים</span></li>
-            <li><span class="step-num school-step">2</span><span>מקבלים הצעת מחיר רשמית וחשבונית מס</span></li>
-            <li><span class="step-num school-step">3</span><span>מסדרים תשלום בהתאם לנהלי בית הספר</span></li>
-            <li><span class="step-num school-step">4</span><span>תוך 48 שעות פותחים גישה לכל תלמידי המגמה</span></li>
+            <li><span class="step-num school-step">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+            <li><span class="step-num school-step">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+            <li><span class="step-num school-step">3</span><span>תוך 48 שעות נפתחת גישה לכל תלמידי המגמה</span></li>
           </ul>
-          <div class="contact-links" style="margin-top:20px; flex-direction:column; align-items:stretch;">
-            <a href="tel:0542166396" style="text-align:center; background:var(--green-cta); color:white; border:none; font-size:16px; padding:14px 20px; border-radius:14px; box-shadow:var(--shadow-btn);">📞 התקשרו עכשיו</a>
-            <a href="mailto:tanyatabakmaher@gmail.com?subject=רכישה מוסדית — מגמת חקלאות" style="text-align:center; background:white; color:var(--green-primary); border:1px solid var(--green-light-border); font-size:15px; padding:13px 20px; border-radius:14px;">✉️ שלחו מייל לתיאום</a>
-          </div>
+          <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1779-022273ZT-DXBSHF6H-UQKEJM2K" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
         </div>
       </div>
     </div>
