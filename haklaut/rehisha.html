@@ -443,6 +443,106 @@
   .hero .hero-cta    { animation-delay:.36s; }
   .hero .hero-stats  { animation-delay:.44s; }
 
+  /* ── Track Toggle ── */
+  .track-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 32px 0 28px;
+    flex-wrap: wrap;
+  }
+  .track-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 18px 28px;
+    border-radius: 18px;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    min-width: 180px;
+    transition: all .25s ease;
+  }
+  .track-tab:hover {
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+  }
+  .track-tab.active {
+    background: white;
+    border-color: white;
+    color: var(--text-dark);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+  }
+  .track-tab-icon { font-size: 28px; }
+  .track-tab-title { font-size: 16px; font-weight: 800; }
+  .track-tab-sub { font-size: 12px; font-weight: 500; opacity: .8; }
+  .track-tab.active .track-tab-sub { opacity: .65; }
+
+  /* ── Track Panels ── */
+  .track-panel { animation: fadeUp 0.4s ease both; }
+  .track-panel.hidden { display: none; }
+
+  /* ── School-specific overrides ── */
+  .pricing-card-school::before {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+  }
+  .school-badge {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+  }
+  .school-price { color: #1a5fa8 !important; }
+  .school-check { background: #1a5fa8 !important; }
+  .school-jump-button {
+    background: linear-gradient(90deg, #1a5fa8, #2d9fc5) !important;
+    box-shadow: 0 4px 16px rgba(26,95,168,0.35) !important;
+  }
+  .school-jump-button:hover {
+    background: #154e8f !important;
+  }
+
+  .school-highlight-box {
+    background: linear-gradient(135deg, #eaf3ff, #daeeff);
+    border: 1px solid #b3d4f5;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 0 0 24px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .school-highlight-item {
+    font-size: 14px;
+    color: #1a3a5c;
+    line-height: 1.6;
+  }
+
+  .school-payment-card {
+    border-color: rgba(26,95,168,0.15) !important;
+  }
+  .school-payment-card .manual-payment-title { color: #1a3a5c; }
+  .school-icon {
+    background: linear-gradient(135deg, #cce0ff, #a8c8f5) !important;
+    border-color: rgba(26,95,168,0.25) !important;
+  }
+  .school-step { background: #1a5fa8 !important; }
+  .school-contact-alert {
+    background: linear-gradient(135deg, #eaf3ff, #daeeff) !important;
+    border-color: #b3d4f5 !important;
+    color: #1a3a5c !important;
+  }
+  .school-contact-alert strong { color: #0d2b4e !important; }
+  .school-contact-alert .contact-links a { color: #1a5fa8 !important; }
+  .school-payment-highlight {
+    background: #eaf3ff !important;
+    border-color: #b3d4f5 !important;
+    color: #1a3a5c !important;
+  }
+
   @media (max-width:600px) {
     .hero { padding:40px 16px 56px; }
     .hero-stats { gap:12px; }
@@ -451,6 +551,8 @@
     .payment-methods { grid-template-columns: 1fr; }
     .qr-card img { width: 190px; }
     .contact-links { flex-direction: column; }
+    .track-tab { min-width: 140px; padding: 14px 18px; }
+    .track-tab-title { font-size: 14px; }
   }
 </style>
 </head>
@@ -461,13 +563,13 @@
   <div class="hero-tag">🎓 לומדה דיגיטלית לבגרות בחקלאות</div>
   <h1>הכנה <span>חכמה ואינטרקטיבית</span><br>לבגרות 5 יחידות בחקלאות</h1>
   <p class="hero-sub">
-    כל מה שצריך להצליח בבגרות — 13 לומדות אינטרקטיביות, שאלות חזרה, מושגים ו-100+ שאלות מבגרויות אמיתיות. הכל במקום אחד, בצורה ברורה וכיפית.
+    כל מה שצריך להצליח בבגרות — 18 לומדות אינטרקטיביות, שאלות חזרה, מושגים ו-100+ שאלות מבגרויות אמיתיות. הכל במקום אחד, בצורה ברורה וכיפית.
   </p>
-  <a class="hero-cta" href="#manual-payment">🛒 לרכישה עכשיו</a>
+  <a class="hero-cta" href="#pricing">🛒 לרכישה עכשיו</a>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">13</div><div class="stat-label">לומדות</div></div>
+    <div class="stat"><div class="stat-num">18</div><div class="stat-label">לומדות</div></div>
     <div class="stat"><div class="stat-num">100+</div><div class="stat-label">שאלות בגרות</div></div>
-    <div class="stat"><div class="stat-num">140+</div><div class="stat-label">יחידות לימוד</div></div>
+    <div class="stat"><div class="stat-num">170+</div><div class="stat-label">יחידות לימוד</div></div>
   </div>
 </section>
 
@@ -484,6 +586,10 @@
       <div class="screenshot-label">🐕 מודול הכלבים — 6 לומדות</div>
     </div>
     <div class="screenshot-card">
+      <img src="https://bagruyot.org/haklaut/bg/lp/sus.png" alt="תמונת לומדת סוסים">
+      <div class="screenshot-label">🐴 מודול הסוסים — 5 לומדות</div>
+    </div>
+    <div class="screenshot-card">
       <img src="https://bagruyot.org/haklaut/bg/lp/bagrut.png" alt="תמונת לומדה">
       <div class="screenshot-label">📝 שאלות מבגרויות</div>
     </div>
@@ -492,7 +598,7 @@
 
 <div class="section-wrap">
   <h2 class="section-title">מה כלול בלומדה?</h2>
-  <p class="section-sub">שלושה עולמות תוכן מקיפים — 13 לומדות + בנק שאלות</p>
+  <p class="section-sub">ארבעה עולמות תוכן מקיפים — 18 לומדות + בנק שאלות</p>
   <div class="modules-grid">
     <div class="module-card">
       <div class="module-header"><div class="module-icon">🐾</div><h3>בעלי חיים — 7 לומדות</h3></div>
@@ -532,7 +638,23 @@
     </div>
 
     <div class="module-card">
-      <div class="module-header"><div class="module-icon">📝</div><h3>בחן את עצמך — 100+ שאלות</h3></div>
+      <div class="module-header"><div class="module-icon">🐴</div><h3>ענף הסוסים — 5 לומדות</h3></div>
+      <p class="intro">מודול ייעודי לכל נושאי ענף הסוסים — עם הסברים, תמונות, שאלות חזרה ומושגים מרכזיים בכל לומדה.</p>
+      <ul class="topics-list">
+        <li><span class="dot">1</span><div><div class="topic-name">תזונה</div><div class="topic-desc">מזון גס ומרוכז, חציר ומרעה, סוגי מזון, אנומליות אכילה ושגרת שתייה בסוסים</div></div></li>
+        <li><span class="dot">2</span><div><div class="topic-name">מחלות, תולעים וטפילים</div><div class="topic-desc">מחלות נפוצות בסוסים, טפילים, מניעה, ממשק תברואה, עזרה ראשונה וכללי הזנה במצבי מחלה</div></div></li>
+        <li><span class="dot">3</span><div><div class="topic-name">גנטיקה והמלטה</div><div class="topic-desc">השבחה גנטית, בדיקת הריון, שלבי ההמלטה, טיפול בסיח, זיהוי מצבי סיכון</div></div></li>
+        <li><span class="dot">4</span><div><div class="topic-name">מערכת הדם וחיסונים</div><div class="topic-desc">מערכת הדם, תפקידי הלב וכלי הדם, מדדי בריאות בסוסים, חיסונים, מוגדנים וזיכרון חיסוני</div></div></li>
+        <li><span class="dot">5</span><div><div class="topic-name">חושים והתנהגות</div><div class="topic-desc">חמשת החושים, התנהגות טבעית, מנוחה, תקשורת, פחד ותגובות, הירריכיה ויחסים בתוך הקבוצה</div></div></li>
+      </ul>
+      <div class="module-tags">
+        <span class="tag">שאלות חזרה</span>
+        <span class="tag">מושגים</span>
+        <span class="tag">תמונות ואיורים</span>
+      </div>
+    </div>
+
+    <div class="module-card">
       <p class="intro">אוסף שאלות מבגרויות אמיתיות של שנים קודמות — הדרך הכי טובה לתרגל ולדעת היכן אתה עומד לפני הבחינה.</p>
       <ul class="topics-list">
         <li><span class="dot">✓</span><div><div class="topic-name">שאלות אמריקאיות</div><div class="topic-desc">תרגול ממגוון שנים עם מגוון נושאים</div></div></li>
@@ -564,77 +686,169 @@
 
 <div class="pricing-wrap" id="pricing">
   <h2 class="section-title">רכישה ותשלום</h2>
-  <p class="section-sub">גישה מלאה לכל 13 הלומדות — תשלום חד פעמי</p>
+  <p class="section-sub">בחרו את המסלול המתאים לכם</p>
 
-  <div class="pricing-card" style="margin-top:36px;">
-    <div class="pricing-badge">🌿 חבילה מלאה — כל הלומדות</div>
-    <h2>לומדת הכנה לבגרות בחקלאות</h2>
-    <div class="price"><span class="currency">₪</span>49</div>
-    <div class="price-note">רק ₪49 · תשלום חד פעמי · גישה ללא הגבלת זמן</div>
-
-    <ul class="pricing-features">
-      <li><span class="check">✓</span> 7 לומדות אינטרקטיביות בנושאי בעלי חיים</li>
-      <li><span class="check">✓</span> 6 לומדות מודול הכלבים המלא</li>
-      <li><span class="check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
-      <li><span class="check">✓</span> שאלות חזרה ומושגים בכל לומדה</li>
-      <li><span class="check">✓</span> גישה מלאה ממובייל ומחשב</li>
-      <li><span class="check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
-    </ul>
-
-    <a href="#manual-payment" class="jump-button">🔒 לפרטי תשלום ורכישה</a>
-    <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
-      🔒 אפשרויות תשלום מאובטחות · פרטי התשלום מופיעים בהמשך הדף
-    </p>
+  <!-- Track Toggle -->
+  <div class="track-toggle" role="tablist">
+    <button class="track-tab active" id="tab-school" role="tab" aria-selected="true" onclick="switchTrack('school')">
+      <span class="track-tab-icon">🏫</span>
+      <span class="track-tab-title">רכישה למגמה</span>
+      <span class="track-tab-sub">לבית ספר · ₪949</span>
+    </button>
+    <button class="track-tab" id="tab-private" role="tab" aria-selected="false" onclick="switchTrack('private')">
+      <span class="track-tab-icon">🎒</span>
+      <span class="track-tab-title">רכישה פרטית</span>
+      <span class="track-tab-sub">לתלמיד בודד · ₪49</span>
+    </button>
   </div>
 
-  <div class="manual-payment-card" id="manual-payment">
-    <h3 class="manual-payment-title">אפשרויות תשלום ורכישה</h3>
-    <p class="manual-payment-sub">
-      כדי לקבל גישה ללומדת החקלאות, יש לשלם <strong>49 ש״ח</strong> ולציין שמדובר ב<strong>גישה ללומדת החקלאות</strong>.
-    </p>
-
-    <div class="contact-alert">
-      <strong>חשוב מאוד:</strong> לאחר התשלום, אם לא מתקבל מייל עם פרטי ההתחברות תוך 24 שעות, יש ליצור קשר כדי שנוכל לוודא שהתשלום אכן התקבל ונוצר עבורך חשבון.
-      <div class="contact-links">
-        <a href="tel:0542166396">📞 0542166396</a>
-        <a href="mailto:tanyatabakmaher@gmail.com?subject=בדיקת תשלום עבור לומדת החקלאות">✉️ tanyatabakmaher@gmail.com</a>
-      </div>
+  <!-- ======================== PRIVATE TRACK ======================== -->
+  <div class="track-panel hidden" id="track-private">
+    <div class="pricing-card" style="margin-top:0;">
+      <div class="pricing-badge">🌿 חבילה מלאה — כל הלומדות</div>
+      <h2>לומדת הכנה לבגרות בחקלאות</h2>
+      <div class="price"><span class="currency">₪</span>49</div>
+      <div class="price-note">רק ₪49 · תשלום חד פעמי · גישה לשנה</div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> 7 לומדות אינטרקטיביות בנושאי בעלי חיים</li>
+        <li><span class="check">✓</span> 6 לומדות מודול הכלבים המלא</li>
+        <li><span class="check">✓</span> 5 לומדות מודול הסוסים המלא</li>
+        <li><span class="check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
+        <li><span class="check">✓</span> שאלות חזרה ומושגים בכל לומדה</li>
+        <li><span class="check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
+        <li><span class="check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
+      </ul>
+      <a href="#payment-private" class="jump-button">🔒 לפרטי תשלום ורכישה</a>
+      <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
+        🔒 אפשרויות תשלום מאובטחות · פרטי התשלום מופיעים בהמשך
+      </p>
     </div>
 
-    <div class="payment-methods">
-      <div class="payment-method">
-        <div class="payment-icon">📲</div>
-        <h3>תשלום דרך PayBox</h3>
-        <p>אפשר לשלם דרך אפליקציית PayBox בסריקת הקוד או ישירות דרך מספר הטלפון.</p>
-        <div class="payment-highlight">יש לשלם 49 ש״ח ולציין בהערה: גישה ללומדת החקלאות</div>
-        <ul class="payment-steps">
-          <li><span class="step-num">1</span><span>פותחים את אפליקציית PayBox וסורקים את ה־QR או מחפשים לפי מספר הטלפון 0542166396</span></li>
-          <li><span class="step-num">2</span><span>משלמים 49 ש״ח</span></li>
-          <li><span class="step-num">3</span><span>מציינים שמדובר בתשלום עבור גישה ללומדת החקלאות</span></li>
-          <li><span class="step-num">4</span><span>בסיום התשלום ממתינים למייל עם פרטי ההתחברות, שיישלח תוך 24 שעות</span></li>
-        </ul>
-        <div class="qr-wrap">
-          <div class="qr-card">
-            <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
-            <div class="qr-note">סרקו את הקוד לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
-          </div>
-        </div>
+    <div class="manual-payment-card" id="payment-private">
+      <h3 class="manual-payment-title">אפשרויות תשלום — רכישה פרטית</h3>
+      <p class="manual-payment-sub">
+        כדי לקבל גישה ללומדת החקלאות, יש לשלם <strong>49 ש״ח</strong> ולציין שמדובר ב<strong>גישה ללומדת החקלאות</strong>.
+      </p>
+      <div class="contact-alert">
+        <strong>חשוב מאוד:</strong> לאחר התשלום, אם לא מתקבל מייל עם פרטי ההתחברות תוך 24 שעות, יש ליצור קשר כדי שנוכל לוודא שהתשלום אכן התקבל ונוצר עבורך חשבון.
         <div class="contact-links">
           <a href="tel:0542166396">📞 0542166396</a>
+          <a href="mailto:tanyatabakmaher@gmail.com?subject=בדיקת תשלום עבור לומדת החקלאות">✉️ tanyatabakmaher@gmail.com</a>
+        </div>
+      </div>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <div class="payment-icon">📲</div>
+          <h3>תשלום דרך PayBox</h3>
+          <p>אפשר לשלם דרך אפליקציית PayBox בסריקת הקוד או ישירות דרך מספר הטלפון.</p>
+          <div class="payment-highlight">יש לשלם 49 ש״ח ולציין בהערה: גישה ללומדת החקלאות</div>
+          <ul class="payment-steps">
+            <li><span class="step-num">1</span><span>פותחים את PayBox וסורקים את ה־QR או מחפשים לפי 0542166396</span></li>
+            <li><span class="step-num">2</span><span>משלמים 49 ש״ח</span></li>
+            <li><span class="step-num">3</span><span>מציינים: גישה ללומדת החקלאות</span></li>
+            <li><span class="step-num">4</span><span>ממתינים למייל עם פרטי ההתחברות תוך 24 שעות</span></li>
+          </ul>
+          <div class="qr-wrap">
+            <div class="qr-card">
+              <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
+              <div class="qr-note">סרקו את הקוד לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a href="tel:0542166396">📞 0542166396</a>
+          </div>
+        </div>
+        <div class="payment-method">
+          <div class="payment-icon">💳</div>
+          <h3>תשלום באשראי</h3>
+          <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+          <div class="payment-highlight">תשלום מאובטח דרך PayMe עבור גישה ללומדת החקלאות בעלות 49 ש״ח</div>
+          <ul class="payment-steps">
+            <li><span class="step-num">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+            <li><span class="step-num">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+            <li><span class="step-num">3</span><span>ממתינים למייל עם פרטי ההתחברות תוך 24 שעות</span></li>
+          </ul>
+          <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SCHOOL TRACK ======================== -->
+  <div class="track-panel" id="track-school">
+    <div class="pricing-card pricing-card-school" style="margin-top:0;">
+      <div class="pricing-badge school-badge">🏫 מסלול מגמה — לכל תלמידי הכיתה</div>
+      <h2>רכישה מוסדית למגמת חקלאות</h2>
+      <div class="price school-price"><span class="currency">₪</span>949</div>
+      <div class="price-note">מחיר אחיד לכל המגמה · תשלום חד פעמי · גישה לשנה לכל תלמידי הכיתה</div>
+      <div class="school-highlight-box">
+        <div class="school-highlight-item">🎓 <strong>מחיר קבוע ואחיד</strong> — ₪949 בלבד, ללא קשר למספר התלמידים</div>
+        <div class="school-highlight-item">👩‍🏫 <strong>ניהול מרכזי</strong> — המורה מקבל חשבון נפרד משאר התלמידים</div>
+        <div class="school-highlight-item">📋 <strong>חשבונית מס</strong> — מסמך רשמי לצרכי בית הספר</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check school-check">✓</span> גישה ל-18 לומדות לכל תלמידי המגמה</li>
+        <li><span class="check school-check">✓</span> בעלי חיים, כלבים, סוסים ובנק שאלות</li>
+        <li><span class="check school-check">✓</span> 100+ שאלות מבגרויות קודמות עם פתרונות</li>
+        <li><span class="check school-check">✓</span> גישה מלאה ממובייל ומחשב לשנה</li>
+        <li><span class="check school-check">✓</span> עדכונים ותכנים נוספים ללא עלות נוספת</li>
+        <li><span class="check school-check">✓</span> ליווי וסיוע טכני לצוות המורים</li>
+      </ul>
+      <a href="#payment-school" class="jump-button school-jump-button">📋 לפרטי הרכישה המוסדית</a>
+      <p style="font-size:12px; color:#aaa; margin-top:14px; text-align:center;">
+        📞 מוזמנים ליצור קשר לכל שאלה לפני הרכישה
+      </p>
+    </div>
+
+    <div class="manual-payment-card school-payment-card" id="payment-school">
+      <h3 class="manual-payment-title">רכישה מוסדית — מגמת חקלאות</h3>
+      <p class="manual-payment-sub">
+        מחיר אחיד של <strong>949 ש״ח</strong> לכל המגמה — ללא קשר למספר התלמידים. יש לציין <strong>שם בית הספר ושם המורה</strong> בעת התשלום.
+      </p>
+
+      <div class="contact-alert school-contact-alert">
+        <strong>מומלץ לפני הרכישה:</strong> ניתן ליצור קשר לתיאום, קבלת חשבונית מס ופתיחת חשבונות לתלמידים. נשמח לעזור בכל שאלה!
+        <div class="contact-links">
+          <a href="tel:0542166396">📞 0542166396</a>
+          <a href="mailto:tanyatabakmaher@gmail.com?subject=רכישה מוסדית — מגמת חקלאות">✉️ tanyatabakmaher@gmail.com</a>
         </div>
       </div>
 
-      <div class="payment-method">
-        <div class="payment-icon">💳</div>
-        <h3>תשלום באשראי</h3>
-        <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
-        <div class="payment-highlight">תשלום מאובטח דרך PayMe עבור גישה ללומדת החקלאות בעלות 49 ש״ח</div>
-        <ul class="payment-steps">
-          <li><span class="step-num">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
-          <li><span class="step-num">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
-          <li><span class="step-num">3</span><span>בסיום התשלום ממתינים למייל עם פרטי ההתחברות, שיישלח תוך 24 שעות</span></li>
-        </ul>
-        <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1775-039255FD-LPBKOR7P-9CMXMBPK" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <div class="payment-icon school-icon">📲</div>
+          <h3>תשלום דרך PayBox</h3>
+          <p>ניתן לשלם דרך PayBox על סך 949 ש״ח. יש לציין שם בית הספר ושם מורה המגמה בהערה.</p>
+          <div class="payment-highlight school-payment-highlight">יש לשלם 949 ש״ח ולציין: רכישה מוסדית — [שם בית הספר]</div>
+          <ul class="payment-steps">
+            <li><span class="step-num school-step">1</span><span>פותחים PayBox וסורקים QR או מחפשים לפי 0542166396</span></li>
+            <li><span class="step-num school-step">2</span><span>משלמים 949 ש״ח</span></li>
+            <li><span class="step-num school-step">3</span><span>מציינים: רכישה מוסדית + שם בית הספר + שם המורה</span></li>
+            <li><span class="step-num school-step">4</span><span>תוך 48 שעות יישלח אישור עם פרטי גישה לכל התלמידים</span></li>
+          </ul>
+          <div class="qr-wrap">
+            <div class="qr-card">
+              <img src="https://bagruyot.org/haklaut/bg/paybox.png" alt="QR לתשלום ב-PayBox">
+              <div class="qr-note">סרקו לתשלום מהיר ב־PayBox או חפשו לפי המספר 0542166396</div>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a href="tel:0542166396">📞 0542166396</a>
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <div class="payment-icon school-icon">💳</div>
+          <h3>תשלום באשראי</h3>
+          <p>אפשר לשלם באשראי דרך מערכת הסליקה המאובטחת של PayMe.</p>
+          <div class="payment-highlight school-payment-highlight">תשלום מאובטח דרך PayMe עבור רכישת מגמה בעלות 949 ש״ח</div>
+          <ul class="payment-steps">
+            <li><span class="step-num school-step">1</span><span>לוחצים על כפתור התשלום המאובטח</span></li>
+            <li><span class="step-num school-step">2</span><span>ממלאים את פרטי התשלום במערכת הסליקה של PayMe</span></li>
+            <li><span class="step-num school-step">3</span><span>תוך 48 שעות נפתחת גישה לכל תלמידי המגמה</span></li>
+          </ul>
+          <a class="payment-action-button" href="https://live.payme.io/sale/template/SALE1779-090919AD-AKEHVNGS-ZMZQBTK1" target="_blank" rel="noopener noreferrer">🔒 לתשלום מאובטח באשראי</a>
+        </div>
       </div>
     </div>
   </div>
@@ -645,6 +859,21 @@
 </footer>
 
 <script>
+  // Track switcher
+  function switchTrack(track) {
+    document.querySelectorAll('.track-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.track-panel').forEach(p => p.classList.add('hidden'));
+
+    document.getElementById('tab-' + track).classList.add('active');
+    document.getElementById('tab-' + track).setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('track-' + track);
+    panel.classList.remove('hidden');
+  }
+
+  // Intersection observer for scroll animations
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -654,7 +883,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.module-card,.why-card,.screenshot-card,.pricing-card,.manual-payment-card,.payment-method').forEach(el => {
+  document.querySelectorAll('.module-card,.why-card,.screenshot-card,.pricing-card,.manual-payment-card,.payment-method,.track-tab').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(22px)';
     el.style.transition = 'opacity .55s ease, transform .55s ease';
